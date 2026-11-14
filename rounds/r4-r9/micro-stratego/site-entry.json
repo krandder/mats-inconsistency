@@ -1,0 +1,51 @@
+{
+ "slug": "micro-stratego",
+ "title": "Round 4 E-MS: micro-Stratego with a learned factored world model (stopped at the gate)",
+ "date": "16 Oct",
+ "status": "informative",
+ "oneline": "Gate failed, so the pre-registered search rules were not run. On 90 unseen setups the 852k-parameter world model learned the one-step rules completely (battle accuracy 1.000), but its one-pass belief about the hidden pieces is already within 0.024 nats per slot of the exact Bayes posterior (bar 0.12): there is no belief gap to close. EXPLORATORY follow-up, not rule tests: a trust head ranks rollout errors far better than entropy (Spearman +0.42 vs -0.43; +0.29 vs -0.03 at matched entropy). Deduplicated pooling failed mechanically (the trained keys collapsed). Search won 48-51% of games against P0, Ataraxos-1Step and MCTS. 3 seeds, audited; $1.68.",
+ "results_md": "/home/agent/workspaces/mats/work/micro-stratego/RESULTS-MS.md",
+ "led_to": [],
+ "page": {
+  "why": "Gemini's round-4 spec ranked this first. It is one factored any-order architecture: a world model trained only on real games, a search extension, a self-trust head and pooling rules. It searches only inside its own learned model, on a hidden-information game where both belief and lookahead matter. It would test five claims at once: any-order belief search beats Ataraxos's fixed order; deduplicated pooling makes the consensus independent of a skewed search policy; self-trust differs from output entropy; a parameter mask keeps beliefs fixed under value distillation; and the full search wins games. All of it was gated on a first check: the world model must learn the rules and still leave a gap between its one-pass belief and the exact posterior.",
+  "what": "4x4 micro-Stratego (6 pieces per side, 720 hidden setups): 60,000 self-play games on 540 setups, tests on 90 unseen setups. An exact Bayes posterior over the opponent's setup, including what its moves reveal, checked against a brute-force replay. A 4-layer any-order transformer over one rollout tape (board, opponent slots, up to 6 moves and outcomes), trained only on real games. Adapters, trust heads and pooling rules were fitted on a separate calibration split. Pre-registered (PREREG-MS.md, hashed before launch), 3 seeds on spot L4s.",
+  "result": "The gate failed on the belief gap in all three seeds. The world model learned the one-step rules completely (battle-outcome accuracy 1.000 on 9,744 test battles; 5-known-slot NLL 0.0001 nats, bar 0.03). But its one-pass belief is 0.024 nats per hidden slot from the exact posterior [95% CI 0.021, 0.027], a fifth of the 0.12 bar, and the 30% checkpoint was as good. The spec's own oracle checks only consistency with public constraints, and is 0.075 nats from the exact posterior. EXPLORATORY, run afterwards on request (not rule tests): (1) a trust head trained on realised outcomes ranks rollout errors well: Spearman with -KL to the exact action value is +0.42 for trust vs -0.43 for the net's confidence, and +0.29 vs -0.03 within entropy strata. Confident rollouts are the wrong ones. (2) Policy-sensitivity JSD under 80/20 flank skew was 0.0063 (mix), 0.0015 (ataraxos_mmd), 0.0007 (kc_dedup) and 0.0017 (attn_L3), but the trained keys collapsed (cosine 0.99 within and across flanks). So kc_dedup only shrinks toward the 0-step value: its value error is 53% worse than mix. (3) Unified search won 0.48, 0.49 and 0.51 of games against P0, Ataraxos-1Step and MCTS (every interval includes 0.5).",
+  "sowhat": "On this board a small transformer infers the hidden pieces easily, so the testbed cannot ask whether search improves beliefs, and lookahead added nothing measurable in play. The one exploratory signal is self-trust: a head trained on realised outcomes knows which rollouts to doubt, and plain confidence gets it backwards.",
+  "decided": "Recorded D0 as failed; D1-D5 are not rule results. D2, D3 and D5 ran afterwards as exploratory work at the coordinator's request ($0.39); D1 and D4 never ran. Open options, none chosen: a harder belief problem (the spec's 6x6 rung), a dedup test with keys that cannot collapse, and the trust signal on a model with real errors.",
+  "chart": {
+   "bars": [
+    {
+     "label": "one-pass net (100% trained)",
+     "value": 0.0239,
+     "text": "0.024"
+    },
+    {
+     "label": "one-pass net (30% trained)",
+     "value": 0.0248,
+     "text": "0.025"
+    },
+    {
+     "label": "constraint-only oracle (env.py)",
+     "value": 0.0754,
+     "text": "0.075"
+    },
+    {
+     "label": "pre-registered gap bar",
+     "value": 0.12,
+     "text": "0.12"
+    }
+   ],
+   "caption": "KL to the exact Bayes posterior per hidden opponent slot (nats), 2,000 test positions at turns 4-12, 3-seed means. The gate needed the one-pass net to be at least 0.12 away, leaving room for search.",
+   "aria": "The one-pass net is far below the 0.12 bar and closer to the exact posterior than the constraint-only oracle"
+  },
+  "details": {
+   "methods": [
+    "Pre-registered in PREREG-MS.md (sha256 4c78f48c...) before the first full training run. No amendments.",
+    "Data: 60,000 / 5,000 / 3,000 softmax-heuristic self-play games (tau 0.5, 1, 2) on 540 / 90 / 90 disjoint setups. Oracle: exact posterior over 720 setups x unknown tau, verified by brute force on 40 positions (max error 5.6e-16).",
+    "World model: 852k parameters, 16,000 steps of batch 1024 on train games only (any-order masked slot loss + move, outcome and result losses); gate measured on 2,000 test positions at turns 4-12 and 9,744 first-ply test battles.",
+    "Exploratory follow-up (not rule tests): D2 (500 two-flank positions, K = 24 under 80/20 and 20/80 flank skew, reference K = 128), D3 (35,184 rollouts per seed scored against Q* from the exact posterior, 600 move choices) and D5 (400 games per pair per seed), exactly as pre-specified.",
+    "3 seeds, 95% t-intervals across seeds; an independent CPU recomputation of the gate numbers agrees to 7.8e-9, and the exploratory summaries are re-derived from the saved arrays (54 numbers, difference 0). GPU $1.68 at the list-price ceiling ($1.29 rule run + $0.39 exploratory)."
+   ]
+  }
+ }
+}

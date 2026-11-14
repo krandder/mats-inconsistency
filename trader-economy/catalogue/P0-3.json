@@ -1,0 +1,14 @@
+{
+ "id": "P0-3",
+ "question": "Does DT-Recall 1D reach the prefix-sum bar on much longer strings, and does a DT-L baseline?",
+ "setup": "P1: DT-Recall 1D, bansal alpha 1, 8 seeds; P-L: our DT-L reimplementation (w=89, 157,261 params), 2 seeds (cut from 3). Exact accuracy on fL128/fL256/fL512, strict fp32.",
+ "result": "P1 passes: 8/8 seeds, fL512@300 0.9998\u00b10.0006, unchanged at 3000 iterations, no overthinking. P-L scores 0.0 on every set: our DT-L reimplementation is broken and must not be used as a baseline until fixed.",
+ "status": "Informative",
+ "files": [
+  "puzzles/P0/dtl.py",
+  "puzzles/P0/train.py",
+  "puzzles/P0/RESULTS.md",
+  "puzzles/P0/results/p0_results.json",
+  "puzzles/P0/results/chart_p0.json"
+ ]
+}

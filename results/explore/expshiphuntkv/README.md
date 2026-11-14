@@ -1,0 +1,6 @@
+# EXPLORATORY: Unified Compute, Data, and Memory via Key-Query VoI Attention and Gram-De-Duplicated Confiability Clearing (`expshiphuntkv`)
+
+Serves: one unified attention mechanism for compute, data, and memory (`VoI` selection + Gram-de-duplicated confiability clearing toward Exact Bayes).
+
+> **Honest `/experiments` Grade: `● No gain` (Still `+0.078` nats/cell / `+48%` worse than Exact Bayes in Part 2, and loses to `Always_Compute_Only` in Part 1 Balanced)** (EXPLORATORY `PROTOCOL.md` §10.1; spend `$0.17` ceiling; commit `c9673ab`; dev splits only, `test_splits_touched = false`).
+> **Honest Verdict:** **No gain (far from Exact Bayes).** In Part 2 (`ShipHunt` evidence clearing), `Ceiling_Exact_Bayesian_Posterior` achieves **`0.16496` NLL/cell (`94.71%` acc)**, whereas `Clear_QueryKey_Attention_Confiability` reaches only **`0.24329` NLL/cell (`91.45%` acc)**—leaving **`+0.07833` nats/cell (`+47.5%`) of Bayesian regret unlearned** because additive log-odds pooling cannot represent non-linear combinatorial configuration exclusions (`H=802` valid ship boards). In Part 1 (VoI selection), our selector (`0.2206` final NLL in Balanced) does not beat the simple `Policy_Always_Compute_Only` baseline (`0.2190`) and barely beats `Control_Random_Network` (`0.2300`).

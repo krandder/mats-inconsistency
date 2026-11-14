@@ -1,0 +1,3 @@
+1 70 Pall-on-s2 --arm P --e1-gating all --seed 2 --sft-steps 100 --sft-batch 16 --rl-steps 60 --eval-every 30 --eval-n 128 --p-reward approval
+1 55 B0floor-on-s1 --arm B0floor --seed 1 --init-from /root/soup/e1/ckpt/warm-fused-s1/warm.pt --sft-steps 0 --rl-steps 60 --eval-every 30 --eval-n 128 --p-reward approval --micro-batch 4
+2 55 B0floor-on-s2 --arm B0floor --seed 2 --init-from /root/soup/e1/ckpt/warm-fused-s2/warm.pt --sft-steps 0 --rl-steps 60 --eval-every 30 --eval-n 128 --p-reward approval --micro-batch 4

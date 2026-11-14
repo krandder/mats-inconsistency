@@ -1,0 +1,6180 @@
+{
+ "units": "mean log loss / Brier per query, clip 0.01, missing 0.5; diff negative = method better; ci95 = cluster bootstrap over groups (2,000)",
+ "counts": {
+  "threshold": 300,
+  "date": 180,
+  "mc_excl": 300,
+  "control": 297
+ },
+ "market_check": {
+  "threshold": {
+   "violations": 7,
+   "violations_gt_0.02": 3,
+   "violations_gt_0.05": 2,
+   "ties": 7,
+   "pairs": 300,
+   "mean_excess_when_violated": 0.04861630202602602
+  },
+  "date": {
+   "violations": 10,
+   "violations_gt_0.02": 3,
+   "violations_gt_0.05": 2,
+   "ties": 8,
+   "pairs": 180,
+   "mean_excess_when_violated": 0.04510421911470179
+  },
+  "mc_excl": {
+   "violations_rawprice": 75,
+   "violations_gt_1.02": 53,
+   "pairs": 300,
+   "median_sum_open_options": 1.0519830072752756,
+   "note": "normalized prices cannot violate; raw last-bet prices are stale in the store"
+  }
+ },
+ "outcome_check": {
+  "threshold": {
+   "violations": 0,
+   "pairs": 300
+  },
+  "date": {
+   "violations": 0,
+   "pairs": 180
+  },
+  "mc_excl": {
+   "violations": 0,
+   "pairs": 300
+  }
+ },
+ "rows": [
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "joint",
+   "method": "market_indep",
+   "log_loss": 0.2514789267994439,
+   "brier": 0.06877359517129672
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "joint",
+   "method": "market_oracle",
+   "log_loss": 0.18871560410692365,
+   "brier": 0.05063827709666793
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "joint",
+   "method": "raw",
+   "pairs": 50,
+   "log_loss": 0.28159403204972,
+   "brier": 0.079314,
+   "ll_minus_market_indep": 0.030115105250276074,
+   "ll_minus_market_indep_ci95": [
+    -0.013996260768333863,
+    0.07510458429044581
+   ],
+   "ll_minus_market_oracle": 0.09287842794279638,
+   "ll_minus_market_oracle_ci95": [
+    0.05989677155176345,
+    0.13031328099454745
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "joint",
+   "method": "projected",
+   "pairs": 50,
+   "log_loss": 0.2334241969862546,
+   "brier": 0.061940459467874825,
+   "ll_minus_market_indep": -0.018054729813189313,
+   "ll_minus_market_indep_ci95": [
+    -0.04502598616169075,
+    0.004028445526827831
+   ],
+   "ll_minus_market_oracle": 0.044708592879330995,
+   "ll_minus_market_oracle_ci95": [
+    0.03142189026701716,
+    0.05874690098643921
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "joint",
+   "method": "hybrid",
+   "pairs": 50,
+   "log_loss": 0.21442829369689595,
+   "brier": 0.057363895340723135,
+   "ll_minus_market_indep": -0.03705063310254798,
+   "ll_minus_market_indep_ci95": [
+    -0.0558830759798693,
+    -0.02298099858394693
+   ],
+   "ll_minus_market_oracle": 0.025712689589972332,
+   "ll_minus_market_oracle_ci95": [
+    0.01744447697302651,
+    0.03483556574084943
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "joint",
+   "method": "hybrid_and3",
+   "pairs": 50,
+   "log_loss": 0.19345693162907276,
+   "brier": 0.05117542441749425,
+   "ll_minus_market_indep": -0.05802199517037112,
+   "ll_minus_market_indep_ci95": [
+    -0.0787829303006404,
+    -0.0394945480951105
+   ],
+   "ll_minus_market_oracle": 0.0047413275221491824,
+   "ll_minus_market_oracle_ci95": [
+    0.00014405690645765413,
+    0.012780645224358846
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "single",
+   "method": "market_indep",
+   "log_loss": 0.2917238057152691,
+   "brier": 0.08369590176628564
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "single",
+   "method": "market_oracle",
+   "log_loss": 0.2917238057152691,
+   "brier": 0.08369590176628564
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "single",
+   "method": "raw",
+   "pairs": 50,
+   "log_loss": 0.29891804898896424,
+   "brier": 0.0872755,
+   "ll_minus_market_indep": 0.007194243273695123,
+   "ll_minus_market_indep_ci95": [
+    -0.0010139770694500127,
+    0.019932570277934342
+   ],
+   "ll_minus_market_oracle": 0.0071942432736951225,
+   "ll_minus_market_oracle_ci95": [
+    -0.0010139770694500153,
+    0.019932570277934346
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "single",
+   "method": "projected",
+   "pairs": 50,
+   "log_loss": 0.31784574441632424,
+   "brier": 0.0899281448403462,
+   "ll_minus_market_indep": 0.026121938701055152,
+   "ll_minus_market_indep_ci95": [
+    0.006422133522517088,
+    0.044428952004095724
+   ],
+   "ll_minus_market_oracle": 0.026121938701055152,
+   "ll_minus_market_oracle_ci95": [
+    0.006422133522517079,
+    0.044428952004095724
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "single",
+   "method": "hybrid",
+   "pairs": 50,
+   "log_loss": 0.2917238057152691,
+   "brier": 0.08369590176628564,
+   "ll_minus_market_indep": 2.636779683484747e-18,
+   "ll_minus_market_indep_ci95": [
+    -3.6929069371800435e-18,
+    8.497694088599725e-18
+   ],
+   "ll_minus_market_oracle": 2.220446049250313e-18,
+   "ll_minus_market_oracle_ci95": [
+    -5.442269728554689e-18,
+    9.25185853854297e-18
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "single",
+   "method": "hybrid_and3",
+   "pairs": 50,
+   "log_loss": 0.2917238057152691,
+   "brier": 0.08369590176628564,
+   "ll_minus_market_indep": 8.326672684688674e-19,
+   "ll_minus_market_indep_ci95": [
+    -7.381802025433222e-18,
+    8.435518079259767e-18
+   ],
+   "ll_minus_market_oracle": 4.163336342344337e-19,
+   "ll_minus_market_oracle_ci95": [
+    -4.429376487340951e-18,
+    5.204170427930421e-18
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "all12",
+   "method": "market_indep",
+   "log_loss": 0.26489388643805234,
+   "brier": 0.07374769736962636
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "all12",
+   "method": "market_oracle",
+   "log_loss": 0.22305167130970538,
+   "brier": 0.06165748531987383
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "all12",
+   "method": "raw",
+   "pairs": 50,
+   "log_loss": 0.28736870436280143,
+   "brier": 0.08196783333333334,
+   "ll_minus_market_indep": 0.022474817924749094,
+   "ll_minus_market_indep_ci95": [
+    -0.007553787047196138,
+    0.05181032328750059
+   ],
+   "ll_minus_market_oracle": 0.06431703305309598,
+   "ll_minus_market_oracle_ci95": [
+    0.04190676081679336,
+    0.09008595696152787
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "all12",
+   "method": "projected",
+   "pairs": 50,
+   "log_loss": 0.26156471279627785,
+   "brier": 0.07126968792536528,
+   "ll_minus_market_indep": -0.003329173641774491,
+   "ll_minus_market_indep_ci95": [
+    -0.026916896919136377,
+    0.016805984620263836
+   ],
+   "ll_minus_market_oracle": 0.03851304148657239,
+   "ll_minus_market_oracle_ci95": [
+    0.024485188268108374,
+    0.05282135531756276
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "all12",
+   "method": "hybrid",
+   "pairs": 50,
+   "log_loss": 0.240193464369687,
+   "brier": 0.06614123081591063,
+   "ll_minus_market_indep": -0.024700422068365313,
+   "ll_minus_market_indep_ci95": [
+    -0.03725538398657954,
+    -0.015320665722631285
+   ],
+   "ll_minus_market_oracle": 0.017141793059981574,
+   "ll_minus_market_oracle_ci95": [
+    0.01162965131535102,
+    0.02322371049389965
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "all12",
+   "method": "hybrid_and3",
+   "pairs": 50,
+   "log_loss": 0.22621255632447157,
+   "brier": 0.062015583533758044,
+   "ll_minus_market_indep": -0.03868133011358076,
+   "ll_minus_market_indep_ci95": [
+    -0.052521953533760275,
+    -0.02632969873007368
+   ],
+   "ll_minus_market_oracle": 0.0031608850147661293,
+   "ll_minus_market_oracle_ci95": [
+    9.603793763844138e-05,
+    0.008520430149572577
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "date",
+   "forms": "joint",
+   "method": "market_indep",
+   "log_loss": 0.3714630926231481,
+   "brier": 0.12236575945257405
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "date",
+   "forms": "joint",
+   "method": "market_oracle",
+   "log_loss": 0.334776422015699,
+   "brier": 0.11310691935231204
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "date",
+   "forms": "joint",
+   "method": "raw",
+   "pairs": 27,
+   "log_loss": 0.4260905043223977,
+   "brier": 0.13500555555555557,
+   "ll_minus_market_indep": 0.05462741169924955,
+   "ll_minus_market_indep_ci95": [
+    -0.00025550944081834424,
+    0.11326902586642812
+   ],
+   "ll_minus_market_oracle": 0.09131408230669863,
+   "ll_minus_market_oracle_ci95": [
+    0.036963977921639336,
+    0.1442295358083659
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "date",
+   "forms": "joint",
+   "method": "projected",
+   "pairs": 27,
+   "log_loss": 0.38996165761860707,
+   "brier": 0.12444046939361846,
+   "ll_minus_market_indep": 0.01849856499545893,
+   "ll_minus_market_indep_ci95": [
+    -0.031684226169268935,
+    0.06438932002508801
+   ],
+   "ll_minus_market_oracle": 0.055185235602908014,
+   "ll_minus_market_oracle_ci95": [
+    0.009188946337550153,
+    0.09479973679467009
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "date",
+   "forms": "joint",
+   "method": "hybrid",
+   "pairs": 27,
+   "log_loss": 0.3550676143588095,
+   "brier": 0.11753096990915565,
+   "ll_minus_market_indep": -0.016395478264338667,
+   "ll_minus_market_indep_ci95": [
+    -0.03431034616890466,
+    0.002925028776657511
+   ],
+   "ll_minus_market_oracle": 0.020291192343110415,
+   "ll_minus_market_oracle_ci95": [
+    -0.004758101415715737,
+    0.044275260590223055
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "date",
+   "forms": "joint",
+   "method": "hybrid_and3",
+   "pairs": 27,
+   "log_loss": 0.33677557778578454,
+   "brier": 0.11255863975262931,
+   "ll_minus_market_indep": -0.034687514837363584,
+   "ll_minus_market_indep_ci95": [
+    -0.0717694828847317,
+    0.003304043036865842
+   ],
+   "ll_minus_market_oracle": 0.0019991557700855,
+   "ll_minus_market_oracle_ci95": [
+    -0.009055734071681396,
+    0.011437986539076803
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "date",
+   "forms": "single",
+   "method": "market_indep",
+   "log_loss": 0.42598003951087243,
+   "brier": 0.14441548049594136
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "date",
+   "forms": "single",
+   "method": "market_oracle",
+   "log_loss": 0.42598003951087243,
+   "brier": 0.14441548049594136
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "date",
+   "forms": "single",
+   "method": "raw",
+   "pairs": 27,
+   "log_loss": 0.6394769507173893,
+   "brier": 0.20430092592592594,
+   "ll_minus_market_indep": 0.2134969112065169,
+   "ll_minus_market_indep_ci95": [
+    0.04527260280805862,
+    0.4450582471603293
+   ],
+   "ll_minus_market_oracle": 0.21349691120651693,
+   "ll_minus_market_oracle_ci95": [
+    0.04527260280805863,
+    0.4450582471603293
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "date",
+   "forms": "single",
+   "method": "projected",
+   "pairs": 27,
+   "log_loss": 0.4770981066499857,
+   "brier": 0.1565479707414409,
+   "ll_minus_market_indep": 0.0511180671391132,
+   "ll_minus_market_indep_ci95": [
+    0.0002917570744704278,
+    0.09857230091804323
+   ],
+   "ll_minus_market_oracle": 0.05111806713911322,
+   "ll_minus_market_oracle_ci95": [
+    0.0002917570744704447,
+    0.09857230091804323
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "date",
+   "forms": "single",
+   "method": "hybrid",
+   "pairs": 27,
+   "log_loss": 0.42598003951087243,
+   "brier": 0.14441548049594136,
+   "ll_minus_market_indep": -1.02798428206033e-18,
+   "ll_minus_market_indep_ci95": [
+    -3.2057689836051397e-18,
+    0.0
+   ],
+   "ll_minus_market_oracle": 1.439177994884462e-17,
+   "ll_minus_market_oracle_ci95": [
+    0.0,
+    3.552713678800501e-17
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "date",
+   "forms": "single",
+   "method": "hybrid_and3",
+   "pairs": 27,
+   "log_loss": 0.4259800395108724,
+   "brier": 0.14441548049594136,
+   "ll_minus_market_indep": -1.9531701359146273e-17,
+   "ll_minus_market_indep_ci95": [
+    -4.402608545927345e-17,
+    0.0
+   ],
+   "ll_minus_market_oracle": -4.11193712824132e-18,
+   "ll_minus_market_oracle_ci95": [
+    -2.2204460492503132e-17,
+    8.881784197001253e-18
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "date",
+   "forms": "all12",
+   "method": "market_indep",
+   "log_loss": 0.38963540825238957,
+   "brier": 0.12971566646702984
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "date",
+   "forms": "all12",
+   "method": "market_oracle",
+   "log_loss": 0.36517762784742347,
+   "brier": 0.12354310640018848
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "date",
+   "forms": "all12",
+   "method": "raw",
+   "pairs": 27,
+   "log_loss": 0.49721931978739486,
+   "brier": 0.158104012345679,
+   "ll_minus_market_indep": 0.10758391153500535,
+   "ll_minus_market_indep_ci95": [
+    0.03870563922841943,
+    0.18942026565104253
+   ],
+   "ll_minus_market_oracle": 0.13204169193997142,
+   "ll_minus_market_oracle_ci95": [
+    0.06650254094338187,
+    0.20917110472560493
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "date",
+   "forms": "all12",
+   "method": "projected",
+   "pairs": 27,
+   "log_loss": 0.4190071406290666,
+   "brier": 0.1351429698428926,
+   "ll_minus_market_indep": 0.029371732376677034,
+   "ll_minus_market_indep_ci95": [
+    -0.019736814126224366,
+    0.07461797030641386
+   ],
+   "ll_minus_market_oracle": 0.05382951278164308,
+   "ll_minus_market_oracle_ci95": [
+    0.007994352051172776,
+    0.0937428944001477
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "date",
+   "forms": "all12",
+   "method": "hybrid",
+   "pairs": 27,
+   "log_loss": 0.3787050894094971,
+   "brier": 0.12649247343808423,
+   "ll_minus_market_indep": -0.010930318842892429,
+   "ll_minus_market_indep_ci95": [
+    -0.022873564112603113,
+    0.00195001918443836
+   ],
+   "ll_minus_market_oracle": 0.01352746156207362,
+   "ll_minus_market_oracle_ci95": [
+    -0.0031720676104771504,
+    0.029516840393482076
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "date",
+   "forms": "all12",
+   "method": "hybrid_and3",
+   "pairs": 27,
+   "log_loss": 0.36651039836081384,
+   "brier": 0.12317758666706667,
+   "ll_minus_market_indep": -0.02312500989157571,
+   "ll_minus_market_indep_ci95": [
+    -0.04784632192315449,
+    0.002202695357910568
+   ],
+   "ll_minus_market_oracle": 0.0013327705133903355,
+   "ll_minus_market_oracle_ci95": [
+    -0.006037156047787603,
+    0.007625324359384528
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "joint",
+   "method": "market_indep",
+   "log_loss": 0.356781327143751,
+   "brier": 0.10936866493053764
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "joint",
+   "method": "market_oracle",
+   "log_loss": 0.2916417410332753,
+   "brier": 0.09072056982988609
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "joint",
+   "method": "raw",
+   "pairs": 49,
+   "log_loss": 0.48606651132605727,
+   "brier": 0.14751147959183675,
+   "ll_minus_market_indep": 0.12928518418230633,
+   "ll_minus_market_indep_ci95": [
+    0.07504508311876686,
+    0.18894097483697292
+   ],
+   "ll_minus_market_oracle": 0.19442477029278202,
+   "ll_minus_market_oracle_ci95": [
+    0.1311104468227784,
+    0.2606059928214145
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "joint",
+   "method": "projected",
+   "pairs": 49,
+   "log_loss": 0.3582771368655488,
+   "brier": 0.10742389504592244,
+   "ll_minus_market_indep": 0.001495809721797864,
+   "ll_minus_market_indep_ci95": [
+    -0.024813133475917848,
+    0.027668444916910093
+   ],
+   "ll_minus_market_oracle": 0.06663539583227354,
+   "ll_minus_market_oracle_ci95": [
+    0.03146519328318672,
+    0.09875136669001694
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "joint",
+   "method": "hybrid",
+   "pairs": 49,
+   "log_loss": 0.3359174232181134,
+   "brier": 0.10143674740516756,
+   "ll_minus_market_indep": -0.020863903925637615,
+   "ll_minus_market_indep_ci95": [
+    -0.0316230034812703,
+    -0.009670212100815862
+   ],
+   "ll_minus_market_oracle": 0.04427568218483807,
+   "ll_minus_market_oracle_ci95": [
+    0.016923109170312246,
+    0.06897782659147507
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "joint",
+   "method": "hybrid_and3",
+   "pairs": 49,
+   "log_loss": 0.3201167452022496,
+   "brier": 0.09779672214730385,
+   "ll_minus_market_indep": -0.03666458194150132,
+   "ll_minus_market_indep_ci95": [
+    -0.05452769280219121,
+    -0.01704380685988946
+   ],
+   "ll_minus_market_oracle": 0.02847500416897436,
+   "ll_minus_market_oracle_ci95": [
+    0.010261916360742961,
+    0.04884517572566308
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "single",
+   "method": "market_indep",
+   "log_loss": 0.41928389738079785,
+   "brier": 0.13362003709037618
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "single",
+   "method": "market_oracle",
+   "log_loss": 0.41928389738079785,
+   "brier": 0.13362003709037618
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "single",
+   "method": "raw",
+   "pairs": 49,
+   "log_loss": 0.5098791057551643,
+   "brier": 0.15875510204081633,
+   "ll_minus_market_indep": 0.09059520837436642,
+   "ll_minus_market_indep_ci95": [
+    0.017494431558872214,
+    0.1739738444902291
+   ],
+   "ll_minus_market_oracle": 0.09059520837436642,
+   "ll_minus_market_oracle_ci95": [
+    0.017494431558872214,
+    0.1739738444902291
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "single",
+   "method": "projected",
+   "pairs": 49,
+   "log_loss": 0.4496188334794888,
+   "brier": 0.1420719754618759,
+   "ll_minus_market_indep": 0.030334936098690923,
+   "ll_minus_market_indep_ci95": [
+    -0.002093470920023785,
+    0.06448876659965487
+   ],
+   "ll_minus_market_oracle": 0.030334936098690923,
+   "ll_minus_market_oracle_ci95": [
+    -0.0020934709200237825,
+    0.06448876659965487
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "single",
+   "method": "hybrid",
+   "pairs": 49,
+   "log_loss": 0.41928389738079785,
+   "brier": 0.13362003709037618,
+   "ll_minus_market_indep": -6.797283824235652e-18,
+   "ll_minus_market_indep_ci95": [
+    -2.322405306613848e-17,
+    8.496604780294566e-18
+   ],
+   "ll_minus_market_oracle": -3.96508223080413e-18,
+   "ll_minus_market_oracle_ci95": [
+    -1.6426769241902826e-17,
+    5.664403186863044e-18
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "single",
+   "method": "hybrid_and3",
+   "pairs": 49,
+   "log_loss": 0.41928389738079785,
+   "brier": 0.13362003709037618,
+   "ll_minus_market_indep": -6.797283824235652e-18,
+   "ll_minus_market_indep_ci95": [
+    -1.8140251205928894e-17,
+    5.0979628681767395e-18
+   ],
+   "ll_minus_market_oracle": -3.96508223080413e-18,
+   "ll_minus_market_oracle_ci95": [
+    -1.2461687011098696e-17,
+    3.96508223080413e-18
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "all12",
+   "method": "market_indep",
+   "log_loss": 0.3776155172227666,
+   "brier": 0.11745245565048382
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "all12",
+   "method": "market_oracle",
+   "log_loss": 0.33418912648244953,
+   "brier": 0.10502039225004943
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "all12",
+   "method": "raw",
+   "pairs": 49,
+   "log_loss": 0.49400404280242627,
+   "brier": 0.1512593537414966,
+   "ll_minus_market_indep": 0.11638852557965969,
+   "ll_minus_market_indep_ci95": [
+    0.06779286539688079,
+    0.17008812815455296
+   ],
+   "ll_minus_market_oracle": 0.15981491631997682,
+   "ll_minus_market_oracle_ci95": [
+    0.10752342364859502,
+    0.2162383682005989
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "all12",
+   "method": "projected",
+   "pairs": 49,
+   "log_loss": 0.3887243690701955,
+   "brier": 0.11897325518457358,
+   "ll_minus_market_indep": 0.011108851847428871,
+   "ll_minus_market_indep_ci95": [
+    -0.016078733372774465,
+    0.03873572669033586
+   ],
+   "ll_minus_market_oracle": 0.05453524258774601,
+   "ll_minus_market_oracle_ci95": [
+    0.02386684830274816,
+    0.08573248615986512
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "all12",
+   "method": "hybrid",
+   "pairs": 49,
+   "log_loss": 0.36370624793900824,
+   "brier": 0.1121645106335704,
+   "ll_minus_market_indep": -0.013909269283758421,
+   "ll_minus_market_indep_ci95": [
+    -0.021082002320846872,
+    -0.006446808067210576
+   ],
+   "ll_minus_market_oracle": 0.02951712145655872,
+   "ll_minus_market_oracle_ci95": [
+    0.01128207278020815,
+    0.04598521772765006
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "all12",
+   "method": "hybrid_and3",
+   "pairs": 49,
+   "log_loss": 0.353172462595099,
+   "brier": 0.10973782712832794,
+   "ll_minus_market_indep": -0.02444305462766758,
+   "ll_minus_market_indep_ci95": [
+    -0.03635179520146084,
+    -0.011362537906593004
+   ],
+   "ll_minus_market_oracle": 0.01898333611264956,
+   "ll_minus_market_oracle_ci95": [
+    0.006841277573828638,
+    0.03256345048377537
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "control",
+   "forms": "joint",
+   "method": "market_indep",
+   "log_loss": 0.2763327712247927,
+   "brier": 0.08493249168182436
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "control",
+   "forms": "joint",
+   "method": "market_oracle",
+   "log_loss": 0.2763327712247927,
+   "brier": 0.08493249168182436
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "control",
+   "forms": "joint",
+   "method": "raw",
+   "pairs": 44,
+   "log_loss": 0.4025634349359409,
+   "brier": 0.1282963068181818,
+   "ll_minus_market_indep": 0.12623066371114816,
+   "ll_minus_market_indep_ci95": [
+    0.07307879115464766,
+    0.18088753552586886
+   ],
+   "ll_minus_market_oracle": 0.12623066371114816,
+   "ll_minus_market_oracle_ci95": [
+    0.07307879115464766,
+    0.18088753552586886
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "control",
+   "forms": "joint",
+   "method": "projected",
+   "pairs": 44,
+   "log_loss": 0.3207216975814904,
+   "brier": 0.09949210749801515,
+   "ll_minus_market_indep": 0.04438892635669773,
+   "ll_minus_market_indep_ci95": [
+    0.01956766918448586,
+    0.0707141792824073
+   ],
+   "ll_minus_market_oracle": 0.04438892635669773,
+   "ll_minus_market_oracle_ci95": [
+    0.01956766918448586,
+    0.0707141792824073
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "control",
+   "forms": "joint",
+   "method": "hybrid",
+   "pairs": 44,
+   "log_loss": 0.27540208669119226,
+   "brier": 0.08459555465282613,
+   "ll_minus_market_indep": -0.0009306845336004663,
+   "ll_minus_market_indep_ci95": [
+    -0.004470478170003963,
+    0.0036575024865193456
+   ],
+   "ll_minus_market_oracle": -0.0009306845336004663,
+   "ll_minus_market_oracle_ci95": [
+    -0.004470478170003963,
+    0.0036575024865193456
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "control",
+   "forms": "joint",
+   "method": "hybrid_and3",
+   "pairs": 44,
+   "log_loss": 0.2758581629944259,
+   "brier": 0.08505911501163867,
+   "ll_minus_market_indep": -0.0004746082303668037,
+   "ll_minus_market_indep_ci95": [
+    -0.0024602130258426563,
+    0.0015426946241456358
+   ],
+   "ll_minus_market_oracle": -0.0004746082303668037,
+   "ll_minus_market_oracle_ci95": [
+    -0.0024602130258426563,
+    0.0015426946241456358
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "control",
+   "forms": "single",
+   "method": "market_indep",
+   "log_loss": 0.2997267893229344,
+   "brier": 0.09256288279350015
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "control",
+   "forms": "single",
+   "method": "market_oracle",
+   "log_loss": 0.2997267893229344,
+   "brier": 0.09256288279350015
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "control",
+   "forms": "single",
+   "method": "raw",
+   "pairs": 44,
+   "log_loss": 0.2999501001344594,
+   "brier": 0.09259374999999999,
+   "ll_minus_market_indep": 0.0002233108115249376,
+   "ll_minus_market_indep_ci95": [
+    -0.0009367949898338534,
+    0.0015815512159907438
+   ],
+   "ll_minus_market_oracle": 0.0002233108115249376,
+   "ll_minus_market_oracle_ci95": [
+    -0.0009367949898338534,
+    0.0015815512159907438
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "control",
+   "forms": "single",
+   "method": "projected",
+   "pairs": 44,
+   "log_loss": 0.35396036624053895,
+   "brier": 0.10693036115735462,
+   "ll_minus_market_indep": 0.054233576917604574,
+   "ll_minus_market_indep_ci95": [
+    0.025215440085301816,
+    0.0820569075739611
+   ],
+   "ll_minus_market_oracle": 0.054233576917604574,
+   "ll_minus_market_oracle_ci95": [
+    0.025215440085301816,
+    0.0820569075739611
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "control",
+   "forms": "single",
+   "method": "hybrid",
+   "pairs": 44,
+   "log_loss": 0.2997267893229344,
+   "brier": 0.09256288279350015,
+   "ll_minus_market_indep": -3.469446951953614e-18,
+   "ll_minus_market_indep_ci95": [
+    -1.1354553660939102e-17,
+    5.046468293750712e-18
+   ],
+   "ll_minus_market_oracle": -3.469446951953614e-18,
+   "ll_minus_market_oracle_ci95": [
+    -1.1354553660939102e-17,
+    5.046468293750712e-18
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "control",
+   "forms": "single",
+   "method": "hybrid_and3",
+   "pairs": 44,
+   "log_loss": 0.2997267893229344,
+   "brier": 0.09256288279350015,
+   "ll_minus_market_indep": 9.462128050782583e-19,
+   "ll_minus_market_indep_ci95": [
+    -5.361872562110131e-18,
+    7.254298172266648e-18
+   ],
+   "ll_minus_market_oracle": 9.462128050782583e-19,
+   "ll_minus_market_oracle_ci95": [
+    -5.361872562110131e-18,
+    7.254298172266648e-18
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "control",
+   "forms": "all12",
+   "method": "market_indep",
+   "log_loss": 0.28413077725750663,
+   "brier": 0.08747595538571629
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "control",
+   "forms": "all12",
+   "method": "market_oracle",
+   "log_loss": 0.28413077725750663,
+   "brier": 0.08747595538571629
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "control",
+   "forms": "all12",
+   "method": "raw",
+   "pairs": 44,
+   "log_loss": 0.36835899000211375,
+   "brier": 0.11639545454545454,
+   "ll_minus_market_indep": 0.08422821274460708,
+   "ll_minus_market_indep_ci95": [
+    0.04873569838820957,
+    0.12056506005913765
+   ],
+   "ll_minus_market_oracle": 0.08422821274460708,
+   "ll_minus_market_oracle_ci95": [
+    0.04873569838820957,
+    0.12056506005913765
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "control",
+   "forms": "all12",
+   "method": "projected",
+   "pairs": 44,
+   "log_loss": 0.3318012538011732,
+   "brier": 0.10197152538446166,
+   "ll_minus_market_indep": 0.04767047654366669,
+   "ll_minus_market_indep_ci95": [
+    0.022389196877814124,
+    0.07383874513593201
+   ],
+   "ll_minus_market_oracle": 0.04767047654366669,
+   "ll_minus_market_oracle_ci95": [
+    0.022389196877814124,
+    0.07383874513593201
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "control",
+   "forms": "all12",
+   "method": "hybrid",
+   "pairs": 44,
+   "log_loss": 0.2835103209017729,
+   "brier": 0.08725133069971747,
+   "ll_minus_market_indep": -0.0006204563557336471,
+   "ll_minus_market_indep_ci95": [
+    -0.002980318780002649,
+    0.0024383349910129157
+   ],
+   "ll_minus_market_oracle": -0.0006204563557336471,
+   "ll_minus_market_oracle_ci95": [
+    -0.002980318780002649,
+    0.0024383349910129157
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "control",
+   "forms": "all12",
+   "method": "hybrid_and3",
+   "pairs": 44,
+   "log_loss": 0.28381437177059543,
+   "brier": 0.08756037093892584,
+   "ll_minus_market_indep": -0.00031640548691119796,
+   "ll_minus_market_indep_ci95": [
+    -0.0016401420172284249,
+    0.0010284630827637573
+   ],
+   "ll_minus_market_oracle": -0.00031640548691119796,
+   "ll_minus_market_oracle_ci95": [
+    -0.0016401420172284249,
+    0.0010284630827637573
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "all",
+   "forms": "joint",
+   "method": "market_indep",
+   "log_loss": 0.3073198635572463,
+   "brier": 0.09316852634929972
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "all",
+   "forms": "joint",
+   "method": "market_oracle",
+   "log_loss": 0.26425782849583185,
+   "brier": 0.08098904842947359
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "all",
+   "forms": "joint",
+   "method": "raw",
+   "pairs": 170,
+   "log_loss": 0.39478938477264086,
+   "brier": 0.12049382352941176,
+   "ll_minus_market_indep": 0.08746952121539453,
+   "ll_minus_market_indep_ci95": [
+    0.061075516357376854,
+    0.11739725509273406
+   ],
+   "ll_minus_market_oracle": 0.1305315562768089,
+   "ll_minus_market_oracle_ci95": [
+    0.1040872270653388,
+    0.1598717729878003
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "all",
+   "forms": "joint",
+   "method": "projected",
+   "pairs": 170,
+   "log_loss": 0.31686770002948583,
+   "brier": 0.09469611314226062,
+   "ll_minus_market_indep": 0.009547836472239538,
+   "ll_minus_market_indep_ci95": [
+    -0.004711381757825444,
+    0.02417338549773598
+   ],
+   "ll_minus_market_oracle": 0.05260987153365395,
+   "ll_minus_market_oracle_ci95": [
+    0.037745889381062304,
+    0.06721557550141467
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "all",
+   "forms": "joint",
+   "method": "hybrid",
+   "pairs": 170,
+   "log_loss": 0.2875640342625451,
+   "brier": 0.08667138813035834,
+   "ll_minus_market_indep": -0.01975582929470121,
+   "ll_minus_market_indep_ci95": [
+    -0.026503798875151606,
+    -0.013197363328974213
+   ],
+   "ll_minus_market_oracle": 0.023306205766713193,
+   "ll_minus_market_oracle_ci95": [
+    0.01435004655972715,
+    0.03283904827778877
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "all",
+   "forms": "joint",
+   "method": "hybrid_and3",
+   "pairs": 170,
+   "log_loss": 0.27405451099020467,
+   "brier": 0.08313232317603349,
+   "ll_minus_market_indep": -0.03326535256704163,
+   "ll_minus_market_indep_ci95": [
+    -0.04317117841023618,
+    -0.022914949348440346
+   ],
+   "ll_minus_market_oracle": 0.009796682494372776,
+   "ll_minus_market_oracle_ci95": [
+    0.003911916357471827,
+    0.016058864461602925
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "all",
+   "forms": "single",
+   "method": "market_indep",
+   "log_loss": 0.351885535614266,
+   "brier": 0.11002448071792431
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "all",
+   "forms": "single",
+   "method": "market_oracle",
+   "log_loss": 0.35188553561426605,
+   "brier": 0.11002448071792431
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "all",
+   "forms": "single",
+   "method": "raw",
+   "pairs": 170,
+   "log_loss": 0.4140803570984528,
+   "brier": 0.12784132352941177,
+   "ll_minus_market_indep": 0.06219482148418685,
+   "ll_minus_market_indep_ci95": [
+    0.02534845493896735,
+    0.10385917395211014
+   ],
+   "ll_minus_market_oracle": 0.06219482148418685,
+   "ll_minus_market_oracle_ci95": [
+    0.025348454938967358,
+    0.10385917395211015
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "all",
+   "forms": "single",
+   "method": "projected",
+   "pairs": 170,
+   "log_loss": 0.39046773562026177,
+   "brier": 0.11993920670936314,
+   "ll_minus_market_indep": 0.038582200005995715,
+   "ll_minus_market_indep_ci95": [
+    0.023035540719708265,
+    0.05419233656725978
+   ],
+   "ll_minus_market_oracle": 0.038582200005995715,
+   "ll_minus_market_oracle_ci95": [
+    0.02303554071970827,
+    0.05419233656725978
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "all",
+   "forms": "single",
+   "method": "hybrid",
+   "pairs": 170,
+   "log_loss": 0.3518855356142661,
+   "brier": 0.11002448071792431,
+   "ll_minus_market_indep": -2.2449362630288093e-18,
+   "ll_minus_market_indep_ci95": [
+    -7.648684926161072e-18,
+    3.070285327885414e-18
+   ],
+   "ll_minus_market_oracle": 8.979745052115238e-19,
+   "ll_minus_market_oracle_ci95": [
+    -4.516487561604016e-18,
+    6.2051052697669195e-18
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "all",
+   "forms": "single",
+   "method": "hybrid_and3",
+   "pairs": 170,
+   "log_loss": 0.35188553561426605,
+   "brier": 0.11002448071792431,
+   "ll_minus_market_indep": -4.571506571985939e-18,
+   "ll_minus_market_indep_ci95": [
+    -1.0551326682985267e-17,
+    1.2216105320299599e-18
+   ],
+   "ll_minus_market_oracle": -1.4285958037456058e-18,
+   "ll_minus_market_oracle_ci95": [
+    -5.995225806122321e-18,
+    2.3280760588896434e-18
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "all",
+   "forms": "all12",
+   "method": "market_indep",
+   "log_loss": 0.3221750875762529,
+   "brier": 0.09878717780550793
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "all",
+   "forms": "all12",
+   "method": "market_oracle",
+   "log_loss": 0.2934670642019766,
+   "brier": 0.09066752585895718
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "all",
+   "forms": "all12",
+   "method": "raw",
+   "pairs": 170,
+   "log_loss": 0.4012197088812448,
+   "brier": 0.12294299019607842,
+   "ll_minus_market_indep": 0.07904462130499196,
+   "ll_minus_market_indep_ci95": [
+    0.05638323420355768,
+    0.10443564050147605
+   ],
+   "ll_minus_market_oracle": 0.10775264467926826,
+   "ll_minus_market_oracle_ci95": [
+    0.08441402911021949,
+    0.1328786293231827
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "all",
+   "forms": "all12",
+   "method": "projected",
+   "pairs": 170,
+   "log_loss": 0.3414010452264111,
+   "brier": 0.10311047766462815,
+   "ll_minus_market_indep": 0.01922595765015826,
+   "ll_minus_market_indep_ci95": [
+    0.005145555044904392,
+    0.03418731343583245
+   ],
+   "ll_minus_market_oracle": 0.047933981024434545,
+   "ll_minus_market_oracle_ci95": [
+    0.03347931616355419,
+    0.062046240506331896
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "all",
+   "forms": "all12",
+   "method": "hybrid",
+   "pairs": 170,
+   "log_loss": 0.30900453471311873,
+   "brier": 0.09445575232621368,
+   "ll_minus_market_indep": -0.013170552863134143,
+   "ll_minus_market_indep_ci95": [
+    -0.017669199250101075,
+    -0.008798242219316146
+   ],
+   "ll_minus_market_oracle": 0.015537470511142135,
+   "ll_minus_market_oracle_ci95": [
+    0.00956669770648477,
+    0.021892698851859196
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "P",
+   "type": "all",
+   "forms": "all12",
+   "method": "hybrid_and3",
+   "pairs": 170,
+   "log_loss": 0.29999818586489174,
+   "brier": 0.0920963756899971,
+   "ll_minus_market_indep": -0.022176901711361094,
+   "ll_minus_market_indep_ci95": [
+    -0.02878078560682412,
+    -0.015276632898960238
+   ],
+   "ll_minus_market_oracle": 0.0065311216629151845,
+   "ll_minus_market_oracle_ci95": [
+    0.002607944238314547,
+    0.01070590964106862
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "joint",
+   "method": "market_indep",
+   "log_loss": 0.2907064795066797,
+   "brier": 0.08555729835534885
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "joint",
+   "method": "market_oracle",
+   "log_loss": 0.2518690073954979,
+   "brier": 0.0748682663901683
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "joint",
+   "method": "raw",
+   "pairs": 300,
+   "log_loss": 0.5294045048457491,
+   "brier": 0.17428720833333333,
+   "ll_minus_market_indep": 0.23869802533906934,
+   "ll_minus_market_indep_ci95": [
+    0.1949657926425364,
+    0.282386315224252
+   ],
+   "ll_minus_market_oracle": 0.27753549745025125,
+   "ll_minus_market_oracle_ci95": [
+    0.23405268252878006,
+    0.31836926497617635
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "joint",
+   "method": "projected",
+   "pairs": 300,
+   "log_loss": 0.4400122151129129,
+   "brier": 0.1449797882600247,
+   "ll_minus_market_indep": 0.14930573560623311,
+   "ll_minus_market_indep_ci95": [
+    0.10860471787678064,
+    0.1869236758848091
+   ],
+   "ll_minus_market_oracle": 0.18814320771741502,
+   "ll_minus_market_oracle_ci95": [
+    0.1490442340173832,
+    0.22434668907934682
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "joint",
+   "method": "hybrid",
+   "pairs": 300,
+   "log_loss": 0.266547814798997,
+   "brier": 0.0783440424599719,
+   "ll_minus_market_indep": -0.024158664707682763,
+   "ll_minus_market_indep_ci95": [
+    -0.03086082806716205,
+    -0.017877179425409725
+   ],
+   "ll_minus_market_oracle": 0.0146788074034991,
+   "ll_minus_market_oracle_ci95": [
+    0.004423316299175151,
+    0.0236852688967722
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "joint",
+   "method": "hybrid_and3",
+   "pairs": 300,
+   "log_loss": 0.2583159329741458,
+   "brier": 0.07596015267427189,
+   "ll_minus_market_indep": -0.03239054653253388,
+   "ll_minus_market_indep_ci95": [
+    -0.04623920950721828,
+    -0.017692918152117813
+   ],
+   "ll_minus_market_oracle": 0.006446925578647988,
+   "ll_minus_market_oracle_ci95": [
+    -0.0013687858131829237,
+    0.014368761368944017
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "single",
+   "method": "market_indep",
+   "log_loss": 0.33582184410589816,
+   "brier": 0.10227179519075001
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "single",
+   "method": "market_oracle",
+   "log_loss": 0.33582184410589816,
+   "brier": 0.10227179519075001
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "single",
+   "method": "raw",
+   "pairs": 300,
+   "log_loss": 0.6433604222633972,
+   "brier": 0.22433291666666663,
+   "ll_minus_market_indep": 0.3075385781574989,
+   "ll_minus_market_indep_ci95": [
+    0.24310072151846737,
+    0.3724473268504541
+   ],
+   "ll_minus_market_oracle": 0.3075385781574989,
+   "ll_minus_market_oracle_ci95": [
+    0.24310072151846737,
+    0.3724473268504541
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "single",
+   "method": "projected",
+   "pairs": 300,
+   "log_loss": 0.5907122622134571,
+   "brier": 0.20507017257121243,
+   "ll_minus_market_indep": 0.25489041810755897,
+   "ll_minus_market_indep_ci95": [
+    0.19749623864462645,
+    0.3120224678039761
+   ],
+   "ll_minus_market_oracle": 0.25489041810755897,
+   "ll_minus_market_oracle_ci95": [
+    0.19749623864462645,
+    0.3120224678039761
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "single",
+   "method": "hybrid",
+   "pairs": 300,
+   "log_loss": 0.33582184410589816,
+   "brier": 0.10227179519075001,
+   "ll_minus_market_indep": -5.898059818321145e-19,
+   "ll_minus_market_indep_ci95": [
+    -6.041290757089895e-18,
+    4.326095992986102e-18
+   ],
+   "ll_minus_market_oracle": 8.0953762212251e-19,
+   "ll_minus_market_oracle_ci95": [
+    -2.8161435590386236e-18,
+    3.956511318666237e-18
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "single",
+   "method": "hybrid_and3",
+   "pairs": 300,
+   "log_loss": 0.33582184410589816,
+   "brier": 0.10227179519075001,
+   "ll_minus_market_indep": -4.2789845740761243e-19,
+   "ll_minus_market_indep_ci95": [
+    -5.5664986486144284e-18,
+    4.2531872843489046e-18
+   ],
+   "ll_minus_market_oracle": 9.71445146547012e-19,
+   "ll_minus_market_oracle_ci95": [
+    -2.4734045733113176e-18,
+    4.3077454845497254e-18
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "all12",
+   "method": "market_indep",
+   "log_loss": 0.30574493437308586,
+   "brier": 0.09112879730048257
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "all12",
+   "method": "market_oracle",
+   "log_loss": 0.27985328629896467,
+   "brier": 0.08400277599036222
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "all12",
+   "method": "raw",
+   "pairs": 300,
+   "log_loss": 0.5673898106516317,
+   "brier": 0.19096911111111112,
+   "ll_minus_market_indep": 0.2616448762785459,
+   "ll_minus_market_indep_ci95": [
+    0.21273608716705458,
+    0.3085323366573196
+   ],
+   "ll_minus_market_oracle": 0.28753652435266713,
+   "ll_minus_market_oracle_ci95": [
+    0.23966613466546421,
+    0.33236522759770903
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "all12",
+   "method": "projected",
+   "pairs": 300,
+   "log_loss": 0.49024556414642767,
+   "brier": 0.16500991636375392,
+   "ll_minus_market_indep": 0.18450062977334172,
+   "ll_minus_market_indep_ci95": [
+    0.13895005868599833,
+    0.22729177232404357
+   ],
+   "ll_minus_market_oracle": 0.21039227784746298,
+   "ll_minus_market_oracle_ci95": [
+    0.16547456710103517,
+    0.25324581922941586
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "all12",
+   "method": "hybrid",
+   "pairs": 300,
+   "log_loss": 0.2896391579012974,
+   "brier": 0.08631996003689794,
+   "ll_minus_market_indep": -0.016105776471788513,
+   "ll_minus_market_indep_ci95": [
+    -0.020573885378108038,
+    -0.011918119616939813
+   ],
+   "ll_minus_market_oracle": 0.00978587160233274,
+   "ll_minus_market_oracle_ci95": [
+    0.0029488775327834358,
+    0.0157901792645148
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "all12",
+   "method": "hybrid_and3",
+   "pairs": 300,
+   "log_loss": 0.2841512366847299,
+   "brier": 0.08473070017976458,
+   "ll_minus_market_indep": -0.021593697688355926,
+   "ll_minus_market_indep_ci95": [
+    -0.03082613967147886,
+    -0.01179527876807856
+   ],
+   "ll_minus_market_oracle": 0.004297950385765326,
+   "ll_minus_market_oracle_ci95": [
+    -0.0009125238754552851,
+    0.009579174245962671
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "joint",
+   "method": "market_indep",
+   "log_loss": 0.3379663061983291,
+   "brier": 0.10428190085885747
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "joint",
+   "method": "market_oracle",
+   "log_loss": 0.2821138938598496,
+   "brier": 0.09088650217826053
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "joint",
+   "method": "raw",
+   "pairs": 180,
+   "log_loss": 0.6030196680991101,
+   "brier": 0.20063631944444443,
+   "ll_minus_market_indep": 0.265053361900781,
+   "ll_minus_market_indep_ci95": [
+    0.19781848290342327,
+    0.3284366380307012
+   ],
+   "ll_minus_market_oracle": 0.3209057742392606,
+   "ll_minus_market_oracle_ci95": [
+    0.2604400884295857,
+    0.3770055361687513
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "joint",
+   "method": "projected",
+   "pairs": 180,
+   "log_loss": 0.513923984539422,
+   "brier": 0.17093504035350154,
+   "ll_minus_market_indep": 0.17595767834109294,
+   "ll_minus_market_indep_ci95": [
+    0.1120878448201304,
+    0.23651041819026591
+   ],
+   "ll_minus_market_oracle": 0.23181009067957245,
+   "ll_minus_market_oracle_ci95": [
+    0.17563670959848862,
+    0.2840428050385216
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "joint",
+   "method": "hybrid",
+   "pairs": 180,
+   "log_loss": 0.30558769294645854,
+   "brier": 0.09588517827835119,
+   "ll_minus_market_indep": -0.03237861325187059,
+   "ll_minus_market_indep_ci95": [
+    -0.043711184669981945,
+    -0.021854019871049256
+   ],
+   "ll_minus_market_oracle": 0.02347379908660891,
+   "ll_minus_market_oracle_ci95": [
+    0.013299438569234146,
+    0.034135919037764965
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "joint",
+   "method": "hybrid_and3",
+   "pairs": 180,
+   "log_loss": 0.29430391461111455,
+   "brier": 0.09433009111147754,
+   "ll_minus_market_indep": -0.043662391587214563,
+   "ll_minus_market_indep_ci95": [
+    -0.0637845165703844,
+    -0.02216443842494287
+   ],
+   "ll_minus_market_oracle": 0.012190020751264932,
+   "ll_minus_market_oracle_ci95": [
+    0.00325157131319211,
+    0.024660727653656265
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "single",
+   "method": "market_indep",
+   "log_loss": 0.40070118292654466,
+   "brier": 0.1318976054792783
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "single",
+   "method": "market_oracle",
+   "log_loss": 0.40070118292654455,
+   "brier": 0.1318976054792783
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "single",
+   "method": "raw",
+   "pairs": 180,
+   "log_loss": 0.8622144933381446,
+   "brier": 0.3145004166666666,
+   "ll_minus_market_indep": 0.4615133104116001,
+   "ll_minus_market_indep_ci95": [
+    0.3623276332786099,
+    0.5550685462380944
+   ],
+   "ll_minus_market_oracle": 0.4615133104116001,
+   "ll_minus_market_oracle_ci95": [
+    0.3623276332786099,
+    0.5550685462380943
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "single",
+   "method": "projected",
+   "pairs": 180,
+   "log_loss": 0.7307820180294443,
+   "brier": 0.2647110392173702,
+   "ll_minus_market_indep": 0.33008083510289976,
+   "ll_minus_market_indep_ci95": [
+    0.2401645497082481,
+    0.4181331187879923
+   ],
+   "ll_minus_market_oracle": 0.33008083510289976,
+   "ll_minus_market_oracle_ci95": [
+    0.2401645497082481,
+    0.4181331187879923
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "single",
+   "method": "hybrid",
+   "pairs": 180,
+   "log_loss": 0.40070118292654466,
+   "brier": 0.1318976054792783,
+   "ll_minus_market_indep": 9.637352644315594e-20,
+   "ll_minus_market_indep_ci95": [
+    -8.635067969306773e-18,
+    7.985487580992984e-18
+   ],
+   "ll_minus_market_oracle": -1.0601087908747155e-18,
+   "ll_minus_market_oracle_ci95": [
+    -7.622026806093756e-18,
+    4.5765195289286225e-18
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "single",
+   "method": "hybrid_and3",
+   "pairs": 180,
+   "log_loss": 0.40070118292654466,
+   "brier": 0.1318976054792783,
+   "ll_minus_market_indep": -1.5805258336677575e-18,
+   "ll_minus_market_indep_ci95": [
+    -1.1854515048499882e-17,
+    7.943762660284401e-18
+   ],
+   "ll_minus_market_oracle": -2.737008150985629e-18,
+   "ll_minus_market_oracle_ci95": [
+    -1.025253777278398e-17,
+    3.469446951953614e-18
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "all12",
+   "method": "market_indep",
+   "log_loss": 0.3588779317744009,
+   "brier": 0.11348713573233107
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "all12",
+   "method": "market_oracle",
+   "log_loss": 0.3216429902154146,
+   "brier": 0.10455686994526646
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "all12",
+   "method": "raw",
+   "pairs": 180,
+   "log_loss": 0.6894179431787884,
+   "brier": 0.2385910185185185,
+   "ll_minus_market_indep": 0.3305400114043874,
+   "ll_minus_market_indep_ci95": [
+    0.2576341564456968,
+    0.3997897467955907
+   ],
+   "ll_minus_market_oracle": 0.3677749529633737,
+   "ll_minus_market_oracle_ci95": [
+    0.2985534065460356,
+    0.4314945606160581
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "all12",
+   "method": "projected",
+   "pairs": 180,
+   "log_loss": 0.5862099957027628,
+   "brier": 0.20219370664145775,
+   "ll_minus_market_indep": 0.2273320639283619,
+   "ll_minus_market_indep_ci95": [
+    0.15563690900790983,
+    0.2960323332925545
+   ],
+   "ll_minus_market_oracle": 0.2645670054873482,
+   "ll_minus_market_oracle_ci95": [
+    0.19849210724992972,
+    0.32761983335557354
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "all12",
+   "method": "hybrid",
+   "pairs": 180,
+   "log_loss": 0.33729218960648716,
+   "brier": 0.10788932067866025,
+   "ll_minus_market_indep": -0.02158574216791372,
+   "ll_minus_market_indep_ci95": [
+    -0.029140789779987967,
+    -0.014569346580699503
+   ],
+   "ll_minus_market_oracle": 0.015649199391072618,
+   "ll_minus_market_oracle_ci95": [
+    0.008866292379489436,
+    0.022757279358509987
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "all12",
+   "method": "hybrid_and3",
+   "pairs": 180,
+   "log_loss": 0.3297696707162579,
+   "brier": 0.10685259590074445,
+   "ll_minus_market_indep": -0.029108261058143053,
+   "ll_minus_market_indep_ci95": [
+    -0.042523011046922944,
+    -0.014776292283295259
+   ],
+   "ll_minus_market_oracle": 0.008126680500843286,
+   "ll_minus_market_oracle_ci95": [
+    0.002167714208794746,
+    0.01644048510243751
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "joint",
+   "method": "market_indep",
+   "log_loss": 0.37698950961111516,
+   "brier": 0.11619607089105552
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "joint",
+   "method": "market_oracle",
+   "log_loss": 0.3181054923107271,
+   "brier": 0.10130437319679039
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "joint",
+   "method": "raw",
+   "pairs": 300,
+   "log_loss": 0.617016787805991,
+   "brier": 0.20220233333333335,
+   "ll_minus_market_indep": 0.24002727819487585,
+   "ll_minus_market_indep_ci95": [
+    0.2029384592197799,
+    0.27870711686357563
+   ],
+   "ll_minus_market_oracle": 0.2989112954952639,
+   "ll_minus_market_oracle_ci95": [
+    0.26132133012770864,
+    0.33648443033703973
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "joint",
+   "method": "projected",
+   "pairs": 300,
+   "log_loss": 0.5103175361702964,
+   "brier": 0.17376458939055525,
+   "ll_minus_market_indep": 0.13332802655918125,
+   "ll_minus_market_indep_ci95": [
+    0.09833754204700582,
+    0.16952411389159835
+   ],
+   "ll_minus_market_oracle": 0.19221204385956936,
+   "ll_minus_market_oracle_ci95": [
+    0.15746609333427655,
+    0.2281383161431448
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "joint",
+   "method": "hybrid",
+   "pairs": 300,
+   "log_loss": 0.34707321912368855,
+   "brier": 0.10806431749105615,
+   "ll_minus_market_indep": -0.02991629048742663,
+   "ll_minus_market_indep_ci95": [
+    -0.037297447768680075,
+    -0.022742671647329297
+   ],
+   "ll_minus_market_oracle": 0.028967726812961465,
+   "ll_minus_market_oracle_ci95": [
+    0.01873245283272442,
+    0.038166872231012054
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "joint",
+   "method": "hybrid_and3",
+   "pairs": 300,
+   "log_loss": 0.33468781489676586,
+   "brier": 0.10578913787071602,
+   "ll_minus_market_indep": -0.042301694714349254,
+   "ll_minus_market_indep_ci95": [
+    -0.05330331866216128,
+    -0.030951246268402115
+   ],
+   "ll_minus_market_oracle": 0.016582322586038842,
+   "ll_minus_market_oracle_ci95": [
+    0.0076664311863147636,
+    0.02564094425917182
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "single",
+   "method": "market_indep",
+   "log_loss": 0.4504899764240734,
+   "brier": 0.14594798067738288
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "single",
+   "method": "market_oracle",
+   "log_loss": 0.4504899764240734,
+   "brier": 0.14594798067738288
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "single",
+   "method": "raw",
+   "pairs": 300,
+   "log_loss": 0.7107449661961531,
+   "brier": 0.24751366666666666,
+   "ll_minus_market_indep": 0.2602549897720797,
+   "ll_minus_market_indep_ci95": [
+    0.2129402606150826,
+    0.3100114118032315
+   ],
+   "ll_minus_market_oracle": 0.2602549897720797,
+   "ll_minus_market_oracle_ci95": [
+    0.21294026061508256,
+    0.3100114118032315
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "single",
+   "method": "projected",
+   "pairs": 300,
+   "log_loss": 0.6655588534795983,
+   "brier": 0.23192368522843737,
+   "ll_minus_market_indep": 0.21506887705552502,
+   "ll_minus_market_indep_ci95": [
+    0.16907777769056986,
+    0.2633606294655419
+   ],
+   "ll_minus_market_oracle": 0.21506887705552502,
+   "ll_minus_market_oracle_ci95": [
+    0.16907777769056984,
+    0.2633606294655419
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "single",
+   "method": "hybrid",
+   "pairs": 300,
+   "log_loss": 0.4504899764240734,
+   "brier": 0.14594798067738288,
+   "ll_minus_market_indep": -2.2782701651162065e-18,
+   "ll_minus_market_indep_ci95": [
+    -7.771561172376097e-18,
+    3.14563190310461e-18
+   ],
+   "ll_minus_market_oracle": -2.2782701651162065e-18,
+   "ll_minus_market_oracle_ci95": [
+    -8.188183927189859e-18,
+    3.2387287296486958e-18
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "single",
+   "method": "hybrid_and3",
+   "pairs": 300,
+   "log_loss": 0.4504899764240734,
+   "brier": 0.14594798067738288,
+   "ll_minus_market_indep": 1.052398908759263e-18,
+   "ll_minus_market_indep_ci95": [
+    -4.440892098500626e-18,
+    6.478324821035375e-18
+   ],
+   "ll_minus_market_oracle": 1.052398908759263e-18,
+   "ll_minus_market_oracle_ci95": [
+    -4.095682126781241e-18,
+    5.644501070249196e-18
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "all12",
+   "method": "market_indep",
+   "log_loss": 0.40148966521543455,
+   "brier": 0.12611337415316462
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "all12",
+   "method": "market_oracle",
+   "log_loss": 0.3622336536818425,
+   "brier": 0.11618557569032123
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "all12",
+   "method": "raw",
+   "pairs": 300,
+   "log_loss": 0.648259513936045,
+   "brier": 0.21730611111111112,
+   "ll_minus_market_indep": 0.24676984872061042,
+   "ll_minus_market_indep_ci95": [
+    0.20656660480281652,
+    0.28770519783232934
+   ],
+   "ll_minus_market_oracle": 0.2860258602542025,
+   "ll_minus_market_oracle_ci95": [
+    0.2468389722919036,
+    0.3260828202661198
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "all12",
+   "method": "projected",
+   "pairs": 300,
+   "log_loss": 0.5620646419400638,
+   "brier": 0.19315095466984927,
+   "ll_minus_market_indep": 0.1605749767246292,
+   "ll_minus_market_indep_ci95": [
+    0.12214881608909099,
+    0.20091702222653351
+   ],
+   "ll_minus_market_oracle": 0.19983098825822126,
+   "ll_minus_market_oracle_ci95": [
+    0.16224178754532256,
+    0.2386516449102658
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "all12",
+   "method": "hybrid",
+   "pairs": 300,
+   "log_loss": 0.38154547155715013,
+   "brier": 0.12069220521983173,
+   "ll_minus_market_indep": -0.019944193658284426,
+   "ll_minus_market_indep_ci95": [
+    -0.024864965179120062,
+    -0.01516178109821953
+   ],
+   "ll_minus_market_oracle": 0.019311817875307648,
+   "ll_minus_market_oracle_ci95": [
+    0.012488301888482947,
+    0.02544458148734137
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "all12",
+   "method": "hybrid_and3",
+   "pairs": 300,
+   "log_loss": 0.37328853540586837,
+   "brier": 0.11917541880627165,
+   "ll_minus_market_indep": -0.02820112980956618,
+   "ll_minus_market_indep_ci95": [
+    -0.035535545774774205,
+    -0.020634164178934742
+   ],
+   "ll_minus_market_oracle": 0.011054881724025896,
+   "ll_minus_market_oracle_ci95": [
+    0.0051109541242098395,
+    0.017093962839447877
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "joint",
+   "method": "market_indep",
+   "log_loss": 0.30358306690278897,
+   "brier": 0.09399111642744859
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "joint",
+   "method": "market_oracle",
+   "log_loss": 0.30358306690278897,
+   "brier": 0.09399111642744859
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "joint",
+   "method": "raw",
+   "pairs": 297,
+   "log_loss": 0.5137987949021704,
+   "brier": 0.16859183501683503,
+   "ll_minus_market_indep": 0.21021572799938135,
+   "ll_minus_market_indep_ci95": [
+    0.1786903368379946,
+    0.2418188802365695
+   ],
+   "ll_minus_market_oracle": 0.21021572799938135,
+   "ll_minus_market_oracle_ci95": [
+    0.1786903368379946,
+    0.2418188802365695
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "joint",
+   "method": "projected",
+   "pairs": 297,
+   "log_loss": 0.47465241231098554,
+   "brier": 0.15357510720348014,
+   "ll_minus_market_indep": 0.17106934540819652,
+   "ll_minus_market_indep_ci95": [
+    0.14085025229864243,
+    0.20088730949333963
+   ],
+   "ll_minus_market_oracle": 0.17106934540819652,
+   "ll_minus_market_oracle_ci95": [
+    0.14085025229864243,
+    0.20088730949333963
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "joint",
+   "method": "hybrid",
+   "pairs": 297,
+   "log_loss": 0.30233109378397666,
+   "brier": 0.09341790386763159,
+   "ll_minus_market_indep": -0.0012519731188123673,
+   "ll_minus_market_indep_ci95": [
+    -0.0030391513455360892,
+    0.00046676158410844076
+   ],
+   "ll_minus_market_oracle": -0.0012519731188123673,
+   "ll_minus_market_oracle_ci95": [
+    -0.0030391513455360892,
+    0.00046676158410844076
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "joint",
+   "method": "hybrid_and3",
+   "pairs": 297,
+   "log_loss": 0.31441981396607493,
+   "brier": 0.0961291334966863,
+   "ll_minus_market_indep": 0.010836747063285909,
+   "ll_minus_market_indep_ci95": [
+    -0.001505750013669061,
+    0.025615995523444297
+   ],
+   "ll_minus_market_oracle": 0.010836747063285909,
+   "ll_minus_market_oracle_ci95": [
+    -0.001505750013669061,
+    0.025615995523444297
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "single",
+   "method": "market_indep",
+   "log_loss": 0.3377763113778997,
+   "brier": 0.10330989470111404
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "single",
+   "method": "market_oracle",
+   "log_loss": 0.3377763113778997,
+   "brier": 0.10330989470111404
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "single",
+   "method": "raw",
+   "pairs": 297,
+   "log_loss": 0.5867833551740612,
+   "brier": 0.19822062289562292,
+   "ll_minus_market_indep": 0.24900704379616156,
+   "ll_minus_market_indep_ci95": [
+    0.20591593131971173,
+    0.2927500970896202
+   ],
+   "ll_minus_market_oracle": 0.24900704379616156,
+   "ll_minus_market_oracle_ci95": [
+    0.20591593131971173,
+    0.2927500970896202
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "single",
+   "method": "projected",
+   "pairs": 297,
+   "log_loss": 0.5679593977022268,
+   "brier": 0.19201609901893504,
+   "ll_minus_market_indep": 0.23018308632432713,
+   "ll_minus_market_indep_ci95": [
+    0.19225508266380048,
+    0.267787932535269
+   ],
+   "ll_minus_market_oracle": 0.23018308632432713,
+   "ll_minus_market_oracle_ci95": [
+    0.19225508266380048,
+    0.267787932535269
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "single",
+   "method": "hybrid",
+   "pairs": 297,
+   "log_loss": 0.33777631137789976,
+   "brier": 0.10330989470111404,
+   "ll_minus_market_indep": -1.1214373986112693e-18,
+   "ll_minus_market_indep_ci95": [
+    -7.196182015411532e-18,
+    6.569754093530994e-18
+   ],
+   "ll_minus_market_oracle": -1.1214373986112693e-18,
+   "ll_minus_market_oracle_ci95": [
+    -7.196182015411532e-18,
+    6.569754093530994e-18
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "single",
+   "method": "hybrid_and3",
+   "pairs": 297,
+   "log_loss": 0.3377763113778997,
+   "brier": 0.10330989470111404,
+   "ll_minus_market_indep": 6.658534554254411e-19,
+   "ll_minus_market_indep_ci95": [
+    -3.201061282858886e-18,
+    4.6852135900834825e-18
+   ],
+   "ll_minus_market_oracle": 6.658534554254411e-19,
+   "ll_minus_market_oracle_ci95": [
+    -3.201061282858886e-18,
+    4.6852135900834825e-18
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "all12",
+   "method": "market_indep",
+   "log_loss": 0.3149808150611593,
+   "brier": 0.09709737585200374
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "all12",
+   "method": "market_oracle",
+   "log_loss": 0.3149808150611593,
+   "brier": 0.09709737585200374
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "all12",
+   "method": "raw",
+   "pairs": 297,
+   "log_loss": 0.5381269816594674,
+   "brier": 0.17846809764309765,
+   "ll_minus_market_indep": 0.2231461665983081,
+   "ll_minus_market_indep_ci95": [
+    0.18933773551562144,
+    0.25691570477158127
+   ],
+   "ll_minus_market_oracle": 0.2231461665983081,
+   "ll_minus_market_oracle_ci95": [
+    0.18933773551562144,
+    0.25691570477158127
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "all12",
+   "method": "projected",
+   "pairs": 297,
+   "log_loss": 0.5057547407747326,
+   "brier": 0.1663887711419651,
+   "ll_minus_market_indep": 0.19077392571357338,
+   "ll_minus_market_indep_ci95": [
+    0.15816608720717604,
+    0.2230681253898553
+   ],
+   "ll_minus_market_oracle": 0.19077392571357338,
+   "ll_minus_market_oracle_ci95": [
+    0.15816608720717604,
+    0.2230681253898553
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "all12",
+   "method": "hybrid",
+   "pairs": 297,
+   "log_loss": 0.31414616631528436,
+   "brier": 0.09671523414545906,
+   "ll_minus_market_indep": -0.0008346487458749108,
+   "ll_minus_market_indep_ci95": [
+    -0.0020261008970240565,
+    0.0003111743894056252
+   ],
+   "ll_minus_market_oracle": -0.0008346487458749108,
+   "ll_minus_market_oracle_ci95": [
+    -0.0020261008970240565,
+    0.0003111743894056252
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "all12",
+   "method": "hybrid_and3",
+   "pairs": 297,
+   "log_loss": 0.3222053131033499,
+   "brier": 0.09852272056482887,
+   "ll_minus_market_indep": 0.0072244980421906045,
+   "ll_minus_market_indep_ci95": [
+    -0.0010038333424460377,
+    0.017077330348962867
+   ],
+   "ll_minus_market_oracle": 0.0072244980421906045,
+   "ll_minus_market_oracle_ci95": [
+    -0.0010038333424460377,
+    0.017077330348962867
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "joint",
+   "method": "market_indep",
+   "log_loss": 0.3261902532229954,
+   "brier": 0.09954699582866097
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "joint",
+   "method": "market_oracle",
+   "log_loss": 0.2896351176200267,
+   "brier": 0.0901826590966822
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "joint",
+   "method": "raw",
+   "pairs": 1077,
+   "log_loss": 0.5618088859232186,
+   "brier": 0.18489616991643454,
+   "ll_minus_market_indep": 0.23561863270022324,
+   "ll_minus_market_indep_ci95": [
+    0.21489915359849657,
+    0.25770092679744266
+   ],
+   "ll_minus_market_oracle": 0.2721737683031919,
+   "ll_minus_market_oracle_ci95": [
+    0.2520735099133241,
+    0.2937623417365865
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "joint",
+   "method": "projected",
+   "pairs": 1077,
+   "log_loss": 0.48150140116845075,
+   "brier": 0.15970606072259783,
+   "ll_minus_market_indep": 0.15531114794545536,
+   "ll_minus_market_indep_ci95": [
+    0.1359996719457926,
+    0.1756221511607817
+   ],
+   "ll_minus_market_oracle": 0.19186628354842405,
+   "ll_minus_market_oracle_ci95": [
+    0.17339663079765275,
+    0.211468798594125
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "joint",
+   "method": "hybrid",
+   "pairs": 1077,
+   "log_loss": 0.30537087257289625,
+   "brier": 0.09371119547270029,
+   "ll_minus_market_indep": -0.02081938065009916,
+   "ll_minus_market_indep_ci95": [
+    -0.02429777532325613,
+    -0.017023431804677677
+   ],
+   "ll_minus_market_oracle": 0.015735754952869545,
+   "ll_minus_market_oracle_ci95": [
+    0.011399105022199416,
+    0.02013194488212095
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "joint",
+   "method": "hybrid_and3",
+   "pairs": 1077,
+   "log_loss": 0.3010756859231183,
+   "brier": 0.09290116639932976,
+   "ll_minus_market_indep": -0.025114567299877103,
+   "ll_minus_market_indep_ci95": [
+    -0.03230928796577898,
+    -0.017816631282905174
+   ],
+   "ll_minus_market_oracle": 0.011440568303091597,
+   "ll_minus_market_oracle_ci95": [
+    0.006097488652585061,
+    0.017013821567475666
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "single",
+   "method": "market_indep",
+   "log_loss": 0.3791451472284176,
+   "brier": 0.11967552504451329
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "single",
+   "method": "market_oracle",
+   "log_loss": 0.3791451472284176,
+   "brier": 0.11967552504451329
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "single",
+   "method": "raw",
+   "pairs": 1077,
+   "log_loss": 0.6831057398564784,
+   "brier": 0.23865884401114207,
+   "ll_minus_market_indep": 0.3039605926280609,
+   "ll_minus_market_indep_ci95": [
+    0.2740737448854517,
+    0.33304043237321496
+   ],
+   "ll_minus_market_oracle": 0.3039605926280609,
+   "ll_minus_market_oracle_ci95": [
+    0.2740737448854517,
+    0.33304043237321496
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "single",
+   "method": "projected",
+   "pairs": 1077,
+   "log_loss": 0.6286964151075005,
+   "brier": 0.21891822266262329,
+   "ll_minus_market_indep": 0.24955126787908294,
+   "ll_minus_market_indep_ci95": [
+    0.2237892191372788,
+    0.27786722370274
+   ],
+   "ll_minus_market_oracle": 0.24955126787908294,
+   "ll_minus_market_oracle_ci95": [
+    0.2237892191372788,
+    0.27786722370274
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "single",
+   "method": "hybrid",
+   "pairs": 1077,
+   "log_loss": 0.3791451472284176,
+   "brier": 0.11967552504451329,
+   "ll_minus_market_indep": -1.0920543330661795e-18,
+   "ll_minus_market_indep_ci95": [
+    -4.23610982761138e-18,
+    2.0626579193701793e-18
+   ],
+   "ll_minus_market_oracle": -8.955489810985188e-19,
+   "ll_minus_market_oracle_ci95": [
+    -3.601057695138196e-18,
+    2.005920250605067e-18
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "single",
+   "method": "hybrid_and3",
+   "pairs": 1077,
+   "log_loss": 0.3791451472284176,
+   "brier": 0.11967552504451329,
+   "ll_minus_market_indep": 9.34205771649534e-20,
+   "ll_minus_market_indep_ci95": [
+    -2.7452756683780222e-18,
+    2.8564551814830782e-18
+   ],
+   "ll_minus_market_oracle": 2.89925929132614e-19,
+   "ll_minus_market_oracle_ci95": [
+    -2.1040545718350026e-18,
+    2.4969633042390553e-18
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "all12",
+   "method": "market_indep",
+   "log_loss": 0.3438418845581361,
+   "brier": 0.10625650556727843
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "all12",
+   "method": "market_oracle",
+   "log_loss": 0.31947179415615695,
+   "brier": 0.1000136144126259
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "all12",
+   "method": "raw",
+   "pairs": 1077,
+   "log_loss": 0.6022411705676386,
+   "brier": 0.20281706128133703,
+   "ll_minus_market_indep": 0.25839928600950235,
+   "ll_minus_market_indep_ci95": [
+    0.23606987124711942,
+    0.2816303441078837
+   ],
+   "ll_minus_market_oracle": 0.28276937641148153,
+   "ll_minus_market_oracle_ci95": [
+    0.2610295916936242,
+    0.30557104455518386
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "all12",
+   "method": "projected",
+   "pairs": 1077,
+   "log_loss": 0.5305664058148006,
+   "brier": 0.17944344803593965,
+   "ll_minus_market_indep": 0.18672452125666456,
+   "ll_minus_market_indep_ci95": [
+    0.16545994109505652,
+    0.2096128544131567
+   ],
+   "ll_minus_market_oracle": 0.21109461165864368,
+   "ll_minus_market_oracle_ci95": [
+    0.1902898479521967,
+    0.23322072201976923
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "all12",
+   "method": "hybrid",
+   "pairs": 1077,
+   "log_loss": 0.32996229745807004,
+   "brier": 0.10236597199663795,
+   "ll_minus_market_indep": -0.013879587100066109,
+   "ll_minus_market_indep_ci95": [
+    -0.016198516882170756,
+    -0.011348954536451787
+   ],
+   "ll_minus_market_oracle": 0.010490503301913036,
+   "ll_minus_market_oracle_ci95": [
+    0.007599403348132949,
+    0.013421296588080639
+   ]
+  },
+  {
+   "model": "qwen3-235b-a22b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "all12",
+   "method": "hybrid_and3",
+   "pairs": 1077,
+   "log_loss": 0.3270988396915514,
+   "brier": 0.10182595261439095,
+   "ll_minus_market_indep": -0.016743044866584744,
+   "ll_minus_market_indep_ci95": [
+    -0.021539525310519326,
+    -0.011877754188603462
+   ],
+   "ll_minus_market_oracle": 0.007627045535394399,
+   "ll_minus_market_oracle_ci95": [
+    0.004064992435056706,
+    0.011342547711650447
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "joint",
+   "method": "market_indep",
+   "log_loss": 0.2907064795066797,
+   "brier": 0.08555729835534885
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "joint",
+   "method": "market_oracle",
+   "log_loss": 0.2518690073954979,
+   "brier": 0.0748682663901683
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "joint",
+   "method": "raw",
+   "pairs": 300,
+   "log_loss": 0.49303381022051135,
+   "brier": 0.14492833333333333,
+   "ll_minus_market_indep": 0.20232733071383166,
+   "ll_minus_market_indep_ci95": [
+    0.1608022945752354,
+    0.2468684448944017
+   ],
+   "ll_minus_market_oracle": 0.2411648028250135,
+   "ll_minus_market_oracle_ci95": [
+    0.19929375623486761,
+    0.28599324395717746
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "joint",
+   "method": "projected",
+   "pairs": 300,
+   "log_loss": 0.33256533827798224,
+   "brier": 0.10074040480997892,
+   "ll_minus_market_indep": 0.041858858771302465,
+   "ll_minus_market_indep_ci95": [
+    0.022131846550501107,
+    0.0630905005165426
+   ],
+   "ll_minus_market_oracle": 0.08069633088248433,
+   "ll_minus_market_oracle_ci95": [
+    0.05796654133341494,
+    0.10520457208892614
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "joint",
+   "method": "hybrid",
+   "pairs": 300,
+   "log_loss": 0.27955137103582944,
+   "brier": 0.08226371561580911,
+   "ll_minus_market_indep": -0.011155108470850246,
+   "ll_minus_market_indep_ci95": [
+    -0.016636947677173674,
+    -0.005388385217458165
+   ],
+   "ll_minus_market_oracle": 0.02768236364033161,
+   "ll_minus_market_oracle_ci95": [
+    0.01445308030542307,
+    0.041138791158240776
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "joint",
+   "method": "hybrid_and3",
+   "pairs": 300,
+   "log_loss": 0.26735393122631035,
+   "brier": 0.07947504023272169,
+   "ll_minus_market_indep": -0.023352548280369406,
+   "ll_minus_market_indep_ci95": [
+    -0.037768070953929825,
+    -0.008823181539394103
+   ],
+   "ll_minus_market_oracle": 0.015484923830812453,
+   "ll_minus_market_oracle_ci95": [
+    0.008143342909243312,
+    0.024652228083720206
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "single",
+   "method": "market_indep",
+   "log_loss": 0.33582184410589816,
+   "brier": 0.10227179519075001
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "single",
+   "method": "market_oracle",
+   "log_loss": 0.33582184410589816,
+   "brier": 0.10227179519075001
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "single",
+   "method": "raw",
+   "pairs": 300,
+   "log_loss": 0.38522907282493496,
+   "brier": 0.12011366666666665,
+   "ll_minus_market_indep": 0.04940722871903682,
+   "ll_minus_market_indep_ci95": [
+    0.022234854452156828,
+    0.08487289366821645
+   ],
+   "ll_minus_market_oracle": 0.04940722871903682,
+   "ll_minus_market_oracle_ci95": [
+    0.022234854452156824,
+    0.08487289366821645
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "single",
+   "method": "projected",
+   "pairs": 300,
+   "log_loss": 0.40031758702219433,
+   "brier": 0.12546490113383843,
+   "ll_minus_market_indep": 0.06449574291629624,
+   "ll_minus_market_indep_ci95": [
+    0.04117521842577659,
+    0.0905956133912095
+   ],
+   "ll_minus_market_oracle": 0.06449574291629624,
+   "ll_minus_market_oracle_ci95": [
+    0.04117521842577659,
+    0.0905956133912095
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "single",
+   "method": "hybrid",
+   "pairs": 300,
+   "log_loss": 0.33582184410589816,
+   "brier": 0.10227179519075001,
+   "ll_minus_market_indep": -3.758567531283082e-18,
+   "ll_minus_market_indep_ci95": [
+    -1.0410173310236875e-17,
+    1.7784643097661802e-18
+   ],
+   "ll_minus_market_oracle": -2.359223927328458e-18,
+   "ll_minus_market_oracle_ci95": [
+    -8.966491490517133e-18,
+    3.0947757818160304e-18
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "single",
+   "method": "hybrid_and3",
+   "pairs": 300,
+   "log_loss": 0.33582184410589816,
+   "brier": 0.10227179519075001,
+   "ll_minus_market_indep": -3.1340670799314314e-18,
+   "ll_minus_market_indep_ci95": [
+    -9.502268919164337e-18,
+    2.4803652353780898e-18
+   ],
+   "ll_minus_market_oracle": -1.734723475976807e-18,
+   "ll_minus_market_oracle_ci95": [
+    -6.2915812719433856e-18,
+    2.1684416027776233e-18
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "all12",
+   "method": "market_indep",
+   "log_loss": 0.30574493437308586,
+   "brier": 0.09112879730048257
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "all12",
+   "method": "market_oracle",
+   "log_loss": 0.27985328629896467,
+   "brier": 0.08400277599036222
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "all12",
+   "method": "raw",
+   "pairs": 300,
+   "log_loss": 0.45709889775531926,
+   "brier": 0.1366567777777778,
+   "ll_minus_market_indep": 0.1513539633822334,
+   "ll_minus_market_indep_ci95": [
+    0.11830814216583245,
+    0.18645247505493345
+   ],
+   "ll_minus_market_oracle": 0.17724561145635462,
+   "ll_minus_market_oracle_ci95": [
+    0.14253254412349994,
+    0.21422474662726726
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "all12",
+   "method": "projected",
+   "pairs": 300,
+   "log_loss": 0.3551494211927196,
+   "brier": 0.10898190358459876,
+   "ll_minus_market_indep": 0.04940448681963371,
+   "ll_minus_market_indep_ci95": [
+    0.028887349879967383,
+    0.07163213690806271
+   ],
+   "ll_minus_market_oracle": 0.07529613489375496,
+   "ll_minus_market_oracle_ci95": [
+    0.05300937243874644,
+    0.09900460514546927
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "all12",
+   "method": "hybrid",
+   "pairs": 300,
+   "log_loss": 0.29830819539251907,
+   "brier": 0.08893307547412276,
+   "ll_minus_market_indep": -0.0074367389805668335,
+   "ll_minus_market_indep_ci95": [
+    -0.011091298451449115,
+    -0.003592256811638775
+   ],
+   "ll_minus_market_oracle": 0.01845490909355442,
+   "ll_minus_market_oracle_ci95": [
+    0.009635386870282056,
+    0.02742586077216053
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "threshold",
+   "forms": "all12",
+   "method": "hybrid_and3",
+   "pairs": 300,
+   "log_loss": 0.2901765688528396,
+   "brier": 0.08707395855206444,
+   "ll_minus_market_indep": -0.01556836552024628,
+   "ll_minus_market_indep_ci95": [
+    -0.02517871396928656,
+    -0.0058821210262627495
+   ],
+   "ll_minus_market_oracle": 0.010323282553874972,
+   "ll_minus_market_oracle_ci95": [
+    0.005428895272828881,
+    0.016434818722480142
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "date",
+   "forms": "joint",
+   "method": "market_indep",
+   "log_loss": 0.3379663061983291,
+   "brier": 0.10428190085885747
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "date",
+   "forms": "joint",
+   "method": "market_oracle",
+   "log_loss": 0.2821138938598496,
+   "brier": 0.09088650217826053
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "date",
+   "forms": "joint",
+   "method": "raw",
+   "pairs": 180,
+   "log_loss": 0.4479689964979725,
+   "brier": 0.1392648611111111,
+   "ll_minus_market_indep": 0.11000269029964344,
+   "ll_minus_market_indep_ci95": [
+    0.06986052693596861,
+    0.14990705355045245
+   ],
+   "ll_minus_market_oracle": 0.16585510263812292,
+   "ll_minus_market_oracle_ci95": [
+    0.13447127834614386,
+    0.19810056402833617
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "date",
+   "forms": "joint",
+   "method": "projected",
+   "pairs": 180,
+   "log_loss": 0.35535071988378564,
+   "brier": 0.10896047071157114,
+   "ll_minus_market_indep": 0.01738441368545655,
+   "ll_minus_market_indep_ci95": [
+    -0.0043655230515383565,
+    0.03800569963427462
+   ],
+   "ll_minus_market_oracle": 0.07323682602393605,
+   "ll_minus_market_oracle_ci95": [
+    0.05568121599270025,
+    0.09017321333174572
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "date",
+   "forms": "joint",
+   "method": "hybrid",
+   "pairs": 180,
+   "log_loss": 0.3276545266642121,
+   "brier": 0.10124323739695211,
+   "ll_minus_market_indep": -0.010311779534117025,
+   "ll_minus_market_indep_ci95": [
+    -0.017740933108500546,
+    -0.00248386911499984
+   ],
+   "ll_minus_market_oracle": 0.04554063280436246,
+   "ll_minus_market_oracle_ci95": [
+    0.03057605745061521,
+    0.060184933710951356
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "date",
+   "forms": "joint",
+   "method": "hybrid_and3",
+   "pairs": 180,
+   "log_loss": 0.29761785286874415,
+   "brier": 0.09383477606800686,
+   "ll_minus_market_indep": -0.04034845332958498,
+   "ll_minus_market_indep_ci95": [
+    -0.05635564452629716,
+    -0.024226632719897404
+   ],
+   "ll_minus_market_oracle": 0.01550395900889451,
+   "ll_minus_market_oracle_ci95": [
+    0.004184119356882522,
+    0.028018769293089992
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "date",
+   "forms": "single",
+   "method": "market_indep",
+   "log_loss": 0.40070118292654466,
+   "brier": 0.1318976054792783
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "date",
+   "forms": "single",
+   "method": "market_oracle",
+   "log_loss": 0.40070118292654455,
+   "brier": 0.1318976054792783
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "date",
+   "forms": "single",
+   "method": "raw",
+   "pairs": 180,
+   "log_loss": 0.4320295696250281,
+   "brier": 0.1418441666666667,
+   "ll_minus_market_indep": 0.031328386698483555,
+   "ll_minus_market_indep_ci95": [
+    0.010876299825981726,
+    0.05577659852982857
+   ],
+   "ll_minus_market_oracle": 0.031328386698483555,
+   "ll_minus_market_oracle_ci95": [
+    0.010876299825981721,
+    0.055776598529828574
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "date",
+   "forms": "single",
+   "method": "projected",
+   "pairs": 180,
+   "log_loss": 0.4331495497013447,
+   "brier": 0.14075318115566285,
+   "ll_minus_market_indep": 0.032448366774800085,
+   "ll_minus_market_indep_ci95": [
+    0.007837188835053115,
+    0.05408153781283597
+   ],
+   "ll_minus_market_oracle": 0.032448366774800085,
+   "ll_minus_market_oracle_ci95": [
+    0.007837188835053108,
+    0.05408153781283597
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "date",
+   "forms": "single",
+   "method": "hybrid",
+   "pairs": 180,
+   "log_loss": 0.40070118292654466,
+   "brier": 0.1318976054792783,
+   "ll_minus_market_indep": 1.0601087908747155e-18,
+   "ll_minus_market_indep_ci95": [
+    -6.780269251085458e-18,
+    8.84884689545619e-18
+   ],
+   "ll_minus_market_oracle": -9.637352644315594e-20,
+   "ll_minus_market_oracle_ci95": [
+    -5.930467408055174e-18,
+    5.559102816682252e-18
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "date",
+   "forms": "single",
+   "method": "hybrid_and3",
+   "pairs": 180,
+   "log_loss": 0.40070118292654455,
+   "brier": 0.1318976054792783,
+   "ll_minus_market_indep": -6.7461468510209164e-18,
+   "ll_minus_market_indep_ci95": [
+    -1.91258426093931e-17,
+    3.549892980194341e-18
+   ],
+   "ll_minus_market_oracle": -7.902629168338788e-18,
+   "ll_minus_market_oracle_ci95": [
+    -1.7310466164353344e-17,
+    1.2765596639809747e-19
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "date",
+   "forms": "all12",
+   "method": "market_indep",
+   "log_loss": 0.3588779317744009,
+   "brier": 0.11348713573233107
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "date",
+   "forms": "all12",
+   "method": "market_oracle",
+   "log_loss": 0.3216429902154146,
+   "brier": 0.10455686994526646
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "date",
+   "forms": "all12",
+   "method": "raw",
+   "pairs": 180,
+   "log_loss": 0.442655854206991,
+   "brier": 0.14012462962962963,
+   "ll_minus_market_indep": 0.08377792243259015,
+   "ll_minus_market_indep_ci95": [
+    0.054075338207597384,
+    0.11305281040669735
+   ],
+   "ll_minus_market_oracle": 0.12101286399157646,
+   "ll_minus_market_oracle_ci95": [
+    0.09708100082833561,
+    0.1460333077614183
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "date",
+   "forms": "all12",
+   "method": "projected",
+   "pairs": 180,
+   "log_loss": 0.3812836631563054,
+   "brier": 0.11955804085960171,
+   "ll_minus_market_indep": 0.022405731381904402,
+   "ll_minus_market_indep_ci95": [
+    -6.26053771661953e-05,
+    0.042708894984026954
+   ],
+   "ll_minus_market_oracle": 0.05964067294089074,
+   "ll_minus_market_oracle_ci95": [
+    0.0416505559340343,
+    0.07565965088816468
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "date",
+   "forms": "all12",
+   "method": "hybrid",
+   "pairs": 180,
+   "log_loss": 0.35200341208498953,
+   "brier": 0.11146136009106085,
+   "ll_minus_market_indep": -0.006874519689411352,
+   "ll_minus_market_indep_ci95": [
+    -0.011827288739000366,
+    -0.0016559127433332314
+   ],
+   "ll_minus_market_oracle": 0.03036042186957499,
+   "ll_minus_market_oracle_ci95": [
+    0.020384038300410145,
+    0.04012328914063423
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "date",
+   "forms": "all12",
+   "method": "hybrid_and3",
+   "pairs": 180,
+   "log_loss": 0.33197896288801093,
+   "brier": 0.10652238587176402,
+   "ll_minus_market_indep": -0.02689896888638999,
+   "ll_minus_market_indep_ci95": [
+    -0.0375704296841981,
+    -0.016151088479931606
+   ],
+   "ll_minus_market_oracle": 0.010335972672596342,
+   "ll_minus_market_oracle_ci95": [
+    0.002789412904588361,
+    0.018679179528726667
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "joint",
+   "method": "market_indep",
+   "log_loss": 0.37698950961111516,
+   "brier": 0.11619607089105552
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "joint",
+   "method": "market_oracle",
+   "log_loss": 0.3181054923107271,
+   "brier": 0.10130437319679039
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "joint",
+   "method": "raw",
+   "pairs": 300,
+   "log_loss": 0.5333766803912415,
+   "brier": 0.162617875,
+   "ll_minus_market_indep": 0.15638717078012637,
+   "ll_minus_market_indep_ci95": [
+    0.12077642232549461,
+    0.19294114443586793
+   ],
+   "ll_minus_market_oracle": 0.21527118808051446,
+   "ll_minus_market_oracle_ci95": [
+    0.18225644999193097,
+    0.24990929793005173
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "joint",
+   "method": "projected",
+   "pairs": 300,
+   "log_loss": 0.376507200755812,
+   "brier": 0.11811073373967039,
+   "ll_minus_market_indep": -0.00048230885530316106,
+   "ll_minus_market_indep_ci95": [
+    -0.01996553277515323,
+    0.021367402207662273
+   ],
+   "ll_minus_market_oracle": 0.058401708445084945,
+   "ll_minus_market_oracle_ci95": [
+    0.042039105688050034,
+    0.07589860898283497
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "joint",
+   "method": "hybrid",
+   "pairs": 300,
+   "log_loss": 0.34195069326572974,
+   "brier": 0.10644007189811419,
+   "ll_minus_market_indep": -0.03503881634538543,
+   "ll_minus_market_indep_ci95": [
+    -0.04226593769255369,
+    -0.02700561548427068
+   ],
+   "ll_minus_market_oracle": 0.023845200955002664,
+   "ll_minus_market_oracle_ci95": [
+    0.014253614265644017,
+    0.03239965327473715
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "joint",
+   "method": "hybrid_and3",
+   "pairs": 300,
+   "log_loss": 0.3196533682813393,
+   "brier": 0.10176274498063326,
+   "ll_minus_market_indep": -0.05733614132977588,
+   "ll_minus_market_indep_ci95": [
+    -0.06907584191213527,
+    -0.044088199472869224
+   ],
+   "ll_minus_market_oracle": 0.0015478759706122165,
+   "ll_minus_market_oracle_ci95": [
+    -0.0035093777863952637,
+    0.005892812094432417
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "single",
+   "method": "market_indep",
+   "log_loss": 0.4504899764240734,
+   "brier": 0.14594798067738288
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "single",
+   "method": "market_oracle",
+   "log_loss": 0.4504899764240734,
+   "brier": 0.14594798067738288
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "single",
+   "method": "raw",
+   "pairs": 300,
+   "log_loss": 0.5022453887951848,
+   "brier": 0.16276933333333332,
+   "ll_minus_market_indep": 0.05175541237111136,
+   "ll_minus_market_indep_ci95": [
+    0.02625588727925316,
+    0.07897073612361447
+   ],
+   "ll_minus_market_oracle": 0.05175541237111136,
+   "ll_minus_market_oracle_ci95": [
+    0.026255887279253157,
+    0.07897073612361447
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "single",
+   "method": "projected",
+   "pairs": 300,
+   "log_loss": 0.4851005423531717,
+   "brier": 0.15836799709796975,
+   "ll_minus_market_indep": 0.03461056592909832,
+   "ll_minus_market_indep_ci95": [
+    0.01477890200435,
+    0.05575627708499064
+   ],
+   "ll_minus_market_oracle": 0.03461056592909832,
+   "ll_minus_market_oracle_ci95": [
+    0.014778902004349996,
+    0.05575627708499064
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "single",
+   "method": "hybrid",
+   "pairs": 300,
+   "log_loss": 0.4504899764240734,
+   "brier": 0.14594798067738288,
+   "ll_minus_market_indep": -7.517135062566164e-19,
+   "ll_minus_market_indep_ci95": [
+    -7.229170965554014e-18,
+    6.129934522943374e-18
+   ],
+   "ll_minus_market_oracle": -7.517135062566164e-19,
+   "ll_minus_market_oracle_ci95": [
+    -5.6436337085112125e-18,
+    4.165071065820304e-18
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "single",
+   "method": "hybrid_and3",
+   "pairs": 300,
+   "log_loss": 0.4504899764240734,
+   "brier": 0.14594798067738288,
+   "ll_minus_market_indep": 8.211024452956887e-19,
+   "ll_minus_market_indep_ci95": [
+    -5.181329902163394e-18,
+    6.986020558337926e-18
+   ],
+   "ll_minus_market_oracle": 8.211024452956887e-19,
+   "ll_minus_market_oracle_ci95": [
+    -3.4480520290832332e-18,
+    4.997160093130516e-18
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "all12",
+   "method": "market_indep",
+   "log_loss": 0.40148966521543455,
+   "brier": 0.12611337415316462
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "all12",
+   "method": "market_oracle",
+   "log_loss": 0.3622336536818425,
+   "brier": 0.11618557569032123
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "all12",
+   "method": "raw",
+   "pairs": 300,
+   "log_loss": 0.5229995831925559,
+   "brier": 0.1626683611111111,
+   "ll_minus_market_indep": 0.12150991797712135,
+   "ll_minus_market_indep_ci95": [
+    0.09299611197890716,
+    0.15204252950697245
+   ],
+   "ll_minus_market_oracle": 0.16076592951071342,
+   "ll_minus_market_oracle_ci95": [
+    0.13422963546629388,
+    0.18914598634144314
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "all12",
+   "method": "projected",
+   "pairs": 300,
+   "log_loss": 0.4127049812882652,
+   "brier": 0.13152982152577017,
+   "ll_minus_market_indep": 0.011215316072830656,
+   "ll_minus_market_indep_ci95": [
+    -0.007626525259465632,
+    0.03177392108868089
+   ],
+   "ll_minus_market_oracle": 0.050471327606422735,
+   "ll_minus_market_oracle_ci95": [
+    0.03399950046871236,
+    0.06870828908212234
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "all12",
+   "method": "hybrid",
+   "pairs": 300,
+   "log_loss": 0.37813045431851094,
+   "brier": 0.11960937482453711,
+   "ll_minus_market_indep": -0.023359210896923627,
+   "ll_minus_market_indep_ci95": [
+    -0.028177291795035798,
+    -0.01800374365618045
+   ],
+   "ll_minus_market_oracle": 0.015896800636668443,
+   "ll_minus_market_oracle_ci95": [
+    0.009502409510429351,
+    0.02159976884982477
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "mc_excl",
+   "forms": "all12",
+   "method": "hybrid_and3",
+   "pairs": 300,
+   "log_loss": 0.36326557099558393,
+   "brier": 0.11649115687954982,
+   "ll_minus_market_indep": -0.038224094219850596,
+   "ll_minus_market_indep_ci95": [
+    -0.04605056127475685,
+    -0.029392132981912816
+   ],
+   "ll_minus_market_oracle": 0.001031917313741479,
+   "ll_minus_market_oracle_ci95": [
+    -0.00233958519093017,
+    0.003928541396288276
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "control",
+   "forms": "joint",
+   "method": "market_indep",
+   "log_loss": 0.30358306690278897,
+   "brier": 0.09399111642744859
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "control",
+   "forms": "joint",
+   "method": "market_oracle",
+   "log_loss": 0.30358306690278897,
+   "brier": 0.09399111642744859
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "control",
+   "forms": "joint",
+   "method": "raw",
+   "pairs": 297,
+   "log_loss": 0.4773745520451209,
+   "brier": 0.14733829966329967,
+   "ll_minus_market_indep": 0.1737914851423319,
+   "ll_minus_market_indep_ci95": [
+    0.14159249319984626,
+    0.20453314085728075
+   ],
+   "ll_minus_market_oracle": 0.1737914851423319,
+   "ll_minus_market_oracle_ci95": [
+    0.14159249319984626,
+    0.20453314085728075
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "control",
+   "forms": "joint",
+   "method": "projected",
+   "pairs": 297,
+   "log_loss": 0.3466630121562082,
+   "brier": 0.10783642106456977,
+   "ll_minus_market_indep": 0.04307994525341919,
+   "ll_minus_market_indep_ci95": [
+    0.022761488249297277,
+    0.06153445462169687
+   ],
+   "ll_minus_market_oracle": 0.04307994525341919,
+   "ll_minus_market_oracle_ci95": [
+    0.022761488249297277,
+    0.06153445462169687
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "control",
+   "forms": "joint",
+   "method": "hybrid",
+   "pairs": 297,
+   "log_loss": 0.3023965694407087,
+   "brier": 0.09347568718583577,
+   "ll_minus_market_indep": -0.00118649746208029,
+   "ll_minus_market_indep_ci95": [
+    -0.0036484047241627277,
+    0.0012583674865716923
+   ],
+   "ll_minus_market_oracle": -0.00118649746208029,
+   "ll_minus_market_oracle_ci95": [
+    -0.0036484047241627277,
+    0.0012583674865716923
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "control",
+   "forms": "joint",
+   "method": "hybrid_and3",
+   "pairs": 297,
+   "log_loss": 0.3089977333884421,
+   "brier": 0.0945066893102086,
+   "ll_minus_market_indep": 0.0054146664856531196,
+   "ll_minus_market_indep_ci95": [
+    -0.0013966459531632501,
+    0.014312932951757163
+   ],
+   "ll_minus_market_oracle": 0.0054146664856531196,
+   "ll_minus_market_oracle_ci95": [
+    -0.0013966459531632501,
+    0.014312932951757163
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "control",
+   "forms": "single",
+   "method": "market_indep",
+   "log_loss": 0.3377763113778997,
+   "brier": 0.10330989470111404
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "control",
+   "forms": "single",
+   "method": "market_oracle",
+   "log_loss": 0.3377763113778997,
+   "brier": 0.10330989470111404
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "control",
+   "forms": "single",
+   "method": "raw",
+   "pairs": 297,
+   "log_loss": 0.3621276651495129,
+   "brier": 0.11168257575757576,
+   "ll_minus_market_indep": 0.024351353771613148,
+   "ll_minus_market_indep_ci95": [
+    -0.0013903190727061405,
+    0.04864815191736948
+   ],
+   "ll_minus_market_oracle": 0.024351353771613148,
+   "ll_minus_market_oracle_ci95": [
+    -0.0013903190727061405,
+    0.04864815191736948
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "control",
+   "forms": "single",
+   "method": "projected",
+   "pairs": 297,
+   "log_loss": 0.3931814584541223,
+   "brier": 0.12035717891391848,
+   "ll_minus_market_indep": 0.05540514707622249,
+   "ll_minus_market_indep_ci95": [
+    0.031117302411762318,
+    0.07604355940912945
+   ],
+   "ll_minus_market_oracle": 0.05540514707622249,
+   "ll_minus_market_oracle_ci95": [
+    0.031117302411762318,
+    0.07604355940912945
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "control",
+   "forms": "single",
+   "method": "hybrid",
+   "pairs": 297,
+   "log_loss": 0.33777631137789976,
+   "brier": 0.10330989470111404,
+   "ll_minus_market_indep": 8.878046072339215e-19,
+   "ll_minus_market_indep_ci95": [
+    -4.778082624655984e-18,
+    8.609660403244484e-18
+   ],
+   "ll_minus_market_oracle": 8.878046072339215e-19,
+   "ll_minus_market_oracle_ci95": [
+    -4.778082624655984e-18,
+    8.609660403244484e-18
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "control",
+   "forms": "single",
+   "method": "hybrid_and3",
+   "pairs": 297,
+   "log_loss": 0.33777631137789976,
+   "brier": 0.10330989470111404,
+   "ll_minus_market_indep": -2.2662380763602733e-18,
+   "ll_minus_market_indep_ci95": [
+    -1.8097196020089358e-17,
+    9.942827519041468e-18
+   ],
+   "ll_minus_market_oracle": -2.2662380763602733e-18,
+   "ll_minus_market_oracle_ci95": [
+    -1.8097196020089358e-17,
+    9.942827519041468e-18
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "control",
+   "forms": "all12",
+   "method": "market_indep",
+   "log_loss": 0.3149808150611593,
+   "brier": 0.09709737585200374
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "control",
+   "forms": "all12",
+   "method": "market_oracle",
+   "log_loss": 0.3149808150611593,
+   "brier": 0.09709737585200374
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "control",
+   "forms": "all12",
+   "method": "raw",
+   "pairs": 297,
+   "log_loss": 0.43895892307991824,
+   "brier": 0.13545305836139168,
+   "ll_minus_market_indep": 0.12397810801875898,
+   "ll_minus_market_indep_ci95": [
+    0.09841021207682937,
+    0.14832203908869174
+   ],
+   "ll_minus_market_oracle": 0.12397810801875898,
+   "ll_minus_market_oracle_ci95": [
+    0.09841021207682937,
+    0.14832203908869174
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "control",
+   "forms": "all12",
+   "method": "projected",
+   "pairs": 297,
+   "log_loss": 0.3621691609221796,
+   "brier": 0.11201000701435267,
+   "ll_minus_market_indep": 0.04718834586102029,
+   "ll_minus_market_indep_ci95": [
+    0.02573213823979674,
+    0.0662677412468476
+   ],
+   "ll_minus_market_oracle": 0.04718834586102029,
+   "ll_minus_market_oracle_ci95": [
+    0.02573213823979674,
+    0.0662677412468476
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "control",
+   "forms": "all12",
+   "method": "hybrid",
+   "pairs": 297,
+   "log_loss": 0.31418981675310576,
+   "brier": 0.09675375635759519,
+   "ll_minus_market_indep": -0.0007909983080535207,
+   "ll_minus_market_indep_ci95": [
+    -0.0024322698161084776,
+    0.0008389116577144655
+   ],
+   "ll_minus_market_oracle": -0.0007909983080535207,
+   "ll_minus_market_oracle_ci95": [
+    -0.0024322698161084776,
+    0.0008389116577144655
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "control",
+   "forms": "all12",
+   "method": "hybrid_and3",
+   "pairs": 297,
+   "log_loss": 0.31859059271826135,
+   "brier": 0.09744109110717707,
+   "ll_minus_market_indep": 0.00360977765710208,
+   "ll_minus_market_indep_ci95": [
+    -0.0009310973021088338,
+    0.009541955301171435
+   ],
+   "ll_minus_market_oracle": 0.00360977765710208,
+   "ll_minus_market_oracle_ci95": [
+    -0.0009310973021088338,
+    0.009541955301171435
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "all",
+   "forms": "joint",
+   "method": "market_indep",
+   "log_loss": 0.3261902532229954,
+   "brier": 0.09954699582866097
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "all",
+   "forms": "joint",
+   "method": "market_oracle",
+   "log_loss": 0.2896351176200267,
+   "brier": 0.0901826590966822
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "all",
+   "forms": "joint",
+   "method": "raw",
+   "pairs": 1077,
+   "log_loss": 0.49242136351955607,
+   "brier": 0.14957382776230266,
+   "ll_minus_market_indep": 0.16623111029656062,
+   "ll_minus_market_indep_ci95": [
+    0.1468679809208979,
+    0.18522815139676382
+   ],
+   "ll_minus_market_oracle": 0.20278624589952934,
+   "ll_minus_market_oracle_ci95": [
+    0.18335116555498943,
+    0.22152745984427696
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "all",
+   "forms": "joint",
+   "method": "projected",
+   "pairs": 1077,
+   "log_loss": 0.3525012125344601,
+   "brier": 0.10890960385251144,
+   "ll_minus_market_indep": 0.02631095931146469,
+   "ll_minus_market_indep_ci95": [
+    0.016115165972261297,
+    0.03667391723982251
+   ],
+   "ll_minus_market_oracle": 0.06286609491443339,
+   "ll_minus_market_oracle_ci95": [
+    0.05295365357787143,
+    0.07361772449147559
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "all",
+   "forms": "joint",
+   "method": "hybrid",
+   "pairs": 1077,
+   "log_loss": 0.31127225182350643,
+   "brier": 0.09526202235823732,
+   "ll_minus_market_indep": -0.014918001399488965,
+   "ll_minus_market_indep_ci95": [
+    -0.0181874638517667,
+    -0.011729415843805229
+   ],
+   "ll_minus_market_oracle": 0.02163713420347974,
+   "ll_minus_market_oracle_ci95": [
+    0.016215259925413977,
+    0.026983374785927473
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "all",
+   "forms": "joint",
+   "method": "hybrid_and3",
+   "pairs": 1077,
+   "log_loss": 0.29846400202881723,
+   "brier": 0.0922284883763971,
+   "ll_minus_market_indep": -0.027726251194178188,
+   "ll_minus_market_indep_ci95": [
+    -0.034293091861662475,
+    -0.020847753093764174
+   ],
+   "ll_minus_market_oracle": 0.00882888440879052,
+   "ll_minus_market_oracle_ci95": [
+    0.004919716945114164,
+    0.013066783097590058
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "all",
+   "forms": "single",
+   "method": "market_indep",
+   "log_loss": 0.3791451472284176,
+   "brier": 0.11967552504451329
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "all",
+   "forms": "single",
+   "method": "market_oracle",
+   "log_loss": 0.3791451472284176,
+   "brier": 0.11967552504451329
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "all",
+   "forms": "single",
+   "method": "raw",
+   "pairs": 1077,
+   "log_loss": 0.419275373786394,
+   "brier": 0.13330229805013927,
+   "ll_minus_market_indep": 0.040130226557976406,
+   "ll_minus_market_indep_ci95": [
+    0.02708145487404182,
+    0.05451677866820413
+   ],
+   "ll_minus_market_oracle": 0.040130226557976406,
+   "ll_minus_market_oracle_ci95": [
+    0.02708145487404182,
+    0.05451677866820413
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "all",
+   "forms": "single",
+   "method": "projected",
+   "pairs": 1077,
+   "log_loss": 0.42745334347235486,
+   "brier": 0.1357767170055669,
+   "ll_minus_market_indep": 0.04830819624393729,
+   "ll_minus_market_indep_ci95": [
+    0.036627559925621625,
+    0.0596641304765341
+   ],
+   "ll_minus_market_oracle": 0.04830819624393729,
+   "ll_minus_market_oracle_ci95": [
+    0.036627559925621625,
+    0.0596641304765341
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "all",
+   "forms": "single",
+   "method": "hybrid",
+   "pairs": 1077,
+   "log_loss": 0.3791451472284176,
+   "brier": 0.11967552504451329,
+   "ll_minus_market_indep": -8.3434239605941135e-19,
+   "ll_minus_market_indep_ci95": [
+    -4.300135697116628e-18,
+    2.773093087208903e-18
+   ],
+   "ll_minus_market_oracle": -6.378370440917508e-19,
+   "ll_minus_market_oracle_ci95": [
+    -3.734264155405843e-18,
+    2.4471552643234113e-18
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "all",
+   "forms": "single",
+   "method": "hybrid_and3",
+   "pairs": 1077,
+   "log_loss": 0.3791451472284176,
+   "brier": 0.11967552504451329,
+   "ll_minus_market_indep": -2.3967210141629424e-18,
+   "ll_minus_market_indep_ci95": [
+    -7.455072695587361e-18,
+    1.9887645748663756e-18
+   ],
+   "ll_minus_market_oracle": -2.200215662195282e-18,
+   "ll_minus_market_oracle_ci95": [
+    -6.698560342998793e-18,
+    1.9456967685739977e-18
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "all",
+   "forms": "all12",
+   "method": "market_indep",
+   "log_loss": 0.3438418845581361,
+   "brier": 0.10625650556727843
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "all",
+   "forms": "all12",
+   "method": "market_oracle",
+   "log_loss": 0.31947179415615695,
+   "brier": 0.1000136144126259
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "all",
+   "forms": "all12",
+   "method": "raw",
+   "pairs": 1077,
+   "log_loss": 0.4680393669418353,
+   "brier": 0.14414998452491487,
+   "ll_minus_market_indep": 0.12419748238369921,
+   "ll_minus_market_indep_ci95": [
+    0.10895155624958498,
+    0.1395872623554446
+   ],
+   "ll_minus_market_oracle": 0.14856757278567836,
+   "ll_minus_market_oracle_ci95": [
+    0.1335944792329874,
+    0.16374933679999787
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "all",
+   "forms": "all12",
+   "method": "projected",
+   "pairs": 1077,
+   "log_loss": 0.377485256180425,
+   "brier": 0.11786530823686327,
+   "ll_minus_market_indep": 0.03364337162228889,
+   "ll_minus_market_indep_ci95": [
+    0.022966837942682596,
+    0.04411695018607602
+   ],
+   "ll_minus_market_oracle": 0.058013462024268034,
+   "ll_minus_market_oracle_ci95": [
+    0.047750365225802206,
+    0.06854055507794839
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "all",
+   "forms": "all12",
+   "method": "hybrid",
+   "pairs": 1077,
+   "log_loss": 0.33389655029181015,
+   "brier": 0.10339985658699599,
+   "ll_minus_market_indep": -0.009945334266325975,
+   "ll_minus_market_indep_ci95": [
+    -0.0121249759011778,
+    -0.007819610562536822
+   ],
+   "ll_minus_market_oracle": 0.014424756135653166,
+   "ll_minus_market_oracle_ci95": [
+    0.010810173283609326,
+    0.017988916523951657
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "P",
+   "type": "all",
+   "forms": "all12",
+   "method": "hybrid_and3",
+   "pairs": 1077,
+   "log_loss": 0.32535771709535066,
+   "brier": 0.10137750059910251,
+   "ll_minus_market_indep": -0.018484167462785462,
+   "ll_minus_market_indep_ci95": [
+    -0.022862061241108317,
+    -0.013898502062509458
+   ],
+   "ll_minus_market_oracle": 0.00588592293919368,
+   "ll_minus_market_oracle_ci95": [
+    0.00327981129674278,
+    0.008711188731726709
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "joint",
+   "method": "market_indep",
+   "log_loss": 0.2907064795066797,
+   "brier": 0.08555729835534885
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "joint",
+   "method": "market_oracle",
+   "log_loss": 0.2518690073954979,
+   "brier": 0.0748682663901683
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "joint",
+   "method": "raw",
+   "pairs": 300,
+   "log_loss": 0.6689854601561042,
+   "brier": 0.19844883333333332,
+   "ll_minus_market_indep": 0.3782789806494244,
+   "ll_minus_market_indep_ci95": [
+    0.31832569042756154,
+    0.4334678936580367
+   ],
+   "ll_minus_market_oracle": 0.41711645276060627,
+   "ll_minus_market_oracle_ci95": [
+    0.35769989727154816,
+    0.4723054872187654
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "joint",
+   "method": "projected",
+   "pairs": 300,
+   "log_loss": 0.46770989919919825,
+   "brier": 0.1511189090044847,
+   "ll_minus_market_indep": 0.17700341969251848,
+   "ll_minus_market_indep_ci95": [
+    0.1310225294455444,
+    0.22357666704868967
+   ],
+   "ll_minus_market_oracle": 0.21584089180370034,
+   "ll_minus_market_oracle_ci95": [
+    0.16992331174770253,
+    0.26160864539625706
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "joint",
+   "method": "hybrid",
+   "pairs": 300,
+   "log_loss": 0.2758240399245623,
+   "brier": 0.08114841999060741,
+   "ll_minus_market_indep": -0.014882439582117464,
+   "ll_minus_market_indep_ci95": [
+    -0.02207423332890438,
+    -0.007065456959270941
+   ],
+   "ll_minus_market_oracle": 0.023955032529064398,
+   "ll_minus_market_oracle_ci95": [
+    0.01376059676539793,
+    0.03440198076173742
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "joint",
+   "method": "hybrid_and3",
+   "pairs": 300,
+   "log_loss": 0.2823355025931147,
+   "brier": 0.0828323231842752,
+   "ll_minus_market_indep": -0.008370976913564991,
+   "ll_minus_market_indep_ci95": [
+    -0.022192745732991265,
+    0.0073492881826155414
+   ],
+   "ll_minus_market_oracle": 0.030466495197616864,
+   "ll_minus_market_oracle_ci95": [
+    0.01284945552905911,
+    0.05015504474450966
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "single",
+   "method": "market_indep",
+   "log_loss": 0.33582184410589816,
+   "brier": 0.10227179519075001
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "single",
+   "method": "market_oracle",
+   "log_loss": 0.33582184410589816,
+   "brier": 0.10227179519075001
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "single",
+   "method": "raw",
+   "pairs": 300,
+   "log_loss": 0.7260233236598295,
+   "brier": 0.24629600000000001,
+   "ll_minus_market_indep": 0.39020147955393136,
+   "ll_minus_market_indep_ci95": [
+    0.3127289283524963,
+    0.46783288427824066
+   ],
+   "ll_minus_market_oracle": 0.39020147955393136,
+   "ll_minus_market_oracle_ci95": [
+    0.3127289283524963,
+    0.46783288427824077
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "single",
+   "method": "projected",
+   "pairs": 300,
+   "log_loss": 0.6017734839713604,
+   "brier": 0.20627831311049197,
+   "ll_minus_market_indep": 0.26595163986546233,
+   "ll_minus_market_indep_ci95": [
+    0.20111346419179965,
+    0.33291026697667575
+   ],
+   "ll_minus_market_oracle": 0.26595163986546233,
+   "ll_minus_market_oracle_ci95": [
+    0.20111346419179965,
+    0.33291026697667575
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "single",
+   "method": "hybrid",
+   "pairs": 300,
+   "log_loss": 0.33582184410589816,
+   "brier": 0.10227179519075001,
+   "ll_minus_market_indep": -5.898059818321145e-19,
+   "ll_minus_market_indep_ci95": [
+    -5.342204260225124e-18,
+    4.0583253443570994e-18
+   ],
+   "ll_minus_market_oracle": 8.0953762212251e-19,
+   "ll_minus_market_oracle_ci95": [
+    -2.541461502712921e-18,
+    3.9585957288325955e-18
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "single",
+   "method": "hybrid_and3",
+   "pairs": 300,
+   "log_loss": 0.33582184410589816,
+   "brier": 0.10227179519075001,
+   "ll_minus_market_indep": -2.9027706164678572e-18,
+   "ll_minus_market_indep_ci95": [
+    -8.953863952153736e-18,
+    2.1071263782786413e-18
+   ],
+   "ll_minus_market_oracle": -1.5034270125132329e-18,
+   "ll_minus_market_oracle_ci95": [
+    -7.776876776430611e-18,
+    3.680397443999882e-18
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "all12",
+   "method": "market_indep",
+   "log_loss": 0.30574493437308586,
+   "brier": 0.09112879730048257
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "all12",
+   "method": "market_oracle",
+   "log_loss": 0.27985328629896467,
+   "brier": 0.08400277599036222
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "all12",
+   "method": "raw",
+   "pairs": 300,
+   "log_loss": 0.6879980813240126,
+   "brier": 0.2143978888888889,
+   "ll_minus_market_indep": 0.3822531469509267,
+   "ll_minus_market_indep_ci95": [
+    0.3220340295808529,
+    0.4415297711506786
+   ],
+   "ll_minus_market_oracle": 0.40814479502504797,
+   "ll_minus_market_oracle_ci95": [
+    0.3477400160977146,
+    0.467374108929024
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "all12",
+   "method": "projected",
+   "pairs": 300,
+   "log_loss": 0.5123977607899189,
+   "brier": 0.16950537703982047,
+   "ll_minus_market_indep": 0.20665282641683308,
+   "ll_minus_market_indep_ci95": [
+    0.1550462445084602,
+    0.2598586470986509
+   ],
+   "ll_minus_market_oracle": 0.23254447449095436,
+   "ll_minus_market_oracle_ci95": [
+    0.18041135359656607,
+    0.28458121613249326
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "all12",
+   "method": "hybrid",
+   "pairs": 300,
+   "log_loss": 0.2958233079850076,
+   "brier": 0.0881895450573216,
+   "ll_minus_market_indep": -0.009921626388078317,
+   "ll_minus_market_indep_ci95": [
+    -0.014716155552602932,
+    -0.004710304639513974
+   ],
+   "ll_minus_market_oracle": 0.015970021686042935,
+   "ll_minus_market_oracle_ci95": [
+    0.009173731176931961,
+    0.022934653841158285
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "threshold",
+   "forms": "all12",
+   "method": "hybrid_and3",
+   "pairs": 300,
+   "log_loss": 0.30016428309737586,
+   "brier": 0.08931214718643349,
+   "ll_minus_market_indep": -0.005580651275710006,
+   "ll_minus_market_indep_ci95": [
+    -0.014795163821994183,
+    0.004899525455077007
+   ],
+   "ll_minus_market_oracle": 0.020310996798411245,
+   "ll_minus_market_oracle_ci95": [
+    0.008566303686039407,
+    0.03343669649633978
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "joint",
+   "method": "market_indep",
+   "log_loss": 0.3379663061983291,
+   "brier": 0.10428190085885747
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "joint",
+   "method": "market_oracle",
+   "log_loss": 0.2821138938598496,
+   "brier": 0.09088650217826053
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "joint",
+   "method": "raw",
+   "pairs": 180,
+   "log_loss": 0.682479650702945,
+   "brier": 0.2159376388888889,
+   "ll_minus_market_indep": 0.344513344504616,
+   "ll_minus_market_indep_ci95": [
+    0.2695668270347466,
+    0.4180016317211573
+   ],
+   "ll_minus_market_oracle": 0.4003657568430954,
+   "ll_minus_market_oracle_ci95": [
+    0.3338667369699212,
+    0.4674608848792482
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "joint",
+   "method": "projected",
+   "pairs": 180,
+   "log_loss": 0.5578261465583512,
+   "brier": 0.18157220733619156,
+   "ll_minus_market_indep": 0.2198598403600221,
+   "ll_minus_market_indep_ci95": [
+    0.15281410316804014,
+    0.2843306555186371
+   ],
+   "ll_minus_market_oracle": 0.27571225269850164,
+   "ll_minus_market_oracle_ci95": [
+    0.21712249149935234,
+    0.33214907170010005
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "joint",
+   "method": "hybrid",
+   "pairs": 180,
+   "log_loss": 0.3201281419672683,
+   "brier": 0.09997759185108299,
+   "ll_minus_market_indep": -0.017838164231060744,
+   "ll_minus_market_indep_ci95": [
+    -0.027190528514541578,
+    -0.009613666518262011
+   ],
+   "ll_minus_market_oracle": 0.03801424810741875,
+   "ll_minus_market_oracle_ci95": [
+    0.024486789371765277,
+    0.05250788521396572
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "joint",
+   "method": "hybrid_and3",
+   "pairs": 180,
+   "log_loss": 0.30035044506894587,
+   "brier": 0.09625869765322188,
+   "ll_minus_market_indep": -0.03761586112938321,
+   "ll_minus_market_indep_ci95": [
+    -0.05786562849369563,
+    -0.017386051897525682
+   ],
+   "ll_minus_market_oracle": 0.01823655120909629,
+   "ll_minus_market_oracle_ci95": [
+    0.0042848418433288245,
+    0.03597649223057132
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "single",
+   "method": "market_indep",
+   "log_loss": 0.40070118292654466,
+   "brier": 0.1318976054792783
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "single",
+   "method": "market_oracle",
+   "log_loss": 0.40070118292654455,
+   "brier": 0.1318976054792783
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "single",
+   "method": "raw",
+   "pairs": 180,
+   "log_loss": 0.8726622120070707,
+   "brier": 0.31082402777777773,
+   "ll_minus_market_indep": 0.47196102908052623,
+   "ll_minus_market_indep_ci95": [
+    0.36304561942416314,
+    0.5860833031074097
+   ],
+   "ll_minus_market_oracle": 0.47196102908052623,
+   "ll_minus_market_oracle_ci95": [
+    0.36304561942416314,
+    0.5860833031074097
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "single",
+   "method": "projected",
+   "pairs": 180,
+   "log_loss": 0.7440968110741905,
+   "brier": 0.26786661909522214,
+   "ll_minus_market_indep": 0.3433956281476458,
+   "ll_minus_market_indep_ci95": [
+    0.2474200468005636,
+    0.4367492132630853
+   ],
+   "ll_minus_market_oracle": 0.3433956281476458,
+   "ll_minus_market_oracle_ci95": [
+    0.24742004680056365,
+    0.4367492132630853
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "single",
+   "method": "hybrid",
+   "pairs": 180,
+   "log_loss": 0.40070118292654466,
+   "brier": 0.1318976054792783,
+   "ll_minus_market_indep": -3.854941057726238e-20,
+   "ll_minus_market_indep_ci95": [
+    -7.275225719104957e-18,
+    7.743101254230048e-18
+   ],
+   "ll_minus_market_oracle": -1.1950317278951338e-18,
+   "ll_minus_market_oracle_ci95": [
+    -5.930765983524361e-18,
+    3.0100631819310946e-18
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "single",
+   "method": "hybrid_and3",
+   "pairs": 180,
+   "log_loss": 0.40070118292654466,
+   "brier": 0.1318976054792783,
+   "ll_minus_market_indep": 2.5057116875220546e-18,
+   "ll_minus_market_indep_ci95": [
+    -6.285307225598938e-18,
+    1.0842538011603844e-17
+   ],
+   "ll_minus_market_oracle": 1.3492293702041833e-18,
+   "ll_minus_market_oracle_ci95": [
+    -4.3869236965354934e-18,
+    6.7051271176766944e-18
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "all12",
+   "method": "market_indep",
+   "log_loss": 0.3588779317744009,
+   "brier": 0.11348713573233107
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "all12",
+   "method": "market_oracle",
+   "log_loss": 0.3216429902154146,
+   "brier": 0.10455686994526646
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "all12",
+   "method": "raw",
+   "pairs": 180,
+   "log_loss": 0.7458738378043203,
+   "brier": 0.24756643518518512,
+   "ll_minus_market_indep": 0.3869959060299194,
+   "ll_minus_market_indep_ci95": [
+    0.3038920100121117,
+    0.4715499523578866
+   ],
+   "ll_minus_market_oracle": 0.4242308475889058,
+   "ll_minus_market_oracle_ci95": [
+    0.34682241490585236,
+    0.5039285574147853
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "all12",
+   "method": "projected",
+   "pairs": 180,
+   "log_loss": 0.6199163680636309,
+   "brier": 0.21033701125586843,
+   "ll_minus_market_indep": 0.26103843628923,
+   "ll_minus_market_indep_ci95": [
+    0.18424790569748967,
+    0.3350638822067752
+   ],
+   "ll_minus_market_oracle": 0.2982733778482164,
+   "ll_minus_market_oracle_ci95": [
+    0.2280227373025126,
+    0.3663056109288616
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "all12",
+   "method": "hybrid",
+   "pairs": 180,
+   "log_loss": 0.3469858222870271,
+   "brier": 0.11061759639381476,
+   "ll_minus_market_indep": -0.011892109487373835,
+   "ll_minus_market_indep_ci95": [
+    -0.0181270190096944,
+    -0.006409111012174677
+   ],
+   "ll_minus_market_oracle": 0.0253428320716125,
+   "ll_minus_market_oracle_ci95": [
+    0.016324526247843512,
+    0.03500525680931048
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "date",
+   "forms": "all12",
+   "method": "hybrid_and3",
+   "pairs": 180,
+   "log_loss": 0.3338006910214787,
+   "brier": 0.1081383335952407,
+   "ll_minus_market_indep": -0.02507724075292214,
+   "ll_minus_market_indep_ci95": [
+    -0.03857708566246376,
+    -0.011590701265017128
+   ],
+   "ll_minus_market_oracle": 0.012157700806064198,
+   "ll_minus_market_oracle_ci95": [
+    0.002856561228885888,
+    0.023984328153714225
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "joint",
+   "method": "market_indep",
+   "log_loss": 0.37698950961111516,
+   "brier": 0.11619607089105552
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "joint",
+   "method": "market_oracle",
+   "log_loss": 0.3181054923107271,
+   "brier": 0.10130437319679039
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "joint",
+   "method": "raw",
+   "pairs": 300,
+   "log_loss": 0.6734891885179511,
+   "brier": 0.21662983333333335,
+   "ll_minus_market_indep": 0.29649967890683593,
+   "ll_minus_market_indep_ci95": [
+    0.25394291714024864,
+    0.3394419477630669
+   ],
+   "ll_minus_market_oracle": 0.35538369620722404,
+   "ll_minus_market_oracle_ci95": [
+    0.31305254695374196,
+    0.3967107989174657
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "joint",
+   "method": "projected",
+   "pairs": 300,
+   "log_loss": 0.512520371067743,
+   "brier": 0.17496861174470657,
+   "ll_minus_market_indep": 0.13553086145662774,
+   "ll_minus_market_indep_ci95": [
+    0.09886723104832319,
+    0.1714948931190752
+   ],
+   "ll_minus_market_oracle": 0.19441487875701585,
+   "ll_minus_market_oracle_ci95": [
+    0.16070423884639384,
+    0.2271894627190267
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "joint",
+   "method": "hybrid",
+   "pairs": 300,
+   "log_loss": 0.33886487530537485,
+   "brier": 0.10600406369836636,
+   "ll_minus_market_indep": -0.03812463430574033,
+   "ll_minus_market_indep_ci95": [
+    -0.047313081003149335,
+    -0.02810191982929089
+   ],
+   "ll_minus_market_oracle": 0.020759382994647767,
+   "ll_minus_market_oracle_ci95": [
+    0.012099942675717101,
+    0.02878085810859243
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "joint",
+   "method": "hybrid_and3",
+   "pairs": 300,
+   "log_loss": 0.324378283118889,
+   "brier": 0.10346198672048754,
+   "ll_minus_market_indep": -0.05261122649222611,
+   "ll_minus_market_indep_ci95": [
+    -0.06445273521688283,
+    -0.03865767947871966
+   ],
+   "ll_minus_market_oracle": 0.006272790808161987,
+   "ll_minus_market_oracle_ci95": [
+    0.000973929283436445,
+    0.01167829815710243
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "single",
+   "method": "market_indep",
+   "log_loss": 0.4504899764240734,
+   "brier": 0.14594798067738288
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "single",
+   "method": "market_oracle",
+   "log_loss": 0.4504899764240734,
+   "brier": 0.14594798067738288
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "single",
+   "method": "raw",
+   "pairs": 300,
+   "log_loss": 0.7272885017388783,
+   "brier": 0.25734475,
+   "ll_minus_market_indep": 0.276798525314805,
+   "ll_minus_market_indep_ci95": [
+    0.22650421050236844,
+    0.32837514011304475
+   ],
+   "ll_minus_market_oracle": 0.276798525314805,
+   "ll_minus_market_oracle_ci95": [
+    0.22650421050236844,
+    0.32837514011304475
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "single",
+   "method": "projected",
+   "pairs": 300,
+   "log_loss": 0.6719771758937857,
+   "brier": 0.2376246528194412,
+   "ll_minus_market_indep": 0.2214871994697124,
+   "ll_minus_market_indep_ci95": [
+    0.17571946904480004,
+    0.27044343392606335
+   ],
+   "ll_minus_market_oracle": 0.2214871994697124,
+   "ll_minus_market_oracle_ci95": [
+    0.17571946904480001,
+    0.27044343392606335
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "single",
+   "method": "hybrid",
+   "pairs": 300,
+   "log_loss": 0.4504899764240734,
+   "brier": 0.14594798067738288,
+   "ll_minus_market_indep": -3.2497153116632186e-18,
+   "ll_minus_market_indep_ci95": [
+    -8.628803690087969e-18,
+    2.6865084231293963e-18
+   ],
+   "ll_minus_market_oracle": -3.2497153116632186e-18,
+   "ll_minus_market_oracle_ci95": [
+    -7.505859359972316e-18,
+    6.490757005946475e-19
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "single",
+   "method": "hybrid_and3",
+   "pairs": 300,
+   "log_loss": 0.4504899764240734,
+   "brier": 0.14594798067738288,
+   "ll_minus_market_indep": 7.28583859910259e-19,
+   "ll_minus_market_indep_ci95": [
+    -4.452456921673805e-18,
+    5.967448757360216e-18
+   ],
+   "ll_minus_market_oracle": 7.28583859910259e-19,
+   "ll_minus_market_oracle_ci95": [
+    -4.084406424187393e-18,
+    4.903485025427775e-18
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "all12",
+   "method": "market_indep",
+   "log_loss": 0.40148966521543455,
+   "brier": 0.12611337415316462
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "all12",
+   "method": "market_oracle",
+   "log_loss": 0.3622336536818425,
+   "brier": 0.11618557569032123
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "all12",
+   "method": "raw",
+   "pairs": 300,
+   "log_loss": 0.6914222929249269,
+   "brier": 0.2302014722222222,
+   "ll_minus_market_indep": 0.2899326277094923,
+   "ll_minus_market_indep_ci95": [
+    0.24826009699924226,
+    0.3308982012376294
+   ],
+   "ll_minus_market_oracle": 0.32918863924308434,
+   "ll_minus_market_oracle_ci95": [
+    0.28882578946286014,
+    0.36834240042508426
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "all12",
+   "method": "projected",
+   "pairs": 300,
+   "log_loss": 0.5656726393430905,
+   "brier": 0.19585395876961811,
+   "ll_minus_market_indep": 0.16418297412765598,
+   "ll_minus_market_indep_ci95": [
+    0.12564284529908792,
+    0.20298805240472978
+   ],
+   "ll_minus_market_oracle": 0.20343898566124805,
+   "ll_minus_market_oracle_ci95": [
+    0.16742942809022374,
+    0.23960366059116997
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "all12",
+   "method": "hybrid",
+   "pairs": 300,
+   "log_loss": 0.376073242344941,
+   "brier": 0.11931870269137188,
+   "ll_minus_market_indep": -0.025416422870493557,
+   "ll_minus_market_indep_ci95": [
+    -0.031542054002099564,
+    -0.018734613219527255
+   ],
+   "ll_minus_market_oracle": 0.013839588663098519,
+   "ll_minus_market_oracle_ci95": [
+    0.00806662845047808,
+    0.01918723873906163
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "mc_excl",
+   "forms": "all12",
+   "method": "hybrid_and3",
+   "pairs": 300,
+   "log_loss": 0.36641551422061713,
+   "brier": 0.11762398470611932,
+   "ll_minus_market_indep": -0.03507415099481741,
+   "ll_minus_market_indep_ci95": [
+    -0.04296849014458856,
+    -0.025771786319146447
+   ],
+   "ll_minus_market_oracle": 0.004181860538774663,
+   "ll_minus_market_oracle_ci95": [
+    0.0006492861889576312,
+    0.007785532104734964
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "joint",
+   "method": "market_indep",
+   "log_loss": 0.30358306690278897,
+   "brier": 0.09399111642744859
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "joint",
+   "method": "market_oracle",
+   "log_loss": 0.30358306690278897,
+   "brier": 0.09399111642744859
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "joint",
+   "method": "raw",
+   "pairs": 297,
+   "log_loss": 0.5406592792307122,
+   "brier": 0.17940824915824916,
+   "ll_minus_market_indep": 0.23707621232792328,
+   "ll_minus_market_indep_ci95": [
+    0.2048145943540102,
+    0.26903146663834904
+   ],
+   "ll_minus_market_oracle": 0.23707621232792328,
+   "ll_minus_market_oracle_ci95": [
+    0.2048145943540102,
+    0.26903146663834904
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "joint",
+   "method": "projected",
+   "pairs": 297,
+   "log_loss": 0.4886653852971733,
+   "brier": 0.16012583993514673,
+   "ll_minus_market_indep": 0.18508231839438424,
+   "ll_minus_market_indep_ci95": [
+    0.15530613560032694,
+    0.2144289749397067
+   ],
+   "ll_minus_market_oracle": 0.18508231839438424,
+   "ll_minus_market_oracle_ci95": [
+    0.15530613560032694,
+    0.2144289749397067
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "joint",
+   "method": "hybrid",
+   "pairs": 297,
+   "log_loss": 0.3033088201363087,
+   "brier": 0.09407368378740437,
+   "ll_minus_market_indep": -0.00027424676648034113,
+   "ll_minus_market_indep_ci95": [
+    -0.0021980938513139225,
+    0.0014866995855697632
+   ],
+   "ll_minus_market_oracle": -0.00027424676648034113,
+   "ll_minus_market_oracle_ci95": [
+    -0.0021980938513139225,
+    0.0014866995855697632
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "joint",
+   "method": "hybrid_and3",
+   "pairs": 297,
+   "log_loss": 0.3229226797635719,
+   "brier": 0.09814774485009924,
+   "ll_minus_market_indep": 0.01933961286078292,
+   "ll_minus_market_indep_ci95": [
+    0.005380361566940205,
+    0.03432819725355218
+   ],
+   "ll_minus_market_oracle": 0.01933961286078292,
+   "ll_minus_market_oracle_ci95": [
+    0.005380361566940205,
+    0.03432819725355218
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "single",
+   "method": "market_indep",
+   "log_loss": 0.3377763113778997,
+   "brier": 0.10330989470111404
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "single",
+   "method": "market_oracle",
+   "log_loss": 0.3377763113778997,
+   "brier": 0.10330989470111404
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "single",
+   "method": "raw",
+   "pairs": 297,
+   "log_loss": 0.7078059142239338,
+   "brier": 0.2490276094276094,
+   "ll_minus_market_indep": 0.3700296028460341,
+   "ll_minus_market_indep_ci95": [
+    0.3229217094863214,
+    0.4158930901961028
+   ],
+   "ll_minus_market_oracle": 0.3700296028460341,
+   "ll_minus_market_oracle_ci95": [
+    0.3229217094863214,
+    0.4158930901961028
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "single",
+   "method": "projected",
+   "pairs": 297,
+   "log_loss": 0.5813107200654366,
+   "brier": 0.19952569193181618,
+   "ll_minus_market_indep": 0.24353440868753684,
+   "ll_minus_market_indep_ci95": [
+    0.20600198727362848,
+    0.27932252222994225
+   ],
+   "ll_minus_market_oracle": 0.24353440868753684,
+   "ll_minus_market_oracle_ci95": [
+    0.20600198727362848,
+    0.27932252222994225
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "single",
+   "method": "hybrid",
+   "pairs": 297,
+   "log_loss": 0.33777631137789976,
+   "brier": 0.10330989470111404,
+   "ll_minus_market_indep": 2.3596911929112124e-18,
+   "ll_minus_market_indep_ci95": [
+    -3.3774540403487836e-18,
+    1.0327737542835651e-17
+   ],
+   "ll_minus_market_oracle": 2.3596911929112124e-18,
+   "ll_minus_market_oracle_ci95": [
+    -3.3774540403487836e-18,
+    1.0327737542835651e-17
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "single",
+   "method": "hybrid_and3",
+   "pairs": 297,
+   "log_loss": 0.33777631137789976,
+   "brier": 0.10330989470111404,
+   "ll_minus_market_indep": -3.971757453414912e-19,
+   "ll_minus_market_indep_ci95": [
+    -6.193605299413489e-18,
+    7.160845055715709e-18
+   ],
+   "ll_minus_market_oracle": -3.971757453414912e-19,
+   "ll_minus_market_oracle_ci95": [
+    -6.193605299413489e-18,
+    7.160845055715709e-18
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "all12",
+   "method": "market_indep",
+   "log_loss": 0.3149808150611593,
+   "brier": 0.09709737585200374
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "all12",
+   "method": "market_oracle",
+   "log_loss": 0.3149808150611593,
+   "brier": 0.09709737585200374
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "all12",
+   "method": "raw",
+   "pairs": 297,
+   "log_loss": 0.5963748242284529,
+   "brier": 0.20261470258136924,
+   "ll_minus_market_indep": 0.28139400916729357,
+   "ll_minus_market_indep_ci95": [
+    0.24678954177435397,
+    0.3145125872559061
+   ],
+   "ll_minus_market_oracle": 0.28139400916729357,
+   "ll_minus_market_oracle_ci95": [
+    0.24678954177435397,
+    0.3145125872559061
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "all12",
+   "method": "projected",
+   "pairs": 297,
+   "log_loss": 0.519547163553261,
+   "brier": 0.17325912393403656,
+   "ll_minus_market_indep": 0.20456634849210178,
+   "ll_minus_market_indep_ci95": [
+    0.1722759382365982,
+    0.23592117291280967
+   ],
+   "ll_minus_market_oracle": 0.20456634849210178,
+   "ll_minus_market_oracle_ci95": [
+    0.1722759382365982,
+    0.23592117291280967
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "all12",
+   "method": "hybrid",
+   "pairs": 297,
+   "log_loss": 0.3147979838835057,
+   "brier": 0.09715242075864092,
+   "ll_minus_market_indep": -0.00018283117765356154,
+   "ll_minus_market_indep_ci95": [
+    -0.0014653959008759506,
+    0.0009911330570465092
+   ],
+   "ll_minus_market_oracle": -0.00018283117765356154,
+   "ll_minus_market_oracle_ci95": [
+    -0.0014653959008759506,
+    0.0009911330570465092
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "control",
+   "forms": "all12",
+   "method": "hybrid_and3",
+   "pairs": 297,
+   "log_loss": 0.32787389030168124,
+   "brier": 0.0998684614671042,
+   "ll_minus_market_indep": 0.012893075240521948,
+   "ll_minus_market_indep_ci95": [
+    0.003586907711293474,
+    0.022885464835701454
+   ],
+   "ll_minus_market_oracle": 0.012893075240521948,
+   "ll_minus_market_oracle_ci95": [
+    0.003586907711293474,
+    0.022885464835701454
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "joint",
+   "method": "market_indep",
+   "log_loss": 0.3261902532229954,
+   "brier": 0.09954699582866097
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "joint",
+   "method": "market_oracle",
+   "log_loss": 0.2896351176200267,
+   "brier": 0.0901826590966822
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "joint",
+   "method": "raw",
+   "pairs": 1077,
+   "log_loss": 0.6371072773075843,
+   "brier": 0.20118535283194058,
+   "ll_minus_market_indep": 0.3109170240845888,
+   "ll_minus_market_indep_ci95": [
+    0.2855431819814069,
+    0.3365582959304066
+   ],
+   "ll_minus_market_oracle": 0.34747215968755757,
+   "ll_minus_market_oracle_ci95": [
+    0.3225343001404907,
+    0.37228287475324284
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "joint",
+   "method": "projected",
+   "pairs": 1077,
+   "log_loss": 0.5010319469766444,
+   "brier": 0.16533577345033465,
+   "ll_minus_market_indep": 0.174841693753649,
+   "ll_minus_market_indep_ci95": [
+    0.1540766472450307,
+    0.19719925097196364
+   ],
+   "ll_minus_market_oracle": 0.2113968293566177,
+   "ll_minus_market_oracle_ci95": [
+    0.1916268285686398,
+    0.23267929070015916
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "joint",
+   "method": "hybrid",
+   "pairs": 1077,
+   "log_loss": 0.30836811485939936,
+   "brier": 0.09478328293848298,
+   "ll_minus_market_indep": -0.017822138363596036,
+   "ll_minus_market_indep_ci95": [
+    -0.02166692548106502,
+    -0.014140604504920525
+   ],
+   "ll_minus_market_oracle": 0.01873299723937267,
+   "ll_minus_market_oracle_ci95": [
+    0.014142195407341084,
+    0.02339617430907314
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "joint",
+   "method": "hybrid_and3",
+   "pairs": 1077,
+   "log_loss": 0.3082500015931218,
+   "brier": 0.09504618270147469,
+   "ll_minus_market_indep": -0.01794025162987352,
+   "ll_minus_market_indep_ci95": [
+    -0.02550124010384128,
+    -0.00991651636405993
+   ],
+   "ll_minus_market_oracle": 0.018614883973095186,
+   "ll_minus_market_oracle_ci95": [
+    0.011416522753202698,
+    0.026176389779469317
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "single",
+   "method": "market_indep",
+   "log_loss": 0.3791451472284176,
+   "brier": 0.11967552504451329
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "single",
+   "method": "market_oracle",
+   "log_loss": 0.3791451472284176,
+   "brier": 0.11967552504451329
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "single",
+   "method": "raw",
+   "pairs": 1077,
+   "log_loss": 0.7458598907199567,
+   "brier": 0.26091155988857934,
+   "ll_minus_market_indep": 0.3667147434915392,
+   "ll_minus_market_indep_ci95": [
+    0.3348957055949869,
+    0.40238189285403225
+   ],
+   "ll_minus_market_oracle": 0.3667147434915392,
+   "ll_minus_market_oracle_ci95": [
+    0.3348957055949869,
+    0.40238189285403225
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "single",
+   "method": "projected",
+   "pairs": 1077,
+   "log_loss": 0.6394725235026303,
+   "brier": 0.22344105080767815,
+   "ll_minus_market_indep": 0.26032737627421276,
+   "ll_minus_market_indep_ci95": [
+    0.232443616279042,
+    0.29135672808948637
+   ],
+   "ll_minus_market_oracle": 0.2603273762742127,
+   "ll_minus_market_oracle_ci95": [
+    0.232443616279042,
+    0.29135672808948637
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "single",
+   "method": "hybrid",
+   "pairs": 1077,
+   "log_loss": 0.3791451472284176,
+   "brier": 0.11967552504451329,
+   "ll_minus_market_indep": -4.252246960611672e-19,
+   "ll_minus_market_indep_ci95": [
+    -3.305550615255184e-18,
+    2.815815519883939e-18
+   ],
+   "ll_minus_market_oracle": -2.287193440935066e-19,
+   "ll_minus_market_oracle_ci95": [
+    -2.658397333659963e-18,
+    2.4620832247531976e-18
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "single",
+   "method": "hybrid_and3",
+   "pairs": 1077,
+   "log_loss": 0.3791451472284176,
+   "brier": 0.11967552504451329,
+   "ll_minus_market_indep": -2.963687275577832e-19,
+   "ll_minus_market_indep_ci95": [
+    -3.561446297084217e-18,
+    2.972493182125731e-18
+   ],
+   "ll_minus_market_oracle": -9.98633755901226e-20,
+   "ll_minus_market_oracle_ci95": [
+    -3.033058290873177e-18,
+    2.8669392058068695e-18
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "all12",
+   "method": "market_indep",
+   "log_loss": 0.3438418845581361,
+   "brier": 0.10625650556727843
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "all12",
+   "method": "market_oracle",
+   "log_loss": 0.31947179415615695,
+   "brier": 0.1000136144126259
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "all12",
+   "method": "raw",
+   "pairs": 1077,
+   "log_loss": 0.6733581484450417,
+   "brier": 0.22109408851748685,
+   "ll_minus_market_indep": 0.32951626388690564,
+   "ll_minus_market_indep_ci95": [
+    0.3035257147929176,
+    0.3573053581390289
+   ],
+   "ll_minus_market_oracle": 0.35388635428888476,
+   "ll_minus_market_oracle_ci95": [
+    0.3287749994774022,
+    0.3802330446914744
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "all12",
+   "method": "projected",
+   "pairs": 1077,
+   "log_loss": 0.5471788058186398,
+   "brier": 0.18470419923611583,
+   "ll_minus_market_indep": 0.20333692126050357,
+   "ll_minus_market_indep_ci95": [
+    0.18061116948419081,
+    0.2288291181454933
+   ],
+   "ll_minus_market_oracle": 0.22770701166248272,
+   "ll_minus_market_oracle_ci95": [
+    0.20553822385657677,
+    0.2522029266581
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "all12",
+   "method": "hybrid",
+   "pairs": 1077,
+   "log_loss": 0.3319604589824054,
+   "brier": 0.10308069697382644,
+   "ll_minus_market_indep": -0.011881425575730697,
+   "ll_minus_market_indep_ci95": [
+    -0.014444616987376686,
+    -0.00942706966994702
+   ],
+   "ll_minus_market_oracle": 0.012488664826248448,
+   "ll_minus_market_oracle_ci95": [
+    0.009428130271560725,
+    0.015597449539382092
+   ]
+  },
+  {
+   "model": "qwen3-32b",
+   "arm": "Q",
+   "type": "all",
+   "forms": "all12",
+   "method": "hybrid_and3",
+   "pairs": 1077,
+   "log_loss": 0.3318817168048871,
+   "brier": 0.10325596348248757,
+   "ll_minus_market_indep": -0.011960167753249018,
+   "ll_minus_market_indep_ci95": [
+    -0.017000826735894193,
+    -0.0066110109093732985
+   ],
+   "ll_minus_market_oracle": 0.012409922648730125,
+   "ll_minus_market_oracle_ci95": [
+    0.007611015168801805,
+    0.017450926519646213
+   ]
+  }
+ ],
+ "respect": {
+  "qwen3-235b-a22b|P": {
+   "threshold": {
+    "raw": {
+     "order": 0.98,
+     "zero_cell": 0.56,
+     "and_eq_antecedent": 0.96,
+     "dep_median": 1.0,
+     "dep_mean_clipped": 0.9520893343342763,
+     "dep_share_ge_half": 0.9534883720930233,
+     "dep_n": 43
+    },
+    "projected": {
+     "order": 0.98,
+     "zero_cell": 0.56,
+     "and_eq_antecedent": 0.56,
+     "dep_median": 0.4528621776294166,
+     "dep_mean_clipped": 0.43950217862446883,
+     "dep_share_ge_half": 0.3695652173913043,
+     "dep_n": 46
+    }
+   },
+   "date": {
+    "raw": {
+     "order": 0.9629629629629629,
+     "zero_cell": 0.37037037037037035,
+     "and_eq_antecedent": 0.8888888888888888,
+     "dep_median": 1.0,
+     "dep_mean_clipped": 0.7610698912343005,
+     "dep_share_ge_half": 0.7727272727272727,
+     "dep_n": 22
+    },
+    "projected": {
+     "order": 0.9629629629629629,
+     "zero_cell": 0.4444444444444444,
+     "and_eq_antecedent": 0.4444444444444444,
+     "dep_median": 0.39204926488495967,
+     "dep_mean_clipped": 0.4173405665845742,
+     "dep_share_ge_half": 0.2962962962962963,
+     "dep_n": 27
+    }
+   },
+   "mc_excl": {
+    "raw": {
+     "and_zero": 0.6326530612244898,
+     "sum_le_1": 0.7755102040816326,
+     "dep_median": 0.2883277712999075,
+     "dep_mean_clipped": 0.44469957536140864,
+     "dep_share_ge_half": 0.4772727272727273,
+     "dep_n": 44
+    },
+    "projected": {
+     "and_zero": 0.24489795918367346,
+     "sum_le_1": 0.6938775510204082,
+     "dep_median": 0.1536966265815238,
+     "dep_mean_clipped": 0.1792726977823875,
+     "dep_share_ge_half": 0.2127659574468085,
+     "dep_n": 47
+    }
+   },
+   "control": null,
+   "all": null
+  },
+  "qwen3-235b-a22b|Q": {
+   "threshold": {
+    "raw": {
+     "order": 0.9866666666666667,
+     "zero_cell": 0.6,
+     "and_eq_antecedent": 0.4166666666666667,
+     "dep_median": 1.0,
+     "dep_mean_clipped": 0.769342668909085,
+     "dep_share_ge_half": 0.826530612244898,
+     "dep_n": 294
+    },
+    "projected": {
+     "order": 0.9766666666666667,
+     "zero_cell": 0.37666666666666665,
+     "and_eq_antecedent": 0.37666666666666665,
+     "dep_median": 0.4635201718811641,
+     "dep_mean_clipped": 0.4289998403325156,
+     "dep_share_ge_half": 0.44666666666666666,
+     "dep_n": 300
+    }
+   },
+   "date": {
+    "raw": {
+     "order": 0.8944444444444445,
+     "zero_cell": 0.3888888888888889,
+     "and_eq_antecedent": 0.29444444444444445,
+     "dep_median": 1.8888888888888884,
+     "dep_mean_clipped": 0.817959789276051,
+     "dep_share_ge_half": 0.8426966292134831,
+     "dep_n": 178
+    },
+    "projected": {
+     "order": 0.9166666666666666,
+     "zero_cell": 0.25555555555555554,
+     "and_eq_antecedent": 0.25555555555555554,
+     "dep_median": 0.46139077629888026,
+     "dep_mean_clipped": 0.4382612162473426,
+     "dep_share_ge_half": 0.40555555555555556,
+     "dep_n": 180
+    }
+   },
+   "mc_excl": {
+    "raw": {
+     "and_zero": 0.9633333333333334,
+     "sum_le_1": 0.9233333333333333,
+     "dep_median": 0.8518518518518519,
+     "dep_mean_clipped": 0.7117013156366194,
+     "dep_share_ge_half": 0.8723404255319149,
+     "dep_n": 282
+    },
+    "projected": {
+     "and_zero": 0.5533333333333333,
+     "sum_le_1": 0.98,
+     "dep_median": 0.4922689134366002,
+     "dep_mean_clipped": 0.39552782142012344,
+     "dep_share_ge_half": 0.47278911564625853,
+     "dep_n": 294
+    }
+   },
+   "control": null,
+   "all": null
+  },
+  "qwen3-32b|P": {
+   "threshold": {
+    "raw": {
+     "order": 0.9766666666666667,
+     "zero_cell": 0.7566666666666667,
+     "and_eq_antecedent": 0.77,
+     "dep_median": 1.0,
+     "dep_mean_clipped": 0.7120158307936473,
+     "dep_share_ge_half": 0.7660377358490567,
+     "dep_n": 265
+    },
+    "projected": {
+     "order": 0.9666666666666667,
+     "zero_cell": 0.44,
+     "and_eq_antecedent": 0.44,
+     "dep_median": 0.2557035334790741,
+     "dep_mean_clipped": 0.21550640817090957,
+     "dep_share_ge_half": 0.19112627986348124,
+     "dep_n": 293
+    }
+   },
+   "date": {
+    "raw": {
+     "order": 0.9722222222222222,
+     "zero_cell": 0.40555555555555556,
+     "and_eq_antecedent": 0.7666666666666667,
+     "dep_median": 1.0,
+     "dep_mean_clipped": 0.7356736193438612,
+     "dep_share_ge_half": 0.8344370860927153,
+     "dep_n": 151
+    },
+    "projected": {
+     "order": 0.9166666666666666,
+     "zero_cell": 0.25,
+     "and_eq_antecedent": 0.25,
+     "dep_median": 0.20312788378326302,
+     "dep_mean_clipped": 0.15290621406591737,
+     "dep_share_ge_half": 0.05747126436781609,
+     "dep_n": 174
+    }
+   },
+   "mc_excl": {
+    "raw": {
+     "and_zero": 0.95,
+     "sum_le_1": 0.8533333333333334,
+     "dep_median": 1.0,
+     "dep_mean_clipped": 0.9060823072791502,
+     "dep_share_ge_half": 0.9386281588447654,
+     "dep_n": 277
+    },
+    "projected": {
+     "and_zero": 0.43666666666666665,
+     "sum_le_1": 0.8133333333333334,
+     "dep_median": 0.4219324349090591,
+     "dep_mean_clipped": 0.41618618349187403,
+     "dep_share_ge_half": 0.43050847457627117,
+     "dep_n": 295
+    }
+   },
+   "control": null,
+   "all": null
+  },
+  "qwen3-32b|Q": {
+   "threshold": {
+    "raw": {
+     "order": 0.9566666666666667,
+     "zero_cell": 0.66,
+     "and_eq_antecedent": 0.2866666666666667,
+     "dep_median": 1.0,
+     "dep_mean_clipped": 0.37566674520264903,
+     "dep_share_ge_half": 0.6174242424242424,
+     "dep_n": 264
+    },
+    "projected": {
+     "order": 0.9033333333333333,
+     "zero_cell": 0.4033333333333333,
+     "and_eq_antecedent": 0.4033333333333333,
+     "dep_median": 0.30767099866588893,
+     "dep_mean_clipped": 0.27805406635398355,
+     "dep_share_ge_half": 0.32764505119453924,
+     "dep_n": 293
+    }
+   },
+   "date": {
+    "raw": {
+     "order": 0.8666666666666667,
+     "zero_cell": 0.26666666666666666,
+     "and_eq_antecedent": 0.2777777777777778,
+     "dep_median": 1.0,
+     "dep_mean_clipped": 0.683994574506757,
+     "dep_share_ge_half": 0.7430167597765364,
+     "dep_n": 179
+    },
+    "projected": {
+     "order": 0.8,
+     "zero_cell": 0.06666666666666667,
+     "and_eq_antecedent": 0.06666666666666667,
+     "dep_median": 0.21361453374502753,
+     "dep_mean_clipped": 0.23263706265353828,
+     "dep_share_ge_half": 0.15,
+     "dep_n": 180
+    }
+   },
+   "mc_excl": {
+    "raw": {
+     "and_zero": 0.9433333333333334,
+     "sum_le_1": 0.87,
+     "dep_median": 1.0,
+     "dep_mean_clipped": 0.8485689119101311,
+     "dep_share_ge_half": 0.9152542372881356,
+     "dep_n": 295
+    },
+    "projected": {
+     "and_zero": 0.6433333333333333,
+     "sum_le_1": 0.9366666666666666,
+     "dep_median": 0.6714503214309117,
+     "dep_mean_clipped": 0.5518642309318148,
+     "dep_share_ge_half": 0.6847457627118644,
+     "dep_n": 295
+    }
+   },
+   "control": null,
+   "all": null
+  }
+ }
+}

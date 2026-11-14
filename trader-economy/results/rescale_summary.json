@@ -1,0 +1,595 @@
+{
+ "design": "Experiment B: the rescaling check.\n\nFor a relu unit, (in *= c, bias *= c, out /= c) computes exactly the same\nfunction.  Split each hidden unit h into an in-agent (W1[h], b1[h]) and an\nout-agent (v[h]); 2H players.  For unit h rescaled by c in {0.1, 1, 10}:\n\n (a) counterfactual pay over the 2H in/out agents, on held-out data:\n     Shapley (K=200 sampled orders, same orders for every c), LOO, and the\n     mean-ablation variant.  Expected invariant.\n (b) magnitude schemes:\n     act_share  the in-agents' pot (their total Shapley at c=1, held fixed) is\n                split in proportion to delivered activation E|a_h|\n     reader_pays  out-agent h pays in-agent h a fixed price per unit E|a_h|\n                (price set so the transfer equals the act_share pay at c=1)\n     l2_in / l2_out  L2 compute cost lam*||w||^2 on each agent's weights\n                (lam set so the total cost at c=1 is 10% of the pot)\n (c) fix: normalized goods.  a_hat = a_h / s_h with s_h the std of a_h on a\n     reference batch, v' = v_h * s_h (function unchanged).  Magnitude schemes\n     recomputed on a_hat and v'.  Two cases: stats recomputed after the\n     rescale (\"fresh\"), and stats frozen from before it (\"frozen\").\n",
+ "seeds": 5,
+ "units_per_seed": 6,
+ "H": 16,
+ "in_agents_share_of_value": [
+  0.5000939736366424,
+  0.02000134594589081
+ ],
+ "c=0.1": {
+  "max_logit_diff": 2.6645352591003757e-15,
+  "shap_in": {
+   "ratio_mean_ci": [
+    1.0,
+    6.901444946027419e-17
+   ],
+   "ratio_min": 0.9999999999999997,
+   "ratio_max": 1.0000000000000004
+  },
+  "shap_out": {
+   "ratio_mean_ci": [
+    1.0,
+    6.901444946027419e-17
+   ],
+   "ratio_min": 0.9999999999999996,
+   "ratio_max": 1.0000000000000007
+  },
+  "shapmean_in": {
+   "ratio_mean_ci": [
+    1.0000000000000002,
+    3.7165418441723134e-16
+   ],
+   "ratio_min": 0.9999999999999987,
+   "ratio_max": 1.0000000000000018
+  },
+  "shapmean_out": {
+   "ratio_mean_ci": [
+    1.0,
+    3.450722473013709e-16
+   ],
+   "ratio_min": 0.9999999999999982,
+   "ratio_max": 1.0000000000000016
+  },
+  "loo_in": {
+   "ratio_mean_ci": [
+    1.0,
+    3.086420008457935e-16
+   ],
+   "ratio_min": 1.0,
+   "ratio_max": 1.0000000000000016
+  },
+  "loo_out": {
+   "ratio_mean_ci": [
+    1.0,
+    3.086420008457935e-16
+   ],
+   "ratio_min": 1.0,
+   "ratio_max": 1.0000000000000016
+  },
+  "actshare_in": {
+   "ratio_mean_ci": [
+    0.1069456744483382,
+    0.0003650421463237906
+   ],
+   "ratio_min": 0.10365624081912728,
+   "ratio_max": 0.11075361896622611
+  },
+  "actshare_others": {
+   "ratio_mean_ci": [
+    1.0694567444833816,
+    0.003650421463237901
+   ],
+   "ratio_min": 1.0365624081912725,
+   "ratio_max": 1.1075361896622615
+  },
+  "readerpays_transfer": {
+   "ratio_mean_ci": [
+    0.10000000000000002,
+    5.317920483251361e-17
+   ],
+   "ratio_min": 0.09999999999999976,
+   "ratio_max": 0.10000000000000046
+  },
+  "l2_in": {
+   "ratio_mean_ci": [
+    0.010000000000000002,
+    1.0783507728167842e-18
+   ],
+   "ratio_min": 0.009999999999999998,
+   "ratio_max": 0.010000000000000004
+  },
+  "l2_out": {
+   "ratio_mean_ci": [
+    100.0,
+    1.5300676213963437e-14
+   ],
+   "ratio_min": 99.99999999999996,
+   "ratio_max": 100.00000000000001
+  },
+  "n_actshare_in": {
+   "ratio_mean_ci": [
+    0.9999999999857986,
+    1.7371968495911964e-12
+   ],
+   "ratio_min": 0.999999999979527,
+   "ratio_max": 0.9999999999898993
+  },
+  "n_actshare_others": {
+   "ratio_mean_ci": [
+    1.000000000001061,
+    1.5592055032870887e-13
+   ],
+   "ratio_min": 1.000000000000612,
+   "ratio_max": 1.0000000000018576
+  },
+  "n_readerpays_transfer": {
+   "ratio_mean_ci": [
+    0.9999999999847378,
+    1.8844448187428383e-12
+   ],
+   "ratio_min": 0.9999999999781244,
+   "ratio_max": 0.9999999999892872
+  },
+  "n_l2_in": {
+   "ratio_mean_ci": [
+    0.010000000000000002,
+    0.0
+   ],
+   "ratio_min": 0.01,
+   "ratio_max": 0.010000000000000005
+  },
+  "n_l2_out": {
+   "ratio_mean_ci": [
+    1.000000000030524,
+    3.769497416913388e-12
+   ],
+   "ratio_min": 1.0000000000214233,
+   "ratio_max": 1.0000000000437566
+  }
+ },
+ "c=10.0": {
+  "max_logit_diff": 1.7763568394002505e-15,
+  "shap_in": {
+   "ratio_mean_ci": [
+    1.0,
+    0.0
+   ],
+   "ratio_min": 0.9999999999999996,
+   "ratio_max": 1.0000000000000004
+  },
+  "shap_out": {
+   "ratio_mean_ci": [
+    1.0,
+    6.901444946027419e-17
+   ],
+   "ratio_min": 0.9999999999999994,
+   "ratio_max": 1.0000000000000004
+  },
+  "shapmean_in": {
+   "ratio_mean_ci": [
+    1.0000000000000002,
+    4.0241993485209095e-16
+   ],
+   "ratio_min": 0.9999999999999986,
+   "ratio_max": 1.0000000000000013
+  },
+  "shapmean_out": {
+   "ratio_mean_ci": [
+    0.9999999999999998,
+    2.5822842461717176e-16
+   ],
+   "ratio_min": 0.9999999999999988,
+   "ratio_max": 1.0000000000000007
+  },
+  "loo_in": {
+   "ratio_mean_ci": [
+    1.0,
+    1.5432100042289675e-16
+   ],
+   "ratio_min": 0.9999999999999992,
+   "ratio_max": 1.0000000000000016
+  },
+  "loo_out": {
+   "ratio_mean_ci": [
+    1.0,
+    1.5432100042289675e-16
+   ],
+   "ratio_min": 0.9999999999999992,
+   "ratio_max": 1.0000000000000016
+  },
+  "actshare_in": {
+   "ratio_mean_ci": [
+    6.129328952616277,
+    0.1837406782449081
+   ],
+   "ratio_min": 5.073696278451564,
+   "ratio_max": 7.392471796775008
+  },
+  "actshare_others": {
+   "ratio_mean_ci": [
+    0.6129328952616275,
+    0.018374067824490636
+   ],
+   "ratio_min": 0.5073696278451564,
+   "ratio_max": 0.7392471796774992
+  },
+  "readerpays_transfer": {
+   "ratio_mean_ci": [
+    10.000000000000002,
+    6.343325255054043e-15
+   ],
+   "ratio_min": 9.99999999999997,
+   "ratio_max": 10.000000000000034
+  },
+  "l2_in": {
+   "ratio_mean_ci": [
+    100.0,
+    8.833849530915096e-15
+   ],
+   "ratio_min": 99.99999999999997,
+   "ratio_max": 100.00000000000004
+  },
+  "l2_out": {
+   "ratio_mean_ci": [
+    0.01,
+    0.0
+   ],
+   "ratio_min": 0.009999999999999998,
+   "ratio_max": 0.010000000000000002
+  },
+  "n_actshare_in": {
+   "ratio_mean_ci": [
+    1.0000000000014206,
+    1.7771433808480426e-13
+   ],
+   "ratio_min": 1.0000000000009994,
+   "ratio_max": 1.000000000002044
+  },
+  "n_actshare_others": {
+   "ratio_mean_ci": [
+    0.9999999999998938,
+    1.5841033780481157e-14
+   ],
+   "ratio_min": 0.999999999999814,
+   "ratio_max": 0.9999999999999395
+  },
+  "n_readerpays_transfer": {
+   "ratio_mean_ci": [
+    1.0000000000015266,
+    1.926263385620046e-13
+   ],
+   "ratio_min": 1.00000000000106,
+   "ratio_max": 1.000000000002184
+  },
+  "n_l2_in": {
+   "ratio_mean_ci": [
+    100.0,
+    8.833849530915096e-15
+   ],
+   "ratio_min": 99.99999999999997,
+   "ratio_max": 100.00000000000003
+  },
+  "n_l2_out": {
+   "ratio_mean_ci": [
+    0.9999999999969461,
+    3.8484521456172494e-13
+   ],
+   "ratio_min": 0.9999999999956332,
+   "ratio_max": 0.9999999999978755
+  }
+ },
+ "c=0.1|frozen": {
+  "max_logit_diff": 2.6645352591003757e-15,
+  "shap_in": {
+   "ratio_mean_ci": [
+    1.0,
+    6.901444946027419e-17
+   ],
+   "ratio_min": 0.9999999999999997,
+   "ratio_max": 1.0000000000000004
+  },
+  "shap_out": {
+   "ratio_mean_ci": [
+    1.0,
+    6.901444946027419e-17
+   ],
+   "ratio_min": 0.9999999999999996,
+   "ratio_max": 1.0000000000000007
+  },
+  "shapmean_in": {
+   "ratio_mean_ci": [
+    1.0000000000000002,
+    3.7165418441723134e-16
+   ],
+   "ratio_min": 0.9999999999999987,
+   "ratio_max": 1.0000000000000018
+  },
+  "shapmean_out": {
+   "ratio_mean_ci": [
+    1.0,
+    3.450722473013709e-16
+   ],
+   "ratio_min": 0.9999999999999982,
+   "ratio_max": 1.0000000000000016
+  },
+  "loo_in": {
+   "ratio_mean_ci": [
+    1.0,
+    3.086420008457935e-16
+   ],
+   "ratio_min": 1.0,
+   "ratio_max": 1.0000000000000016
+  },
+  "loo_out": {
+   "ratio_mean_ci": [
+    1.0,
+    3.086420008457935e-16
+   ],
+   "ratio_min": 1.0,
+   "ratio_max": 1.0000000000000016
+  },
+  "actshare_in": {
+   "ratio_mean_ci": [
+    0.1069456744483382,
+    0.0003650421463237906
+   ],
+   "ratio_min": 0.10365624081912728,
+   "ratio_max": 0.11075361896622611
+  },
+  "actshare_others": {
+   "ratio_mean_ci": [
+    1.0694567444833816,
+    0.003650421463237901
+   ],
+   "ratio_min": 1.0365624081912725,
+   "ratio_max": 1.1075361896622615
+  },
+  "readerpays_transfer": {
+   "ratio_mean_ci": [
+    0.10000000000000002,
+    5.317920483251361e-17
+   ],
+   "ratio_min": 0.09999999999999976,
+   "ratio_max": 0.10000000000000046
+  },
+  "l2_in": {
+   "ratio_mean_ci": [
+    0.010000000000000002,
+    1.0783507728167842e-18
+   ],
+   "ratio_min": 0.009999999999999998,
+   "ratio_max": 0.010000000000000004
+  },
+  "l2_out": {
+   "ratio_mean_ci": [
+    100.0,
+    1.5300676213963437e-14
+   ],
+   "ratio_min": 99.99999999999996,
+   "ratio_max": 100.00000000000001
+  },
+  "n_actshare_in": {
+   "ratio_mean_ci": [
+    0.1066772101910765,
+    0.00031965168131436105
+   ],
+   "ratio_min": 0.10473966097935418,
+   "ratio_max": 0.1103168750026803
+  },
+  "n_actshare_others": {
+   "ratio_mean_ci": [
+    1.0667721019107654,
+    0.0031965168131440863
+   ],
+   "ratio_min": 1.0473966097935417,
+   "ratio_max": 1.1031687500268044
+  },
+  "n_readerpays_transfer": {
+   "ratio_mean_ci": [
+    0.09999999999999998,
+    5.72237584931688e-17
+   ],
+   "ratio_min": 0.09999999999999969,
+   "ratio_max": 0.10000000000000031
+  },
+  "n_l2_in": {
+   "ratio_mean_ci": [
+    0.010000000000000002,
+    0.0
+   ],
+   "ratio_min": 0.01,
+   "ratio_max": 0.010000000000000005
+  },
+  "n_l2_out": {
+   "ratio_mean_ci": [
+    99.99999999999999,
+    8.833849530915096e-15
+   ],
+   "ratio_min": 99.99999999999996,
+   "ratio_max": 100.00000000000001
+  }
+ },
+ "c=10.0|frozen": {
+  "max_logit_diff": 1.7763568394002505e-15,
+  "shap_in": {
+   "ratio_mean_ci": [
+    1.0,
+    0.0
+   ],
+   "ratio_min": 0.9999999999999996,
+   "ratio_max": 1.0000000000000004
+  },
+  "shap_out": {
+   "ratio_mean_ci": [
+    1.0,
+    6.901444946027419e-17
+   ],
+   "ratio_min": 0.9999999999999994,
+   "ratio_max": 1.0000000000000004
+  },
+  "shapmean_in": {
+   "ratio_mean_ci": [
+    1.0000000000000002,
+    4.0241993485209095e-16
+   ],
+   "ratio_min": 0.9999999999999986,
+   "ratio_max": 1.0000000000000013
+  },
+  "shapmean_out": {
+   "ratio_mean_ci": [
+    0.9999999999999998,
+    2.5822842461717176e-16
+   ],
+   "ratio_min": 0.9999999999999988,
+   "ratio_max": 1.0000000000000007
+  },
+  "loo_in": {
+   "ratio_mean_ci": [
+    1.0,
+    1.5432100042289675e-16
+   ],
+   "ratio_min": 0.9999999999999992,
+   "ratio_max": 1.0000000000000016
+  },
+  "loo_out": {
+   "ratio_mean_ci": [
+    1.0,
+    1.5432100042289675e-16
+   ],
+   "ratio_min": 0.9999999999999992,
+   "ratio_max": 1.0000000000000016
+  },
+  "actshare_in": {
+   "ratio_mean_ci": [
+    6.129328952616277,
+    0.1837406782449081
+   ],
+   "ratio_min": 5.073696278451564,
+   "ratio_max": 7.392471796775008
+  },
+  "actshare_others": {
+   "ratio_mean_ci": [
+    0.6129328952616275,
+    0.018374067824490636
+   ],
+   "ratio_min": 0.5073696278451564,
+   "ratio_max": 0.7392471796774992
+  },
+  "readerpays_transfer": {
+   "ratio_mean_ci": [
+    10.000000000000002,
+    6.343325255054043e-15
+   ],
+   "ratio_min": 9.99999999999997,
+   "ratio_max": 10.000000000000034
+  },
+  "l2_in": {
+   "ratio_mean_ci": [
+    100.0,
+    8.833849530915096e-15
+   ],
+   "ratio_min": 99.99999999999997,
+   "ratio_max": 100.00000000000004
+  },
+  "l2_out": {
+   "ratio_mean_ci": [
+    0.01,
+    0.0
+   ],
+   "ratio_min": 0.009999999999999998,
+   "ratio_max": 0.010000000000000002
+  },
+  "n_actshare_in": {
+   "ratio_mean_ci": [
+    6.1864998458415155,
+    0.09359541252628743
+   ],
+   "ratio_min": 5.16741466726129,
+   "ratio_max": 6.884595004678798
+  },
+  "n_actshare_others": {
+   "ratio_mean_ci": [
+    0.6186499845841518,
+    0.009359541252628771
+   ],
+   "ratio_min": 0.5167414667261286,
+   "ratio_max": 0.6884595004678801
+  },
+  "n_readerpays_transfer": {
+   "ratio_mean_ci": [
+    9.999999999999996,
+    8.481760720212447e-15
+   ],
+   "ratio_min": 9.999999999999968,
+   "ratio_max": 10.000000000000034
+  },
+  "n_l2_in": {
+   "ratio_mean_ci": [
+    100.0,
+    8.833849530915096e-15
+   ],
+   "ratio_min": 99.99999999999997,
+   "ratio_max": 100.00000000000003
+  },
+  "n_l2_out": {
+   "ratio_mean_ci": [
+    0.009999999999999998,
+    2.1567015456335683e-18
+   ],
+   "ratio_min": 0.009999999999999997,
+   "ratio_max": 0.010000000000000005
+  }
+ },
+ "example_seed0_top_unit": {
+  "unit": 11,
+  "c=1.0": {
+   "max_logit_diff": 0.0,
+   "shap_in": 0.03504,
+   "shap_out": 0.03002,
+   "shapmean_in": 0.03222,
+   "shapmean_out": 0.03388,
+   "loo_in": 0.03753,
+   "loo_out": 0.03753,
+   "actshare_in": 0.01119,
+   "actshare_others": 0.11556,
+   "readerpays_transfer": 0.01119,
+   "l2_in": 0.0015,
+   "l2_out": 0.00107,
+   "n_actshare_in": 0.00933,
+   "n_actshare_others": 0.11741,
+   "n_readerpays_transfer": 0.00933,
+   "n_l2_in": 0.00171,
+   "n_l2_out": 0.00058
+  },
+  "c=10.0": {
+   "max_logit_diff": 0.0,
+   "shap_in": 0.03504,
+   "shap_out": 0.03002,
+   "shapmean_in": 0.03222,
+   "shapmean_out": 0.03388,
+   "loo_in": 0.03753,
+   "loo_out": 0.03753,
+   "actshare_in": 0.06235,
+   "actshare_others": 0.0644,
+   "readerpays_transfer": 0.11189,
+   "l2_in": 0.14989,
+   "l2_out": 1e-05,
+   "n_actshare_in": 0.00933,
+   "n_actshare_others": 0.11741,
+   "n_readerpays_transfer": 0.00933,
+   "n_l2_in": 0.17076,
+   "n_l2_out": 0.00058
+  },
+  "c=0.1": {
+   "max_logit_diff": 0.0,
+   "shap_in": 0.03504,
+   "shap_out": 0.03002,
+   "shapmean_in": 0.03222,
+   "shapmean_out": 0.03388,
+   "loo_in": 0.03753,
+   "loo_out": 0.03753,
+   "actshare_in": 0.00122,
+   "actshare_others": 0.12553,
+   "readerpays_transfer": 0.00112,
+   "l2_in": 1e-05,
+   "l2_out": 0.1075,
+   "n_actshare_in": 0.00933,
+   "n_actshare_others": 0.11741,
+   "n_readerpays_transfer": 0.00933,
+   "n_l2_in": 2e-05,
+   "n_l2_out": 0.00058
+  }
+ },
+ "secs": 694
+}

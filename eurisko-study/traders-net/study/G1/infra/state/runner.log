@@ -1,0 +1,30 @@
+2026-09-27T22:16:06Z start g1-smoke ws=G1 hours=0.1 reserve=$0.38
+2026-09-27T22:32:05Z start g1-smoke2 ws=G1 hours=0.1 reserve=$0.38
+2026-09-27T22:44:05Z start g1-smoke3 ws=G1 hours=0.1 reserve=$0.38
+2026-09-27T22:50:07Z start g1-smoke3 ws=G1 hours=0.1 reserve=$0.38
+2026-09-28T06:36:13Z start m6-w4-fp-base ws=M6 hours=1.5 reserve=$1.59
+2026-09-28T06:54:48Z manual-dispatch m7-w1-controls by M7-w2: queue-runner is jammed (job-run.sh inherits runner.lock as fd 7, so every cron pass exits at flock -n while any job runs; m6-w4-fp-base holds it). Dispatched the FIFO head with fd 7 closed; gpu-up.sh still enforces MAX_VMS=2 and the budget under admission.lock. Fix for G1: add 7>&- to the setsid line in queue-runner.sh.
+2026-09-28T07:00:08Z start m7-w3-exp3 ws=M7 hours=2 reserve=$2.03
+2026-09-28T07:00:13Z waiting: m7-w5-bb (no free VM slot)
+2026-09-28T07:00:13Z waiting: m7-w4-globalprior (no free VM slot)
+2026-09-28T07:00:13Z waiting: m7-w2-famwealth (no free VM slot)
+2026-09-28T07:10:35Z manual-dispatch m7-w5-bb by M7-w2 stopgap (runner.lock held by a job-run.sh; see earlier line)
+2026-09-28T07:20:07Z start m7-w4-globalprior ws=M7 hours=1.5 reserve=$1.59
+2026-09-28T07:20:12Z waiting: m7-w2-famwealth (no free VM slot)
+2026-09-28T07:31:28Z manual-dispatch m7-w2-famwealth by M7-w2 stopgap (runner.lock held by a job-run.sh; see earlier line)
+2026-09-28T07:38:05Z start m7-w4-globalprior ws=M7 hours=1.5 reserve=$1.59
+2026-09-28T07:38:10Z start m7-w2-famwealth ws=M7 hours=1.5 reserve=$1.59
+2026-09-28T07:46:09Z start m7-w2-famwealth ws=M7 hours=1.5 reserve=$1.59
+2026-09-28T08:10:07Z start m7-w2-famwealth ws=M7 hours=1.5 reserve=$1.59
+2026-09-28T08:18:05Z start m7-w2-famwealth ws=M7 hours=1.5 reserve=$1.59
+2026-09-28T09:56:15Z manual-dispatch m6-s2-noise by M6-s2 stopgap (runner.lock held by m6-s1-stress job-run.sh; same fd-7 bug as above)
+2026-09-28T10:06:52Z manual-dispatch m6-s2-noise2 by M6-s2 (same stopgap script, fd 7/8 closed; budget checks unchanged)
+2026-09-28T11:08:04Z start m6-s2-noise2 ws=M6 hours=3 reserve=$2.90
+2026-09-28T12:06:12Z start x1-w5-wn45 ws=X1 hours=1.0 reserve=$1.16
+ERROR: gcloud crashed (MetadataServerException): HTTP Error 503: Service Unavailable
+
+If you would like to report this issue, please run the following command:
+  gcloud feedback
+
+To check gcloud for common problems, please run the following command:
+  gcloud info --run-diagnostics

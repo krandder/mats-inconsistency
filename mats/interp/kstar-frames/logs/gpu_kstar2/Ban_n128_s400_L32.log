@@ -1,0 +1,10 @@
+[n128_s400_L32] c=8 k=16 chance=0.251 | Gb_raw: O=0.401 CS=0.500 Gb_proj: O=0.485 CS=0.593 GM_raw: O=0.442 CS=0.565 GM_proj: O=0.524 CS=0.655 rand_proj: O=0.252 CS=0.252 | nearest R: 1:CS=0.428,O=0.374,ang=0.787 4:CS=0.466,O=0.403,ang=0.672 16:CS=0.501,O=0.424,ang=0.572 64:CS=0.520,O=0.436,ang=0.515 256:CS=0.535,O=0.449,ang=0.474 1024:CS=0.554,O=0.463,ang=0.437 4096:CS=0.570,O=0.473,ang=0.406 8192:CS=0.579,O=0.479,ang=0.392
+[n128_s400_L32] c=16 k=22 chance=0.373 | Gb_raw: O=0.577 CS=0.714 Gb_proj: O=0.641 CS=0.777 GM_raw: O=0.594 CS=0.771 GM_proj: O=0.665 CS=0.833 rand_proj: O=0.373 CS=0.373 | nearest R: 1:CS=0.590,O=0.514,ang=0.588 4:CS=0.674,O=0.561,ang=0.393 16:CS=0.718,O=0.602,ang=0.325 64:CS=0.746,O=0.625,ang=0.280 256:CS=0.764,O=0.639,ang=0.248 1024:CS=0.784,O=0.654,ang=0.223 4096:CS=0.799,O=0.668,ang=0.203 8192:CS=0.807,O=0.674,ang=0.192
+Traceback (most recent call last):
+  File "/root/runs/kstar2/scratch/r2b_analyze.py", line 75, in <module>
+    CSm, Om = cover.pair_scores(VB.float(), sB.float(), DB.float(), VA.float(), k)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/runs/kstar2/lib/cover.py", line 28, in pair_scores
+    ev, U = torch.linalg.eigh(Gram)                                          # Gram may be singular:
+            ^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 10.24 GiB. GPU 0 has a total capacity of 22.03 GiB of which 593.69 MiB is free. Process 4397 has 19.06 GiB memory in use. Including non-PyTorch memory, this process has 1.22 GiB memory in use. Process 4609 has 598.00 MiB memory in use. Process 4608 has 574.00 MiB memory in use. Of the allocated memory 931.72 MiB is allocated by PyTorch, and 84.28 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)

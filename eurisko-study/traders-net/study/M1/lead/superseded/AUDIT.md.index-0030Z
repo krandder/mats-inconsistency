@@ -1,0 +1,15 @@
+# M1 audit: which currency (index)
+
+Decision: `CURRENCY.lock` (Gate A, 2026-09-28). Import it through `currency.py`, which checks the books_v2.py sha256.
+
+Locked currency: **lmsr** unit books (exact LMSR from the running base-rate prior, 16-step path), **prequential** settlement, **cp** attribution rule (LN and attention patterns detached). It is exactly conservative: residual <= 2.6e-7 relative (w1/results/cp_vs_v1_lmsr.csv).
+
+| item | worker | file | one-line result |
+|---|---|---|---|
+| (a) wealth vs norm growth / movement | 1 | w1/AUDIT-w1.md | books = -Q theta.grad L under frozen LN (rel err 3e-7); vs live-LN movement score: neurons corr 0.98; under Adam, norm growth explains R^2 0.19+-0.15 of neuron wealth (slope ~3e-4 vs SGD value 1) |
+| (b) SGD / SGD+wd reruns | 2 | w2/ (AUDIT-w2.md pending) | SGD identity exact; at eta=3, second order dominates neurons; eta=0.3 amendment running |
+| (c) books_v2 + stop rule | 3 | w3/AUDIT-w3.md | ME in vs held-out Spearman out/head/neuron: tangent 0.59/-0.50/-0.19, lmsr 0.92/0.98/0.98; PRNG sign flips in-sample -> prequential everywhere |
+| (d) residual split / AttnLRP | 4 | w4/AUDIT-w4.md | v1 leak = QK 45% + AV 49% (0.13 -> 0.42 of abs R); cp exact; live gxi tracks ablation better (M2 predictor) |
+| cp vs v1 under lmsr | 1 | w1/results/cp_vs_v1_lmsr.csv | rank agreement neurons 0.976+-0.003, heads 0.976+-0.041, readouts 1.0 |
+
+Open: the lmsr in-sample vs held-out test ran under v1, not cp (the cp-vs-v1 ranks are 0.976, so the verdict should carry over; unverified). Worker 2's final AUDIT is not in yet.

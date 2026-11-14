@@ -1,0 +1,12 @@
+{
+ "id": "E-IG-3",
+ "question": "Can pay be recomputed only every N steps on a sample of examples?",
+ "setup": "Online softmax regression, 10 input agents, 1000 steps of 512 examples; IG pay every N steps on s examples, scaled up.",
+ "result": "Cumulative pay error vs full recomputation: 5.5\u00b13.0% (binary) and 3.8\u00b11.1% (3-class) at N=10, s=256, which costs 5%; 7.4\u00b16.9% at N=50, s=512 (2% of the cost); 22\u00b112% at N=50, s=32.",
+ "status": "Gain",
+ "files": [
+  "exp_ig.py",
+  "results/ig_summary.json",
+  "charts/ig_online_subsample.json"
+ ]
+}

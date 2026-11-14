@@ -1,0 +1,197 @@
+{
+ "checked_at": "2026-10-17T17:16:42Z",
+ "PREREG-R8-E1": {
+  "sha256_file": "12034c21d409e9f9f4f6e13e311f000e81424b2b4157cba6063f1f80e99ac885",
+  "registered_line": "PREREG-R8-E1.md registered 2026-10-17T16:07:15Z",
+  "sha256_file_mtime": "2026-10-17T16:07:15.915323Z",
+  "as_registered_copy_sha256": "12034c21d409e9f9f4f6e13e311f000e81424b2b4157cba6063f1f80e99ac885",
+  "current_sha256": "51dc94c67059b1ef9ea2aa36a6b13f68bff55185c5235232805f777e192d924f",
+  "as_registered_matches": true,
+  "current_matches": false
+ },
+ "PREREG-R8-E1-AMENDMENTS": {
+  "sha256_file": "369b21946a1dc34cfbb62f0711ed6b3af01547e3637da0303ff542403dd16697",
+  "registered_line": "PREREG-R8-E1-AMENDMENTS.md registered 2026-10-17T16:07:15Z",
+  "sha256_file_mtime": "2026-10-17T16:07:15.915490Z",
+  "as_registered_copy_sha256": "369b21946a1dc34cfbb62f0711ed6b3af01547e3637da0303ff542403dd16697",
+  "current_sha256": "369b21946a1dc34cfbb62f0711ed6b3af01547e3637da0303ff542403dd16697",
+  "as_registered_matches": true,
+  "current_matches": true
+ },
+ "PREREG_diff_ops": [
+  {
+   "op": "replace",
+   "registered_lines": [
+    253,
+    253
+   ],
+   "current_lines": [
+    253,
+    294
+   ],
+   "removed": [
+    "(none yet)"
+   ],
+   "inside_section_5": true
+  }
+ ],
+ "PREREG_only_section5_changed": true,
+ "deviation_entries": [
+  [
+   "1",
+   "2026-10-17T16:07:48Z",
+   "a factual slip in the registered header (no effect)."
+  ],
+  [
+   "2",
+   "2026-10-17T16:08:48Z",
+   "a descriptive numbers script added after registration, before any result existed (no rule changes)."
+  ],
+  [
+   "3",
+   "2026-10-17T16:34:46Z",
+   "the first run crashed before any test number; one-line backend fix in `e1v5.py` (no experimental change)."
+  ],
+  [
+   "4",
+   "2026-10-17T16:35:17Z",
+   "the rerun's budget guard tightened so the rerun fits the $0.80 ceiling (infrastructure only)."
+  ],
+  [
+   "5",
+   "2026-10-17T16:58:12Z",
+   "a wrong axis label in one plot, fixed after scoring (plot only; no number changed)."
+  ],
+  [
+   "6",
+   "2026-10-17T17:01:38Z",
+   "`numbers8.py` extended after scoring (descriptive only)."
+  ]
+ ],
+ "first_gpu_log_r8e1_line": "- 2026-10-17T16:07Z PENDING-CREATE vm=soup-gpu-r8e1-main-1017160722-4433 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=1.07 group=r8 run=r8e1-main by=gpu-up.sh",
+ "first_launch_log_line": "2026-10-17T16:07:22Z LAUNCH r8e1-main try 1 tag=main seeds=101 102 103 remote=28m timeout=38m prov=SPOT args=",
+ "registration_precedes_launch_s": 7.0,
+ "prereg_listed_hash_prefixes_match_registration_block": true,
+ "stage_blocks": {
+  "2026-10-17T16:07:15Z": {
+   "changed_vs_registration": [],
+   "added_vs_registration": [],
+   "missing": []
+  },
+  "2026-10-17T16:07:22Z": {
+   "changed_vs_registration": [],
+   "added_vs_registration": [],
+   "missing": []
+  },
+  "2026-10-17T16:35:21Z": {
+   "changed_vs_registration": [
+    "e1v5.py",
+    "launch8.sh",
+    "ledger8.py"
+   ],
+   "added_vs_registration": [
+    "numbers8.py",
+    "render_page8.py",
+    "site_patch8.py"
+   ],
+   "missing": []
+  },
+  "2026-10-17T16:37:15Z": {
+   "changed_vs_registration": [
+    "e1v5.py",
+    "launch8.sh",
+    "ledger8.py"
+   ],
+   "added_vs_registration": [
+    "numbers8.py",
+    "render_page8.py",
+    "site_patch8.py"
+   ],
+   "missing": []
+  }
+ },
+ "current_vs_scored_run_stage": {
+  "analyze8.py": "CHANGED (now 33b8daad, mtime 2026-10-17T16:58:12.972776Z)",
+  "ckpt/s101/theta_real_v2.npz": "same",
+  "ckpt/s102/theta_real_v2.npz": "same",
+  "ckpt/s103/theta_real_v2.npz": "same",
+  "driver8.sh": "same",
+  "e1v3.py": "same",
+  "e1v4.py": "same",
+  "e1v5.py": "same",
+  "env6.py": "same",
+  "launch8.sh": "same",
+  "ledger8.py": "same",
+  "numbers8.py": "CHANGED (now 7b3bd929, mtime 2026-10-17T17:01:38.357546Z)",
+  "partA2.py": "same",
+  "remote8.sh": "same",
+  "render_page8.py": "same",
+  "rollouts.py": "same",
+  "run.py": "same",
+  "site_patch8.py": "same",
+  "smallnet/netdef.py": "same",
+  "stage8.sh": "same",
+  "test_r8e1.py": "same",
+  "wm.py": "same"
+ },
+ "e1v5_registered_hash_reproduced_by_removing_lines_785_791": true,
+ "e1v5_lines_785_791": [
+  "    if dev.type == \"cuda\":   # PREREG deviation 3: torch 2.14's Triton bmm-outer-product override needs Python.h, absent on the",
+  "        try:                 # VM; deregistering the Triton overrides sends those matmuls to the standard kernels, as in R7",
+  "            import torch._native.triton_utils as _tu",
+  "            _tu.deregister_op_overrides()",
+  "            log(\"r8 torch native Triton op overrides deregistered (deviation 3)\")",
+  "        except Exception as e:  # noqa: BLE001",
+  "            log(\"r8 could not deregister torch native Triton op overrides:\", repr(e))"
+ ],
+ "amendments_file": {
+  "mtime": "2026-10-17T16:01:43.299939Z",
+  "first45_sha256": "d7b193a7e43f3519be7bbc47630278af153a11b08c065850eee014ade2405a4d",
+  "first45_verbatim_in_registered_prereg": true,
+  "other_round8_amendment_files": [
+   "experiments-round-8-amendments.md"
+  ]
+ },
+ "spec_file": {
+  "mtime": "2026-10-17T15:42:28.567439Z",
+  "sha256": "b19a33e098a3309e115c4cc696841c4377fa9ce4a72d1278a8e5bdae95f5bae5"
+ },
+ "spec_1.2_excerpt_sha256": "a9a8c597ba331d445e93a0e6b5aeee71092cd89d8e7b320678d4499add046d78",
+ "spec_1.2_verbatim_in_registered_prereg": true,
+ "run1_vs_scored_cfg_differences_s101": {},
+ "run1": {
+  "101": {
+   "run1_test_board_lines": [
+    "[16:24:22 +  687.1s] r8 roots: KL by M_0 {\"2\": 0.27964, \"6\": 0.24511, \"12\": 0.19306, \"18\": 0.14447}; clause-1 Pearson 0.99942",
+    "[16:24:22 +  687.1s] r8 K=0 identity: {\"looped_attn_M2_max_abs_logit_diff\": 0.0, \"looped_attn_M2_kl_diff\": 0.0, \"attn_K3_M2_max_abs_logit_diff\": 0.0,"
+   ],
+   "identical_to_scored_run_after_timestamp": true,
+   "retry_log_has_traceback": false,
+   "retry_log_last_line": "[16:31:40 +  429.9s] r8 trained anytime attn_L3-K3; last bce 0.3994; 429s",
+   "scored_dir_stdout_retry_identical_to_run1": true,
+   "scored_rc_json": "{\"seed\": 101, \"rc\": 0, \"retry\": 0, \"sec\": 788}"
+  },
+  "102": {
+   "run1_test_board_lines": [
+    "[16:24:35 +  698.5s] r8 roots: KL by M_0 {\"2\": 0.27965, \"6\": 0.24524, \"12\": 0.19285, \"18\": 0.14426}; clause-1 Pearson 0.99948",
+    "[16:24:35 +  698.6s] r8 K=0 identity: {\"looped_attn_M2_max_abs_logit_diff\": 0.0, \"looped_attn_M2_kl_diff\": 0.0, \"attn_K3_M2_max_abs_logit_diff\": 0.0,"
+   ],
+   "identical_to_scored_run_after_timestamp": true,
+   "retry_log_has_traceback": false,
+   "retry_log_last_line": "[16:31:41 +  418.4s] r8 trained anytime attn_L3-K3; last bce 0.3907; 417s",
+   "scored_dir_stdout_retry_identical_to_run1": true,
+   "scored_rc_json": "{\"seed\": 102, \"rc\": 0, \"retry\": 0, \"sec\": 788}"
+  },
+  "103": {
+   "run1_test_board_lines": [
+    "[16:24:35 +  696.1s] r8 roots: KL by M_0 {\"2\": 0.2797, \"6\": 0.24526, \"12\": 0.19307, \"18\": 0.14459}; clause-1 Pearson 0.99946",
+    "[16:24:35 +  696.1s] r8 K=0 identity: {\"looped_attn_M2_max_abs_logit_diff\": 0.0, \"looped_attn_M2_kl_diff\": 0.0, \"attn_K3_M2_max_abs_logit_diff\": 0.0,"
+   ],
+   "identical_to_scored_run_after_timestamp": true,
+   "retry_log_has_traceback": false,
+   "retry_log_last_line": "[16:31:48 +  425.3s] r8 trained anytime attn_L3-K3; last bce 0.3928; 424s",
+   "scored_dir_stdout_retry_identical_to_run1": true,
+   "scored_rc_json": "{\"seed\": 103, \"rc\": 0, \"retry\": 0, \"sec\": 782}"
+  }
+ }
+}

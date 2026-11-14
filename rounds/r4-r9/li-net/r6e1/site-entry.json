@@ -1,0 +1,33 @@
+{
+ "slug": "r6-e1-einfo-v3",
+ "title": "Round 6 E1: keys from belief shifts, evidence-floor policy independence and key-space PUCT (6x6 ShipHunt)",
+ "date": "17 Oct",
+ "status": "informative",
+ "oneline": "3 of 5 pre-registered rules pass; the 2 failures each miss one clause. Keys built from where a patch read moved the beliefs track graded overlap (Pearson 0.86-0.88, up from 0.38). With every cell read by both searches, the attention pool's two preference-steered beliefs nearly agree (JSD 2.8-6.5x below one-step pools, with lower KL than each). Key-space PUCT reaches 94.9% coverage (bar 95%), halving policy dependence. The weight law holds at 3 noise levels on the 3-seed means, but the margin over kc_dedup at high noise is 10% (bar 15%). 3 seeds; $1.10.",
+ "led_to": [],
+ "page": {
+  "why": "Round 5 left three gaps: learned keys that barely tracked how much two reads overlapped (Pearson 0.375), a policy-independence test confounded by cells only one search read, and a mutual-support weight just under its bar. Gemini's round-6 spec tests a fix for each.",
+  "what": "The round-5 6x6 board with a dense sonar field and the same retrained 669k-parameter world model; each read is one call on the readings of a 2x3 patch. Four key constructions: raw hidden state, bag-centred hidden state, the read's belief-shift footprint, and both together. Two pools: a 3-layer attention pool and a 4-step looped linear one. Two search protocols: both searches first read the 6 tiles that cover the board (then 18 reads skewed 90/10), or an active 4-wave PUCT search that scores candidate patches by belief variance divided by learned key crowding against earlier reads. Same-patch bags at three noise levels. 3 seeds, pre-registered, oracle for scoring only.",
+  "result": "Keys from the belief-shift footprint correlate 0.88 with true overlap (0.86 combined with the centred state; raw keys 0.38), with cosine rising steadily from disjoint to identical patches. With full coverage, the attention pool's beliefs under the two preferences differ by JSD 0.008 vs 0.022-0.051 for one-step pools, and its KL (0.034) is below every one-step pool's (with the footprint-only key it is 0.033). Key-space PUCT covers 94.9% of cells vs 82.8% open loop (bar 95%), halving JSD and cutting KL 38%. Identical clean reads weigh 1.08x one; independent noisy reads earn 2.0x (medium noise) and 3.5x (high noise) by N = 8. At high noise the pool beats kc_dedup by only 10% in MSE (bar 15%). The looped linear pool, at 1/39 the parameters, has 2x the KL.",
+  "sowhat": "When the evidence is shared, a learned attention pool gives nearly the same belief whichever way the search was steered, and keys made from where a read moved the belief carry the overlap structure the pool needs. Under open search, part of the disagreement comes from what each search reads; key-space PUCT reads more of the board and halves the disagreement, and what remains is mostly not evidence one search missed.",
+  "decided": "Recorded E1-D0, D1, D2.1 as passed and D2.2 (coverage 0.949 vs 0.95) and D3 (MSE margin over kc_dedup 10% vs 15%) as failed, as written. Not run, for gemini's next round: a fifth PUCT wave or a coverage stopping rule; kc_dedup with raw keys next to the new ones; a looped pool with more steps.",
+  "chart": {
+   "bars": [
+    {"label": "raw hidden-state key (K1)", "value": 0.382, "text": "0.38"},
+    {"label": "bag-centred key (K2)", "value": 0.403, "text": "0.40"},
+    {"label": "centred + footprint key (K4)", "value": 0.863, "text": "0.86", "good": true},
+    {"label": "belief-shift footprint key (K3)", "value": 0.880, "text": "0.88", "good": true}
+   ],
+   "caption": "Pearson correlation between two reads' key similarity and the true share of cells their patches overlap, all within-bag pairs of 3 bags x 500 test boards, 3-seed means. Pre-registered bar: 0.60.",
+   "aria": "Keys made from where a read moved the beliefs track patch overlap closely; hidden-state keys do not"
+  },
+  "details": {
+   "methods": [
+    "Pre-registered in PREREG-R6-E1.md (06:27Z, before the first launch); 3 logged deviations (a time slip; a spot preemption followed by an identical on-demand rerun; a plot-only analysis edit, logged after the audit found it).",
+    "World model retrained as in round 5 (40,000 steps); exact Bayes over 49,504 ship patterns given all 36 readings used only for scoring and the gate.",
+    "Pools trained on 3,200 calibration boards against the model's own 128-read union belief; trust from real excess surprise; reads at noise levels 0.3 / 1.5 / 2.5.",
+    "Tests on the same 500 held-out boards as round 5; 3 seeds, seed-t 95% intervals; independent audit in AUDIT-R6-E1.md (all five verdicts confirmed; 14 rounding-level numbers and several over-strong sentences corrected); $1.10 of GPU at the list-price ceiling."
+   ]
+  }
+ }
+}

@@ -1,0 +1,13 @@
+Model: GPT-6
+
+Checked 2026-10-29: source, hashes, JSON, tables, logs and prior reports/reviews; no Python or model reruns. “Draft” means update40_draft.md.
+
+1. **High: grid caveat stops too early.** Draft:35 limits concern to steps 0–200, but JSON `A.traj[step=1000].mass_flip_ind` is 0.993476 and `B.traj[step=2500].mass_flip_ind` is 0.984908. `e26_run.py:94-96` integrates truncated, unnormalised densities; missing tails inflate the apparent pooling benefit. Minimum mass alone does not quantify mean bias. **Fix:** disclose coverage across the trajectory; qualify early costs and acquisition timing pending wider-grid validation. Registered windows have minimum mass ≥0.9999887, reassuring for P154.
+
+2. **High: mechanism discussion reinstates rejected exclusions.** Draft:64 says “not about whether errors agree,” although Update 37 explicitly leaves agreement-weighted signed residuals possible. Draft:53 calls negation/flip costs an “odd share”; Update 38 warns this is a finite-ensemble ratio, not an exact parity decomposition (`e28_data.py:40-45`). **Fix:** retain residual transport as a hypothesis; say the registered agreement-dominance account failed, and report the negation/flip cost ratio without component attribution.
+
+3. **Medium: plain words overstate retention and disappearance.** Draft:6-8 says A “stops” attending and B “keeps most” of its sign effect. JSON `B.traj` falls from 0.01598 at 2,500 to 0.00347 at 90,000; A's final xq remains 0.00169. **Fix:** “A greatly reduces this attention; B retains a larger sign cost than A, although its own cost also falls substantially.”
+
+4. **Medium: timing and stage claims exceed this design.** Draft:5,27,63's “at the moment,” “start in the B-like state,” and “two-stage” conflate uniform initial attention with learned behaviour. Update 26's registered acquisition marker was 4,250; the 2,500/2,750 alignment was exploratory. A's 30,000-step sign-cost rebound occurs with low xq (draft:52). **Fix:** describe increases within sampled intervals and a later co-decline in this A replay; retain two stages only as a provisional interpretation of these two runs.
+
+**Survive:** P154/P155 as registered (`PREREG-B.md:1998-2000`; `e31_summ.py:19-39`). Inclusive windows contain 6/11 checkpoints; independently checked JSON medians give ratios 0.37062/0.73693 and 0.15443/0.96047. Hashes and trajectory-table rounding match. **Reword:** timing, stages, pooling terminology (normalized geometric averaging), and mechanism lead. **Fail:** categorical agreement exclusion, exact odd-share interpretation, and B retaining most of its absolute sign cost through training.

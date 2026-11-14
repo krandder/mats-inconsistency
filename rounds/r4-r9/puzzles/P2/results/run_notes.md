@@ -1,0 +1,28 @@
+## Run notes (written after the run)
+
+- **Why the status is Problem.** The spec says a failed validity condition is "reported as a problem, not as evidence". Three conditions failed:
+  - Toy: M-tile scored 6.2% at n=64 against a limit of 5% (seeds 12.0, 5.7 and 0.8%) and 1.9% at n=128. M-tree passed with 50.7% and 50.8%.
+  - Floor rule: it passed only at n=13.
+  - Trap test: it was cut short by preemption, so it counts as not passed.
+- **Floor rule.** It was coded before any data came in, on the dev cells that match the primary set (dead-end start, p in {0.05, 0.1}).
+  - U-canon no-tie VSP was 80.5, 43.9, 24.3 and 14.0% at n = 13, 19, 25 and 33, so only n=13 enters.
+  - The other reading, all dev cells at a given n, gives 89, 59, 35 and 17%, which admits n = 13 and 19.
+  - The sensitivity run on n in {13, 19} (`results/sensitivity_n13_19/`, not pre-registered) gives the same direction.
+- **Trap test.** A spot preemption cut it at 26 of 30 cells.
+  - Maximum VSP over the finished cells: 1.0%, which equals the limit, so those cells pass.
+  - Missing cells: n=33, p in {0.05, 0.1}, both starts.
+- **Spot preemptions.** Four VMs were preempted: trader-cat-p2-3 at 15:03, p2-4 at 15:35, p2-2 at 17:17 and p2-5 at 17:33 UTC.
+  - Training resumed from partial checkpoints synced every 15 minutes with sha256 checks.
+  - The resumed M-tree s0 run repeated the step-500 loss to 5 digits.
+  - Seeds fix the initialisation, the data and the labels, so arms trained on different VMs are still paired.
+  - Split: U-canon, U, U-any, M-tile and the trap ran on p2-2; M-tree, U-min and the final unit tests ran on p2-3, p2-4 and p2-5.
+- **Eval coverage.** Evals ran in three parts: core, deep and extra.
+  - Core covers the primary cells, the floor cells and p=0. It finished for all 24 runs.
+  - Deep finished only for M-tree s0, U-min s0-1 and U-canon s0-3.
+  - Extra covers the remaining dev and test cells and never ran.
+  - No fifth VM was launched after the fourth preemption. The missing deep, extra and trap cells cannot change the pre-registered status, because the toy and the floor rule already fail. Depth results are therefore descriptive, with 1 to 4 seeds.
+- **Fix during the run.** U-any training first crashed: the fast in-place DAG pass breaks autograd. The fix sends gradient calls to the reference DP, and a unit test now checks this. U-any then trained from scratch.
+- **Unit tests.** All 21 passed, both on p2-2 and in the final run on p2-5.
+- **Settings.** fp32 throughout. bf16 was 1.7x faster but moved beliefs by up to 0.09, so it was not used. Each model is about 420 KB.
+- **GPU use.** Five spot L4 VMs ran 5.96 VM-hours, which is $4.48 at the $0.75/h ceiling (actual spot price is lower). All VMs and disks are deleted, confirmed with instances list and disks list.
+  - The P2 section of GPU-LEDGER.md also holds two P11 rows, which another experiment added.

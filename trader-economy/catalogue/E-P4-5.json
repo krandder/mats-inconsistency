@@ -1,0 +1,18 @@
+{
+ "id": "E-P4-5",
+ "question": "Do markets on the latents AS picks improve market-resnet depth extrapolation over plain fine-tuning and random picks?",
+ "setup": "Bases pilot_A and pilot_Bds (L64 repro 0.866/0.917 vs 0.865/0.916); 16 groups x 8 h channels, AS top-2 picks (A [8,7], Bds [11,7], both equal to Shapley's top-2); arms F0, F-AS-mkt, F-AS-aux, F-LOO-mkt, F-rand-mkt; 5 seeds (F0 L128 SD>3 points), 1000 iterations, L4 spot GPU. Primary = mean of L64 and L128 accuracy; paired over (base, seed), n=10.",
+ "result": "No, and the run is invalid. F-AS-mkt minus F0: -0.34 [-0.68, -0.00]; minus F-rand-mkt: -0.24 [-0.53, +0.05]; S3 fails. Falsifier 3 (all markets <= F0+2) and 4 (F-AS-aux >= F-AS-mkt, +0.16 [-0.18, 0.50]) trigger. F-LOO-mkt beats F-AS-mkt by +0.14 [0.02, 0.26], but LOO's picks are tie-breaks among 15-16 zero scores. 7 of 40 runs collapsed a chosen group (3/10 F-AS-mkt). Invalid: F0's seed SD is 11 (A) and 32 (Bds) points on primary, since fine-tuning flips extrapolation between near-0 and near-1 by seed (Bds F0: 0.96, 0.24, 1.00, 0.89, 0.58). GPU 1.64 h, est. $1.16, VMs deleted.",
+ "status": "No gain",
+ "files": [
+  "puzzles/P4/ftmarket.py",
+  "puzzles/P4/vmplan.sh",
+  "puzzles/P4/gpu.sh",
+  "puzzles/P4/results/rows_ft.json",
+  "puzzles/P4/charts/p4_ft_primary.json",
+  "GPU-LEDGER.md",
+  "puzzles/P4/RESULTS.md",
+  "puzzles/P4/analyze.py",
+  "puzzles/P4/results/summary.json"
+ ]
+}

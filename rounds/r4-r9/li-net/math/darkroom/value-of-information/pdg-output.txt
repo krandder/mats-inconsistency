@@ -1,0 +1,124 @@
+== F. PDG with a preference edge at ordinary confidence (Kelvin's sharper objective)
+-- n=1, prior kappa=0.0, beta_belief=1.0, beta_pref=1.0; prior P(success)=0.500, Gap(prior)=0.2231
+room           CUR       VOI       INC       GAP   (CUR, INC, GAP in nats; VOI in success prob)
+D           0.6931    0.0000   -0.6931    0.0000
+N0          0.0000    0.0000   -0.6931    0.0000
+N1          0.1931    0.0000   -0.6931    0.0000
+S_irr       0.0000    0.0000   -0.6931    0.0000
+N_side      0.0823    0.0000   -0.6931    0.0000
+S           0.0000    0.0000   -0.6931    0.0000
+N_goal      0.0823    0.2000   -0.5373    0.1559
+   argmax CUR: D
+   argmax VOI: N_goal
+   argmax INC: N_goal
+   argmax GAP: N_goal
+-- n=4, prior kappa=0.0, beta_belief=1.0, beta_pref=1.0; prior P(success)=0.500, Gap(prior)=0.2231
+room           CUR       VOI       INC       GAP   (CUR, INC, GAP in nats; VOI in success prob)
+D           0.6931    0.0000   -0.6931    0.0000
+N0          0.0000    0.0000   -2.7726    0.0000
+N1          0.5223    0.0000   -2.5223    0.0000
+S_irr       0.8919    0.0000   -2.6692    0.0000
+N_side      0.2638    0.0000   -2.7072    0.0000
+S           0.8929    0.1685   -2.6127    0.0701
+N_goal      0.2638    0.2840   -2.5514    0.1558
+   argmax CUR: S
+   argmax VOI: N_goal
+   argmax INC: D
+   argmax GAP: N_goal
+-- n=16, prior kappa=0.0, beta_belief=1.0, beta_pref=1.0; prior P(success)=0.500, Gap(prior)=0.2231
+room           CUR       VOI       INC       GAP   (CUR, INC, GAP in nats; VOI in success prob)
+D           0.6931    0.0000   -0.6931    0.0000
+N0          0.0000    0.0000  -11.0904    0.0000
+N1          1.0498    0.0000   -9.0498    0.0000
+S_irr       1.8003    0.0000   -5.9381    0.0000
+N_side      0.5733    0.0000  -10.3471    0.0000
+S           1.8080    0.3029   -5.8126    0.0873
+N_goal      0.5733    0.4500  -10.1930    0.1541
+   argmax CUR: S
+   argmax VOI: N_goal
+   argmax INC: D
+   argmax GAP: N_goal
+-- n=64, prior kappa=0.0, beta_belief=1.0, beta_pref=1.0; prior P(success)=0.500, Gap(prior)=0.2231
+room           CUR       VOI       INC       GAP   (CUR, INC, GAP in nats; VOI in success prob)
+D           0.6931    0.0000   -0.6931    0.0000
+N0          0.0000    0.0000  -44.3614    0.0000
+N1          1.6853    0.0000  -33.6853    0.0000
+S_irr       2.3836    0.0000  -16.0498    0.0000
+N_side      0.6920    0.0000  -39.7873    0.0000
+S           2.3871    0.4027  -15.6738    0.1087
+N_goal      0.6920    0.4996  -39.6686    0.1186
+   argmax CUR: S
+   argmax VOI: N_goal
+   argmax INC: D
+   argmax GAP: N_goal
+
+-- weight check: GAP at n=16 under different preference confidences (belief confidence 1)
+   beta_pref=0.25  : D:0.0000 N0:0.0000 N1:0.0000 S_irr:0.0000 N_side:0.0000 S:0.0474 N_goal:0.0762   ratio S/N_goal 0.622
+   beta_pref=1.0   : D:0.0000 N0:0.0000 N1:0.0000 S_irr:0.0000 N_side:0.0000 S:0.0891 N_goal:0.1541   ratio S/N_goal 0.578
+   beta_pref=4.0   : D:0.0000 N0:0.0000 N1:0.0000 S_irr:0.0000 N_side:0.0000 S:0.0195 N_goal:0.1575   ratio S/N_goal 0.124
+   beta_pref=100.0 : D:0.0000 N0:0.0000 N1:0.0000 S_irr:0.0000 N_side:0.0000 S:-1.1618 N_goal:0.0844   ratio S/N_goal -13.765
+
+-- informative prior (kappa=2: f0 = XOR favoured, so the agent already leans to A = 0 at q)
+-- n=1, prior kappa=2.0, beta_belief=1.0, beta_pref=1.0; prior P(success)=0.643, Gap(prior)=0.1035
+room           CUR       VOI       INC       GAP   (CUR, INC, GAP in nats; VOI in success prob)
+D           0.6931    0.0000   -0.6931    0.0000
+N0          0.0000    0.0000   -0.6931    0.0000
+N1          0.1931    0.0000   -0.6931    0.0000
+S_irr       0.0000    0.0000   -0.6931    0.0000
+N_side      0.0758    0.0000   -0.6883   -0.0017
+S           0.0000    0.0000   -0.6931    0.0000
+N_goal      0.0758    0.0573   -0.6653    0.0213
+   argmax CUR: D
+   argmax VOI: N_goal
+   argmax INC: N_goal
+   argmax GAP: N_goal
+-- n=4, prior kappa=2.0, beta_belief=1.0, beta_pref=1.0; prior P(success)=0.643, Gap(prior)=0.1035
+room           CUR       VOI       INC       GAP   (CUR, INC, GAP in nats; VOI in success prob)
+D           0.6931    0.0000   -0.6931    0.0000
+N0          0.0000    0.0000   -2.7726    0.0000
+N1          0.5223    0.0000   -2.5223    0.0000
+S_irr       0.8882    0.0000   -2.6774    0.0000
+N_side      0.2454    0.0000   -2.6938   -0.0050
+S           0.8193    0.1201   -2.5855    0.0125
+N_goal      0.2454    0.1791   -2.6266    0.0622
+   argmax CUR: S_irr
+   argmax VOI: N_goal
+   argmax INC: D
+   argmax GAP: N_goal
+
+-- sign check on weak, goal-relevant evidence (N_goal with flip 0.45 instead of 0.3), kappa=2:
+   n=1   VOI +0.00000  GAP -0.00210  CUR 0.00460
+   n=2   VOI +0.00000  GAP -0.00423  CUR 0.00916
+   n=4   VOI +0.00634  GAP -0.00215  CUR 0.01815
+   n=8   VOI +0.02181  GAP +0.00496  CUR 0.03566
+   n=32  VOI +0.09749  GAP +0.03635  CUR 0.12893
+
+-- wishful thinking: optimal mu_W(success) vs belief P(success), prior kappa=0, A chosen:
+   beta_pref=1.0: belief 0.500 -> reconciled mu_W(success) 0.750
+   beta_pref=4.0: belief 0.500 -> reconciled mu_W(success) 0.853
+
+-- costs as one more ordinary edge: pref(rest=1) = 0.6 on R = 1[room is D], beta 1.
+   choosing a non-dark room costs -log 0.4 + log 0.6 = 0.4055 nats extra inconsistency, once;
+   S at n=4: GAP 0.0694 -> stay in the dark room
+   S at n=16: GAP 0.0899 -> stay in the dark room
+   S at n=64: GAP 0.1087 -> stay in the dark room
+
+-- the preference's own probability: GAP by room, kappa=0, beta 1/1, pref(W=1) = p
+   p=0.9   n=4  : D:+0.0000 N0:+0.0000 N1:+0.0000 S_irr:+0.0000 N_side:+0.0000 S:+0.0703 N_goal:+0.1558
+   p=0.9   n=16 : D:+0.0000 N0:+0.0000 N1:+0.0000 S_irr:+0.0000 N_side:+0.0000 S:+0.0891 N_goal:+0.1541
+   p=0.9   n=64 : D:+0.0000 N0:+0.0000 N1:+0.0000 S_irr:+0.0000 N_side:+0.0000 S:+0.1084 N_goal:+0.1186
+   p=0.99  n=4  : D:+0.0000 N0:+0.0000 N1:+0.0000 S_irr:+0.0000 N_side:+0.0000 S:+0.1835 N_goal:+0.3287
+   p=0.99  n=16 : D:+0.0000 N0:+0.0000 N1:+0.0000 S_irr:+0.0000 N_side:+0.0000 S:+0.3152 N_goal:+0.4714
+   p=0.99  n=64 : D:+0.0000 N0:+0.0000 N1:+0.0000 S_irr:+0.0000 N_side:+0.0000 S:+0.4111 N_goal:+0.5015
+   p=1.0   n=4  : D:+0.0000 N0:+0.0000 N1:+0.0000 S_irr:+0.0000 N_side:+0.0000 S:+0.2354 N_goal:+0.4194
+   p=1.0   n=16 : D:+0.0000 N0:+0.0000 N1:+0.0000 S_irr:+0.0000 N_side:+0.0000 S:+0.4232 N_goal:+0.6320
+   p=1.0   n=64 : D:+0.0000 N0:+0.0000 N1:+0.0000 S_irr:+0.0000 N_side:+0.0000 S:+0.5592 N_goal:+0.6926
+   hard preference p=1: same table for beta_pref = 0.25 and 100 (beta_pref should drop out):
+   beta_pref=0.25   n=16: D:+0.0000 N0:+0.0000 S:+0.4365 N_goal:+0.6320
+   beta_pref=100.0  n=16: D:+0.0000 N0:+0.0000 S:+0.4211 N_goal:+0.6320
+   hard preference, sign check (N_goal flip 0.45, kappa=2): GAP = E log P(success|x) - log P(success)
+   n=1   VOI +0.00000  GAP -0.00257
+   n=2   VOI +0.00000  GAP -0.00518
+   n=4   VOI +0.00634  GAP +0.00221
+   n=8   VOI +0.02181  GAP +0.02289
+   n=32  VOI +0.09749  GAP +0.12456

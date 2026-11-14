@@ -1,0 +1,19 @@
+{
+  "command": [
+    "timeout",
+    "--kill-after=10s",
+    "900s",
+    "/home/agent/workspaces/consistency-ft-synthetic-cpu-20260913/runs/cpu-dev-venv/bin/python",
+    "scripts/probe_qwen_candidate.py",
+    "--checkpoint",
+    "runs/qwen-candidate-load-20260913/checkpoint",
+    "--manifest",
+    "data/research/qwen-checkpoint-artifacts-20260913.json",
+    "--tokenizer-artifacts",
+    "/home/agent/workspaces/consistency-ft-qwen-tokenizer-20260913/runs/qwen-tokenizer-artifacts",
+    "--output",
+    "runs/qwen-candidate-load-20260913/real-probe"
+  ],
+  "started_at": "2026-09-13T10:37:46.249479+00:00",
+  "single_attempt": true
+}

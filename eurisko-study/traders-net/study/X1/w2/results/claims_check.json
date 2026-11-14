@@ -1,0 +1,469 @@
+{
+ "checked_at": "2026-09-28T13:51:05Z",
+ "n": 30,
+ "n_match": 30,
+ "rows": [
+  {
+   "id": "M1-toy-w0",
+   "claim": "closed-form disagreement interval upper end w0=2.1786",
+   "file": "M1/lead/results/toy_summary.json",
+   "claimed": 2.1786,
+   "found": 2.1785565889394,
+   "match": true
+  },
+  {
+   "id": "M1-toy-V",
+   "claim": "value at beta = mutual information 0.1109 nats",
+   "file": "M1/lead/results/toy_summary.json",
+   "claimed": 0.1109,
+   "found": 0.11094407167172737,
+   "match": true
+  },
+  {
+   "id": "M1-toy-grid",
+   "claim": "23/23 grid points in the interval disagree in sign",
+   "file": "M1/lead/results/toy_summary.json",
+   "claimed": 23,
+   "found": 23,
+   "match": true
+  },
+  {
+   "id": "M1-toy-adam-credit",
+   "claim": "Adam credit of useful redundant units -75.66 +- 1.90",
+   "file": "M1/lead/results/toy_summary.json",
+   "claimed": -75.66,
+   "found": -75.65845806877199,
+   "match": true
+  },
+  {
+   "id": "M1-toy-adam-settle",
+   "claim": "Adam settlement +467.78 +- 6.02",
+   "file": "M1/lead/results/toy_summary.json",
+   "claimed": 467.78,
+   "found": 467.7803350994762,
+   "match": true
+  },
+  {
+   "id": "M1-toy-adam-abl",
+   "claim": "Adam ablation dBCE 0.0242 +- 0.0044",
+   "file": "M1/lead/results/toy_summary.json",
+   "claimed": 0.0242,
+   "found": 0.024232779189517568,
+   "match": true
+  },
+  {
+   "id": "M1-census-books",
+   "claim": "top-5% neurons with negative books_cum credit 0.256 +- 0.059",
+   "file": "M1/lead/results/sign_census_summary.csv",
+   "claimed": 0.256,
+   "found": 0.256,
+   "match": true
+  },
+  {
+   "id": "M1-census-loo",
+   "claim": "top-5% neurons with negative LOO settlement 0.026 +- 0.022 (held-out LOO)",
+   "file": "M1/lead/results/sign_census_summary.csv",
+   "claimed": 0.026,
+   "found": 0.026,
+   "match": true
+  },
+  {
+   "id": "M1-c-resid",
+   "claim": "three-rules conserve to quadrature <= 5.1e-4 |R| at 16 steps (max over ckpts, lmsr)",
+   "file": "M1/lead/results/three_agg.csv",
+   "claimed": 0.00051,
+   "found": 0.000506675142939086,
+   "match": true
+  },
+  {
+   "id": "M1-c-rank-head",
+   "claim": "three-rules ranks = cp ranks, Spearman >= 0.97 (heads; this is a MEAN, sd 0.03)",
+   "file": "M1/lead/results/three_agg.csv",
+   "claimed": 0.97,
+   "found": 0.9702380952380953,
+   "match": true
+  },
+  {
+   "id": "M1-c-rank-neuron",
+   "claim": "three-rules ranks = cp ranks (neurons, mean)",
+   "file": "M1/lead/results/three_agg.csv",
+   "claimed": 0.988,
+   "found": 0.9882870838268617,
+   "match": true
+  },
+  {
+   "id": "M1-lock",
+   "claim": "CURRENCY.lock: committed-trader settlement only, no generic-neuron currency",
+   "file": "M1/CURRENCY.lock",
+   "claimed": "present",
+   "found": "present",
+   "match": true
+  },
+  {
+   "id": "M2-neuron-book",
+   "claim": "neurons final: v2_lmsr_inst 0.199 +- 0.075",
+   "file": "M2/w3/results/spearman_summary.csv",
+   "claimed": 0.199,
+   "found": 0.1994,
+   "match": true
+  },
+  {
+   "id": "M2-neuron-taylor",
+   "claim": "neurons final: |Taylor| 0.103 +- 0.084",
+   "file": "M2/w3/results/spearman_summary.csv",
+   "claimed": 0.103,
+   "found": 0.1035,
+   "match": true
+  },
+  {
+   "id": "M2-neuron-settle",
+   "claim": "neurons final: settle_loo_train 0.464 +- 0.041",
+   "file": "M2/w3/results/spearman_summary.csv",
+   "claimed": 0.464,
+   "found": 0.4636,
+   "match": true
+  },
+  {
+   "id": "M2-head-book",
+   "claim": "heads final: v2_lmsr_inst 0.698 +- 0.339 (tie)",
+   "file": "M2/w3/results/stoprule.json",
+   "claimed": 0.698,
+   "found": 0.6984,
+   "match": true
+  },
+  {
+   "id": "M2-head-taylor",
+   "claim": "heads final: |Taylor| 0.809 +- 0.143",
+   "file": "M2/w3/results/stoprule.json",
+   "claimed": 0.809,
+   "found": 0.8095,
+   "match": true
+  },
+  {
+   "id": "M2-readout-book",
+   "claim": "readouts final: v2_lmsr_int 0.303 +- 0.022 (loss)",
+   "file": "M2/w3/results/stoprule.json",
+   "claimed": 0.303,
+   "found": 0.3034,
+   "match": true
+  },
+  {
+   "id": "M2-readout-move",
+   "claim": "readouts final: movement 0.814 +- 0.027",
+   "file": "M2/w3/results/stoprule.json",
+   "claimed": 0.814,
+   "found": 0.8141,
+   "match": true
+  },
+  {
+   "id": "M2-coal-book",
+   "claim": "random coalitions final: best book v2_lmsr_int 0.818 +- 0.027",
+   "file": "M2/w3/results/coalition_summary.csv",
+   "claimed": 0.818,
+   "found": 0.8184,
+   "match": true
+  },
+  {
+   "id": "M2-coal-taylor",
+   "claim": "random coalitions final: |Taylor| 0.800 +- 0.010",
+   "file": "M2/w3/results/coalition_summary.csv",
+   "claimed": 0.8,
+   "found": 0.8002,
+   "match": true
+  },
+  {
+   "id": "M2-coal-move",
+   "claim": "random coalitions final: movement 0.804 +- 0.023",
+   "file": "M2/w3/results/coalition_summary.csv",
+   "claimed": 0.804,
+   "found": 0.804,
+   "match": true
+  },
+  {
+   "id": "M3-A-cum",
+   "claim": "all-time wealth (cum) Spearman vs oracle 0.043 +- 0.058",
+   "file": "M3/results/currency_summary.csv",
+   "claimed": 0.043,
+   "found": 0.0429,
+   "match": true
+  },
+  {
+   "id": "M3-A-gradnorm",
+   "claim": "gradient-norm control 0.168 +- 0.070",
+   "file": "M3/results/currency_summary.csv",
+   "claimed": 0.168,
+   "found": 0.1681,
+   "match": true
+  },
+  {
+   "id": "M3-A-settle",
+   "claim": "exact settlement loo_train 0.417 +- 0.034",
+   "file": "M3/results/currency_summary.csv",
+   "claimed": 0.417,
+   "found": 0.4174,
+   "match": true
+  },
+  {
+   "id": "M3-B-kelly",
+   "claim": "Kelly post-shift learnable 0.690 +- 0.050",
+   "file": "M3/w2/results/summary.csv",
+   "claimed": 0.69,
+   "found": 0.6895,
+   "match": true
+  },
+  {
+   "id": "M3-B-fs",
+   "claim": "fixed share 1e-3 post-shift 0.047 +- 0.002",
+   "file": "M3/w2/results/summary.csv",
+   "claimed": 0.047,
+   "found": 0.0474,
+   "match": true
+  },
+  {
+   "id": "M3-B-lag-kelly",
+   "claim": "Kelly median reallocation lag ~9007 steps",
+   "file": "M3/w2/results/summary.csv",
+   "claimed": 9007,
+   "found": 9007.3333,
+   "match": true
+  },
+  {
+   "id": "M3-B-lag-fs",
+   "claim": "fixed share lag ~120 steps",
+   "file": "M3/w2/results/summary.csv",
+   "claimed": 120,
+   "found": 120.1667,
+   "match": true
+  },
+  {
+   "id": "M3-B-stat",
+   "claim": "fixed share stationary cost ~0.001",
+   "file": "M3/w2/results/decision.json",
+   "claimed": 0.001,
+   "found": 0.001,
+   "match": true
+  }
+ ],
+ "gate_b_20k_diffs": {
+  "20000 v2_lmsr_int vs taylor_abs": {
+   "diffs": [
+    -0.0039,
+    -0.0178,
+    0.0557
+   ],
+   "sd": 0.043,
+   "win": false
+  },
+  "20000 v2_lmsr_int vs taylor_sq": {
+   "diffs": [
+    0.0838,
+    -0.007,
+    0.0212
+   ],
+   "sd": 0.0797,
+   "win": false
+  },
+  "20000 v2_lmsr_int vs movement": {
+   "diffs": [
+    0.1631,
+    0.1258,
+    0.0939
+   ],
+   "sd": 0.0774,
+   "win": true
+  },
+  "20000 v2_lmsr_int vs taylor": {
+   "diffs": [
+    0.783,
+    0.7498,
+    0.6638
+   ],
+   "sd": 0.1043,
+   "win": true
+  },
+  "20000 v2_lmsr_inst vs taylor_abs": {
+   "diffs": [
+    0.0087,
+    -0.0072,
+    0.0016
+   ],
+   "sd": 0.0241,
+   "win": false
+  },
+  "20000 v2_lmsr_inst vs taylor_sq": {
+   "diffs": [
+    0.0964,
+    0.0036,
+    -0.0329
+   ],
+   "sd": 0.0797,
+   "win": false
+  },
+  "20000 v2_lmsr_inst vs movement": {
+   "diffs": [
+    0.1757,
+    0.1364,
+    0.0398
+   ],
+   "sd": 0.0774,
+   "win": false
+  },
+  "20000 v2_lmsr_inst vs taylor": {
+   "diffs": [
+    0.7956,
+    0.7604,
+    0.6097
+   ],
+   "sd": 0.1043,
+   "win": true
+  },
+  "20000 settle_loo_train vs taylor_abs": {
+   "diffs": [
+    -0.0055,
+    -0.0094,
+    0.063
+   ],
+   "sd": 0.0472,
+   "win": false
+  },
+  "20000 settle_loo_train vs taylor_sq": {
+   "diffs": [
+    0.0822,
+    0.0014,
+    0.0285
+   ],
+   "sd": 0.0797,
+   "win": false
+  },
+  "20000 settle_loo_train vs movement": {
+   "diffs": [
+    0.1615,
+    0.1342,
+    0.1012
+   ],
+   "sd": 0.0774,
+   "win": true
+  },
+  "20000 settle_loo_train vs taylor": {
+   "diffs": [
+    0.7814,
+    0.7582,
+    0.6711
+   ],
+   "sd": 0.1043,
+   "win": true
+  },
+  "final v2_lmsr_int vs taylor_abs": {
+   "diffs": [
+    0.0048,
+    0.0572,
+    -0.0074
+   ],
+   "sd": 0.0267,
+   "win": false
+  },
+  "final v2_lmsr_int vs taylor_sq": {
+   "diffs": [
+    -0.0296,
+    0.1959,
+    0.2248
+   ],
+   "sd": 0.1298,
+   "win": false
+  },
+  "final v2_lmsr_int vs movement": {
+   "diffs": [
+    0.0143,
+    0.019,
+    0.0101
+   ],
+   "sd": 0.0267,
+   "win": false
+  },
+  "final v2_lmsr_int vs taylor": {
+   "diffs": [
+    0.5352,
+    0.8216,
+    0.7531
+   ],
+   "sd": 0.1319,
+   "win": true
+  },
+  "final v2_lmsr_inst vs taylor_abs": {
+   "diffs": [
+    -0.0112,
+    0.0514,
+    -0.0189
+   ],
+   "sd": 0.0314,
+   "win": false
+  },
+  "final v2_lmsr_inst vs taylor_sq": {
+   "diffs": [
+    -0.0456,
+    0.1901,
+    0.2133
+   ],
+   "sd": 0.1298,
+   "win": false
+  },
+  "final v2_lmsr_inst vs movement": {
+   "diffs": [
+    -0.0017,
+    0.0132,
+    -0.0014
+   ],
+   "sd": 0.0314,
+   "win": false
+  },
+  "final v2_lmsr_inst vs taylor": {
+   "diffs": [
+    0.5192,
+    0.8158,
+    0.7416
+   ],
+   "sd": 0.1319,
+   "win": true
+  },
+  "final settle_loo_train vs taylor_abs": {
+   "diffs": [
+    -0.0357,
+    0.0348,
+    0.0473
+   ],
+   "sd": 0.0495,
+   "win": false
+  },
+  "final settle_loo_train vs taylor_sq": {
+   "diffs": [
+    -0.0701,
+    0.1735,
+    0.2795
+   ],
+   "sd": 0.1298,
+   "win": false
+  },
+  "final settle_loo_train vs movement": {
+   "diffs": [
+    -0.0262,
+    -0.0034,
+    0.0648
+   ],
+   "sd": 0.0495,
+   "win": false
+  },
+  "final settle_loo_train vs taylor": {
+   "diffs": [
+    0.4947,
+    0.7992,
+    0.8078
+   ],
+   "sd": 0.1319,
+   "win": true
+  },
+  "tracr_s2_spearman_books_signed_vs_movement": {
+   "head": 0.9054,
+   "neuron": 1.0
+  }
+ }
+}

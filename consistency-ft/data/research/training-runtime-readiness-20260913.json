@@ -1,0 +1,366 @@
+{
+  "accelerator_evidence": {
+    "accelerator_pci_devices_found": 0,
+    "conclusion": "No usable GPU is exposed by the inspected General interfaces; generic VFIO presence does not identify an accelerator. Physical host and other machines were not audited.",
+    "cuda_install_directories_found": 0,
+    "generic_vfio_control_node_present": true,
+    "gpu_device_nodes_found": [],
+    "gpu_driver_modules_found": [],
+    "gpu_runtime_libraries_found": [],
+    "nvcc_available": false,
+    "nvidia_driver_version_paths_present": false,
+    "nvidia_smi_available": false,
+    "rocm_smi_available": false
+  },
+  "actions_not_performed": [
+    "Credential reads",
+    "Package installation",
+    "Weight or tokenizer-vocabulary downloads",
+    "Remote-code execution",
+    "Paid inference",
+    "GPU allocation",
+    "Model training",
+    "Machine configuration changes"
+  ],
+  "candidate_cache_check": {
+    "candidate_directories_found": 0,
+    "candidate_weights_found": false,
+    "conclusion": "No candidate weights in inspected accessible locations. An alternate-user cache was permission-denied and left untouched; unrelated/private storage remains unverified.",
+    "inaccessible_locations": 1,
+    "locations_checked": 9,
+    "scope": "Current-user and workspace-agent standard Hugging Face/model directories, common shared model directories; candidate-name matches only."
+  },
+  "candidates": [
+    {
+      "architecture": [
+        "Qwen3_5ForConditionalGeneration"
+      ],
+      "configuration_transformers_version": "4.57.0.dev0",
+      "configuration_version_is_minimum_requirement": false,
+      "generation_config": null,
+      "generation_config_fetch_error": {
+        "error": "HTTP Error 404: Not Found",
+        "url": "https://huggingface.co/Qwen/Qwen3.5-9B/resolve/c202236235762e1c871ad0ccb60c8ee5ba337b9a/generation_config.json"
+      },
+      "inspected_revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+      "model_executed": false,
+      "model_id": "Qwen/Qwen3.5-9B",
+      "public_sources": [
+        {
+          "bytes": 21153,
+          "sha256": "bd92d7ccdfa5bfcea4e51f35519d6381f2124972fa36dbf852ad0ed8e16a7c16",
+          "url": "https://huggingface.co/api/models/Qwen/Qwen3.5-9B"
+        },
+        {
+          "bytes": 3126,
+          "sha256": "d0883072e01861ed0b2d47be3c16c36a8e81c224c7ffaa310c6558fb3f932b05",
+          "url": "https://huggingface.co/Qwen/Qwen3.5-9B/resolve/c202236235762e1c871ad0ccb60c8ee5ba337b9a/config.json"
+        },
+        {
+          "bytes": 77643,
+          "sha256": "c5f5a8c2dddab69cfbf05279235aa5fddb137939a06539c4c7637aa900fef6d0",
+          "url": "https://huggingface.co/Qwen/Qwen3.5-9B/resolve/c202236235762e1c871ad0ccb60c8ee5ba337b9a/README.md"
+        },
+        {
+          "bytes": 79657,
+          "sha256": "26d3539b516be613f39563617cb9d33b3f83d401298125be392c80cefb8f7fe5",
+          "url": "https://huggingface.co/Qwen/Qwen3.5-9B/resolve/c202236235762e1c871ad0ccb60c8ee5ba337b9a/model.safetensors.index.json"
+        },
+        {
+          "bytes": 16710,
+          "sha256": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+          "url": "https://huggingface.co/Qwen/Qwen3.5-9B/resolve/c202236235762e1c871ad0ccb60c8ee5ba337b9a/tokenizer_config.json"
+        }
+      ],
+      "quantization": null,
+      "role": "original project preference; not selected by this audit",
+      "template_exact_text_sha256": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+      "template_features": {
+        "<think>": true,
+        "analysis": false,
+        "enable_thinking": true,
+        "final": false,
+        "reasoning_effort": false
+      },
+      "template_source": "tokenizer_config.json",
+      "text_dtype": "bfloat16",
+      "weight_index_size_is_training_memory_requirement": false,
+      "weight_index_total_size_bytes": 19306216416,
+      "weight_shard_count": 4,
+      "weights_downloaded": false
+    },
+    {
+      "architecture": [
+        "GptOssForCausalLM"
+      ],
+      "configuration_transformers_version": "4.55.0.dev0",
+      "configuration_version_is_minimum_requirement": false,
+      "generation_config": {
+        "bos_token_id": 199998,
+        "do_sample": true,
+        "eos_token_id": [
+          200002,
+          199999,
+          200012
+        ],
+        "pad_token_id": 199999,
+        "transformers_version": "4.55.0.dev0"
+      },
+      "generation_config_fetch_error": null,
+      "inspected_revision": "6cee5e81ee83917806bbde320786a8fb61efebee",
+      "model_executed": false,
+      "model_id": "openai/gpt-oss-20b",
+      "public_sources": [
+        {
+          "bytes": 22685,
+          "sha256": "0f6a5d76cf63e9b6bd4a957ce411a4a19bbf310892f1d8bfc62d406552181aaf",
+          "url": "https://huggingface.co/api/models/openai/gpt-oss-20b"
+        },
+        {
+          "bytes": 1806,
+          "sha256": "3a2a26ded679375b7928ddeca59764df7cea83220c1961035f6d6e232659e9ce",
+          "url": "https://huggingface.co/openai/gpt-oss-20b/resolve/6cee5e81ee83917806bbde320786a8fb61efebee/config.json"
+        },
+        {
+          "bytes": 7095,
+          "sha256": "03c2fcf292549176757b85c911e7dcf527aef3e4241d64b6caec94af3ecf3ac2",
+          "url": "https://huggingface.co/openai/gpt-oss-20b/resolve/6cee5e81ee83917806bbde320786a8fb61efebee/README.md"
+        },
+        {
+          "bytes": 36355,
+          "sha256": "0e085b977c4c9942f85938828e8c989ed7d5cdabf852e4da6a67c116cd502cd1",
+          "url": "https://huggingface.co/openai/gpt-oss-20b/resolve/6cee5e81ee83917806bbde320786a8fb61efebee/model.safetensors.index.json"
+        },
+        {
+          "bytes": 177,
+          "sha256": "f9970ada892d2d1f72e3ed0a6535ccebadd11897318794ca671d8c7014c957da",
+          "url": "https://huggingface.co/openai/gpt-oss-20b/resolve/6cee5e81ee83917806bbde320786a8fb61efebee/generation_config.json"
+        },
+        {
+          "bytes": 4200,
+          "sha256": "9279e942392b742d633c7adbb89ebe002c98399db8926a7af5125c726f404070",
+          "url": "https://huggingface.co/openai/gpt-oss-20b/resolve/6cee5e81ee83917806bbde320786a8fb61efebee/tokenizer_config.json"
+        },
+        {
+          "bytes": 16738,
+          "sha256": "a4c9919cbbd4acdd51ccffe22da049264b1b73e59055fa58811a99efbd7c8146",
+          "url": "https://huggingface.co/openai/gpt-oss-20b/resolve/6cee5e81ee83917806bbde320786a8fb61efebee/chat_template.jinja"
+        }
+      ],
+      "quantization": "mxfp4",
+      "role": "provisional fallback; not selected by this audit",
+      "template_exact_text_sha256": "a4c9919cbbd4acdd51ccffe22da049264b1b73e59055fa58811a99efbd7c8146",
+      "template_features": {
+        "<think>": false,
+        "analysis": true,
+        "enable_thinking": false,
+        "final": true,
+        "reasoning_effort": true
+      },
+      "template_source": "chat_template.jinja",
+      "text_dtype": null,
+      "weight_index_size_is_training_memory_requirement": false,
+      "weight_index_total_size_bytes": 13761264768,
+      "weight_shard_count": 3,
+      "weights_downloaded": false
+    }
+  ],
+  "hardware": {
+    "affinity_logical_cpus": 16,
+    "architecture": "x86_64",
+    "capacity_is_not_a_resource_reservation": true,
+    "cgroup_ancestry_levels_inspected": 5,
+    "cores_per_socket": 8,
+    "cpu_model": "INTEL(R) XEON(R) PLATINUM 8581C CPU @ 2.10GHz",
+    "finite_cpu_quota_limits": [],
+    "finite_memory_max_limits": [],
+    "logical_cpus": 16,
+    "ram_available_bytes_at_capture": 47280062464,
+    "ram_total_bytes": 67417661440,
+    "sockets": 1,
+    "swap_total_bytes": 0,
+    "threads_per_core": 2,
+    "virtualization": "KVM"
+  },
+  "local_sources": [
+    {
+      "path": "training/episode_adapter.py",
+      "repository_revision": "6989d64146198c7684c5f1f0ef7c71554f0371aa",
+      "sha256": "14273082ee99a94fb4bd6f3b213b1d37ce92bb2925a1c9df5ec27250549c8015"
+    },
+    {
+      "path": "test_training_integration.py",
+      "repository_revision": "6989d64146198c7684c5f1f0ef7c71554f0371aa",
+      "sha256": "8e7b18612a2ba15d06437a5a65752788e2939be177040a272cad20f6450f47a0"
+    },
+    {
+      "path": "docs/training-integration.md",
+      "repository_revision": "6989d64146198c7684c5f1f0ef7c71554f0371aa",
+      "sha256": "25492c486661387f79dc82d4137515afb415c4e05dd6a38d8fd44653e97a2dd3"
+    },
+    {
+      "path": "docs/training-platform-decision.md",
+      "repository_revision": "6989d64146198c7684c5f1f0ef7c71554f0371aa",
+      "sha256": "cdbd20479cb25e19f73edf68975f5781f633be11cd29b55ac9897810435c18da"
+    },
+    {
+      "path": "docs/kl-anchor.md",
+      "repository_revision": "6989d64146198c7684c5f1f0ef7c71554f0371aa",
+      "sha256": "96a31577502fecd0c5c01227f37d59f586e40a595e0d0420bcbc9aac1416cb52"
+    }
+  ],
+  "missing": [
+    "Requested ML packages in the active interpreter",
+    "A GPU exposed through the inspected General interfaces",
+    "Candidate weights in the inspected accessible locations",
+    "Real model/tokenizer/generator/autograd/optimizer integration in the current adapter"
+  ],
+  "next_engineering_action": {
+    "acceptance": [
+      "Reuse the adapter's existing snapshot, protocol, sampler, episode-group and reward bindings.",
+      "Exercise actual generation, grouped reward computation, autograd backward and parameter updates using explicitly synthetic tiny weights, a local test tokenizer and coin fixtures.",
+      "Verify generated-token credit, prompt/padding masks and agreement between the generation distribution and differentiable log probabilities.",
+      "Keep unsupported reasoning-channel output fail-closed; do not silently strip reasoning to obtain a probability."
+    ],
+    "action": "Implement actual tokenizer/model generation plus differentiable causal-token loss and optimizer plumbing around the existing episode adapter.",
+    "candidate_experiment_prerequisites": [
+      "Selected immutable base checkpoint and tokenizer.",
+      "Complete matching own-base anchors for the bound training split.",
+      "Concrete batch/sequence configuration and measured memory/runtime requirements.",
+      "Suitable hardware and an approved resource allowance."
+    ],
+    "dependency_installation_performed_in_this_audit": false,
+    "environment": "Use an isolated CPU development environment. A later implementation task must pin and install missing dependencies inside that environment, with no global installs.",
+    "implementation_started_in_this_audit": false,
+    "scope": "Software integration tests only; no scientific base commitment, candidate-weight download or candidate training experiment."
+  },
+  "offline_validation": {
+    "command": "python3 -m unittest test_training_integration test_anchors -q",
+    "real_inference_or_training": false,
+    "result": "passed",
+    "runtime_seconds": 0.556,
+    "tests": 39
+  },
+  "private_evidence_directory": "runs/training-runtime-readiness-20260913",
+  "private_evidence_sha256": {
+    "Qwen--Qwen3.5-9B--README.md": "c5f5a8c2dddab69cfbf05279235aa5fddb137939a06539c4c7637aa900fef6d0",
+    "Qwen--Qwen3.5-9B--api.json": "bd92d7ccdfa5bfcea4e51f35519d6381f2124972fa36dbf852ad0ed8e16a7c16",
+    "Qwen--Qwen3.5-9B--config.json": "d0883072e01861ed0b2d47be3c16c36a8e81c224c7ffaa310c6558fb3f932b05",
+    "Qwen--Qwen3.5-9B--model.safetensors.index.json": "26d3539b516be613f39563617cb9d33b3f83d401298125be392c80cefb8f7fe5",
+    "Qwen--Qwen3.5-9B--summary.json": "f534d155c947f186c330cb53037a8a004f73b6057a6337bc67bc7e254b4a2f98",
+    "Qwen--Qwen3.5-9B--tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+    "cpu.json": "0a6ee0e3fc58b2ef386513747c93b9460bf1f76af136710e4ef4cd6de6771bb9",
+    "gpu_libraries.json": "b0ada6b08226a6841a0ea92842273aae207e70e4b6f3cdc834aa74f4e930f215",
+    "memory.json": "fe303d5f2df4d5745dbd93ad8cc6f1b73204026513fc4b19a23736a75ab258f9",
+    "offline_tests.json": "d9d8903af9ff708d9853012d8ccd22cd5248fd2e2b0a649cbcd916f1ffa822af",
+    "openai--gpt-oss-20b--README.md": "03c2fcf292549176757b85c911e7dcf527aef3e4241d64b6caec94af3ecf3ac2",
+    "openai--gpt-oss-20b--api.json": "0f6a5d76cf63e9b6bd4a957ce411a4a19bbf310892f1d8bfc62d406552181aaf",
+    "openai--gpt-oss-20b--chat_template.jinja": "a4c9919cbbd4acdd51ccffe22da049264b1b73e59055fa58811a99efbd7c8146",
+    "openai--gpt-oss-20b--config.json": "3a2a26ded679375b7928ddeca59764df7cea83220c1961035f6d6e232659e9ce",
+    "openai--gpt-oss-20b--generation_config.json": "f9970ada892d2d1f72e3ed0a6535ccebadd11897318794ca671d8c7014c957da",
+    "openai--gpt-oss-20b--model.safetensors.index.json": "0e085b977c4c9942f85938828e8c989ed7d5cdabf852e4da6a67c116cd502cd1",
+    "openai--gpt-oss-20b--summary.json": "58a25658c5ba5fdf6322e589863e156678cc834651631da690827cf38f27130a",
+    "openai--gpt-oss-20b--tokenizer_config.json": "9279e942392b742d633c7adbb89ebe002c98399db8926a7af5125c726f404070",
+    "pci.json": "eece3b30a2047577580999f621559f8870c6fc29687b67eda25e1727d504fc5a",
+    "repository-revision.json": "9eb000a560835e1f889a459c77f6deda610fdf25bdd027dc41e8b58fb2f04d77",
+    "runtime-metadata.json": "09eb3789de72118cce0e8593cd7e15880997f2178067e104767ab6bc9937f922"
+  },
+  "python": {
+    "interpreter": "system python3",
+    "other_interpreters_or_private_environments": "not exhaustively searched",
+    "package_inventory_method": "importlib.metadata; no ML package imports",
+    "packages": {
+      "accelerate": {
+        "status": "not-found-in-audited-interpreter",
+        "version": null
+      },
+      "bitsandbytes": {
+        "status": "not-found-in-audited-interpreter",
+        "version": null
+      },
+      "datasets": {
+        "status": "not-found-in-audited-interpreter",
+        "version": null
+      },
+      "deepspeed": {
+        "status": "not-found-in-audited-interpreter",
+        "version": null
+      },
+      "flash-attn": {
+        "status": "not-found-in-audited-interpreter",
+        "version": null
+      },
+      "huggingface-hub": {
+        "status": "not-found-in-audited-interpreter",
+        "version": null
+      },
+      "kernels": {
+        "status": "not-found-in-audited-interpreter",
+        "version": null
+      },
+      "numpy": {
+        "status": "not-found-in-audited-interpreter",
+        "version": null
+      },
+      "peft": {
+        "status": "not-found-in-audited-interpreter",
+        "version": null
+      },
+      "safetensors": {
+        "status": "not-found-in-audited-interpreter",
+        "version": null
+      },
+      "torch": {
+        "status": "not-found-in-audited-interpreter",
+        "version": null
+      },
+      "transformers": {
+        "status": "not-found-in-audited-interpreter",
+        "version": null
+      },
+      "triton": {
+        "status": "not-found-in-audited-interpreter",
+        "version": null
+      },
+      "trl": {
+        "status": "not-found-in-audited-interpreter",
+        "version": null
+      },
+      "verl": {
+        "status": "not-found-in-audited-interpreter",
+        "version": null
+      },
+      "vllm": {
+        "status": "not-found-in-audited-interpreter",
+        "version": null
+      },
+      "xformers": {
+        "status": "not-found-in-audited-interpreter",
+        "version": null
+      }
+    },
+    "standard_venv_directories_found": 0,
+    "version": "3.12.3"
+  },
+  "readiness": "offline-adapter-ready; real-training-runtime-not-ready",
+  "ready": [
+    "Standard-library CPU adapter execution",
+    "39 passing offline adapter/anchor tests",
+    "Hashed experiment, checkpoint, template, protocol, sampling and anchor contracts in existing adapter"
+  ],
+  "recorded_at": "2026-09-13T08:43:48.507374+00:00",
+  "schema_version": 1,
+  "scientific_base_selection": "unresolved",
+  "scope": "General runtime only; hardware and package metadata, scoped existing cache inventory, offline tests and public model metadata. No model loading or execution.",
+  "task_ids": [
+    "hub-t8k9c.11",
+    "hub-t8k9c.13"
+  ],
+  "unverified": [
+    "Actual trainable candidate checkpoint and tokenizer loading",
+    "Complete own-base anchors meeting the training binding for either candidate",
+    "Model-specific quantization/kernel/backward/LoRA compatibility",
+    "CPU or GPU training memory and throughput for a concrete batch/sequence configuration",
+    "Uninspected private caches, alternate environments and physical host resources"
+  ]
+}

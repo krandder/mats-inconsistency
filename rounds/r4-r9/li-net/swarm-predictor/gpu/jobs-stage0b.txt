@@ -1,0 +1,5 @@
+# Stage 0b: generation speed benchmark on Qwen3-1.7B (dynamic vs static cache vs static + torch.compile; batch 128 vs 32),
+# then Gate 0 on Qwen3-1.7B (prompt chosen on dev boards) with the fastest generation setting.
+--mode genbench --model Qwen/Qwen3-1.7B --seed 0 --out /root/runs/swarm/genbench --text-out /root/text/genbench
+---
+--mode gate0 --model Qwen/Qwen3-1.7B --seed 0 --gen-impl auto --out /root/runs/swarm/gate0-q17 --text-out /root/text/gate0-q17 --gate-train-steps 5 --prompt-variants A,B

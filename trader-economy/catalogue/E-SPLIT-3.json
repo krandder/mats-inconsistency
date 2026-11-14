@@ -1,0 +1,12 @@
+{
+ "id": "E-SPLIT-3",
+ "question": "Does training each unit on its own flat-Shapley or Owen pay work in a two-layer network?",
+ "setup": "1000 rounds, ledger checked in code, bankruptcy and respawn. Arms: backprop, own flat-Shapley pay (dropout-like), own Owen pay (exact gradient for one sampled nested order, pay every 10 rounds).",
+ "result": "No. Test log loss at cost 0: backprop 0.440\u00b10.001, Shapley 0.499\u00b10.013, Owen 0.495\u00b10.023 (Bayes 0.4355). At cost 0.002 per connection both economy arms collapse towards the prior (0.671 and 0.639; about 11.5 bankruptcies per 6 useful first-layer slots) while backprop stays at 0.439.",
+ "status": "No gain",
+ "files": [
+  "exp_split.py",
+  "results/split_summary.json",
+  "charts/split_training.json"
+ ]
+}

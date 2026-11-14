@@ -1,0 +1,13 @@
+{
+ "id": "E-MLP-1",
+ "question": "Does training each hidden unit on its own Shapley pay match backprop?",
+ "setup": "One hidden layer of 32 tanh units, 4 of them wired to noise only; a unit owns its incoming weights, bias and outgoing weight. Pay = Shapley (16 orders, zero-out ablation) of the batch log-score gain; each unit follows the gradient of its own pay (8 predecessor sets). Synthetic stream, 1200 rounds, cost 0.0005 per connection; wdbc 70/30 split plus 4 noise columns.",
+ "result": "No. Synthetic test log loss 0.609\u00b10.012 vs backprop 0.435\u00b10.004 (logistic regression 0.433, true model 0.4355). The function is right but about 2.8 times too confident: one fitted output scale (0.36\u00b10.03) brings it to 0.435, and its logit gap to backprop then (0.13\u00b10.04) equals the gap between two backprop runs (0.13\u00b10.03). This is dropout without the test-time rescale. wdbc: 0.55\u00b10.31 vs 0.104\u00b10.043; the rescale does not rescue it (0.32\u00b10.37), it also overfits.",
+ "status": "Problem",
+ "files": [
+  "exp_mlp.py",
+  "results/mlp_summary.json",
+  "charts/mlp_logloss_synth.json",
+  "charts/mlp_logloss_wdbc.json"
+ ]
+}

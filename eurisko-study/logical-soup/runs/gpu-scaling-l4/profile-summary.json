@@ -1,0 +1,33 @@
+{
+  "scope": "Nsight Systems: fused K18, one epoch, separate profiling invocation",
+  "copies": [
+    {
+      "kind": "Unified Host-to-Device",
+      "bytes": 416706560,
+      "duration_ns": 54111991,
+      "events": 9397
+    },
+    {
+      "kind": "Unified Device-to-Host",
+      "bytes": 508985344,
+      "duration_ns": 52617111,
+      "events": 10569
+    }
+  ],
+  "gpu_fault_events": 293,
+  "gpu_fault_count": 2381,
+  "gpu_fault_sum_ns": 94750538,
+  "cpu_fault_events": 11403,
+  "kernel_count": 100,
+  "kernel_sum_ns": 1154936878,
+  "longest_kernel": {
+    "name": "bend_dev",
+    "duration_ns": 1061166116,
+    "grid_x": 128,
+    "block_x": 128,
+    "registers_per_thread": 255,
+    "dynamic_shared_bytes": 18432
+  },
+  "warning": "Copy, GPU fault and kernel times overlap: do not add them. CPU fault durations are not available in this capture.",
+  "sqlite_sha256": "d542c7b8eeaadd8fa4ff9c810c54f1be7b067f46a95c4f961897cf33aeb911da"
+}

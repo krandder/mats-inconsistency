@@ -1,0 +1,20 @@
+== mA6 (6x6): 216 one-cell contexts, 2592 impossible atoms (peer, equal digit), 42768 possible atoms
+   largest log q on an impossible atom  L_bad  = -7.843  (probability 3.92e-04)
+   smallest log q on a possible atom    L_good = -2.067  (exact smallest possible conditional: -2.0149 = ln 0.1333)
+   gap 5.78 nats; worker's theta = -4.067; L_bad < theta <= L_good: True
+   so 'pair score >= theta' is exactly 'valid' on all 6^36 boards: True
+   exact one-cell conditionals take the values [0.133333, 0.15, 0.166667, 0.2, 0.25, 0.333333]
+   network against exact on one-cell contexts: KL per (context, cell) mean 1.83e-04, max 7.03e-04; largest |q - p| 0.0105; mean mass on an impossible atom 1.16e-04
+   rule graph read from the network (pairs it rules out for every digit): 432 ordered pairs; equals the peer relation (432): True
+   pair score of 3000 valid grids: min -2.0674, max -2.0419 (spread 0.0255)
+== mA4 (4x4): 64 one-cell contexts, 448 impossible atoms (peer, equal digit), 3392 possible atoms
+   largest log q on an impossible atom  L_bad  = -5.994  (probability 2.49e-03)
+   smallest log q on a possible atom    L_good = -1.831  (exact smallest possible conditional: -1.7918 = ln 0.1667)
+   gap 4.16 nats
+   so 'pair score >= theta' is exactly 'valid' on all 4^16 boards: True
+   exact one-cell conditionals take the values [0.166667, 0.25, 0.333333, 0.5]
+   network against exact on one-cell contexts: KL per (context, cell) mean 7.03e-04, max 2.96e-03; largest |q - p| 0.0278; mean mass on an impossible atom 8.13e-04
+   rule graph read from the network (pairs it rules out for every digit): 112 ordered pairs; equals the peer relation (112): True
+   pair score of 288 valid grids: min -1.8310, max -1.8151 (spread 0.0159)
+
+my exact counter: empty 6x6 board 28200960 completions, 39,168 base grids all valid and distinct; 120 dense states against backtracking: 0 mismatches

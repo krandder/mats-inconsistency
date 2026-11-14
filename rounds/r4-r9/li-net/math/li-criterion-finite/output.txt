@@ -1,0 +1,30 @@
+=== Check 1: 5-sentence toy, 3 relation traders, common fixed point ===
+ p*=[0.2882 0.1432 0.2882 0.1432 0.7118]  max own-clip residual=4.4e-16  max gain over all T, all W=1.97e-31  dist-to-K_Gamma(L1)=0.290
+ p*=[0.5691 0.5751 0.5691 0.5751 0.4309]  max own-clip residual=8.9e-16  max gain over all T, all W=8.88e-16  dist-to-K_Gamma(L1)=0.000
+ p*=[0.6479 0.0284 0.6479 0.0284 0.3521]  max own-clip residual=5.6e-16  max gain over all T, all W=5.55e-16  dist-to-K_Gamma(L1)=1.239
+ 60 random starts: worst gain of any relation trader in any world = 9.99e-16
+ fixed points that are INCOHERENT (P(A)>P(B) though A->B): 30/60
+ example p*=[0.6333 0.35   0.6333 0.35   0.3667]; Dutch book 'buy B sell A' gains in each consistent world: [0.2833333333333339, 1.2833333333333339, 0.2833333333333339]
+=== Check 1b: add the facet trader A<=B -> common fixed points = K_Gamma ===
+ worst gain=9.99e-16; incoherent fixed points: 0/60
+=== Check 1c: projection trader Pi_K(p)-p is a strict Dutch book off K ===
+ min over 100 random p of [min_W gain - |Pi(p)-p|^2] = -4.23e-08 (>= 0 up to solver tol); min gain = 0.016
+=== Check 2: two traders with no common fixed point; no randomized market defends each (T,W) pair ===
+ deterministic: min_p max_(k,W) gain = 0.1000
+ randomized LP feasible? False (status 2; 2=infeasible)
+ certificate lambda=1/2(T1,W=0)+1/2(T2,W=1): min_p g(p) = 0.1000 at p=0.50
+ aggregate firm T1+T2 fixed point p=0.5: firm gain W=0,1 = 0.00,-0.00; T1 gain W=0 = 0.10, T2 gain W=1 = 0.10
+=== Check 3: self-forecasting trader T(p)=Phi(p)-p; value >= -C + 1/2 sum|dp|^2 ===
+ limit cycle (rotation by 0.7 rad on a circle): value in 4 worlds after 2000 steps = [75.55 75.19 75.31 74.95]; |holdings|=0.435
+ identity check cash = 1/2 QV - 1/2(|p_t|^2-|p_0|^2): residual -2.22e-12
+=== Check 4: memoryless traders cannot force convergence (two coherent points, growing runs) ===
+ a=[0.2 0.5 0.2 0.5 0.8], b=[0.5 0.8 0.5 0.8 0.5] (both in relint K_Gamma); random tanh traders with value bounded below yet growing: 0/300
+=== Check 5: constant market in relint K is not exploited by ANY (history-dependent) trader ===
+ max over random trade histories of (max value)/(max loss) = 3.895 <= (1-mu_min)/mu_min = 4.000
+ boundary p=[0.  0.5 0.  0.5 1. ]: buying A&B at price 0.0 gains per day [0.0, 0.0, 1.0] (weak Dutch book)
+=== Check 6: paradox chi <-> (p_chi < p0), ramp trader + weight-w constant seller ===
+ w=0.0: fixed point p_chi=0.8000, truth=1.0, ramp trader gain=+0.0000, seller gain=-0.0000, firm gain=+0.0000
+ w=0.05: fixed point p_chi=0.7500, truth=1.0, ramp trader gain=+0.0125, seller gain=-0.0125, firm gain=+0.0000
+ w=0.2: fixed point p_chi=0.6000, truth=1.0, ramp trader gain=+0.0800, seller gain=-0.0800, firm gain=+0.0000
+=== Check 7: enumeration-free bound  max_{W in cube} x.(W-p) <= (1+|x|_inf) * |clip(p+x)-p|_1 ===
+ max(gain - bound) over 1e5 random (p,x) = 0.00e+00 (<= 0 confirms)

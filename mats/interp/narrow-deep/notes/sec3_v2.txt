@@ -1,0 +1,178 @@
+## 3. Deductive estimation where the whole state is small
+
+**Setup.**
+- Estimand: E[output], a vector. Score: nMSE = |estimate - truth|^2 / tr Var(output), as ARC uses.
+- Truth: plain MC with 2^20-2^22 paths, whose own expected nMSE is 2-10e-7. All estimators are scored against the
+  same truth, so differences below about 1e-6 are not resolved.
+- Cost: an approximate operation count under the flopscope conventions of `work/arc-noisy` (matmul M N (2K - 1),
+  normal draw 16, cdf 96, ...), quoted in units of one full MC path. "35 paths" means the counted FLOPs of 35 sampled
+  paths. With N paths, plain MC's expected nMSE is exactly 1/N.
+  - Not counted: binning, covariance estimation, regression fits, Sobol generation and inverse CDFs.
+  - Residual HYB-lin is priced like a plain branch, and the deductive readout of the trained nets is not counted.
+  - None of these changes a conclusion by more than a small factor. No wall-clock claim is made.
+- Noise scales s_l are part of each net's definition. They come from a 2^14-path pilot that no estimator is charged
+  for, so "sample-free" means: given the weights and these scales.
+- Simple samplers:
+  - MC; antithetic pairs (ANT); scrambled-Sobol RQMC on the input;
+  - the same-sample regression control variate on the input x (E x = 0 is known), applied to MC and to RQMC
+    (MC-reg, RQMC-reg). It is biased at O(1/N); its MSE is measured as is.
+  - The "best simple sampler" is the lowest of these at each budget (16 replicates). In the own-budget comparison of
+    3.1 only RQMC, RQMC-reg and MC-reg were run, with RQMC at the nearest power of 2 below the K2 budget (32 paths
+    against 35, 16 against 18-19). ANT was never best in the full runs.
+- Deductive estimators:
+  - K2: ARC's Gaussian closure. Mean and covariance pass through each ReLU in closed form, using exact bivariate
+    ReLU moments (copied from `work/arc-noisy`).
+  - K2-Stein: the same with the covariance linearised (Stein's lemma; means and variances stay exact). It costs n^3
+    rather than n^2 x 2,500 FLOPs per layer.
+- Hybrid HYB(l0): MC for the first l0 layers, then a deductive deep part. The sampled states are split into 8
+  log-radius bins, and each bin is pushed through the remaining layers by K2-Stein ("st") or by the noiseless map
+  applied to the bin mean ("lin").
+
+### 3.1 Residual nets (all n directions alive): a sample-free closure beats the best sampler at small budgets
+
+K2-Stein against the samplers at K2-Stein's own budget (`runs/resdepth_*.json`; 4 nets per row at L = 16 and 64, 2 at
+L = 256 and 1024; the 4 nets at n = 16, L = 256 of `runs/p3/` give 5.4e-5 to 1.3e-4):
+
+| residual, sigma = 1e-3 | K2-Stein nMSE (per net) | K2-Stein cost (MC paths) | best of RQMC / RQMC-reg / MC-reg at that budget | plain MC at that budget | K2 (exact moments) nMSE, cost |
+|---|---|---|---|---|---|
+| n = 16, L = 16 | 1.2e-4, 3.6e-5, 2.9e-5, 5.7e-5 | 35 | 3.4e-3, 3.0e-3, 4.8e-3, 3.0e-3 (29-162x worse) | 0.029 | 1.0e-4, 4.4e-5, 2.9e-5, 6.9e-5; 512 |
+| n = 16, L = 64 | 2.3e-5, 7.3e-5, 7.2e-5, 3.9e-5 | 35 | 3.2e-3, 3.3e-3, 4.0e-3, 3.4e-3 (45-140x worse) | 0.029 | 2.2e-5, 8.0e-5, 7.3e-5, 3.7e-5; 517 |
+| n = 16, L = 256 | 8.6e-5, 1.1e-4 | 35 | 3.5e-3, 3.0e-3 (28-41x worse) | 0.029 | 8.7e-5, 1.1e-4; 518 |
+| n = 16, L = 1024 | 4.5e-5, 9.0e-5 | 35 | 4.8e-3, 4.9e-3 (55-107x worse) | 0.029 | 4.5e-5, 9.0e-5; 518 |
+| n = 8, L = 16 | 3.1e-4, 3.7e-4, 2.1e-4, 1.5e-4 | 18 | 4.8e-3, 7.0e-3, 6.4e-3, 7.2e-3 (16-49x worse) | 0.056 | 2.8e-4, 3.6e-4, 2.4e-4, 1.2e-4; 405 |
+| n = 8, L = 64 | 1.1e-4, 3.3e-4, 2.1e-4, 2.0e-4 | 18 | 1.0e-2, 1.0e-2, 6.3e-3, 5.1e-3 (25-95x worse) | 0.056 | 1.0e-4, 3.1e-4, 2.1e-4, 1.9e-4; 411 |
+| n = 8, L = 256 | 4.0e-4, 5.1e-5 | 19 | 9.9e-3, 1.2e-2 (25-246x worse) | 0.056 | 3.7e-4, 5.2e-5; 413 |
+| n = 8, L = 1024 | 2.4e-4, 2.2e-4 | 19 | 8.2e-3, 5.8e-3 (26-35x worse) | 0.056 | 2.4e-4, 2.3e-4; 413 |
+
+- **At its own budget, K2-Stein has 16-250x lower MSE than the samplers tested (median 43x over 24 nets), at every
+  depth from 16 to 1024 (MEASURED).**
+  - The range is conditional on this menu, the rounding of the RQMC budget and the cost model.
+  - RQMC is the strongest sampler. Its error falls like N^-1.5 to N^-2, and it matches K2's accuracy at about
+    100-1,000 paths (`runs/p3/*_samplers.json`).
+  - Put as cost: K2-Stein reaches in 18-35 paths' FLOPs an accuracy that RQMC needs 5-30x more FLOPs for, and plain
+    MC 2,500-43,000 paths.
+- **It has a floor.** K2's error is a bias, nMSE 2e-5 to 4e-4. Beyond about 1,000 paths RQMC wins, reaching 1e-7 to
+  1e-6 at 16,384 paths, though values that small are at the truth's own resolution.
+  - The exact-moment K2 costs 15-23x more than K2-Stein for about the same accuracy. So it only ties RQMC at n = 16,
+    and loses 2-4x at n = 8.
+- **Depth does not hurt it (MEASURED; P10 hit).** The median nMSE relative to L = 64 is 0.83 / 1.76 / 1.21 at
+  L = 16 / 256 / 1024 for n = 16, and 1.24 / 1.08 / 1.11 for n = 8. That is 2-4 nets per point, so the evidence is
+  for these nets, not a general law.
+  - Its cost grows linearly in L, as a sample's does, so the advantage at equal FLOPs does not shrink with depth.
+  - Note that increasing L at fixed 1/sqrt(L) branch scale keeps the total residual variance fixed: it refines the
+    same effective "time".
+  - Why the error need not grow (HEURISTIC, martingale form): write the mean error as e_{l+1} = e_l + L^(-1/2) V_l b_l,
+    where b_l is the closure discrepancy of layer l and is determined before V_l. Since E V_l^T V_l = I,
+    E |e_L|^2 = L^(-1) sum_l E |b_l|^2, the average one-layer discrepancy, whatever L is. Bounding the discrepancies
+    themselves, and the output variance, is what a proof would need.
+  - (The L = 1024 nets share their first 256 W matrices with the others but use fresh V matrices.)
+- **The problem is not trivial.**
+  - The zero estimate has nMSE 0.17-0.32, and so does pushing the mean through the net.
+  - A closure that keeps only variances, dropping all correlations, gets 2.2-2.8e-3, 20-100x worse than full K2
+    (`logs/k2variants.log`).
+- **Diagnostics consistent with why it works (MEASURED; they do not establish the mechanism).**
+  - The input is not forgotten. Its direction explains 90-97% of the output variance and its norm 0.4-4%, and every
+    one of 2^20 inputs has its own activation pattern by layer 8 (n = 16).
+  - But the map is close to quadratic. A linear function of x explains 82-87% of the output variance and a quadratic
+    one 96-97%, at every depth; the plain nets score 8-60% and 10-90%.
+  - The pre-activations' marginals stay close to Gaussian (`runs/gauss_*.json`; L = 256, 2 nets per width). Mean
+    |skewness|:
+    - n = 16: 0.02-0.03 at layer 8, 0.04-0.05 at 32, 0.08-0.13 at 128;
+    - n = 8: 0.03-0.05, 0.07-0.13 and 0.10-0.20 at the same layers;
+    - it grows to 0.13-0.46 at the output layer;
+    - plain nets: 1.0-1.7 from layer 8 on.
+  - Small marginal skewness does not prove joint Gaussianity, nor accurate ReLU means near thresholds. The tails
+    (3.3) show the closure is not right everywhere.
+- **Hybrids do not help here.** Without synchronisation, the radius-binned deep part is biased: 4e-5 to 1e-4 for
+  HYB-st, 0.05-0.4 for HYB-lin. HYB loses to RQMC by 10-100x at every budget.
+
+### 3.2 Plain nets: the deep part is easy, the shallow part is the blocker
+
+**K2 from the input fails (MEASURED).**
+- It is off by nMSE 0.016-1.0 on the four n = 16, L = 256 nets and by 2-27 on the n = 8 nets. On a net whose output
+  is mostly noise it reaches 1.2e7.
+- The collapsed state is close to a ray whose radius is widely spread. A Gaussian with the same mean and covariance
+  puts mass at negative radius.
+- Dropping correlations makes it worse (16-218).
+
+**The deep part, given the law at layer l0 estimated from the truth run's own paths.**
+- This is a paired oracle: the same 2^21 paths give the law at l0 and the truth, so shared sampling error can cancel.
+  Values near 1e-7 are not independent validations.
+- Binned K2 runs from layer l0 to L = 256, one K2 propagation per log-radius bin (16 bins). The first column is the
+  share of the output variance that the input explains.
+
+| net (input share) | l0 = 4 | 8 | 16 | 32 | 64 | 128 |
+|---|---|---|---|---|---|---|
+| n = 16 seed 0 (0.994) | 0.18 | 0.054 | 6.7e-7 | 3.3e-5 | 1.8e-7 | 2.0e-7 |
+| n = 16 seed 1 (0.998) | 5e-4 | 4e-4 | 3.2e-4 | 3.6e-4 | 3.7e-7 | 3.7e-7 |
+| n = 16 seed 3 (0.988) | 1.0e-3 | 1.7e-3 | 3.1e-3 | 2.8e-3 | 1.9e-5 | 2.0e-5 |
+| n = 8 seed 7 (0.994) | 0.053 | 1.7e-3 | 1.4e-5 | 1.7e-5 | 1.7e-5 | 2.1e-5 |
+| n = 8 seed 2 (0.964): binned K2 / mean pushed noiselessly | 3.9 / 7.9e-3 | 0.076 / 5.8e-5 | 0.068 / 7.1e-5 | 0.065 / 2.7e-5 | 0.031 / 8.5e-6 | 6.8e-4 / 1.4e-5 |
+| n = 16 seed 2 (0.774, near-dead) | 0.24 | 0.024 | 1.8e-3 | 7.6e-3 | 1.9e-3 | 1.6e-3 |
+
+- On the five nets whose input explains >= 96% of the output variance, a cheap deterministic deep part brings the
+  error to 1e-7 to 2e-5 beyond l0 = 16-64 (MEASURED):
+  - binned K2 on four of them;
+  - on n = 8 seed 2, the noiseless push of the mean, not the binned K2.
+- The l0 needed to get below 1e-4 is 8-16 at n = 8 and 32-64 at n = 16, consistent with a synchronisation length of
+  about n.
+- On the three near-dead nets, where noise carries 23-89% of the output variance, neither deep part works.
+
+**Hybrid at equal FLOPs (column (b) of ARC's bar).** n = 16, L = 256, seed 0, nMSE:
+
+| budget (MC paths) | MC | best simple sampler | best hybrid |
+|---|---|---|---|
+| 256 | 3.6e-3 | 1.3e-3 (RQMC-reg) | 3.1e-4 (HYB16-lin) |
+| 1,024 | 6.2e-4 | 2.2e-4 (MC-reg) | 1.1e-4 (HYB32-st) |
+| 4,096 | 3.5e-4 | 9.3e-5 (RQMC) | 5.8e-5 (HYB32-st) |
+| 16,384 | 3.3e-5 | 1.6e-5 (RQMC-reg) | 2.1e-5 (HYB32-st) |
+
+The hybrid gains 2-4x over the best sampler at 256-1,024 paths, 1.6x at 4,096 and nothing at 16k, where its deep-part
+bias of about 1e-5 shows. This is MEASURED on one net; the planned second seed was dropped for time.
+
+**Why no sample-free method we tried gets through the shallow part (MEASURED).**
+- The shallow part is a narrow net of depth l0 ~ 16-64 on Gaussian input.
+- An explicit enumeration of activation cells needs the joint gate histories of layers 1..l. Among 2^20 inputs:
+  - n = 8 (sigma = 0): 3,600-5,300 distinct histories at layer 2, 77,000-82,000 at layer 8, and 90,000-116,000 from
+    layer 16 on. Synchronisation stops further splitting. About half of these are seen once, so the true count is
+    higher.
+  - n = 16: about 1,000,000 by layer 8, i.e. nearly every sampled input has its own history.
+  - Each cell would also need a Gaussian integral over a polyhedral cone in 8-16 dimensions.
+  - This rules out naive enumeration. It is not a lower bound for every exact method: distinct histories can share a
+    map or be aggregated.
+- A grid at noise resolution needs (1/sigma)^(n-1) cells.
+- So in the plain family the M1 difficulty does not disappear in narrow-deep nets for the methods tried. It moves
+  into the first ~n ln(1/tolerance) layers: a net whose depth is proportional to its width, the regime M1 is about.
+
+### 3.3 Tails: P(|output| > t) at the 1e-3 and 1e-4 quantiles
+
+The thresholds are quantiles of part of the truth sample, and the same sample is reused for the exceedance
+probability. The truth's relative error is 1.5-2% at q = 1e-3 and 5-7% at q = 1e-4.
+
+**The Gaussian closure is wrong in the tails (MEASURED).**
+- We computed the tail of K2's output Gaussian with Imhof's formula. Sampling that Gaussian checks it where its
+  probability is >= 1e-6. At 1e-9 the GPT-6 reviewer checked it independently with an exponentially tilted inversion:
+  1.898e-9 vs our 1.911e-9.
+- At n = 16 the closure's tail is 3-77x too small, at n = 8 400-60,000x too small. The non-Gaussian, roughly
+  quadratic part of the map makes the true tails heavier.
+
+**Positive homogeneity gives a much better sampler (MEASURED).**
+- A bias-free ReLU net satisfies out(r u) = r out(u) without noise. So the radius can be integrated exactly for each
+  sampled direction ("RB"): P = E_u Q_chi_n(t / |out(u)|).
+- At equal FLOPs RB lowers the relative MSE 2-90x against MC. Examples:
+  - residual n = 16 at q = 1e-3 and 4,096 paths: 0.011 and 0.005 vs MC 0.18 and 0.29;
+  - plain n = 8 at q = 1e-4 and 16,384 paths: 0.008 vs 0.45.
+- With sigma = 1e-3 the identity is approximate: we rescale the noise to a typical radius, which changes the
+  estimand slightly.
+- Direct check on one residual net (n = 16, L = 64; 2^21 MC paths vs 2^19 RB directions, `logs/check_rb.log`):
+  - q = 1e-3: agreement within 2% with and without noise;
+  - q = 1e-4: within 1% with noise, and 12.6% apart without noise (1.7 combined standard errors).
+  - The near-dead plain nets were not checked.
+
+**The plain hybrid in the tails varies by net.**
+- With the radius integrated, the attractor-linear deep map (HYB32-RB) is 9-200x better than MC on three nets: for
+  example 0.0046 vs 0.94 at q = 1e-4, n = 16 seed 1.
+- On the other two its error stays at 35-140% relative.
+
+**Not M3.** None of these is a certified bound.
+

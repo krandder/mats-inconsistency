@@ -1,0 +1,11 @@
+{
+ "id": "E-T1-3",
+ "question": "How do read fees and compute cost change the economy?",
+ "setup": "MSR-16 and Kelly, fee per feature read in {0, 0.004, 0.012, 0.03} x compute per step in {0, 0.004, 0.012, 0.03}, 3 seeds. Also fees burned instead of paid to feature owners.",
+ "result": "At fee 0.03 or compute 0.03 no agent survives and the output falls to the prior (0.693). Best log loss 0.520\u00b10.069 at fee=compute=0.004. Burning the fees leaves 3.4\u00b11.4 agents alive (10 when owners are paid) and pay tracks value worse (0.30\u00b10.36 vs 0.68\u00b10.05).",
+ "status": "Informative",
+ "files": [
+  "econ.py",
+  "results/summary.json"
+ ]
+}

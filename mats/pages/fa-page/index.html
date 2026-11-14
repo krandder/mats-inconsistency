@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Forecast aggregation world</title>
+<meta name="description" content="What the World FA networks in Kelvin's MATS project are asked to learn, what the first pilot learned, and what is running: one worked episode, the token layout, the four steps of the exact answer, and the training results.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<style>
+:root{color-scheme:light;--bg:#fff;--ink:#161616;--ink2:#5b5a55;--line:#e3e2dc;--eq:#f6f6f2;--acc:#a8432a;--accbg:#f6e7e2;--q:#2b5f8f;--qbg:#e4edf6}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#151513;--ink:#eeeeea;--ink2:#a9a8a0;--line:#34332f;--eq:#1e1e1b;--acc:#e3937c;--accbg:#3a2620;--q:#8db8e0;--qbg:#1b2733}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#151513;--ink:#eeeeea;--ink2:#a9a8a0;--line:#34332f;--eq:#1e1e1b;--acc:#e3937c;--accbg:#3a2620;--q:#8db8e0;--qbg:#1b2733}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;padding:22px 16px 64px}
+main{max-width:760px;margin:0 auto}
+a{color:var(--ink)}
+.top{display:flex;gap:14px;font-size:13px;color:var(--ink2);margin:0 0 30px;flex-wrap:wrap}
+.top a{color:var(--ink2)}
+h1{font-size:clamp(28px,6vw,40px);line-height:1.1;letter-spacing:-.02em;margin:0 0 12px}
+.meta{font-size:13px;line-height:1.5;color:var(--ink2);margin:0 0 34px}
+section{border-top:1px solid var(--line);padding:26px 0 4px}
+h2{font-size:21px;line-height:1.25;margin:0 0 10px}
+h3{font-size:17px;line-height:1.3;margin:18px 0 8px}
+p{margin:0 0 14px}
+ul,ol{margin:0 0 14px;padding-left:22px}
+li{margin:0 0 6px}
+.katex{font-size:1.06em}
+.katex-display{margin:16px 0;padding:12px 14px;background:var(--eq);border-radius:10px;overflow-x:auto;overflow-y:hidden;position:relative}
+.tbl{overflow-x:auto;margin:0 0 16px;position:relative}
+table{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.45}
+th,td{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{font-weight:600}
+td:first-child{color:var(--ink2);white-space:nowrap}
+.note{font-size:14px;color:var(--ink2)}
+table.num td,table.num th{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+table.num td:first-child,table.num th:first-child{text-align:left}
+table.num td.txt{text-align:left;white-space:normal;color:var(--ink2);min-width:12em}
+table.num td.sm{min-width:9em}
+table.num th{white-space:normal;vertical-align:bottom}
+table.num tr.sub th:first-child{text-align:right}
+table.num th.grp{text-align:center}
+table.num th.txt{text-align:left}
+table.num td,table.num th{padding:6px 8px}
+.hl,tr.hl td{background:var(--accbg)}
+.ans td:first-child{color:var(--ink)}
+.tok td{font-size:13.5px}
+.ladder td.barcell{width:46%;vertical-align:middle}
+.bar{display:block;height:10px;background:var(--ink2);border-radius:2px}
+.bar.net{background:var(--acc)}
+.fig{overflow-x:auto;margin:4px 0 8px;position:relative}
+.fig svg{display:block;width:100%;height:auto;margin:0 auto}
+.cap{font-size:14px;color:var(--ink2);margin:0 0 18px}
+svg .t{fill:var(--ink);font-size:13px;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+svg .t2{fill:var(--ink2);font-size:12px;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+svg .b{font-weight:600}
+svg .acc-t{fill:var(--acc)}
+svg .q-t{fill:var(--q)}
+svg .ln{stroke:var(--ink2);stroke-width:1.2;fill:none}
+svg .ln-acc{stroke:var(--acc);stroke-width:1.7;fill:none}
+svg .box{fill:var(--bg);stroke:var(--ink2);stroke-width:1.2}
+svg .box-acc{fill:var(--accbg);stroke:var(--acc);stroke-width:1.6}
+svg .cell{fill:var(--eq);stroke:var(--line)}
+svg .cell-acc{fill:var(--accbg);stroke:var(--line)}
+svg .cell-q{fill:var(--qbg);stroke:var(--line)}
+svg .dash{fill:none;stroke:var(--ink);stroke-width:1.4;stroke-dasharray:5 3}
+svg .ah{fill:var(--ink2)}
+svg .ah-acc{fill:var(--acc)}
+svg .grid{stroke:var(--line);stroke-width:1}
+svg .crv{fill:none;stroke-width:1.6;opacity:.85}
+svg .crv.acc{stroke:var(--acc)}
+svg .crv.ink2{stroke:var(--ink2)}
+svg .lvl{stroke-width:1.3;stroke-dasharray:6 4}
+svg .lvl.acc{stroke:var(--acc)}
+svg .lvl.ink2{stroke:var(--ink2)}
+.sim{border:1px solid var(--line);border-radius:10px;padding:14px 14px 4px;margin:6px 0 16px}
+.sim label{font-size:15px}
+.sim input[type=range]{width:100%;max-width:440px;margin:8px 0 10px;accent-color:var(--acc)}
+.sim td.barcell{width:40%;vertical-align:middle}
+</style>
+<main>
+<div class="top"><a href="/insights/">Insights so far</a><a href="/direction/">Direction note</a><a href="/experiments/">Experiments</a></div>
+<h1>Forecast aggregation world</h1>
+<p class="meta">Kelvin Azevedo Santos, MATS autumn 2026 (mentor: Deger Turan). 28 October 2026. Notes on World FA as built: what the networks are asked to learn, what the first pilot learned, and what is running. Status of the running arms read from their training logs at 20:15Z. File paths at the end.</p>
+
+<section>
+<h2>In short</h2>
+<p>In the main family of World FA, four traders report a value plus an error. Every error has variance 1, and the errors of one pair of traders, unknown which, have correlation &minus;0.8. Those two errors nearly cancel, so the best forecast gives the two reports of the pair weight 5 each and the other two reports weight 1. Past rounds, in which the value was revealed, show which pair it is. The query round on its own hardly does.</p>
+<p>To use the past rounds, a network has to collect each trader's past errors, compare traders round by round, turn the comparison into weights, and put each weight on the right trader's report in the query round. The networks trained so far learn the rest of the task but not this. Their log loss is within 0.016 nats of the exact Bayes forecast that ignores the history; they recover none of the 0.21&ndash;0.25 nats the history is worth; and a trader's query-report token attends to its own trader's past reports no more than to other traders' (own/other ratio 1.00). Seven runs with a deeper network and aids for binding started at 19:02Z. The one that has finished (60,000 steps) recovers none of the history value either, and the other six had not moved off the history-blind level at 20:15Z.</p>
+<p>In this family no single step lowers the achievable loss on its own; only all four together do. We think this is why training stalls, but we have not tested that directly.</p>
+</section>
+
+<section>
+<h2>1. The world, in one episode</h2>
+<p>An episode has \(N\) traders, \(T\) past rounds and one query round. In round \(t\) the value is \(v_t\sim\mathcal N(0,1)\) and trader \(i\) reports \(r_{t,i}=v_t+e_{t,i}\). The error vector \(e_t\sim\mathcal N(0,\Sigma)\) is drawn afresh each round, but \(\Sigma\), the information structure, is drawn once per episode and never shown. Past rounds show every report and the realised \(v_t\); the query round shows only the \(N\) reports. The target is the query round's value \(v\), as a predictive distribution.</p>
+<p>The runs so far use the main family of the pre-registration (the pilot also had null arms, section 4): \(N=4\), every error has variance 1, and exactly one pair of traders has error correlation &minus;0.8, all other pairs 0. The six possible pairs are equally likely. Their covariance matrices have the same diagonal and the same eigenvalues (1.8, 1, 1, 0.2), so the pair shows only in how particular traders' errors move together.</p>
+<p>Below is one episode drawn with the actual generator (<code>fa_core.gen</code>, torch seed 18) at \(N=4\), \(T=8\). How it was chosen is at the end of this section.</p>
+
+<h3>Hidden structure</h3>
+<div class="fig"><svg viewBox="0 0 640 300" style="max-width:640px;min-width:470px" role="img" aria-label="Source graph of the example episode: the value v feeds all four traders; a shared source eta enters trader 1 with sign plus and trader 3 with sign minus.">
+<defs>
+<marker id="ah1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
+<marker id="ah1a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah-acc"/></marker>
+</defs>
+<circle cx="320" cy="36" r="22" class="box"/>
+<text x="320" y="41" class="t b" text-anchor="middle">v</text>
+<text x="352" y="26" class="t2">value of the round, N(0, 1)</text>
+<text x="352" y="42" class="t2">report of trader i: r = v + e</text>
+<line x1="320" y1="58" x2="97" y2="107" class="ln" marker-end="url(#ah1)"/>
+<line x1="320" y1="58" x2="246" y2="107" class="ln" marker-end="url(#ah1)"/>
+<line x1="320" y1="58" x2="394" y2="107" class="ln" marker-end="url(#ah1)"/>
+<line x1="320" y1="58" x2="543" y2="107" class="ln" marker-end="url(#ah1)"/>
+<rect x="35" y="110" width="120" height="54" rx="8" class="box-acc"/>
+<text x="95" y="132" class="t b" text-anchor="middle">trader 1</text>
+<text x="95" y="152" class="t2" text-anchor="middle">own noise 0.2</text>
+<rect x="185" y="110" width="120" height="54" rx="8" class="box"/>
+<text x="245" y="132" class="t b" text-anchor="middle">trader 2</text>
+<text x="245" y="152" class="t2" text-anchor="middle">own noise 1</text>
+<rect x="335" y="110" width="120" height="54" rx="8" class="box-acc"/>
+<text x="395" y="132" class="t b" text-anchor="middle">trader 3</text>
+<text x="395" y="152" class="t2" text-anchor="middle">own noise 0.2</text>
+<rect x="485" y="110" width="120" height="54" rx="8" class="box"/>
+<text x="545" y="132" class="t b" text-anchor="middle">trader 4</text>
+<text x="545" y="152" class="t2" text-anchor="middle">own noise 1</text>
+<circle cx="320" cy="240" r="22" class="box-acc"/>
+<text x="320" y="246" class="t b" text-anchor="middle">&#951;</text>
+<text x="320" y="285" class="t2" text-anchor="middle">shared source, variance 0.8 (hidden)</text>
+<line x1="299" y1="232" x2="112" y2="168" class="ln-acc" marker-end="url(#ah1a)"/>
+<line x1="333" y1="222" x2="383" y2="168" class="ln-acc" marker-end="url(#ah1a)"/>
+<text x="170" y="182" class="t b acc-t">+1</text>
+<text x="370" y="206" class="t b acc-t">&minus;1</text>
+</svg></div>
+<p class="cap">Traders 1 and 3 carry the same hidden source with opposite signs, so \(e_1=\sqrt{0.8}\,\eta+z_1\) and \(e_3=-\sqrt{0.8}\,\eta+z_3\) with \(\eta\sim\mathcal N(0,1)\) and own noise of variance 0.2. The generator draws \(e_t\) from \(\mathcal N(0,\Sigma)\) directly; the picture describes the same \(\Sigma\).</p>
+$$\Sigma=\begin{pmatrix}1&0&-0.8&0\\0&1&0&0\\-0.8&0&1&0\\0&0&0&1\end{pmatrix}$$
+
+<h3>History: eight resolved rounds</h3>
+<div class="tbl"><table class="num"><tr><th rowspan="2">round</th><th rowspan="2">value \(v_t\)</th><th colspan="4" class="grp">reports \(r_{t,i}\), trader</th><th colspan="4" class="grp">errors \(e_{t,i}=r_{t,i}-v_t\), trader</th><th rowspan="2">\(e_{t,1}+e_{t,3}\)</th></tr><tr class="sub"><th>1</th><th>2</th><th>3</th><th>4</th><th class="hl">1</th><th>2</th><th class="hl">3</th><th>4</th></tr><tr><td>1</td><td>0.54</td><td>−0.03</td><td>0.49</td><td>1.41</td><td>−1.50</td><td class="hl">−0.57</td><td>−0.05</td><td class="hl">0.87</td><td>−2.04</td><td class="hl">0.30</td></tr><tr><td>2</td><td>0.13</td><td>0.94</td><td>0.88</td><td>0.21</td><td>−0.29</td><td class="hl">0.81</td><td>0.74</td><td class="hl">0.07</td><td>−0.43</td><td class="hl">0.88</td></tr><tr><td>3</td><td>−1.25</td><td>−1.49</td><td>−1.93</td><td>−1.30</td><td>−2.94</td><td class="hl">−0.24</td><td>−0.68</td><td class="hl">−0.05</td><td>−1.69</td><td class="hl">−0.29</td></tr><tr><td>4</td><td>0.22</td><td>−2.12</td><td>−0.17</td><td>1.52</td><td>−1.09</td><td class="hl">−2.33</td><td>−0.39</td><td class="hl">1.31</td><td>−1.31</td><td class="hl">−1.03</td></tr><tr><td>5</td><td>1.52</td><td>1.12</td><td>2.12</td><td>1.58</td><td>0.37</td><td class="hl">−0.39</td><td>0.61</td><td class="hl">0.06</td><td>−1.14</td><td class="hl">−0.33</td></tr><tr><td>6</td><td>2.50</td><td>0.88</td><td>2.64</td><td>5.05</td><td>2.77</td><td class="hl">−1.62</td><td>0.14</td><td class="hl">2.55</td><td>0.27</td><td class="hl">0.92</td></tr><tr><td>7</td><td>−0.30</td><td>−1.65</td><td>−0.53</td><td>0.55</td><td>−1.00</td><td class="hl">−1.35</td><td>−0.23</td><td class="hl">0.85</td><td>−0.70</td><td class="hl">−0.50</td></tr><tr><td>8</td><td>0.75</td><td>−1.58</td><td>1.10</td><td>3.20</td><td>0.88</td><td class="hl">−2.33</td><td>0.35</td><td class="hl">2.45</td><td>0.13</td><td class="hl">0.13</td></tr></table></div>
+<p>In 6 of the 8 rounds the errors of traders 1 and 3 have opposite signs. Their sum (last column) stays within &plusmn;1.03, although trader 1's error reaches 2.3 and trader 3's 2.5 in size. Measured around zero, as Bayes does (the errors have mean 0, and Bayes uses the sums \(S_{ab}=\sum_t e_{t,a}e_{t,b}\)), the correlation of traders 1 and 3 over these rounds is −0.90; for the other five pairs it lies between −0.24 and 0.37.</p>
+
+<h3>Query round and five forecasts</h3>
+<p>The query-round reports of traders 1 to 4 are (1.046, 0.452, 0.175, −0.148). The value, used only for scoring, is 0.547.</p>
+<div class="tbl"><table class="num ans"><tr><th>forecast</th><th class="txt">uses</th><th>mean</th><th>sd</th><th>log loss at \(v\)</th></tr><tr><td>Plain average of the four reports</td><td class="txt">query reports</td><td>0.381</td><td></td><td></td></tr><tr><td>Correlation-blind Bayes</td><td class="txt">query reports; treats the four errors as independent, variance 1</td><td>0.305</td><td>0.447</td><td>0.260</td></tr><tr><td>History-blind Bayes</td><td class="txt">query reports and the six-pair prior</td><td>0.347</td><td>0.315</td><td>−0.033</td></tr><tr><td>Exact Bayes</td><td class="txt">history, query reports and the prior</td><td>0.493</td><td>0.277</td><td>−0.345</td></tr><tr><td>Trained network</td><td class="txt">all 37 tokens (pilot, report layout, seed 0)</td><td>0.348</td><td>0.312</td><td>−0.052</td></tr></table></div>
+<p class="note">Log loss is \(-\log\) of the forecast density at the realised \(v\), in nats; lower is better. One episode's log losses are noisy; averages over episodes are in section 3.</p>
+
+<h3>Why the forecasts differ</h3>
+<p>If the pair were known to be \((a,b)\), the Bayes forecast would be Gaussian with variance 1/13 (sd 0.277) and mean</p>
+$$m_{ab}=\frac{5r_a+5r_b+r_c+r_d}{13}.$$
+<p>The weights are \(\Sigma^{-1}\mathbf 1\): the inverse of the pair's 2&times;2 block has row sums \(1/(1+\rho)=5\) at \(\rho=-0.8\), the other traders get 1, and 13 is the prior precision 1 plus \(5+5+1+1\). Exact Bayes is the mixture of the six candidates \(\mathcal N(m_{ab},1/13)\), each weighted by the posterior probability of its pair:</p>
+<div class="tbl"><table class="num"><tr><th>pair</th><th>candidate mean \(m_{ab}\)</th><th>probability, query reports only</th><th>history score</th><th>probability, history and query</th></tr><tr><td>1&ndash;2</td><td>0.578</td><td>0.13</td><td>−17.9</td><td>4.0×10<sup>−10</sup></td></tr><tr class="hl"><td>1&ndash;3</td><td>0.493</td><td>0.16</td><td>+3.6</td><td>&gt; 0.9999999</td></tr><tr><td>1&ndash;4</td><td>0.393</td><td>0.20</td><td>−35.3</td><td>1.6×10<sup>−17</sup></td></tr><tr><td>2&ndash;3</td><td>0.310</td><td>0.18</td><td>−16.8</td><td>1.5×10<sup>−9</sup></td></tr><tr><td>2&ndash;4</td><td>0.211</td><td>0.17</td><td>−13.4</td><td>4.6×10<sup>−8</sup></td></tr><tr><td>3&ndash;4</td><td>0.126</td><td>0.15</td><td>−16.7</td><td>1.5×10<sup>−9</sup></td></tr></table></div>
+<p>From the query reports alone, each pair gets a probability between 0.13 and 0.20, so the history-blind forecast blends six candidates that range from 0.126 to 0.578: mean 0.347, sd 0.315, wider than any single candidate. The history removes this uncertainty. Up to a constant that is the same for all pairs, its log likelihood under pair \((a,b)\) is</p>
+$$\mathrm{score}(a,b)=-\sum_{t=1}^{T}\big(e_{t,a}+e_{t,b}\big)^2+\frac19\sum_{t=1}^{T}\big(e_{t,a}-e_{t,b}\big)^2,$$
+<p>because under that pair the sum of the two errors has variance 0.4 and their difference 3.6, against 2 and 2 for an uncorrelated pair. Pair 1&ndash;3 scores +3.6 and the next best −13.4, so with the history its probability is above 0.9999999 and exact Bayes is the candidate 0.493, sd 0.277.</p>
+<p>That candidate is closer to \(v\) because the pair's errors also cancel in the query round: trader 1 is off by +0.50 and trader 3 by −0.37, so their average, 0.610, is off by 0.06. The equal-weight forecasts are pulled down mainly by trader 4, which is off by −0.69. The trained network says 0.348 with sd 0.312, almost exactly the history-blind forecast: its KL divergence from history-blind Bayes is 0.0002 nats, and from exact Bayes 0.12. The other three main-family pilot networks are within 0.0012 nats (KL) of history-blind Bayes on this episode too.</p>
+<p class="note">How typical the episode is. Over 4,000 episodes at \(N=4\), \(T=8\), the expected gain of exact Bayes over history-blind Bayes (their KL divergence, given the data) averages 0.20 nats with median 0.11, and the posterior puts more than 0.9 on the true pair in 84% of episodes. This episode's expected gain is 0.12 nats, the 54th percentile. It is the first seed, counting from 0, whose expected gain lies between the median and the 75th percentile and whose \(v\) falls in the middle half of the Bayes forecast. Seed 0 met the first condition, but its \(v\) lay 2.1 sd from the Bayes mean, which made its single-episode log losses misleading.</p>
+</section>
+
+<section>
+<h2>2. What the network sees and outputs</h2>
+<p>In the main token layout (&ldquo;report&rdquo;) every report is one token, and one extra token stands for the question. Each token is a vector of 72 numbers:</p>
+<div class="tbl"><table>
+<tr><th>numbers</th><th>past report (round \(t\), trader \(i\))</th><th>query report (trader \(i\))</th><th>query token</th></tr>
+<tr><td>trader key (32)</td><td>random unit vector of trader \(i\), drawn fresh each episode</td><td>the same vector as in trader \(i\)'s past reports</td><td>0</td></tr>
+<tr><td>round key (32)</td><td>random unit vector of round \(t\)</td><td>the query round's own vector</td><td>0</td></tr>
+<tr><td>\(r\), \(v\), \(e\)</td><td>\(r_{t,i}\), \(v_t\), and \(e_{t,i}=r_{t,i}-v_t\) given explicitly</td><td>\(r_i\), 0, 0</td><td>0, 0, 0</td></tr>
+<tr><td>flags</td><td>past = 1</td><td>query report = 1</td><td>query = 1</td></tr>
+<tr><td>\(\log N\), \(\log(1+T)\)</td><td colspan="3">on every token</td></tr>
+</table></div>
+<p>There are no positions; the tokens form a set. A query report is linked to the same trader's past reports only by the shared trader key, and two past reports are linked to the same round only by the shared round key. The keys are drawn again for every episode, so nothing about a particular trader carries over between episodes. The example episode has \(N(T+1)+1=37\) tokens; here are six of them, with the first 2 of the 32 coordinates of each key and the flags in the order (past, query report, query):</p>
+<div class="tbl"><table class="num tok"><tr><th>token</th><th>trader key</th><th>round key</th><th>\(r\)</th><th>\(v\)</th><th>\(e\)</th><th>flags</th><th>\(\log N\)</th><th>\(\log(1+T)\)</th></tr><tr><td>round 1, trader 1</td><td>(0.25, 0.18, &hellip;)</td><td>(0.06, 0.01, &hellip;)</td><td>−0.034</td><td>0.541</td><td>−0.574</td><td>1 0 0</td><td>1.386</td><td>2.197</td></tr><tr><td>round 1, trader 2</td><td>(0.00, −0.06, &hellip;)</td><td>(0.06, 0.01, &hellip;)</td><td>0.490</td><td>0.541</td><td>−0.051</td><td>1 0 0</td><td>1.386</td><td>2.197</td></tr><tr><td>round 2, trader 1</td><td>(0.25, 0.18, &hellip;)</td><td>(0.15, −0.32, &hellip;)</td><td>0.945</td><td>0.135</td><td>0.810</td><td>1 0 0</td><td>1.386</td><td>2.197</td></tr><tr><td>query report, trader 1</td><td>(0.25, 0.18, &hellip;)</td><td>(−0.09, 0.04, &hellip;)</td><td>1.046</td><td>0.000</td><td>0.000</td><td>0 1 0</td><td>1.386</td><td>2.197</td></tr><tr><td>query report, trader 2</td><td>(0.00, −0.06, &hellip;)</td><td>(−0.09, 0.04, &hellip;)</td><td>0.452</td><td>0.000</td><td>0.000</td><td>0 1 0</td><td>1.386</td><td>2.197</td></tr><tr><td>query token</td><td>0</td><td>0</td><td>0.000</td><td>0.000</td><td>0.000</td><td>0 0 1</td><td>1.386</td><td>2.197</td></tr></table></div>
+<p>The pilot also tried a &ldquo;column&rdquo; layout, proposed in the Gemini critique, with \(2N+1\) tokens: one history token per trader holding \(h_i=T^{-1/2}\sum_t e_{t,i}u_t\), where \(u_t\) is \(\sqrt{32}\) times round \(t\)'s key, so that \(\langle h_i,h_j\rangle/32\approx S_{ij}/T\) with \(S_{ij}=\sum_t e_{t,i}e_{t,j}\); then the \(N\) query reports and the query token. This layout does the round-by-round matching in the input. A trader's history token and its query report are still linked only by the trader key.</p>
+<p><b>Output.</b> The final state of the query token is mapped to a mixture of 4 Gaussians (4 weights, 4 means, 4 log standard deviations). The loss is the negative log density of the true \(v\) under that mixture. Every batch is a fresh draw of episodes from the prior, so the output that minimises the expected loss is the exact Bayes predictive.</p>
+<p><b>Network.</b> A transformer without positional encoding (<code>harness.SetPFN</code>): a linear map from the 72 numbers to width 64, then pre-norm blocks (layer norm, 4-head self-attention, layer norm, MLP 64&rarr;256&rarr;64 with GELU, each with a residual connection), then a layer norm and a linear readout of the query token. Keys and values come from the report tokens only: every token, including the query token, attends to all report tokens, and no token attends to the query token.</p>
+<div class="tbl"><table>
+<tr><th></th><th>pilot (finished)</th><th>binding arms (running)</th></tr>
+<tr><td>blocks &times; width, heads</td><td>2 &times; 64, 4 heads</td><td>4 &times; 64, 4 heads</td></tr>
+<tr><td>parameters</td><td>105,548</td><td>205,516, plus 193 in the dense-target head where used</td></tr>
+<tr><td>training</td><td>20,000 steps of 256 episodes</td><td>60,000 steps of 256 (one arm: 15,000 of 1,024)</td></tr>
+<tr><td>history lengths</td><td>\(T\le128\); \(T\ge32\) for the first 6,000 steps, then \(T=0\) with probability 0.1</td><td>\(T\le64\); \(T\) in 32&ndash;64 for the first 30% of steps, then \(T=0\) with probability 0.1</td></tr>
+<tr><td>optimiser</td><td colspan="2">AdamW, learning rate \(5\times10^{-4}\), weight decay 0.01, warm-up, cosine decay to 0.1&times;, gradient clipping at 1</td></tr>
+</table></div>
+</section>
+
+<section>
+<h2>3. What it has to compute</h2>
+<p>Exact Bayes in this family can be computed in four steps. A network may organise the computation differently, but to recover the history value it needs the same links between tokens, and in the report layout each step uses a different one:</p>
+<div class="fig"><svg viewBox="0 0 470 398" style="max-width:560px;min-width:400px" role="img" aria-label="Token grid of the example episode: four trader columns, eight past rounds and the query round. Column 1 is outlined as step a, round 4 as step b, and arrows tie the pair's history columns to their query reports as step d.">
+<defs><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah-acc"/></marker>
+<marker id="ah2g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker></defs>
+<text x="132" y="14" class="t b" text-anchor="middle">(a)</text>
+<text x="80" y="34" class="t2" text-anchor="end">cells: e</text>
+<text x="132" y="34" class="t b acc-t" text-anchor="middle">trader 1</text>
+<text x="212" y="34" class="t b" text-anchor="middle">trader 2</text>
+<text x="292" y="34" class="t b acc-t" text-anchor="middle">trader 3</text>
+<text x="372" y="34" class="t b" text-anchor="middle">trader 4</text>
+<text x="80" y="60" class="t2" text-anchor="end">round 1</text>
+<rect x="96" y="44" width="72" height="24" rx="4" class="cell-acc"/>
+<text x="132" y="60" class="t2" text-anchor="middle">−0.57</text>
+<rect x="176" y="44" width="72" height="24" rx="4" class="cell"/>
+<text x="212" y="60" class="t2" text-anchor="middle">−0.05</text>
+<rect x="256" y="44" width="72" height="24" rx="4" class="cell-acc"/>
+<text x="292" y="60" class="t2" text-anchor="middle">0.87</text>
+<rect x="336" y="44" width="72" height="24" rx="4" class="cell"/>
+<text x="372" y="60" class="t2" text-anchor="middle">−2.04</text>
+<text x="80" y="90" class="t2" text-anchor="end">round 2</text>
+<rect x="96" y="74" width="72" height="24" rx="4" class="cell-acc"/>
+<text x="132" y="90" class="t2" text-anchor="middle">0.81</text>
+<rect x="176" y="74" width="72" height="24" rx="4" class="cell"/>
+<text x="212" y="90" class="t2" text-anchor="middle">0.74</text>
+<rect x="256" y="74" width="72" height="24" rx="4" class="cell-acc"/>
+<text x="292" y="90" class="t2" text-anchor="middle">0.07</text>
+<rect x="336" y="74" width="72" height="24" rx="4" class="cell"/>
+<text x="372" y="90" class="t2" text-anchor="middle">−0.43</text>
+<text x="80" y="120" class="t2" text-anchor="end">round 3</text>
+<rect x="96" y="104" width="72" height="24" rx="4" class="cell-acc"/>
+<text x="132" y="120" class="t2" text-anchor="middle">−0.24</text>
+<rect x="176" y="104" width="72" height="24" rx="4" class="cell"/>
+<text x="212" y="120" class="t2" text-anchor="middle">−0.68</text>
+<rect x="256" y="104" width="72" height="24" rx="4" class="cell-acc"/>
+<text x="292" y="120" class="t2" text-anchor="middle">−0.05</text>
+<rect x="336" y="104" width="72" height="24" rx="4" class="cell"/>
+<text x="372" y="120" class="t2" text-anchor="middle">−1.69</text>
+<text x="80" y="150" class="t2" text-anchor="end">round 4</text>
+<rect x="96" y="134" width="72" height="24" rx="4" class="cell-acc"/>
+<text x="132" y="150" class="t2" text-anchor="middle">−2.33</text>
+<rect x="176" y="134" width="72" height="24" rx="4" class="cell"/>
+<text x="212" y="150" class="t2" text-anchor="middle">−0.39</text>
+<rect x="256" y="134" width="72" height="24" rx="4" class="cell-acc"/>
+<text x="292" y="150" class="t2" text-anchor="middle">1.31</text>
+<rect x="336" y="134" width="72" height="24" rx="4" class="cell"/>
+<text x="372" y="150" class="t2" text-anchor="middle">−1.31</text>
+<text x="80" y="180" class="t2" text-anchor="end">round 5</text>
+<rect x="96" y="164" width="72" height="24" rx="4" class="cell-acc"/>
+<text x="132" y="180" class="t2" text-anchor="middle">−0.39</text>
+<rect x="176" y="164" width="72" height="24" rx="4" class="cell"/>
+<text x="212" y="180" class="t2" text-anchor="middle">0.61</text>
+<rect x="256" y="164" width="72" height="24" rx="4" class="cell-acc"/>
+<text x="292" y="180" class="t2" text-anchor="middle">0.06</text>
+<rect x="336" y="164" width="72" height="24" rx="4" class="cell"/>
+<text x="372" y="180" class="t2" text-anchor="middle">−1.14</text>
+<text x="80" y="210" class="t2" text-anchor="end">round 6</text>
+<rect x="96" y="194" width="72" height="24" rx="4" class="cell-acc"/>
+<text x="132" y="210" class="t2" text-anchor="middle">−1.62</text>
+<rect x="176" y="194" width="72" height="24" rx="4" class="cell"/>
+<text x="212" y="210" class="t2" text-anchor="middle">0.14</text>
+<rect x="256" y="194" width="72" height="24" rx="4" class="cell-acc"/>
+<text x="292" y="210" class="t2" text-anchor="middle">2.55</text>
+<rect x="336" y="194" width="72" height="24" rx="4" class="cell"/>
+<text x="372" y="210" class="t2" text-anchor="middle">0.27</text>
+<text x="80" y="240" class="t2" text-anchor="end">round 7</text>
+<rect x="96" y="224" width="72" height="24" rx="4" class="cell-acc"/>
+<text x="132" y="240" class="t2" text-anchor="middle">−1.35</text>
+<rect x="176" y="224" width="72" height="24" rx="4" class="cell"/>
+<text x="212" y="240" class="t2" text-anchor="middle">−0.23</text>
+<rect x="256" y="224" width="72" height="24" rx="4" class="cell-acc"/>
+<text x="292" y="240" class="t2" text-anchor="middle">0.85</text>
+<rect x="336" y="224" width="72" height="24" rx="4" class="cell"/>
+<text x="372" y="240" class="t2" text-anchor="middle">−0.70</text>
+<text x="80" y="270" class="t2" text-anchor="end">round 8</text>
+<rect x="96" y="254" width="72" height="24" rx="4" class="cell-acc"/>
+<text x="132" y="270" class="t2" text-anchor="middle">−2.33</text>
+<rect x="176" y="254" width="72" height="24" rx="4" class="cell"/>
+<text x="212" y="270" class="t2" text-anchor="middle">0.35</text>
+<rect x="256" y="254" width="72" height="24" rx="4" class="cell-acc"/>
+<text x="292" y="270" class="t2" text-anchor="middle">2.45</text>
+<rect x="336" y="254" width="72" height="24" rx="4" class="cell"/>
+<text x="372" y="270" class="t2" text-anchor="middle">0.13</text>
+<rect x="92" y="40" width="80" height="242" rx="6" class="dash"/>
+<rect x="89" y="130" width="326" height="32" rx="6" class="dash"/>
+<text x="422" y="150" class="t b">(b)</text>
+<text x="80" y="326" class="t2" text-anchor="end">query: r</text>
+<rect x="96" y="310" width="72" height="24" rx="4" class="cell-q"/>
+<text x="132" y="326" class="t q-t" text-anchor="middle">1.05</text>
+<rect x="176" y="310" width="72" height="24" rx="4" class="cell-q"/>
+<text x="212" y="326" class="t q-t" text-anchor="middle">0.45</text>
+<rect x="256" y="310" width="72" height="24" rx="4" class="cell-q"/>
+<text x="292" y="326" class="t q-t" text-anchor="middle">0.18</text>
+<rect x="336" y="310" width="72" height="24" rx="4" class="cell-q"/>
+<text x="372" y="326" class="t q-t" text-anchor="middle">−0.15</text>
+<line x1="132" y1="284" x2="132" y2="307" class="ln-acc" marker-end="url(#ah2)"/>
+<line x1="292" y1="284" x2="292" y2="307" class="ln-acc" marker-end="url(#ah2)"/>
+<text x="302" y="302" class="t b">(d)</text>
+<rect x="96" y="360" width="232" height="28" rx="6" class="box"/>
+<text x="212" y="378" class="t2" text-anchor="middle">query token: reads all 36 report tokens</text>
+<line x1="332" y1="374" x2="356" y2="374" class="ln" marker-end="url(#ah2g)"/>
+<text x="360" y="378" class="t2">forecast of v</text>
+</svg></div>
+<p class="cap">Each cell is one token of the example episode: past rounds show the error \(e\) (the token also holds \(r\) and \(v\)), the query round shows \(r\) only. (a) The tokens of one trader share its key. (b) The tokens of one round share its key. (d) The query report of trader \(i\) shares trader \(i\)'s key with its past reports; nothing else links them. Shaded: the pair, traders 1 and 3.</p>
+<ol type="a">
+<li>Gather each trader's past errors \(e_{1,i},\dots,e_{T,i}\): the tokens with trader \(i\)'s key.</li>
+<li>Compare traders round by round: for each pair, combine the two errors of the same round (tokens with the same round key) and add over rounds to get the score above, which uses the sums \(S_{aa}\), \(S_{bb}\), \(S_{ab}\). The six scores, plus a small term from the query reports, give the posterior over pairs.</li>
+<li>Turn the posterior into weights: \(\beta_i=\mathbb E\big[(\Sigma^{-1}\mathbf 1)_i\mid\text{data}\big]=1+4\,P(i\text{ is in the pair}\mid\text{data})\). In the example \(\beta=(5,1,5,1)\).</li>
+<li>Put each weight on the same trader's query report, again through the trader key. The mean is \(\sum_i\beta_ir_i/13\), in the example \((5\cdot1.046+0.452+5\cdot0.175-0.148)/13=0.493\), and the forecast is the mixture of the \(\mathcal N(m_{ab},1/13)\).</li>
+</ol>
+<div class="fig"><svg viewBox="0 0 746 214" style="max-width:746px;min-width:620px" role="img" aria-label="The four steps with the example's numbers: gather errors by trader, score pairs by round, weights 5 1 5 1, weighted mean.">
+<defs><marker id="ah3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker></defs>
+<rect x="4" y="8" width="168" height="160" rx="8" class="box"/>
+<rect x="194" y="8" width="168" height="160" rx="8" class="box"/>
+<rect x="384" y="8" width="168" height="160" rx="8" class="box"/>
+<rect x="574" y="8" width="168" height="160" rx="8" class="box"/>
+<line x1="174" y1="88" x2="191" y2="88" class="ln" marker-end="url(#ah3)"/>
+<line x1="364" y1="88" x2="381" y2="88" class="ln" marker-end="url(#ah3)"/>
+<line x1="554" y1="88" x2="571" y2="88" class="ln" marker-end="url(#ah3)"/>
+<text x="14" y="30" class="t b">(a) gather by trader</text>
+<text x="14" y="50" class="t2">each trader's T errors</text>
+<text x="14" y="76" class="t2 acc-t">trader 1:</text>
+<text x="14" y="94" class="t2">−0.57  0.81  −0.24  …</text>
+<text x="14" y="120" class="t2 acc-t">trader 3:</text>
+<text x="14" y="138" class="t2">0.87  0.07  −0.05  …</text>
+<text x="204" y="30" class="t b">(b) compare by round</text>
+<text x="204" y="50" class="t2">score for each pair</text>
+<text x="204" y="76" class="t2 acc-t">pair 1&#8211;3: +3.6</text>
+<text x="204" y="96" class="t2">best other pair: −13.4</text>
+<text x="204" y="122" class="t2">P(pair 1&#8211;3) &gt; 0.9999999</text>
+<text x="394" y="30" class="t b">(c) weights</text>
+<text x="394" y="50" class="t2">&#946;<tspan dy="3" font-size="9">i</tspan><tspan dy="-3"> = 1 + 4 P(i in the pair)</tspan></text>
+<text x="394" y="80" class="t acc-t">&#946; = (5, 1, 5, 1)</text>
+<text x="394" y="106" class="t2">= &#931;<tspan dy="-5" font-size="9">&#8722;1</tspan><tspan dy="5">1 for pair 1&#8211;3</tspan></text>
+<text x="584" y="30" class="t b">(d) apply by trader</text>
+<text x="584" y="50" class="t2">&#946;<tspan dy="3" font-size="9">i</tspan><tspan dy="-3"> goes to query report r</tspan><tspan dy="3" font-size="9">i</tspan></text>
+<text x="584" y="76" class="t2">(5&#183;1.046 + 0.452</text>
+<text x="584" y="94" class="t2">+ 5&#183;0.175 − 0.148) / 13</text>
+<text x="584" y="122" class="t acc-t">= 0.493, sd 0.277</text>
+<text x="88" y="194" class="t2" text-anchor="middle">link: trader key</text>
+<text x="278" y="194" class="t2" text-anchor="middle">link: round key</text>
+<text x="468" y="194" class="t2" text-anchor="middle">no link needed</text>
+<text x="658" y="194" class="t2" text-anchor="middle">link: trader key</text>
+</svg></div>
+<p class="cap">The four steps on the example episode. Each box passes its result to the next; the history value needs all four.</p>
+
+<h3>Why the loss gives almost no signal</h3>
+<p>First, the history-blind forecast already gets most of the achievable loss. Average log loss at \(T=32\) on 2,000 fresh episodes (pilot arm with the report layout, seed 0):</p>
+<div class="tbl"><table class="num ladder"><tr><th>forecast</th><th>log loss (nats)</th><th></th></tr><tr><td>Prior \(\mathcal N(0,1)\)</td><td>1.427</td><td class="barcell"><span class="bar" style="width:100.0%"></span></td></tr><tr><td>Correlation-blind Bayes</td><td>0.445</td><td class="barcell"><span class="bar" style="width:31.2%"></span></td></tr><tr><td>History-blind Bayes</td><td>0.348</td><td class="barcell"><span class="bar" style="width:24.4%"></span></td></tr><tr><td>Trained network</td><td>0.354</td><td class="barcell"><span class="bar net" style="width:24.8%"></span></td></tr><tr><td>Exact Bayes</td><td>0.130</td><td class="barcell"><span class="bar" style="width:9.1%"></span></td></tr></table></div>
+<p>Of the 1.30 nats between the prior and exact Bayes, history-blind Bayes gets 1.08 (83%), and the trained network comes within 0.007 of it. The remaining 0.22 nats need the history.</p>
+<p>Second, no single step earns any of those 0.22 nats on its own. This follows from the symmetries of the family:</p>
+<ul>
+<li>One trader's own errors carry nothing: under all six pairs they are independent draws from \(\mathcal N(0,1)\). Step (a) alone gains nothing.</li>
+<li>Comparisons that lose track of which trader is which carry nothing. The six pairs are relabellings of one another, so any summary of the history that stays the same when the traders' columns are permuted, for example the six pair correlations as an unlabelled list, has the same likelihood under every pair, and Bayes given such a summary is history-blind Bayes. (On the example, the log likelihood of the unlabelled set of columns is −42.756 under each of the six pairs.) Step (b) without the trader labels gains nothing.</li>
+<li>Weights help only on the reports of the traders they belong to; on the wrong traders they hurt. Exact Bayes applied to histories whose columns were permuted among traders scores 1.23 nats at \(T=32\), against 0.348 for history-blind Bayes. So steps (a)&ndash;(c) gain nothing without (d), and (d) has nothing to carry without (a)&ndash;(c).</li>
+</ul>
+<p>The gain therefore needs all four steps at once, and improving one step while the others are missing leaves the best achievable loss where it was. Our reading is that, once the history-blind solution is learned, gradient descent gets almost no signal toward any of the steps. We have not measured this directly, but the measurements so far fit it. In the report-layout pilot networks (512 episodes at \(T=32\), computed for this page with astra's diagnostic), attention from a trader's query-report token to its own trader's past reports, per token, equals attention to other traders' past reports: ratio 0.999&ndash;1.000 in both layers and 0.995&ndash;1.001 across heads, although these tokens put 43&ndash;66% of their attention on past reports. Permuting the history columns among traders changes the main-family networks' log loss by at most 1.1×10<sup>−4</sup> nats at \(T=8\), 32 and 128, whereas it ruins exact Bayes (bullet above).</p>
+<p>Compare the tiny three-source world in astra's binding paper (28 October). There, a reference that forgot which source each group of readings came from still kept 0.059 of the 0.185 nats the context was worth; stalled models used some of it (0.02&ndash;0.04 nats better than query-only Bayes), and 39 of 50 width-16 seeds met the acquisition criterion within 80k updates; first-layer own/other attention ratios were 14.6&ndash;233 in acquired models and 1.0&ndash;1.24 in stalled ones. In the FA main family the part of the history value that needs no binding is exactly zero.</p>
+
+<h3>How one pair's correlation sets the weights</h3>
+<p>Four traders with error variance 1; traders 1 and 3 have error correlation \(\rho\) and the rest are independent. With \(\Sigma\) known, Bayes gives each of the pair weight \(1/(1+\rho)\) and the others weight 1. The last line is the expected log-loss cost of ignoring the correlation (all weights 1), averaged over episodes, \(\mathbb E\,\mathrm{KL}\big(\mathcal N(m,V)\,\|\,\mathcal N(m',V')\big)\) in closed form.</p>
+<div class="sim">
+<label for="rho">Correlation of the errors of traders 1 and 3: <b id="rhoV">&minus;0.80</b></label><br>
+<input type="range" id="rho" min="-0.95" max="0.95" step="0.05" value="-0.8" aria-label="error correlation of traders 1 and 3">
+<div class="tbl"><table class="num">
+<tr><th>trader</th><th>weight \(\beta_i\)</th><th>share of the mean \(\beta_i/(1+\sum_j\beta_j)\)</th><th></th></tr>
+<tr class="hl"><td>1</td><td id="w1"></td><td id="s1"></td><td class="barcell"><span class="bar net" id="b1"></span></td></tr>
+<tr><td>2</td><td id="w2"></td><td id="s2"></td><td class="barcell"><span class="bar" id="b2"></span></td></tr>
+<tr class="hl"><td>3</td><td id="w3"></td><td id="s3"></td><td class="barcell"><span class="bar net" id="b3"></span></td></tr>
+<tr><td>4</td><td id="w4"></td><td id="s4"></td><td class="barcell"><span class="bar" id="b4"></span></td></tr>
+</table></div>
+<p class="note" id="simout"></p>
+</div>
+<p class="note">The shares add up to less than 1; the rest is shrinkage toward the prior mean 0. Check against the generator (40,000 episodes): at \(\rho=-0.8\) the cost is 0.320 &plusmn; 0.003 nats (formula 0.318), at \(\rho=+0.8\) 0.061 &plusmn; 0.002 (formula 0.062). These costs assume \(\Sigma\) known. The history value is smaller because the query reports reveal part of the structure: about 0.22 nats at \(\rho=-0.8\) and 0.02 at \(\rho=+0.8\), which is why the pre-registered pilot used the negative pair as its main family and the positive pair as a null.</p>
+</section>
+
+<section>
+<h2>4. What has been tried, what is running, what could come next</h2>
+<h3>Pilot (finished)</h3>
+<p>Run <code>fa-pilot-1028b</code>, 16:00&ndash;18:37Z on one L4 GPU, at most $2.29 (list price), VM deleted. Eight arms: the main family and a null family (a positive pair, \(\rho=+0.8\), history value 0.02 nats), the report and column layouts, seeds 0 and 1. The pre-registered success criterion, at least half of the history value recovered at \(T=32\), was not met in any arm. Main-family arms, evaluated by <code>diag_fa.py</code> on 2,000 fresh episodes per \(T\); on these episodes the history value is 0.208 / 0.218 / 0.248 nats at \(T=8/32/128\):</p>
+<div class="tbl"><table class="num"><tr><th>main-family arm</th><th>gap at T&nbsp;=&nbsp;0</th><th>gap at T&nbsp;=&nbsp;8&nbsp;/&nbsp;32&nbsp;/&nbsp;128</th><th>fraction recovered at T&nbsp;=&nbsp;32</th><th>above history-blind, worst&nbsp;T</th></tr><tr><td>report layout, seed 0</td><td>0.010</td><td>0.218 / 0.224 / 0.262</td><td>−0.03</td><td>0.013</td></tr><tr><td>report layout, seed 1</td><td>0.011</td><td>0.219 / 0.224 / 0.264</td><td>−0.03</td><td>0.016</td></tr><tr><td>column layout, seed 0</td><td>0.003</td><td>0.215 / 0.219 / 0.253</td><td>−0.01</td><td>0.006</td></tr><tr><td>column layout, seed 1</td><td>0.005</td><td>0.215 / 0.224 / 0.254</td><td>−0.03</td><td>0.006</td></tr></table></div>
+<p class="note">Gap = network log loss minus exact Bayes log loss, in nats. Fraction recovered = (history-blind log loss &minus; network log loss) / (history-blind log loss &minus; exact Bayes log loss); negative means slightly worse than history-blind Bayes. Null arms: history value 0.014 / 0.020 / 0.019 at \(T=8/32/128\), network gaps 0.017&ndash;0.029, at most 0.009 nats worse than history-blind Bayes. In every arm, relabelling the trader keys changes the forecast by a KL of at most 3.8×10<sup>−4</sup>.</p>
+<div class="fig"><svg viewBox="0 0 640 270" role="img" aria-label="Validation gap to exact Bayes during the pilot, by training step" class="chart">
+<line x1="64" x2="560" y1="228.0" y2="228.0" class="grid"/>
+<text x="56" y="232.0" class="t2" text-anchor="end">0.0</text>
+<line x1="64" x2="560" y1="158.0" y2="158.0" class="grid"/>
+<text x="56" y="162.0" class="t2" text-anchor="end">0.2</text>
+<line x1="64" x2="560" y1="88.0" y2="88.0" class="grid"/>
+<text x="56" y="92.0" class="t2" text-anchor="end">0.4</text>
+<line x1="64" x2="560" y1="18.0" y2="18.0" class="grid"/>
+<text x="56" y="22.0" class="t2" text-anchor="end">0.6</text>
+<text x="64.0" y="246" class="t2" text-anchor="middle">0k</text>
+<text x="188.0" y="246" class="t2" text-anchor="middle">5k</text>
+<text x="312.0" y="246" class="t2" text-anchor="middle">10k</text>
+<text x="436.0" y="246" class="t2" text-anchor="middle">15k</text>
+<text x="560.0" y="246" class="t2" text-anchor="middle">20k</text>
+<text x="312" y="266" class="t2" text-anchor="middle">training step</text>
+<text x="14" y="123" class="t2" text-anchor="middle" transform="rotate(-90 14 123)">gap to exact Bayes (nats)</text>
+<line x1="64" x2="560" y1="175.0" y2="175.0" class="lvl acc"/>
+<line x1="64" x2="560" y1="222.9" y2="222.9" class="lvl ink2"/>
+<polyline points="113.6,139.6 163.2,158.0 212.8,161.9 262.4,173.2 312.0,173.8 361.6,174.2 411.2,174.7 460.8,174.5 510.4,176.6 560.0,176.6" class="crv acc"/>
+<polyline points="113.6,126.1 163.2,157.4 212.8,157.2 262.4,174.9 312.0,169.5 361.6,175.4 411.2,174.2 460.8,174.9 510.4,175.7 560.0,176.3" class="crv acc"/>
+<polyline points="113.6,140.9 163.2,151.9 212.8,111.7 262.4,173.9 312.0,174.3 361.6,173.7 411.2,175.2 460.8,176.3 510.4,175.4 560.0,176.0" class="crv acc"/>
+<polyline points="113.6,123.3 163.2,88.0 212.8,35.1 262.4,169.4 312.0,172.9 361.6,175.0 411.2,175.8 460.8,175.0 510.4,175.3 560.0,176.1" class="crv acc"/>
+<polyline points="113.6,205.0 163.2,201.2 212.8,213.3 262.4,220.6 312.0,221.9 361.6,222.2 411.2,222.5 460.8,222.5 510.4,222.7 560.0,222.5" class="crv ink2"/>
+<polyline points="113.6,198.9 163.2,201.1 212.8,209.9 262.4,218.9 312.0,221.3 361.6,221.2 411.2,222.2 460.8,222.4 510.4,222.7 560.0,222.8" class="crv ink2"/>
+<polyline points="113.6,207.8 163.2,214.9 212.8,193.4 262.4,220.2 312.0,221.4 361.6,222.4 411.2,222.0 460.8,221.3 510.4,222.7 560.0,222.7" class="crv ink2"/>
+<polyline points="113.6,195.4 163.2,196.5 212.8,154.2 262.4,219.4 312.0,221.2 361.6,221.5 411.2,222.7 460.8,222.7 510.4,222.6 560.0,223.0" class="crv ink2"/>
+<text x="566" y="165.0" class="t acc-t">main family:</text>
+<text x="566" y="180.0" class="t acc-t">4 arms</text>
+<text x="566" y="195.0" class="t2">level 0.151</text>
+<text x="566" y="214.9" class="t2">null: 4 arms,</text>
+<text x="566" y="229.9" class="t2">level 0.015</text>
+</svg></div>
+<p class="cap">Validation log loss minus exact Bayes during the pilot (2,048 fixed episodes; \(T=0\) with probability 0.1, otherwise log-uniform in 1&ndash;128). Dashed: the history-blind level of that distribution, 0.151 &plusmn; 0.004 for the main family and 0.015 &plusmn; 0.001 for the null family (20,000 fresh episodes, computed for this page); the fixed validation set adds about &plusmn;0.01 of sampling noise of its own. Steps 0&ndash;6,000 trained on \(T\ge32\) only, while the validation set includes \(T=0\).</p>
+
+<h3>Running now: binding arms</h3>
+<p>Pre-registered as Amendment A3 at 18:55Z, started 19:02Z, cost cap $6. Changes from the pilot: 4 blocks; one \(T\) per batch, \(T\le64\), with \(T\) in 32&ndash;64 for the first 30% of steps; and in four arms a dense target, a per-trader head on each query-report token that predicts \(\beta_i\) (squared error on \(\beta_i/3\), weight 1). Two further aids: trader keys orthonormal within an episode, and batch 1,024. Seven arms share one L4 (<code>fa-bind-1028d</code>); <code>dense_s0</code> ran out of GPU memory there and was restarted alone on a second L4 (<code>fa-bind-1028e</code>) at 19:33Z. Read from the training logs at 20:15Z (validation on 1,024 episodes per checkpoint, every 2,000 steps; every 500 for the batch-1,024 arm):</p>
+<div class="tbl"><table class="num"><tr><th>arm</th><th class="txt">setting</th><th>step / planned</th><th>fraction recovered at T&nbsp;=&nbsp;32: last (range)</th><th>own/other attention, layers 1&ndash;4</th><th>dense-head MSE</th></tr><tr><td>nll_s0</td><td class="txt sm">control (log loss only)</td><td>12,000 / 60,000</td><td>−0.06 (−0.32 to −0.04)</td><td>all 1.00</td><td>&ndash;</td></tr><tr><td>nll_s1</td><td class="txt sm">control, seed 1</td><td>12,000 / 60,000</td><td>−0.07 (−0.22 to −0.06)</td><td>all 1.00</td><td>&ndash;</td></tr><tr><td>nll_ortho_s0</td><td class="txt sm">orthonormal keys</td><td>12,000 / 60,000</td><td>−0.05 (−0.16 to −0.04)</td><td>all 1.00</td><td>&ndash;</td></tr><tr><td>dense_s0</td><td class="txt sm">dense target; own GPU</td><td>60,000 / 60,000</td><td>−0.01 (−0.25 to 0.01)</td><td>all 1.00</td><td>0.274</td></tr><tr><td>dense_s1</td><td class="txt sm">dense, seed 1</td><td>10,000 / 60,000</td><td>−0.02 (−0.13 to −0.02)</td><td>all 1.00</td><td>0.420</td></tr><tr><td>dense_ortho_s0</td><td class="txt sm">dense, orthonormal keys</td><td>10,000 / 60,000</td><td>−0.07 (−0.15 to −0.07)</td><td>all 1.00</td><td>0.420</td></tr><tr><td>dense_bs1024_s0</td><td class="txt sm">dense, batch 1,024</td><td>3,500 / 15,000</td><td>−0.12 (−0.29 to −0.07)</td><td>all 1.00</td><td>0.420</td></tr></table></div>
+<p><b>Finished:</b> <code>dense_s0</code>, alone on its GPU, ran all 60,000 steps (15.4 million episodes; VM deleted 20:12Z, at most $0.57). On 2,000 fresh episodes per \(T\) its gap at \(T=0\) is 0.002 nats and the fraction of the history value recovered is −0.013, −0.002 and −0.014 at \(T=8\), 32 and 64 (and −0.006 at 128, beyond training). Its own/other attention ratio at \(T=32\) is 1.003, 1.000, 1.000, 1.002 in layers 1&ndash;4. When the history columns are permuted among traders, its forecast mean moves by 0.04&ndash;0.10% of the amount exact Bayes moves (RMS over episodes, \(T=8\) to 128); the analogous measure in astra's tiny world (an identity-only intervention) was 0.24&ndash;0.47% for stalled models and 82&ndash;99% for acquired ones.</p>
+<p>No arm has left the history-blind level: the fraction recovered at \(T=32\) has stayed between −0.32 and 0.01 at every checkpoint, and the own/other attention ratio between 1.00 and 1.01 in every layer. The dense head's error is within 0.01 of the best value reachable without the history, which is 0.418 while \(T\) is 32&ndash;64 and 0.268 afterwards (a constant prediction gets 0.444 and 0.294); a head that used the history could reach 0. Each arm stops at its planned steps or at 3.2 hours of wall time; at the current speed the six arms on the shared GPU reach the time limit between about 22:10 and 22:20Z (estimate from the logs), well before their planned steps; their evaluations follow.</p>
+
+<h3>Options for next (not started)</h3>
+<p>Each option takes over or isolates one of the four steps, so a failure would point at the remaining ones.</p>
+<div class="tbl"><table>
+<tr><th>option</th><th>what changes</th><th>what the result would tell us</th></tr>
+<tr><td>Binding control</td><td>Each query-report token also carries its own trader's past errors (or the column summary \(h_i\)), so neither key link is needed: steps (a) and (d) are given, and (b) becomes a comparison among these \(N\) tokens.</td><td>The pilot's column layout already did the round matching in the input and still failed. If this control learns, the trader-key link to the query reports is the obstacle; if not, comparing traders and forming the weights is hard too.</td></tr>
+<tr><td>Auxiliary target earlier in the chain</td><td>A head on trader \(i\)'s past-report tokens predicts \(P(i\text{ is in the pair})\), or a covariance statistic such as \(\min_j S_{ij}/T\); this rewards (a)&ndash;(c) without (d). The running dense target is the same quantity (\(\beta_i=1+4P\)) read at the query-report token, so it still needs (d).</td><td>Whether the stall is in finding the pair or in routing the weights to the query reports.</td></tr>
+<tr><td>Curriculum from 2 traders</td><td>\(N=2\), the pair either anti-correlated or independent (two hypotheses): history value 0.087 nats at \(T=8\), 0.110 at \(T=32\). Both traders always get the same weight, so only round-by-round comparison is needed and no trader link. Then \(N=3\) (one of three pairs; 0.170 and 0.186 nats), then 4.</td><td>Whether round-key comparison can be learned alone, and whether it helps the trader links later.</td></tr>
+</table></div>
+<p class="note">The curriculum values were computed for this page with the same code (6,000 episodes each). The pre-registered follow-up, Gemini's \(N=8\) family with two of five traders loaded negatively (history value 0.21&ndash;0.24 nats), waits on the \(N=4\) result.</p>
+</section>
+
+<section>
+<h2>Files</h2>
+<p class="note">On General under <code>/home/agent/workspaces/mats/</code>. Spec and pre-registration: <code>work/world-fa/SPEC.md</code>, <code>work/world-fa/PREREG-FA.md</code> (sections 1&ndash;10, Amendments A1&ndash;A3); critiques <code>work/world-fa/r1-{codex,gemini,kimi}.md</code>. Code: <code>work/world-fa/fa_core.py</code> (generator, tokens, exact Bayes, references; its tests compare Bayes with independent brute-force enumeration), <code>world_fa.py</code>, <code>train_fa.py</code>, <code>diag_fa.py</code>, <code>work/worlds/harness.py</code> (SetPFN). Pilot runs: <code>work/world-fa/runs/fa-pilot-1028b/</code>. Progress log: <code>outbox/world-fa-2026-10-28.md</code>. Running arms: logs on the VMs of <code>fa-bind-1028d</code> and <code>fa-bind-1028e</code>, copied at 20:15Z to <code>work/fa-page/bind_logs/</code>. Binding paper: <code>outbox/binding-plateau-paper-2026-10-28/paper.tex</code>. This page's numbers: <code>work/fa-page/make_example.py</code> (episode, network outputs on it, pair scores, unlabelled-history check), <code>pop_checks.py</code> (validation levels, slider check, pilot tables), <code>extra_checks.py</code> (pilot attention ratios, curriculum values), <code>aux_floor.py</code> (dense-target floors), <code>build_page.py</code>.</p>
+</section>
+</main>
+<script>
+(function(){
+  var el=document.getElementById('rho');if(!el)return;
+  function fm(x,d){var s=Math.abs(x).toFixed(d);return(x<0&&Number(s)!==0?'\u2212':'')+s;}
+  function upd(){
+    var p=parseFloat(el.value),wp=1/(1+p),a=2*wp+2,V=1/(1+a),w=[wp,1,wp,1];
+    var dp=V*wp-0.2,dq=V-0.2,Em=2*(1+p)*dp*dp+2*dq*dq+Math.pow(2*dp+2*dq,2);
+    var cost=0.5*(Math.log(0.2/V)+V/0.2+Em/0.2-1);
+    document.getElementById('rhoV').textContent=fm(p,2);
+    for(var i=0;i<4;i++){
+      document.getElementById('w'+(i+1)).textContent=fm(w[i],2);
+      document.getElementById('s'+(i+1)).textContent=fm(w[i]*V,3);
+      document.getElementById('b'+(i+1)).style.width=(200*w[i]*V).toFixed(1)+'%';
+    }
+    document.getElementById('simout').innerHTML='Bayes sd with \u03a3 known: <b>'+fm(Math.sqrt(V),3)+'</b>; correlation-blind sd: 0.447. Expected cost of ignoring the correlation: <b>'+fm(Math.max(cost,0),3)+' nats</b> per episode.';
+  }
+  el.addEventListener('input',upd);upd();
+})();
+</script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]})"></script>
+</html>

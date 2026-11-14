@@ -1,0 +1,82 @@
+{
+ "model": "Claude Fable 5.2 (claude-fable-5-2[1m])",
+ "is_kelvins_design": "A variant. His: the condition itself (amplified P(X) P(Y|X) against P(Y) P(X|Y)), read from sampled rollouts, with real outcomes scoring the forecast.\nDrifts:\n1. The rollout policy is not a GFlowNet and never learns: it is M sampling the assumptions in fixed index order. Nothing is distilled back, so the consistency signal can only change the head.\n2. Amplification and trust head are one 124k-parameter network, and every consistency arm trains it on M's imagined samples: not \"real data only\".\n3. \"Many rollouts\" is 1 and 4.\n4. The score enters only arm (ii-s) and three input features; the demonstration is a bare filling of the 20 assumptions.\n5. Both orders are pulled together symmetrically (FRAME row l); the trust-directed update was not tried.\n6. His 17:05Z form (real labels along the chain, FRAME section 6) was not run.\nWritten by hand: the score's factorisation, the search order, the head's nine per-trajectory features, the weights.",
+ "verdicts": [
+  {
+   "claim": "Cross-order consistency on pairs (i) or whole orders (ii-o) gives no data-efficiency gain; weight 10 costs 6-30% from n = 1,024.",
+   "verdict": "CONFIRMED",
+   "reason": "Tables A and B reproduce from the stored forecasts with my own exact posterior (single-run cells at n >= 4,096 differ by up to 2 points: unmatched baseline). Fresh world 103, own generator and loop: (i) +6%, +1%, +7% and (ii-o) +7%, +1%, +13% at n = 64, 256, 1,024 against the mean of 4-5 initialisations; weight 10: -9%, -6%, -14%."
+  },
+  {
+   "claim": "Anchored to the score (ii-s, weight 1): +6-17% at n = 64, 256, nothing from 1,024, a loss at weight 10.",
+   "verdict": "CONFIRMED",
+   "reason": "Reproduced. World 103: +8%, +8%, -2%; weight 10 costs 49% at n = 1,024."
+  },
+  {
+   "claim": "The anchored term adds nothing over outcomes sampled from M; that arm with no real outcome is about 1,000 real vectors.",
+   "verdict": "CONFIRMED",
+   "reason": "World 103: sampled outcomes +12%, +17%, +13%; alone 0.031 against 0.029-0.036. My control, pulling the forecast toward one pass of M with no consistency and no score, gives +13%, +19%, +12%: the gain is regularisation toward M."
+  },
+  {
+   "claim": "With n <= 256 every arm is at or above one pass of M.",
+   "verdict": "REFUTED",
+   "reason": "True in worlds 101, 102. In world 103 sampled outcomes reach 0.031-0.033 (one pass 0.034), and a head that starts at one pass plus a zero correction, on real outcomes only, sits at 0.032-0.034. It is a property of the free head."
+  },
+  {
+   "claim": "At K = 1 and 4 the pair mismatch equals its sampling-noise floor and does not fall with K; M itself D 0.005/0.007.",
+   "verdict": "CONFIRMED",
+   "reason": "Reproduced. World 103: 1.0-1.4 times the floor in 12 of 12 cells; rises in 4 of 6 runs. Noise removed by multiplying two independent draws (as a measurement): about 0.01-0.03 in worlds 101, 102, 1-4 times M's own, also not falling."
+  },
+  {
+   "claim": "The losses remove the measured variance (D 20-40 times, V_ord 2-10 times).",
+   "verdict": "CONFIRMED",
+   "reason": "Reproduced; world 103 10-42 times. Nearly true by construction: it is what the loss minimises; only the transfer from imagined to real contexts is a finding."
+  },
+  {
+   "claim": "The October failure reappears: the forecast stops depending on its trajectories and large-context error returns to one pass of M.",
+   "verdict": "CONFIRMED",
+   "reason": "Table D reproduces cell by cell. World 103: better order worse by +0.055*, +0.031*, +0.080*; forecast moves 0.005 between draws instead of 0.060; 20-29 revealed 0.168 (one pass 0.166, real-only 0.10-0.12). Same with the one-pass-start head and at K = 16 (+0.065*, +0.076*)."
+  },
+  {
+   "claim": "Anchoring to the score does not prevent the drag at weight 10; none at weights 0.1 and 1 up to n = 1,024.",
+   "verdict": "CONFIRMED",
+   "reason": "Reproduced. World 103, n = 1,024: +0.061* at weight 10, -0.003 at weight 1."
+  },
+  {
+   "claim": "When real outcomes score only questions with 25+ revealed checks, either cross-order term repairs the other questions (0.071/0.283 to 0.032-0.040).",
+   "verdict": "GAP",
+   "reason": "Numbers reproduce; world 103: 0.31 to 0.041 / 0.034, and 0.21 to 0.035 / 0.045 with a one-pass-start head, so the damage is real. But what is restored is one pass of M, an input of the head: on never-scored questions the forecast closes 1-13% of the gap from one pass to exact (14-31% with real outcomes everywhere); sampled outcomes do as well."
+  },
+  {
+   "claim": "PROVEN: an order-against-order condition carries knowledge from larger contexts down and not the reverse.",
+   "verdict": "GAP",
+   "reason": "Identity exact on 20,000 random joints (error 6e-16); the four larger-context numbers do fix the joint. \"Not the reverse\" is too strong: the two smaller-context numbers cut the larger ones from 3 free numbers to 1. And the loss is symmetric: its gradient reaches all six numbers, which is the drag."
+  },
+  {
+   "claim": "A pair term with the sampling noise removed fails as a loss.",
+   "verdict": "CONFIRMED",
+   "reason": "Never better. My range is +0.000 to +0.019, not +0.012 to +0.031; two cells are equal, not worse (early checkpoint)."
+  },
+  {
+   "claim": "UNKNOWN: at K = 64 or 256 the order variance falls below the sampling noise.",
+   "verdict": "NOT CHECKED",
+   "reason": "I ran K = 16 (post hoc, world 103, 512 real vectors, 4 initialisations, 96 test triples): error falls to 0.020-0.027 (one pass 0.035), but the mismatch still equals its floor (0.057-0.117 against 0.058-0.106) and the noise-free part does not fall."
+  },
+  {
+   "claim": "CONJECTURE: it helps with many free numbers per question or strongly dependent variables.",
+   "verdict": "NOT CHECKED",
+   "reason": "Not tested by the work or by me."
+  },
+  {
+   "claim": "Arm-side code that ran is the registered code.",
+   "verdict": "CONFIRMED",
+   "reason": "Both train logs print the registered hashes; files match; job list equals mkjobs.py's output; 114 of 114 runs; world-101 arms started 18:00:34Z, after the 17:30:10Z amendment."
+  },
+  {
+   "claim": "Audit: no solver in arms, disjoint test, memorisation, equal compute, significance.",
+   "verdict": "GAP",
+   "reason": "No exact inference in any arm; the one-pass network on the same vectors never beats the constant; test compute equal. Gaps: stars cover test questions only, while one initialisation moves 6-10% in world 103; the switch to the size-M network used real labels of world 101's test contexts; up to 8.1% of test draws were dropped as seen, not 2-5%. Score's exact answer not re-derived."
+  }
+ ],
+ "plain_words": "Model: Claude Fable 5.2. The result holds; two of its readings are stronger than the evidence. No decision needed from you.\nContext: this is the test of your 10 Nov idea that amplified P(X) then P(Y|X) should agree with P(Y) then P(X|Y), used to learn from few real outcomes, on the parity world's trained network. I recomputed every table from the stored forecasts with my own exact answers, then re-ran the main arms in a third world (103) with my own generator and training loop. CPU only: the L40 queue estimate was 20 Nov.\n1. Confirmed: the cross-order term buys no accuracy with few real data, and a strong weight costs 6-30%.\n2. Confirmed: the October failure. The term removes the disagreement by making the forecast stop reading its rollouts; error on the informative questions returns to one pass of M. It also happens at 16 rollouts.\n3. Confirmed: at 1, 4 and 16 rollouts the disagreement between orders is sampling noise. Underneath is a real order effect 1-4 times M's own, which does not shrink with more rollouts.\n4. Weaker than stated: \"where your idea does work\". With real outcomes on one kind of question the term does stop the damage elsewhere, but it restores one pass of M, which the predictor is handed as an input. Nothing real data taught is carried over.\n5. Weaker than stated: the gain from anchoring to the score. Pulling the forecast toward one pass of M gives the same gain.\nWhat it missed that you would want:\n- A rollout policy that learns. Here the only way to lower the variance is to ignore the rollouts.\n- Your 17:05Z form: real labels along the chain, not imagined contexts.\n- Trust setting the direction of the update, instead of pulling both orders together.\n- The term applied to the search's aggregate, with the trust head kept on real data only.\n- Several initialisations per cell.\n- A predictor that starts at one pass of M: real outcomes alone then never do worse than one pass.\nOne slip of mine: four processes instead of three for under a minute.\nFiles: /home/agent/workspaces/mats/work/deep-study/wf13/consistency/check/ (recheck.py, gen.py, tr.py, rep103.py, dx.py, copycheck.py, identity.py; out/)."
+}

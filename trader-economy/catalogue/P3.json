@@ -1,0 +1,16 @@
+{
+ "id": "P3",
+ "question": "Does Shapley-type pay make latent traders pick the output-natural factors rather than a rotation, beyond a mechanism-sparsity baseline?",
+ "setup": "T1 toy: hidden z* = (b1, b2) drives 32 outputs in 4 groups (b1, b2, b1 AND b2, b1 OR b2, each XOR a seen side bit, 5% noise); traders see z* as noisy tetrahedron points (variant S); 3 latent traders with K=2 straight-through codes are paid by LOO/backprop, exact Shapley, Banzhaf, per-output AS-IG or joint AS-IG (negative control); baselines are an additive reader and Moebius-L1 interaction penalties. Variant S, 20 seeds per arm (2 processes x 10 replicates), 5k steps; Bn/Bm bit variants 10 seeds. ALIGNED = b1 and b2 each found (NMI >= 0.8) and no live trader tracks b1 XOR b2. Holm-corrected one-sided Fisher tests, Wilson/Newcombe 95% CIs. M0: CPU maze oracle (DEF, BFS_S, BFS_G cellular automata, bounded 3x3 reader) for the credit-horizon prediction.",
+ "result": "No. AS-IG aligned in 3/20 seeds (CI 0.05-0.36), the same as the additive reader (3/20), exact Shapley (3/20), Banzhaf (3/20) and LOO (2/20); Holm p = 1.0 for every comparison, so pre-registered falsifier (a) holds. AS-IG mostly collapsed to constant codes (Bayes gap 6.3 nats/example). The oracle's predicted 'natural pair plus duplicate' never appeared (0/40). Diagnostic (not pre-registered): the tabular maker cannot split codes; letting it price unvisited buckets (explore 0.05) lifts Shapley to 10/20 on seeds 0-1, but the pre-stated seeds 2-3 replication fails against the additive reader (6/20 vs 5/20, Holm p = 0.50; vs LOO 0/20, Holm p = 0.020). M0 settles prediction (b) at $0: before the backtrack, BFS earns -21% to -22% of its value at c = 6, and DEF earns in every live chunk. So Stage 4 (GPU) was not run. Cost: $1.14 spot CPU VM (ceiling rate), $0 GPU.",
+ "status": "No gain",
+ "files": [
+  "puzzles/P3/RESULTS.md",
+  "puzzles/P3/t1.py",
+  "puzzles/P3/m0.py",
+  "puzzles/P3/analyze.py",
+  "puzzles/P3/results/summary.json",
+  "puzzles/P3/results/charts.json",
+  "puzzles/P3/results/m0.json"
+ ]
+}

@@ -1,0 +1,355 @@
+{
+  "agent_development_subscription_usage_measured_by_this_report": false,
+  "arithmetic_memory_bounds": {
+    "assumptions": [
+      "Preserve stored BF16/F32 base dtypes; do not cast the whole base to FP32.",
+      "Freeze all text base weights; omit vision and MTP from the text-only class.",
+      "Rank16 adapters on every decoder Linear; no embedding/lm_head/norm/conv adapter.",
+      "FP32 adapters, gradients and two FP32 Adam moments; no separate master copy."
+    ],
+    "excludes": [
+      "activations",
+      "logits",
+      "attention/recurrent/KV state",
+      "allocator/runtime",
+      "temporary clones",
+      "LoRA initialization/loading overhead",
+      "rollback/recovery overhead"
+    ],
+    "existing_helper_base_plus_full_snapshot_plus_full_deltas_bytes": 53722842624,
+    "fp32_adapter_parameters_gradients_two_adam_moments_bytes": 692453376,
+    "frozen_text_base_payload_bytes": 17907614208,
+    "proposed_lora_rank": 16,
+    "scope": "Header-derived arithmetic; not measured memory, hardware fit, or throughput.",
+    "text_base_plus_fp32_adapter_grad_adam_bytes": 18600067584,
+    "trainable_adapter_parameters": 43278336
+  },
+  "candidate_weights_loaded": false,
+  "checkpoint_config_sha256": "d0883072e01861ed0b2d47be3c16c36a8e81c224c7ffaa310c6558fb3f932b05",
+  "checkpoint_groups": {
+    "mtp": {
+      "parameters": 243290624,
+      "payload_bytes": 486581248,
+      "tensors": 15
+    },
+    "text": {
+      "parameters": 8953803264,
+      "payload_bytes": 17907614208,
+      "tensors": 427
+    },
+    "vision": {
+      "parameters": 456010480,
+      "payload_bytes": 912020960,
+      "tensors": 333
+    }
+  },
+  "checkpoint_index_sha256": "26d3539b516be613f39563617cb9d33b3f83d401298125be392c80cefb8f7fe5",
+  "checkpoint_tensor_dtypes": {
+    "BF16": 727,
+    "F32": 48
+  },
+  "existing_cpu_helper": {
+    "bf16_hash_probe": {
+      "dtype": "torch.bfloat16",
+      "error": "Got unsupported ScalarType BFloat16",
+      "error_type": "TypeError",
+      "helper": "training.torch_loop.tensor_sha256",
+      "passed": false,
+      "scope": "One scalar hashing probe only; no model loaded or generated answers."
+    },
+    "bf16_probe_receipt_sha256": "4be65f76712b272d96872718faa362ac7327bd9c727dc74567c4db6f49021116",
+    "candidate_compatibility": "requires changes",
+    "issues": [
+      "BF16 tensor hashing raises TypeError.",
+      "CPU devices and generator are hard-coded.",
+      "Rollback and saved deltas duplicate the entire frozen base.",
+      "Full padded prompt vocabulary logits/log-softmax are materialized.",
+      "Qwen use_cache defaults true; helper does not override.",
+      "Transformers native gradient-checkpoint branch requires training mode; helper requires eval."
+    ],
+    "source_file": "training/torch_loop.py",
+    "source_sha256": "fa6fc19200eef2d7646f10ca7dd21cd4f90ccaac830e0dfc021802d167525412"
+  },
+  "generated_forecasts": 0,
+  "header_sources": [
+    {
+      "header_bytes": 1776,
+      "ranges": [
+        [
+          0,
+          7
+        ],
+        [
+          8,
+          1783
+        ]
+      ],
+      "sha256": "9bcf722bdd0eee137b7f0e225f4bfb50683b9b33c42de0d560498ce92a8c63b0",
+      "source_total_file_bytes": 5276436216,
+      "source_url": "https://huggingface.co/Qwen/Qwen3.5-9B/resolve/c202236235762e1c871ad0ccb60c8ee5ba337b9a/model.safetensors-00001-of-00004.safetensors",
+      "tensor_count": 14,
+      "tensor_data_bytes_downloaded": 0
+    },
+    {
+      "header_bytes": 6816,
+      "ranges": [
+        [
+          0,
+          7
+        ],
+        [
+          8,
+          6823
+        ]
+      ],
+      "sha256": "6fb55b1326b7e6b47a38ce4723552eada6c80d09e58eda1d46f25cb8d3e06658",
+      "source_total_file_bytes": 5335161512,
+      "source_url": "https://huggingface.co/Qwen/Qwen3.5-9B/resolve/c202236235762e1c871ad0ccb60c8ee5ba337b9a/model.safetensors-00002-of-00004.safetensors",
+      "tensor_count": 53,
+      "tensor_data_bytes_downloaded": 0
+    },
+    {
+      "header_bytes": 8312,
+      "ranges": [
+        [
+          0,
+          7
+        ],
+        [
+          8,
+          8319
+        ]
+      ],
+      "sha256": "fd6ddcdceb46ce1b198534560343050523cbf70d15e9435d7716b693d4a67bab",
+      "source_total_file_bytes": 5368717440,
+      "source_url": "https://huggingface.co/Qwen/Qwen3.5-9B/resolve/c202236235762e1c871ad0ccb60c8ee5ba337b9a/model.safetensors-00003-of-00004.safetensors",
+      "tensor_count": 63,
+      "tensor_data_bytes_downloaded": 0
+    },
+    {
+      "header_bytes": 77528,
+      "ranges": [
+        [
+          0,
+          7
+        ],
+        [
+          8,
+          77535
+        ]
+      ],
+      "sha256": "245c737a43e483e0a9e743be9c75a366d56bec2ea238086dda8b5c2bc224571a",
+      "source_total_file_bytes": 3325995712,
+      "source_url": "https://huggingface.co/Qwen/Qwen3.5-9B/resolve/c202236235762e1c871ad0ccb60c8ee5ba337b9a/model.safetensors-00004-of-00004.safetensors",
+      "tensor_count": 645,
+      "tensor_data_bytes_downloaded": 0
+    }
+  ],
+  "inspected_revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+  "inspection_source_sha256": "3141ad2ab5bd442e6795eec66870fdad54ff89508dac43c5f97c64f07df64043",
+  "model_id": "Qwen/Qwen3.5-9B",
+  "new_paid_resources_allocated": false,
+  "proposed_rank16_decoder_linear_families": {
+    "linear_attn.in_proj_a.weight": {
+      "module_count": 24,
+      "rank16_parameters": 1585152,
+      "shapes": [
+        [
+          32,
+          4096
+        ]
+      ]
+    },
+    "linear_attn.in_proj_b.weight": {
+      "module_count": 24,
+      "rank16_parameters": 1585152,
+      "shapes": [
+        [
+          32,
+          4096
+        ]
+      ]
+    },
+    "linear_attn.in_proj_qkv.weight": {
+      "module_count": 24,
+      "rank16_parameters": 4718592,
+      "shapes": [
+        [
+          8192,
+          4096
+        ]
+      ]
+    },
+    "linear_attn.in_proj_z.weight": {
+      "module_count": 24,
+      "rank16_parameters": 3145728,
+      "shapes": [
+        [
+          4096,
+          4096
+        ]
+      ]
+    },
+    "linear_attn.out_proj.weight": {
+      "module_count": 24,
+      "rank16_parameters": 3145728,
+      "shapes": [
+        [
+          4096,
+          4096
+        ]
+      ]
+    },
+    "mlp.down_proj.weight": {
+      "module_count": 32,
+      "rank16_parameters": 8388608,
+      "shapes": [
+        [
+          4096,
+          12288
+        ]
+      ]
+    },
+    "mlp.gate_proj.weight": {
+      "module_count": 32,
+      "rank16_parameters": 8388608,
+      "shapes": [
+        [
+          12288,
+          4096
+        ]
+      ]
+    },
+    "mlp.up_proj.weight": {
+      "module_count": 32,
+      "rank16_parameters": 8388608,
+      "shapes": [
+        [
+          12288,
+          4096
+        ]
+      ]
+    },
+    "self_attn.k_proj.weight": {
+      "module_count": 8,
+      "rank16_parameters": 655360,
+      "shapes": [
+        [
+          1024,
+          4096
+        ]
+      ]
+    },
+    "self_attn.o_proj.weight": {
+      "module_count": 8,
+      "rank16_parameters": 1048576,
+      "shapes": [
+        [
+          4096,
+          4096
+        ]
+      ]
+    },
+    "self_attn.q_proj.weight": {
+      "module_count": 8,
+      "rank16_parameters": 1572864,
+      "shapes": [
+        [
+          8192,
+          4096
+        ]
+      ]
+    },
+    "self_attn.v_proj.weight": {
+      "module_count": 8,
+      "rank16_parameters": 655360,
+      "shapes": [
+        [
+          1024,
+          4096
+        ]
+      ]
+    }
+  },
+  "provider_inference_requests": 0,
+  "recorded_date_utc": "2026-09-13",
+  "repository_base_commit": "25166c5813ae0d8c84b93c841f680eb5e1832222",
+  "runtime_meta_inspection": {
+    "all_text_keys_and_shapes_match": true,
+    "decoder_linear_modules": 248,
+    "meta_only": true,
+    "meta_parameter_dtype": "torch.float32",
+    "parameters": 8953803264,
+    "resolved_dependency_versions": {
+      "huggingface-hub": "1.31.0",
+      "numpy": "2.5.3",
+      "safetensors": "0.8.0",
+      "tokenizers": "0.23.2"
+    },
+    "scope": "Actual full-size architecture, meta device only; no forward, backward or loaded weights.",
+    "text_tensors": 427,
+    "torch": "2.6.0+cpu",
+    "transformers": "5.17.0",
+    "weight_data_allocated": false
+  },
+  "schema_version": 1,
+  "scientific_base_or_lora_treatment_selected": false,
+  "scope": "Candidate structure, actual tokenizer-linked corpus sizing in separate report, and source-derived runtime blockers; no loaded weights, candidate forward/backward, forecasts or hardware-fit measurement.",
+  "transformers_source_evidence": {
+    "distribution_sha256": "78ec1ce21579b38dfb83950a0658cd119f87212a2fcfdff478096ce9d6c03801",
+    "distribution_url": "https://files.pythonhosted.org/packages/e8/d0/c502b60d684adbd98a8dc7d5bb866842772b816ac4354e4608be240041ae/transformers-5.17.0-py3-none-any.whl",
+    "inspected_source_sha256": {
+      "configuration_qwen3_5.py": "19966c3200cee92cc4bccaef5f94550c56d731dbf03858a9bd2ed6aebcc3f7da",
+      "conversion_mapping.py": "38c364608a8cdb43eb2177e645c3de47cd2197c8e42d09b5848541b6c90e0d71",
+      "hub_kernels.py": "c1eafefe0cbdf7f0deaa21b1ef6cb6d7c6082b3f486651d069ff38fcf3e53c95",
+      "modeling_layers.py": "81469b99e3f933ad78eaf5c90d401a95a02a5f569732c6ed2b7020daaed31953",
+      "modeling_qwen3_5.py": "762feb6c7426a7f15b5bf830df54c07438bf9e7c27b8cdb23179045920412c3b"
+    },
+    "package": "transformers",
+    "version": "5.17.0"
+  },
+  "verification": {
+    "candidate_memory_measured": false,
+    "candidate_throughput_measured": false,
+    "fresh_header_fetch_reproduced_all_counts_and_bounds": true,
+    "full_repository_suite": {
+      "candidate_forward_backward_covered": false,
+      "command": "python -m unittest discover -v",
+      "environment": "Isolated CPU interpreter plus pinned tokenizer site-packages and public tokenizer artifacts; offline.",
+      "log_sha256": "1f8d37a7d313760336e4343d212f0cd8d9be086f9e38a3c54de993cb5d884a87",
+      "passed": true,
+      "skipped": 0,
+      "tests": 227,
+      "wall_seconds_unittest": 30.886
+    },
+    "meta_all_248_decoder_linear_targets_match": true,
+    "meta_all_427_text_keys_and_shapes_match": true,
+    "no_weight_payload_download_or_load": true,
+    "numerical_forward_backward_tested": false,
+    "source_inventory_independently_reviewed": true
+  },
+  "vocabulary_tensor_memory_examples": [
+    {
+      "batch_role_trajectories": 1,
+      "bf16_tensor_bytes": 254279680,
+      "fp32_tensor_bytes": 508559360,
+      "model_vocabulary": 248320,
+      "padded_sequence_length": 512
+    },
+    {
+      "batch_role_trajectories": 4,
+      "bf16_tensor_bytes": 1017118720,
+      "fp32_tensor_bytes": 2034237440,
+      "model_vocabulary": 248320,
+      "padded_sequence_length": 512
+    },
+    {
+      "batch_role_trajectories": 10,
+      "bf16_tensor_bytes": 2542796800,
+      "fp32_tensor_bytes": 5085593600,
+      "model_vocabulary": 248320,
+      "padded_sequence_length": 512
+    }
+  ],
+  "vocabulary_tensor_memory_scope": "Illustrative tensor sizes only; 512 is not a selected completion/sequence cap and excludes autograd/runtime buffers."
+}

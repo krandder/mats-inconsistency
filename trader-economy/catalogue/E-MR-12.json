@@ -1,0 +1,14 @@
+{
+ "id": "E-MR-12",
+ "question": "How do the GPU memory and time of one training step grow with depth for the local economic update and for backprop through depth?",
+ "status": "Informative",
+ "setup": "memdepth.py: one training step at depth D = L in 32, 320, 1000, 3200, 10000, batch 16, one L4 (24 GB): the economy's online update (streaming, O(1) records in D), its batched update (stores the rollout, no graph) and BPTT through the same traders.",
+ "result": "Informative (audit 2026-09-29): a known property of truncated or detached updates, measured on a configuration with no accuracy result. Peak memory of one step at D = L = 32 / 320 / 1000 / 3200 / 10000: online economy 0.006 / 0.09 / 0.30 / 1.16 / 4.20 GB (10000: 1948 s); batched economy 0.07 / 7.4 GB, out of memory at 1000; BPTT 0.09 / 15.9 GB, out of memory at 1000. The 4.2 GB row is train_step_online with voc=0, never trained to completion or evaluated for accuracy; the batched voc=1 economy behind the 0.93 runs out of memory at D = 1000 like BPTT. memdepth.py set L = D, mixing depth and length. Fixed L = 32 with truncated (k=1) and checkpointed BPTT: RESULTS.md section 17.",
+ "files": [
+  "market-resnet/RESULTS.md",
+  "market-resnet/memdepth.py",
+  "market-resnet/econ2.py",
+  "market-resnet/results/vm/trader-mresnet-4/p2/memdepth.json",
+  "market-resnet-AUDIT.md"
+ ]
+}

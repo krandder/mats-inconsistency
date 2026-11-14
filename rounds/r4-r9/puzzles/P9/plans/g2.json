@@ -1,0 +1,566 @@
+[
+ {
+  "name": "train_N1_s2",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_train.py --arm N1 --seed 2 --steps 4000 --out {OUT} --scratch {OUT}/partial ",
+  "done": "{OUT}/train/N1_s2.json"
+ },
+ {
+  "name": "eval_gate_N1_s2",
+  "deps": [
+   "train_N1_s2"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py gate --arm N1 --seed 2 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/gate_N1_s2.json"
+ },
+ {
+  "name": "eval_imp_N1_s0",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_eval.py imp --arm N1 --seed 0 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/imp_N1_s0.json"
+ },
+ {
+  "name": "pilot_X2",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9a.py --arm X2 --seed 0 --steps 12000 --dev_every 1500 --tag _pilot --out {OUT}/pilot --scratch {OUT}/partial --cache /root/cache",
+  "done": "{OUT}/pilot/p9a/X2_s0_pilot.json"
+ },
+ {
+  "name": "pilot_X3",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9a.py --arm X3 --seed 0 --steps 12000 --dev_every 1500 --tag _pilot --out {OUT}/pilot --scratch {OUT}/partial --cache /root/cache",
+  "done": "{OUT}/pilot/p9a/X3_s0_pilot.json"
+ },
+ {
+  "name": "train_N2_s0",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_train.py --arm N2 --seed 0 --steps 4000 --out {OUT} --scratch {OUT}/partial ",
+  "done": "{OUT}/train/N2_s0.json"
+ },
+ {
+  "name": "train_N4p_s0",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_train.py --arm N4p --seed 0 --steps 4000 --out {OUT} --scratch {OUT}/partial ",
+  "done": "{OUT}/train/N4p_s0.json"
+ },
+ {
+  "name": "train_N1_s3",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_train.py --arm N1 --seed 3 --steps 4000 --out {OUT} --scratch {OUT}/partial ",
+  "done": "{OUT}/train/N1_s3.json"
+ },
+ {
+  "name": "train_N1_s4",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_train.py --arm N1 --seed 4 --steps 4000 --out {OUT} --scratch {OUT}/partial ",
+  "done": "{OUT}/train/N1_s4.json"
+ },
+ {
+  "name": "train_N0_s1",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_train.py --arm N0 --seed 1 --steps 4000 --out {OUT} --scratch {OUT}/partial ",
+  "done": "{OUT}/train/N0_s1.json"
+ },
+ {
+  "name": "train_N0_s2",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_train.py --arm N0 --seed 2 --steps 4000 --out {OUT} --scratch {OUT}/partial ",
+  "done": "{OUT}/train/N0_s2.json"
+ },
+ {
+  "name": "train_N1c_s0",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_train.py --arm N1c --seed 0 --steps 4000 --out {OUT} --scratch {OUT}/partial ",
+  "done": "{OUT}/train/N1c_s0.json"
+ },
+ {
+  "name": "train_N4a_s0",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_train.py --arm N4a --seed 0 --steps 4000 --out {OUT} --scratch {OUT}/partial ",
+  "done": "{OUT}/train/N4a_s0.json"
+ },
+ {
+  "name": "train_N3_s0",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_train.py --arm N3 --seed 0 --steps 4000 --out {OUT} --scratch {OUT}/partial ",
+  "done": "{OUT}/train/N3_s0.json"
+ },
+ {
+  "name": "train_N1c_s1",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_train.py --arm N1c --seed 1 --steps 4000 --out {OUT} --scratch {OUT}/partial ",
+  "done": "{OUT}/train/N1c_s1.json"
+ },
+ {
+  "name": "train_N4a_s1",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_train.py --arm N4a --seed 1 --steps 4000 --out {OUT} --scratch {OUT}/partial ",
+  "done": "{OUT}/train/N4a_s1.json"
+ },
+ {
+  "name": "train_N3_s1",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_train.py --arm N3 --seed 1 --steps 4000 --out {OUT} --scratch {OUT}/partial ",
+  "done": "{OUT}/train/N3_s1.json"
+ },
+ {
+  "name": "train_N1c_s2",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_train.py --arm N1c --seed 2 --steps 4000 --out {OUT} --scratch {OUT}/partial ",
+  "done": "{OUT}/train/N1c_s2.json"
+ },
+ {
+  "name": "train_N4a_s2",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_train.py --arm N4a --seed 2 --steps 4000 --out {OUT} --scratch {OUT}/partial ",
+  "done": "{OUT}/train/N4a_s2.json"
+ },
+ {
+  "name": "train_N3_s2",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_train.py --arm N3 --seed 2 --steps 4000 --out {OUT} --scratch {OUT}/partial ",
+  "done": "{OUT}/train/N3_s2.json"
+ },
+ {
+  "name": "train_N1c_s3",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_train.py --arm N1c --seed 3 --steps 4000 --out {OUT} --scratch {OUT}/partial ",
+  "done": "{OUT}/train/N1c_s3.json"
+ },
+ {
+  "name": "train_N4a_s3",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_train.py --arm N4a --seed 3 --steps 4000 --out {OUT} --scratch {OUT}/partial ",
+  "done": "{OUT}/train/N4a_s3.json"
+ },
+ {
+  "name": "train_N3_s3",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_train.py --arm N3 --seed 3 --steps 4000 --out {OUT} --scratch {OUT}/partial ",
+  "done": "{OUT}/train/N3_s3.json"
+ },
+ {
+  "name": "train_N1c_s4",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_train.py --arm N1c --seed 4 --steps 4000 --out {OUT} --scratch {OUT}/partial ",
+  "done": "{OUT}/train/N1c_s4.json"
+ },
+ {
+  "name": "train_N4a_s4",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_train.py --arm N4a --seed 4 --steps 4000 --out {OUT} --scratch {OUT}/partial ",
+  "done": "{OUT}/train/N4a_s4.json"
+ },
+ {
+  "name": "train_N3_s4",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_train.py --arm N3 --seed 4 --steps 4000 --out {OUT} --scratch {OUT}/partial ",
+  "done": "{OUT}/train/N3_s4.json"
+ },
+ {
+  "name": "eval_gate_N2_s0",
+  "deps": [
+   "train_N2_s0"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py gate --arm N2 --seed 0 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/gate_N2_s0.json"
+ },
+ {
+  "name": "eval_test_N2_s0",
+  "deps": [
+   "train_N2_s0"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py test --arm N2 --seed 0 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/test_N2_s0.json"
+ },
+ {
+  "name": "eval_gate_N4p_s0",
+  "deps": [
+   "train_N4p_s0"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py gate --arm N4p --seed 0 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/gate_N4p_s0.json"
+ },
+ {
+  "name": "eval_test_N4p_s0",
+  "deps": [
+   "train_N4p_s0"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py test --arm N4p --seed 0 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/test_N4p_s0.json"
+ },
+ {
+  "name": "eval_gate_N0_s0",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_eval.py gate --arm N0 --seed 0 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/gate_N0_s0.json"
+ },
+ {
+  "name": "eval_test_N0_s0",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_eval.py test --arm N0 --seed 0 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/test_N0_s0.json"
+ },
+ {
+  "name": "eval_test_N1_s0",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_eval.py test --arm N1 --seed 0 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/test_N1_s0.json"
+ },
+ {
+  "name": "eval_test_N1_s1",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_eval.py test --arm N1 --seed 1 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/test_N1_s1.json"
+ },
+ {
+  "name": "eval_test_N1_s2",
+  "deps": [
+   "train_N1_s2"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py test --arm N1 --seed 2 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/test_N1_s2.json"
+ },
+ {
+  "name": "eval_gate_N1_s3",
+  "deps": [
+   "train_N1_s3"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py gate --arm N1 --seed 3 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/gate_N1_s3.json"
+ },
+ {
+  "name": "eval_test_N1_s3",
+  "deps": [
+   "train_N1_s3"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py test --arm N1 --seed 3 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/test_N1_s3.json"
+ },
+ {
+  "name": "eval_gate_N1_s4",
+  "deps": [
+   "train_N1_s4"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py gate --arm N1 --seed 4 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/gate_N1_s4.json"
+ },
+ {
+  "name": "eval_test_N1_s4",
+  "deps": [
+   "train_N1_s4"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py test --arm N1 --seed 4 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/test_N1_s4.json"
+ },
+ {
+  "name": "eval_gate_N0_s1",
+  "deps": [
+   "train_N0_s1"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py gate --arm N0 --seed 1 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/gate_N0_s1.json"
+ },
+ {
+  "name": "eval_test_N0_s1",
+  "deps": [
+   "train_N0_s1"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py test --arm N0 --seed 1 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/test_N0_s1.json"
+ },
+ {
+  "name": "eval_gate_N0_s2",
+  "deps": [
+   "train_N0_s2"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py gate --arm N0 --seed 2 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/gate_N0_s2.json"
+ },
+ {
+  "name": "eval_test_N0_s2",
+  "deps": [
+   "train_N0_s2"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py test --arm N0 --seed 2 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/test_N0_s2.json"
+ },
+ {
+  "name": "eval_gate_N1c_s0",
+  "deps": [
+   "train_N1c_s0"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py gate --arm N1c --seed 0 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/gate_N1c_s0.json"
+ },
+ {
+  "name": "eval_test_N1c_s0",
+  "deps": [
+   "train_N1c_s0"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py test --arm N1c --seed 0 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/test_N1c_s0.json"
+ },
+ {
+  "name": "eval_gate_N4a_s0",
+  "deps": [
+   "train_N4a_s0"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py gate --arm N4a --seed 0 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/gate_N4a_s0.json"
+ },
+ {
+  "name": "eval_test_N4a_s0",
+  "deps": [
+   "train_N4a_s0"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py test --arm N4a --seed 0 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/test_N4a_s0.json"
+ },
+ {
+  "name": "eval_gate_N3_s0",
+  "deps": [
+   "train_N3_s0"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py gate --arm N3 --seed 0 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/gate_N3_s0.json"
+ },
+ {
+  "name": "eval_test_N3_s0",
+  "deps": [
+   "train_N3_s0"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py test --arm N3 --seed 0 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/test_N3_s0.json"
+ },
+ {
+  "name": "eval_gate_N1c_s1",
+  "deps": [
+   "train_N1c_s1"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py gate --arm N1c --seed 1 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/gate_N1c_s1.json"
+ },
+ {
+  "name": "eval_test_N1c_s1",
+  "deps": [
+   "train_N1c_s1"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py test --arm N1c --seed 1 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/test_N1c_s1.json"
+ },
+ {
+  "name": "eval_gate_N4a_s1",
+  "deps": [
+   "train_N4a_s1"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py gate --arm N4a --seed 1 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/gate_N4a_s1.json"
+ },
+ {
+  "name": "eval_test_N4a_s1",
+  "deps": [
+   "train_N4a_s1"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py test --arm N4a --seed 1 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/test_N4a_s1.json"
+ },
+ {
+  "name": "eval_gate_N3_s1",
+  "deps": [
+   "train_N3_s1"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py gate --arm N3 --seed 1 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/gate_N3_s1.json"
+ },
+ {
+  "name": "eval_test_N3_s1",
+  "deps": [
+   "train_N3_s1"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py test --arm N3 --seed 1 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/test_N3_s1.json"
+ },
+ {
+  "name": "eval_gate_N1c_s2",
+  "deps": [
+   "train_N1c_s2"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py gate --arm N1c --seed 2 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/gate_N1c_s2.json"
+ },
+ {
+  "name": "eval_test_N1c_s2",
+  "deps": [
+   "train_N1c_s2"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py test --arm N1c --seed 2 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/test_N1c_s2.json"
+ },
+ {
+  "name": "eval_gate_N4a_s2",
+  "deps": [
+   "train_N4a_s2"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py gate --arm N4a --seed 2 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/gate_N4a_s2.json"
+ },
+ {
+  "name": "eval_test_N4a_s2",
+  "deps": [
+   "train_N4a_s2"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py test --arm N4a --seed 2 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/test_N4a_s2.json"
+ },
+ {
+  "name": "eval_gate_N3_s2",
+  "deps": [
+   "train_N3_s2"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py gate --arm N3 --seed 2 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/gate_N3_s2.json"
+ },
+ {
+  "name": "eval_test_N3_s2",
+  "deps": [
+   "train_N3_s2"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py test --arm N3 --seed 2 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/test_N3_s2.json"
+ },
+ {
+  "name": "eval_gate_N1c_s3",
+  "deps": [
+   "train_N1c_s3"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py gate --arm N1c --seed 3 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/gate_N1c_s3.json"
+ },
+ {
+  "name": "eval_test_N1c_s3",
+  "deps": [
+   "train_N1c_s3"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py test --arm N1c --seed 3 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/test_N1c_s3.json"
+ },
+ {
+  "name": "eval_gate_N4a_s3",
+  "deps": [
+   "train_N4a_s3"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py gate --arm N4a --seed 3 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/gate_N4a_s3.json"
+ },
+ {
+  "name": "eval_test_N4a_s3",
+  "deps": [
+   "train_N4a_s3"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py test --arm N4a --seed 3 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/test_N4a_s3.json"
+ },
+ {
+  "name": "eval_gate_N3_s3",
+  "deps": [
+   "train_N3_s3"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py gate --arm N3 --seed 3 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/gate_N3_s3.json"
+ },
+ {
+  "name": "eval_test_N3_s3",
+  "deps": [
+   "train_N3_s3"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py test --arm N3 --seed 3 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/test_N3_s3.json"
+ },
+ {
+  "name": "eval_gate_N1c_s4",
+  "deps": [
+   "train_N1c_s4"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py gate --arm N1c --seed 4 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/gate_N1c_s4.json"
+ },
+ {
+  "name": "eval_test_N1c_s4",
+  "deps": [
+   "train_N1c_s4"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py test --arm N1c --seed 4 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/test_N1c_s4.json"
+ },
+ {
+  "name": "eval_gate_N4a_s4",
+  "deps": [
+   "train_N4a_s4"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py gate --arm N4a --seed 4 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/gate_N4a_s4.json"
+ },
+ {
+  "name": "eval_test_N4a_s4",
+  "deps": [
+   "train_N4a_s4"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py test --arm N4a --seed 4 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/test_N4a_s4.json"
+ },
+ {
+  "name": "eval_gate_N3_s4",
+  "deps": [
+   "train_N3_s4"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py gate --arm N3 --seed 4 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/gate_N3_s4.json"
+ },
+ {
+  "name": "eval_test_N3_s4",
+  "deps": [
+   "train_N3_s4"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py test --arm N3 --seed 4 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/test_N3_s4.json"
+ },
+ {
+  "name": "eval_imp_N1_s1",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_eval.py imp --arm N1 --seed 1 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/imp_N1_s1.json"
+ },
+ {
+  "name": "eval_imp_N1_s2",
+  "deps": [
+   "train_N1_s2"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py imp --arm N1 --seed 2 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/imp_N1_s2.json"
+ },
+ {
+  "name": "eval_imp_N4a_s0",
+  "deps": [
+   "train_N4a_s0"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py imp --arm N4a --seed 0 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/imp_N4a_s0.json"
+ },
+ {
+  "name": "eval_imp_N4a_s1",
+  "deps": [
+   "train_N4a_s1"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py imp --arm N4a --seed 1 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/imp_N4a_s1.json"
+ },
+ {
+  "name": "eval_imp_N4a_s2",
+  "deps": [
+   "train_N4a_s2"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py imp --arm N4a --seed 2 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/imp_N4a_s2.json"
+ }
+]

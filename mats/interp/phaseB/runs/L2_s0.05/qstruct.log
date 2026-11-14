@@ -1,0 +1,48 @@
+weights done 10s
+A 0.5 {'mean': -64.348, 'logsd': -33.918, 'kl': -2824.323} {'params': 18016, 'edges': 9, 'nodes': 21, 'total': 18046} KL bits 5046 within 1.00
+A 0.3 {'mean': -6.421, 'logsd': -8.484, 'kl': -116.964} {'params': 18016, 'edges': 15, 'nodes': 28, 'total': 18059} KL bits 2865 within 1.00
+A 0.2 {'mean': -0.871, 'logsd': -4.266, 'kl': -3.158} {'params': 18016, 'edges': 18, 'nodes': 31, 'total': 18065} KL bits 270 within 1.00
+A 0.1 {'mean': -0.871, 'logsd': -4.266, 'kl': -3.158} {'params': 18016, 'edges': 18, 'nodes': 31, 'total': 18065} KL bits 270 within 1.00
+A 0.05 {'mean': -0.864, 'logsd': -4.236, 'kl': -3.145} {'params': 18016, 'edges': 19, 'nodes': 31, 'total': 18066} KL bits 268 within 0.92
+A 0.02 {'mean': -0.852, 'logsd': -4.162, 'kl': -3.14} {'params': 18016, 'edges': 20, 'nodes': 31, 'total': 18067} KL bits 262 within 0.86
+A 0.0 {'mean': 1.0, 'logsd': 1.0, 'kl': 1.0} {'params': 18016, 'edges': 256, 'nodes': 67, 'total': 18339} KL bits 0 within 0.33
+surrogates fitted 414s
+single emb:LR8 {'mean': -0.061, 'logsd': 0.073, 'kl': -2.787}
+single a1:named {'mean': -25.685, 'logsd': -43.292, 'kl': -1077.828}
+single m1:LR8 {'mean': 0.995, 'logsd': 0.998, 'kl': 0.996}
+single r1:LR8 {'mean': 0.987, 'logsd': 0.986, 'kl': 0.984}
+single m1:LR4 {'mean': 0.808, 'logsd': 0.917, 'kl': 0.724}
+single r1:LR4 {'mean': -0.909, 'logsd': -0.137, 'kl': -4.964}
+single merge1:LR8 {'mean': -32.005, 'logsd': -10.721, 'kl': -1257.74}
+single a2:named {'mean': -0.733, 'logsd': -2.012, 'kl': -18.188}
+single m2:LR8 {'mean': 0.997, 'logsd': 0.998, 'kl': 0.995}
+single r2:LR8 {'mean': 0.988, 'logsd': 0.99, 'kl': 0.978}
+single m2:LR4 {'mean': 0.52, 'logsd': 0.375, 'kl': -0.257}
+single r2:LR4 {'mean': 0.561, 'logsd': 0.716, 'kl': -3.413}
+single merge2:LR8 {'mean': 0.143, 'logsd': -0.05, 'kl': -4.424}
+B 1 sur m2:LR8 {'mean': 0.997, 'logsd': 0.998, 'kl': 0.995} {'params': 16736, 'edges': 256, 'nodes': 67, 'total': 17059} KL bits 26 (45 trials)
+B 2 sur m1:LR8 {'mean': 0.993, 'logsd': 0.995, 'kl': 0.992} {'params': 15456, 'edges': 256, 'nodes': 67, 'total': 15779} KL bits 286 (43 trials)
+B 3 sur r2:LR8 {'mean': 0.979, 'logsd': 0.985, 'kl': 0.959} {'params': 14176, 'edges': 256, 'nodes': 67, 'total': 14499} KL bits 447 (41 trials)
+B 4 sur r1:LR8 {'mean': 0.961, 'logsd': 0.971, 'kl': 0.93} {'params': 12896, 'edges': 256, 'nodes': 67, 'total': 13219} KL bits 1881 (40 trials)
+B 5 pool m1 lab0 {'mean': 0.961, 'logsd': 0.97, 'kl': 0.929} {'params': 12896, 'edges': 256, 'nodes': 64, 'total': 13216} KL bits 4334 (39 trials)
+B 6 pool r1 lab0 {'mean': 0.961, 'logsd': 0.97, 'kl': 0.929} {'params': 12896, 'edges': 256, 'nodes': 61, 'total': 13213} KL bits 4731 (38 trials)
+B 7 pool r1 lab2 {'mean': 0.959, 'logsd': 0.969, 'kl': 0.929} {'params': 12896, 'edges': 256, 'nodes': 58, 'total': 13210} KL bits 5119 (37 trials)
+B 8 pool m1 lab2 {'mean': 0.958, 'logsd': 0.969, 'kl': 0.928} {'params': 12896, 'edges': 256, 'nodes': 55, 'total': 13207} KL bits 7521 (36 trials)
+B 9 prune L1 src2<-src1 {'mean': 0.948, 'logsd': 0.957, 'kl': 0.896} {'params': 12896, 'edges': 231, 'nodes': 55, 'total': 13182} KL bits 7581 (35 trials)
+B 10 prune L1 src1<-src2 {'mean': 0.935, 'logsd': 0.877, 'kl': 0.763} {'params': 12896, 'edges': 206, 'nodes': 55, 'total': 13157} KL bits 7654 (34 trials)
+B 11 sur m1:LR4 {'mean': 0.661, 'logsd': 0.77, 'kl': 0.277} {'params': 12512, 'edges': 206, 'nodes': 55, 'total': 12773} KL bits 20026 (33 trials)
+B 12 prune L1 src0<-src2 {'mean': 0.645, 'logsd': 0.765, 'kl': 0.258} {'params': 12512, 'edges': 181, 'nodes': 55, 'total': 12748} KL bits 20074 (32 trials)
+P B 12 {'params': 12512, 'edges': 181, 'nodes': 55, 'total': 12748} {'mean': 0.482, 'logsd': 0.743, 'kl': 0.237} scen 9
+P B 11 {'params': 12512, 'edges': 206, 'nodes': 55, 'total': 12773} {'mean': 0.491, 'logsd': 0.776, 'kl': 0.263} scen 9
+P B 10 {'params': 12896, 'edges': 206, 'nodes': 55, 'total': 13157} {'mean': 0.788, 'logsd': 0.893, 'kl': 0.705} scen 8
+P B 9 {'params': 12896, 'edges': 231, 'nodes': 55, 'total': 13182} {'mean': 0.9, 'logsd': 0.942, 'kl': 0.819} scen 8
+P B 8 {'params': 12896, 'edges': 256, 'nodes': 55, 'total': 13207} {'mean': 0.921, 'logsd': 0.958, 'kl': 0.891} scen 8
+P B 7 {'params': 12896, 'edges': 256, 'nodes': 58, 'total': 13210} {'mean': 0.92, 'logsd': 0.958, 'kl': 0.891} scen 8
+P B 6 {'params': 12896, 'edges': 256, 'nodes': 61, 'total': 13213} {'mean': 0.921, 'logsd': 0.96, 'kl': 0.89} scen 8
+P B 5 {'params': 12896, 'edges': 256, 'nodes': 64, 'total': 13216} {'mean': 0.921, 'logsd': 0.96, 'kl': 0.89} scen 8
+P B 3 {'params': 14176, 'edges': 256, 'nodes': 67, 'total': 14499} {'mean': 0.936, 'logsd': 0.976, 'kl': 0.913} scen 7
+P B 2 {'params': 15456, 'edges': 256, 'nodes': 67, 'total': 15779} {'mean': 0.954, 'logsd': 0.985, 'kl': 0.971} scen 9
+P B 1 {'params': 16736, 'edges': 256, 'nodes': 67, 'total': 17059} {'mean': 0.959, 'logsd': 0.986, 'kl': 0.975} scen 9
+P A 6 {'params': 18016, 'edges': 256, 'nodes': 67, 'total': 18339} {'mean': 0.963, 'logsd': 0.988, 'kl': 0.979} scen 9
+P B 0 {'params': 18016, 'edges': 256, 'nodes': 67, 'total': 18339} {'mean': 0.963, 'logsd': 0.988, 'kl': 0.979} scen 9
+done 2605.0974192619324

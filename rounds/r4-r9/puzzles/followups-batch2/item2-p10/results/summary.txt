@@ -1,0 +1,24 @@
+gates: {"G0": {"centred_init_nonconstant": "30/30", "bar": ">= 80%", "orig_constant_seeds0_4": "9/15", "orig_constant_all": 18, "pass": true}, "G1": {"orig_init_constant_seeds0_4": 9, "bar_init": "7..11 of 15 (P10: 9/15)", "cvae_nonconstant_end": "0/15", "auction_nonconstant_end": "0/15", "bar_end": "<= 1 of 15 learned slots non-constant at the end, in each of cvae and auction (P10: 0/15)", "pass": true}, "G2": {"reg2_test_nll": [0.6944499015808105, 0.6943091750144958, 0.5207321643829346, 0.4222816824913025, 0.422048956155777], "mean": 0.5507643759250641, "bar": "mean in [0.35, 0.75], every seed <= 0.90 (P10 mean 0.549)", "pass": true}, "stage2_jobs": 40, "stage2_failed_jobs": []}
+files per arm: {'cvae': 10, 'cvae_init': 10, 'cvae_warm': 10, 'cvae_both': 10, 'auction': 5, 'auction_both': 5, 'reg2': 5}
+
+PRIMARY: fraction of the 3 learned cvae slots non-constant at the end (test, min(p1,1-p1) > 0.01)
+  cvae_init      non-constant slots 0/30  diff vs orig 0.000 [0.000, 0.000] (n=10)  perm p 1.0000  Holm p 1.0000
+  cvae_warm      non-constant slots 1/30  diff vs orig 0.033 [-0.042, 0.109] (n=10)  perm p 1.0000  Holm p 1.0000
+  cvae_both      non-constant slots 1/30  diff vs orig 0.033 [-0.042, 0.109] (n=10)  perm p 1.0000  Holm p 1.0000
+  cvae_orig      non-constant slots 0/30
+
+SECONDARY per arm (seed-level t 95% CI)
+  cvae               frac 0.00 [0.00, 0.00] (n=10) | seeds w/ learned G>fee 0/10 | best G 0.0000 [-0.0000, 0.0000] (n=10) | NLL-reg2 -0.034 [-0.185, 0.118] (n=5) | val collapse median 50.0 never 0 | respawns 0.0
+  cvae_init          frac 0.00 [0.00, 0.00] (n=10) | seeds w/ learned G>fee 0/10 | best G 0.0000 [-0.0000, 0.0000] (n=10) | NLL-reg2 -0.033 [-0.173, 0.106] (n=5) | val collapse median 50.0 never 0 | respawns 0.0
+  cvae_warm          frac 0.03 [-0.04, 0.11] (n=10) | seeds w/ learned G>fee 1/10 | best G 0.0083 [-0.0104, 0.0270] (n=10) | NLL-reg2 -0.143 [-0.458, 0.171] (n=5) | val collapse median 75.0 never 0 | respawns 0.0 | collapsed before 4000 (no rate grad) 10/10
+  cvae_both          frac 0.03 [-0.04, 0.11] (n=10) | seeds w/ learned G>fee 1/10 | best G 0.0060 [-0.0076, 0.0196] (n=10) | NLL-reg2 -0.003 [-0.251, 0.245] (n=5) | val collapse median 50.0 never 0 | respawns 0.0 | collapsed before 4000 (no rate grad) 10/10
+  auction            frac 0.00 [0.00, 0.00] (n=5) | seeds w/ learned G>fee 0/5 | best G -0.0034 [-0.0039, -0.0028] (n=5) | NLL-reg2 -0.113 [-0.253, 0.027] (n=5) | val collapse median 50 never 0 | respawns 57.0 | aged frac nan (n=0)
+  auction_both       frac 0.73 [0.39, 1.08] (n=5) | seeds w/ learned G>fee 5/5 | best G 0.0283 [0.0166, 0.0401] (n=5) | NLL-reg2 0.004 [-0.190, 0.198] (n=5) | val collapse median 100 never 0 | respawns 6.0 | aged frac nan (n=0) | collapsed before 4000 (no rate grad) 5/5
+  reg2 NLL 0.551 [0.380, 0.721] (n=5)
+
+A/A vs P10 (seeds 0-4)
+  cvae NLL here [0.54, 0.527, 0.533, 0.452, 0.534] P10 [0.606, 0.525, 0.587, 0.606, 0.363] diff -0.020 [-0.170, 0.129] (n=5) | frac here/P10 [[0.0, 0.0], [0.0, 0.0], [0.0, 0.0], [0.0, 0.0], [0.0, 0.0]]
+  auction NLL here [0.458, 0.469, 0.477, 0.345, 0.44] P10 [0.418, 0.441, 0.422, 0.374, 0.571] diff -0.007 [-0.102, 0.087] (n=5) | frac here/P10 [[0.0, 0.0], [0.0, 0.0], [0.0, 0.0], [0.0, 0.0], [0.0, 0.0]]
+  reg2 NLL here [0.694, 0.694, 0.521, 0.422, 0.422] P10 [0.694, 0.695, 0.55, 0.295, 0.512] diff 0.001 [-0.097, 0.100] (n=5)
+
+VERDICT (PREREG rules): No gain

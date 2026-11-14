@@ -1,0 +1,10 @@
+# PREREG-R7-E3 amendments and operational log
+
+Changes after the hash in PREREG-R7-E3.sha256, with UTC time and reason. Rules, thresholds, scoring sets and grids are never changed after a test number is seen.
+
+- 2026-10-17T09:39:45Z: first hash of PREREG-R7-E3.md (sha256 9824d81bfcd3691a44bcb30e4e6cdb850c1b89a72313984c7c715ef346aa62aa), SUPERSEDED before any launch: its header said no outbox/experiments-round-7-amendments*.md existed, but outbox/experiments-round-7-amendments.md (written 09:24:14Z) did. That file amends R7-E2 readings 4-7 and R7-E1 reading 9 only; nothing in it concerns R7-E3. The only change is that header sentence.
+- 2026-10-17T09:40:03Z: PREREG-R7-E3.md re-hashed (sha256 f3868522c283b7fd0c09a2bc042952b54cbab0876896d286ba1de6aa07a18922), still before any launch. The amendments file above was read in full at 09:40Z; it does not change R7-E3.
+- 2026-10-17T09:40:26Z: launch r7e3-main (1 on-demand L4, all 3 seeds, GPU_RUN_TIMEOUT 60m); the driver verified at 09:46:34Z that the three seeds were running (R6 launch fix worked). Pipeline finished 09:58:22Z, all 3 seeds exit 0; VM deleted by gpu-run.sh at about 09:59Z.
+- 2026-10-17T09:59:54Z: before scoring: the only amendments file is still outbox/experiments-round-7-amendments.md (09:24:14Z, unchanged, R7-E2 and R7-E1 only). No change to R7-E3.
+- 2026-10-17T10:35:23Z: audit correction C1 (r7/AUDIT-R7-E3.md): prereg section 6 item 11(c) understated the pre-hash smoke. Besides 48 calibration and 48 test D0 positions for the gate KL, the smoke's D0 part also computed, for the seed-101 checkpoint, battle accuracy on all 11,034 test battles (0.99991), the 7-known-slot NLL (9.4e-05) and the one-pass belief KL (0.0484) on all test D0 positions (r6/run_e3.py part_d0 ignores the smoke limit for these). These are the inherited R6-E3 gate numbers, deterministic and identical to the published R6-E3 values, so the smoke showed no new test information.
+- 2026-10-17T10:35:23Z: audit corrections C2-C6 (wording and the audit pointer) applied to RESULTS-R7-E3.md; no verdict changed.

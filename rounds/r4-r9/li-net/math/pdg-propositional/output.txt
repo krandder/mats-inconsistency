@@ -1,0 +1,61 @@
+=== (1)+(2)+(3) primal/dual/uniqueness/Pythagoras/bounds on random instances ===
+K=4 |Mod|= 8 m=6 Inc=1.050333 dual=1.050333 coherentLP=False wdist2=0.31401 minGain-Inc=-2.00e-15
+K=4 |Mod|=10 m=4 Inc=1.391590 dual=1.391590 coherentLP=False wdist2=0.49869 minGain-Inc=-1.78e-15
+K=4 |Mod|=10 m=6 Inc=0.414134 dual=0.414134 coherentLP=False wdist2=0.16416 minGain-Inc=-1.40e-07
+K=4 |Mod|= 8 m=6 Inc=0.702352 dual=0.702352 coherentLP=False wdist2=0.26826 minGain-Inc=-1.71e-08
+   boundary coords q*=[1.] (sentence forced by axioms+other prices); dual x there = [19.5] (diverges)
+K=4 |Mod|= 9 m=7 Inc=0.592585 dual=0.592585 coherentLP=False wdist2=0.18010 minGain-Inc=-3.82e-10
+K=5 |Mod|=18 m=6 Inc=1.015945 dual=1.015945 coherentLP=False wdist2=0.26691 minGain-Inc=+1.14e-12
+K=5 |Mod|=20 m=4 Inc=0.004090 dual=0.004090 coherentLP=False wdist2=0.00204 minGain-Inc=-7.98e-15
+K=5 |Mod|=20 m=5 Inc=0.267740 dual=0.267740 coherentLP=False wdist2=0.08913 minGain-Inc=-1.47e-07
+K=5 |Mod|=28 m=5 Inc=0.783808 dual=0.783808 coherentLP=False wdist2=0.27373 minGain-Inc=-1.48e-10
+K=5 |Mod|=28 m=7 Inc=0.427300 dual=0.427300 coherentLP=False wdist2=0.18926 minGain-Inc=-1.07e-08
+K=6 |Mod|=56 m=7 Inc=0.014808 dual=0.014808 coherentLP=False wdist2=0.00655 minGain-Inc=-4.98e-08
+K=6 |Mod|=36 m=4 Inc=0.025505 dual=0.025505 coherentLP=False wdist2=0.01067 minGain-Inc=-2.26e-08
+K=6 |Mod|=56 m=4 Inc=0.029623 dual=0.029623 coherentLP=False wdist2=0.01107 minGain-Inc=-4.48e-09
+K=6 |Mod|=52 m=4 Inc=0.200861 dual=0.200861 coherentLP=False wdist2=0.09253 minGain-Inc=-1.38e-10
+K=6 |Mod|=36 m=4 Inc=0.000000 dual=0.000000 coherentLP=True wdist2=0.00000 minGain-Inc=-8.18e-09
+max errors: {'dual': '1.43e-08', 'xstar_rel_interior': '3.48e-07', 'uniq': '5.49e-09', 'pyth_viol': '1.47e-07', 'pyth_eq': '1.47e-07', 'pinsker_viol': '2.15e-16', 'chi2_viol': '0.00e+00'}
+
+=== (3a) <<M>>=0 iff coherent (p in Q) ===
+agreements: 30 disagreements: 0
+
+=== (3b) linear-gain counterexamples ===
+eps=0.1: one-share arbitrage gain G=0.1, <<M>>=0.01015 (G>Inc: True); bound sqrt(Inc*sum(y^2/b)/2)=0.1008
+eps=0.01: one-share arbitrage gain G=0.01, <<M>>=0.0001 (G>Inc: True); bound sqrt(Inc*sum(y^2/b)/2)=0.01
+eps=0.001: one-share arbitrage gain G=0.001, <<M>>=1e-06 (G>Inc: True); bound sqrt(Inc*sum(y^2/b)/2)=0.001
+delta=0.01: one-share gain=0.9900, <<M>>=4.605  (Inc unbounded while gain<=1)
+delta=0.0001: one-share gain=0.9999, <<M>>=9.210  (Inc unbounded while gain<=1)
+delta=1e-08: one-share gain=1.0000, <<M>>=18.421  (Inc unbounded while gain<=1)
+
+=== Frechet / relation trader: A, B, A&B with P(A&B) > P(A) ===
+p=[0.4 0.7 0.5], q*=[0.44949 0.7     0.44949], <<M>>=0.01015, relation-trader gain=0.100, Hoeffding lower bound 2G^2/sum(y^2/b)=0.01000 <= Inc: True
+
+=== (2) maxent tie-break: gamma->0 limit of Inc - gamma*H equals maxent given q* ===
+seed 5: |Mod|=28, q*=[0.2611 0.4415 0.9268], H(maxent)=2.578092, H(primal solver's mu*)=2.578092  (mu* not unique)
+   gamma=0.01: ||mu_gamma - maxent||_1=6.27e-03, H(mu_gamma)=2.586744, Inc(mu_gamma)-<<M>>=4.32e-05 <= gamma*log|Mod|=3.33e-02: True
+   gamma=0.001: ||mu_gamma - maxent||_1=6.46e-04, H(mu_gamma)=2.578961, Inc(mu_gamma)-<<M>>=4.34e-07 <= gamma*log|Mod|=3.33e-03: True
+seed 6: |Mod|=24, q*=[0.8071 0.1929 0.8152], H(maxent)=2.781060, H(primal solver's mu*)=2.781060  (mu* not unique)
+   gamma=0.01: ||mu_gamma - maxent||_1=2.56e-03, H(mu_gamma)=2.782956, Inc(mu_gamma)-<<M>>=9.49e-06 <= gamma*log|Mod|=3.18e-02: True
+   gamma=0.001: ||mu_gamma - maxent||_1=3.71e-04, H(mu_gamma)=2.781251, Inc(mu_gamma)-<<M>>=9.53e-08 <= gamma*log|Mod|=3.18e-03: True
+seed 7: |Mod|=28, q*=[0.2896 0.2896 0.4506], H(maxent)=3.168745, H(primal solver's mu*)=3.168745  (mu* not unique)
+   gamma=0.01: ||mu_gamma - maxent||_1=6.95e-04, H(mu_gamma)=3.170312, Inc(mu_gamma)-<<M>>=1.33e-05 <= gamma*log|Mod|=3.33e-02: True
+   gamma=0.001: ||mu_gamma - maxent||_1=1.13e-04, H(mu_gamma)=3.168754, Inc(mu_gamma)-<<M>>=6.04e-09 <= gamma*log|Mod|=3.33e-03: True
+
+=== (4a) local (pairwise) polytope relaxation gap: XOR triangle ===
+exact <<M>> = 0.60376, q*=[0.6667 0.6667 0.6667] (Q: q1+q2+q3<=2). Pairwise-local relaxation: each XOR is a function of one pair, pair marginals with P(A!=B)=0.9 and singles 1/2 are locally consistent -> relaxed value 0.
+closed form 3*d(2/3||0.9) = 0.6037636194252601
+
+=== (4b) Frank-Wolfe with MaxSAT-style oracle (here brute force) + duality-gap certificate, K=6 ===
+iter     1: f=2.0187823  FW gap=5.09e+00  certified f-<<M>> <= gap; true f-<<M>>=1.33e+00
+iter    10: f=0.9413045  FW gap=5.87e-01  certified f-<<M>> <= gap; true f-<<M>>=2.52e-01
+iter   100: f=0.7253285  FW gap=8.29e-02  certified f-<<M>> <= gap; true f-<<M>>=3.60e-02
+iter  1000: f=0.6933146  FW gap=9.55e-03  certified f-<<M>> <= gap; true f-<<M>>=4.01e-03
+iter  5000: f=0.6901184  FW gap=1.94e-03  certified f-<<M>> <= gap; true f-<<M>>=8.16e-04
+q_t is a convex combination of models at every iterate -> coherent on the query set at every step.
+
+=== (2b) q-space Pythagoras: for q in Q, f(q)-<<M>> >= sum b d(q||q*)  (training-loss certificate) ===
+min over 1200 coherent q of [f(q)-<<M>> - D_b(q||q*)] = -1.586e-08 (>= 0 up to solver error)
+
+=== (2c) unpriced sentence psi: coherent interval vs maxent value ===
+psi = a1 & a4: coherent extensions give P(psi) in [0.0000, 0.5147]; maxent mu* gives 0.2390; uniform-over-models frequency 0.2857

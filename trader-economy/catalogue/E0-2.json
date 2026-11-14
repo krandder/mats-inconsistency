@@ -1,0 +1,13 @@
+{
+ "id": "E0-2",
+ "question": "Does training each agent on its own Shapley pay reach the backprop solution?",
+ "setup": "Same model; each agent follows the gradient of its own sampled-Shapley pay (a dropout-like objective). Cost 0.01 per active weight.",
+ "result": "No, except at the coarsest grain. Input-column agents: test log loss 0.808\u00b10.003 vs 0.743\u00b10.001 for backprop (Bayes 0.738); weights 68% apart. The copy of x0 gets 0.73 of x0's weight (backprop: 0.04), and the complementary pair is underweighted (0.37 vs 1.70). Single-weight agents: 0.808\u00b10.006. Class-row agents (3): 0.743\u00b10.001, same as backprop. MSR in one order: 0.815\u00b10.019.",
+ "status": "Problem",
+ "files": [
+  "exp0.py",
+  "results/exp0_summary.json",
+  "charts/exp0_logloss.json",
+  "charts/exp0_weights.json"
+ ]
+}

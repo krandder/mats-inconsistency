@@ -1,0 +1,21 @@
+== v2 tcha_n128_s0.01_seed65 dev=cuda layers=[1, 8, 31] fmults=[1, 2, 4, 8, 16] KS=[8, 16, 32, 64] KD=[1, 2, 4, 8, 16, 32, 64] e3=[] s=[0.01, 0.01, 0.01]
+sampled train/test 262144+32768, fit 262144, sel/conf 131072 in 1s
+L1 mean F=128 (24s): k8 nu=5.62e+03 rf=5.6e+03 dead=0.00 | k16 nu=3.93e+03 rf=3.92e+03 dead=0.00 | k32 nu=2.31e+03 rf=2.3e+03 dead=0.00 | k64 nu=799 rf=760 dead=0.00
+L1 mean F=256 (24s): k8 nu=5.54e+03 rf=5.44e+03 dead=0.00 | k16 nu=3.84e+03 rf=3.78e+03 dead=0.00 | k32 nu=1.96e+03 rf=1.95e+03 dead=0.00 | k64 nu=478 rf=472 dead=0.00
+L1 mean F=512 (44s): k8 nu=5.31e+03 rf=5.19e+03 dead=0.00 | k16 nu=3.97e+03 rf=3.74e+03 dead=0.00 | k32 nu=1.95e+03 rf=1.89e+03 dead=0.00 | k64 nu=480 rf=472 dead=0.03
+L1 mean F=1024 (89s): k8 nu=5.11e+03 rf=4.97e+03 dead=0.00 | k16 nu=3.81e+03 rf=3.55e+03 dead=0.00 | k32 nu=2.44e+03 rf=2.07e+03 dead=0.00 | k64 nu=492 rf=482 dead=0.06
+L1 mean F=2048 (144s): k8 nu=4.97e+03 rf=4.8e+03 dead=0.00 | k16 nu=3.66e+03 rf=3.37e+03 dead=0.00 | k32 nu=2.41e+03 rf=1.98e+03 dead=0.00 | k64 nu=520 rf=507 dead=0.10
+E2 L1 (118s): G:1.6e-05+-3e-06,c3=0.00 DENSE1:8.3e-06+-2e-06,c3=0.01 DENSEQ2:4.9e-06+-2e-06,c3=0.08 DENSE8:2.7e-06+-2e-06,c3=0.07 DENSEQ16:1.3e-06+-1e-06,c3=0.52 SPARSE_F128_k8:4.9e-06+-1e-06,c3=0.21 SPARSE_F128_k64:1.3e-06+-4e-07,c3=0.78 SPARSE_F256_k32:3.4e-07+-5e-07,c3=0.80 SPARSE_F512_k16:2.8e-06+-7e-07,c3=0.48 SPARSE_F1024_k8:2.8e-06+-1e-06,c3=0.61 SPARSE_F1024_k64:2.6e-08+-1e-07,c3=0.96 SPARSE_F2048_k32:1.2e-06+-4e-07,c3=0.71
+L8 mean F=128 (23s): k8 nu=4.5e+03 rf=4.41e+03 dead=0.00 | k16 nu=2.99e+03 rf=2.98e+03 dead=0.00 | k32 nu=1.69e+03 rf=1.67e+03 dead=0.00 | k64 nu=563 rf=533 dead=0.00
+L8 mean F=256 (18s): k8 nu=4.31e+03 rf=4.19e+03 dead=0.00 | k16 nu=3.09e+03 rf=2.97e+03 dead=0.00 | k32 nu=1.5e+03 rf=1.49e+03 dead=0.00 | k64 nu=381 rf=375 dead=0.00
+L8 mean F=512 (43s): k8 nu=4.11e+03 rf=3.98e+03 dead=0.00 | k16 nu=3.05e+03 rf=2.84e+03 dead=0.00 | k32 nu=1.47e+03 rf=1.41e+03 dead=0.00 | k64 nu=364 rf=358 dead=0.02
+L8 mean F=1024 (77s): k8 nu=3.96e+03 rf=3.8e+03 dead=0.00 | k16 nu=2.94e+03 rf=2.71e+03 dead=0.00 | k32 nu=1.58e+03 rf=1.43e+03 dead=0.00 | k64 nu=377 rf=369 dead=0.04
+L8 mean F=2048 (129s): k8 nu=3.86e+03 rf=3.68e+03 dead=0.00 | k16 nu=2.85e+03 rf=2.59e+03 dead=0.00 | k32 nu=1.61e+03 rf=1.41e+03 dead=0.00 | k64 nu=423 rf=411 dead=0.10
+E2 L8 (93s): G:5.2e-05+-3e-06,c3=0.00 DENSE1:3.3e-05+-3e-06,c3=0.06 DENSEQ2:2.8e-05+-3e-06,c3=0.28 DENSE8:2.5e-05+-3e-06,c3=0.36 DENSEQ16:9.1e-06+-1e-06,c3=0.85 SPARSE_F128_k8:1.7e-05+-2e-06,c3=0.75 SPARSE_F128_k64:1.3e-06+-7e-08,c3=0.97 SPARSE_F256_k32:2.4e-06+-5e-07,c3=0.94 SPARSE_F512_k16:6.9e-06+-1e-06,c3=0.89 SPARSE_F1024_k8:1.1e-05+-1e-06,c3=0.87 SPARSE_F1024_k64:3.1e-07+-2e-07,c3=0.99 SPARSE_F2048_k32:2.6e-06+-6e-07,c3=0.92
+L31 mean F=128 (20s): k8 nu=4.45e+03 rf=4.36e+03 dead=0.00 | k16 nu=2.98e+03 rf=2.96e+03 dead=0.00 | k32 nu=1.65e+03 rf=1.63e+03 dead=0.00 | k64 nu=488 rf=459 dead=0.00
+L31 mean F=256 (20s): k8 nu=4.26e+03 rf=4.14e+03 dead=0.00 | k16 nu=3e+03 rf=2.87e+03 dead=0.00 | k32 nu=1.45e+03 rf=1.44e+03 dead=0.00 | k64 nu=363 rf=358 dead=0.00
+L31 mean F=512 (35s): k8 nu=4.06e+03 rf=3.93e+03 dead=0.00 | k16 nu=2.97e+03 rf=2.77e+03 dead=0.00 | k32 nu=1.48e+03 rf=1.41e+03 dead=0.00 | k64 nu=362 rf=356 dead=0.01
+L31 mean F=1024 (72s): k8 nu=3.91e+03 rf=3.76e+03 dead=0.00 | k16 nu=2.88e+03 rf=2.65e+03 dead=0.00 | k32 nu=1.54e+03 rf=1.39e+03 dead=0.00 | k64 nu=360 rf=351 dead=0.09
+L31 mean F=2048 (123s): k8 nu=3.81e+03 rf=3.64e+03 dead=0.00 | k16 nu=2.81e+03 rf=2.55e+03 dead=0.00 | k32 nu=1.68e+03 rf=1.41e+03 dead=0.00 | k64 nu=383 rf=371 dead=0.10
+E2 L31 (126s): G:5.4e-05+-7e-06,c3=0.00 DENSE1:4.2e-05+-7e-06,c3=-0.02 DENSEQ2:2.9e-05+-5e-06,c3=0.33 DENSE8:2.3e-05+-5e-06,c3=0.38 DENSEQ16:7.4e-06+-1e-06,c3=0.79 SPARSE_F128_k8:1.6e-05+-2e-06,c3=0.72 SPARSE_F128_k64:1.1e-06+-2e-07,c3=0.98 SPARSE_F256_k32:2.4e-06+-6e-07,c3=0.94 SPARSE_F512_k16:5.3e-06+-2e-06,c3=0.91 SPARSE_F1024_k8:7.8e-06+-1e-06,c3=0.86 SPARSE_F1024_k64:2.3e-07+-2e-07,c3=0.99 SPARSE_F2048_k32:2.7e-06+-1e-06,c3=0.94
+ALL DONE 1262s

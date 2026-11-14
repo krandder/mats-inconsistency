@@ -1,0 +1,64 @@
+{
+ "id": "ig_online_subsample",
+ "kind": "bar",
+ "title": "Online IG pay every N steps on s examples: cumulative pay error",
+ "unit": "relative L1 error vs every step, all 512 examples",
+ "source": "trader-economy/results/ig_summary.json",
+ "bars": [
+  {
+   "label": "N=1,s=32 (cost 0.0625)",
+   "value": 0.0453,
+   "ci": 0.0414,
+   "highlight": false
+  },
+  {
+   "label": "N=1,s=256 (cost 0.5000)",
+   "value": 0.0092,
+   "ci": 0.0091,
+   "highlight": false
+  },
+  {
+   "label": "N=1,s=512 (cost 1.0000)",
+   "value": 0.0,
+   "ci": 0.0,
+   "highlight": false
+  },
+  {
+   "label": "N=10,s=32 (cost 0.0063)",
+   "value": 0.1537,
+   "ci": 0.2052,
+   "highlight": false
+  },
+  {
+   "label": "N=10,s=256 (cost 0.0500)",
+   "value": 0.055,
+   "ci": 0.0303,
+   "highlight": false
+  },
+  {
+   "label": "N=10,s=512 (cost 0.1000)",
+   "value": 0.0268,
+   "ci": 0.0286,
+   "highlight": false
+  },
+  {
+   "label": "N=50,s=32 (cost 0.0013)",
+   "value": 0.2181,
+   "ci": 0.1168,
+   "highlight": false
+  },
+  {
+   "label": "N=50,s=256 (cost 0.0100)",
+   "value": 0.1167,
+   "ci": 0.2284,
+   "highlight": false
+  },
+  {
+   "label": "N=50,s=512 (cost 0.0200)",
+   "value": 0.0737,
+   "ci": 0.0686,
+   "highlight": false
+  }
+ ],
+ "note": "binary, 1000 SGD steps, 10 feature agents; cost = fraction of example-passes"
+}

@@ -1,0 +1,31 @@
+2026-09-29T15:22:51Z start train_DTxARB_s0_w64
+Terminated
+2026-09-29T15:34:03Z FAILED train_DTxARB_s0_w64
+2026-09-29T15:36:40Z start train_DTxARB_s0_w64
+2026-09-29T16:19:10Z relaunch DT+fb s0 w64 after the resume fix (run_one.sh)
+2026-09-29T16:19:10Z start train_DT+fb_s0_w64
+2026-09-29T16:19:13Z relaunch DTxARB s0 w64 after the resume fix (run_one.sh)
+2026-09-29T16:19:14Z start train_DTxARB_s0_w64
+2026-09-29T16:19:17Z relaunch DT s1 w64 after the resume fix (run_one.sh)
+2026-09-29T16:19:17Z start train_DT_s1_w64
+2026-09-29T16:28:04Z done train_DT+fb_s0_w64
+2026-09-29T16:28:04Z start eval_DT+fb_s0_w64
+2026-09-29T16:38:52Z done eval_DT+fb_s0_w64
+2026-09-29T17:06:24Z relaunch DT+fb s1 w64 from its step-3000 .part with divergence rollback (the run froze at loss ~8e18, all updates skipped, from step 3300)
+2026-09-29T17:06:28Z start train_DT+fb_s1_w64
+2026-09-29T17:18:28Z done train_DT_s1_w64
+2026-09-29T17:18:28Z start eval_DT_s1_w64
+2026-09-29T17:31:33Z relaunch DTxARB s2 w64 from its step-2000 .part with divergence rollback (the run froze at loss ~6e17, all updates skipped, at step 2800)
+2026-09-29T17:31:33Z start train_DTxARB_s2_w64
+2026-09-29T17:46:14Z done eval_DT_s1_w64
+2026-09-29T18:03:15Z done train_DTxARB_s0_w64
+2026-09-29T18:03:15Z start eval_DTxARB_s0_w64
+2026-09-29T18:10:41Z done train_DT+fb_s1_w64
+2026-09-29T18:10:41Z start eval_DT+fb_s1_w64
+2026-09-29T18:29:04Z done eval_DTxARB_s0_w64
+2026-09-29T18:30:07Z done eval_DT+fb_s1_w64
+2026-09-29T19:06:17Z done train_DTxARB_s2_w64
+2026-09-29T19:06:17Z start eval_DTxARB_s2_w64
+2026-09-29T19:22:15Z done eval_DTxARB_s2_w64
+2026-09-29T19:36:06Z queue: seed 4 of DT/DTxARB/DT+fb deferred (claimed, not run by the queue): with 3 seeds DTxARB valid at n=49 is 1.7% (<95%), so the pre-registered falsification holds whatever seeds 3-4 give; the remaining VM time goes to the 1-seed readouts DT+pen 0, DTxARB-noFB 0, DTxARB-bp 0 first
+2026-09-29T19:57:29Z P12 requeue: DT+pen 0 stopped at ~step 300 (resume later from .part); DTxARB-bp 0 moved ahead of DTxARB-noFB 0 (longest run first, higher-value readout); later items claimed (deferred to p12-4 or dropped); A0-flow/A0-deg solvers run on CPU locally

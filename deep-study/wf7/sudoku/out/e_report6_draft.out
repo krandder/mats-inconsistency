@@ -1,0 +1,69 @@
+E3 (search part). Candidates proposed by the search arms, checked against T_A at the pre-set tau
+   ALL   S1: candidates     559; not the solution (so invalid)      56, of which accepted 4; equal to the solution    503, of which rejected 0
+   HARD  S1: candidates    2636; not the solution (so invalid)    2254, of which accepted 16; equal to the solution    382, of which rejected 0
+   HARD  S2: candidates    4745; not the solution (so invalid)    4654, of which accepted 7; equal to the solution     91, of which rejected 0
+   HARD  S3: candidates   20477; not the solution (so invalid)   20203, of which accepted 3; equal to the solution    274, of which rejected 0
+   HARD  S4: candidates    6443; not the solution (so invalid)    6357, of which accepted 3; equal to the solution     86, of which rejected 0
+   TOTAL: invalid candidates 33524, accepted 33 (rate 9.84e-04, 95% upper bound 1.38e-03); solution candidates 1336, rejected 0 (rate 0.00e+00, upper bound 2.87e-03)
+E3 (search part), POST HOC check T2 = pair check (one-cell contexts), then the same route threshold
+   HARD  S1: candidates    3314; not the solution (so invalid)    2915, of which accepted 0; equal to the solution    399, of which rejected 0
+   HARD  S2: candidates    5153; not the solution (so invalid)    5051, of which accepted 0; equal to the solution    102, of which rejected 0
+   HARD  S3: candidates    4582; not the solution (so invalid)    4532, of which accepted 0; equal to the solution     50, of which rejected 0
+   HARD  S4: candidates    3956; not the solution (so invalid)    3895, of which accepted 0; equal to the solution     61, of which rejected 0
+   TOTAL (T2): invalid candidates 16393, accepted 0 (rate 0.00e+00, 95% upper bound 2.34e-04); solution candidates 612, rejected 0 (rate 0.00e+00, upper bound 6.24e-03)
+
+E4 on ALL (minimal puzzles)   [pre-registered check: route threshold]
+   search policy                                                   n  accepted  acc. correct  cand. 0 correct  cands to accept  FLOPs mean     median
+   S1  M_A, own confidence                                       500    1.0000        0.9980           0.9900             1.05   1.198e+09  1.160e+09
+   E4(a) on ALL: identical answers in 0 of 0 pairs; accepted answers that are not the solution: 1 of 500 -> FAIL
+
+E4 on HARD (minimal puzzles)   [pre-registered check: route threshold]
+   search policy                                                   n  accepted  acc. correct  cand. 0 correct  cands to accept  FLOPs mean     median
+   S1  M_A, own confidence                                       300    0.9967        0.9799           0.7533             4.25   3.843e+09  1.160e+09
+   S2  M_A, least confident first + 5% floor (bad on purpose)     60    0.9833        0.8983           0.0167            43.51   3.081e+10  1.875e+10
+   S3  D6 (distilled from the search), own confidence            300    0.8333        0.9880           0.6533            19.74   1.659e+10  1.160e+09
+   S4  M_B, own confidence                                       100    0.8300        0.9639           0.6500            17.45   1.443e+10  1.160e+09
+   same answer, S1 and S2: 51 of 59 puzzles where both accepted one
+   same answer, S1 and S3: 243 of 250 puzzles where both accepted one
+   same answer, S1 and S4: 79 of 83 puzzles where both accepted one
+   same answer, S2 and S3: 42 of 48 puzzles where both accepted one
+   same answer, S2 and S4: 43 of 49 puzzles where both accepted one
+   same answer, S3 and S4: 72 of 76 puzzles where both accepted one
+   E4(a) on HARD: identical answers in 530 of 565 pairs; accepted answers that are not the solution: 18 of 691 -> FAIL
+
+E4 on HARD (minimal puzzles)   [POST HOC check T2]
+   search policy                                                   n  accepted  acc. correct  cand. 0 correct  cands to accept  FLOPs mean     median
+   S1  M_A, own confidence                                       300    0.9967        1.0000           0.7533             5.39   4.089e+09  1.681e+09
+   S2  M_A, least confident first + 5% floor (bad on purpose)     60    0.9667        1.0000           0.0167            44.64   2.088e+10  1.213e+10
+   S3  D6 (distilled from the search), own confidence             60    0.7833        1.0000           0.6333            17.83   1.028e+10  1.681e+09
+   S4  M_B, own confidence                                        60    0.8500        1.0000           0.6000            18.55   1.068e+10  1.681e+09
+      with the pair check alone (derived): FLOPs to accept, mean / median: S1 3.306e+09 / 8.974e+08; S2 2.009e+10 / 1.135e+10; S3 9.493e+09 / 8.974e+08; S4 9.895e+09 / 8.974e+08
+   same answer, S1 and S2: 58 of 58 puzzles where both accepted one
+   same answer, S1 and S3: 47 of 47 puzzles where both accepted one
+   same answer, S1 and S4: 51 of 51 puzzles where both accepted one
+   same answer, S2 and S3: 46 of 46 puzzles where both accepted one
+   same answer, S2 and S4: 49 of 49 puzzles where both accepted one
+   same answer, S3 and S4: 41 of 41 puzzles where both accepted one
+   E4(a) on HARD_T2: identical answers in 292 of 292 pairs; accepted answers that are not the solution: 0 of 455 -> PASS
+
+E4(c) on HARD: accuracy against FLOPs (anytime rule for the search arms)
+   K0 one pass of M_A, no check             FLOPs 3.757e+08  accuracy 0.7533
+   K1 one pass of mB6t, no check            FLOPs 4.851e+07  accuracy 0.5233
+   K1 one pass of mB6, no check             FLOPs 3.757e+08  accuracy 0.6833
+   KT one pass of mB6 in trust order        FLOPs 5.649e+08  accuracy 0.7433
+   K2 best of k passes of mB6 by its own log-probability: k=1: 0.6833 @ 3.76e+08  k=2: 0.6833 @ 7.51e+08  k=4: 0.6833 @ 1.50e+09  k=8: 0.6833 @ 3.01e+09  k=16: 0.6833 @ 6.01e+09  k=32: 0.6833 @ 1.20e+10
+   K1 one pass of mB6 with rule maxprob: accuracy 0.6967
+   K1 one pass of mB6 with rule entropy: accuracy 0.7067
+   budget (FLOPs per puzzle):                3e+08     1e+09     3e+09     1e+10     3e+10     1e+11     1e+12
+   S1 (n=300) accuracy within budget:    0.0000    0.7533    0.7933    0.9233    0.9600    0.9767    0.9767
+   S2 (n=60) accuracy within budget:    0.0000    0.0167    0.0500    0.2500    0.5667    0.8500    0.8833
+   S3 (n=300) accuracy within budget:    0.0000    0.6533    0.6567    0.6667    0.6967    0.7700    0.8233
+   S4 (n=100) accuracy within budget:    0.0000    0.6500    0.6500    0.6500    0.6800    0.7500    0.8000
+   S1 with T2 (post hoc; n=300):         0.0000    0.7533    0.8000    0.9367    0.9733    0.9933    0.9967
+   S2 with T2 (post hoc; n=60):         0.0000    0.0167    0.0667    0.3667    0.7333    0.9667    0.9667
+   S3 with T2 (post hoc; n=60):         0.0000    0.6333    0.6333    0.6333    0.7000    0.7667    0.7833
+   S4 with T2 (post hoc; n=60):         0.0000    0.6000    0.6000    0.6333    0.7167    0.8500    0.8500
+   HEADLINE E4(c) on HARD, S1 against K0/K1/K2: MAJOR (at 6.01e+09 FLOPs: S1 0.8667 against best baseline of equal or lower FLOPs 0.7533)
+   HEADLINE E4(c) on HARD, S4 against K0/K1/K2: MINOR (final 0.8000 against best baseline 0.7533; passes it at 283.8x its FLOPs)
+   HEADLINE E4(c) on HARD, S1 with the post hoc check T2 against K0/K1/K2: MAJOR (at 6.01e+09 FLOPs: S1 0.9033 against best baseline of equal or lower FLOPs 0.7533)
+   HEADLINE E4(c) on HARD, S4 with the post hoc check T2 against K0/K1/K2: MINOR (final 0.8500 against best baseline 0.7533; passes it at 97.1x its FLOPs)

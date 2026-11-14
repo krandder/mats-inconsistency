@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Interactive explainer: the RL reward for training an LLM to state coherent probabilities. Negation, conjunction bound, partition and conditional chain, each as a fixed memoryless environment paying minus the squared violation of the stated numbers.">
+<meta name="theme-color" content="#f6f7f9">
+<link rel="canonical" href="https://consistency.futarchy.ai/compiled-rewards.html">
+<title>Compiled coherence rewards · consistency-ft</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#f6f7f9; --paper:#ffffff; --grid:#e3e7ec; --line:#cfd6de; --soft:#eceff3;
+  --ink:#161b22; --ink2:#4d5866; --ink3:#7d8794;
+  --a:#2a78d6; --na:#eb6834; --ab:#1baf7a; --ag:#4a3aa7; --b:#b06d00;
+  --e1:#1d5aa8; --e2:#2a78d6; --e3:#6ea3e6; --e4:#a9c8f0;
+  --heat0:241,243,246; --heat1:40,46,56;
+  --shadow:0 1px 2px rgba(20,27,34,.06),0 6px 20px rgba(20,27,34,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#12161c; --paper:#1a2029; --grid:#242c37; --line:#334051; --soft:#232b36;
+    --ink:#eef1f5; --ink2:#b7c0cc; --ink3:#7f8a98;
+    --a:#3987e5; --na:#d95926; --ab:#199e70; --ag:#9085e9; --b:#c98500;
+    --e1:#2a6fc4; --e2:#3987e5; --e3:#78aaee; --e4:#b3cdf3;
+    --heat0:32,38,46; --heat1:200,206,214;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#12161c; --paper:#1a2029; --grid:#242c37; --line:#334051; --soft:#232b36;
+  --ink:#eef1f5; --ink2:#b7c0cc; --ink3:#7f8a98;
+  --a:#3987e5; --na:#d95926; --ab:#199e70; --ag:#9085e9; --b:#c98500;
+  --e1:#2a6fc4; --e2:#3987e5; --e3:#78aaee; --e4:#b3cdf3;
+  --heat0:32,38,46; --heat1:200,206,214;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Source Serif 4",Georgia,"Times New Roman",serif;font-size:17px;line-height:1.55;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:32px 32px}
+.wrap{max-width:1040px;margin:0 auto;padding-block:32px 80px;padding-inline:20px}
+h1,h2,h3{font-family:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;text-wrap:balance;line-height:1.08;margin:0}
+h1{font-size:clamp(40px,7vw,72px);font-weight:700;letter-spacing:-.02em}
+h2{font-size:clamp(28px,4vw,40px);font-weight:700;letter-spacing:-.015em}
+h3{font-size:19px;font-weight:700}
+p{max-width:66ch;margin:0}
+a{color:var(--ink)}
+.eyebrow{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
+.lede{font-size:21px;color:var(--ink2);max-width:60ch}
+.m{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace;font-size:.92em}
+.formula{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace;font-size:15px;line-height:1.8;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:14px 18px;overflow-x:auto;white-space:nowrap}
+.formula b{font-weight:600}
+.A{color:var(--a)} .NA{color:var(--na)} .AB{color:var(--ab)} .AG{color:var(--ag)} .B{color:var(--b)}
+.E1{color:var(--e1)} .E2{color:var(--e2)} .E3{color:var(--e3)} .E4{color:var(--e4)}
+.tok{display:inline-block;padding:0 .35em;border-radius:4px;font-weight:600}
+.tok.A{background:color-mix(in srgb,var(--a) 14%,transparent)} .tok.NA{background:color-mix(in srgb,var(--na) 14%,transparent)}
+.tok.AB{background:color-mix(in srgb,var(--ab) 14%,transparent)} .tok.AG{background:color-mix(in srgb,var(--ag) 14%,transparent)}
+.tok.B{background:color-mix(in srgb,var(--b) 14%,transparent)}
+.tok.E1{background:color-mix(in srgb,var(--e1) 14%,transparent)} .tok.E2{background:color-mix(in srgb,var(--e2) 14%,transparent)}
+.tok.E3{background:color-mix(in srgb,var(--e3) 18%,transparent)} .tok.E4{background:color-mix(in srgb,var(--e4) 24%,transparent)}
+hr.sep{border:0;border-top:1px solid var(--line);margin:72px 0 40px}
+.topnav{display:flex;gap:18px;flex-wrap:wrap;font-family:"Bricolage Grotesque",sans-serif;font-size:13px;font-weight:700;letter-spacing:.02em;margin-bottom:28px}
+.topnav a{color:var(--ink2);text-decoration:none;border-bottom:2px solid transparent;padding-bottom:2px}
+.topnav a[aria-current]{color:var(--ink);border-color:var(--ink)} .topnav a:hover{color:var(--ink)}
+header{display:grid;gap:22px;margin-bottom:56px}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:32px;align-items:start}
+@media(max-width:760px){.hero{grid-template-columns:1fr}}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);padding:20px}
+.chapter{display:grid;gap:24px;margin-bottom:24px}
+.chapter-head{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start}
+.deg{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);border:1px solid var(--line);border-radius:999px;padding:6px 12px;white-space:nowrap;margin-top:8px;background:var(--paper)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:760px){.two{grid-template-columns:1fr}}
+.controls{display:grid;gap:12px}
+.ctl{display:grid;grid-template-columns:110px 1fr 58px;gap:12px;align-items:center;font-family:"JetBrains Mono",monospace;font-size:13px}
+.ctl label{font-weight:600}
+.ctl output{text-align:right;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--ink);height:24px}
+input[type=range]:focus-visible{outline:2px solid var(--ink3);outline-offset:2px;border-radius:4px}
+.score{display:flex;gap:22px;flex-wrap:wrap;align-items:baseline;margin-top:10px}
+.stat{display:grid;gap:2px}
+.stat .k{font-size:12px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;font-family:"JetBrains Mono",monospace}
+.stat .v{font-family:"JetBrains Mono",monospace;font-size:26px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1}
+.pill{display:inline-flex;align-items:center;gap:6px;font-family:"JetBrains Mono",monospace;font-size:12px;padding:3px 9px;border-radius:999px;border:1px solid var(--line)}
+.pill i{width:14px;height:0;border-top:2px solid var(--ink);display:inline-block}
+.pill i.dash{border-top-style:dashed;border-color:var(--ink3)}
+.pill.ok{border-color:var(--ink);background:var(--soft)}
+svg{display:block;max-width:100%;height:auto}
+.axis{stroke:var(--line);stroke-width:1} .gridl{stroke:var(--grid);stroke-width:1}
+.lbl{font-family:"JetBrains Mono",monospace;font-size:11px;fill:var(--ink3)}
+.lbl2{font-family:"JetBrains Mono",monospace;font-size:12px;fill:var(--ink2)}
+.cap{font-size:14px;color:var(--ink2);margin-top:10px;max-width:none}
+canvas{display:block;max-width:100%;height:auto;border-radius:6px}
+.episode{display:grid;gap:10px;margin-top:14px}
+.ep-row{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;font-family:"JetBrains Mono",monospace;font-size:13px;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg)}
+.ep-row .n{font-weight:600;color:var(--ink3)}
+.ep-row .val{font-weight:600;font-variant-numeric:tabular-nums}
+.ep-row.pay{background:var(--soft);border-color:var(--ink)}
+.ep-ctx{font-size:11px;color:var(--ink3);letter-spacing:.06em;text-transform:uppercase}
+.tablewrap{overflow-x:auto}
+table.cmp{border-collapse:collapse;width:100%;font-size:15px}
+table.cmp th{font-family:"Bricolage Grotesque",sans-serif;text-align:left;padding:10px 12px;border-bottom:2px solid var(--ink);font-size:14px}
+table.cmp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+table.cmp td.m{font-size:13.5px}
+.note{border-left:3px solid var(--ink);padding:8px 16px;background:var(--soft);border-radius:0 6px 6px 0;font-size:15.5px;max-width:none}
+.note p{max-width:none}
+.aside{border:1px dashed var(--line);border-radius:8px;padding:18px 20px;font-size:15.5px;color:var(--ink2)}
+.aside p{max-width:none}
+.aside h3{color:var(--ink);margin-bottom:8px}
+.footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);font-size:14px;color:var(--ink3);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="topnav" aria-label="Site"><a href="/">Benchmark</a><a href="/open-agency.html">Open Agency</a><a href="/compiled-rewards.html" aria-current="page">Compiled rewards</a><a href="https://github.com/futarchy-fi/consistency-ft">Repository ↗</a></nav>
+
+<header>
+  <div class="eyebrow">consistency-ft · coherence as an RL reward</div>
+  <h1>What the reward looks like</h1>
+  <p class="lede">The model is asked about each proposition in its own fresh context and states a probability. One episode is that set of stated numbers. The reward is minus the squared violation of the logical constraint between them. Nothing is sampled, estimated or adversarially solved. Move the sliders to see the payout.</p>
+  <div class="hero">
+    <div class="panel">
+      <div class="eyebrow" style="margin-bottom:10px">Reward landscape · p(A) + p(¬A) = 1</div>
+      <canvas id="heat" width="520" height="400" aria-label="Heatmap of the reward over the two stated probabilities"></canvas>
+      <p class="cap">Reward <span class="m">R = −(c(A) + c(¬A) − 1)²</span> over every pair of stated numbers. Darker is a worse payout. The dashed diagonal pays zero and is the coherent set. The ring is the current pair from Chapter 1.</p>
+    </div>
+    <div style="display:grid;gap:16px">
+      <div class="note"><p><b>One episode, three moves.</b> Ask <span class="A">"P(A)?"</span> in one context, ask <span class="NA">"P(¬A)?"</span> in another, read the two numbers, pay <span class="m">−(c₁ + c₂ − 1)²</span>. The separate contexts are the point: the model cannot copy its first answer, so coherence has to come from its beliefs, not from its scratchpad.</p></div>
+      <div class="episode" aria-label="Episode structure">
+        <div class="ep-row"><span class="n">query 1</span><span><span class="ep-ctx">fresh context · </span><span class="A">"What is P(A)?"</span></span><span class="val" id="hero-c1">0.70</span></div>
+        <div class="ep-row"><span class="n">query 2</span><span><span class="ep-ctx">fresh context · </span><span class="NA">"What is P(¬A)?"</span></span><span class="val" id="hero-c2">0.45</span></div>
+        <div class="ep-row pay"><span class="n">payout</span><span>−(c₁ + c₂ − 1)²</span><span class="val" id="hero-r">−0.0225</span></div>
+      </div>
+      <p style="color:var(--ink2);font-size:15.5px">Because every query runs in its own context with the same weights, the episode is an imperfect-recall game: one policy, several forgetful copies, one shared payout. Stable points of policy gradient in such a game are its causal-decision-theory equilibria, and those are exactly the KKT points of the score. That is the bridge Jessica Taylor's dice-enterprise work makes precise.</p>
+    </div>
+  </div>
+</header>
+
+<!-- ============ PREFACE ============ -->
+<section class="chapter">
+  <div class="chapter-head"><div class="deg">Preface</div><div>
+    <h2>Why not the Dutch book itself?</h2>
+    <p style="margin-top:10px">RLE's exploitability is a linear program: a bettor picks stakes in [−1, 1] on each stated number and the worst consistent world is chosen against the model. Its value is |v|, piecewise linear with a kink at coherence. Squaring the violation replaces the saturated bettor with one whose stake is proportional to the violation. Both are legitimate rewards on stated numbers; the quadratic one has a gradient that vanishes as the model gets it right, which is what lets standard policy gradient settle instead of oscillating around the kink.</p>
+  </div></div>
+  <div class="two">
+    <div class="panel">
+      <div class="controls"><div class="ctl"><label for="v0">violation v</label><input type="range" id="v0" min="-1" max="1" step="0.01" value="0.35"><output id="v0o">0.35</output></div></div>
+      <svg id="lpsvg" viewBox="0 0 480 300" role="img" aria-label="LP exploit and squared violation as a function of the violation"></svg>
+      <p class="cap"><span class="pill"><i class="dash"></i>LP exploit |v|</span> <span class="pill"><i></i>squared v²</span>. Same zero, same sign, different shape near coherence.</p>
+    </div>
+    <div class="panel">
+      <div class="eyebrow" style="margin-bottom:10px">The bettor's stake at this violation</div>
+      <svg id="stakesvg" viewBox="0 0 480 220" role="img" aria-label="Bettor stake under the LP and under the squared score"></svg>
+      <p class="cap"><span class="pill"><i class="dash"></i>LP stake sign(v)</span> <span class="pill"><i></i>quadratic stake 2v</span>. The LP bettor goes all-in the instant the book is off. The quadratic bettor's stake shrinks with the violation, so the training signal is proportional to how wrong the numbers are.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ CH1: NEGATION ============ -->
+<section class="chapter" id="ch1">
+  <div class="chapter-head"><div class="deg">2 queries</div><div>
+    <h2>1 · Negation: p(A) + p(¬A) = 1</h2>
+    <p style="margin-top:10px">Two propositions, one affine equality. The reward is symmetric: stating 0.01 for both is as bad as stating 0.99 for both, and every pair on the diagonal pays zero. The expansion below is only there to show the reward is a smooth polynomial in the stated numbers, not a rule the environment follows.</p>
+  </div></div>
+  <div class="formula" id="f1"></div>
+  <div class="two">
+    <div class="panel">
+      <div class="controls">
+        <div class="ctl"><label for="p1a" class="A">c(A)</label><input type="range" id="p1a" min="0" max="1" step="0.01" value="0.70"><output id="p1ao">0.70</output></div>
+        <div class="ctl"><label for="p1n" class="NA">c(¬A)</label><input type="range" id="p1n" min="0" max="1" step="0.01" value="0.45"><output id="p1no">0.45</output></div>
+      </div>
+      <div class="score">
+        <div class="stat"><div class="k">violation v</div><div class="v" id="s1v">0.15</div></div>
+        <div class="stat"><div class="k">reward R</div><div class="v" id="s1r">−0.0225</div></div>
+        <div class="stat"><div class="k">gradient ∂R/∂c</div><div class="v" id="s1g">−0.30</div></div>
+      </div>
+      <h3 style="margin-top:18px">The episode</h3>
+      <div class="episode" id="ep1"></div>
+      <p class="cap">Both stated numbers receive the same gradient, −2v. The environment cannot tell the model which one is "wrong"; it only says the pair does not add up. Which number moves is up to the model's beliefs about A.</p>
+    </div>
+    <div class="panel">
+      <div class="eyebrow" style="margin-bottom:10px">Reward along c(¬A), with c(A) fixed</div>
+      <svg id="cut1" viewBox="0 0 480 300" role="img" aria-label="Reward as a function of the stated complement probability"></svg>
+      <p class="cap">A parabola whose peak sits at <span class="m">1 − c(A)</span>. Move c(A) and the peak slides. The dashed line marks the coherent answer for the current c(A).</p>
+    </div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ CH2: CONJUNCTION INEQUALITY ============ -->
+<section class="chapter" id="ch2">
+  <div class="chapter-head"><div class="deg">2 queries</div><div>
+    <h2>2 · Conjunction bound: p(A∧B) ≤ p(A)</h2>
+    <p style="margin-top:10px">An inequality. The feasible side is half the square, so the reward is zero on a region, not a line. The squared hinge is the standard smooth penalty: zero and flat on the feasible side, quadratic beyond it. On stated numbers this is computed directly; no approximation is involved.</p>
+  </div></div>
+  <div class="formula" id="f2"></div>
+  <div class="two">
+    <div class="panel">
+      <div class="controls">
+        <div class="ctl"><label for="p2a" class="A">c(A)</label><input type="range" id="p2a" min="0" max="1" step="0.01" value="0.40"><output id="p2ao">0.40</output></div>
+        <div class="ctl"><label for="p2c" class="AB">c(A∧B)</label><input type="range" id="p2c" min="0" max="1" step="0.01" value="0.65"><output id="p2co">0.65</output></div>
+      </div>
+      <div class="score">
+        <div class="stat"><div class="k">violation v</div><div class="v" id="s2v">0.25</div></div>
+        <div class="stat"><div class="k">reward R</div><div class="v" id="s2r">−0.0625</div></div>
+        <div class="stat"><div class="k">status</div><div class="v" id="s2st" style="font-size:16px;padding-top:6px"></div></div>
+      </div>
+      <h3 style="margin-top:18px">The episode</h3>
+      <div class="episode" id="ep2"></div>
+      <p class="cap">On the feasible side the gradient is exactly zero: the environment is silent about how much smaller p(A∧B) is than p(A). Other constraints (p(A∧B) ≤ p(B), the chain in Chapter 4) supply that information.</p>
+    </div>
+    <div class="panel">
+      <div class="eyebrow" style="margin-bottom:10px">Reward landscape · c(A) across, c(A∧B) up</div>
+      <canvas id="heat2" width="480" height="360" aria-label="Heatmap of the conjunction-bound reward over the two stated numbers"></canvas>
+      <p class="cap">The lower-right triangle pays zero. Above the diagonal the penalty grows with the square of the overshoot. Compare Chapter 1, where only a line pays zero.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ CH3: PARTITION ============ -->
+<section class="chapter" id="ch3">
+  <div class="chapter-head"><div class="deg">k queries</div><div>
+    <h2>3 · Partition: Σ p(Eₖ) = 1</h2>
+    <p style="margin-top:10px">Negation with more outcomes. Four mutually exclusive, exhaustive events, four fresh contexts, one payout on the total. Every stated number gets the same gradient, −2·(Σc − 1), so the environment pushes the whole set up or down together and leaves the split between events to the model.</p>
+  </div></div>
+  <div class="formula" id="f3"></div>
+  <div class="two">
+    <div class="panel">
+      <div class="controls" id="ctl3">
+        <div class="ctl"><label for="p3_0" class="E1">c(E₁)</label><input type="range" id="p3_0" min="0" max="1" step="0.01" value="0.40"><output id="p3_0o">0.40</output></div>
+        <div class="ctl"><label for="p3_1" class="E2">c(E₂)</label><input type="range" id="p3_1" min="0" max="1" step="0.01" value="0.35"><output id="p3_1o">0.35</output></div>
+        <div class="ctl"><label for="p3_2" class="E3">c(E₃)</label><input type="range" id="p3_2" min="0" max="1" step="0.01" value="0.20"><output id="p3_2o">0.20</output></div>
+        <div class="ctl"><label for="p3_3" class="E4">c(E₄)</label><input type="range" id="p3_3" min="0" max="1" step="0.01" value="0.25"><output id="p3_3o">0.25</output></div>
+      </div>
+      <div class="score">
+        <div class="stat"><div class="k">Σ c</div><div class="v" id="s3sum">1.20</div></div>
+        <div class="stat"><div class="k">reward R</div><div class="v" id="s3r">−0.04</div></div>
+        <div class="stat"><div class="k">gradient (each)</div><div class="v" id="s3g">−0.40</div></div>
+      </div>
+      <svg id="stack3" viewBox="0 0 480 96" role="img" aria-label="Stacked bar of the four stated probabilities against the coherent total of one"></svg>
+      <p class="cap">The bar should end at the mark. Overshoot and undershoot are penalised alike.</p>
+    </div>
+    <div class="panel">
+      <div class="eyebrow" style="margin-bottom:10px">Reward as the total moves</div>
+      <svg id="cut3" viewBox="0 0 480 300" role="img" aria-label="Reward as a function of the sum of stated probabilities"></svg>
+      <p class="cap">One parabola in one number, the total. Four sliders, but the environment sees only their sum. Mutual exclusivity itself (no two events both true) is a separate constraint set, p(Eᵢ∧Eⱼ) = 0, and needs its own queries.</p>
+      <h3 style="margin-top:18px">The episode</h3>
+      <div class="episode" id="ep3"></div>
+    </div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ CH4: CHAIN ============ -->
+<section class="chapter" id="ch4">
+  <div class="chapter-head"><div class="deg">3 queries</div><div>
+    <h2>4 · Conditional chain: p(A|B)·p(B) = p(A∧B)</h2>
+    <p style="margin-top:10px">The constraint is a product, so the reward is quartic in the stated numbers and the gradients are no longer uniform. The conditional's gradient is scaled by c(B): when B is rare, the environment says almost nothing about p(A|B). That is the same weak-signal problem a Bayesian has with rare conditions, and it is a property of the constraint, not of the training method.</p>
+  </div></div>
+  <div class="formula" id="f4"></div>
+  <div class="two">
+    <div class="panel">
+      <div class="controls">
+        <div class="ctl"><label for="p4g" class="AG">c(A|B)</label><input type="range" id="p4g" min="0" max="1" step="0.01" value="0.80"><output id="p4go">0.80</output></div>
+        <div class="ctl"><label for="p4b" class="B">c(B)</label><input type="range" id="p4b" min="0" max="1" step="0.01" value="0.50"><output id="p4bo">0.50</output></div>
+        <div class="ctl"><label for="p4c" class="AB">c(A∧B)</label><input type="range" id="p4c" min="0" max="1" step="0.01" value="0.25"><output id="p4co">0.25</output></div>
+      </div>
+      <div class="score">
+        <div class="stat"><div class="k">c(A|B)·c(B)</div><div class="v" id="s4prod">0.40</div></div>
+        <div class="stat"><div class="k">violation v</div><div class="v" id="s4v">0.15</div></div>
+        <div class="stat"><div class="k">reward R</div><div class="v" id="s4r">−0.0225</div></div>
+      </div>
+      <h3 style="margin-top:18px">The episode</h3>
+      <div class="episode" id="ep4"></div>
+      <div class="eyebrow" style="margin:16px 0 6px">Gradient per stated number</div>
+      <svg id="grad4" viewBox="0 0 480 120" role="img" aria-label="Gradient of the reward with respect to each of the three stated numbers"></svg>
+      <p class="cap">−2v·c(B) for the conditional, −2v·c(A|B) for the condition, +2v for the conjunction. Slide c(B) toward zero and watch the first bar vanish.</p>
+    </div>
+    <div class="panel">
+      <div class="eyebrow" style="margin-bottom:10px">Reward as c(A|B) moves, others fixed</div>
+      <svg id="curve4" viewBox="0 0 480 300" role="img" aria-label="Reward as a function of the stated conditional probability with the others fixed"></svg>
+      <p class="cap">A parabola whose peak sits at <span class="m">c(A∧B) / c(B)</span>. If that ratio exceeds 1 no coherent conditional exists: the model's stated c(A∧B) is already larger than its stated c(B), and the Chapter 2 bound for B is what should fire.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ SUMMARY ============ -->
+<section class="chapter">
+  <div class="chapter-head"><div class="deg">Summary</div><div>
+    <h2>Four constraints, one recipe</h2>
+    <p style="margin-top:10px">Each constraint is a check on a small tuple of stated numbers. Each check is one episode: ask the tuple's propositions in separate contexts, compute the violation, pay minus its square. A training run mixes episodes across checks and tuples and adds one anchor query so the model cannot become coherent by becoming uniform.</p>
+  </div></div>
+  <div class="panel tablewrap">
+    <table class="cmp">
+      <thead><tr><th>Constraint</th><th>Reward on stated numbers</th><th>Queries</th><th>Zero set</th><th>Gradient shape</th></tr></thead>
+      <tbody>
+        <tr><td>Negation</td><td class="m">−(c(A) + c(¬A) − 1)²</td><td>2</td><td>a line</td><td>same for both numbers</td></tr>
+        <tr><td>Conjunction bound</td><td class="m">−max(0, c(A∧B) − c(A))²</td><td>2</td><td>a half-plane</td><td>zero when feasible, ±2v beyond</td></tr>
+        <tr><td>Partition (k events)</td><td class="m">−(Σ c(Eᵢ) − 1)²</td><td>k</td><td>a hyperplane</td><td>same for all k numbers</td></tr>
+        <tr><td>Conditional chain</td><td class="m">−(c(A|B)·c(B) − c(A∧B))²</td><td>3</td><td>a curved surface</td><td>scaled by the other factor</td></tr>
+        <tr><td>Anchor (any of the above)</td><td class="m">−λ·(c(A) − c<sub>ref</sub>(A))²</td><td>1</td><td>the reference</td><td>pulls toward resolution or the previous checkpoint</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note"><p><b>What the sliders do not show.</b> All-0.5 satisfies negation exactly and the conjunction bound trivially, and constant-uniform answers satisfy partitions. Coherence alone has degenerate optima. The anchor row is not optional; consistency-ft's choice is a KL-style pull toward the previous checkpoint's stated numbers rather than toward resolved ground truth, so the model coherentises what it already believes.</p></div>
+  <div class="aside">
+    <h3>Where the dice come in</h3>
+    <p>Everything above assumes the model <em>states</em> a number and the environment reads it. If instead the probability of interest lived inside the model's sampling distribution, say p(A) = π(yes | "Is A true?"), the environment could never read it directly, only draw yes/no tokens from it. Any reward on tokens has an expectation that is linear in π per query, so a squared violation, which is quadratic, would need two independent draws of the same question multiplied together, and a hinge or KL term would need a Bernstein-style approximation whose accuracy grows with the number of draws. That is the regime Jessica Taylor's dice-enterprise bounds cover: which score functions can be realised as expected rewards of a fixed memoryless game, and how many queries it takes. With verbalised probabilities the compile step is trivial and only the game-theoretic conclusion carries over: memoryless queries make the episode an imperfect-recall game, its stable points under RL are CDT equilibria, and those coincide with the KKT points of the score.</p>
+  </div>
+</section>
+
+<footer class="footer"><span>consistency-ft · coherence as an RL reward · imperfect-recall framing after Jessica Taylor</span><a href="https://github.com/futarchy-fi/consistency-ft/blob/main/site/compiled-rewards.html">Page source ↗</a></footer>
+</div>
+
+<script>
+(function(){
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const fmt=(x,d=4)=>{const s=Math.abs(+x.toFixed(d)).toFixed(d);return (x<0&&+s!==0?'−':'')+s;};
+const el=id=>document.getElementById(id);
+const svgNS='http://www.w3.org/2000/svg';
+function S(tag,attrs,parent){const n=document.createElementNS(svgNS,tag);for(const k in attrs)n.setAttribute(k,attrs[k]);if(parent)parent.appendChild(n);return n;}
+function clear(n){while(n.firstChild)n.removeChild(n.firstChild);}
+function isDark(){const t=document.documentElement.dataset.theme;return t==='dark'||(t!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches);}
+function heatRGB(t){const a=css('--heat0').split(',').map(Number),b=css('--heat1').split(',').map(Number);return a.map((v,i)=>Math.round(v+(b[i]-v)*t));}
+function episode(container,rows,payLabel,payVal){clear(container);
+  rows.forEach((r,i)=>{const d=document.createElement('div');d.className='ep-row';
+    d.innerHTML=`<span class="n">query ${i+1}</span><span><span class="ep-ctx">fresh context · </span><span class="${r.cls}">"What is P(${r.name})?"</span></span><span class="val">${r.val.toFixed(2)}</span>`;container.appendChild(d);});
+  const p=document.createElement('div');p.className='ep-row pay';p.innerHTML=`<span class="n">payout</span><span>${payLabel}</span><span class="val">${fmt(payVal,4)}</span>`;container.appendChild(p);}
+function parabolaChart(svg,opts){// opts: xlabel, f(x) on [0,1], xcur, xopt (may be null), ymin
+  clear(svg);const W=480,H=+svg.getAttribute('viewBox').split(' ')[3],L=52,R=14,T=18,B=32;
+  const ymin=opts.ymin,ymax=0;const x=v=>L+(W-L-R)*v,y=s=>T+(H-T-B)*(ymax-s)/(ymax-ymin);
+  for(let k=0;k<=4;k++){const s=ymin+(ymax-ymin)*k/4;S('line',{x1:L,x2:W-R,y1:y(s),y2:y(s),class:'gridl'},svg);S('text',{x:L-6,y:y(s)+4,'text-anchor':'end',class:'lbl'},svg).textContent=fmt(s,2);}
+  [0,.25,.5,.75,1].forEach(t=>S('text',{x:x(t),y:H-10,'text-anchor':'middle',class:'lbl'},svg).textContent=t);
+  S('text',{x:W-R,y:H-10,'text-anchor':'end',class:'lbl2',fill:opts.xcolor||css('--ink2')},svg).textContent=opts.xlabel;
+  S('line',{x1:L,x2:W-R,y1:y(0),y2:y(0),class:'axis'},svg);
+  let d='';for(let i=0;i<=100;i++){const v=i/100;d+=(i?'L':'M')+x(v).toFixed(1)+' '+y(Math.max(ymin,opts.f(v))).toFixed(1);}
+  S('path',{d,fill:'none',stroke:css('--ink'),'stroke-width':2.5},svg);
+  if(opts.xopt!=null&&opts.xopt>=0&&opts.xopt<=1){S('line',{x1:x(opts.xopt),x2:x(opts.xopt),y1:T,y2:H-B,stroke:css('--ink3'),'stroke-width':1,'stroke-dasharray':'4 4'},svg);S('text',{x:x(opts.xopt),y:T+2,'text-anchor':'middle',class:'lbl2'},svg).textContent=opts.optlabel||('coherent at '+opts.xopt.toFixed(2));}
+  else if(opts.nooptlabel){S('text',{x:x(.5),y:T+2,'text-anchor':'middle',class:'lbl2'},svg).textContent=opts.nooptlabel;}
+  const yc=Math.max(ymin,opts.f(opts.xcur));
+  S('circle',{cx:x(opts.xcur),cy:y(yc),r:5.5,fill:css('--paper'),stroke:css('--ink'),'stroke-width':2.5},svg);
+  S('text',{x:x(opts.xcur)+(opts.xcur>.7?-10:10),y:y(yc)+(yc<ymin*.15?16:-10),'text-anchor':opts.xcur>.7?'end':'start',class:'lbl2'},svg).textContent='R = '+fmt(opts.f(opts.xcur),4);
+}
+function heatmap(c,f,xcur,ycur,labels){const ctx=c.getContext('2d'),W=c.width,H=c.height,L=48,R=16,T=16,B=40;
+  ctx.fillStyle=css('--paper');ctx.fillRect(0,0,W,H);
+  const img=ctx.createImageData(W-L-R,H-T-B),pw=img.width,ph=img.height;
+  for(let j=0;j<ph;j++)for(let i=0;i<pw;i++){const px=i/(pw-1),py=1-j/(ph-1);const t=Math.sqrt(Math.min(1,-f(px,py)));const [r,g,b]=heatRGB(t);const k=4*(j*pw+i);img.data[k]=r;img.data[k+1]=g;img.data[k+2]=b;img.data[k+3]=255;}
+  ctx.putImageData(img,L,T);
+  const dark=isDark();const ink=dark?'#eef1f5':'#161b22';
+  ctx.strokeStyle=dark?'#12161c':'#ffffff';ctx.lineWidth=2;ctx.setLineDash([6,4]);ctx.beginPath();
+  if(labels.diag==='anti'){ctx.moveTo(L,T);ctx.lineTo(W-R,H-B);}else{ctx.moveTo(L,H-B);ctx.lineTo(W-R,T);}ctx.stroke();ctx.setLineDash([]);
+  ctx.fillStyle=css('--ink3');ctx.font='11px "JetBrains Mono",monospace';ctx.textAlign='center';[0,.5,1].forEach(v=>ctx.fillText(v.toFixed(1),L+(W-L-R)*v,H-B+16));
+  ctx.textAlign='right';[0,.5,1].forEach(v=>ctx.fillText(v.toFixed(1),L-6,T+(H-T-B)*(1-v)+4));
+  ctx.fillStyle=labels.xcol;ctx.textAlign='right';ctx.font='600 12px "JetBrains Mono",monospace';ctx.fillText(labels.x+' →',W-R,H-6);
+  ctx.save();ctx.translate(14,T+70);ctx.rotate(-Math.PI/2);ctx.fillStyle=labels.ycol;ctx.textAlign='right';ctx.fillText(labels.y+' →',0,0);ctx.restore();
+  ctx.fillStyle=ink;ctx.textAlign='left';ctx.font='11px "JetBrains Mono",monospace';ctx.fillText(labels.zero,L+8,labels.zeroY==='top'?T+16:H-B-8);
+  const cx=L+(W-L-R)*xcur,cy=T+(H-T-B)*(1-ycur);
+  ctx.beginPath();ctx.arc(cx,cy,7,0,7);ctx.fillStyle=css('--paper');ctx.fill();ctx.lineWidth=2.5;ctx.strokeStyle=ink;ctx.stroke();
+  ctx.fillStyle=ink;ctx.font='600 12px "JetBrains Mono",monospace';ctx.textAlign=xcur>.6?'right':'left';ctx.fillText('R = '+fmt(f(xcur,ycur),4),cx+(xcur>.6?-12:12),cy+4);}
+
+/* ============ PREFACE ============ */
+function drawLP(){
+  const v=+el('v0').value;el('v0o').textContent=fmt(v,2);
+  const svg=el('lpsvg');clear(svg);const W=480,H=300,L=44,R=14,T=16,B=32;
+  const x=t=>L+(W-L-R)*(t+1)/2,y=s=>T+(H-T-B)*(1-s);
+  for(let k=0;k<=4;k++){const s=k/4;S('line',{x1:L,x2:W-R,y1:y(s),y2:y(s),class:'gridl'},svg);S('text',{x:L-6,y:y(s)+4,'text-anchor':'end',class:'lbl'},svg).textContent=s.toFixed(2);}
+  [-1,-.5,0,.5,1].forEach(t=>S('text',{x:x(t),y:H-10,'text-anchor':'middle',class:'lbl'},svg).textContent=t);
+  S('line',{x1:x(0),x2:x(0),y1:T,y2:H-B,class:'axis'},svg);S('line',{x1:L,x2:W-R,y1:H-B,y2:H-B,class:'axis'},svg);
+  S('text',{x:W-R,y:H-10,'text-anchor':'end',class:'lbl'},svg).textContent='violation v';
+  S('path',{d:`M${x(-1)} ${y(1)} L${x(0)} ${y(0)} L${x(1)} ${y(1)}`,fill:'none',stroke:css('--ink3'),'stroke-width':2,'stroke-dasharray':'5 4'},svg);
+  let d='';for(let i=0;i<=80;i++){const t=-1+2*i/80;d+=(i?'L':'M')+x(t)+' '+y(t*t);}
+  S('path',{d,fill:'none',stroke:css('--ink'),'stroke-width':2.5},svg);
+  S('line',{x1:x(v),x2:x(v),y1:T,y2:H-B,stroke:css('--line'),'stroke-width':1},svg);
+  S('circle',{cx:x(v),cy:y(Math.abs(v)),r:5,fill:css('--paper'),stroke:css('--ink3'),'stroke-width':2},svg);
+  S('circle',{cx:x(v),cy:y(v*v),r:5,fill:css('--ink'),stroke:css('--paper'),'stroke-width':2},svg);
+  S('text',{x:x(v)+8,y:y(Math.abs(v))-6,class:'lbl2'},svg).textContent='|v| = '+fmt(Math.abs(v),2);
+  S('text',{x:x(v)+8,y:y(v*v)+14,class:'lbl2'},svg).textContent='v² = '+fmt(v*v,3);
+  const s2=el('stakesvg');clear(s2);const H2=220,T2=18,B2=30;
+  const ys=s=>T2+(H2-T2-B2)*(1-(s+2)/4);
+  for(const s of [-2,-1,0,1,2]){S('line',{x1:L,x2:W-R,y1:ys(s),y2:ys(s),class:s===0?'axis':'gridl'},s2);S('text',{x:L-6,y:ys(s)+4,'text-anchor':'end',class:'lbl'},s2).textContent=s;}
+  [-1,-.5,0,.5,1].forEach(t=>S('text',{x:x(t),y:H2-10,'text-anchor':'middle',class:'lbl'},s2).textContent=t);
+  S('text',{x:W-R,y:H2-10,'text-anchor':'end',class:'lbl'},s2).textContent='violation v';
+  S('path',{d:`M${x(-1)} ${ys(-1)} L${x(0)} ${ys(-1)} L${x(0)} ${ys(1)} L${x(1)} ${ys(1)}`,fill:'none',stroke:css('--ink3'),'stroke-width':2,'stroke-dasharray':'5 4'},s2);
+  S('line',{x1:x(-1),y1:ys(-2),x2:x(1),y2:ys(2),stroke:css('--ink'),'stroke-width':2.5},s2);
+  const lp=v>0?1:v<0?-1:0;
+  S('circle',{cx:x(v),cy:ys(lp),r:5,fill:css('--paper'),stroke:css('--ink3'),'stroke-width':2},s2);
+  S('circle',{cx:x(v),cy:ys(2*v),r:5,fill:css('--ink'),stroke:css('--paper'),'stroke-width':2},s2);
+  S('text',{x:x(v)+(v>0?-8:8),y:ys(lp)+(v>0?-8:16),'text-anchor':v>0?'end':'start',class:'lbl2'},s2).textContent='LP stake '+lp;
+  S('text',{x:x(v)+(v>0?8:-8),y:ys(2*v)+(v>0?14:-8),'text-anchor':v>0?'start':'end',class:'lbl2'},s2).textContent='2v = '+fmt(2*v,2);
+}
+el('v0').addEventListener('input',drawLP);
+
+/* ============ CH1 ============ */
+function upd1(){const a=+el('p1a').value,n=+el('p1n').value;el('p1ao').textContent=a.toFixed(2);el('p1no').textContent=n.toFixed(2);
+  const v=a+n-1,r=-v*v;el('s1v').textContent=fmt(v,2);el('s1r').textContent=fmt(r,4);el('s1g').textContent=fmt(-2*v,2);
+  el('hero-c1').textContent=a.toFixed(2);el('hero-c2').textContent=n.toFixed(2);el('hero-r').textContent=fmt(r,4);
+  el('f1').innerHTML=`R = −(<span class="tok A">c(A)</span> + <span class="tok NA">c(¬A)</span> − 1)²  =  −<span class="tok A">c(A)</span>² − 2·<span class="tok A">c(A)</span><span class="tok NA">c(¬A)</span> − <span class="tok NA">c(¬A)</span>² + 2·<span class="tok A">c(A)</span> + 2·<span class="tok NA">c(¬A)</span> − 1<br>
+  <span style="color:var(--ink3)">now:</span> −(${a.toFixed(2)} + ${n.toFixed(2)} − 1)²  =  −(${fmt(v,2)})²  =  <b>${fmt(r,4)}</b>    ·    ∂R/∂c(A) = ∂R/∂c(¬A) = −2v = <b>${fmt(-2*v,2)}</b>`;
+  episode(el('ep1'),[{cls:'A',name:'A',val:a},{cls:'NA',name:'¬A',val:n}],'−(c₁ + c₂ − 1)²',r);
+  parabolaChart(el('cut1'),{xlabel:'c(¬A)',xcolor:css('--na'),f:t=>-Math.pow(a+t-1,2),xcur:n,xopt:1-a,ymin:-1});
+  heatmap(el('heat'),(x,y)=>-Math.pow(x+y-1,2),a,n,{x:'c(A)',y:'c(¬A)',xcol:css('--a'),ycol:css('--na'),diag:'anti',zero:'R = 0 on the dashed line'});}
+['p1a','p1n'].forEach(id=>el(id).addEventListener('input',upd1));
+
+/* ============ CH2 ============ */
+function upd2(){const a=+el('p2a').value,c=+el('p2c').value;el('p2ao').textContent=a.toFixed(2);el('p2co').textContent=c.toFixed(2);
+  const v=c-a,h=Math.max(0,v),r=-h*h;el('s2v').textContent=fmt(v,2);el('s2r').textContent=fmt(r,4);
+  el('s2st').innerHTML=v<=0?'<span class="pill ok">feasible · gradient 0</span>':'<span class="pill">violated · gradient ∓'+fmt(2*h,2)+'</span>';
+  el('f2').innerHTML=`R = −max(0, <span class="tok AB">c(A∧B)</span> − <span class="tok A">c(A)</span>)²    ·    ∂R/∂c(A∧B) = −2·max(0, v),  ∂R/∂c(A) = +2·max(0, v)<br>
+  <span style="color:var(--ink3)">now:</span> v = ${c.toFixed(2)} − ${a.toFixed(2)} = ${fmt(v,2)}  →  R = <b>${fmt(r,4)}</b>${v<=0?'  (feasible, nothing to pay)':''}`;
+  episode(el('ep2'),[{cls:'A',name:'A',val:a},{cls:'AB',name:'A∧B',val:c}],'−max(0, c₂ − c₁)²',r);
+  heatmap(el('heat2'),(x,y)=>-Math.pow(Math.max(0,y-x),2),a,c,{x:'c(A)',y:'c(A∧B)',xcol:css('--a'),ycol:css('--ab'),diag:'main',zero:'R = 0 below the dashed line',zeroY:'bottom'});}
+['p2a','p2c'].forEach(id=>el(id).addEventListener('input',upd2));
+
+/* ============ CH3 ============ */
+const K=4,cols3=['--e1','--e2','--e3','--e4'],cls3=['E1','E2','E3','E4'],nm3=['E₁','E₂','E₃','E₄'];
+const P3=i=>+el('p3_'+i).value;
+function drawStack(sum){const svg=el('stack3');clear(svg);const W=480,L=10,R=10,y0=26,h=30;const x=v=>L+(W-L-R)*v/1.5;
+  let acc=0;for(let i=0;i<K;i++){const p=P3(i);S('rect',{x:x(acc)+(i?1:0),y:y0,width:Math.max(0,x(acc+p)-x(acc)-(i?1:0)),height:h,fill:css(cols3[i]),rx:i===0?4:0},svg);
+    if(p>.08)S('text',{x:x(acc+p/2),y:y0+h/2+4,'text-anchor':'middle',fill:i<2?'#fff':css('--ink'),style:'font:600 11px JetBrains Mono,monospace'},svg).textContent=p.toFixed(2);acc+=p;}
+  S('line',{x1:x(1),x2:x(1),y1:y0-12,y2:y0+h+12,stroke:css('--ink'),'stroke-width':2,'stroke-dasharray':'4 3'},svg);
+  S('text',{x:x(1),y:y0-16,'text-anchor':'middle',class:'lbl2'},svg).textContent='Σ = 1';
+  S('text',{x:x(acc),y:y0+h+24,'text-anchor':acc>1.3?'end':'middle',class:'lbl2',fill:css('--ink')},svg).textContent='Σ c = '+acc.toFixed(2);
+  [0,.5,1.5].forEach(v=>S('text',{x:x(v),y:y0+h+24,'text-anchor':'middle',class:'lbl'},svg).textContent=v);}
+function upd3(){let sum=0;const vals=[];for(let i=0;i<K;i++){const p=P3(i);vals.push(p);el('p3_'+i+'o').textContent=p.toFixed(2);sum+=p;}
+  const v=sum-1,r=-v*v;el('s3sum').textContent=sum.toFixed(2);el('s3r').textContent=fmt(r,4);el('s3g').textContent=fmt(-2*v,2);
+  el('f3').innerHTML=`R = −(<span class="tok E1">c(E₁)</span> + <span class="tok E2">c(E₂)</span> + <span class="tok E3">c(E₃)</span> + <span class="tok E4">c(E₄)</span> − 1)²    ·    ∂R/∂c(Eᵢ) = −2·(Σc − 1) for every i<br>
+  <span style="color:var(--ink3)">now:</span> −(${vals.map(x=>x.toFixed(2)).join(' + ')} − 1)²  =  −(${fmt(v,2)})²  =  <b>${fmt(r,4)}</b>`;
+  drawStack(sum);
+  const svg=el('cut3');clear(svg);const W=480,H=300,L=52,R=14,T=18,B=32,ymin=-1;
+  const x=s=>L+(W-L-R)*s/2,y=s=>T+(H-T-B)*(-s)/(-ymin);
+  for(let k=0;k<=4;k++){const s=ymin*(1-k/4);S('line',{x1:L,x2:W-R,y1:y(s),y2:y(s),class:'gridl'},svg);S('text',{x:L-6,y:y(s)+4,'text-anchor':'end',class:'lbl'},svg).textContent=fmt(s,2);}
+  [0,.5,1,1.5,2].forEach(t=>S('text',{x:x(t),y:H-10,'text-anchor':'middle',class:'lbl'},svg).textContent=t);
+  S('text',{x:W-R,y:H-10,'text-anchor':'end',class:'lbl2'},svg).textContent='Σ c';
+  S('line',{x1:L,x2:W-R,y1:y(0),y2:y(0),class:'axis'},svg);
+  let d='';for(let i=0;i<=100;i++){const s=2*i/100;d+=(i?'L':'M')+x(s).toFixed(1)+' '+y(Math.max(ymin,-Math.pow(s-1,2))).toFixed(1);}
+  S('path',{d,fill:'none',stroke:css('--ink'),'stroke-width':2.5},svg);
+  S('line',{x1:x(1),x2:x(1),y1:T,y2:H-B,stroke:css('--ink3'),'stroke-width':1,'stroke-dasharray':'4 4'},svg);S('text',{x:x(1),y:T+2,'text-anchor':'middle',class:'lbl2'},svg).textContent='coherent at Σ c = 1';
+  S('circle',{cx:x(sum),cy:y(Math.max(ymin,r)),r:5.5,fill:css('--paper'),stroke:css('--ink'),'stroke-width':2.5},svg);
+  S('text',{x:x(sum)+(sum>1.4?-10:10),y:y(Math.max(ymin,r))-10,'text-anchor':sum>1.4?'end':'start',class:'lbl2'},svg).textContent='R = '+fmt(r,4);
+  episode(el('ep3'),vals.map((p,i)=>({cls:cls3[i],name:nm3[i],val:p})),'−(c₁ + c₂ + c₃ + c₄ − 1)²',r);}
+for(let i=0;i<K;i++)el('p3_'+i).addEventListener('input',upd3);
+
+/* ============ CH4 ============ */
+function upd4(){const g=+el('p4g').value,b=+el('p4b').value,c=+el('p4c').value;el('p4go').textContent=g.toFixed(2);el('p4bo').textContent=b.toFixed(2);el('p4co').textContent=c.toFixed(2);
+  const prod=g*b,v=prod-c,r=-v*v;el('s4prod').textContent=fmt(prod,3);el('s4v').textContent=fmt(v,3);el('s4r').textContent=fmt(r,4);
+  el('f4').innerHTML=`R = −(<span class="tok AG">c(A|B)</span>·<span class="tok B">c(B)</span> − <span class="tok AB">c(A∧B)</span>)²  =  −<span class="tok AG">c(A|B)</span>²<span class="tok B">c(B)</span>² + 2·<span class="tok AG">c(A|B)</span><span class="tok B">c(B)</span><span class="tok AB">c(A∧B)</span> − <span class="tok AB">c(A∧B)</span>²<br>
+  <span style="color:var(--ink3)">now:</span> −(${g.toFixed(2)}·${b.toFixed(2)} − ${c.toFixed(2)})²  =  −(${fmt(v,3)})²  =  <b>${fmt(r,4)}</b>    ·    gradients −2v·c(B) = ${fmt(-2*v*b,3)},  −2v·c(A|B) = ${fmt(-2*v*g,3)},  +2v = ${fmt(2*v,3)}`;
+  episode(el('ep4'),[{cls:'AG',name:'A|B',val:g},{cls:'B',name:'B',val:b},{cls:'AB',name:'A∧B',val:c}],'−(c₁·c₂ − c₃)²',r);
+  // gradient bars
+  const svg=el('grad4');clear(svg);const W=480,rows=[['c(A|B)',-2*v*b,'--ag'],['c(B)',-2*v*g,'--b'],['c(A∧B)',2*v,'--ab']];
+  const mx=Math.max(.2,...rows.map(r=>Math.abs(r[1])));const x0=250,sc=200/mx;
+  S('line',{x1:x0,x2:x0,y1:6,y2:114,class:'axis'},svg);
+  rows.forEach((rw,i)=>{const yy=10+i*36;const w=rw[1]*sc;
+    S('text',{x:x0-8-(rw[1]<0?Math.abs(w):0),y:yy+16,'text-anchor':'end',class:'lbl2',fill:css(rw[2])},svg).textContent=rw[0];
+    S('rect',{x:rw[1]<0?x0+w:x0,y:yy+4,width:Math.max(1,Math.abs(w)),height:16,rx:3,fill:css(rw[2])},svg);
+    S('text',{x:rw[1]<0?x0+8:x0+w+8,y:yy+16,class:'lbl2'},svg).textContent=fmt(rw[1],3);});
+  parabolaChart(el('curve4'),{xlabel:'c(A|B)',xcolor:css('--ag'),f:t=>-Math.pow(t*b-c,2),xcur:g,xopt:b>0?c/b:null,ymin:-Math.max(.05,Math.pow(b-c,2),c*c),nooptlabel:'no coherent c(A|B): c(A∧B) > c(B)'});}
+['p4g','p4b','p4c'].forEach(id=>el(id).addEventListener('input',upd4));
+
+function all(){drawLP();upd1();upd2();upd3();upd4();}
+all();
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',all);
+new MutationObserver(all).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+})();
+</script>
+</body>
+</html>

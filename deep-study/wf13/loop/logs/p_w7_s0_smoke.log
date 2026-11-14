@@ -1,0 +1,24 @@
+[17:02:01] start p_w7_s0_smoke cfg={"R": 2, "n_train": 8, "B_train": 128, "rho": 0.5, "eps": 0.02, "S": 48, "steps": 60, "bs": 256, "lr": 0.002, "order": "conf", "n_test": 4, "marks": [16, 64, 256], "kmarks": [1, 16, 64], "n_draw": 4096, "d": 32, "T": 3, "tag": "_smoke", "stage": "all", "hand": "greedy1", "n_tsamp": 8}
+[17:02:18] start p_w7_s0_smoke cfg={"R": 2, "n_train": 8, "B_train": 512, "rho": 0.5, "eps": 0.02, "S": 48, "steps": 60, "bs": 256, "lr": 0.002, "order": "conf", "n_test": 4, "marks": [16, 64, 256, 1024], "kmarks": [1, 16, 64], "n_draw": 4096, "d": 32, "T": 3, "tag": "_smoke", "stage": "all", "hand": "greedy1", "n_tsamp": 8}
+[17:02:22]     nothing to train on: the search found no score at this budget
+[17:02:22] round 0: books at the training budget: unfound upper bound 1.0000, certain width 1.0000, closed states 0.0; buffer 0 states; 5s
+[17:02:30]     nothing to train on: the search found no score at this budget
+[17:02:30] round 1: books at the training budget: unfound upper bound 1.0000, certain width 1.0000, closed states 0.0; buffer 0 states; 8s
+[17:02:41]     nothing to train on: the search found no score at this budget
+[17:02:41] one-shot control trained on 0 states; 11s
+[17:03:05] scored round0             rho=0.50 eps=0.02 | width cert/audit @256: 1.000/1.000 @1024: 0.998/0.817 | err audit-pt @256 0.0604 | IS err @64 0.3152 | violations cert 0, Z 0, audit misses 0 | 12s
+[17:03:10] scored round1             rho=0.50 eps=0.02 | width cert/audit @256: 1.000/1.000 @1024: 0.998/0.817 | err audit-pt @256 0.0604 | IS err @64 0.3152 | violations cert 0, Z 0, audit misses 0 | 5s
+[17:03:21] scored round2             rho=0.50 eps=0.02 | width cert/audit @256: 1.000/1.000 @1024: 0.998/0.817 | err audit-pt @256 0.0604 | IS err @64 0.3152 | violations cert 0, Z 0, audit misses 0 | 11s
+[17:03:30] scored oneshot            rho=0.50 eps=0.02 | width cert/audit @256: 1.000/1.000 @1024: 0.998/0.817 | err audit-pt @256 0.0604 | IS err @64 0.3152 | violations cert 0, Z 0, audit misses 0 | 9s
+[17:03:34] scored hand_spec          rho=1.00 eps=0.02 | width cert/audit @256: 0.785/0.079 @1024: 0.077/0.004 | err audit-pt @256 0.0045 | IS err @64 0.0000 | violations cert 0, Z 0, audit misses 0 | 4s
+[17:03:37] scored hand_rho           rho=0.50 eps=0.02 | width cert/audit @256: 0.924/0.117 @1024: 0.140/0.007 | err audit-pt @256 0.0060 | IS err @64 0.0818 | violations cert 0, Z 0, audit misses 0 | 2s
+[17:03:38] scored bad_random         rho=0.50 eps=0.02 | width cert/audit @256: 1.000/1.000 @1024: 0.989/0.517 | err audit-pt @256 0.0289 | IS err @64 0.4651 | violations cert 0, Z 0, audit misses 0 | 1s
+[17:03:46] scored bad_flip           rho=0.50 eps=0.02 | width cert/audit @256: 1.000/1.000 @1024: 0.991/0.647 | err audit-pt @256 0.0407 | IS err @64 0.3981 | violations cert 0, Z 0, audit misses 0 | 8s
+[17:03:56] scored bad_avoid_noguard  rho=0.00 eps=0.00 | width cert/audit @256: 1.000/1.000 @1024: 1.000/1.000 | err audit-pt @256 0.1441 | IS err @64 0.4764 | violations cert 0, Z 0, audit misses 0 | 10s
+[17:03:57] scored bad_avoid_floor    rho=0.00 eps=0.02 | width cert/audit @256: 1.000/1.000 @1024: 1.000/1.000 | err audit-pt @256 0.1299 | IS err @64 0.5183 | violations cert 0, Z 0, audit misses 0 | 1s
+[17:03:57] scored bad_avoid_share    rho=0.50 eps=0.00 | width cert/audit @256: 1.000/1.000 @1024: 0.951/0.292 | err audit-pt @256 0.0194 | IS err @64 0.0000 | violations cert 0, Z 0, audit misses 0 | 0s
+[17:03:57] scored final_rho0         rho=0.00 eps=0.02 | width cert/audit @256: 1.000/1.000 @1024: 1.000/1.000 | err audit-pt @256 0.1311 | IS err @64 0.0000 | violations cert 0, Z 0, audit misses 0 | 0s
+[17:03:58] scored final_rho1         rho=1.00 eps=0.02 | width cert/audit @256: 1.000/1.000 @1024: 0.994/0.646 | err audit-pt @256 0.0829 | IS err @64 0.0000 | violations cert 0, Z 0, audit misses 0 | 0s
+[17:03:59] scored final_eps0         rho=0.50 eps=0.00 | width cert/audit @256: 1.000/1.000 @1024: 0.998/0.822 | err audit-pt @256 0.0604 | IS err @64 0.3152 | violations cert 0, Z 0, audit misses 0 | 1s
+[17:04:00] scored final_handorder    rho=0.50 eps=0.02 | width cert/audit @256: 0.914/0.110 @1024: 0.125/0.006 | err audit-pt @256 0.0070 | IS err @64 0.0000 | violations cert 0, Z 0, audit misses 0 | 1s
+[17:04:00] done

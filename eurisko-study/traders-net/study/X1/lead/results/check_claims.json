@@ -1,0 +1,90 @@
+{
+ "checked_at": "2026-09-28T13:51:01Z",
+ "checks": [
+  {
+   "check": "C1 w1 make_claims.py rc 0",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "C1 w1 pi_offsets.py reproduces frac_seeds_with_pair_in_window",
+   "ok": true,
+   "detail": "new 0.6295 vs 0.6295; {\"W\": 32, \"N_seeds\": 2000, \"frac_seeds_with_pair_in_window\": 0.6295} [(1, 0, 0), (2, 0, 0), (3, 0, 0), (4, 6, 3), (5, 0, 0)]\n"
+  },
+  {
+   "check": "C1 w2 check_claims.py: every quoted M1/M2/M3 number matches",
+   "ok": true,
+   "detail": "30/30 "
+  },
+  {
+   "check": "C1 w3 check_w3.py: M5/M6/M7 quotes match their files",
+   "ok": true,
+   "detail": "{'M5': {'match': 59, 'MISMATCH': 0, 'ERROR': 0}, 'M6': {'match': 68, 'MISMATCH': 0, 'ERROR': 0}, 'M7': {'match': 40, 'MISMATCH': 0, 'ERROR': 0}} "
+  },
+  {
+   "check": "C1 w3 compare_w3.py rc 0 (seed-4 files from X1/w3/results/seed4 when /tmp is gone)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "C1 w4 check_w4.py: number file checks ok",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "C1 w5 recompute_summary.py: V1 summary equals CSV, exporter and raw snapshots (rel 1e-6)",
+   "ok": true,
+   "detail": "499594157,\n    0.002658347495450908\n   ],\n   \"mean\": 0.0030073340218887967,\n   \"sd\": 0.0006771875749994525\n  },\n  \"turnover_neuron\": {\n   \"seeds\": [\n    -0.3144819812087296,\n    -0.3124468920589144,\n    -0.19424479792517826\n   ],\n   \"mean\": -0.2737245570642741,\n   \"sd\": 0.06883901133491416\n  }\n }\n}\n"
+  },
+  {
+   "check": "C2 lead tiebreak.py rc 0",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "C2 lead make_claims.py rc 0",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "C2 CLAIMS.md counts equal claims.json",
+   "ok": true,
+   "detail": "verified 153, refuted 19, unverified 37"
+  },
+  {
+   "check": "C2 every worker row is in the register (counts equal the worker totals)",
+   "ok": true,
+   "detail": "{'w1': 86, 'w2': 38, 'w3': 32, 'w4': 26, 'w5': 27, 'lead': 0} vs {'w1': 86, 'w2': 38, 'w3': 32, 'w4': 26}"
+  },
+  {
+   "check": "C2 CLAIMS.md renders one line per row",
+   "ok": true,
+   "detail": "209 vs 209"
+  },
+  {
+   "check": "C2 every CLAIMS.md table row has its header column count (pipes escaped)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "C3 every row has status, checked_at, evidence and rerun",
+   "ok": true,
+   "detail": "[]"
+  },
+  {
+   "check": "C4 every non-/tmp evidence path exists",
+   "ok": true,
+   "detail": ""
+  }
+ ],
+ "n_rows": 209,
+ "counts": {
+  "refuted": 19,
+  "verified": 153,
+  "unverified": 37
+ },
+ "n_path_tokens": 364,
+ "missing_paths": [],
+ "tmp_paths_gone": [],
+ "ok": true
+}

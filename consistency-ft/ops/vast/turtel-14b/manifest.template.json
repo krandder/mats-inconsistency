@@ -1,0 +1,21 @@
+{
+  "name": "turtel-14b-grpo",
+  "purpose": "Turtel et al. 2025 replication, stage 1 of docs/self-trade-rl-proposal-20260921.md: modified GRPO, LoRA, DeepSeek-R1-Distill-Qwen-14B, one chronological pass over 9,500 Polymarket questions, scored on Turtel's 1,265-question test set",
+  "budget_usd": 600,
+  "max_hours": 16,
+  "lease_stale_minutes": 30,
+  "gpu": {"gpu_name": "H100 SXM", "num_gpus": 4, "min_gpu_ram_mb": 80000, "min_disk_gb": 200, "min_cuda": 12.8, "min_inet_down_mbps": 500, "min_reliability": 0.98, "max_dph_total": 12.0},
+  "image": "vllm/vllm-openai:v0.28.0",
+  "image_note": "ships vllm 0.28.0 + its pinned torch 2.13.0; bootstrap.sh adds trl/peft/accelerate/datasets pins and falls back to pip-installing vllm==0.28.0 if the image is different. Unverified until the first rental.",
+  "disk_gb": 200,
+  "remote_root": "/workspace/turtel",
+  "lane_dir": "/home/agent/data/vast-turtel-14b",
+  "ssh_key": "[ssh-key-path-removed]",
+  "api_key_file": "/home/user/.config/vastai/api_key",
+  "model": {"id": "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B", "revision": "main", "note": "resolved commit sha recorded in environment.json by bootstrap.sh"},
+  "arm": {"name": "grpo-nostd", "trainer_args": ["--algo", "grpo-nostd", "--group-size", "4", "--beta", "0.005", "--lr", "1e-6", "--clip", "0.2", "--prompts-per-step", "6", "--per-device-batch", "2", "--eval-every", "100", "--eval-size", "200", "--save-every", "50", "--test-samples", "1"]},
+  "gpu_split": "vLLM rollout server on GPU 3 (TRL server mode, NCCL weight transfer); trainer DDP on GPUs 0-2 via accelerate --num_processes 3",
+  "sync_interval_seconds": 300,
+  "done_markers": ["RUN_DONE", "RUN_FAILED", "TRAINER EXIT="],
+  "expected": {"steps": 1584, "seconds_per_step_estimate": "35-70 (unverified)", "hours_estimate": "15-31 for the full pass; a second lease resumes from the last checkpoint", "cost_estimate_usd": "135-275 at the 20 Sep quote of $8.86/h for 4xH100 SXM"}
+}

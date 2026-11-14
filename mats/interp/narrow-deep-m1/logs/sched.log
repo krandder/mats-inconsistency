@@ -1,0 +1,9 @@
+00:26:36Z launch: scratch/q_eval1b.sh Yb '216 0.001'
+00:47:10Z launch: for s in 203 216 217 220 221 223; do nice -n 19 ionice -c3 /home/agent/.venvs/arc-noisy/bin/python scratch/rqmc_small.py $s 0.001 runs/truth_s${s}_sig0.001.json runs/rqmcsmall_s${s}_sig0.001.json >> logs/rqmc_small.log 2>&1; done
+00:49:25Z launch: for s in 203 216 217 220 221 223; do nice -n 19 ionice -c3 /home/agent/.venvs/arc-noisy/bin/python scratch/p3_test.py $s 0.001 runs/truth_s${s}_sig0.001.json runs/p3_s${s}_sig0.001.json >> logs/p3_test.log 2>&1; done
+00:51:10Z launch: for s in 217 221 203 216 220 223; do nice -n 19 ionice -c3 /home/agent/.venvs/arc-noisy/bin/python scratch/bias_decomp.py $s >> logs/bias_decomp.log 2>&1; done
+00:52:56Z launch: scratch/q_eval1.sh Yc '220 0.001'
+00:57:41Z launch: scratch/q_sec.sh S1 '200 0.001' '203 0.01' '216 0.01' '202 0.001'
+00:59:27Z launch: nice -n 19 ionice -c3 /home/agent/.venvs/arc-noisy/bin/python scratch/scale_oracle.py 16 300 0.001 runs/scale_n16_s300.json >> logs/scale.log 2>&1
+01:04:42Z launch: nice -n 19 ionice -c3 /home/agent/.venvs/arc-noisy/bin/python scratch/scale_oracle.py 32 300 0.001 runs/scale_n32_s300.json >> logs/scale.log 2>&1
+01:05:42Z sched done

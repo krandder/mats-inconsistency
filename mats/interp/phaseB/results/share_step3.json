@@ -1,0 +1,297 @@
+{
+ "importance": [
+  {
+   "feature": "|Bayes mean| (scen)",
+   "drop_in_R2": 0.6039380706037895,
+   "sd": 0.024452173871065033
+  },
+  {
+   "feature": "Bayes log-sd",
+   "drop_in_R2": 0.44776375728761886,
+   "sd": 0.010240113982161419
+  },
+  {
+   "feature": "query-reading sd",
+   "drop_in_R2": 0.1982151371840607,
+   "sd": 0.004002130524032876
+  },
+  {
+   "feature": "full post s2 v2",
+   "drop_in_R2": 0.08585689316895222,
+   "sd": 0.0018544695003586212
+  },
+  {
+   "feature": "full post s1 v2",
+   "drop_in_R2": 0.08529557599625406,
+   "sd": 0.0036579832878873837
+  },
+  {
+   "feature": "full post s0 v2",
+   "drop_in_R2": 0.07579627328502932,
+   "sd": 0.0012680017734109192
+  },
+  {
+   "feature": "bimodality",
+   "drop_in_R2": 0.07503814563616376,
+   "sd": 0.0025164419592536165
+  },
+  {
+   "feature": "max |query reading|",
+   "drop_in_R2": 0.06825106324584487,
+   "sd": 0.0019456361224184397
+  },
+  {
+   "feature": "max residual share",
+   "drop_in_R2": 0.04214705177676174,
+   "sd": 0.0021156631885750677
+  },
+  {
+   "feature": "full post s1 v1",
+   "drop_in_R2": 0.038533436594044825,
+   "sd": 0.0035306326288114965
+  },
+  {
+   "feature": "full post s2 v1",
+   "drop_in_R2": 0.03537476714283634,
+   "sd": 0.0027002794848361854
+  },
+  {
+   "feature": "coupling",
+   "drop_in_R2": 0.03409925781803123,
+   "sd": 0.0015459884831988415
+  }
+ ],
+ "top3": [
+  "|Bayes mean| (scen)",
+  "Bayes log-sd",
+  "query-reading sd"
+ ],
+ "compact": {
+  "n_params": 28,
+  "R2_vs_seed_average": 0.37443669544219216,
+  "explained_over_shared": 0.42797103633031613,
+  "R2_per_net": {
+   "L2_s0.05": 0.2615578101374182,
+   "L2seed1_s0.05": 0.17972648340693698,
+   "L2seed2_s0.05": 0.24913944662004883,
+   "L2ws0_s0.05": 0.2654724205149651,
+   "L2ws3_s0.05": 0.2213837717374474
+  },
+  "full_named_R2_vs_seed_average": 0.7326976043065532,
+  "full_named_explained_over_shared": 0.8374535852088428,
+  "shapes": {
+   "|Bayes mean| (scen)": {
+    "quantiles": [
+     0.056662289425730705,
+     0.293728731572628,
+     0.6250214576721191,
+     1.0719380974769592,
+     1.8150001466274261
+    ],
+    "prediction": [
+     0.026479161507236004,
+     0.02531969365086245,
+     0.027425972224479456,
+     0.03757421594533933,
+     0.07825629722493121
+    ]
+   },
+   "Bayes log-sd": {
+    "quantiles": [
+     -1.5226427018642426,
+     -1.3331657648086548,
+     -1.1540244221687317,
+     -0.8690637201070786,
+     -0.5547122657299042
+    ],
+    "prediction": [
+     0.05815187929031207,
+     0.03796592477670807,
+     0.027425972224479456,
+     -0.005759910514494038,
+     -0.02186915975945497
+    ]
+   },
+   "query-reading sd": {
+    "quantiles": [
+     0.12455049902200699,
+     0.313326895236969,
+     0.5342291593551636,
+     0.8553324490785599,
+     1.4682914018630981
+    ],
+    "prediction": [
+     0.014672838109473618,
+     0.014684403049483097,
+     0.027425972224479456,
+     0.04279205320371737,
+     0.05875991912981632
+    ]
+   }
+  }
+ },
+ "probes": {
+  "emb / query token": {
+   "own log-sd deviation": -0.00039787333045504525,
+   "seed-averaged log-sd deviation": -0.0005502886654582539,
+   "|Bayes mean| (scen)": 9.411818267013317e-05,
+   "Bayes log-sd": -0.00028728683017820167,
+   "query-reading sd": -0.0007566116810713286
+  },
+  "emb / source 0 tokens": {
+   "own log-sd deviation": 0.03533147009452975,
+   "seed-averaged log-sd deviation": 0.054556428025326675,
+   "|Bayes mean| (scen)": 0.2756206849377225,
+   "Bayes log-sd": 0.011593171377491163,
+   "query-reading sd": 0.04878407799957718
+  },
+  "emb / source 1 tokens": {
+   "own log-sd deviation": 0.02377999363893879,
+   "seed-averaged log-sd deviation": 0.04944280760977671,
+   "|Bayes mean| (scen)": 0.2693554034694928,
+   "Bayes log-sd": 0.00900905890391901,
+   "query-reading sd": 0.04586416601077481
+  },
+  "emb / source 2 tokens": {
+   "own log-sd deviation": 0.044441533378219655,
+   "seed-averaged log-sd deviation": 0.07071327433645924,
+   "|Bayes mean| (scen)": 0.2963956833469934,
+   "Bayes log-sd": 0.010138594964785863,
+   "query-reading sd": 0.0409215526815675
+  },
+  "emb / all tokens": {
+   "own log-sd deviation": 0.06931742661197116,
+   "seed-averaged log-sd deviation": 0.11779943480798971,
+   "|Bayes mean| (scen)": 0.5881476590368242,
+   "Bayes log-sd": 0.0289707607406281,
+   "query-reading sd": 0.09642168820731689
+  },
+  "a1 / query token": {
+   "own log-sd deviation": 0.03213006038823907,
+   "seed-averaged log-sd deviation": 0.06902829008776123,
+   "|Bayes mean| (scen)": 0.744529977203316,
+   "Bayes log-sd": 0.22928828877658025,
+   "query-reading sd": 0.8100233968413691
+  },
+  "a1 / source 0 tokens": {
+   "own log-sd deviation": 0.048372766566773584,
+   "seed-averaged log-sd deviation": 0.07464982443134283,
+   "|Bayes mean| (scen)": 0.384463802829196,
+   "Bayes log-sd": 0.22119245992155767,
+   "query-reading sd": 0.09538560902360782
+  },
+  "a1 / source 1 tokens": {
+   "own log-sd deviation": 0.0352015941894086,
+   "seed-averaged log-sd deviation": 0.06819328191015617,
+   "|Bayes mean| (scen)": 0.3641705851789919,
+   "Bayes log-sd": 0.21281034896971407,
+   "query-reading sd": 0.10013336221780322
+  },
+  "a1 / source 2 tokens": {
+   "own log-sd deviation": 0.05544018252034277,
+   "seed-averaged log-sd deviation": 0.08737788761190168,
+   "|Bayes mean| (scen)": 0.38276880668529367,
+   "Bayes log-sd": 0.23032168591045088,
+   "query-reading sd": 0.08032320389219805
+  },
+  "a1 / all tokens": {
+   "own log-sd deviation": 0.10536693852548473,
+   "seed-averaged log-sd deviation": 0.1610375549064642,
+   "|Bayes mean| (scen)": 0.8172585616917354,
+   "Bayes log-sd": 0.6766565078529765,
+   "query-reading sd": 0.8262214468849831
+  },
+  "m1 / query token": {
+   "own log-sd deviation": 0.08021170339599448,
+   "seed-averaged log-sd deviation": 0.10891779005302005,
+   "|Bayes mean| (scen)": 0.7641927401044435,
+   "Bayes log-sd": 0.26241367770402513,
+   "query-reading sd": 0.8362457883020199
+  },
+  "m1 / source 0 tokens": {
+   "own log-sd deviation": 0.07801012253723483,
+   "seed-averaged log-sd deviation": 0.11257367203946,
+   "|Bayes mean| (scen)": 0.4912598675332204,
+   "Bayes log-sd": 0.25715830606575507,
+   "query-reading sd": 0.1112778152013455
+  },
+  "m1 / source 1 tokens": {
+   "own log-sd deviation": 0.06174941766532516,
+   "seed-averaged log-sd deviation": 0.09802193961986805,
+   "|Bayes mean| (scen)": 0.47119583100583295,
+   "Bayes log-sd": 0.25347364140563,
+   "query-reading sd": 0.13038012861122938
+  },
+  "m1 / source 2 tokens": {
+   "own log-sd deviation": 0.08773701872754525,
+   "seed-averaged log-sd deviation": 0.12021183179727724,
+   "|Bayes mean| (scen)": 0.48904512874432426,
+   "Bayes log-sd": 0.26503377914140946,
+   "query-reading sd": 0.11188655327677466
+  },
+  "m1 / all tokens": {
+   "own log-sd deviation": 0.18788948422137974,
+   "seed-averaged log-sd deviation": 0.24145723628504534,
+   "|Bayes mean| (scen)": 0.892522719812451,
+   "Bayes log-sd": 0.7885713369616223,
+   "query-reading sd": 0.8678753619186155
+  },
+  "r1 / query token": {
+   "own log-sd deviation": 0.08677792352484293,
+   "seed-averaged log-sd deviation": 0.1200436402484173,
+   "|Bayes mean| (scen)": 0.7633590774395065,
+   "Bayes log-sd": 0.24319175212354982,
+   "query-reading sd": 0.8105370602294483
+  },
+  "r1 / source 0 tokens": {
+   "own log-sd deviation": 0.07163573132088552,
+   "seed-averaged log-sd deviation": 0.1053657908880653,
+   "|Bayes mean| (scen)": 0.4917874989549653,
+   "Bayes log-sd": 0.2570294023277485,
+   "query-reading sd": 0.11116321339104096
+  },
+  "r1 / source 1 tokens": {
+   "own log-sd deviation": 0.060228774867756574,
+   "seed-averaged log-sd deviation": 0.09681322171855067,
+   "|Bayes mean| (scen)": 0.477711109940689,
+   "Bayes log-sd": 0.2603682966945816,
+   "query-reading sd": 0.12691371570157606
+  },
+  "r1 / source 2 tokens": {
+   "own log-sd deviation": 0.08620547101137044,
+   "seed-averaged log-sd deviation": 0.11973899054344006,
+   "|Bayes mean| (scen)": 0.487098172608871,
+   "Bayes log-sd": 0.2652400572452749,
+   "query-reading sd": 0.10569306541911361
+  },
+  "r1 / all tokens": {
+   "own log-sd deviation": 0.18213579169487726,
+   "seed-averaged log-sd deviation": 0.23860901825149294,
+   "|Bayes mean| (scen)": 0.8926001722589469,
+   "Bayes log-sd": 0.7907015380137569,
+   "query-reading sd": 0.8524267223573339
+  },
+  "a2 / query token": {
+   "own log-sd deviation": 0.12544958987242127,
+   "seed-averaged log-sd deviation": 0.21163316009060196,
+   "|Bayes mean| (scen)": 0.9461434878091544,
+   "Bayes log-sd": 0.9026291374961057,
+   "query-reading sd": 0.7573005249247555
+  },
+  "m2 / query token": {
+   "own log-sd deviation": 0.22130396417082276,
+   "seed-averaged log-sd deviation": 0.28291758239846676,
+   "|Bayes mean| (scen)": 0.969553834578632,
+   "Bayes log-sd": 0.9522779993478517,
+   "query-reading sd": 0.6177086334128136
+  },
+  "r2 / query token": {
+   "own log-sd deviation": 0.21425275310466152,
+   "seed-averaged log-sd deviation": 0.2876141714345507,
+   "|Bayes mean| (scen)": 0.9435118143955967,
+   "Bayes log-sd": 0.9390370301545036,
+   "query-reading sd": 0.43837476676774423
+  }
+ },
+ "seconds": 281.57312393188477
+}

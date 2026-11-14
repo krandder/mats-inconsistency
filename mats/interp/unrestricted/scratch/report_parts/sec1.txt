@@ -1,0 +1,14 @@
+## 1. Setting and the two error measures
+
+- Nets: width n, depth L, W_l iid N(0, 2/n), no bias, x ~ N(0, I_n), h_l = relu(W_l h_{l-1}), output a_L in R^n
+  (ARC's critical He-ReLU family; the noisy variant adds sigma r_l xi_l after each hidden ReLU).
+- Notation (as in `FORMAL.md`): mu(W) = E_x a_L; V(W) = tr Var_x a_L and V = E_W V(W); m_n = E|x|; g_W is the output
+  on unit inputs, so f(x) = |x| g(x/|x|) without noise; V_sph = m_n^2 E_W tr Var_u g_W is the per-sample error of
+  radius-exact MC ("RB-MC"); S = E_W |mu - E mu|^2.
+- Theory uses the average risk R(A) = E_W |A(W) - mu(W)|^2, compared with V/N for N-sample MC or V_sph/N for RB-MC.
+  Experiments use the per-net nMSE = |est - truth|^2 / V(W), reported per net and as medians over nets; plain MC
+  scores 1/N in expectation. The two are different averages, so each claim says which one it uses. Dead nets
+  (V(W) = 0) are excluded by the census (section 2.2).
+- Cost unit: one forward pass of one input with schoolbook products (2 n^2 L FLOPs, flopscope rates).
+- Deterministic = no random bits. Sample-free (ARC's working test) = the estimate is not an average of f over a point
+  set. Certified = outputs an interval that contains mu.

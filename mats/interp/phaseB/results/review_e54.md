@@ -1,0 +1,13 @@
+Model: GPT-6 (Codex)
+
+Checked 2026-10-30 15:33 UTC: static code, hashes, metadata, JSON, tables, logs and saved invariance scalars; no Python or numerical rerun. Ranked findings:
+
+1. **High — RSS does not isolate a size mechanism.** `e54_post.py:14-20` bins pooled RSS without conditioning on noise level or response scale. Under `t2_world.py:22-28`, RSS/noise-variance follows chi-square(N−D); quartiles therefore mix different noise regimes and y scales. Indeed, `e54_tables.md` already shows substantial noise-level differences. Draft line 66's faster-than-square/saturation account is not identified by these comparisons, nor by the qualitative world-1 parallel. **Fix:** call this a post hoc association; show within-noise-level comparisons and controlled scale sweeps before claiming a crossover mechanism. Keep the unusual-input caveat prominent.
+
+2. **Medium — monotonicity and reversal scope are overstated.** Draft lines 6 and 66 say narrower “as RSS grows”; only Q4<Q1 holds in all 120 nets. `e54_post.json.ctrl_d1.dls_by_rss_quartile` rises through Q3 before falling. Eight arms have negative Q4 means, but only six also have positive Q2: ctrl_d2 is negative throughout; pre_d2 is negative in Q2/Q3. **Fix:** report the endpoint comparison and six Q2-to-Q4 sign reversals. The separate lam counts (nine increases, seven negative-to-positive changes) are correct.
+
+3. **Medium — concentration is not the sole changed feature.** `e54_data.py:32-37` independently draws the concentrated sign/index and spread sign vector; residual directions, signs and allocation across covariates change. The designated j need not always have the largest residual. Both constructions replace the training distribution's residual direction. **Fix:** describe a contrast between two residual-generation recipes preserving sufficient statistics; do not attribute it uniquely to concentration. Sign/orientation controls would strengthen that attribution. Unlike E12, signs and position are not matched.
+
+4. **Low — “1–5%” misstates the aggregate scale.** `e54.json.arms.*.dls[0]` spans −0.0118 to +0.0284; about 5% occurs in quartile means, and some aggregate effects are below 1%. **Fix:** distinguish aggregate geometric SD-ratio changes (approximately −1.2% to +2.9%) from quartile effects (up to +5.4%).
+
+**Survive:** sufficient-statistic/Bayes invariance; all 120 formats/loaders; mixture moments, KL direction, registered dls/lam/u and multiplicity bootstrap code; matching tables/JSON; P212–P214 fail. **Reword:** plain-words size dependence, literal under-counting, small-effect range and cross-world analogy. **Fail:** monotonic narrowing, eight-arm moderate-to-large reversal, and an identified shared mechanism. Full array-level recomputation remains unverified.

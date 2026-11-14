@@ -1,0 +1,18 @@
+{
+ "id": "E-MR-2",
+ "question": "At equal compute, does priced halting (halt when predicted gain <= cost) beat PonderNet and random halting, with and without a real cost in training?",
+ "status": "Gain",
+ "setup": "Phase-1 models of E-MR-1. Operating point = cheapest cost within 0.005 of the best accuracy; every other policy read at the same mean steps (PonderNet from its accuracy-vs-steps curve over all thresholds q; random halting with the same step histogram, E_perm, or geometric, E_geom; fixed depth). Cost sweep: Ctt_eps trained and halted at c = 0.01, 0.05, 0.2 (epsilon-continuation, 1/eps settlement), 3 seeds each, against C priced after training at the same c.",
+ "result": "Gain out of distribution, none in distribution. mix_8_64: C reaches 1.000 at 17.7 steps where random halting gets 0.54, geometric 0.43, PonderNet 0.75 (prior 1/12) and 0.96 (prior 0.2). id_8_32: PonderNet ties (10.2 vs 9.9 steps). L64 (one length): random with C's histogram is as good (0.99). With a training cost, Ctt_eps on mix_8_64 takes 26.9 / 21.0 / 17.8 steps at acc 1.000 for c = 0.01 / 0.05 / 0.2, against random 0.58 / 0.57 / 0.54 and PonderNet 0.77 / 0.77 / 0.75 (prior 0.2: 0.97 / 0.98 / 0.96) at the same steps; training with the cost adds nothing over pricing a cost-0 model after training (34.7 / 20.4 / 17.9 steps, 1.000). L128 still extrapolates (0.97 to 1.000).",
+ "files": [
+  "market-resnet/RESULTS.md",
+  "market-resnet/mresnet.py",
+  "market-resnet/evaluate.py",
+  "market-resnet/run_grid2b.sh",
+  "market-resnet/results/summary.json",
+  "market-resnet/charts/p1_halting_mix_8_64.json",
+  "market-resnet/charts/p1_halting_L64.json",
+  "market-resnet/charts/p1_cost_sweep_mix_8_64.json",
+  "market-resnet/charts/p1_cost_sweep_L64.json"
+ ]
+}

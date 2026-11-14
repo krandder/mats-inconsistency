@@ -1,0 +1,12 @@
+{
+ "id": "E-MR-18",
+ "question": "Does the belief-logit runaway itself cost accuracy at 100x?",
+ "status": "Informative",
+ "setup": "reeval.py --clamp 20: the fresh L3200 strings (200 per seed, 3 seeds) rerun with b, c and v clamped to +-20 after every step, at evaluation only, no retraining; for the economy and for full BPTT in round-robin order.",
+ "result": "Yes. Economy 557/600 [0.90, 0.95] -> 586/600 [0.96, 0.99], log loss 341 -> 0.095 nats per bit; full BPTT round-robin 56/600 [0.07, 0.12] -> 288/600 [0.44, 0.52], log loss 7,439 -> 0.193 (per seed 0.00, 0.08, 0.20 -> 1.00, 0.08, 0.37). About 5 points for the economy; the ranking does not change. Training with the cap (E-MR-16) removes the problem.",
+ "files": [
+  "market-resnet/RESULTS.md",
+  "market-resnet/reeval.py",
+  "market-resnet/results/p3_summary.json"
+ ]
+}

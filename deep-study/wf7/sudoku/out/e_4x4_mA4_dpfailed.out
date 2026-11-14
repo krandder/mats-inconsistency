@@ -1,0 +1,44 @@
+== mA4: 85444 parameters; trained on 192 grids; held-out orbit has 96 grids
+
+[1] order policies that need no learning (exact, all 288 grids)
+   M's inconsistency: std over 8 random orders of log q_sigma(x): mean over grids 0.3733 nats (train orbit 0.3700, held-out orbit 0.3797)
+
+[3] trust policy learned by paired routes on the training grids only
+   (loaded the trust policy fitted by the first run)
+
+[2] exact dynamic programming over every reachable state
+   equivariance of M under the 64 cell symmetries: largest |difference of log-probabilities| on 200 random states = 7.15e-06
+Traceback (most recent call last):
+  File "/home/agent/workspaces/mats/work/deep-study/wf7/sudoku/e_4x4.py", line 230, in <module>
+    V, pol, nstates = dp_trust()
+                      ^^^^^^^^^^
+  File "/home/agent/workspaces/mats/work/deep-study/wf7/sudoku/e_4x4.py", line 79, in dp_trust
+    key = ck[:, bits].sum(1) if bits else np.zeros(288, dtype=np.int64)
+          ~~^^^^^^^^^
+TypeError: unhashable type: 'list'
+   DP FAILED; continuing without it
+
+[3b] learned mixture over routes: weights lowest entropy 0.256, top probability 0.000, top-1 minus top-2 0.000, least confident first 0.000, raster order 0.199, pi_trust (learned, paired ro 0.545
+
+[4] every order policy as a definition of T (exact). excess = mean_x[-log T(x)] - ln 288, in nats
+   order policy                                                                     all 288  held-out     train  mass on valid
+   own confidence: lowest entropy                                                    0.1220    0.2513    0.0574       0.994046
+   own confidence: top probability                                                   0.2026    0.0067    0.3006       0.953662
+   own confidence: top-1 minus top-2                                                 0.1636    0.1545    0.1682       0.954314
+   least confident first                                                             0.4005    0.5136    0.3439       0.715730
+   raster order                                                                      0.1018    0.3341   -0.0144       0.992555
+   one random fixed order (mean over 8 orders)                                       0.1679    0.3719    0.0660       0.924489
+   uniform mixture over 8 random orders                                              0.0970    0.3015   -0.0053       0.924489
+   best of 8 random fixed orders (picked on all 288: oracle pick)                    0.0727    0.1409    0.0385       0.961508
+   pi_trust (learned, paired routes)                                                 0.0935    0.3453   -0.0323       0.992163
+   learned mixture over the routes above (weights by EM on the training grids)       0.0663    0.2960   -0.0486       0.992721
+
+[4b] exhaustive walk of T's tree (all complete boards with T >= 1e-9)
+   acceptance rule: log T >= tau = -8.442 (minimum over the training grids minus 2.0)
+   pi_trust (learned, paired routes): boards with T >= 1e-9: 25725 (288 valid); mass on valid 0.992163; on enumerated invalid 0.007822; pruned 1.54e-05
+      smallest T on a valid grid 1.499e-03; largest T on an invalid board 1.106e-04; tau -8.442: invalid boards accepted 0 of 4^16-288; valid grids rejected 0 of 288 (held-out orbit: 0 of 96)
+   own confidence: lowest entropy: boards with T >= 1e-9: 17125 (288 valid); mass on valid 0.994046; on enumerated invalid 0.005944; pruned 1.03e-05
+      smallest T on a valid grid 1.049e-03; largest T on an invalid board 7.638e-05; tau -8.860: invalid boards accepted 0 of 4^16-288; valid grids rejected 0 of 288 (held-out orbit: 0 of 96)
+
+calls of M in this script: 245791; total time 193s
+exit 0

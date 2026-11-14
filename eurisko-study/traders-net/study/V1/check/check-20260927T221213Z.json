@@ -1,0 +1,78 @@
+{
+ "checked_at": "2026-09-27T22:12:13+00:00",
+ "stages": [
+  {
+   "stage": "hermetic",
+   "checks": [
+    {
+     "name": "runs.json lists the fixture",
+     "pass": true,
+     "detail": "[{\"run\": \"Z9.fixture\", \"rows\": 2, \"updated\": \"2026-09-27T22:12:13+00:00\", \"source\": \"study\"}]"
+    },
+    {
+     "name": "csv served with header and 2 rows",
+     "pass": true,
+     "detail": "['step', 'price_ca30', 'cons_resid_total', 'ec_pat4', 'bce_ca30', 'brier_ca30'] 2"
+    },
+    {
+     "name": "nan served as empty",
+     "pass": true,
+     "detail": "['200', '0.64', '', '0.7', '0.35', '0.1']"
+    },
+    {
+     "name": "appended row visible on next request (re-read per refresh)",
+     "pass": true,
+     "detail": "rows=3 last=300"
+    },
+    {
+     "name": "half-written last row skipped",
+     "pass": true,
+     "detail": ""
+    },
+    {
+     "name": "unknown run is 404",
+     "pass": true,
+     "detail": "404"
+    },
+    {
+     "name": "path traversal refused",
+     "pass": true,
+     "detail": "404"
+    }
+   ],
+   "pass": true
+  },
+  {
+   "stage": "exporter",
+   "base": "http://[ip-removed]:8767",
+   "runs": [
+    {
+     "run": "wealth-net.train-s1",
+     "status": 200,
+     "rows": 206,
+     "cols": 85,
+     "last_step": "20600",
+     "pass": true
+    },
+    {
+     "run": "wealth-net.train-s2",
+     "status": 200,
+     "rows": 207,
+     "cols": 85,
+     "last_step": "20700",
+     "pass": true
+    },
+    {
+     "run": "wealth-net.train-s3",
+     "status": 200,
+     "rows": 206,
+     "cols": 85,
+     "last_step": "20600",
+     "pass": true
+    }
+   ],
+   "pass": true
+  }
+ ],
+ "pass": true
+}

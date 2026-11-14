@@ -1,0 +1,55 @@
+{
+ "slug": "linear-agg",
+ "title": "Linear-transformer pooling of search rollouts (gemini's A and B)",
+ "date": "16 Oct",
+ "status": "nogain",
+ "oneline": "Pre-registered checks: 5 of 6 fail. On the saved round-3 networks, a 4-layer linear transformer pooling 16 vector rollout tokens scored bridge KL 0.230 / 0.216, not below round 3's anchored mixture (0.228 / 0.198), and a 1-layer pool did as well. On synthetic rollouts a 4-layer, 16-parameter model beat every one-step pool (MSE 0.78 vs 0.90) and adaptive ridge (0.81), but 6-layer models would not train stably, no model compressed the condition number or down-weighted corrupted rollouts, and the 6-layer keys picked probes worse than plain cosine. 3 seeds, audited; $1.40.",
+ "results_md": "/home/agent/workspaces/mats/work/linear-agg/RESULTS-LA.md",
+ "led_to": [],
+ "page": {
+  "why": "gemini proposed that a tiny linear transformer, which a 2024 paper (arXiv 2402.14180) shows runs several steps of preconditioned gradient descent with noise-adaptive shrinkage, could pool search rollouts better than the one-step pools of [[e-ca-r3|E-CA round 3]] (plain mixture, anchored mixture, Gram dedup), by inverting the overlap between rollouts and damping rollouts that contradict each other.",
+  "what": "Experiment A, synthetic: each episode has 20 noisy rollouts that measure overlapping combinations of 16 hidden numbers (redundant hubs, bridge links, two noisy-TV variables), an unknown noise level and 20% corrupted rollouts; linear transformers in the paper's three forms (GD++, Diag, Full) at 1-6 layers predict a long-range query and score 8 candidate probes, against one-step pools, closed-form adaptive ridge (AdaRR) and the exact posterior. Experiment B, applied: on the saved round-3 rule-110 networks, 16 rollouts per bridge query at four temperatures, each turned into a 24-number token (key, claims, stiffness, evidence conflict, path probability, temperature) and pooled by a 4-layer linear transformer trained on outcomes. Pre-registered, 3 seeds.",
+  "result": "Applied test (B): the 4-layer pool scored test KL 0.230 (B1) and 0.216 (B2) against round 3's anchored mixture 0.228 and 0.198, so it did not beat it; a 1-layer pool did as well, and gemini's mixed-temperature rollouts made every pool worse. The pool does give less weight to rollouts whose cells clash with the evidence, but that buys no measurable accuracy. Synthetic test (A): a 4-layer, 16-parameter model pooled far better than any one-step pool (MSE 0.78 vs 0.90; exact posterior 0.70) and better than adaptive ridge (0.81), but 6-layer models diverged in training, no model compressed the condition number or down-weighted corrupted rollouts, and the 6-layer keys chose probes worse than plain cosine.",
+  "sowhat": "Multi-step linear attention can learn a much better pool than one-step rules on synthetic data, but not through the mechanisms gemini described, and not on the real E-CA bridges, where the limit seems to be the rollouts rather than the pooling. Deep linear transformers were fragile on heavy-tailed inputs.",
+  "decided": "Recorded A1, A2, A3, B-main and B-b as failed and B-a as passed without an accuracy benefit. Not tested: the paper's roughly 40x larger training budget, stabilised deep models, and B with tau-1 rollouts only.",
+  "chart": {
+   "bars": [
+    {
+     "label": "one pass",
+     "value": 0.301,
+     "text": "0.301"
+    },
+    {
+     "label": "round 3 anchored mix (tau 1)",
+     "value": 0.228,
+     "text": "0.228"
+    },
+    {
+     "label": "anchored mix, same rollouts",
+     "value": 0.241,
+     "text": "0.241"
+    },
+    {
+     "label": "4-layer linear transformer",
+     "value": 0.23,
+     "text": "0.230"
+    },
+    {
+     "label": "1-layer linear transformer",
+     "value": 0.226,
+     "text": "0.226"
+    }
+   ],
+   "caption": "Experiment B, bridge queries B1 (rows 0 and 9 known, query in rows 4-5), rule 110: test KL to the exact posterior, 16 rollouts per query, 3-seed means; pre-registered bar: the 4-layer pool below every one-step pool, including round 3's 0.228",
+   "aria": "The 4-layer linear-transformer pool is about as good as round 3's anchored mixture and a 1-layer pool, and better than one pass"
+  },
+  "details": {
+   "methods": [
+    "Pre-registered in PREREG-LA.md (sha256 9abce49f...) before any run; training-recipe amendments made before any test evaluation are logged with times in PREREG-LA-AMENDMENTS.md.",
+    "A: 36 linear transformers (GD++, Diag, Full x 1, 2, 4, 6 layers x 3 seeds), 20,000 steps of 512 fresh episodes each; 1-step pools fitted on 100,000 episodes; AdaRR and the exact posterior in closed form; test 150,000 episodes.",
+    "B: the saved round-3 rule-110 4-layer networks (3 seeds, frozen); 16 rollouts per query at temperatures 0.5-2, 16 cells each; aggregators trained on 8,000 calibration instances (outcomes only), early-stopped on 4,000 validation instances, tested on round 3's 1,000 test instances; KL to the exact posterior.",
+    "3 seeds, paired 95% t-intervals across seeds; an independent self-audit re-derives the headline numbers from saved arrays."
+   ]
+  }
+ }
+}

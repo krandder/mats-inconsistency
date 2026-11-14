@@ -1,0 +1,47 @@
+- 2026-09-29T13:55:49Z CREATE vm=trader-cat-p12-1 zone=us-central1-a epoch=1790690149 type=g2-standard-4+L4 spot max_run=5h rate_ceiling=0.72 spend_before=0
+- 2026-09-29T14:12:49Z DELETE vm=trader-cat-p12-1 epoch=1790690503 reason="spot preempted by GCE (compute.instances.preempted); instance + boot disk auto-deleted" leftover_disks="" spend_now=0.20
+- 2026-09-29T14:13:44Z CREATE vm=trader-cat-p12-2 zone=us-central1-a epoch=1790691224 type=g2-standard-4+L4 spot max_run=5h rate_ceiling=0.72 spend_before=0.07
+- 2026-09-29T14:19:09Z READY vm=trader-cat-p12-2 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T14:20:30Z PUSH vm=trader-cat-p12-2
+- 2026-09-29T14:20:40Z START vm=trader-cat-p12-2 plan=run_vm.sh (logged late at 14:33Z: the start ssh call hung after launching the job; job verified running via gpu.sh status)
+- 2026-09-29T14:33:30Z SYNC vm=trader-cat-p12-2 verified_files=36 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P12/results/vm/trader-cat-p12-2
+- 2026-09-29T14:36:41Z SYNC vm=trader-cat-p12-2 verified_files=43 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P12/results/vm/trader-cat-p12-2
+- 2026-09-29T14:52:44Z SYNC vm=trader-cat-p12-2 verified_files=43 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P12/results/vm/trader-cat-p12-2
+- 2026-09-29T15:08:44Z SYNC vm=trader-cat-p12-2 verified_files=44 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P12/results/vm/trader-cat-p12-2
+- 2026-09-29T15:25:10Z SYNC vm=trader-cat-p12-2 verified_files=60 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P12/results/vm/trader-cat-p12-2
+- 2026-09-29T15:41:16Z SYNC vm=trader-cat-p12-2 verified_files=61 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P12/results/vm/trader-cat-p12-2
+- 2026-09-29T15:57:09Z SYNC vm=trader-cat-p12-2 verified_files=73 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P12/results/vm/trader-cat-p12-2
+- 2026-09-29T16:12:39Z DELETE vm=trader-cat-p12-2 epoch=1790697721 reason="spot preempted by GCE (compute.instances.preempted); instance + boot disk auto-deleted" leftover_disks="" spend_now=1.50
+- 2026-09-29T16:13:34Z CREATE vm=trader-cat-p12-3 zone=us-central1-c epoch=1790698414 type=g2-standard-4+L4 spot max_run=5h rate_ceiling=0.72 spend_before=1.37
+- 2026-09-29T16:17:07Z READY vm=trader-cat-p12-3 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T16:17:50Z PUSH vm=trader-cat-p12-3
+- 2026-09-29T16:18:40Z START vm=trader-cat-p12-3 plan=run_vm.sh
+- 2026-09-29T16:28:36Z SYNC vm=trader-cat-p12-3 verified_files=79 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P12/results/vm/trader-cat-p12-3
+- 2026-09-29T16:44:31Z SYNC vm=trader-cat-p12-3 verified_files=87 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P12/results/vm/trader-cat-p12-3
+- 2026-09-29T17:00:14Z SYNC vm=trader-cat-p12-3 verified_files=89 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P12/results/vm/trader-cat-p12-3
+- 2026-09-29T17:15:57Z SYNC vm=trader-cat-p12-3 verified_files=90 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P12/results/vm/trader-cat-p12-3
+- 2026-09-29T17:31:48Z SYNC vm=trader-cat-p12-3 verified_files=93 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P12/results/vm/trader-cat-p12-3
+- 2026-09-29T17:47:47Z SYNC vm=trader-cat-p12-3 verified_files=96 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P12/results/vm/trader-cat-p12-3
+- 2026-09-29T18:03:46Z SYNC vm=trader-cat-p12-3 verified_files=98 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P12/results/vm/trader-cat-p12-3
+- 2026-09-29T18:19:37Z SYNC vm=trader-cat-p12-3 verified_files=100 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P12/results/vm/trader-cat-p12-3
+- 2026-09-29T18:35:19Z SYNC vm=trader-cat-p12-3 verified_files=111 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P12/results/vm/trader-cat-p12-3
+- 2026-09-29T18:51:05Z SYNC vm=trader-cat-p12-3 verified_files=116 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P12/results/vm/trader-cat-p12-3
+- 2026-09-29T19:07:46Z SYNC vm=trader-cat-p12-3 verified_files=120 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P12/results/vm/trader-cat-p12-3
+- 2026-09-29T19:25:00Z SYNC vm=trader-cat-p12-3 verified_files=130 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P12/results/vm/trader-cat-p12-3
+- 2026-09-29T19:33:51Z SYNC vm=trader-cat-p12-3 verified_files=134 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P12/results/vm/trader-cat-p12-3
+- 2026-09-29T19:41:23Z SYNC vm=trader-cat-p12-3 verified_files=137 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P12/results/vm/trader-cat-p12-3
+- 2026-09-29T19:57:21Z SYNC vm=trader-cat-p12-3 verified_files=141 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P12/results/vm/trader-cat-p12-3
+- 2026-09-29T20:14:08Z SYNC vm=trader-cat-p12-3 verified_files=143 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P12/results/vm/trader-cat-p12-3
+- 2026-09-29T20:31:40Z SYNC vm=trader-cat-p12-3 verified_files=149 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P12/results/vm/trader-cat-p12-3
+- 2026-09-29T20:48:53Z SYNC vm=trader-cat-p12-3 verified_files=155 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P12/results/vm/trader-cat-p12-3
+- 2026-09-29T20:50:21Z SYNC vm=trader-cat-p12-3 verified_files=155 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P12/results/vm/trader-cat-p12-3
+- 2026-09-29T20:53:02Z DELETE vm=trader-cat-p12-3 epoch=1790715182 reason="handoff to p12-4 before the 4.9 h age limit (seed-3 runs done; CostNet 0, DTxARB-bp 0, DTxARB-noFB 0 resume from .part)" leftover_disks="none" spend_now=4.72
+- 2026-09-29T20:55:09Z CREATE vm=trader-cat-p12-4 zone=us-central1-a epoch=1790715309 type=g2-standard-4+L4 spot max_run=5h rate_ceiling=0.72 spend_before=4.72
+- 2026-09-29T20:59:16Z READY vm=trader-cat-p12-4 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T21:01:47Z PUSH vm=trader-cat-p12-4
+- 2026-09-29T21:03:36Z DELETE vm=trader-cat-p12-4 epoch=1790715736 reason="spot preempted by GCE (compute.instances.preempted); instance + boot disk auto-deleted" leftover_disks="" spend_now=4.83
+- 2026-09-29T21:04:45Z CREATE vm=trader-cat-p12-5 zone=us-central1-c epoch=1790715885 type=g2-standard-4+L4 spot max_run=5h rate_ceiling=0.72 spend_before=4.81
+- 2026-09-29T21:09:12Z READY vm=trader-cat-p12-5 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T21:10:06Z PUSH vm=trader-cat-p12-5
+- 2026-09-29T21:11:58Z DELETE vm=trader-cat-p12-5 epoch=1790716240 reason="spot preempted by GCE (compute.instances.preempted); instance + boot disk auto-deleted" leftover_disks="" spend_now=4.90
+- 2026-09-29T21:17:02Z STOP-GPU reason="p12-4 and p12-5 spot-preempted within 7 min each; no further VMs; watchdog asked to stop" spend_now=4.88

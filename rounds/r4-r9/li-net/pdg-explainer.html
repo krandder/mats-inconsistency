@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loss as Inconsistency</title>
+<style>
+:root {
+  --bg: #fbfaf7; --fg: #1d1d1f; --muted: #5f5f66; --rule: #dedbd2; --card: #ffffff;
+  --accent: #2456a6; --accent2: #b4521e; --good: #2f7d4a; --warn: #9a6a00; --code: #f1efe8;
+  --tag-paper: #e3ecfa; --tag-fleet: #f6e7dc; --tag-here: #e2f1e6; --tag-unv: #f7efcf;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #17181b; --fg: #e8e6e1; --muted: #a2a09a; --rule: #34353a; --card: #1f2024;
+    --accent: #7fa8ea; --accent2: #e89a6c; --good: #7cc794; --warn: #e0bd5a; --code: #2a2b30;
+    --tag-paper: #23324a; --tag-fleet: #44301f; --tag-here: #1f3a29; --tag-unv: #3f3818;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #17181b; --fg: #e8e6e1; --muted: #a2a09a; --rule: #34353a; --card: #1f2024;
+  --accent: #7fa8ea; --accent2: #e89a6c; --good: #7cc794; --warn: #e0bd5a; --code: #2a2b30;
+  --tag-paper: #23324a; --tag-fleet: #44301f; --tag-here: #1f3a29; --tag-unv: #3f3818;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--fg);
+  font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, Roboto, "Helvetica Neue", Arial, sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 28px 16px 64px; }
+h1 { font-size: 1.75rem; line-height: 1.25; margin: 0 0 6px; }
+h2 { font-size: 1.3rem; margin: 2.2em 0 0.5em; padding-top: 0.6em; border-top: 1px solid var(--rule); }
+h3 { font-size: 1.05rem; margin: 1.5em 0 0.4em; }
+p, li { max-width: 72ch; }
+.sub { color: var(--muted); margin: 0 0 18px; }
+a { color: var(--accent); }
+code, .m { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.92em; background: var(--code); padding: 1px 5px; border-radius: 4px; }
+.box { background: var(--card); border: 1px solid var(--rule); border-radius: 10px; padding: 14px 16px; margin: 16px 0; }
+.idea { border-left: 4px solid var(--accent); }
+.tag { display: inline-block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.02em; padding: 1px 7px; border-radius: 10px; vertical-align: 2px; color: var(--fg); white-space: nowrap; }
+.t-paper { background: var(--tag-paper); }
+.t-fleet { background: var(--tag-fleet); }
+.t-here { background: var(--tag-here); }
+.t-unv { background: var(--tag-unv); }
+.tbl { width: 100%; overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
+th, td { text-align: left; vertical-align: top; padding: 8px 8px; border-bottom: 1px solid var(--rule); }
+th { font-weight: 600; color: var(--muted); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em; }
+svg { max-width: 100%; height: auto; display: block; }
+svg text { font-family: inherit; fill: var(--fg); }
+.widget label { display: block; margin: 10px 0 2px; font-size: 0.95rem; }
+.widget input[type=range] { width: 100%; accent-color: var(--accent); }
+.readout { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; margin-top: 12px; }
+.readout div { background: var(--code); border-radius: 8px; padding: 8px 10px; }
+.readout b { display: block; font-size: 1.2rem; font-variant-numeric: tabular-nums; }
+.readout span { font-size: 0.8rem; color: var(--muted); }
+.note { font-size: 0.88rem; color: var(--muted); }
+ol.q > li { margin-bottom: 12px; }
+.calc { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9rem; background: var(--code); border-radius: 8px; padding: 10px 12px; overflow-x: auto; white-space: pre; line-height: 1.5; }
+</style>
+</head>
+<body>
+<main>
+<h1>Loss as the inconsistency of what you believe</h1>
+<p class="sub">Richardson, “Loss as the Inconsistency of a Probabilistic Dependency Graph: Choose Your Model, Not Your Loss Function”, AISTATS 2022 (<a href="https://arxiv.org/abs/2202.11862">arXiv 2202.11862</a>), explained for the logical-induction-network goal. eurisko study notes, 2026-10-02.</p>
+
+<div class="box note">
+<b>How claims are marked.</b>
+<span class="tag t-paper">paper</span> stated in the paper (proposition named; checked against the text).
+<span class="tag t-fleet">fleet math</span> proved or computed in our own notes (<code>math/pdg-propositional.md</code>, <code>IDEAS-LI-NET.md</code>), not in the paper.
+<span class="tag t-here">computed here</span> I recomputed the number for this page (Python, and the widgets compute it live).
+<span class="tag t-unv">unverified</span> recollection or conjecture, not checked.
+All logs are natural logs, so inconsistency is in nats.
+</div>
+
+<h2>1. The idea in one paragraph</h2>
+<div class="box idea">
+<p>Write down everything you believe as a pile of probability statements, each with a confidence, and allow the pile to contradict itself. Then ask: what is the cheapest way to make it consistent? Pick one single joint distribution, and charge each statement for how far that distribution is from what the statement claimed, weighted by its confidence. The smallest possible total charge is the pile's <b>inconsistency</b>. Richardson's point is that the standard training losses are this number for the obvious pile: cross-entropy is the inconsistency of “my model says p” plus “the data is what it is (certain)”; L2 regularisation is a Gaussian prior you trust with confidence β; the VAE's negative ELBO is the inconsistency of encoder, decoder, prior and one image. So you never have to pick a loss: <b>pick the beliefs, and the loss is how much they disagree</b>. In market language, which is ours rather than the paper's: each statement is a quoted price, the confidence is how much money stands behind the quote, and the inconsistency is what an arbitrageur can take from those quotes risk-free.</p>
+</div>
+
+<h2>2. What a PDG is</h2>
+<p>A probabilistic dependency graph (Richardson &amp; Halpern 2021) is a set of variables and a set of arrows. Each arrow carries a claim, “given its source, the target is distributed like this”, plus a confidence β. Unlike a Bayesian network, two arrows may point at the same variable and say different things. That is the whole trick: a PDG can hold a contradiction, and it can say <i>how big</i> the contradiction is. <span class="tag t-paper">paper, Def. 1</span></p>
+<p>An arrow with no source is a plain claim (“P(rain) = 0.3”). An arrow with β = ∞ is a hard constraint, for example a logical definition. An arrow with β = 0 is ignored.</p>
+
+<h3>Worked example: three sentences about two facts</h3>
+<p>Variables A (“it rains”), B (“the grass is wet”) and C (“A and B”). Four arrows:</p>
+<ul>
+<li>P(A) = 0.4, P(B) = 0.7, P(C) = 0.5, each with confidence 1 (three price quotes);</li>
+<li>a two-tailed arrow A, B → C that says “C is exactly A AND B”, with confidence ∞ (the logic).</li>
+</ul>
+
+<svg viewBox="0 0 640 250" role="img" aria-label="PDG with nodes A, B and C equals A and B; price arrows into each node and a hard AND arrow from A and B into C">
+<defs>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/></marker>
+<marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--accent2)"/></marker>
+</defs>
+<line x1="40" y1="60" x2="128" y2="60" stroke="var(--muted)" stroke-width="2" marker-end="url(#ah)"/>
+<text x="20" y="45" font-size="14">P(A)=0.4  (β=1)</text>
+<line x1="40" y1="200" x2="128" y2="200" stroke="var(--muted)" stroke-width="2" marker-end="url(#ah)"/>
+<text x="20" y="232" font-size="14">P(B)=0.7  (β=1)</text>
+<circle cx="160" cy="60" r="30" fill="var(--card)" stroke="var(--accent)" stroke-width="2.5"/>
+<text x="160" y="66" text-anchor="middle" font-size="18" font-weight="600">A</text>
+<circle cx="160" cy="200" r="30" fill="var(--card)" stroke="var(--accent)" stroke-width="2.5"/>
+<text x="160" y="206" text-anchor="middle" font-size="18" font-weight="600">B</text>
+<path d="M190,68 C260,90 290,118 330,128" fill="none" stroke="var(--accent2)" stroke-width="2.5"/>
+<path d="M190,192 C260,170 290,138 330,132" fill="none" stroke="var(--accent2)" stroke-width="2.5"/>
+<line x1="330" y1="130" x2="402" y2="130" stroke="var(--accent2)" stroke-width="2.5" marker-end="url(#ah2)"/>
+<text x="250" y="122" font-size="13" fill="var(--accent2)">AND  (β=∞)</text>
+<circle cx="440" cy="130" r="34" fill="var(--card)" stroke="var(--accent)" stroke-width="2.5"/>
+<text x="440" y="136" text-anchor="middle" font-size="16" font-weight="600">C=A∧B</text>
+<line x1="600" y1="130" x2="478" y2="130" stroke="var(--muted)" stroke-width="2" marker-end="url(#ah)"/>
+<text x="500" y="112" font-size="14">P(C)=0.5</text>
+<text x="520" y="152" font-size="14">(β=1)</text>
+</svg>
+<p class="note">Picture: circles are variables, arrows are claims. The double-headed orange arrow is a function (deterministic, infinite confidence), drawn the way the paper draws functions.</p>
+
+<p><b>Is this consistent?</b> No, and you can see it in your head: “A and B” can only be true when A is, so P(C) ≤ P(A), but the quotes say 0.5 &gt; 0.4. A trader sells C at 0.5 and buys A at 0.4: ten cents in, and in every world A pays at least what C costs, so he keeps at least ten cents. That free money is the contradiction.</p>
+<p><b>What the PDG does with it.</b> Look for the single joint distribution over the four worlds (rain yes/no × wet yes/no) that the three quotes, weighted by confidence, mind least. The answer is P(A) = P(C) = 0.449, P(B) = 0.700, with world “rain, not wet” at probability 0; the leftover charge, the inconsistency, is 0.0102 nats. <span class="tag t-fleet">fleet math, R5</span> <span class="tag t-here">computed here</span> The repair is what you'd guess: the bound C ≤ A becomes tight, A and C meet at 0.449, the average of their log-odds (logit 0.4 = −0.41, logit 0.5 = 0, average −0.20, back to 0.449), and B, which nobody disputed, stays put.</p>
+
+<h3>The two formulas, in words</h3>
+<p>For a candidate joint distribution μ, each arrow X → Y sends a bill: β times the extra nats you'd pay encoding μ's Y-values (given X) with that arrow's code instead of μ's own. The total is the <b>incompatibility</b> of μ:</p>
+<p class="calc">Inc(μ) = Σ over arrows  β · E_{x~μ} KL( μ(Y|x) ‖ p(Y|x) )          [paper eq. (1)]
+⟨⟨M⟩⟩  = min over μ of Inc(μ)                                  [the inconsistency]</p>
+<p>An infinite-confidence arrow sends an infinite bill unless μ obeys it exactly, so β = ∞ arrows are constraints. Adding arrows or raising confidences can only raise the inconsistency (Lemma 1, “believing more can't make you less inconsistent”); most of the paper's proofs are this one lemma. <span class="tag t-paper">paper, eq. (1), Lemma 1</span></p>
+<p class="note">There is a second, qualitative score (information deficiency, weighted by α) that breaks ties among the cheapest μ. The paper says it plays only a minor role there. In the γ → 0 limit it picks a unique best μ (Richardson &amp; Halpern 2021, Prop. 3.3-3.4); for our logic PDGs that tie-break is the maximum-entropy distribution with the repaired prices. <span class="tag t-paper">paper, §2</span> <span class="tag t-fleet">fleet math, R2(b)</span></p>
+
+<h2>3. The inconsistency by hand: two quotes on one coin</h2>
+<p>The smallest inconsistent PDG: one variable, a coin, and two arrows into it. Alice says P(heads) = 0.9, Bob says P(heads) = 0.1, each with confidence 1.</p>
+<svg viewBox="0 0 640 110" role="img" aria-label="One coin node with two incoming claims, Alice 0.9 and Bob 0.1">
+<line x1="60" y1="55" x2="272" y2="55" stroke="var(--muted)" stroke-width="2" marker-end="url(#ah)"/>
+<text x="60" y="40" font-size="14">Alice: P(H)=0.9  (β=1)</text>
+<circle cx="310" cy="55" r="34" fill="var(--card)" stroke="var(--accent)" stroke-width="2.5"/>
+<text x="310" y="61" text-anchor="middle" font-size="16" font-weight="600">coin</text>
+<line x1="580" y1="55" x2="348" y2="55" stroke="var(--muted)" stroke-width="2" marker-end="url(#ah)"/>
+<text x="400" y="40" font-size="14">Bob: P(H)=0.1  (β=1)</text>
+</svg>
+<p>We want the one coin, P(heads) = m, that minimises KL(m‖0.9) + KL(m‖0.1). The trick that makes it doable in your head: a sum of KLs to p and q, with weights r and s, equals (r+s) times a KL to the normalised geometric mean of p and q, minus a constant. So the best coin is that geometric mean, and the constant is the answer. <span class="tag t-here">derived here; the closed form for the value is the paper's Lemma 10</span></p>
+<div class="calc">geometric mean, heads:  √(0.9 × 0.1) = 0.3
+geometric mean, tails:  √(0.1 × 0.9) = 0.3
+normaliser Z = 0.3 + 0.3 = 0.6        →  best coin m* = 0.3/0.6 = 0.5
+inconsistency = −(r+s)·ln Z = −2·ln 0.6 = 2 × 0.511 = 1.022 nats
+
+check directly:  KL(0.5‖0.9) = 0.5·ln(0.5/0.9) + 0.5·ln(0.5/0.1) = 0.511
+                 KL(0.5‖0.1) = 0.511 (mirror image)          sum = 1.022  ✓</div>
+<p><b>Rule of thumb you can use anywhere:</b> the compromise odds are the confidence-weighted geometric mean of the quoted odds. 9:1 and 1:9 at equal confidence give 1:1. 4:1 and 1:1 give 2:1, so P = 2/3, and the inconsistency is −2·ln(√0.4 + √0.1) = 0.105 nats. With Alice three times as confident, 9:1 and 1:9 give 9<sup>3/4</sup>·9<sup>−1/4</sup> = 3:1, so P = 0.75. <span class="tag t-here">computed here</span></p>
+
+<h3>The same number as money</h3>
+<p>Now let each quote be a market maker using Hanson's log market scoring rule, with liquidity equal to its confidence. The makers do not know they are quoting the same coin. An arbitrageur sells heads to Alice and buys heads from Bob, the same number of shares from each, so whatever the coin does he is flat. He stops when both quote the same price.</p>
+<div class="calc">shares each side:   ln 9 ≈ 2.20   (both prices then sit at 0.50)
+received from Alice: −ln(0.1 + 0.9/9)  = −ln 0.2 = 1.609
+paid to Bob:          ln(0.9 + 0.1·9)  =  ln 1.8 = 0.588
+risk-free profit:     1.609 − 0.588    = 1.022   =  the inconsistency  ✓</div>
+<p>This is not a coincidence. For any belief table, the inconsistency equals the largest risk-free profit one trader can take from per-quote LMSR makers, and his trades leave the prices exactly at the PDG's repaired table. <span class="tag t-fleet">fleet math, R4 (Fenchel duality); checked numerically on 15 logic instances and on four asymmetric coin cases here</span> One caveat: against quotes that do <i>not</i> move when traded (fixed prices), the free money is a different number. In the rain example a fixed-price trader makes 0.10 per share while the inconsistency is 0.0102; roughly, inconsistency ≈ (distance to coherence)², and it is the price impact of the LMSR that makes the two equal. <span class="tag t-fleet">fleet math, R5</span></p>
+
+<div class="box widget" id="w1">
+<b>Widget 1. Two quotes on one coin (equal confidence 1).</b>
+<label for="w1a">Alice's price for heads: <span id="w1av"></span></label>
+<input id="w1a" type="range" min="0.01" max="0.99" step="0.01" value="0.9">
+<label for="w1b">Bob's price for heads: <span id="w1bv"></span></label>
+<input id="w1b" type="range" min="0.01" max="0.99" step="0.01" value="0.1">
+<svg id="w1svg" viewBox="0 0 640 70" aria-label="price line from 0 to 1 with Alice, Bob and the compromise marked"></svg>
+<div class="readout">
+<div><b id="w1inc"></b><span>inconsistency (nats), closed form</span></div>
+<div><b id="w1m"></b><span>compromise P(heads)</span></div>
+<div><b id="w1x"></b><span>shares the arbitrageur trades each side</span></div>
+<div><b id="w1p"></b><span>his risk-free profit, from the LMSR cost formula</span></div>
+</div>
+<p class="note">The last number is computed from the market makers' cost functions, not from the inconsistency formula; it agrees to rounding. Set the two prices equal and both go to zero.</p>
+</div>
+
+<div class="box widget" id="w2">
+<b>Widget 2. Turn up one quote's confidence.</b> Alice and Bob's prices come from widget 1; Bob's confidence stays 1.
+<label for="w2r">Alice's confidence β: <span id="w2rv"></span></label>
+<input id="w2r" type="range" min="-2" max="3" step="0.01" value="0">
+<svg id="w2svg" viewBox="0 0 640 190" aria-label="curve of the compromise price as Alice's confidence goes from 0.01 to 1000"></svg>
+<div class="readout">
+<div><b id="w2m"></b><span>compromise P(heads)</span></div>
+<div><b id="w2inc"></b><span>inconsistency (nats)</span></div>
+<div><b id="w2lim"></b><span>limit as β → ∞: KL(Alice‖Bob)</span></div>
+</div>
+<p class="note">At β → 0 Alice is ignored: the coin is Bob's and the inconsistency is 0. At β → ∞ the coin is Alice's and the inconsistency rises to KL(Alice‖Bob), which is the paper's Prop. 9: “certain of p, confidence β in q” gives β·KL(p‖q). Every value in between is a scaled Rényi divergence (Cor. 10.1). The compromise price moves along the confidence-weighted average of the two log-odds.</p>
+</div>
+
+<h2>4. Which loss is which inconsistency</h2>
+<p>Every row is a proposition in the paper, checked against the text. “Data at ∞” means the empirical distribution is held with infinite confidence: you are not willing to move it.</p>
+<div class="tbl">
+<table>
+<thead><tr><th>Loss</th><th>Beliefs (the PDG)</th><th>Result</th><th>Why, in one line</th></tr></thead>
+<tbody>
+<tr><td>Surprisal / negative log-likelihood</td><td>model p(X), and the observation X = x</td><td>−log p(x) <span class="tag t-paper">Prop. 2, 4</span></td><td>The observation forces all mass onto x; p is billed for how unlikely it found x. Unobserved variables cost nothing extra (Prop. 4).</td></tr>
+<tr><td>Cross-entropy, generative</td><td>p(X), and the data distribution at ∞</td><td>CE(data, p) − H(data) <span class="tag t-paper">Prop. 3</span></td><td>The data won't move, so μ = data and the bill is KL(data‖p); the entropy term is a constant of the data.</td></tr>
+<tr><td>Cross-entropy, supervised</td><td>predictor h(Y|X), and labelled data at ∞</td><td>mean of log 1/h(y|x) − H(Y|X) <span class="tag t-paper">Prop. 5</span></td><td>Same, conditionally: each example bills h for the surprise of its label.</td></tr>
+<tr><td>Log accuracy</td><td>labeller f and predictor h as functions (any confidence), inputs D at β</td><td>−β log Pr(f = h) <span class="tag t-paper">Prop. 6</span></td><td>The only joint both functions accept throws away the inputs where they disagree, and that is charged to D, not to h. Hence accuracy gives h no gradient.</td></tr>
+<tr><td>Mean squared error</td><td>f and h each with unit Gaussian noise on Y, inputs at ∞</td><td>½ E|f(X) − h(X)|² <span class="tag t-paper">Prop. 7</span></td><td>Two unit Gaussians disagree by half their squared mean gap.</td></tr>
+<tr><td>Regulariser = prior</td><td>p(Y|Θ), prior q(Θ) at β, Θ = θ, data at ∞</td><td>CE + β·log 1/q(θ) − H(D) <span class="tag t-paper">Prop. 8</span></td><td>Pinning the parameter costs its surprisal under the prior, times your trust in the prior. Gaussian prior gives (β/2)θ², i.e. L2; Laplace gives β|θ|, i.e. L1. Regularisation strength is confidence.</td></tr>
+<tr><td>KL and its relatives</td><td>p(X) and q(X) on the same variable, confidences r, s</td><td>−(r+s)·log Σ (p<sup>r</sup>q<sup>s</sup>)<sup>1/(r+s)</sup> <span class="tag t-paper">Lemma 10</span></td><td>Two friends' claims about one thing. p at ∞ and q at β gives β·KL(p‖q) (Prop. 9); finite (r, s) gives s times the Rényi divergence of order r/(r+s) (Cor. 10.1); the best split of total confidence 1 gives the Chernoff divergence (Cor. 10.2).</td></tr>
+<tr><td>Negative ELBO</td><td>joint p(X,Z), variational q(Z) at ∞, observation x</td><td>−ELBO(x) <span class="tag t-paper">Prop. 11</span></td><td>It is the surprisal PDG plus one more arrow, so by Lemma 1 it is ≥ −log p(x): the ELBO bound with no Jensen needed.</td></tr>
+<tr><td>VAE loss, β-VAE</td><td>encoder e(Z|X) at ∞, decoder d(X|Z), prior p(Z), image x</td><td>−ELBO; prior at confidence β gives the β-VAE loss <span class="tag t-paper">Prop. 12, 13</span></td><td>A VAE is two arrows into Z that may disagree, which only a PDG can hold; its loss is that disagreement. β-VAE's β is literally the prior's confidence.</td></tr>
+<tr><td>Log partition function (free energy)</td><td>a weighted factor graph as a PDG</td><td>−log Z <span class="tag t-paper">Prop. 14</span></td><td>For normalised factors, Z &lt; 1 measures how far their product is from a distribution. Note this is the γ = 1 inconsistency, which includes the tie-break score, not the plain one.</td></tr>
+<tr><td>Any expected cost</td><td>p at ∞ plus an alarm that fires with probability 1 − e<sup>−c(x)</sup>, and “no alarm”</td><td>E<sub>p</sub> c(X) <span class="tag t-paper">Prop. 15</span></td><td>You can reverse-engineer any loss, but only with brittle infinite-confidence choices; with finite confidence the model “squirms” instead (§9).</td></tr>
+</tbody>
+</table>
+</div>
+<p class="note">Section 8 of the paper adds a practical case: training on corrupted data d and a simulator s. Mixing the two datasets ignores their redundancy; weighting by the product makes h overconfident (h* ∝ s² when d = s); trusting d with λ<sub>d</sub> and s with λ<sub>s</sub> gives the λ-weighted geometric mean, which is calibrated. This is widget 2's compromise rule, applied to a predictor.</p>
+
+<h2>5. Why this matters for the logic network</h2>
+<p>The goal (BRIEF-MATH): a network whose repeated blocks are thinking time. Given at block 0 a small propositional theory and some query sentences, with no new facts and no adversary, its prices should drift toward what a logical inductor would say. The paper gives us the fixed point to drift toward. Here is how the pieces map, with what our own math notes added.</p>
+
+<h3>The belief state as a PDG</h3>
+<ul>
+<li><b>Atoms</b> are variables; each <b>query sentence</b> is a variable defined from the atoms by an ∞-confidence arrow (its truth table), exactly like C = A∧B above.</li>
+<li><b>Axioms</b> are ∞-confidence arrows saying “this clause is true”. Together they forbid every world that breaks an axiom.</li>
+<li>The network's <b>price table</b> is one finite-confidence arrow per sentence, “P(φ) = p”, with confidence β = how much logic must pay to move that price (the sentence's liquidity).</li>
+</ul>
+<p>Then the inconsistency is: over all mixtures of axiom-respecting worlds, the smallest confidence-weighted log-score distance to the price table. <span class="tag t-fleet">fleet math, R1</span> Three consequences, all proved in our notes:</p>
+<ol>
+<li><b>Zero exactly when the prices are fair.</b> The inconsistency is 0 if and only if some distribution over models of the axioms reproduces every price, which is the same as “no portfolio wins in every world”, i.e. de Finetti coherence, i.e. LI's one-day affine coherence. <span class="tag t-fleet">R3</span></li>
+<li><b>It is the arbitrage on offer to relation traders.</b> The traders who bet on identities (“A∧B ≤ A”, “P(A) + P(¬A) = 1”) can take at most the inconsistency, in one shot, from LMSR makers who ignore the axioms; their best trade moves prices to the repaired table. <span class="tag t-fleet">R4</span> No history and no adversarial market maker: the “arbitrageur” is just the other half of the optimisation (its dual variable).</li>
+<li><b>Minimising it is the coherent projection.</b> The repaired table q* is unique, every identity holds, entailed sentences go to 1 and refuted ones to 0 even if their input price was 0.01, and each undecided price moves in log-odds space by (the arbitrageur's position) / (its confidence). <span class="tag t-fleet">R2</span> It also beats the raw table in log score in every possible world, by at least the inconsistency. <span class="tag t-fleet">R4, dominance</span></li>
+</ol>
+
+<h3>What coherence cannot do: the house view</h3>
+<p>Every coherent table has inconsistency 0, so the projection has no opinion among them. Given axioms only and no prices, “P(A) = 0.01” and “P(A) = 0.99” are equally perfect if A is undecided. LI wants something specific there (roughly, the frequency of A across possible worlds). The fix is one more arrow: a <b>house view</b>, a prior over whole worlds, held with some confidence. The fixed point then is the house view restricted to the possible worlds: entailed 1, refuted 0, and anything else the house view's share of the possible worlds where it holds. Learning the house view from data by cross-entropy is, by Prop. 3, another inconsistency of the same PDG, so fitting and reasoning are one objective. <span class="tag t-fleet">frequency-and-prior; IDEAS §1</span> This also matches Richardson &amp; Halpern's remark that conditioning is resolving the inconsistency created by adding an observation arrow (2021, §5). <span class="tag t-paper">pdg2021</span></p>
+
+<h3>The block it suggests</h3>
+<p>Our design is a <b>market of world-holders</b>: N seats, each holding one complete world. A sentence's price is the share of seats whose world makes it true, averaged over blocks. Every seat's world is checked against the axioms, so the prices are coherent at every block, not just in the limit. Each block, a learned proposer suggests moves to nearby worlds, an exact clerk rejects any that break an axiom, and a Metropolis coin accepts moves so that, over many blocks, worlds are held in proportion to the house view. The fixed point is the PDG answer for house view + axioms (+ optionally the block-0 intuition table at finite confidence). Thinking time has one job: <i>finding worlds</i>. <span class="tag t-fleet">IDEAS §2</span> The variant closest to the paper is a Frank-Wolfe block: each step the arbitrageur names the possible world his bets lose most in, and the prices mix toward it; this reaches the projection at about 1/t and certifies its own distance each block. <span class="tag t-fleet">R6</span></p>
+
+<h3>What the paper does not give</h3>
+<ul>
+<li><b>Frequencies.</b> Inconsistency is blind among coherent tables; the house view must come from somewhere else (data, or a design choice).</li>
+<li><b>Timeliness.</b> The paper is static: one number for one belief state. Nothing in it says how fast a block should approach the projection, or that a theorem should be priced near 1 <i>before</i> its derivation finishes (LI's provability induction). That has to be built or trained in.</li>
+<li><b>Computation.</b> The paper never asks how hard the minimisation is. For logic it is hard: deciding whether a table has inconsistency 0 is probabilistic SAT, NP-complete. Up to about 12-16 atoms a block can list the worlds; beyond that it must search. <span class="tag t-fleet">R6</span> <span class="tag t-unv">the NP-completeness citation (Georgakopoulos et al. 1988) is recollection</span></li>
+<li><b>Per-trader guarantees and paradoxes.</b> A fixed point protects only the traders' sum. LI's “no single efficient trader profits forever” and its paradox resistance need wealth carried across blocks, which a single inconsistency number does not track. <span class="tag t-fleet">IDEAS §2 table</span></li>
+<li><b>The money reading itself.</b> Inconsistency as LMSR arbitrage is our result, not the paper's. The paper reads it as coding cost (“extra bits”).</li>
+</ul>
+
+<h2>6. The three sharpest open questions</h2>
+<ol class="q">
+<li><b>Coherent now, or honest now?</b> When worlds cannot be listed, the world-holder market is coherent at every block but prices a sentence at 1 as soon as every world found so far makes it true, without a proof. LI makes the opposite trade (never certain without proof, coherent only in the limit). How much overconfidence remains after N found worlds, and what is the right price between the “inside” bound (found worlds) and the “outside” bound (derived rules)? No math yet. <span class="tag t-fleet">IDEAS §5, item 2</span></li>
+<li><b>Does block 20 control block 500?</b> A free block trained with a loss only at block 20 can hide a clock: our counterexample has error 0 at block 20 and 0.86 at 500, and a proven solver given a learned step size and momentum reached 10<sup>35</sup> at block 500. Capped steps plus a loss at a random block from 1 to 20 is the proposed fix; it is proved for contractions and only conjectured for the templates we want to train. <span class="tag t-fleet">block-dynamics R9</span> <span class="tag t-unv">conjecture</span></li>
+<li><b>Whose model?</b> The paper's motto is “choose your model, not your loss”. Here the model is the confidences (per-sentence liquidity) and the house view, and both must be learned. Does the seat market still converge when the house view is tilted by the block-0 intuition table and that tilt is updated as it goes, and does a trained net's price sequence over depth behave like a martingale, as the ideal predictor's would? <span class="tag t-fleet">IDEAS §5, items 5 and 8</span> <span class="tag t-unv">conjecture</span></li>
+</ol>
+
+<h2>7. Sources</h2>
+<ul>
+<li>O. E. Richardson, “Loss as the Inconsistency of a Probabilistic Dependency Graph: Choose Your Model, Not Your Loss Function”, AISTATS 2022, PMLR 151. <a href="https://arxiv.org/abs/2202.11862">arXiv 2202.11862</a> (one version, v1, 24 Feb 2022; abstract page checked 2026-10-02). Local text: <code>li-net/2202.txt</code>.</li>
+<li>O. Richardson and J. Y. Halpern, “Probabilistic Dependency Graphs”, AAAI 2021. <a href="https://arxiv.org/abs/2012.10800">arXiv 2012.10800</a>. Local text: <code>li-net/pdg2021.txt</code>.</li>
+<li>O. Richardson, J. Y. Halpern, C. De Sa, “Inference for Probabilistic Dependency Graphs”, UAI 2023. <a href="https://arxiv.org/abs/2311.05580">arXiv 2311.05580</a> (polynomial time for bounded treewidth; verified by our skeptic pass).</li>
+<li>S. Garrabrant et al., “Logical Induction”, 2016. <a href="https://arxiv.org/abs/1609.03543">arXiv 1609.03543</a>. Local: <code>li-net/full.txt</code>, <code>abridged.txt</code>.</li>
+<li>Our notes: <code>/home/agent/workspaces/eurisko-study/li-net/IDEAS-LI-NET.md</code>, <code>math/pdg-propositional.md</code> (R1-R6, scripts and skeptic pass), <code>BRIEF-MATH.md</code>.</li>
+</ul>
+<p class="note">Verification: every paper row above was matched to the proposition in <code>2202.txt</code>. The coin numbers (1.022, 0.105, 0.75, KL limit 1.758), the LMSR profit equality (four asymmetric cases, 2-D search vs closed form), and the rain example (0.0102; 0.449/0.700/0.449) were recomputed with numpy/scipy on 2026-10-02. Not verified here: the PSAT NP-completeness citation and the Csiszár/Predd references inside our notes.</p>
+</main>
+
+<script>
+(function () {
+  function lse(a, b) { var m = Math.max(a, b); return m + Math.log(Math.exp(a - m) + Math.exp(b - m)); }
+  function logit(p) { return Math.log(p / (1 - p)); }
+  function kl(a, b) { return a * Math.log(a / b) + (1 - a) * Math.log((1 - a) / (1 - b)); }
+  function solve(a, b, r, s) {
+    var lH = (r * Math.log(a) + s * Math.log(b)) / (r + s);
+    var lT = (r * Math.log(1 - a) + s * Math.log(1 - b)) / (r + s);
+    var lZ = lse(lH, lT);
+    return { inc: -(r + s) * lZ, m: Math.exp(lH - lZ) };
+  }
+  function $(id) { return document.getElementById(id); }
+  var NS = "http://www.w3.org/2000/svg";
+  function el(tag, attrs, text) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (text !== undefined) e.textContent = text;
+    return e;
+  }
+  function f3(x) { return (Math.abs(x) < 5e-4 ? 0 : x).toFixed(3); }
+
+  function drawLine(svg, a, b, m) {
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var x0 = 30, x1 = 610, y = 38;
+    function X(p) { return x0 + (x1 - x0) * p; }
+    svg.appendChild(el("line", { x1: x0, y1: y, x2: x1, y2: y, stroke: "var(--rule)", "stroke-width": 3 }));
+    svg.appendChild(el("text", { x: x0, y: 64, "font-size": 12, "text-anchor": "middle" }, "0"));
+    svg.appendChild(el("text", { x: x1, y: 64, "font-size": 12, "text-anchor": "middle" }, "1"));
+    var pts = [[a, "Alice", "var(--muted)", -12], [b, "Bob", "var(--muted)", -12], [m, "compromise", "var(--accent)", 22]];
+    pts.forEach(function (t) {
+      svg.appendChild(el("circle", { cx: X(t[0]), cy: y, r: t[1] === "compromise" ? 7 : 5, fill: t[2] }));
+      svg.appendChild(el("text", { x: X(t[0]), y: y + t[3] + (t[3] > 0 ? 6 : 0), "font-size": 12, "text-anchor": "middle" }, t[1]));
+    });
+  }
+
+  function update1() {
+    var a = +$("w1a").value, b = +$("w1b").value;
+    $("w1av").textContent = a.toFixed(2);
+    $("w1bv").textContent = b.toFixed(2);
+    var r = 1, s = 1, sol = solve(a, b, r, s);
+    // shares: sell x to Alice (moves her to m), buy x from Bob (moves him to m)
+    var x = r * (logit(a) - logit(sol.m));
+    var profit = -r * Math.log(1 - a + a * Math.exp(-x / r)) - s * Math.log(1 - b + b * Math.exp(x / s));
+    $("w1inc").textContent = f3(sol.inc);
+    $("w1m").textContent = sol.m.toFixed(3);
+    $("w1x").textContent = Math.abs(x).toFixed(2) + (x > 0.005 ? " (sell to Alice)" : x < -0.005 ? " (buy from Alice)" : "");
+    $("w1p").textContent = f3(profit);
+    drawLine($("w1svg"), a, b, sol.m);
+    update2();
+  }
+
+  function update2() {
+    var a = +$("w1a").value, b = +$("w1b").value;
+    var lr = +$("w2r").value, r = Math.pow(10, lr), s = 1;
+    $("w2rv").textContent = r < 10 ? r.toFixed(2) : r.toFixed(0);
+    var sol = solve(a, b, r, s);
+    $("w2m").textContent = sol.m.toFixed(3);
+    $("w2inc").textContent = f3(sol.inc);
+    $("w2lim").textContent = f3(kl(a, b));
+    var svg = $("w2svg");
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var L = 50, R = 610, T = 15, B = 150;
+    function X(v) { return L + (R - L) * (v + 2) / 5; }
+    function Y(p) { return B - (B - T) * p; }
+    svg.appendChild(el("line", { x1: L, y1: B, x2: R, y2: B, stroke: "var(--rule)" }));
+    svg.appendChild(el("line", { x1: L, y1: T, x2: L, y2: B, stroke: "var(--rule)" }));
+    [-2, -1, 0, 1, 2, 3].forEach(function (v) {
+      svg.appendChild(el("text", { x: X(v), y: B + 18, "font-size": 12, "text-anchor": "middle" }, String(Math.pow(10, v))));
+    });
+    svg.appendChild(el("text", { x: (L + R) / 2, y: B + 36, "font-size": 12, "text-anchor": "middle" }, "Alice's confidence (log scale)"));
+    [0, 0.5, 1].forEach(function (p) {
+      svg.appendChild(el("text", { x: L - 8, y: Y(p) + 4, "font-size": 12, "text-anchor": "end" }, String(p)));
+    });
+    [[a, "Alice " + a.toFixed(2)], [b, "Bob " + b.toFixed(2)]].forEach(function (t) {
+      svg.appendChild(el("line", { x1: L, y1: Y(t[0]), x2: R, y2: Y(t[0]), stroke: "var(--muted)", "stroke-dasharray": "4 4" }));
+      svg.appendChild(el("text", { x: R - 4, y: Y(t[0]) - 5, "font-size": 11, "text-anchor": "end", fill: "var(--muted)" }, t[1]));
+    });
+    var d = "";
+    for (var i = 0; i <= 100; i++) {
+      var v = -2 + 5 * i / 100, m = solve(a, b, Math.pow(10, v), 1).m;
+      d += (i ? "L" : "M") + X(v).toFixed(1) + "," + Y(m).toFixed(1);
+    }
+    svg.appendChild(el("path", { d: d, fill: "none", stroke: "var(--accent)", "stroke-width": 2.5 }));
+    svg.appendChild(el("circle", { cx: X(lr), cy: Y(sol.m), r: 6, fill: "var(--accent2)" }));
+  }
+
+  ["w1a", "w1b"].forEach(function (id) { $(id).addEventListener("input", update1); });
+  $("w2r").addEventListener("input", update2);
+  update1();
+})();
+</script>
+</body>
+</html>

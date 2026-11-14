@@ -1,0 +1,350 @@
+{
+  "seed": 102,
+  "device": "cuda",
+  "gpu_name": "NVIDIA L4",
+  "d0": {
+    "seed": 102,
+    "static_ast_pass": true,
+    "static_ast_violations": 0,
+    "canaries_caught": 3,
+    "poison_traps_fired": 3,
+    "global_max_oracle_diff": 0.0,
+    "per_env_diffs": {
+      "equiv_sat": 0.0,
+      "sudoku_9x9_extreme": 0.0,
+      "micro_stratego_6x6": 0.0,
+      "proposal_poker": 0.0
+    },
+    "verdict": "PASS"
+  },
+  "e1": {
+    "seed": 102,
+    "honest_oracle_kl": 0.020746763795614243,
+    "telescoping_verification": {
+      "sybil_split_max_profit_gain": 2.220446049250313e-16,
+      "sybil_split_max_cost_diff": 4.440892098500626e-16,
+      "opposing_twins_max_net_profit": 0.0,
+      "opposing_twins_max_price_shift": 0.0,
+      "max_market_maker_loss": 0.6881522203652786,
+      "theoretical_mm_loss_bound": 0.6931471805599453,
+      "mm_loss_within_bound": 1.0
+    },
+    "mechanisms": {
+      "M1_Simultaneous_Linear_Pool": {
+        "equilibrium_inflator_alpha": 5.300000190734863,
+        "equilibrium_market_kl": 0.37336885929107666,
+        "equilibrium_market_brier": 0.06926685571670532,
+        "kl_ratio_vs_honest_oracle": 17.996486727727863,
+        "sybil_split_profit_gain": 0.5067972987890244,
+        "xor_shill_split_gain": 0.34,
+        "opposing_twins_profit": 0.0,
+        "cartel_3agent_overextraction": 1.2158062934875489,
+        "max_market_maker_loss": 9.251810073852539,
+        "mm_loss_bound_b_log_omega": 0.6931471805599453,
+        "clearing_passes": 1,
+        "coalition_passes_for_core": 1
+      },
+      "M2_Uncapped_VCG": {
+        "equilibrium_inflator_alpha": 0.8999999761581421,
+        "equilibrium_market_kl": 0.020299315452575684,
+        "equilibrium_market_brier": 0.007403647527098656,
+        "kl_ratio_vs_honest_oracle": 0.9784328607851048,
+        "sybil_split_profit_gain": 2.6118056848645213e-05,
+        "xor_shill_split_gain": 0.38,
+        "opposing_twins_profit": 1.1873779431880087,
+        "cartel_3agent_overextraction": 0.84,
+        "max_market_maker_loss": 2.1834057072699635,
+        "mm_loss_bound_b_log_omega": 0.6931471805599453,
+        "clearing_passes": 9,
+        "coalition_passes_for_core": 256
+      },
+      "M3_Core_Capped_VCG": {
+        "equilibrium_inflator_alpha": 0.8999999761581421,
+        "equilibrium_market_kl": 0.020299315452575684,
+        "equilibrium_market_brier": 0.007403647527098656,
+        "kl_ratio_vs_honest_oracle": 0.9784328607851048,
+        "sybil_split_profit_gain": 2.6118056848645213e-05,
+        "xor_shill_split_gain": -0.04,
+        "opposing_twins_profit": 1.1873779431880087,
+        "cartel_3agent_overextraction": 0.15232593981877385,
+        "max_market_maker_loss": 1.3434057072699637,
+        "mm_loss_bound_b_log_omega": 0.6931471805599453,
+        "clearing_passes": 9,
+        "coalition_passes_for_core": 256
+      },
+      "M4_Sequential_Hanson_LMSR_AMM": {
+        "equilibrium_inflator_alpha": 0.6000000238418579,
+        "equilibrium_market_kl": 0.07263748347759247,
+        "equilibrium_market_brier": 0.018347399309277534,
+        "kl_ratio_vs_honest_oracle": 3.501147658168627,
+        "sybil_split_profit_gain": 2.220446049250313e-16,
+        "xor_shill_split_gain": 0.0,
+        "opposing_twins_profit": 0.0,
+        "cartel_3agent_overextraction": 0.0,
+        "max_market_maker_loss": 0.6931280493736267,
+        "mm_loss_bound_b_log_omega": 0.6931471805599453,
+        "clearing_passes": 1,
+        "coalition_passes_for_core": 1
+      },
+      "M5_Kyle_PriceImpact_Futarchy_AMM": {
+        "equilibrium_inflator_alpha": 1.0,
+        "equilibrium_market_kl": 0.020746763795614243,
+        "equilibrium_market_brier": 0.007540262769907713,
+        "kl_ratio_vs_honest_oracle": 1.0,
+        "sybil_split_profit_gain": 2.220446049250313e-16,
+        "xor_shill_split_gain": 0.0,
+        "opposing_twins_profit": 0.0,
+        "cartel_3agent_overextraction": 0.0,
+        "max_market_maker_loss": 0.6922049522399902,
+        "mm_loss_bound_b_log_omega": 0.6931471805599453,
+        "clearing_passes": 1,
+        "coalition_passes_for_core": 1
+      }
+    }
+  },
+  "e2": {
+    "seed": 102,
+    "strict_detach_verified": true,
+    "max_cross_module_grad": 0.0,
+    "benchmarks": {
+      "MultiHop_XOR_EquivSAT": {
+        "P1_Local_Greedy_TBPTT1": {
+          "test_acc": 0.484375,
+          "test_kl": 0.5822470188140869,
+          "test_brier": 0.2529163956642151,
+          "clearing_passes_total": 65,
+          "clearing_passes_per_epoch": 1.0
+        },
+        "P2_Decentralized_PPO": {
+          "test_acc": 0.69921875,
+          "test_kl": 0.5626619458198547,
+          "test_brier": 0.2374027520418167,
+          "clearing_passes_total": 65,
+          "clearing_passes_per_epoch": 1.0
+        },
+        "P3_Decentralized_GRPO": {
+          "test_acc": 0.63671875,
+          "test_kl": 0.526583194732666,
+          "test_brier": 0.222701758146286,
+          "clearing_passes_total": 520,
+          "clearing_passes_per_epoch": 8.0
+        },
+        "P4_Decentralized_VCG": {
+          "test_acc": 1.0,
+          "test_kl": 0.0030465314630419016,
+          "test_brier": 0.001533954287879169,
+          "clearing_passes_total": 455,
+          "clearing_passes_per_epoch": 7.0
+        },
+        "P5_Futarchy_Kyle_LMSR": {
+          "test_acc": 1.0,
+          "test_kl": 0.0030465314630419016,
+          "test_brier": 0.001533954287879169,
+          "clearing_passes_total": 65,
+          "clearing_passes_per_epoch": 1.0
+        },
+        "P6_Global_Backprop_Ceiling": {
+          "test_acc": 1.0,
+          "test_kl": 0.0030467689502984285,
+          "test_brier": 0.0015340097015723586,
+          "clearing_passes_total": 65,
+          "clearing_passes_per_epoch": 1.0
+        }
+      },
+      "Sudoku_81Cell_Extreme": {
+        "P1_Local_Greedy_TBPTT1": {
+          "test_acc": 0.515625,
+          "test_kl": 0.5959848761558533,
+          "test_brier": 0.25916898250579834,
+          "clearing_passes_total": 65,
+          "clearing_passes_per_epoch": 1.0
+        },
+        "P2_Decentralized_PPO": {
+          "test_acc": 0.6953125,
+          "test_kl": 0.5678025484085083,
+          "test_brier": 0.23910607397556305,
+          "clearing_passes_total": 65,
+          "clearing_passes_per_epoch": 1.0
+        },
+        "P3_Decentralized_GRPO": {
+          "test_acc": 0.6484375,
+          "test_kl": 0.548662006855011,
+          "test_brier": 0.23166465759277344,
+          "clearing_passes_total": 520,
+          "clearing_passes_per_epoch": 8.0
+        },
+        "P4_Decentralized_VCG": {
+          "test_acc": 0.99609375,
+          "test_kl": 0.01492153201252222,
+          "test_brier": 0.0051342216320335865,
+          "clearing_passes_total": 455,
+          "clearing_passes_per_epoch": 7.0
+        },
+        "P5_Futarchy_Kyle_LMSR": {
+          "test_acc": 1.0,
+          "test_kl": 0.0030465314630419016,
+          "test_brier": 0.001533954287879169,
+          "clearing_passes_total": 65,
+          "clearing_passes_per_epoch": 1.0
+        },
+        "P6_Global_Backprop_Ceiling": {
+          "test_acc": 1.0,
+          "test_kl": 0.0030465289019048214,
+          "test_brier": 0.0015339548699557781,
+          "clearing_passes_total": 65,
+          "clearing_passes_per_epoch": 1.0
+        }
+      },
+      "MultiTurn_Stratego_Poker": {
+        "P1_Local_Greedy_TBPTT1": {
+          "test_acc": 0.4609375,
+          "test_kl": 0.5974533557891846,
+          "test_brier": 0.26046067476272583,
+          "clearing_passes_total": 65,
+          "clearing_passes_per_epoch": 1.0
+        },
+        "P2_Decentralized_PPO": {
+          "test_acc": 0.6953125,
+          "test_kl": 0.568975567817688,
+          "test_brier": 0.2389279305934906,
+          "clearing_passes_total": 65,
+          "clearing_passes_per_epoch": 1.0
+        },
+        "P3_Decentralized_GRPO": {
+          "test_acc": 0.65234375,
+          "test_kl": 0.520348310470581,
+          "test_brier": 0.21918055415153503,
+          "clearing_passes_total": 520,
+          "clearing_passes_per_epoch": 8.0
+        },
+        "P4_Decentralized_VCG": {
+          "test_acc": 1.0,
+          "test_kl": 0.0030465314630419016,
+          "test_brier": 0.001533954287879169,
+          "clearing_passes_total": 455,
+          "clearing_passes_per_epoch": 7.0
+        },
+        "P5_Futarchy_Kyle_LMSR": {
+          "test_acc": 1.0,
+          "test_kl": 0.0030465314630419016,
+          "test_brier": 0.001533954287879169,
+          "clearing_passes_total": 65,
+          "clearing_passes_per_epoch": 1.0
+        },
+        "P6_Global_Backprop_Ceiling": {
+          "test_acc": 1.0,
+          "test_kl": 0.0030465314630419016,
+          "test_brier": 0.001533954287879169,
+          "clearing_passes_total": 65,
+          "clearing_passes_per_epoch": 1.0
+        }
+      }
+    },
+    "architecture_evolution": {
+      "A1_Static_Unpruned_Pool": {
+        "active_total_modules": 12.0,
+        "surviving_clones": 6.0,
+        "surviving_junk": 4.0,
+        "active_xor_modules": 2.0,
+        "junk_pruned_recall": 0.0,
+        "excess_clone_pruned_recall": 0.0,
+        "compute_rent_reduction_pct": 0.0,
+        "test_acc": 0.8050000071525574,
+        "test_kl": 0.176314115524292,
+        "net_market_welfare": -0.320314115524292,
+        "clearing_passes_per_step": 1.0
+      },
+      "A2_Taylor_OBD_Pruning": {
+        "active_total_modules": 8.0,
+        "surviving_clones": 6.0,
+        "surviving_junk": 1.0,
+        "active_xor_modules": 1.0,
+        "junk_pruned_recall": 0.75,
+        "excess_clone_pruned_recall": 0.0,
+        "compute_rent_reduction_pct": 33.333333333333336,
+        "test_acc": 0.7049999833106995,
+        "test_kl": 0.24736610054969788,
+        "net_market_welfare": -0.34336610054969785,
+        "clearing_passes_per_step": 1.0
+      },
+      "A3_PPO_GRPO_Gate_Pruning": {
+        "active_total_modules": 7.0,
+        "surviving_clones": 4.0,
+        "surviving_junk": 1.0,
+        "active_xor_modules": 2.0,
+        "junk_pruned_recall": 0.75,
+        "excess_clone_pruned_recall": 0.4,
+        "compute_rent_reduction_pct": 41.666666666666664,
+        "test_acc": 0.8224999904632568,
+        "test_kl": 0.17680160701274872,
+        "net_market_welfare": -0.26080160701274874,
+        "clearing_passes_per_step": 8.0
+      },
+      "A4_VCG_LOO_Architecture_Market": {
+        "active_total_modules": 5.0,
+        "surviving_clones": 1.0,
+        "surviving_junk": 0.0,
+        "active_xor_modules": 4.0,
+        "junk_pruned_recall": 1.0,
+        "excess_clone_pruned_recall": 1.0,
+        "compute_rent_reduction_pct": 58.333333333333336,
+        "test_acc": 0.9524999856948853,
+        "test_kl": 0.008761266246438026,
+        "net_market_welfare": -0.06876126624643802,
+        "clearing_passes_per_step": 9.5
+      },
+      "A5_Futarchy_Kyle_LMSR_Architecture_Market": {
+        "active_total_modules": 5.0,
+        "surviving_clones": 1.0,
+        "surviving_junk": 0.0,
+        "active_xor_modules": 4.0,
+        "junk_pruned_recall": 1.0,
+        "excess_clone_pruned_recall": 1.0,
+        "compute_rent_reduction_pct": 58.333333333333336,
+        "test_acc": 0.9524999856948853,
+        "test_kl": 0.008761266246438026,
+        "net_market_welfare": -0.06876126624643802,
+        "clearing_passes_per_step": 1.0
+      }
+    }
+  },
+  "e3": {
+    "seed": 102,
+    "E3A_martingale_clearer": {
+      "legacy_stage1_step_bias": 0.23846673965454102,
+      "martingale_diff_step_bias": 0.00019502639770507812,
+      "exact_population_cond_martingale_violation": 0.0,
+      "legacy_optional_stopping_drift": 0.11156582832336426,
+      "martingale_optional_stopping_drift": 0.0018525123596191406,
+      "drift_reduction_pct": 98.33953425752392
+    },
+    "E3B_sign_symmetric_voi": {
+      "B_4": {
+        "legacy_signed_q_jsd": 0.19071146845817566,
+        "sign_symmetric_voi_jsd": 0.0,
+        "legacy_trap_discovery_recall": 0.0,
+        "sign_symmetric_trap_discovery_recall": 1.0
+      },
+      "B_8": {
+        "legacy_signed_q_jsd": 0.17516577243804932,
+        "sign_symmetric_voi_jsd": 0.0,
+        "legacy_trap_discovery_recall": 0.0,
+        "sign_symmetric_trap_discovery_recall": 1.0
+      },
+      "B_16": {
+        "legacy_signed_q_jsd": 0.04174783453345299,
+        "sign_symmetric_voi_jsd": 0.0,
+        "legacy_trap_discovery_recall": 1.0,
+        "sign_symmetric_trap_discovery_recall": 1.0
+      }
+    },
+    "E3C_four_channel_neuromodulator_gate": {
+      "naive_stationary_noise_ne_retention": 0.03302507847547531,
+      "hardened_stationary_noise_ne_retention": 0.9200000166893005,
+      "delusion_regime_shift_kl_naive": 2.2733569145202637,
+      "delusion_regime_shift_kl_hardened": 0.019141286611557007,
+      "fable_thm_a6_outcome_gated_belief_bias": 0.3447234630584717,
+      "fable_thm_a6_observation_gated_belief_bias": 0.0004233121871948242
+    }
+  }
+}

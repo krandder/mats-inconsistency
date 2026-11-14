@@ -1,0 +1,48 @@
+- 2026-09-29T13:30:41Z CREATE vm=trader-cat-p2-1 zone=us-central1-a epoch=1790688641 type=g2-standard-4+L4 spot max_run=5h rate_ceiling=0.75 spend_before=0
+- 2026-09-29T13:35:05Z READY vm=trader-cat-p2-1 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T13:35:30Z PUSH-VERIFY-FAILED vm=trader-cat-p2-1
+- 2026-09-29T13:38:10Z START vm=trader-cat-p2-1 plan=smoke
+- 2026-09-29T13:40:47Z SYNC vm=trader-cat-p2-1 verified_files=36 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P2/results/vm/trader-cat-p2-1 recheck_mismatches=0
+- 2026-09-29T13:42:22Z START vm=trader-cat-p2-1 plan=smoke
+- 2026-09-29T13:48:25Z SYNC vm=trader-cat-p2-1 verified_files=37 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P2/results/vm/trader-cat-p2-1 recheck_mismatches=0
+- 2026-09-29T13:49:43Z DELETE vm=trader-cat-p2-1 epoch=1790689783 reason="smoke done; label sampler is ~40% of step time and eval is launch-bound, fixing code before main" leftover_disks="none" spend_now=0.24
+- 2026-09-29T14:04:07Z CREATE vm=trader-cat-p2-2 zone=us-central1-b epoch=1790690647 type=g2-standard-4+L4 spot max_run=5h rate_ceiling=0.75 spend_before=0.24
+- 2026-09-29T14:08:12Z READY vm=trader-cat-p2-2 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T14:08:48Z PUSH vm=trader-cat-p2-2 code+data sha256 verified
+- 2026-09-29T14:44:22Z PUSH vm=trader-cat-p2-2 code+data sha256 verified
+- 2026-09-29T14:47:42Z START vm=trader-cat-p2-2 plan=main P2_ARMS=U-canon,U,U-any,M-tile P2_TRAP=1 P2_DEADLINE=1790703900
+- 2026-09-29T14:48:40Z PUSH vm=trader-cat-p2-2 code+data sha256 verified
+- 2026-09-29T14:49:48Z PUSH vm=trader-cat-p2-2 code+data sha256 verified
+- 2026-09-29T14:49:57Z START vm=trader-cat-p2-2 plan=main P2_ARMS=U-canon,U,U-any,M-tile P2_TRAP=1 P2_DEADLINE=1790703900
+- 2026-09-29T14:50:38Z CREATE vm=trader-cat-p2-3 zone=us-central1-a epoch=1790693438 type=g2-standard-4+L4 spot max_run=5h rate_ceiling=0.75 spend_before=0.81
+- 2026-09-29T14:55:00Z READY vm=trader-cat-p2-3 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T14:55:31Z PUSH vm=trader-cat-p2-3 code+data sha256 verified
+- 2026-09-29T14:55:45Z START vm=trader-cat-p2-3 plan=main P2_ARMS=M-tree,U-min P2_TESTS=1 P2_DEADLINE=1790703900
+- 2026-09-29T14:58:10Z SYNC vm=trader-cat-p2-3 verified_files=13 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P2/results/vm/trader-cat-p2-3 recheck_mismatches=0
+- 2026-09-29T15:03:36Z SYNC vm=trader-cat-p2-2 verified_files=31 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P2/results/vm/trader-cat-p2-2 recheck_mismatches=0
+- 2026-09-29T15:03:36Z WATCHDOG vm=trader-cat-p2-3 vanished (preempted or max-run); recording delete
+- 2026-09-29T15:03:53Z DELETE vm=trader-cat-p2-3 epoch=1790694233 reason="vanished: spot preemption or max-run" leftover_disks="trader-cat-p2-2	us-central1-b" spend_now=1.15
+- 2026-09-29T15:15:07Z CREATE vm=trader-cat-p2-4 zone=us-central1-a epoch=1790694907 type=g2-standard-4+L4 spot max_run=5h rate_ceiling=0.75 spend_before=1.28
+- 2026-09-29T15:18:55Z READY vm=trader-cat-p2-4 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T15:19:47Z PUSH vm=trader-cat-p2-4 code+data sha256 verified resume_from=results/vm/trader-cat-p2-3
+- 2026-09-29T15:20:13Z START vm=trader-cat-p2-4 plan=main P2_ARMS=M-tree,U-min P2_TESTS=1 P2_DEADLINE=1790703900
+- 2026-09-29T15:20:21Z SYNC vm=trader-cat-p2-2 verified_files=50 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P2/results/vm/trader-cat-p2-2 recheck_mismatches=0
+- 2026-09-29T15:31:08Z SYNC vm=trader-cat-p2-4 verified_files=19 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P2/results/vm/trader-cat-p2-4 recheck_mismatches=0
+- 2026-09-29T15:36:26Z SYNC vm=trader-cat-p2-2 verified_files=62 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P2/results/vm/trader-cat-p2-2 recheck_mismatches=0
+- 2026-09-29T15:36:26Z WATCHDOG vm=trader-cat-p2-4 vanished (preempted or max-run); recording delete
+- 2026-09-29T15:36:49Z DELETE vm=trader-cat-p2-4 epoch=1790696209 reason="vanished: spot preemption or max-run" leftover_disks="trader-cat-p2-2	us-central1-b" spend_now=1.83
+- 2026-09-29T15:43:46Z CREATE vm=trader-cat-p2-5 zone=us-west1-b epoch=1790696626 type=g2-standard-4+L4 spot max_run=5h rate_ceiling=0.75 spend_before=1.91
+- 2026-09-29T15:47:34Z READY vm=trader-cat-p2-5 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T15:47:55Z PUSH vm=trader-cat-p2-5 code+data sha256 verified resume_from=results/vm/trader-cat-p2-4
+- 2026-09-29T15:48:02Z START vm=trader-cat-p2-5 plan=main P2_ARMS=M-tree,U-min P2_TESTS=1 P2_DEADLINE=1790703900
+- 2026-09-29T15:52:37Z SYNC vm=trader-cat-p2-2 verified_files=74 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P2/results/vm/trader-cat-p2-2 recheck_mismatches=0
+- 2026-09-29T16:08:44Z SYNC vm=trader-cat-p2-2 verified_files=86 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P2/results/vm/trader-cat-p2-2 recheck_mismatches=0
+- 2026-09-29T16:24:37Z SYNC vm=trader-cat-p2-2 verified_files=95 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P2/results/vm/trader-cat-p2-2 recheck_mismatches=0
+- 2026-09-29T16:41:03Z SYNC vm=trader-cat-p2-2 verified_files=98 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P2/results/vm/trader-cat-p2-2 recheck_mismatches=0
+- 2026-09-29T16:56:40Z SYNC vm=trader-cat-p2-2 verified_files=104 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P2/results/vm/trader-cat-p2-2 recheck_mismatches=0
+- 2026-09-29T17:12:22Z SYNC vm=trader-cat-p2-2 verified_files=107 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P2/results/vm/trader-cat-p2-2 recheck_mismatches=0
+- 2026-09-29T17:17:39Z SYNC vm=trader-cat-p2-5 verified_files=79 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P2/results/vm/trader-cat-p2-5 recheck_mismatches=0
+- 2026-09-29T17:17:39Z WATCHDOG vm=trader-cat-p2-2 vanished (preempted or max-run); recording delete
+- 2026-09-29T17:17:53Z DELETE vm=trader-cat-p2-2 epoch=1790702273 reason="vanished: spot preemption or max-run" leftover_disks="trader-cat-p2-5	us-west1-b" spend_now=4.27
+- 2026-09-29T17:33:26Z WATCHDOG vm=trader-cat-p2-5 vanished (preempted or max-run); recording delete
+- 2026-09-29T17:33:51Z DELETE vm=trader-cat-p2-5 epoch=1790703230 reason="vanished: spot preemption or max-run" leftover_disks="none" spend_now=4.47

@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "aggbench result v1",
+  "type": "object",
+  "required": ["schema", "run_id", "track", "smoke", "created_utc", "harness", "env", "visibility",
+               "splits", "oracle_check", "methods", "learned_arms", "controls"],
+  "properties": {
+    "schema": {"const": "aggbench.result/v1"},
+    "run_id": {"type": "string", "minLength": 1},
+    "track": {"enum": ["EXPLORATORY", "CONFIRMATORY", "SMOKE", "REFERENCE"]},
+    "smoke": {"type": "boolean"},
+    "created_utc": {"type": "string"},
+    "harness": {
+      "type": "object",
+      "required": ["version", "git_commit", "git_dirty", "sha256"],
+      "properties": {
+        "version": {"type": "string"},
+        "git_commit": {"type": "string"},
+        "git_dirty": {"type": "boolean"},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "env": {
+      "type": "object",
+      "required": ["name", "config"],
+      "properties": {"name": {"type": "string"}, "config": {"type": "object"}}
+    },
+    "visibility": {"enum": ["none", "noisy", "full"]},
+    "splits": {
+      "type": "object",
+      "description": "role (e.g. train, eval) -> {split, first_seed, n}",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["split", "first_seed", "n"],
+        "properties": {
+          "split": {"enum": ["train", "dev", "test", "smoke"]},
+          "first_seed": {"type": "integer"},
+          "n": {"type": "integer", "minimum": 1}
+        }
+      }
+    },
+    "oracle_check": {
+      "type": "object",
+      "required": ["episodes_checked", "max_abs_diff", "verified"],
+      "properties": {"episodes_checked": {"type": "integer", "minimum": 20}, "verified": {"const": true}}
+    },
+    "methods": {
+      "type": "object",
+      "description": "method name -> metric -> {mean, ci_low, ci_high, n}",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["logloss", "brier", "kl", "regret"],
+        "additionalProperties": {
+          "type": "object",
+          "required": ["mean", "ci_low", "ci_high", "n"],
+          "properties": {"mean": {"type": "number"}, "ci_low": {"type": "number"},
+                         "ci_high": {"type": "number"}, "n": {"type": "integer"}}
+        }
+      }
+    },
+    "learned_arms": {"type": "array", "items": {"type": "string"}},
+    "controls": {
+      "type": "object",
+      "description": "learned arm -> {random_network: method name, untrained_init: method name}",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["random_network", "untrained_init"],
+        "properties": {"random_network": {"type": "string"}, "untrained_init": {"type": "string"}}
+      }
+    },
+    "extra": {"type": "object"}
+  }
+}

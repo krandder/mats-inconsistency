@@ -1,0 +1,187 @@
+- 2026-09-29T20:42:19Z CREATE vm=trader-b3-p15-1 zone=us-central1-c epoch=1790714539 type=g2-standard-8+L4 spot max_run=6h rate_ceiling=0.86 spend_before=0
+- 2026-09-29T20:46:04Z READY vm=trader-b3-p15-1 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T20:47:59Z PUSH vm=trader-b3-p15-1
+- 2026-09-29T20:55:18Z DELETE vm=trader-b3-p15-1 epoch=1790715307 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="" spend_now=0.19
+- 2026-09-29T20:55:31Z RESUME plan=setup,smoke vm=trader-b3-p15-2
+- 2026-09-29T20:57:17Z CREATE vm=trader-b3-p15-2 zone=us-east1-c epoch=1790715437 type=g2-standard-8+L4 spot max_run=6h rate_ceiling=0.86 spend_before=0.18
+- 2026-09-29T21:00:31Z READY vm=trader-b3-p15-2 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T21:01:29Z PUSH vm=trader-b3-p15-2
+- 2026-09-29T21:02:21Z START vm=trader-b3-p15-2 plan=setup,smoke
+- 2026-09-29T21:05:36Z PUSH vm=trader-b3-p15-2
+- 2026-09-29T21:07:02Z PUSH vm=trader-b3-p15-2
+- 2026-09-29T21:09:00Z PUSH vm=trader-b3-p15-2
+- 2026-09-29T21:09:52Z START vm=trader-b3-p15-2 plan=smoke,bg:G2b,bg:G3,bg:G4,bg:G6,bg:g0,q:pilot,g5,wait
+- 2026-09-29T21:13:34Z SYNC vm=trader-b3-p15-2 verified_files=103 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-29T21:26:14Z PUSH vm=trader-b3-p15-2
+- 2026-09-29T21:27:06Z START vm=trader-b3-p15-2 plan=smoke,bg:G3,bg:G4,bg:g0,q:pilot,g5,wait
+- 2026-09-29T21:31:40Z SYNC vm=trader-b3-p15-2 verified_files=112 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-29T21:40:32Z PUSH vm=trader-b3-p15-2
+- 2026-09-29T21:49:38Z SYNC vm=trader-b3-p15-2 verified_files=121 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-29T21:55:30Z CREATE vm=trader-b3-p15-3 zone=us-central1-a epoch=1790718930 type=g2-standard-8+L4 spot max_run=6h rate_ceiling=0.86 spend_before=0.99
+- 2026-09-29T21:56:10Z CREATE vm=trader-b3-p15-4 zone=us-east1-b epoch=1790718970 type=g2-standard-8+L4 spot max_run=6h rate_ceiling=0.86 spend_before=1.00
+- 2026-09-29T21:59:16Z READY vm=trader-b3-p15-3 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T21:59:16Z READY vm=trader-b3-p15-4 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T21:59:57Z PUSH vm=trader-b3-p15-3
+- 2026-09-29T22:00:01Z PUSH vm=trader-b3-p15-4
+- 2026-09-29T22:00:50Z START vm=trader-b3-p15-3 plan=q:tune_a,end lane=ta
+- 2026-09-29T22:00:53Z START vm=trader-b3-p15-4 plan=q:tune_b,end lane=tb
+- 2026-09-29T22:04:08Z SYNC-PARTIAL vm=trader-b3-p15-3 (files changing during tar skipped)
+- 2026-09-29T22:04:08Z SYNC vm=trader-b3-p15-3 verified_files=125 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-29T22:04:43Z SYNC vm=trader-b3-p15-4 verified_files=124 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-29T22:05:09Z SYNC vm=trader-b3-p15-2 verified_files=121 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-29T22:20:36Z SYNC vm=trader-b3-p15-2 verified_files=126 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-29T22:23:09Z SYNC vm=trader-b3-p15-3 verified_files=135 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-29T22:23:34Z SYNC vm=trader-b3-p15-4 verified_files=128 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-29T22:35:34Z DELETE vm=trader-b3-p15-3 epoch=1790721330 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="trader-b3-p15-4 trader-b3-p15-2 " spend_now=2.73
+- 2026-09-29T22:35:57Z RESUME lane=ta plan=q:tune_a,end vm=trader-b3-p15-5
+- 2026-09-29T22:36:51Z CREATE vm=trader-b3-p15-5 zone=us-central1-c epoch=1790721411 type=g2-standard-8+L4 spot max_run=6h rate_ceiling=0.86 spend_before=2.74
+- 2026-09-29T22:42:16Z NOTE lane ta marked DONE by hand: its 3 remaining maze tuning jobs keep running on trader-b3-p15-3, which now also runs lane tc (prefix tuning moved from lane tb); if VM-3 is lost, requeue tune_A/A-prog/A-ds maze by hand
+- 2026-09-29T23:02:03Z STARTUP-TIMEOUT vm=trader-b3-p15-5
+- 2026-09-29T23:02:24Z DELETE vm=trader-b3-p15-5 epoch=1790722944 reason="startup timeout" leftover_disks="trader-b3-p15-4	us-east1-b
+trader-b3-p15-2	us-east1-c" spend_now=3.87
+- 2026-09-29T23:02:26Z RESUME-FAILED vm=trader-b3-p15-5 lane=ta
+- 2026-09-29T23:07:54Z SYNC vm=trader-b3-p15-4 verified_files=155 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-29T23:09:03Z RESUME lane=ta plan=q:tune_a,end vm=trader-b3-p15-6
+- 2026-09-29T23:09:50Z CREATE vm=trader-b3-p15-6 zone=us-central1-b epoch=1790723390 type=g2-standard-8+L4 spot max_run=6h rate_ceiling=0.86 spend_before=4.06
+- 2026-09-29T23:13:38Z READY vm=trader-b3-p15-6 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T23:13:47Z PUSH vm=trader-b3-p15-2
+- 2026-09-29T23:14:13Z PUSH vm=trader-b3-p15-6
+- 2026-09-29T23:15:04Z START vm=trader-b3-p15-6 plan=q:tune_a,end lane=ta
+- 2026-09-29T23:15:04Z RESUME lane=tc plan=q:tune_c,end vm=trader-b3-p15-7
+- 2026-09-29T23:15:12Z RESUME-FAILED vm=trader-b3-p15-7 lane=tc
+- 2026-09-29T23:16:07Z PUSH vm=trader-b3-p15-6
+- 2026-09-29T23:16:58Z START vm=trader-b3-p15-6 plan=q:tune_c,end lane=ta
+- 2026-09-29T23:17:09Z NOTE correction of the 22:42:16Z NOTE (wrong): VM-3 had been preempted at 22:35Z, so nothing ran there; the tc start failed and left stale DONE.ta/VM.trader-b3-p15-3 files, removed at 22:45Z. VM-5 then hit a 25-min startup timeout (deleted 23:02Z). Lane ta resumed on trader-b3-p15-6 (tune_a: 3 maze jobs from checkpoints), and lane tc (13 prefix D16 tuning jobs) was merged into lane ta on the same VM at 23:16Z; resume plan WANT.ta=bg:q:tune_a,q:tune_c,wait,end; WANT.tc removed.
+- 2026-09-29T23:19:16Z PUSH vm=trader-b3-p15-4
+- 2026-09-29T23:20:08Z START vm=trader-b3-p15-4 plan=q:tune_c2,end lane=tb
+- 2026-09-29T23:20:28Z PUSH vm=trader-b3-p15-6
+- 2026-09-29T23:20:36Z NOTE lane tb finished its 7 maze tuning jobs at 23:05Z; the 13 prefix D16 tuning jobs are split: queue_tune_c.json keeps the 4 A-family jobs (lane ta on trader-b3-p15-6, running since 23:16Z), new queue_tune_c2.json has the other 9 (lane tb on trader-b3-p15-4 from 23:20Z). VM-6's runq still lists the 9 moved ids and will fast-fail them with KeyError (cosmetic).
+- 2026-09-29T23:21:51Z SYNC vm=trader-b3-p15-4 verified_files=181 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-29T23:25:29Z PUSH vm=trader-b3-p15-2
+- 2026-09-29T23:26:20Z START vm=trader-b3-p15-2 plan=g5fix,g5pp,end lane=main
+- 2026-09-29T23:30:12Z PUSH vm=trader-b3-p15-4
+- 2026-09-29T23:31:04Z START vm=trader-b3-p15-4 plan=setup,g5c,end lane=tb
+- 2026-09-29T23:31:19Z PUSH vm=trader-b3-p15-2
+- 2026-09-29T23:32:38Z SYNC vm=trader-b3-p15-6 verified_files=185 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-29T23:33:37Z SYNC vm=trader-b3-p15-2 verified_files=197 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-29T23:33:42Z PUSH vm=trader-b3-p15-2
+- 2026-09-29T23:34:33Z START vm=trader-b3-p15-2 plan=g5m,g5fix,end lane=main
+- 2026-09-29T23:35:38Z SYNC vm=trader-b3-p15-6 verified_files=185 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-29T23:37:15Z SYNC-PARTIAL vm=trader-b3-p15-4 (files changing during tar skipped)
+- 2026-09-29T23:37:16Z SYNC vm=trader-b3-p15-4 verified_files=200 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-29T23:39:01Z PUSH vm=trader-b3-p15-4
+- 2026-09-29T23:39:53Z START vm=trader-b3-p15-4 plan=q:full_p,end lane=tb
+- 2026-09-29T23:40:29Z SYNC vm=trader-b3-p15-6 verified_files=187 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-29T23:41:28Z PUSH vm=trader-b3-p15-6
+- 2026-09-29T23:42:19Z START vm=trader-b3-p15-6 plan=bg:q:tune_a,q:full_ma,wait,end lane=ta
+- 2026-09-29T23:42:43Z PUSH vm=trader-b3-p15-2
+- 2026-09-29T23:43:34Z START vm=trader-b3-p15-2 plan=q2:full_mb,end lane=main
+- 2026-09-29T23:50:13Z SYNC vm=trader-b3-p15-6 verified_files=232 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-29T23:51:12Z SYNC vm=trader-b3-p15-6 verified_files=232 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-29T23:51:37Z PUSH vm=trader-b3-p15-6
+- 2026-09-29T23:52:28Z START vm=trader-b3-p15-6 plan=q1:full_mA lane=ta
+- 2026-09-29T23:52:35Z SYNC vm=trader-b3-p15-2 verified_files=232 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T00:06:45Z NOTE watchdog restarted (old pid 45486 -> new) to count spend at the published spot price $0.52/h (g2-standard-8 US spot $0.5121/h per gcloud-compute.com, read 2026-09-30 00:10Z; the spec says count at published spot prices) instead of the $0.86/h on-demand ceiling, and to pick up the tar exit-code fix in cmd_sync. Cap unchanged at $17 of $20. Ceiling-priced estimate at restart: $6.5.
+- 2026-09-30T00:07:30Z NOTE new P15 watchdog pid 2626647 (the killed watchdog's orphaned sleep held the flock; killed it, restarted)
+- 2026-09-30T00:17:42Z SYNC vm=trader-b3-p15-2 verified_files=234 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T00:18:27Z SYNC vm=trader-b3-p15-4 verified_files=236 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T00:18:35Z SYNC vm=trader-b3-p15-6 verified_files=239 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T00:19:00Z SYNC-PARTIAL vm=trader-b3-p15-6 (files changing during tar skipped)
+- 2026-09-30T00:19:01Z SYNC vm=trader-b3-p15-6 verified_files=238 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T00:19:24Z SYNC vm=trader-b3-p15-4 verified_files=236 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T00:19:58Z SYNC vm=trader-b3-p15-2 verified_files=234 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T00:31:48Z DELETE vm=trader-b3-p15-2 epoch=1790728301 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="trader-b3-p15-6 trader-b3-p15-4 " spend_now=4.60
+- 2026-09-30T00:32:09Z RESUME lane=main plan=bg:g5m,bg:g5fix,q2:full_mb,wait,end vm=trader-b3-p15-7
+- 2026-09-30T00:34:05Z CREATE vm=trader-b3-p15-7 zone=europe-west1-b epoch=1790728445 type=g2-standard-8+L4 spot max_run=6h rate_ceiling=0.86 spot_rate=0.52 spend_before=4.60
+- 2026-09-30T00:37:04Z READY vm=trader-b3-p15-7 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-30T00:38:16Z PUSH vm=trader-b3-p15-7
+- 2026-09-30T00:39:09Z START vm=trader-b3-p15-7 plan=bg:g5m,bg:g5fix,q2:full_mb,wait,end lane=main
+- 2026-09-30T00:46:28Z SYNC vm=trader-b3-p15-7 verified_files=261 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T00:47:18Z SYNC-PARTIAL vm=trader-b3-p15-4 (files changing during tar skipped)
+- 2026-09-30T00:47:18Z SYNC vm=trader-b3-p15-4 verified_files=250 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T00:47:30Z DELETE vm=trader-b3-p15-6 epoch=1790729246 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="trader-b3-p15-7 trader-b3-p15-4 " spend_now=4.98
+- 2026-09-30T00:47:37Z RESUME lane=ta plan=bg:q1:full_mA,q:full_ma,wait,q2:full_ma,q1:full_mA,end vm=trader-b3-p15-8
+- 2026-09-30T00:48:39Z CREATE vm=trader-b3-p15-8 zone=us-west1-a epoch=1790729319 type=g2-standard-8+L4 spot max_run=6h rate_ceiling=0.86 spot_rate=0.52 spend_before=4.99
+- 2026-09-30T00:51:54Z READY vm=trader-b3-p15-8 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-30T00:52:09Z PUSH vm=trader-b3-p15-8
+- 2026-09-30T00:53:00Z START vm=trader-b3-p15-8 plan=bg:q1:full_mA,q:full_ma,wait,q2:full_ma,q1:full_mA,end lane=ta
+- 2026-09-30T01:09:58Z SYNC vm=trader-b3-p15-7 verified_files=261 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T01:10:36Z SYNC-PARTIAL vm=trader-b3-p15-8 (files changing during tar skipped)
+- 2026-09-30T01:10:37Z SYNC vm=trader-b3-p15-8 verified_files=273 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T01:11:27Z SYNC-PARTIAL vm=trader-b3-p15-4 (files changing during tar skipped)
+- 2026-09-30T01:11:28Z SYNC vm=trader-b3-p15-4 verified_files=257 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T01:29:06Z SYNC-PARTIAL vm=trader-b3-p15-7 (files changing during tar skipped)
+- 2026-09-30T01:29:07Z SYNC vm=trader-b3-p15-7 verified_files=262 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T01:29:41Z SYNC vm=trader-b3-p15-8 verified_files=274 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T01:30:31Z SYNC vm=trader-b3-p15-4 verified_files=265 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T01:35:56Z DELETE vm=trader-b3-p15-7 epoch=1790732154 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="trader-b3-p15-8 trader-b3-p15-4 " spend_now=6.23
+- 2026-09-30T01:36:03Z RESUME lane=main plan=setup,bg:g5m,q2:full_mb,wait,q1:full_mb,g5fix,end vm=trader-b3-p15-9
+- 2026-09-30T01:36:33Z CREATE vm=trader-b3-p15-9 zone=us-central1-b epoch=1790732193 type=g2-standard-8+L4 spot max_run=6h rate_ceiling=0.86 spot_rate=0.52 spend_before=6.24
+- 2026-09-30T02:02:01Z STARTUP-TIMEOUT vm=trader-b3-p15-9
+- 2026-09-30T02:02:14Z DELETE vm=trader-b3-p15-9 epoch=1790733734 reason="startup timeout" leftover_disks="trader-b3-p15-8	us-west1-a
+trader-b3-p15-4	us-east1-b" spend_now=6.91
+- 2026-09-30T02:02:16Z RESUME-FAILED vm=trader-b3-p15-9 lane=main
+- 2026-09-30T02:07:32Z RESUME lane=main plan=setup,bg:g5m,q2:full_mb,wait,q1:full_mb,g5fix,end vm=trader-b3-p15-10
+- 2026-09-30T02:07:47Z CREATE vm=trader-b3-p15-10 zone=us-central1-a epoch=1790734067 type=g2-standard-8+L4 spot max_run=6h rate_ceiling=0.86 spot_rate=0.52 spend_before=7.00
+- 2026-09-30T02:11:26Z READY vm=trader-b3-p15-10 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-30T02:11:46Z PUSH vm=trader-b3-p15-10
+- 2026-09-30T02:12:37Z START vm=trader-b3-p15-10 plan=setup,bg:g5m,q2:full_mb,wait,q1:full_mb,g5fix,end lane=main
+- 2026-09-30T02:14:08Z SYNC-PARTIAL vm=trader-b3-p15-4 (files changing during tar skipped)
+- 2026-09-30T02:14:08Z SYNC vm=trader-b3-p15-4 verified_files=302 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T02:18:19Z SYNC vm=trader-b3-p15-10 verified_files=292 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T02:18:58Z SYNC vm=trader-b3-p15-8 verified_files=281 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T02:19:45Z SYNC vm=trader-b3-p15-4 verified_files=304 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T02:36:34Z SYNC vm=trader-b3-p15-8 verified_files=283 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T02:37:17Z SYNC vm=trader-b3-p15-4 verified_files=309 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T02:37:23Z DELETE vm=trader-b3-p15-10 epoch=1790735840 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="trader-b3-p15-8 trader-b3-p15-4 " spend_now=7.78
+- 2026-09-30T02:37:38Z RESUME lane=main plan=setup,bg:g5m,q2:full_mb,wait,q1:full_mb,g5fix,end vm=trader-b3-p15-11
+- 2026-09-30T02:38:12Z CREATE vm=trader-b3-p15-11 zone=us-central1-b epoch=1790735892 type=g2-standard-8+L4 spot max_run=6h rate_ceiling=0.86 spot_rate=0.52 spend_before=7.78
+- 2026-09-30T02:39:51Z PUSH vm=trader-b3-p15-4
+- 2026-09-30T02:40:42Z START vm=trader-b3-p15-4 plan=setup,q2:full_p,q1:timing,end lane=tb
+- 2026-09-30T02:42:03Z READY vm=trader-b3-p15-11 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-30T02:42:30Z PUSH vm=trader-b3-p15-11
+- 2026-09-30T02:43:21Z START vm=trader-b3-p15-11 plan=setup,bg:g5m,q2:full_mb,wait,q1:full_mb,g5fix,end lane=main
+- 2026-09-30T02:44:34Z SYNC-PARTIAL vm=trader-b3-p15-4 (files changing during tar skipped)
+- 2026-09-30T02:44:35Z SYNC vm=trader-b3-p15-4 verified_files=402 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T02:59:56Z SYNC vm=trader-b3-p15-11 verified_files=346 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T03:00:26Z SYNC-PARTIAL vm=trader-b3-p15-8 (files changing during tar skipped)
+- 2026-09-30T03:00:26Z SYNC vm=trader-b3-p15-8 verified_files=288 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T03:01:07Z SYNC vm=trader-b3-p15-4 verified_files=445 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T03:05:06Z WATCHDOG vm=trader-b3-p15-4 action=delete why="plan finished"
+- 2026-09-30T03:05:43Z SYNC vm=trader-b3-p15-4 verified_files=445 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T03:05:49Z LANE-DONE lane=tb vm=trader-b3-p15-4 plan="setup,q2:full_p,q1:timing,end"
+- 2026-09-30T03:06:52Z DELETE vm=trader-b3-p15-4 epoch=1790737612 reason="watchdog: plan finished" leftover_disks="trader-b3-p15-11	us-central1-b
+trader-b3-p15-8	us-west1-a" spend_now=8.54
+- 2026-09-30T03:17:52Z SYNC vm=trader-b3-p15-11 verified_files=349 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T03:18:19Z SYNC vm=trader-b3-p15-8 verified_files=299 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T03:23:38Z WATCHDOG vm=trader-b3-p15-8 action=delete why="plan finished"
+- 2026-09-30T03:24:07Z SYNC vm=trader-b3-p15-8 verified_files=301 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T03:24:14Z LANE-DONE lane=ta vm=trader-b3-p15-8 plan="bg:q1:full_mA,q:full_ma,wait,q2:full_ma,q1:full_mA,q2:full_md,end"
+- 2026-09-30T03:25:21Z DELETE vm=trader-b3-p15-8 epoch=1790738721 reason="watchdog: plan finished" leftover_disks="trader-b3-p15-11	us-central1-b" spend_now=8.86
+- 2026-09-30T03:35:41Z DELETE vm=trader-b3-p15-11 epoch=1790739339 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="" spend_now=8.95
+- 2026-09-30T03:35:45Z RESUME lane=main plan=setup,bg:g5m,q2:full_mb,wait,q1:full_mb,g5fix,end vm=trader-b3-p15-12
+- 2026-09-30T03:36:18Z CREATE vm=trader-b3-p15-12 zone=us-central1-c epoch=1790739378 type=g2-standard-8+L4 spot max_run=6h rate_ceiling=0.86 spot_rate=0.52 spend_before=8.95
+- 2026-09-30T03:39:42Z READY vm=trader-b3-p15-12 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-30T03:39:59Z PUSH vm=trader-b3-p15-12
+- 2026-09-30T03:41:04Z RESUME-FAILED vm=trader-b3-p15-12 lane=main
+- 2026-09-30T03:46:09Z DELETE vm=trader-b3-p15-12 epoch=1790739967 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="" spend_now=9.03
+- 2026-09-30T03:46:14Z RESUME lane=main plan=setup,bg:g5m,q2:full_mb,wait,q1:full_mb,g5fix,end vm=trader-b3-p15-13
+- 2026-09-30T03:46:48Z CREATE vm=trader-b3-p15-13 zone=us-central1-c epoch=1790740008 type=g2-standard-8+L4 spot max_run=6h rate_ceiling=0.86 spot_rate=0.52 spend_before=9.03
+- 2026-09-30T03:56:48Z DELETE vm=trader-b3-p15-13 epoch=1790740608 reason="spot preempted during startup at 03:49Z" leftover_disks="none" spend_now=9.12
+- 2026-09-30T03:57:03Z RESUME lane=main plan=setup,bg:g5m,q2:full_mb,wait,q1:full_mb,g5fix,end vm=trader-b3-p15-14
+- 2026-09-30T03:57:29Z CREATE vm=trader-b3-p15-14 zone=us-east1-b epoch=1790740649 type=g2-standard-8+L4 spot max_run=6h rate_ceiling=0.86 spot_rate=0.52 spend_before=9.12
+- 2026-09-30T04:00:43Z READY vm=trader-b3-p15-14 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-30T04:01:17Z PUSH vm=trader-b3-p15-14
+- 2026-09-30T04:02:09Z START vm=trader-b3-p15-14 plan=setup,bg:g5m,q2:full_mb,wait,q1:full_mb,g5fix,end lane=main
+- 2026-09-30T04:13:00Z SYNC vm=trader-b3-p15-14 verified_files=467 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T04:29:16Z SYNC vm=trader-b3-p15-14 verified_files=467 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T04:45:55Z SYNC-PARTIAL vm=trader-b3-p15-14 (files changing during tar skipped)
+- 2026-09-30T04:45:56Z SYNC vm=trader-b3-p15-14 verified_files=468 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T05:02:58Z SYNC vm=trader-b3-p15-14 verified_files=469 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T05:20:52Z SYNC vm=trader-b3-p15-14 verified_files=471 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T05:38:38Z SYNC vm=trader-b3-p15-14 verified_files=477 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T05:44:03Z WATCHDOG vm=trader-b3-p15-14 action=delete why="plan finished"
+- 2026-09-30T05:44:57Z SYNC vm=trader-b3-p15-14 verified_files=479 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+- 2026-09-30T05:45:27Z LANE-DONE lane=main vm=trader-b3-p15-14 plan="setup,bg:g5m,q2:full_mb,wait,q1:full_mb,g5fix,end"
+- 2026-09-30T05:46:49Z DELETE vm=trader-b3-p15-14 epoch=1790747209 reason="watchdog: plan finished" leftover_disks="none" spend_now=10.07
+- 2026-09-30T05:52:07Z STOP watchdog stopped via watchdog.stop after the last lane finished; all P15 VMs and disks deleted (gpu.sh check empty)

@@ -1,0 +1,232 @@
+creating soup-gpu-1020112417-9198 (g2-standard-8 + nvidia-l4, SPOT) in us-central1-a ...
+NAME                      ZONE           MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP    STATUS
+soup-gpu-1020112417-9198  us-central1-a  g2-standard-8  true         [ip-removed]  [ip-removed]  RUNNING
+waiting for soup-gpu-1020112417-9198 ([ip-removed]) startup script (up to 25 min) ...
+gpu=NVIDIA L4, 580.178.04
+nvcc=Build cuda_12.9.r12.9/compiler.35813241_0
+clang=Ubuntu clang version 18.1.3 (1ubuntu1)
+bun=1.3.14
+bend=v2.0.29@c8691aa
+READY: soup-gpu-1020112417-9198 us-central1-a [ip-removed]
+rsync /tmp/r27a-run -> soup-gpu-1020112417-9198:/root/soup
+W: http://packages.cloud.google.com/apt/dists/apt-transport-artifact-registry-stable/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
+W: https://us-apt.pkg.dev/projects/gce-ai-infra/dists/gpudirect-gib-apt/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
+
+Running kernel seems to be up-to-date.
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2.14.1+cu130 True
+{
+  "R27A_D0_public_data_sha256_and_watched_zero_label_audit": {
+    "verdict": "PASS",
+    "disjointness_checks": {
+      "total_orbits_10x10": 92,
+      "train_orbits": 64,
+      "test_orbits": 28,
+      "d4_orbit_overlap_count": 0,
+      "nq10_exact_input_overlap_count": 0,
+      "nq10_d4_input_orbit_overlap_count": 0,
+      "nq_smoke_test_overlap_count": 0,
+      "sudoku_head320_overlap_count": 0,
+      "sudoku_smoke_test_overlap_count": 0,
+      "sudoku_train_test_overlap_count": 0,
+      "sudoku_dev_test_overlap_count": 0
+    },
+    "label_access_counts": {
+      "Control_Random_Network": 0,
+      "Control_Untrained_Init": 0,
+      "Control_PeerClue_Uniform": 0,
+      "Control_ClueCopy_RowColMode": 0,
+      "Control_FixedMeanField": 0,
+      "InfiLoop_Supervised_OurTrain": 57600,
+      "Ablation_UnmaskedClue_CE_Only_LabelFree": 0,
+      "TRMP_InfiLoop_Birkhoff_LabelFree": 0,
+      "NQ_Control_FixedMeanField": 0,
+      "NQ_StandardCE_MultiSol_Sup_OurTrain": 38400,
+      "NQ_TRMP_MinCE_MultiLabel_Sup_OurTrain": 19200,
+      "NQ_Ablation_UnmaskedClue_CE_Only_LabelFree": 0,
+      "NQ_TRMP_InfiLoop_Birkhoff_LabelFree": 0
+    }
+  },
+  "R27A_D1_sudoku_labelfree_birkhoff_beats_controls_and_scales_with_segments": {
+    "verdict": "FAIL",
+    "segment_mean_empty_acc": {
+      "1": 0.27491649732557866,
+      "2": 0.3372340177049027,
+      "4": 0.3667344031018616,
+      "8": 0.3775722327330484,
+      "12": 0.380188260575059
+    },
+    "segment_mean_unit_collisions": {
+      "1": 56.65234375,
+      "2": 35.723958333333336,
+      "4": 21.889322916666668,
+      "8": 14.64453125,
+      "12": 12.53515625
+    },
+    "mean_clue_acc_s12_labelfree": 0.9994328435163702,
+    "mean_empty_acc_s12_labelfree": 0.380188260575059,
+    "mean_empty_acc_s12_random_net": 0.1060892719501086,
+    "mean_empty_acc_s12_untrained": 0.11937962768318035,
+    "mean_empty_acc_s12_peer_clue_uniform": 0.27524350080583,
+    "mean_empty_acc_s12_mode_ctrl": 0.07883119613201597,
+    "mean_empty_acc_s12_fixed_mean_field": 0.5083736248335786,
+    "mean_empty_acc_s12_unmasked_clue_ce_only_ablation": 0.12795179034405438,
+    "mean_empty_acc_s12_infiloop_supervised_ourtrain": 0.11227898068343727,
+    "mean_collisions_s12_labelfree": 12.53515625,
+    "mean_collisions_s12_random_net": 506.8372395833333,
+    "mean_collisions_s12_untrained": 382.51953125,
+    "mean_collisions_s12_peer_clue_uniform": 73.34244791666667,
+    "mean_collisions_s12_fixed_mean_field": 32.99609375,
+    "mean_collisions_s12_unmasked_clue_ce_only_ablation": 370.92578125,
+    "mean_collisions_s12_infiloop_supervised_ourtrain": 875.1302083333334,
+    "ci_empty_vs_random_net": {
+      "mean_diff": 0.2740989886249504,
+      "ci95_low": 0.24870977547719664,
+      "ci95_high": 0.2994882017727042
+    },
+    "ci_empty_vs_untrained": {
+      "mean_diff": 0.2608086328918786,
+      "ci95_low": 0.2410512341336793,
+      "ci95_high": 0.28056603165007793
+    },
+    "ci_empty_vs_peer_clue_uniform": {
+      "mean_diff": 0.10494475976922897,
+      "ci95_low": 0.09249872977668275,
+      "ci95_high": 0.1173907897617752
+    },
+    "ci_empty_vs_mode_ctrl": {
+      "mean_diff": 0.301357064443043,
+      "ci95_low": 0.29561191065697445,
+      "ci95_high": 0.30710221822911155
+    },
+    "ci_empty_vs_fixed_mean_field": {
+      "mean_diff": -0.12818536425851965,
+      "ci95_low": -0.13393051804458816,
+      "ci95_high": -0.12244021047245113
+    },
+    "ci_empty_vs_unmasked_clue_ce_only_ablation": {
+      "mean_diff": 0.25223647023100465,
+      "ci95_low": 0.22969852051774656,
+      "ci95_high": 0.27477441994426277
+    },
+    "ci_collisions_vs_random_net": {
+      "mean_diff": 494.3020833333333,
+      "ci95_low": 357.244107964004,
+      "ci95_high": 631.3600587026626
+    },
+    "ci_collisions_vs_untrained": {
+      "mean_diff": 369.984375,
+      "ci95_low": 148.46294208466773,
+      "ci95_high": 591.5058079153323
+    },
+    "ci_collisions_vs_peer_clue_uniform": {
+      "mean_diff": 60.807291666666664,
+      "ci95_low": 58.327206771242906,
+      "ci95_high": 63.28737656209042
+    },
+    "ci_collisions_vs_fixed_mean_field": {
+      "mean_diff": 20.4609375,
+      "ci95_low": 19.546319008548327,
+      "ci95_high": 21.375555991451673
+    },
+    "ci_collisions_vs_unmasked_clue_ce_only_ablation": {
+      "mean_diff": 358.390625,
+      "ci95_low": 151.6651733343166,
+      "ci95_high": 565.1160766656834
+    }
+  },
+  "R27A_D2_nqueens_multisol_labelfree_beats_controls_and_extrapolates_ood": {
+    "verdict": "PASS",
+    "mean_clue_acc_10x10_labelfree": 1.0,
+    "mean_clue_acc_12x12_ood_labelfree": 1.0,
+    "mean_clue_acc_16x16_ood_labelfree": 1.0,
+    "mean_collisions_10x10_labelfree": 0.9479166666666666,
+    "mean_collisions_10x10_peer_clue_uniform": 6.416666666666667,
+    "mean_collisions_10x10_fixed_mean_field": 9.75,
+    "mean_collisions_10x10_unmasked_clue_ce_only_ablation": 14.416666666666666,
+    "mean_collisions_10x10_random_net": 13.625,
+    "mean_collisions_10x10_untrained": 15.875,
+    "mean_collisions_10x10_standard_ce_ourtrain": 3.1770833333333335,
+    "mean_collisions_10x10_trmp_min_ce_ourtrain": 1.2708333333333333,
+    "mean_collisions_12x12_ood_labelfree": 1.1944444444444444,
+    "mean_collisions_12x12_ood_peer_clue_uniform": 8.951388888888888,
+    "mean_collisions_12x12_ood_fixed_mean_field": 16.604166666666668,
+    "mean_collisions_12x12_ood_random_net": 16.9375,
+    "mean_collisions_12x12_ood_untrained": 20.770833333333332,
+    "mean_collisions_12x12_ood_standard_ce_ourtrain": 5.125,
+    "mean_collisions_12x12_ood_trmp_min_ce_ourtrain": 1.840277777777778,
+    "mean_collisions_16x16_ood_labelfree": 1.8499999999999999,
+    "mean_collisions_16x16_ood_peer_clue_uniform": 12.716666666666667,
+    "mean_collisions_16x16_ood_fixed_mean_field": 31.399999999999995,
+    "mean_collisions_16x16_ood_random_net": 27.558333333333334,
+    "mean_collisions_16x16_ood_untrained": 33.725,
+    "mean_collisions_16x16_ood_standard_ce_ourtrain": 9.908333333333333,
+    "mean_collisions_16x16_ood_trmp_min_ce_ourtrain": 2.9250000000000003,
+    "ci_10x10_vs_peer_clue_uniform": {
+      "mean_diff": 5.46875,
+      "ci95_low": 4.713109374359918,
+      "ci95_high": 6.224390625640082
+    },
+    "ci_10x10_vs_fixed_mean_field": {
+      "mean_diff": 8.802083333333334,
+      "ci95_low": 8.588308900565313,
+      "ci95_high": 9.015857766101355
+    },
+    "ci_10x10_vs_unmasked_clue_ce_only_ablation": {
+      "mean_diff": 13.46875,
+      "ci95_low": 7.892258290631345,
+      "ci95_high": 19.045241709368653
+    },
+    "ci_10x10_vs_random_net": {
+      "mean_diff": 12.677083333333334,
+      "ci95_low": 9.002105765224266,
+      "ci95_high": 16.352060901442403
+    },
+    "ci_10x10_vs_untrained": {
+      "mean_diff": 14.927083333333334,
+      "ci95_low": 6.814697308346995,
+      "ci95_high": 23.03946935831967
+    },
+    "ci_12x12_ood_vs_peer_clue_uniform": {
+      "mean_diff": 7.7569444444444455,
+      "ci95_low": 5.875008213170307,
+      "ci95_high": 9.638880675718584
+    },
+    "ci_12x12_ood_vs_fixed_mean_field": {
+      "mean_diff": 15.409722222222223,
+      "ci95_low": 15.081047360909555,
+      "ci95_high": 15.738397083534892
+    },
+    "ci_12x12_ood_vs_random_net": {
+      "mean_diff": 15.743055555555557,
+      "ci95_low": 11.946238027266515,
+      "ci95_high": 19.539873083844597
+    },
+    "ci_16x16_ood_vs_peer_clue_uniform": {
+      "mean_diff": 10.866666666666665,
+      "ci95_low": 10.331230773712935,
+      "ci95_high": 11.402102559620396
+    },
+    "ci_16x16_ood_vs_fixed_mean_field": {
+      "mean_diff": 29.549999999999997,
+      "ci95_low": 29.26540627246954,
+      "ci95_high": 29.834593727530454
+    },
+    "ci_16x16_ood_vs_random_net": {
+      "mean_diff": 25.708333333333332,
+      "ci95_low": 15.577601161461267,
+      "ci95_high": 35.8390655052054
+    }
+  }
+}
+rsync soup-gpu-1020112417-9198:/root/runs -> /tmp/r27a-run/runs
+Warning: Permanently added 'compute.8085005243139158405' (ED25519) to the list of known hosts.
+Deleted [https://www.googleapis.com/compute/v1/projects/GCP_PROJECT/zones/us-central1-a/instances/soup-gpu-1020112417-9198].
+GPU-RUN EXIT 0

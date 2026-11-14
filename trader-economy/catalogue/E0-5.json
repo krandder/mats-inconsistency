@@ -1,0 +1,11 @@
+{
+ "id": "E0-5",
+ "question": "Is there a pay rule between leave-one-out and Shapley that both trains well and pays fairly?",
+ "setup": "Semivalue: every other agent is present independently with probability pi (pi near 1 is LOO, whose gradient is backprop; pi = 0.5 is the Banzhaf value, close to Shapley here). Payments rescaled to sum to the pot. Column and single-weight agents, cost 0.01.",
+ "result": "A clean dial. Column agents, pi = 0.5 / 0.8 / 0.95: test log loss 0.808\u00b10.004 / 0.777\u00b10.001 / 0.750\u00b10.001 (backprop 0.743); Spearman(pay, true value) 0.91\u00b10.02 / 0.84\u00b10.01 / 0.71\u00b10.02. Weight on the copy of x0: 0.74 / 0.53 / 0.17 of x0's. Single-weight agents give the same picture (0.807 / 0.767 / 0.748).",
+ "status": "Informative",
+ "files": [
+  "exp0.py",
+  "results/exp0_semi_summary.json"
+ ]
+}

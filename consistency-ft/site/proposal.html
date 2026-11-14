@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RLEF × Forecasting</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap">
+<style>
+  :root {
+    --paper: #fafbf9;
+    --card: #ffffff;
+    --ink: #151a20;
+    --ink-2: #565d66;
+    --ink-3: #8a9097;
+    --line: #e2e5e1;
+    --accent: #2563c7;       /* arbitrage blue: RLE mechanics */
+    --accent-soft: #e8effb;
+    --ours: #0e8a6c;         /* teal: the KL-anchor arm (our contribution) */
+    --ours-soft: #e4f3ee;
+    --gate: #b07207;         /* amber: decision gates only */
+    --gate-soft: #f8efdd;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #14171c;
+      --card: #1b1f26;
+      --ink: #eef1f4;
+      --ink-2: #aab2bb;
+      --ink-3: #7d848d;
+      --line: #2c313a;
+      --accent: #6b9fe8;
+      --accent-soft: #1d2c45;
+      --ours: #3db392;
+      --ours-soft: #17322b;
+      --gate: #d99a33;
+      --gate-soft: #35290f;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #14171c;
+    --card: #1b1f26;
+    --ink: #eef1f4;
+    --ink-2: #aab2bb;
+    --ink-3: #7d848d;
+    --line: #2c313a;
+    --accent: #6b9fe8;
+    --accent-soft: #1d2c45;
+    --ours: #3db392;
+    --ours-soft: #17322b;
+    --gate: #d99a33;
+    --gate-soft: #35290f;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 16px/1.65 "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 48px 24px 96px; }
+  .prose { max-width: 700px; }
+  .eyebrow {
+    font: 500 12px/1 "IBM Plex Mono", ui-monospace, monospace;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent);
+    margin: 0 0 14px;
+  }
+  h1 {
+    font: 700 clamp(30px, 5vw, 44px)/1.12 "Source Serif 4", Georgia, serif;
+    margin: 0 0 10px; text-wrap: balance;
+  }
+  .standfirst { font-size: 18px; color: var(--ink-2); margin: 0 0 8px; max-width: 700px; }
+  .meta { font: 400 13px/1.5 "IBM Plex Mono", ui-monospace, monospace; color: var(--ink-3); margin-bottom: 40px; }
+  h2 {
+    font: 600 24px/1.25 "Source Serif 4", Georgia, serif;
+    margin: 56px 0 12px; text-wrap: balance;
+  }
+  h3 { font: 600 16px/1.4 "IBM Plex Sans", system-ui, sans-serif; margin: 24px 0 6px; }
+  p { margin: 0 0 14px; }
+  .hypothesis {
+    border-left: 3px solid var(--accent);
+    background: var(--accent-soft);
+    padding: 16px 20px; border-radius: 0 8px 8px 0;
+    max-width: 700px; margin: 24px 0;
+  }
+  .hypothesis strong { font-weight: 600; }
+  figure { margin: 28px 0; }
+  .figframe {
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    padding: 20px; overflow-x: auto;
+  }
+  figure svg { max-width: 100%; height: auto; display: block; margin: 0 auto; min-width: 760px; }
+  figcaption { font-size: 13.5px; color: var(--ink-2); margin-top: 10px; max-width: 700px; }
+  table {
+    border-collapse: collapse; width: 100%; font-size: 14.5px;
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    overflow: hidden;
+  }
+  .tablewrap { overflow-x: auto; margin: 18px 0; border-radius: 10px; }
+  th {
+    text-align: left; font: 500 12px/1.3 "IBM Plex Mono", ui-monospace, monospace;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3);
+    padding: 12px 14px; border-bottom: 1px solid var(--line);
+  }
+  td { padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .chip {
+    display: inline-block; font: 500 12px/1 "IBM Plex Mono", ui-monospace, monospace;
+    padding: 5px 9px; border-radius: 999px; white-space: nowrap;
+  }
+  .chip.rle  { background: var(--accent-soft); color: var(--accent); }
+  .chip.ours { background: var(--ours-soft); color: var(--ours); }
+  .chip.ctrl { background: transparent; color: var(--ink-2); border: 1px solid var(--line); }
+  .gates { display: grid; gap: 12px; margin: 18px 0; max-width: 700px; }
+  .gatecard {
+    border: 1px solid var(--line); border-left: 3px solid var(--gate);
+    background: var(--card); border-radius: 0 8px 8px 0; padding: 14px 18px;
+  }
+  .gatecard b { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 13px; color: var(--gate); letter-spacing: 0.06em; }
+  ol.plain { padding-left: 20px; margin: 0 0 14px; max-width: 700px; }
+  ol.plain li { margin-bottom: 8px; }
+  ul.plain { padding-left: 20px; margin: 0 0 14px; max-width: 700px; }
+  ul.plain li { margin-bottom: 6px; }
+  .foot { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-3); max-width: 700px; }
+  code { font: 400 0.92em "IBM Plex Mono", ui-monospace, monospace; background: var(--accent-soft); padding: 1px 5px; border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <p class="eyebrow">consistency-ft · proposal for review</p>
+  <h1>RLEF × Forecasting</h1>
+  <p class="standfirst">Reinforcement learning from exploitation feedback, trained and judged on the Paleka forecasting-consistency suite: does removing Dutch-book exploitability make a forecaster genuinely better — more accurate, better calibrated — or only harder to arbitrage?</p>
+  <p class="meta">Kelvin (Futarchy Labs) · drafted with Fable · 2026-08-19 · for Jessica Taylor's review</p>
+
+  <div class="prose">
+    <h2>What we're combining, and why it's new</h2>
+    <p><strong>Paper 1 — the measurement.</strong> Paleka et&nbsp;al. (arXiv:2412.18544) built 10 consistency checks over logically related forecasting questions (negation, conjunction bounds, conditional chains, expected evidence…) with an arbitrage-based violation metric, and released the instantiated tuples. Their own repair (inference-time arbitrage) improved <em>only the optimized checks</em> — no held-out transfer, no Brier gain. Training on the metric is listed as future work; no one has published it.</p>
+    <p><strong>Paper 2 — the training signal.</strong> Matta/Naphade/Zou's RLE (ICML'26 workshop) post-trains against Dutch-book exploitability: an adversary LP extracts guaranteed profit from incoherent prices, and that profit is the negative reward. Shown only at adapter scale, on knowledge QA, anchored by ground-truth Brier. No public code.</p>
+    <p><strong>Our addition.</strong> A third arm replaces the ground-truth anchor with a <span class="chip ours">KL to the base model's own beliefs</span> — coherentize what the model already believes instead of teaching labels. It needs no resolved outcomes, so it trains on <em>unresolved</em> forecasting questions, which is the regime forecasting actually lives in. To our knowledge this combination is unpublished.</p>
+
+    <div class="hypothesis">
+      <strong>Hypothesis under test:</strong> training a forecaster to minimize exploitability on logically related question tuples improves <em>held-out</em> consistency checks, Brier score on temporally held-out resolved questions, and calibration — beating both a Brier-only finetune and inference-time arbitrage repair. Falsifiable outcome: coherence improves on trained checks only, and accuracy/calibration are flat — consistency training is cosmetic.
+    </div>
+  </div>
+
+  <h2>The workflow</h2>
+  <figure>
+    <div class="figframe">
+    <svg viewBox="0 0 980 560" role="img" aria-label="Pipeline: Paleka tuples are split into training and held-out sets; episodes feed a GRPO trainer whose reward is negative exploitability plus one of three anchors; two decision gates lead from a pilot to the full run and write-up." font-family="IBM Plex Sans, system-ui, sans-serif">
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
+        </marker>
+      </defs>
+      <g fill="none" stroke="currentColor" stroke-width="1.3" color="var(--ink-2)">
+        <!-- data column -->
+        <rect x="20" y="30" width="200" height="86" rx="8" stroke="var(--line)" fill="var(--card)"/>
+        <rect x="20" y="150" width="200" height="118" rx="8" stroke="var(--line)" fill="var(--card)"/>
+        <rect x="20" y="300" width="200" height="86" rx="8" stroke="var(--line)" fill="var(--card)"/>
+        <!-- episode builder -->
+        <rect x="300" y="150" width="170" height="118" rx="8" stroke="var(--line)" fill="var(--card)"/>
+        <!-- trainer -->
+        <rect x="540" y="120" width="200" height="178" rx="8" stroke="var(--accent)" stroke-width="1.6" fill="var(--card)"/>
+        <!-- eval battery -->
+        <rect x="540" y="360" width="200" height="140" rx="8" stroke="var(--line)" fill="var(--card)"/>
+        <!-- baselines -->
+        <rect x="300" y="382" width="170" height="96" rx="8" stroke="var(--line)" fill="var(--card)"/>
+        <!-- gate diamonds -->
+        <g stroke="var(--gate)" stroke-width="1.6" fill="var(--gate-soft)">
+          <path d="M855 190 l52 40 -52 40 -52 -40 z"/>
+          <path d="M855 400 l52 40 -52 40 -52 -40 z"/>
+        </g>
+        <!-- arrows -->
+        <g marker-end="url(#arr)">
+          <line x1="220" y1="209" x2="296" y2="209"/>
+          <line x1="470" y1="209" x2="536" y2="209"/>
+          <line x1="640" y1="298" x2="640" y2="356"/>
+          <line x1="470" y1="430" x2="536" y2="430"/>
+          <line x1="740" y1="230" x2="799" y2="230"/>
+          <line x1="740" y1="430" x2="799" y2="440"/>
+          <path d="M855 274 v40"/>
+          <line x1="120" y1="116" x2="120" y2="146"/>
+          <line x1="120" y1="268" x2="120" y2="296"/>
+          <path d="M220 343 C 400 343 480 330 536 300" fill="none"/>
+        </g>
+      </g>
+      <!-- text -->
+      <g fill="var(--ink)" font-size="13">
+        <text x="32" y="52" font-weight="600">Paleka question bank</text>
+        <text x="32" y="72" fill="var(--ink-2)" font-size="12">3,171 instantiated tuples,</text>
+        <text x="32" y="88" fill="var(--ink-2)" font-size="12">10 check types (in repo)</text>
+
+        <text x="32" y="174" font-weight="600">Splits</text>
+        <text x="32" y="194" fill="var(--ink-2)" font-size="12">• train: 6 check types</text>
+        <text x="32" y="210" fill="var(--ink-2)" font-size="12">• held-out: 4 check types</text>
+        <text x="32" y="226" fill="var(--ink-2)" font-size="12">• resolved Qs (Brier), by date</text>
+        <text x="32" y="242" fill="var(--ink-2)" font-size="12">• 2028 long-horizon set</text>
+
+        <text x="32" y="324" font-weight="600">Baseline sweeps</text>
+        <text x="32" y="344" fill="var(--ink-2)" font-size="12">v0 harness — done, live</text>
+        <text x="32" y="360" fill="var(--ink-2)" font-size="12">(consistency.futarchy.ai)</text>
+
+        <text x="312" y="174" font-weight="600">Episode builder</text>
+        <text x="312" y="194" fill="var(--ink-2)" font-size="12">group 2–8 logically</text>
+        <text x="312" y="210" fill="var(--ink-2)" font-size="12">related questions +</text>
+        <text x="312" y="226" fill="var(--ink-2)" font-size="12">constraint set S per</text>
+        <text x="312" y="242" fill="var(--ink-2)" font-size="12">episode</text>
+
+        <text x="552" y="144" font-weight="600">GRPO trainer</text>
+        <text x="552" y="164" font-size="12" font-family="IBM Plex Mono, monospace">r = −Exploit(c,S) − λ·A</text>
+        <text x="552" y="186" fill="var(--ink-2)" font-size="12">anchor A, three arms:</text>
+        <text x="552" y="206" font-size="12" fill="var(--ink-2)">A₀ none (ablation)</text>
+        <text x="552" y="226" font-size="12" fill="var(--accent)">A₁ Brier vs outcomes (RLE)</text>
+        <text x="552" y="246" font-size="12" fill="var(--ours)">A₂ KL to base beliefs (ours)</text>
+        <text x="552" y="272" fill="var(--ink-2)" font-size="12">+ control: Brier-only finetune</text>
+
+        <text x="312" y="406" font-weight="600">Frozen baselines</text>
+        <text x="312" y="426" fill="var(--ink-2)" font-size="12">base model ·</text>
+        <text x="312" y="442" fill="var(--ink-2)" font-size="12">ArbitrageForecaster</text>
+        <text x="312" y="458" fill="var(--ink-2)" font-size="12">(inference-time repair)</text>
+
+        <text x="552" y="384" font-weight="600">Eval battery</text>
+        <text x="552" y="404" fill="var(--ink-2)" font-size="12">held-out checks · Brier on</text>
+        <text x="552" y="420" fill="var(--ink-2)" font-size="12">resolved-after-cutoff · ECE ·</text>
+        <text x="552" y="436" fill="var(--ink-2)" font-size="12">per-check dashboard</text>
+        <text x="552" y="452" fill="var(--ink-2)" font-size="12">(negation-regression watch) ·</text>
+        <text x="552" y="468" fill="var(--ink-2)" font-size="12">readout agreement</text>
+
+        <text x="855" y="222" text-anchor="middle" font-size="12" font-weight="600" fill="var(--gate)">Gate 1</text>
+        <text x="855" y="238" text-anchor="middle" font-size="11" fill="var(--ink-2)">pilot sane?</text>
+        <text x="855" y="432" text-anchor="middle" font-size="12" font-weight="600" fill="var(--gate)">Gate 2</text>
+        <text x="855" y="448" text-anchor="middle" font-size="11" fill="var(--ink-2)">scale / write up</text>
+      </g>
+      <g fill="var(--ink-3)" font-size="11" font-family="IBM Plex Mono, monospace">
+        <text x="228" y="200">tuples</text>
+        <text x="478" y="200">episodes</text>
+        <text x="648" y="330">tuned checkpoints</text>
+        <text x="478" y="422">same battery</text>
+        <text x="744" y="220">pilot run</text>
+        <text x="744" y="420">full results</text>
+      </g>
+    </svg>
+    </div>
+    <figcaption>One pipeline, three reward arms, two approval gates. The trainer's reward is exploitability (the LP adversary's guaranteed profit on the episode's stated probabilities) plus an anchor term that differs per arm; every checkpoint runs the identical eval battery against two frozen baselines.</figcaption>
+  </figure>
+
+  <h2>Experimental arms</h2>
+  <div class="tablewrap"><table>
+    <tr><th>Arm</th><th>Reward</th><th>Needs resolved outcomes?</th><th>What it isolates</th></tr>
+    <tr>
+      <td><span class="chip ctrl">control</span></td>
+      <td>Brier-only finetune (no exploitability term)</td>
+      <td class="num">yes</td>
+      <td>Is coherence training better than plain accuracy training? (RLE's own comparison, reproduced)</td>
+    </tr>
+    <tr>
+      <td><span class="chip ctrl">A₀ bare</span></td>
+      <td>−Exploit(c, S) only</td>
+      <td class="num">no</td>
+      <td>Degeneracy ablation — expected to collapse toward trivially coherent outputs; documents why anchors exist</td>
+    </tr>
+    <tr>
+      <td><span class="chip rle">A₁ RLE</span></td>
+      <td>−Exploit(c, S) − λ·Brier(c, outcomes)</td>
+      <td class="num">yes</td>
+      <td>The published recipe, moved from knowledge QA to real forecasting tuples</td>
+    </tr>
+    <tr>
+      <td><span class="chip ours">A₂ RLEF-KL</span></td>
+      <td>−Exploit(c, S) − λ·KL(c ‖ base model's probabilities)</td>
+      <td class="num">no</td>
+      <td>Our contribution: label-free coherentization, trainable on unresolved questions; λ swept</td>
+    </tr>
+  </table></div>
+
+  <div class="prose">
+    <h2>What counts as a result</h2>
+    <ol class="plain">
+      <li><strong>Primary:</strong> violation on the four <em>held-out</em> check types, vs base model and vs ArbitrageForecaster. Paleka showed inference-time repair does not transfer; if training does, that is the headline.</li>
+      <li><strong>Ground truth:</strong> Brier on questions resolving <em>after</em> the training cutoff (no temporal leakage — their follow-up paper's main warning).</li>
+      <li><strong>Calibration:</strong> ECE/RMSCE separately — coherence and calibration are empirically orthogonal, so we report both, never a blend.</li>
+      <li><strong>Regression watch:</strong> per-check dashboard; outcome-RL is documented to improve conjunction checks while <em>worsening</em> negation. Any arm that regresses a check family gets flagged, not averaged away.</li>
+    </ol>
+
+    <h2>Decision gates (where Jessica signs off)</h2>
+  </div>
+  <div class="gates">
+    <div class="gatecard"><b>GATE 0 — this document.</b> Approve the design: arms, splits, metrics, and the falsifiable framing. Changes are cheap now; everything below is mechanical.</div>
+    <div class="gatecard"><b>GATE 1 — after the pilot (~1 week).</b> Small model, ~5k episodes, one seed. Sane reward curves, A₀ collapsing as predicted, λ range identified. Cost ceiling ≈ $100. Go/no-go on the full run.</div>
+    <div class="gatecard"><b>GATE 2 — after the full run (~2–3 weeks).</b> All arms, 2–3 seeds. Decide: write up (workshop-length even on a null result — "coherence training doesn't transfer" is publishable), or extend to the 2028 long-horizon benchmark and larger models.</div>
+  </div>
+
+  <div class="prose">
+    <h2>Logistics (decided at Gate 1, not before)</h2>
+    <ul class="plain">
+      <li><strong>Managed path (pilot default):</strong> Fireworks RFT with a custom Python reward evaluator — <code>gpt-oss-20b</code> is both serverless and RFT-eligible today on our account; zero infra. Estimated $80–$500 for the pilot scale.</li>
+      <li><strong>Self-hosted path (full run, and required if we stay on Qwen&nbsp;3.5&nbsp;9B):</strong> 1–8×H100 rental ($1.2–3/hr/GPU), TRL/verl GRPO, weights local — also unlocks probe readouts and custom losses later. Estimated $60 (single-GPU days) to ~$1,150 (8×H100 × 2 days).</li>
+      <li><strong>Eval is cheap regardless:</strong> ~$1 per full 3,171-tuple sweep serverless; live dashboard already running at consistency.futarchy.ai.</li>
+      <li><strong>Open account items:</strong> Fireworks serverless-training beta requested (unblocks managed GRPO on Qwen 3.5 9B); base-model choice is a Gate 1 decision with real trade-offs (no single model currently supports every recipe managed).</li>
+    </ul>
+
+    <h2>Known risks</h2>
+    <ul class="plain">
+      <li><strong>Goodharting the LP:</strong> flat 0.5-everywhere answers pass several checks. Mitigation: the anchor terms, plus reporting discrimination (AUROC) so uninformative-but-coherent shows up.</li>
+      <li><strong>Reward hacking the parser:</strong> probabilities are elicited from generated text; malformed outputs need a defined reward (zero), not a crash.</li>
+      <li><strong>Small-model ceiling:</strong> if the base model's beliefs are noise, coherentizing them may just polish noise — the KL arm's λ sweep is also implicitly testing this.</li>
+    </ul>
+  </div>
+
+  <p class="foot">Repo: futarchy-fi/consistency-ft (private) — README, LITERATURE, COSTS, and the v0 eval harness (live-verified) are already in place. GATE 0 CLEARED: approved by Jessica 2026-08-19, with one amendment — a knowledge-cutoff contamination audit (verify advertised cutoffs with high-salience post-cutoff questions) now gates the Brier evaluation windows. Full task DAG: <a href="/plan.html">plan.html</a>; beads under epic hub-t8k9c.</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+Thu Oct 29 18:54:53 UTC 2026
+4d83bded36f250a706d27817ca5292317ed09c80e78912999e4c3bdb132b038c  PREREG.md
+94053531c171399590b7c7c411a6703e81b7ebda0ab89df697f2afff9e905d97  sfworld.py
+af56e3964958270bc6f9db0cce3a3fa9cefe8db52371190e3595d7383a45a24b  sfmodels.py
+64156eb4f54a2720e8a1d0820eb9fec96ea53f8c91eaa0703493e0ec06b67345  sftrain.py
+09585faf339f613446b5ff2b505e798259a8259b219b70b8c890930ce6c8f01b  audit.py
+b052261874cc319fa5368d33386cf51c7cb53423efd23ade1eed05a467777f5a  rank_post.py
+4eb23adc8e696bd73acf947ba216b18d2dba5cf4c9b1e72abafc885bc91d4c7e  test_sfworld.py
+(PREREG v1 frozen before any training run; smoke tests only)
+Thu Oct 29 19:20:40 UTC 2026
+7acaafb165170ab4897e6b1d6ef4337945392f7c2cafdd7be7452d65657ea083  sfgpu.py
+5dd31409ac3e0f7d851d92c222735cd2e10a71f872fb5f43993afe720291cc9e  sftrain.py
+558f44f291e15b5102317eea164045b571eebf72e471d5681e9fe0d32e2985df  gpu_job.sh
+1dc8c34da4f381611e89d72bc52049c1ee2c9655a06b751b11c71811f9ca7f57  test_sfgpu.py
+(infra amendment: on-device sampler + MPS for the GPU batch; no results seen; design unchanged)
+Thu Oct 29 19:33:35 UTC 2026
+134541a3b9fce1189e16e1c349be6c009e379d2eaadd445c36a114510a0b19a0  PREREG.md
+37258ff68eb80b65543d44c0940c0af88b3d3fa1fd4a8249488d9f7da299cb86  e4fa.py
+8d9ac741dd5702f041771ff863204175a486fc15d5adc7635091cda49f6e7f11  fa_core_copy.py
+(amendment 1: E4 + GPU sampler; before any result)
+Thu Oct 29 19:42:08 UTC 2026
+4dec1281cf73fe1ca97947b005d860bc10ea259b1852cbd85128af2bb5c6e83b  gpu_job.sh
+c1c25e1bd42ea71e9a6571d4b77dec517e9a92d593990a61ef679d9a59a52bd0  mkjobs.py
+12ad0022d168b4f0aa8d6634e169da35a75954971f72c7885fdc4be2b91e0336  jobs1.txt
+cc7148aa565f9882d4e271dff96b0695bcd378096cd7da959759988444afefd9  jobs2.txt
+341da2658c3dac12b3d3ea74264d8fdac8596f481b02e3ddcfd4b2d59e8fe13f  launch_gpu.sh
+(runner generalised for E4; stager fixed: sfgpu.py was missing in sfx-b2)
+Thu Oct 29 19:43:27 UTC 2026
+f1395cf34c30af392b69faf715936126db41241be4cac95f9266d92aa89b1fdf  PREREG.md
+fa362c8feff171a9723d947d23c8e785a1102b022eba60970a3a4bcbfbdd4087  est5.py
+(amendment 2: E5 pre-registered; dev runs only on a local 4k-step tree)
+Thu Oct 29 19:45:27 UTC 2026
+e4724c2a4e457a1a9d1ce1a3a4f140099e491c9a5aa5ca929dd540458e567de5  PREREG.md
+79254a7fcc5c5abdef97f6c4864bbbd0bbde8c74dc78ee749cb8b0968070c009  sfmodels.py
+4820d2e16b9cd1c969ffa0f2df714a3cf99c11397a80df40af91031d5d2273b5  sftrain.py
+1e77a61280549b2a784c1fc29089e8096066c9cc6bbbcb6ad76f24d53f2f2f18  sfgpu.py
+8814055fdec9aa2e2d2702ac86a6fd980cb34ed64bf75f3f755ca5c2dfa0975d  sfworld.py
+(amendment 3: rounds arm + N 64/256 + M1; before any result)
+Thu Oct 29 20:01:17 UTC 2026
+156d68812c9ee4480547f94df20ee8ad8d8a239c3109f67fcab6bdf24f24c9f5  PREREG.md
+47db8e4c12622a7db9110bcecd23d54617a4d32321109b29abf9e995f6703736  sftrain.py
+5f06f8d3c2db570026483125bf7d464a84f28103609ce5c2c20d7cade9d31e27  e4fa.py
+24a95c5c0b905376c396a5af1849a64d753f07deb163bae7d5fcea0f693b5119  jobs_b4_1.txt
+8b736b35daea02f14ab48e90fda144d5b8d9f06e6b7ef9a073f76274a45e388a  /tmp/sfx_hot/sftrain.py
+(amendment 4: TF32 for training on GPU; E4 moved to sfx-b4)
+Thu Oct 29 20:04:20 UTC 2026
+b04d284ee0813db3d27bc6a9035e9a83ea9efa3f1823af7ea1868439f955215f  PREREG.md
+8c22167ad218393f2ea9df8cd6551c645a3328d4ac7d089b4d123e15cef583bd  sftrain.py
+5f06f8d3c2db570026483125bf7d464a84f28103609ce5c2c20d7cade9d31e27  e4fa.py
+79254a7fcc5c5abdef97f6c4864bbbd0bbde8c74dc78ee749cb8b0968070c009  sfmodels.py
+1e77a61280549b2a784c1fc29089e8096066c9cc6bbbcb6ad76f24d53f2f2f18  sfgpu.py
+1f9e088aa00494930ae82fa5cd651518dc6fce4a0047788fd573def106867c3d  jobs_b4_1_final.txt
+9800a8ae5d1755d958e500eb1e16a08c4124264f726bb827006e335ed2fe9062  jobs_b4_2_final.txt
+5e3319aea8acc826b6c041cee46366defc7f3a3e7ed80e5b471fd8b55ed6e09b  sftrain_b3_hot_v2.py
+(amendment 5 in force: b3 runs sftrain_b3_hot_v2.py from 20:03Z with jobs2 emptied; b4 runs the listed files from its start)
+Thu Oct 29 20:12:51 UTC 2026
+e3eb3407cc01704133400120a941c720361e0d4d5dc37f89177ca642844cdf30  sfgpu.py
+(sync-free pair sampler, identical draws; hot-swapped on sfx-b3 at this time: affects W2 jobs started later)
+Thu Oct 29 20:25:55 UTC 2026
+073d09a644aadea44803bc3b4eb3f979a2356e75b6054a4f63cd567a0cc87803  PREREG.md
+b531bf8c21a8466506ebf588e03a4e0ea0a504999655dbbf3b3f708fc4db0d75  sftrain.py
+54dce6f20800961742855b2a3c6920b5431c949b3f49532c6e950d56cd665e1a  sfmodels.py
+a2bdac1a98103051b397154580da144230a5f8e8e380f5d0acf9e971b439dd41  jobs_b4_2_a6.txt
+7cb0eb6c25144592c426fdee54e3335b562364c6bfa4f182864bec1548d4d8e9  m1prof.py
+(amendment 6: theory 6.3/6.5 adopted; M4 + matched trees queued on sfx-b4 phase 2)
+Thu Oct 29 20:55:08 UTC 2026
+ddce32c73624eab1deead595ef96d700c919a2b83cfa0a9024b809e873888349  PREREG.md
+(amendment 7: set N256 dropped; E4 -> 8k steps in sfx-b4 phase 2)
+Thu Oct 29 20:57:27 UTC 2026
+e4851b652a5817c52c86c664f1190747c5bbb20b7d1f9189e0b903510498dd2b  PREREG.md
+5deb997517d5d54a5fa74a6557b6bbb73fcb6844fc2f91c0603546590b037f9b  jobs_b5_1.txt
+b531bf8c21a8466506ebf588e03a4e0ea0a504999655dbbf3b3f708fc4db0d75  sftrain.py
+54dce6f20800961742855b2a3c6920b5431c949b3f49532c6e950d56cd665e1a  sfmodels.py
+e3eb3407cc01704133400120a941c720361e0d4d5dc37f89177ca642844cdf30  sfgpu.py
+(amendment 8: light jobs moved to sfx-b5)
+Thu Oct 29 21:04:58 UTC 2026
+57818f0bd878d2bc1a0b28c5d75a4a682f6760c46bb682cc7b2669738f884df5  PREREG.md
+ddc0f2aa330a51fb8725c8ab2feda4a1724675a20a9548614579a2b3d9be4b95  jobs_b5_2.txt
+(amendment 9: phase-2 split b4/b5)
+Thu Oct 29 21:53:58 UTC 2026
+0f25d98a3e7ef8f30a85aea428c3fe7565360db8945c66a0401bde9be4594161  PREREG.md
+(headings corrected to hash-log times; text otherwise unchanged; review item 10)
+Thu Oct 29 22:06:41 UTC 2026
+49726e7c54469c732bbbe267285ba48720facc1d79f6903a24bece60b2ef7fe1  PREREG.md
+(amendment 10: two-pass no-aux ablation; before results)
+Thu Oct 29 22:44:25 UTC 2026
+b2bb32d49a2031e83376c36645e05fefb99c8f9b52fc5d93b8eea8720c6781e8  PREREG.md
+(amendment 11: exploratory 4x-budget check at N = 12; written after E1 results)
+Thu Oct 29 23:45:03 UTC 2026
+91acd7b42ec559976b42f8a31451f799bec0ac39c222c6c3ee589034d488fcd0  PREREG.md
+(amendment 11 addendum: seed 1 of the 4x trees)
+Fri Oct 30 00:34:11 UTC 2026
+91acd7b42ec559976b42f8a31451f799bec0ac39c222c6c3ee589034d488fcd0  PREREG.md
+6d2a347b81f671f1242a2e404d032bf114358bfce1d152303a240dfe41670a13  /home/agent/workspaces/mats/outbox/scale-free-exp-2026-10-29.md
+f1e629590a18ad7b5c7531ef646689991189a33bc5a595af94cf8c89092a36f8  results/tables.md
+(final report and tables)

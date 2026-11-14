@@ -1,0 +1,697 @@
+watchdog already running
+DELETE vm=trader-b3-p15-1 epoch=1790715307 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="" spend_now=0.19
+RESUME plan=setup,smoke vm=trader-b3-p15-2
+creating trader-b3-p15-2 in us-west1-a ...
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-8 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-west1-a zone. Consider trying your request in another
+      zone which has capacity to accommodate your request. Alternatively, you can
+      try your request again with a different VM hardware configuration or at a later
+      time. For more information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-8
+      zone: us-west1-a
+      zonesAvailable: ''
+    reason: stockout
+message: The zone 'projects/GCP_PROJECT/zones/us-west1-a' does not have enough resources
+  available to fulfill the request.  '(resource type:compute)'.
+
+creating trader-b3-p15-2 in us-west1-b ...
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-8 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-west1-b zone. Consider trying your request in another
+      zone which has capacity to accommodate your request. Alternatively, you can
+      try your request again with a different VM hardware configuration or at a later
+      time. For more information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-8
+      zone: us-west1-b
+      zonesAvailable: ''
+    reason: stockout
+message: The zone 'projects/GCP_PROJECT/zones/us-west1-b' does not have enough resources
+  available to fulfill the request.  '(resource type:compute)'.
+
+creating trader-b3-p15-2 in us-east4-c ...
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-8 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-east4-c zone. Consider trying your request in another
+      zone which has capacity to accommodate your request. Alternatively, you can
+      try your request again with a different VM hardware configuration or at a later
+      time. For more information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-8
+      zone: us-east4-c
+      zonesAvailable: ''
+    reason: stockout
+message: The zone 'projects/GCP_PROJECT/zones/us-east4-c' does not have enough resources
+  available to fulfill the request.  '(resource type:compute)'.
+
+creating trader-b3-p15-2 in us-east1-c ...
+NAME             ZONE        MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP     STATUS
+trader-b3-p15-2  us-east1-c  g2-standard-8  true         [ip-removed]  [ip-removed]  RUNNING
+CREATE vm=trader-b3-p15-2 zone=us-east1-c epoch=1790715437 type=g2-standard-8+L4 spot max_run=6h rate_ceiling=0.86 spend_before=0.18
+waiting for trader-b3-p15-2 ([ip-removed]) startup (up to 25 min) ...
+READY vm=trader-b3-p15-2 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+PUSH vm=trader-b3-p15-2
+START vm=trader-b3-p15-2 plan=setup,smoke
+watchdog already running
+DELETE vm=trader-b3-p15-3 epoch=1790721330 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="trader-b3-p15-4 trader-b3-p15-2 " spend_now=2.73
+RESUME lane=ta plan=q:tune_a,end vm=trader-b3-p15-5
+creating trader-b3-p15-5 in us-central1-a ...
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-8 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-central1-a zone. Consider trying your request in another
+      zone which has capacity to accommodate your request. Alternatively, you can
+      try your request again with a different VM hardware configuration or at a later
+      time. For more information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-8
+      zone: us-central1-a
+      zonesAvailable: ''
+    reason: stockout
+message: The zone 'projects/GCP_PROJECT/zones/us-central1-a' does not have enough
+  resources available to fulfill the request.  '(resource type:compute)'.
+
+creating trader-b3-p15-5 in us-central1-b ...
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-8 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-central1-b zone. Consider trying your request in another
+      zone which has capacity to accommodate your request. Alternatively, you can
+      try your request again with a different VM hardware configuration or at a later
+      time. For more information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-8
+      zone: us-central1-b
+      zonesAvailable: ''
+    reason: stockout
+message: The zone 'projects/GCP_PROJECT/zones/us-central1-b' does not have enough
+  resources available to fulfill the request.  '(resource type:compute)'.
+
+creating trader-b3-p15-5 in us-central1-c ...
+NAME             ZONE           MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP   STATUS
+trader-b3-p15-5  us-central1-c  g2-standard-8  true         [ip-removed]  [ip-removed]  RUNNING
+CREATE vm=trader-b3-p15-5 zone=us-central1-c epoch=1790721411 type=g2-standard-8+L4 spot max_run=6h rate_ceiling=0.86 spend_before=2.74
+waiting for trader-b3-p15-5 ([ip-removed]) startup (up to 25 min) ...
+STARTUP-TIMEOUT vm=trader-b3-p15-5
+DELETE vm=trader-b3-p15-5 epoch=1790722944 reason="startup timeout" leftover_disks="trader-b3-p15-4	us-east1-b
+trader-b3-p15-2	us-east1-c" spend_now=3.87
+RESUME-FAILED vm=trader-b3-p15-5 lane=ta
+RESUME lane=ta plan=q:tune_a,end vm=trader-b3-p15-6
+creating trader-b3-p15-6 in us-central1-a ...
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-8 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-central1-a zone. Consider trying your request in another
+      zone which has capacity to accommodate your request. Alternatively, you can
+      try your request again with a different VM hardware configuration or at a later
+      time. For more information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-8
+      zone: us-central1-a
+      zonesAvailable: ''
+    reason: stockout
+message: The zone 'projects/GCP_PROJECT/zones/us-central1-a' does not have enough
+  resources available to fulfill the request.  '(resource type:compute)'.
+
+creating trader-b3-p15-6 in us-central1-b ...
+NAME             ZONE           MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP    EXTERNAL_IP   STATUS
+trader-b3-p15-6  us-central1-b  g2-standard-8  true         [ip-removed]  [ip-removed]  RUNNING
+CREATE vm=trader-b3-p15-6 zone=us-central1-b epoch=1790723390 type=g2-standard-8+L4 spot max_run=6h rate_ceiling=0.86 spend_before=4.06
+waiting for trader-b3-p15-6 ([ip-removed]) startup (up to 25 min) ...
+READY vm=trader-b3-p15-6 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+PUSH vm=trader-b3-p15-6
+START vm=trader-b3-p15-6 plan=q:tune_a,end lane=ta
+RESUME lane=tc plan=q:tune_c,end vm=trader-b3-p15-7
+REFUSE: 3 p15 VMs already up (max 3)
+RESUME-FAILED vm=trader-b3-p15-7 lane=tc
+watchdog already running
+DELETE vm=trader-b3-p15-2 epoch=1790728301 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="trader-b3-p15-6 trader-b3-p15-4 " spend_now=4.60
+RESUME lane=main plan=bg:g5m,bg:g5fix,q2:full_mb,wait,end vm=trader-b3-p15-7
+creating trader-b3-p15-7 in us-central1-a ...
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-8 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-central1-a zone. Consider trying your request in another
+      zone which has capacity to accommodate your request. Alternatively, you can
+      try your request again with a different VM hardware configuration or at a later
+      time. For more information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-8
+      zone: us-central1-a
+      zonesAvailable: ''
+    reason: stockout
+message: The zone 'projects/GCP_PROJECT/zones/us-central1-a' does not have enough
+  resources available to fulfill the request.  '(resource type:compute)'.
+
+creating trader-b3-p15-7 in us-central1-b ...
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-8 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-central1-b zone. Consider trying your request in another
+      zone which has capacity to accommodate your request. Alternatively, you can
+      try your request again with a different VM hardware configuration or at a later
+      time. For more information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-8
+      zone: us-central1-b
+      zonesAvailable: ''
+    reason: stockout
+message: The zone 'projects/GCP_PROJECT/zones/us-central1-b' does not have enough
+  resources available to fulfill the request.  '(resource type:compute)'.
+
+creating trader-b3-p15-7 in us-central1-c ...
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-8 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-central1-c zone. Alternatively, you can try your request
+      again with a different VM hardware configuration or at a later time. For more
+      information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-8
+      zone: us-central1-c
+      zonesAvailable: ''
+    reason: resource_availability
+message: The zone 'projects/GCP_PROJECT/zones/us-central1-c' does not have enough
+  resources available to fulfill the request.  'NULL:0/NULL:0/NULL:0 (state:STOCKOUT,
+  sub-state:STOCKOUT, resource type:compute)'.
+
+creating trader-b3-p15-7 in us-west1-a ...
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-8 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-west1-a zone. Consider trying your request in another
+      zone which has capacity to accommodate your request. Alternatively, you can
+      try your request again with a different VM hardware configuration or at a later
+      time. For more information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-8
+      zone: us-west1-a
+      zonesAvailable: ''
+    reason: stockout
+message: The zone 'projects/GCP_PROJECT/zones/us-west1-a' does not have enough resources
+  available to fulfill the request.  '(resource type:compute)'.
+
+creating trader-b3-p15-7 in us-west1-b ...
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-8 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-west1-b zone. Consider trying your request in another
+      zone which has capacity to accommodate your request. Alternatively, you can
+      try your request again with a different VM hardware configuration or at a later
+      time. For more information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-8
+      zone: us-west1-b
+      zonesAvailable: ''
+    reason: stockout
+message: The zone 'projects/GCP_PROJECT/zones/us-west1-b' does not have enough resources
+  available to fulfill the request.  '(resource type:compute)'.
+
+creating trader-b3-p15-7 in europe-west1-b ...
+NAME             ZONE            MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP    STATUS
+trader-b3-p15-7  europe-west1-b  g2-standard-8  true         [ip-removed]   [ip-removed]  RUNNING
+CREATE vm=trader-b3-p15-7 zone=europe-west1-b epoch=1790728445 type=g2-standard-8+L4 spot max_run=6h rate_ceiling=0.86 spot_rate=0.52 spend_before=4.60
+waiting for trader-b3-p15-7 ([ip-removed]) startup (up to 25 min) ...
+READY vm=trader-b3-p15-7 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+PUSH vm=trader-b3-p15-7
+START vm=trader-b3-p15-7 plan=bg:g5m,bg:g5fix,q2:full_mb,wait,end lane=main
+DELETE vm=trader-b3-p15-6 epoch=1790729246 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="trader-b3-p15-7 trader-b3-p15-4 " spend_now=4.98
+RESUME lane=ta plan=bg:q1:full_mA,q:full_ma,wait,q2:full_ma,q1:full_mA,end vm=trader-b3-p15-8
+creating trader-b3-p15-8 in us-central1-a ...
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-8 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-central1-a zone. Consider trying your request in another
+      zone which has capacity to accommodate your request. Alternatively, you can
+      try your request again with a different VM hardware configuration or at a later
+      time. For more information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-8
+      zone: us-central1-a
+      zonesAvailable: ''
+    reason: stockout
+message: The zone 'projects/GCP_PROJECT/zones/us-central1-a' does not have enough
+  resources available to fulfill the request.  '(resource type:compute)'.
+
+creating trader-b3-p15-8 in us-central1-b ...
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-8 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-central1-b zone. Consider trying your request in another
+      zone which has capacity to accommodate your request. Alternatively, you can
+      try your request again with a different VM hardware configuration or at a later
+      time. For more information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-8
+      zone: us-central1-b
+      zonesAvailable: ''
+    reason: stockout
+message: The zone 'projects/GCP_PROJECT/zones/us-central1-b' does not have enough
+  resources available to fulfill the request.  '(resource type:compute)'.
+
+creating trader-b3-p15-8 in us-central1-c ...
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-8 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-central1-c zone. Alternatively, you can try your request
+      again with a different VM hardware configuration or at a later time. For more
+      information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-8
+      zone: us-central1-c
+      zonesAvailable: ''
+    reason: resource_availability
+message: The zone 'projects/GCP_PROJECT/zones/us-central1-c' does not have enough
+  resources available to fulfill the request.  'NULL:0/NULL:0/NULL:0 (state:STOCKOUT,
+  sub-state:STOCKOUT, resource type:compute)'.
+
+creating trader-b3-p15-8 in us-west1-a ...
+NAME             ZONE        MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP    STATUS
+trader-b3-p15-8  us-west1-a  g2-standard-8  true         [ip-removed]  [ip-removed]  RUNNING
+CREATE vm=trader-b3-p15-8 zone=us-west1-a epoch=1790729319 type=g2-standard-8+L4 spot max_run=6h rate_ceiling=0.86 spot_rate=0.52 spend_before=4.99
+waiting for trader-b3-p15-8 ([ip-removed]) startup (up to 25 min) ...
+READY vm=trader-b3-p15-8 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+PUSH vm=trader-b3-p15-8
+START vm=trader-b3-p15-8 plan=bg:q1:full_mA,q:full_ma,wait,q2:full_ma,q1:full_mA,end lane=ta
+DELETE vm=trader-b3-p15-7 epoch=1790732154 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="trader-b3-p15-8 trader-b3-p15-4 " spend_now=6.23
+RESUME lane=main plan=setup,bg:g5m,q2:full_mb,wait,q1:full_mb,g5fix,end vm=trader-b3-p15-9
+creating trader-b3-p15-9 in us-central1-a ...
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-8 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-central1-a zone. Consider trying your request in another
+      zone which has capacity to accommodate your request. Alternatively, you can
+      try your request again with a different VM hardware configuration or at a later
+      time. For more information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-8
+      zone: us-central1-a
+      zonesAvailable: ''
+    reason: stockout
+message: The zone 'projects/GCP_PROJECT/zones/us-central1-a' does not have enough
+  resources available to fulfill the request.  '(resource type:compute)'.
+
+creating trader-b3-p15-9 in us-central1-b ...
+NAME             ZONE           MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP   STATUS
+trader-b3-p15-9  us-central1-b  g2-standard-8  true         [ip-removed]  [ip-removed]  RUNNING
+CREATE vm=trader-b3-p15-9 zone=us-central1-b epoch=1790732193 type=g2-standard-8+L4 spot max_run=6h rate_ceiling=0.86 spot_rate=0.52 spend_before=6.24
+waiting for trader-b3-p15-9 ([ip-removed]) startup (up to 25 min) ...
+STARTUP-TIMEOUT vm=trader-b3-p15-9
+DELETE vm=trader-b3-p15-9 epoch=1790733734 reason="startup timeout" leftover_disks="trader-b3-p15-8	us-west1-a
+trader-b3-p15-4	us-east1-b" spend_now=6.91
+RESUME-FAILED vm=trader-b3-p15-9 lane=main
+RESUME lane=main plan=setup,bg:g5m,q2:full_mb,wait,q1:full_mb,g5fix,end vm=trader-b3-p15-10
+creating trader-b3-p15-10 in us-central1-a ...
+NAME              ZONE           MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP    STATUS
+trader-b3-p15-10  us-central1-a  g2-standard-8  true         [ip-removed]  [ip-removed]  RUNNING
+CREATE vm=trader-b3-p15-10 zone=us-central1-a epoch=1790734067 type=g2-standard-8+L4 spot max_run=6h rate_ceiling=0.86 spot_rate=0.52 spend_before=7.00
+waiting for trader-b3-p15-10 ([ip-removed]) startup (up to 25 min) ...
+READY vm=trader-b3-p15-10 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+PUSH vm=trader-b3-p15-10
+START vm=trader-b3-p15-10 plan=setup,bg:g5m,q2:full_mb,wait,q1:full_mb,g5fix,end lane=main
+DELETE vm=trader-b3-p15-10 epoch=1790735840 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="trader-b3-p15-8 trader-b3-p15-4 " spend_now=7.78
+RESUME lane=main plan=setup,bg:g5m,q2:full_mb,wait,q1:full_mb,g5fix,end vm=trader-b3-p15-11
+creating trader-b3-p15-11 in us-central1-a ...
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-8 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-central1-a zone. Consider trying your request in another
+      zone which has capacity to accommodate your request. Alternatively, you can
+      try your request again with a different VM hardware configuration or at a later
+      time. For more information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-8
+      zone: us-central1-a
+      zonesAvailable: ''
+    reason: stockout
+message: The zone 'projects/GCP_PROJECT/zones/us-central1-a' does not have enough
+  resources available to fulfill the request.  '(resource type:compute)'.
+
+creating trader-b3-p15-11 in us-central1-b ...
+NAME              ZONE           MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP   STATUS
+trader-b3-p15-11  us-central1-b  g2-standard-8  true         [ip-removed]  [ip-removed]  RUNNING
+CREATE vm=trader-b3-p15-11 zone=us-central1-b epoch=1790735892 type=g2-standard-8+L4 spot max_run=6h rate_ceiling=0.86 spot_rate=0.52 spend_before=7.78
+waiting for trader-b3-p15-11 ([ip-removed]) startup (up to 25 min) ...
+READY vm=trader-b3-p15-11 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+PUSH vm=trader-b3-p15-11
+START vm=trader-b3-p15-11 plan=setup,bg:g5m,q2:full_mb,wait,q1:full_mb,g5fix,end lane=main
+WATCHDOG vm=trader-b3-p15-4 action=delete why="plan finished"
+SYNC vm=trader-b3-p15-4 verified_files=445 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+LANE-DONE lane=tb vm=trader-b3-p15-4 plan="setup,q2:full_p,q1:timing,end"
+Deleted [https://www.googleapis.com/compute/v1/projects/GCP_PROJECT/zones/us-east1-b/instances/trader-b3-p15-4].
+DELETE vm=trader-b3-p15-4 epoch=1790737612 reason="watchdog: plan finished" leftover_disks="trader-b3-p15-11	us-central1-b
+trader-b3-p15-8	us-west1-a" spend_now=8.54
+WATCHDOG vm=trader-b3-p15-8 action=delete why="plan finished"
+SYNC vm=trader-b3-p15-8 verified_files=301 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+LANE-DONE lane=ta vm=trader-b3-p15-8 plan="bg:q1:full_mA,q:full_ma,wait,q2:full_ma,q1:full_mA,q2:full_md,end"
+Deleted [https://www.googleapis.com/compute/v1/projects/GCP_PROJECT/zones/us-west1-a/instances/trader-b3-p15-8].
+DELETE vm=trader-b3-p15-8 epoch=1790738721 reason="watchdog: plan finished" leftover_disks="trader-b3-p15-11	us-central1-b" spend_now=8.86
+DELETE vm=trader-b3-p15-11 epoch=1790739339 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="" spend_now=8.95
+RESUME lane=main plan=setup,bg:g5m,q2:full_mb,wait,q1:full_mb,g5fix,end vm=trader-b3-p15-12
+creating trader-b3-p15-12 in us-central1-a ...
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-8 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-central1-a zone. Consider trying your request in another
+      zone which has capacity to accommodate your request. Alternatively, you can
+      try your request again with a different VM hardware configuration or at a later
+      time. For more information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-8
+      zone: us-central1-a
+      zonesAvailable: ''
+    reason: stockout
+message: The zone 'projects/GCP_PROJECT/zones/us-central1-a' does not have enough
+  resources available to fulfill the request.  '(resource type:compute)'.
+
+creating trader-b3-p15-12 in us-central1-b ...
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-8 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-central1-b zone. Consider trying your request in another
+      zone which has capacity to accommodate your request. Alternatively, you can
+      try your request again with a different VM hardware configuration or at a later
+      time. For more information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-8
+      zone: us-central1-b
+      zonesAvailable: ''
+    reason: stockout
+message: The zone 'projects/GCP_PROJECT/zones/us-central1-b' does not have enough
+  resources available to fulfill the request.  '(resource type:compute)'.
+
+creating trader-b3-p15-12 in us-central1-c ...
+NAME              ZONE           MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP      STATUS
+trader-b3-p15-12  us-central1-c  g2-standard-8  true         [ip-removed]  [ip-removed]  RUNNING
+CREATE vm=trader-b3-p15-12 zone=us-central1-c epoch=1790739378 type=g2-standard-8+L4 spot max_run=6h rate_ceiling=0.86 spot_rate=0.52 spend_before=8.95
+waiting for trader-b3-p15-12 ([ip-removed]) startup (up to 25 min) ...
+READY vm=trader-b3-p15-12 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+PUSH vm=trader-b3-p15-12
+ssh: connect to host [ip-removed] port 22: Connection timed out
+run_vm.sh not running on trader-b3-p15-12
+RESUME-FAILED vm=trader-b3-p15-12 lane=main
+DELETE vm=trader-b3-p15-12 epoch=1790739967 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="" spend_now=9.03
+RESUME lane=main plan=setup,bg:g5m,q2:full_mb,wait,q1:full_mb,g5fix,end vm=trader-b3-p15-13
+creating trader-b3-p15-13 in us-central1-a ...
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-8 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-central1-a zone. Consider trying your request in another
+      zone which has capacity to accommodate your request. Alternatively, you can
+      try your request again with a different VM hardware configuration or at a later
+      time. For more information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-8
+      zone: us-central1-a
+      zonesAvailable: ''
+    reason: stockout
+message: The zone 'projects/GCP_PROJECT/zones/us-central1-a' does not have enough
+  resources available to fulfill the request.  '(resource type:compute)'.
+
+creating trader-b3-p15-13 in us-central1-b ...
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-8 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-central1-b zone. Consider trying your request in another
+      zone which has capacity to accommodate your request. Alternatively, you can
+      try your request again with a different VM hardware configuration or at a later
+      time. For more information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-8
+      zone: us-central1-b
+      zonesAvailable: ''
+    reason: stockout
+message: The zone 'projects/GCP_PROJECT/zones/us-central1-b' does not have enough
+  resources available to fulfill the request.  '(resource type:compute)'.
+
+creating trader-b3-p15-13 in us-central1-c ...
+NAME              ZONE           MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP    STATUS
+trader-b3-p15-13  us-central1-c  g2-standard-8  true         [ip-removed]  [ip-removed]  RUNNING
+CREATE vm=trader-b3-p15-13 zone=us-central1-c epoch=1790740008 type=g2-standard-8+L4 spot max_run=6h rate_ceiling=0.86 spot_rate=0.52 spend_before=9.03
+waiting for trader-b3-p15-13 ([ip-removed]) startup (up to 25 min) ...
+RESUME lane=main plan=setup,bg:g5m,q2:full_mb,wait,q1:full_mb,g5fix,end vm=trader-b3-p15-14
+creating trader-b3-p15-14 in us-west1-a ...
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-8 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-west1-a zone. Consider trying your request in another
+      zone which has capacity to accommodate your request. Alternatively, you can
+      try your request again with a different VM hardware configuration or at a later
+      time. For more information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-8
+      zone: us-west1-a
+      zonesAvailable: ''
+    reason: stockout
+message: The zone 'projects/GCP_PROJECT/zones/us-west1-a' does not have enough resources
+  available to fulfill the request.  '(resource type:compute)'.
+
+creating trader-b3-p15-14 in us-east1-b ...
+NAME              ZONE        MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP     STATUS
+trader-b3-p15-14  us-east1-b  g2-standard-8  true         [ip-removed]  [ip-removed]  RUNNING
+CREATE vm=trader-b3-p15-14 zone=us-east1-b epoch=1790740649 type=g2-standard-8+L4 spot max_run=6h rate_ceiling=0.86 spot_rate=0.52 spend_before=9.12
+waiting for trader-b3-p15-14 ([ip-removed]) startup (up to 25 min) ...
+READY vm=trader-b3-p15-14 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+PUSH vm=trader-b3-p15-14
+START vm=trader-b3-p15-14 plan=setup,bg:g5m,q2:full_mb,wait,q1:full_mb,g5fix,end lane=main
+WATCHDOG vm=trader-b3-p15-14 action=delete why="plan finished"
+SYNC vm=trader-b3-p15-14 verified_files=479 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P15/results/vm_out
+LANE-DONE lane=main vm=trader-b3-p15-14 plan="setup,bg:g5m,q2:full_mb,wait,q1:full_mb,g5fix,end"
+Deleted [https://www.googleapis.com/compute/v1/projects/GCP_PROJECT/zones/us-east1-b/instances/trader-b3-p15-14].
+DELETE vm=trader-b3-p15-14 epoch=1790747209 reason="watchdog: plan finished" leftover_disks="none" spend_now=10.07

@@ -1,0 +1,716 @@
+{
+  "checked_at": "2026-10-28T12:28:10+00:00",
+  "status": "post-review operational risk-set sensitivity; not a replacement of the preregistered analysis",
+  "definition": "include a seed iff no acquisition is confirmed at or before the landmark (detection_step > landmark, or none)",
+  "outcome": "three-point acquisition confirmed by each condition's observed horizon",
+  "method": "same four fixed-direction metrics, five registered landmarks, 2000 stratified seed bootstraps and deterministic seed strings as original analyzer; minimum five seeds per class",
+  "uncertainty": "conditional on retained evaluation episodes; no multiplicity or metric-selection adjustment",
+  "input_sha256": {
+    "/tmp/astra-pfn-baselines.json": "9e65415ac0d0d6c0ccb3580e00ff64c226584cd8391253721e6bebaaafc09c04",
+    "/home/agent/workspaces/inconsistency-search-astra-teacher-graphs-20261024/experiments/tiny_pfn_plateau_20261028/analyze.py": "e4376e1b3bc4e3cafc8bc719d4d35a004bc7b4f633d258f06d836bb04e8bdb0d",
+    "/home/agent/workspaces/mats/outbox/binding-plateau-paper-2026-10-28/evidence/confirmation_risk_set.py": "6bfef83cc7590bc771074960d3903f91f3895e2d91f2143bbae81b2e9156a688",
+    "/tmp/l4runs/astra-pfn28-w16b/runs/astra-pfn28-w16b/baseline/meta.json": "77da439eddc2212818f4b439d7bdfe164e0dcc31270bd97da7484d1d3948611c",
+    "/tmp/l4runs/astra-pfn28-w16b/runs/astra-pfn28-w16b/baseline/curve.json": "4176f7acec1e87c3d90685481f2050ed4563eccf6ec204fadc0b44315822c622",
+    "/tmp/l4runs/astra-pfn28-w32/runs/astra-pfn28-w32/baseline/meta.json": "cdc5b8d077bd81f3bb4be5d67ebbc9d4dc48ed35f1c3672f8c907855bae56327",
+    "/tmp/l4runs/astra-pfn28-w32/runs/astra-pfn28-w32/baseline/curve.json": "1264d5e905b552b27a35cba45740ec59005034c73463a595472b9cfaf345d972"
+  },
+  "groups": [
+    {
+      "width": 16,
+      "condition": "baseline",
+      "landmarks": [
+        {
+          "landmark": 0,
+          "eligible": 50,
+          "later_confirmed": 39,
+          "not_confirmed_by_horizon": 11,
+          "status": "ok",
+          "retrospective_onset_eligible": 50,
+          "retained_pending_confirmation": [],
+          "metrics": {
+            "own_source_contrast": {
+              "fixed_direction": "higher",
+              "retrospective_onset_auc": 0.5594405594405595,
+              "retrospective_onset_bootstrap95": [
+                0.3402680652680653,
+                0.7669580419580416
+              ],
+              "confirmation_risk_set_auc": 0.5594405594405595,
+              "stratified_seed_bootstrap95": [
+                0.3402680652680653,
+                0.7669580419580416
+              ]
+            },
+            "binding_disruption_nll": {
+              "fixed_direction": "higher",
+              "retrospective_onset_auc": 0.7878787878787878,
+              "retrospective_onset_bootstrap95": [
+                0.6526223776223776,
+                0.8974358974358975
+              ],
+              "confirmation_risk_set_auc": 0.7878787878787878,
+              "stratified_seed_bootstrap95": [
+                0.6526223776223776,
+                0.8974358974358975
+              ]
+            },
+            "query_reading_mass": {
+              "fixed_direction": "higher",
+              "retrospective_onset_auc": 0.7738927738927739,
+              "retrospective_onset_bootstrap95": [
+                0.585081585081585,
+                0.9277389277389277
+              ],
+              "confirmation_risk_set_auc": 0.7738927738927739,
+              "stratified_seed_bootstrap95": [
+                0.585081585081585,
+                0.9277389277389277
+              ]
+            },
+            "gap": {
+              "fixed_direction": "lower",
+              "retrospective_onset_auc": 0.5011655011655012,
+              "retrospective_onset_bootstrap95": [
+                0.303030303030303,
+                0.713344988344988
+              ],
+              "confirmation_risk_set_auc": 0.5011655011655012,
+              "stratified_seed_bootstrap95": [
+                0.303030303030303,
+                0.713344988344988
+              ]
+            }
+          }
+        },
+        {
+          "landmark": 1000,
+          "eligible": 50,
+          "later_confirmed": 39,
+          "not_confirmed_by_horizon": 11,
+          "status": "ok",
+          "retrospective_onset_eligible": 50,
+          "retained_pending_confirmation": [],
+          "metrics": {
+            "own_source_contrast": {
+              "fixed_direction": "higher",
+              "retrospective_onset_auc": 0.40792540792540793,
+              "retrospective_onset_bootstrap95": [
+                0.23071095571095573,
+                0.6037878787878784
+              ],
+              "confirmation_risk_set_auc": 0.40792540792540793,
+              "stratified_seed_bootstrap95": [
+                0.23071095571095573,
+                0.6037878787878784
+              ]
+            },
+            "binding_disruption_nll": {
+              "fixed_direction": "higher",
+              "retrospective_onset_auc": 0.4592074592074592,
+              "retrospective_onset_bootstrap95": [
+                0.2843240093240093,
+                0.6387529137529134
+              ],
+              "confirmation_risk_set_auc": 0.4592074592074592,
+              "stratified_seed_bootstrap95": [
+                0.2843240093240093,
+                0.6387529137529134
+              ]
+            },
+            "query_reading_mass": {
+              "fixed_direction": "higher",
+              "retrospective_onset_auc": 0.9067599067599068,
+              "retrospective_onset_bootstrap95": [
+                0.8135198135198135,
+                0.972027972027972
+              ],
+              "confirmation_risk_set_auc": 0.9067599067599068,
+              "stratified_seed_bootstrap95": [
+                0.8135198135198135,
+                0.972027972027972
+              ]
+            },
+            "gap": {
+              "fixed_direction": "lower",
+              "retrospective_onset_auc": 0.7808857808857809,
+              "retrospective_onset_bootstrap95": [
+                0.6340326340326341,
+                0.8974941724941722
+              ],
+              "confirmation_risk_set_auc": 0.7808857808857809,
+              "stratified_seed_bootstrap95": [
+                0.6340326340326341,
+                0.8974941724941722
+              ]
+            }
+          }
+        },
+        {
+          "landmark": 3000,
+          "eligible": 50,
+          "later_confirmed": 39,
+          "not_confirmed_by_horizon": 11,
+          "status": "ok",
+          "retrospective_onset_eligible": 50,
+          "retained_pending_confirmation": [],
+          "metrics": {
+            "own_source_contrast": {
+              "fixed_direction": "higher",
+              "retrospective_onset_auc": 0.8508158508158508,
+              "retrospective_onset_bootstrap95": [
+                0.7319347319347319,
+                0.9463869463869464
+              ],
+              "confirmation_risk_set_auc": 0.8508158508158508,
+              "stratified_seed_bootstrap95": [
+                0.7319347319347319,
+                0.9463869463869464
+              ]
+            },
+            "binding_disruption_nll": {
+              "fixed_direction": "higher",
+              "retrospective_onset_auc": 0.6456876456876457,
+              "retrospective_onset_bootstrap95": [
+                0.49417249417249415,
+                0.7878787878787878
+              ],
+              "confirmation_risk_set_auc": 0.6456876456876457,
+              "stratified_seed_bootstrap95": [
+                0.49417249417249415,
+                0.7878787878787878
+              ]
+            },
+            "query_reading_mass": {
+              "fixed_direction": "higher",
+              "retrospective_onset_auc": 0.958041958041958,
+              "retrospective_onset_bootstrap95": [
+                0.8834498834498834,
+                1.0
+              ],
+              "confirmation_risk_set_auc": 0.958041958041958,
+              "stratified_seed_bootstrap95": [
+                0.8834498834498834,
+                1.0
+              ]
+            },
+            "gap": {
+              "fixed_direction": "lower",
+              "retrospective_onset_auc": 0.717948717948718,
+              "retrospective_onset_bootstrap95": [
+                0.5547202797202797,
+                0.8624708624708625
+              ],
+              "confirmation_risk_set_auc": 0.717948717948718,
+              "stratified_seed_bootstrap95": [
+                0.5547202797202797,
+                0.8624708624708625
+              ]
+            }
+          }
+        },
+        {
+          "landmark": 5000,
+          "eligible": 50,
+          "later_confirmed": 39,
+          "not_confirmed_by_horizon": 11,
+          "status": "ok",
+          "retrospective_onset_eligible": 48,
+          "retained_pending_confirmation": [
+            {
+              "seed": 100,
+              "event_step": 5000,
+              "detection_step": 7000
+            },
+            {
+              "seed": 110,
+              "event_step": 4000,
+              "detection_step": 6000
+            }
+          ],
+          "metrics": {
+            "own_source_contrast": {
+              "fixed_direction": "higher",
+              "retrospective_onset_auc": 0.9852579852579852,
+              "retrospective_onset_bootstrap95": [
+                0.9484029484029484,
+                1.0
+              ],
+              "confirmation_risk_set_auc": 0.986013986013986,
+              "stratified_seed_bootstrap95": [
+                0.9533799533799534,
+                1.0
+              ]
+            },
+            "binding_disruption_nll": {
+              "fixed_direction": "higher",
+              "retrospective_onset_auc": 0.8206388206388207,
+              "retrospective_onset_bootstrap95": [
+                0.6904176904176904,
+                0.9262899262899262
+              ],
+              "confirmation_risk_set_auc": 0.8298368298368298,
+              "stratified_seed_bootstrap95": [
+                0.6946386946386947,
+                0.9300699300699301
+              ]
+            },
+            "query_reading_mass": {
+              "fixed_direction": "higher",
+              "retrospective_onset_auc": 0.9582309582309583,
+              "retrospective_onset_bootstrap95": [
+                0.8771498771498771,
+                1.0
+              ],
+              "confirmation_risk_set_auc": 0.9603729603729604,
+              "stratified_seed_bootstrap95": [
+                0.8834498834498834,
+                1.0
+              ]
+            },
+            "gap": {
+              "fixed_direction": "lower",
+              "retrospective_onset_auc": 0.7911547911547911,
+              "retrospective_onset_bootstrap95": [
+                0.6560196560196561,
+                0.9066339066339066
+              ],
+              "confirmation_risk_set_auc": 0.8018648018648018,
+              "stratified_seed_bootstrap95": [
+                0.6712703962703963,
+                0.9114219114219114
+              ]
+            }
+          }
+        },
+        {
+          "landmark": 10000,
+          "eligible": 31,
+          "later_confirmed": 20,
+          "not_confirmed_by_horizon": 11,
+          "status": "ok",
+          "retrospective_onset_eligible": 28,
+          "retained_pending_confirmation": [
+            {
+              "seed": 116,
+              "event_step": 9000,
+              "detection_step": 11000
+            },
+            {
+              "seed": 119,
+              "event_step": 10000,
+              "detection_step": 12000
+            },
+            {
+              "seed": 120,
+              "event_step": 9000,
+              "detection_step": 11000
+            }
+          ],
+          "metrics": {
+            "own_source_contrast": {
+              "fixed_direction": "higher",
+              "retrospective_onset_auc": 0.9893048128342246,
+              "retrospective_onset_bootstrap95": [
+                0.9518716577540107,
+                1.0
+              ],
+              "confirmation_risk_set_auc": 0.990909090909091,
+              "stratified_seed_bootstrap95": [
+                0.9590909090909091,
+                1.0
+              ]
+            },
+            "binding_disruption_nll": {
+              "fixed_direction": "higher",
+              "retrospective_onset_auc": 0.9518716577540107,
+              "retrospective_onset_bootstrap95": [
+                0.8502673796791443,
+                1.0
+              ],
+              "confirmation_risk_set_auc": 0.9590909090909091,
+              "stratified_seed_bootstrap95": [
+                0.8772727272727273,
+                1.0
+              ]
+            },
+            "query_reading_mass": {
+              "fixed_direction": "higher",
+              "retrospective_onset_auc": 0.9572192513368984,
+              "retrospective_onset_bootstrap95": [
+                0.8556149732620321,
+                1.0
+              ],
+              "confirmation_risk_set_auc": 0.9590909090909091,
+              "stratified_seed_bootstrap95": [
+                0.8636363636363636,
+                1.0
+              ]
+            },
+            "gap": {
+              "fixed_direction": "lower",
+              "retrospective_onset_auc": 0.9411764705882353,
+              "retrospective_onset_bootstrap95": [
+                0.8342245989304813,
+                1.0
+              ],
+              "confirmation_risk_set_auc": 0.95,
+              "stratified_seed_bootstrap95": [
+                0.8635227272727273,
+                1.0
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "width": 32,
+      "condition": "baseline",
+      "landmarks": [
+        {
+          "landmark": 0,
+          "eligible": 50,
+          "later_confirmed": 47,
+          "not_confirmed_by_horizon": 3,
+          "status": "insufficient_outcome_classes",
+          "retrospective_onset_eligible": 50,
+          "retained_pending_confirmation": [],
+          "metrics": {
+            "own_source_contrast": {
+              "fixed_direction": "higher",
+              "retrospective_onset_auc": null,
+              "retrospective_onset_bootstrap95": null
+            },
+            "binding_disruption_nll": {
+              "fixed_direction": "higher",
+              "retrospective_onset_auc": null,
+              "retrospective_onset_bootstrap95": null
+            },
+            "query_reading_mass": {
+              "fixed_direction": "higher",
+              "retrospective_onset_auc": null,
+              "retrospective_onset_bootstrap95": null
+            },
+            "gap": {
+              "fixed_direction": "lower",
+              "retrospective_onset_auc": null,
+              "retrospective_onset_bootstrap95": null
+            }
+          }
+        },
+        {
+          "landmark": 1000,
+          "eligible": 50,
+          "later_confirmed": 47,
+          "not_confirmed_by_horizon": 3,
+          "status": "insufficient_outcome_classes",
+          "retrospective_onset_eligible": 50,
+          "retained_pending_confirmation": [],
+          "metrics": {
+            "own_source_contrast": {
+              "fixed_direction": "higher",
+              "retrospective_onset_auc": null,
+              "retrospective_onset_bootstrap95": null
+            },
+            "binding_disruption_nll": {
+              "fixed_direction": "higher",
+              "retrospective_onset_auc": null,
+              "retrospective_onset_bootstrap95": null
+            },
+            "query_reading_mass": {
+              "fixed_direction": "higher",
+              "retrospective_onset_auc": null,
+              "retrospective_onset_bootstrap95": null
+            },
+            "gap": {
+              "fixed_direction": "lower",
+              "retrospective_onset_auc": null,
+              "retrospective_onset_bootstrap95": null
+            }
+          }
+        },
+        {
+          "landmark": 3000,
+          "eligible": 50,
+          "later_confirmed": 47,
+          "not_confirmed_by_horizon": 3,
+          "status": "insufficient_outcome_classes",
+          "retrospective_onset_eligible": 44,
+          "retained_pending_confirmation": [
+            {
+              "seed": 101,
+              "event_step": 3000,
+              "detection_step": 5000
+            },
+            {
+              "seed": 102,
+              "event_step": 3000,
+              "detection_step": 5000
+            },
+            {
+              "seed": 119,
+              "event_step": 3000,
+              "detection_step": 5000
+            },
+            {
+              "seed": 124,
+              "event_step": 3000,
+              "detection_step": 5000
+            },
+            {
+              "seed": 136,
+              "event_step": 3000,
+              "detection_step": 5000
+            },
+            {
+              "seed": 149,
+              "event_step": 3000,
+              "detection_step": 5000
+            }
+          ],
+          "metrics": {
+            "own_source_contrast": {
+              "fixed_direction": "higher",
+              "retrospective_onset_auc": null,
+              "retrospective_onset_bootstrap95": null
+            },
+            "binding_disruption_nll": {
+              "fixed_direction": "higher",
+              "retrospective_onset_auc": null,
+              "retrospective_onset_bootstrap95": null
+            },
+            "query_reading_mass": {
+              "fixed_direction": "higher",
+              "retrospective_onset_auc": null,
+              "retrospective_onset_bootstrap95": null
+            },
+            "gap": {
+              "fixed_direction": "lower",
+              "retrospective_onset_auc": null,
+              "retrospective_onset_bootstrap95": null
+            }
+          }
+        },
+        {
+          "landmark": 5000,
+          "eligible": 44,
+          "later_confirmed": 41,
+          "not_confirmed_by_horizon": 3,
+          "status": "insufficient_outcome_classes",
+          "retrospective_onset_eligible": 16,
+          "retained_pending_confirmation": [
+            {
+              "seed": 105,
+              "event_step": 5000,
+              "detection_step": 7000
+            },
+            {
+              "seed": 108,
+              "event_step": 4000,
+              "detection_step": 6000
+            },
+            {
+              "seed": 109,
+              "event_step": 4000,
+              "detection_step": 6000
+            },
+            {
+              "seed": 112,
+              "event_step": 4000,
+              "detection_step": 6000
+            },
+            {
+              "seed": 113,
+              "event_step": 5000,
+              "detection_step": 7000
+            },
+            {
+              "seed": 114,
+              "event_step": 4000,
+              "detection_step": 6000
+            },
+            {
+              "seed": 116,
+              "event_step": 4000,
+              "detection_step": 6000
+            },
+            {
+              "seed": 117,
+              "event_step": 5000,
+              "detection_step": 7000
+            },
+            {
+              "seed": 118,
+              "event_step": 5000,
+              "detection_step": 7000
+            },
+            {
+              "seed": 121,
+              "event_step": 5000,
+              "detection_step": 7000
+            },
+            {
+              "seed": 122,
+              "event_step": 5000,
+              "detection_step": 7000
+            },
+            {
+              "seed": 123,
+              "event_step": 5000,
+              "detection_step": 7000
+            },
+            {
+              "seed": 125,
+              "event_step": 5000,
+              "detection_step": 7000
+            },
+            {
+              "seed": 126,
+              "event_step": 4000,
+              "detection_step": 6000
+            },
+            {
+              "seed": 127,
+              "event_step": 5000,
+              "detection_step": 7000
+            },
+            {
+              "seed": 128,
+              "event_step": 4000,
+              "detection_step": 6000
+            },
+            {
+              "seed": 130,
+              "event_step": 4000,
+              "detection_step": 6000
+            },
+            {
+              "seed": 131,
+              "event_step": 5000,
+              "detection_step": 7000
+            },
+            {
+              "seed": 132,
+              "event_step": 4000,
+              "detection_step": 6000
+            },
+            {
+              "seed": 133,
+              "event_step": 5000,
+              "detection_step": 7000
+            },
+            {
+              "seed": 134,
+              "event_step": 4000,
+              "detection_step": 6000
+            },
+            {
+              "seed": 137,
+              "event_step": 4000,
+              "detection_step": 6000
+            },
+            {
+              "seed": 138,
+              "event_step": 4000,
+              "detection_step": 6000
+            },
+            {
+              "seed": 140,
+              "event_step": 5000,
+              "detection_step": 7000
+            },
+            {
+              "seed": 143,
+              "event_step": 4000,
+              "detection_step": 6000
+            },
+            {
+              "seed": 145,
+              "event_step": 5000,
+              "detection_step": 7000
+            },
+            {
+              "seed": 146,
+              "event_step": 4000,
+              "detection_step": 6000
+            },
+            {
+              "seed": 147,
+              "event_step": 4000,
+              "detection_step": 6000
+            }
+          ],
+          "metrics": {
+            "own_source_contrast": {
+              "fixed_direction": "higher",
+              "retrospective_onset_auc": null,
+              "retrospective_onset_bootstrap95": null
+            },
+            "binding_disruption_nll": {
+              "fixed_direction": "higher",
+              "retrospective_onset_auc": null,
+              "retrospective_onset_bootstrap95": null
+            },
+            "query_reading_mass": {
+              "fixed_direction": "higher",
+              "retrospective_onset_auc": null,
+              "retrospective_onset_bootstrap95": null
+            },
+            "gap": {
+              "fixed_direction": "lower",
+              "retrospective_onset_auc": null,
+              "retrospective_onset_bootstrap95": null
+            }
+          }
+        },
+        {
+          "landmark": 10000,
+          "eligible": 9,
+          "later_confirmed": 6,
+          "not_confirmed_by_horizon": 3,
+          "status": "insufficient_outcome_classes",
+          "retrospective_onset_eligible": 6,
+          "retained_pending_confirmation": [
+            {
+              "seed": 135,
+              "event_step": 10000,
+              "detection_step": 12000
+            },
+            {
+              "seed": 139,
+              "event_step": 9000,
+              "detection_step": 11000
+            },
+            {
+              "seed": 142,
+              "event_step": 10000,
+              "detection_step": 12000
+            }
+          ],
+          "metrics": {
+            "own_source_contrast": {
+              "fixed_direction": "higher",
+              "retrospective_onset_auc": null,
+              "retrospective_onset_bootstrap95": null
+            },
+            "binding_disruption_nll": {
+              "fixed_direction": "higher",
+              "retrospective_onset_auc": null,
+              "retrospective_onset_bootstrap95": null
+            },
+            "query_reading_mass": {
+              "fixed_direction": "higher",
+              "retrospective_onset_auc": null,
+              "retrospective_onset_bootstrap95": null
+            },
+            "gap": {
+              "fixed_direction": "lower",
+              "retrospective_onset_auc": null,
+              "retrospective_onset_bootstrap95": null
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

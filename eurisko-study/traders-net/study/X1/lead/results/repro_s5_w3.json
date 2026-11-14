@@ -1,0 +1,455 @@
+{
+ "checked_at": "2026-09-28T13:49:38Z",
+ "rule": "seed4 within mean+-2sd of seeds 1-3 (sample sd) and qualitative claim holds",
+ "rows": [
+  {
+   "id": "R-M5a",
+   "what": "M5 online MLP probe L phi on prequential net P4 (nats/q-step)",
+   "seeds123": [
+    0.11919134602919257,
+    0.035880384359401274,
+    0.12102570000562268
+   ],
+   "mean": 0.09203247679807218,
+   "sd": 0.04863778703393579,
+   "formula_ok": true,
+   "seed4": 0.03377737424892502,
+   "within_2sd": true,
+   "z": -1.1977334106196305,
+   "qual_holds": true,
+   "qual": "probe L phi > 0.02 (net exploitable, >> price-only)",
+   "status": "verified",
+   "evidence": "M5/w4/out/preq-P4-win-s{1,2,3}.json; X1/w3/results/seed4/preq-P4-win-s4.json",
+   "rerun": "python3 S0/w1/run_w1.py P4 4; python3 M5/w4/probes.py --source preq --ckpt P4 --seed 4"
+  },
+  {
+   "id": "R-M5c.P4",
+   "what": "M5 price-only probe P phi, P4",
+   "seeds123": [
+    0.0015577454214059697,
+    0.001860336339027651,
+    0.0015058125596645812
+   ],
+   "mean": 0.0016412981066994004,
+   "sd": 0.00019146165660067807,
+   "formula_ok": true,
+   "seed4": 0.0019113453905565169,
+   "within_2sd": true,
+   "z": 1.4104509939571894,
+   "qual_holds": true,
+   "qual": "price-only phi positive and < 10% of probe L",
+   "status": "verified",
+   "evidence": "M5/w4/out/preq-P4-win-s*.json",
+   "rerun": "python3 S0/w1/run_w1.py P4 4; python3 M5/w4/probes.py --source preq --ckpt P4 --seed 4"
+  },
+  {
+   "id": "R-M5b",
+   "what": "M5 online MLP probe L phi on prequential net P16 (nats/q-step)",
+   "seeds123": [
+    0.11863551608575867,
+    0.11749823469067222,
+    0.11747604834126396
+   ],
+   "mean": 0.11786993303923161,
+   "sd": 0.0006631071628117526,
+   "formula_ok": true,
+   "seed4": 0.12212524796445845,
+   "within_2sd": false,
+   "z": 6.4172356503934544,
+   "qual_holds": true,
+   "qual": "probe L phi > 0.02 (net exploitable, >> price-only)",
+   "status": "partly verified",
+   "evidence": "M5/w4/out/preq-P16-win-s{1,2,3}.json; X1/w3/results/seed4/preq-P16-win-s4.json",
+   "rerun": "python3 S0/w1/run_w1.py P16 4; python3 M5/w4/probes.py --source preq --ckpt P16 --seed 4"
+  },
+  {
+   "id": "R-M5c.P16",
+   "what": "M5 price-only probe P phi, P16",
+   "seeds123": [
+    0.0016758421550524957,
+    0.0017111895646365503,
+    0.0018269231964127526
+   ],
+   "mean": 0.0017379849720339329,
+   "sd": 7.902446240132671e-05,
+   "formula_ok": true,
+   "seed4": 0.0017266189582656045,
+   "within_2sd": true,
+   "z": -0.1438290552437535,
+   "qual_holds": true,
+   "qual": "price-only phi positive and < 10% of probe L",
+   "status": "verified",
+   "evidence": "M5/w4/out/preq-P16-win-s*.json",
+   "rerun": "python3 S0/w1/run_w1.py P16 4; python3 M5/w4/probes.py --source preq --ckpt P16 --seed 4"
+  },
+  {
+   "id": "R-M5d.P4",
+   "what": "M5 E_C(probes) log-log exponent b, P4",
+   "seeds123": [
+    1.6428519650029483,
+    1.5577905758355421,
+    1.7230486991597402
+   ],
+   "mean": 1.6412304133327436,
+   "sd": 0.08264099408600628,
+   "formula_ok": true,
+   "seed4": 1.3855104535918528,
+   "within_2sd": false,
+   "z": -3.0943475761527925,
+   "qual_holds": true,
+   "qual": "b >= 1 (exploitation linear, not sublinear)",
+   "status": "partly verified",
+   "evidence": "M5/w4/out/preq-P4-win-s*.json (E_C.loglog)",
+   "rerun": "python3 S0/w1/run_w1.py P4 4; python3 M5/w4/probes.py --source preq --ckpt P4 --seed 4"
+  },
+  {
+   "id": "R-M5d.P16",
+   "what": "M5 E_C(probes) log-log exponent b, P16",
+   "seeds123": [
+    1.3041795259971103,
+    1.2984962641111906,
+    1.2341975120032858
+   ],
+   "mean": 1.278957767370529,
+   "sd": 0.03886753416183742,
+   "formula_ok": true,
+   "seed4": 1.3354864968635702,
+   "within_2sd": true,
+   "z": 1.4543945406381007,
+   "qual_holds": true,
+   "qual": "b >= 1 (exploitation linear, not sublinear)",
+   "status": "verified",
+   "evidence": "M5/w4/out/preq-P16-win-s*.json (E_C.loglog)",
+   "rerun": "python3 S0/w1/run_w1.py P16 4; python3 M5/w4/probes.py --source preq --ckpt P16 --seed 4"
+  },
+  {
+   "id": "R-M6a",
+   "what": "M6 w1 (b)-(a) learnable BCE, P regime (paired)",
+   "seeds123": [
+    0.0026711239746986526,
+    -0.00020990237997248196,
+    0.019603246464824253
+   ],
+   "mean": 0.007354822686516808,
+   "sd": 0.010704811628601076,
+   "formula_ok": true,
+   "seed4": null,
+   "within_2sd": null,
+   "z": null,
+   "qual_holds": null,
+   "qual": "tie claim; no sign asserted",
+   "status": "unverified",
+   "note": "seed-4 run missing: FileNotFoundError(2, 'No such file or directory')",
+   "evidence": "M6/w1/results/P-{A,B}-s*.json",
+   "rerun": "cd M6/w1 && python3 run_w1.py P A 4 && python3 run_w1.py P B 4"
+  },
+  {
+   "id": "R-M6b.B",
+   "what": "M6 w1 (b)-(a) learnable BCE, ME regime (paired)",
+   "seeds123": [
+    0.0019246327396114093,
+    0.0009618289537750846,
+    -0.0004697257223856277
+   ],
+   "mean": 0.0008055786570002887,
+   "sd": 0.001204802360375287,
+   "formula_ok": true,
+   "seed4": -0.000991073721216762,
+   "within_2sd": true,
+   "z": -1.4912424122886072,
+   "qual_holds": true,
+   "qual": "tie claim; no sign asserted",
+   "status": "verified",
+   "evidence": "M6/w1/results/ME-{A,B}-s*.json",
+   "rerun": "cd M6/w1 && python3 run_w1.py ME A 4 && python3 run_w1.py ME B 4"
+  },
+  {
+   "id": "R-M6b.BOOST",
+   "what": "M6 w1 ME BOOST noise excess (humility)",
+   "seeds123": [
+    0.0016729315777157527,
+    0.0025545735576821826,
+    0.0009670639224881317
+   ],
+   "mean": 0.0017315230192953557,
+   "sd": 0.0007953750236387041,
+   "formula_ok": true,
+   "seed4": null,
+   "within_2sd": null,
+   "z": null,
+   "qual_holds": null,
+   "qual": "BOOST noise below (a) on the same seed",
+   "status": "unverified",
+   "note": "seed-4 run missing: FileNotFoundError(2, 'No such file or directory')",
+   "evidence": "M6/w1/results/ME-BOOST-s*.json",
+   "rerun": "cd M6/w1 && python3 run_w1.py ME BOOST 4"
+  },
+  {
+   "id": "R-M6b.A",
+   "what": "M6 w1 ME (a) noise excess (humility)",
+   "seeds123": [
+    0.011039941731528002,
+    0.011234201810588651,
+    0.010152774612863569
+   ],
+   "mean": 0.01080897271832674,
+   "sd": 0.000576525116355961,
+   "formula_ok": true,
+   "seed4": 0.012241096631043669,
+   "within_2sd": false,
+   "z": 2.4840616168970153,
+   "qual_holds": true,
+   "qual": "(a) over-confident on noise",
+   "status": "partly verified",
+   "evidence": "M6/w1/results/ME-A-s*.json",
+   "rerun": "cd M6/w1 && python3 run_w1.py ME A 4"
+  },
+  {
+   "id": "R-M6b.ES",
+   "what": "M6 w1 ME ES minus (a), learnable BCE (paired)",
+   "seeds123": [
+    -0.0050336493595559695,
+    -0.004647159240863785,
+    -0.005443761555544713
+   ],
+   "mean": -0.005041523385321489,
+   "sd": 0.000398359526244911,
+   "formula_ok": true,
+   "seed4": -0.0008466474841632432,
+   "within_2sd": false,
+   "z": 10.530376769700345,
+   "qual_holds": true,
+   "qual": "ES beats (a)",
+   "status": "partly verified",
+   "evidence": "M6/w1/results/ME-A-s*.json (score_es)",
+   "rerun": "cd M6/w1 && python3 run_w1.py ME A 4"
+  },
+  {
+   "id": "R-M6c.cg",
+   "what": "M6 w2 cg noise excess",
+   "seeds123": [
+    0.0019330972146849312,
+    0.0022989841302659686,
+    0.002298639055405838
+   ],
+   "mean": 0.0021769068001189127,
+   "sd": 0.00021114536516647042,
+   "formula_ok": true,
+   "seed4": 0.0020572446094677677,
+   "within_2sd": true,
+   "z": -0.5667289478829024,
+   "qual_holds": true,
+   "qual": "cg noise below BOOST on the same seed",
+   "status": "verified",
+   "evidence": "M6/w2/results/cg-s*.json",
+   "rerun": "cd M6/w2 && python3 pool.py --arm cg --seed 4 --T 60000"
+  },
+  {
+   "id": "R-M6c.boost",
+   "what": "M6 w2-harness BOOST noise excess",
+   "seeds123": [
+    0.0033174133198183853,
+    0.0035027023950472413,
+    0.004002533665515173
+   ],
+   "mean": 0.0036075497934602665,
+   "sd": 0.0003543899049597863,
+   "formula_ok": true,
+   "seed4": 0.0033731212532388533,
+   "within_2sd": true,
+   "z": -0.6614989223466018,
+   "qual_holds": null,
+   "qual": "",
+   "status": "verified",
+   "evidence": "M6/lead/results/boost-s*.json",
+   "rerun": "cd M6/lead && python3 pool_kc.py --arm boost --seed 4 --T 60000"
+  },
+  {
+   "id": "R-M6c.paired",
+   "what": "M6 w2 cg minus BOOST noise excess (paired)",
+   "seeds123": [
+    -0.001384316105133454,
+    -0.0012037182647812728,
+    -0.0017038946101093355
+   ],
+   "mean": -0.001430642993341354,
+   "sd": 0.00025328586524854643,
+   "formula_ok": true,
+   "seed4": -0.0013158766437710856,
+   "within_2sd": true,
+   "z": 0.4531099651283326,
+   "qual_holds": true,
+   "qual": "cg < BOOST (the survival margin)",
+   "status": "verified",
+   "evidence": "M6/w2/results/cg-s*.json, M6/lead/results/boost-s*.json",
+   "rerun": "both of the above"
+  },
+  {
+   "id": "R-M6d",
+   "what": "M6 w4 fixed point vs 2-pass, M3 D-coherence rel (li stream)",
+   "seeds123": [
+    0.0016580873861067325,
+    0.0012143830036852599,
+    -0.0008212613904159394
+   ],
+   "mean": 0.000683736333125351,
+   "sd": 0.0013221127053482827,
+   "formula_ok": true,
+   "seed4": -0.0011369535844907297,
+   "within_2sd": true,
+   "z": -1.3771064374851902,
+   "qual_holds": true,
+   "qual": "fixed point NOT kept (needs <= -50%)",
+   "status": "verified",
+   "evidence": "M6/w4/results/li-{fp,pass2}-s*.json",
+   "rerun": "cd M6/w4 && python3 fp_layer.py li fp 4 && python3 fp_layer.py li pass2 4"
+  },
+  {
+   "id": "R-M6d.newton",
+   "what": "M6 w4 Newton iterations (base)",
+   "seeds123": [
+    2.0216666666666665,
+    1.9946666666666666,
+    2.143666666666667
+   ],
+   "mean": 2.0533333333333332,
+   "sd": 0.07938723658960146,
+   "formula_ok": true,
+   "seed4": null,
+   "within_2sd": null,
+   "z": null,
+   "qual_holds": null,
+   "qual": "converges below the 8-iteration cap",
+   "status": "unverified",
+   "note": "seed-4 run missing: FileNotFoundError(2, 'No such file or directory')",
+   "evidence": "M6/w4/results/base-fp-s*.json",
+   "rerun": "cd M6/w4 && python3 fp_layer.py base fp 4"
+  },
+  {
+   "id": "R-M6e.rel",
+   "what": "M6 w5 Cm vs U learnable BCE rel (paired)",
+   "seeds123": [
+    -0.0030294682207481216,
+    -0.013099275330847093,
+    -0.009303250738804225
+   ],
+   "mean": -0.008477331430133147,
+   "sd": 0.005085455814081638,
+   "formula_ok": true,
+   "seed4": null,
+   "within_2sd": null,
+   "z": null,
+   "qual_holds": null,
+   "qual": "Cm not worse than U by 1% (not dropped)",
+   "status": "unverified",
+   "note": "seed-4 run missing: FileNotFoundError(2, 'No such file or directory')",
+   "evidence": "M6/w5/results/{Cm,U}-s*.json",
+   "rerun": "cd M6/w5 && python3 commit.py --arm Cm --seed 4 && python3 commit.py --arm U --seed 4"
+  },
+  {
+   "id": "R-M6e.corr",
+   "what": "M6 w5 Cm head clone correlation",
+   "seeds123": [
+    0.991910880363149,
+    0.9948839209196554,
+    0.9934536023613213
+   ],
+   "mean": 0.9934161345480419,
+   "sd": 0.001486874377824803,
+   "formula_ok": true,
+   "seed4": null,
+   "within_2sd": null,
+   "z": null,
+   "qual_holds": null,
+   "qual": "heads are clones (corr > 0.95)",
+   "status": "unverified",
+   "note": "seed-4 run missing: FileNotFoundError(2, 'No such file or directory')",
+   "evidence": "M6/w5/results/Cm-s*.json",
+   "rerun": "cd M6/w5 && python3 commit.py --arm Cm --seed 4"
+  },
+  {
+   "id": "R-M7a",
+   "what": "M7 dsfw minus ds3 bce_all, E=8 (paired)",
+   "seeds123": [
+    -0.006175875663757324,
+    -0.004332691431045532,
+    -0.004865676164627075
+   ],
+   "mean": -0.0051247477531433105,
+   "sd": 0.0009485096704365135,
+   "formula_ok": true,
+   "seed4": null,
+   "within_2sd": null,
+   "z": null,
+   "qual_holds": null,
+   "qual": "dsfw beats DeepSeek ds3 on the seed",
+   "status": "unverified",
+   "note": "seed-4 run missing: FileNotFoundError(2, 'No such file or directory')",
+   "evidence": "M7/w2/results/all/{dsfw,ds3}-E8-s*.json",
+   "rerun": "cd M7/w2 && python3 moe_w2.py --arm dsfw --E 8 --seed 4 --T 24000 --B 8 && python3 moe_w2.py --arm ds3 --E 8 --seed 4 --T 24000 --B 8"
+  },
+  {
+   "id": "R-M7a.postshift",
+   "what": "M7 dsfw minus ds3 post-shift BCE, E=8 (paired)",
+   "seeds123": [
+    0.046095460653305054,
+    0.04096180200576782,
+    0.05434823036193848
+   ],
+   "mean": 0.04713516434033712,
+   "sd": 0.006753506781764825,
+   "formula_ok": true,
+   "seed4": null,
+   "within_2sd": null,
+   "z": null,
+   "qual_holds": null,
+   "qual": "dsfw worse after the shift (cost claim)",
+   "status": "unverified",
+   "note": "seed-4 run missing: FileNotFoundError(2, 'No such file or directory')",
+   "evidence": "M7/w2/results/all/{dsfw,ds3}-E8-s*.json",
+   "rerun": "as above"
+  },
+  {
+   "id": "R-M7b",
+   "what": "M7 dsfw minus ds3 bce_all, E=64 (paired)",
+   "seeds123": [
+    -0.012648999691009521,
+    -0.006048768758773804,
+    -0.003031313419342041
+   ],
+   "mean": -0.007243027289708455,
+   "sd": 0.00491880700821733,
+   "formula_ok": true,
+   "seed4": null,
+   "within_2sd": null,
+   "z": null,
+   "qual_holds": null,
+   "qual": "dsfw beats DeepSeek ds3 on the seed",
+   "status": "unverified",
+   "note": "seed-4 run missing: FileNotFoundError(2, 'No such file or directory')",
+   "evidence": "M7/w2/results/all/{dsfw,ds3}-E64-s*.json",
+   "rerun": "cd M7/w2 && python3 moe_w2.py --arm dsfw --E 64 --seed 4 --T 24000 --B 8 && python3 moe_w2.py --arm ds3 --E 64 --seed 4 --T 24000 --B 8"
+  },
+  {
+   "id": "R-M7b.postshift",
+   "what": "M7 dsfw minus ds3 post-shift BCE, E=64 (paired)",
+   "seeds123": [
+    0.09217584133148193,
+    0.047276079654693604,
+    0.053387999534606934
+   ],
+   "mean": 0.06427997350692749,
+   "sd": 0.024351046639074444,
+   "formula_ok": true,
+   "seed4": null,
+   "within_2sd": null,
+   "z": null,
+   "qual_holds": null,
+   "qual": "dsfw worse after the shift (cost claim)",
+   "status": "unverified",
+   "note": "seed-4 run missing: FileNotFoundError(2, 'No such file or directory')",
+   "evidence": "M7/w2/results/all/{dsfw,ds3}-E64-s*.json",
+   "rerun": "as above"
+  }
+ ]
+}

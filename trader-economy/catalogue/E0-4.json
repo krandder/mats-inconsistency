@@ -1,0 +1,11 @@
+{
+ "id": "E0-4",
+ "question": "Do useless weights go to zero or go bankrupt?",
+ "setup": "Noise inputs x6, x7. Cost per active weight 0, 0.01 or 0.05 per round (a useful column earns about 0.03-0.25 per round).",
+ "result": "At cost 0.01 noise agents go bankrupt repeatedly (6.8\u00b10.6 deaths per run vs 1.2\u00b11.0 for all useful agents together, Shapley arm), but their weights do not go to zero: the two noise inputs keep a total |w| of 0.10\u00b10.04, the same as backprop with the same L1. At 0.05 the cost also kills useful agents (68\u00b11 deaths per run) and log loss rises to 0.823.",
+ "status": "Informative",
+ "files": [
+  "exp0.py",
+  "results/exp0_summary.json"
+ ]
+}

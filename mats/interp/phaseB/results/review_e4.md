@@ -1,0 +1,17 @@
+Model: GPT-6 (Codex)
+
+Checked 2026-10-29 04:42 UTC by reading the draft, Amendment 11, both qpay.json files, qpay.py, qbayes.py/results, devpred.py and qw.py; no Python or experiments.
+
+1. **High: the largest-budget RMSE is one discrepancy repeated eight times.** qpay.py:118–126 samples without replacement from 32,768 episodes. At B=2^21 every repetition uses the whole pool. Smaller-budget repetitions share the pool and condition on its realised error. The overall “0%” values are 0.222%/0.153%, not established sampling precision. Dividing this single discrepancy by √2 cannot estimate truth uncertainty; “about 20% for S3 and S4” is unsupported, especially for seed 2. Fix: independent replicate pools or a justified variance estimator, with separate reference uncertainty; withdraw precision and win-count conclusions pending validation.
+
+2. **High: finite-K truth confounds description bias.** DP.marginal averages 64 stochastic predictives; QB trains a deterministic approximation to the noise-marginal predictive. KL against the finite-K mixture has upward Jensen bias relative to KL against the exact marginal. Mean-tail events also change under finite-K noise. Thresholds and empirical tail truth use the same sample (qpay.py:78–79), forcing approximately 1%/0.1% without establishing population probabilities. Fix: measure K convergence and independently validate fixed thresholds; call the reported differences empirical discrepancies, not pure description bias.
+
+3. **High: equal-compute accounting remains incomplete.** Removing the extra 1,024,000 passes is correct: setup_seconds includes teacher inference. Corrected setup is 1.338M/1.867M. Including 32,768 description episodes gives approximately 1.429M/2.010M, affordable at 2^21. But also charging the reported 32,768 tilted episodes gives approximately 1.519M/2.153M using the ordinary-episode rate: seed 2 exceeds budget. Tilted timing is absent. Sampling is charged only forward passes while description timing includes world generation, Bayes references, scenario features and quadrature; pass rate is one 4,096-episode timing. Fix: define common accounting, time both pipelines and tilted evaluation, distinguish setup-only from complete-answer affordability.
+
+4. **Medium: P55 fails in both seeds on the recorded metric.** KL_S5 at 2^21 is 10.224% and 11.181%; rounding the former to 10% hides failure. Fix: report both exceptions, with item 1's qualification.
+
+5. **Medium: omissions from preregistration reporting.** Width selection is correct, but best mean R² is only 0.0288/0.0430, below Amendment 11's 0.3 warning threshold. The table omits tilted S8: truth 0.09251/0.12858, errors −48.5%/−51.1%. Fix: disclose these and explicitly reconcile the setup correction with Amendment 11's additive wording.
+
+6. **Medium: conclusions exceed evidence.** 2.76–4.36 passes versus 64 is approximately 15–23× cheaper per episode. E2/E3b were excluded, not tested for payoff here. Fix: restrict “no payoff” to this head and measured budgets; qualify the setup-versus-sampling claim.
+
+Survive: table transcription/rounding, scenario counts, shared thresholds, 801-point quadrature rule, P54's recorded failure. Reword: bias, setup comparison, “no payoff.” Fail: established RMSE/uncertainty, P55's single exception, “per episode not much cheaper,” universal no-payoff inference. Certificate-running status is unverified by these files.

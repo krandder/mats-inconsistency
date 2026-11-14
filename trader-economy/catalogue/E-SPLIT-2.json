@@ -1,0 +1,12 @@
+{
+ "id": "E-SPLIT-2",
+ "question": "How much of the pay reaches the inputs, and does a layer-by-layer (Owen) split differ from flat Shapley?",
+ "setup": "ReLU network 12 inputs -> 8 -> 4 -> 1, trained by backprop; two first-layer units read only noise features. Players: inputs and units. Flat Shapley and flat IG over all players; nested Owen value (each unit's union holds what it reads; an input read by several units is split into one player per path, i.e. Winter's levels value on the unrolled tree). Output bias fixed at the prior; 5 seeds.",
+ "result": "Share of the total going to inputs / layer 1 / layer 2: flat Shapley 0.61\u00b10.06 / 0.46\u00b10.59 / -0.07\u00b10.59; IG 0.31\u00b10.02 / 0.63\u00b10.31 / 0.06\u00b10.32; nested Owen 0.19\u00b10.07 / 0.10\u00b10.34 / 0.71\u00b10.34. In the nested split each unit keeps about 0.7 of its union's value, since it can veto the union, so the inputs' share shrinks at every layer. Input pay ranks inputs like their drop-feature value (Spearman: flat 0.89\u00b10.10, Owen 0.85\u00b10.10, IG 0.78\u00b10.10) but only 0.53-0.61 like their information Shapley; the substitute pair gets about 0 where information Shapley gives it 0.067. Noise-only units get -0.002\u00b10.003.",
+ "status": "Informative",
+ "files": [
+  "exp_split.py",
+  "results/split_summary.json",
+  "charts/split_layers.json"
+ ]
+}

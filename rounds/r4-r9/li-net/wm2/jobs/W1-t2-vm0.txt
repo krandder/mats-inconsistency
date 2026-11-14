@@ -1,0 +1,31 @@
+# wave W1 task t2 vm 0: 30 jobs, est 644 process-minutes, ~92 wall-minutes at par 7
+--task t2 wm --n 10000 --seed 0 --wmtag WMs --set wm_split=1 es_boards=3000 max_steps=40000 patience=40 --ckpt /root/ckpt/W1-t2-WMs-n10000-s0.pt --out /root/runs/wm2/W1/t2/WMs/WMs-n10000-s0.json
+--task t2 wm --n 10000 --seed 0 --wmtag WMsb --set wm_split=1 loc_blind=1 es_boards=3000 max_steps=40000 patience=40 --ckpt /root/ckpt/W1-t2-WMsb-n10000-s0.pt --out /root/runs/wm2/W1/t2/WMsb/WMsb-n10000-s0.json
+--task t2 wm --n 3000 --seed 0 --wmtag WMs --set wm_split=1 es_boards=3000 max_steps=40000 patience=40 --ckpt /root/ckpt/W1-t2-WMs-n3000-s0.pt --out /root/runs/wm2/W1/t2/WMs/WMs-n3000-s0.json
+--task t2 wm --n 3000 --seed 0 --wmtag WMsb --set wm_split=1 loc_blind=1 es_boards=3000 max_steps=40000 patience=40 --ckpt /root/ckpt/W1-t2-WMsb-n3000-s0.pt --out /root/runs/wm2/W1/t2/WMsb/WMsb-n3000-s0.json
+--task t2 wm --n 1000 --seed 0 --wmtag WMs --set wm_split=1 es_boards=3000 max_steps=40000 patience=25 --ckpt /root/ckpt/W1-t2-WMs-n1000-s0.pt --out /root/runs/wm2/W1/t2/WMs/WMs-n1000-s0.json
+--task t2 wm --n 1000 --seed 0 --wmtag WMsb --set wm_split=1 loc_blind=1 es_boards=3000 max_steps=40000 patience=25 --ckpt /root/ckpt/W1-t2-WMsb-n1000-s0.pt --out /root/runs/wm2/W1/t2/WMsb/WMsb-n1000-s0.json
+--task t2 wm --n 300 --seed 0 --wmtag WMs --set wm_split=1 es_boards=3000 max_steps=40000 patience=25 --ckpt /root/ckpt/W1-t2-WMs-n300-s0.pt --out /root/runs/wm2/W1/t2/WMs/WMs-n300-s0.json
+--task t2 wm --n 300 --seed 0 --wmtag WMsb --set wm_split=1 loc_blind=1 es_boards=3000 max_steps=40000 patience=25 --ckpt /root/ckpt/W1-t2-WMsb-n300-s0.pt --out /root/runs/wm2/W1/t2/WMsb/WMsb-n300-s0.json
+--task t2 wm --n 100 --seed 0 --wmtag WMs --set wm_split=1 es_boards=3000 max_steps=40000 patience=25 --ckpt /root/ckpt/W1-t2-WMs-n100-s0.pt --out /root/runs/wm2/W1/t2/WMs/WMs-n100-s0.json
+--task t2 wm --n 100 --seed 0 --wmtag WMsb --set wm_split=1 loc_blind=1 es_boards=3000 max_steps=40000 patience=25 --ckpt /root/ckpt/W1-t2-WMsb-n100-s0.pt --out /root/runs/wm2/W1/t2/WMsb/WMsb-n100-s0.json
+--task t2 sn --arm rbtd --n 10000 --seed 0 --tag B-rbtd8 --set rbtd=8 es_boards=3000 max_steps=40000 patience=40 --out /root/runs/wm2/W1/t2/B-rbtd8/B-rbtd8-n10000-s0.json
+--task t2 sn --arm k0 --n 10000 --seed 0 --tag B-k0 --set es_boards=3000 max_steps=40000 patience=40 --out /root/runs/wm2/W1/t2/B-k0/B-k0-n10000-s0.json
+--task t2 sn --arm rbtd --n 3000 --seed 0 --tag B-rbtd8 --set rbtd=8 es_boards=3000 max_steps=40000 patience=40 --out /root/runs/wm2/W1/t2/B-rbtd8/B-rbtd8-n3000-s0.json
+--task t2 sn --arm k0 --n 3000 --seed 0 --tag B-k0 --set es_boards=3000 max_steps=40000 patience=40 --out /root/runs/wm2/W1/t2/B-k0/B-k0-n3000-s0.json
+--task t2 sn --arm rbtd --n 1000 --seed 0 --tag B-rbtd8 --set rbtd=8 es_boards=3000 max_steps=40000 patience=25 --out /root/runs/wm2/W1/t2/B-rbtd8/B-rbtd8-n1000-s0.json
+--task t2 sn --arm k0 --n 1000 --seed 0 --tag B-k0 --set es_boards=3000 max_steps=40000 patience=25 --out /root/runs/wm2/W1/t2/B-k0/B-k0-n1000-s0.json
+--task t2 sn --arm rbtd --n 300 --seed 0 --tag B-rbtd8 --set rbtd=8 es_boards=3000 max_steps=40000 patience=25 --out /root/runs/wm2/W1/t2/B-rbtd8/B-rbtd8-n300-s0.json
+--task t2 sn --arm k0 --n 300 --seed 0 --tag B-k0 --set es_boards=3000 max_steps=40000 patience=25 --out /root/runs/wm2/W1/t2/B-k0/B-k0-n300-s0.json
+--task t2 sn --arm rbtd --n 100 --seed 0 --tag B-rbtd8 --set rbtd=8 es_boards=3000 max_steps=40000 patience=25 --out /root/runs/wm2/W1/t2/B-rbtd8/B-rbtd8-n100-s0.json
+--task t2 sn --arm k0 --n 100 --seed 0 --tag B-k0 --set es_boards=3000 max_steps=40000 patience=25 --out /root/runs/wm2/W1/t2/B-k0/B-k0-n100-s0.json
+--task t2 fc --n 10000 --seed 0 --arm D-only --tag WMs-D-only --wm-ckpt /root/ckpt/W1-t2-WMs-n10000-s0.pt --set es_boards=3000 max_steps=40000 patience=40 --out /root/runs/wm2/W1/t2/WMs-D-only/WMs-D-only-n10000-s0.json
+--task t2 fc --n 10000 --seed 0 --arm D-only --tag WMsb-D-only --wm-ckpt /root/ckpt/W1-t2-WMsb-n10000-s0.pt --set es_boards=3000 max_steps=40000 patience=40 --out /root/runs/wm2/W1/t2/WMsb-D-only/WMsb-D-only-n10000-s0.json
+--task t2 fc --n 3000 --seed 0 --arm D-only --tag WMs-D-only --wm-ckpt /root/ckpt/W1-t2-WMs-n3000-s0.pt --set es_boards=3000 max_steps=40000 patience=40 --out /root/runs/wm2/W1/t2/WMs-D-only/WMs-D-only-n3000-s0.json
+--task t2 fc --n 3000 --seed 0 --arm D-only --tag WMsb-D-only --wm-ckpt /root/ckpt/W1-t2-WMsb-n3000-s0.pt --set es_boards=3000 max_steps=40000 patience=40 --out /root/runs/wm2/W1/t2/WMsb-D-only/WMsb-D-only-n3000-s0.json
+--task t2 fc --n 1000 --seed 0 --arm D-only --tag WMs-D-only --wm-ckpt /root/ckpt/W1-t2-WMs-n1000-s0.pt --set es_boards=3000 max_steps=40000 patience=25 --out /root/runs/wm2/W1/t2/WMs-D-only/WMs-D-only-n1000-s0.json
+--task t2 fc --n 1000 --seed 0 --arm D-only --tag WMsb-D-only --wm-ckpt /root/ckpt/W1-t2-WMsb-n1000-s0.pt --set es_boards=3000 max_steps=40000 patience=25 --out /root/runs/wm2/W1/t2/WMsb-D-only/WMsb-D-only-n1000-s0.json
+--task t2 fc --n 300 --seed 0 --arm D-only --tag WMs-D-only --wm-ckpt /root/ckpt/W1-t2-WMs-n300-s0.pt --set es_boards=3000 max_steps=40000 patience=25 --out /root/runs/wm2/W1/t2/WMs-D-only/WMs-D-only-n300-s0.json
+--task t2 fc --n 300 --seed 0 --arm D-only --tag WMsb-D-only --wm-ckpt /root/ckpt/W1-t2-WMsb-n300-s0.pt --set es_boards=3000 max_steps=40000 patience=25 --out /root/runs/wm2/W1/t2/WMsb-D-only/WMsb-D-only-n300-s0.json
+--task t2 fc --n 100 --seed 0 --arm D-only --tag WMs-D-only --wm-ckpt /root/ckpt/W1-t2-WMs-n100-s0.pt --set es_boards=3000 max_steps=40000 patience=25 --out /root/runs/wm2/W1/t2/WMs-D-only/WMs-D-only-n100-s0.json
+--task t2 fc --n 100 --seed 0 --arm D-only --tag WMsb-D-only --wm-ckpt /root/ckpt/W1-t2-WMsb-n100-s0.pt --set es_boards=3000 max_steps=40000 patience=25 --out /root/runs/wm2/W1/t2/WMsb-D-only/WMsb-D-only-n100-s0.json

@@ -1,0 +1,5107 @@
+{
+  "schema": "aggbench.compression-joint-remedies-fsq/v2",
+  "harness": {
+    "version": "0.1.0",
+    "git_commit": "f0f686b00c757a9ea06ca3315a9fb43d05f2786a",
+    "git_dirty": false,
+    "sha256": "cba12a722d2ed29fdc123c62c85642afb130ccb4fe1744a8e0ce2dae2c67e452",
+    "git_source": "env, clean iff sha256 == AGGBENCH_EXPECT_SHA256"
+  },
+  "track": "EXPLORATORY",
+  "bits": [
+    2,
+    4,
+    6
+  ],
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "arms": [
+    "0_fsq_joint",
+    "a_fsq_alt_opt",
+    "b_fsq_dec_warmstart",
+    "c_fsq_entropy_bonus",
+    "d_fsq_staged_channel",
+    "e_fsq_biased_curr_plus_best"
+  ],
+  "key_scale": 0.1,
+  "key_warmup": 1000,
+  "device": "cuda",
+  "envs": {
+    "Z9-p2-lf": {
+      "anchors": {
+        "prior_kl": 0.2702278882388906,
+        "best_uncompressed_name": "ISAB (8k steps on Z9-p2-lf)",
+        "best_uncompressed_regret": 0.002029539306105857,
+        "anchor_isab_8k_std": {
+          "n_seeds": 3,
+          "regret_mean": 0.002029539306105857,
+          "regret_sd": 0.0003505274307968994,
+          "mean_ci_low": 0.001826361336867763,
+          "mean_ci_high": 0.0022535772003628293,
+          "per_seed_regret": [
+            0.0015,
+            0.0022,
+            0.0024
+          ],
+          "per_seed_best_step": [
+            8000,
+            8000,
+            8000
+          ]
+        },
+        "anchor_isab_8k_biased_curr": {
+          "n_seeds": 3,
+          "regret_mean": 0.0020427494954112697,
+          "regret_sd": 0.00023226282905037686,
+          "mean_ci_low": 0.0018646275765512976,
+          "mean_ci_high": 0.0022328393152535055,
+          "per_seed_regret": [
+            0.0018,
+            0.0024,
+            0.002
+          ],
+          "per_seed_best_step": [
+            8000,
+            8000,
+            8000
+          ]
+        },
+        "anchor_transformer_8k_std": {
+          "n_seeds": 3,
+          "regret_mean": 0.006769994203523723,
+          "regret_sd": 0.0010903307666660573,
+          "mean_ci_low": 0.00606953417693486,
+          "mean_ci_high": 0.007500959574843545,
+          "per_seed_regret": [
+            0.006,
+            0.006,
+            0.0083
+          ],
+          "per_seed_best_step": [
+            7600,
+            8000,
+            8000
+          ]
+        },
+        "anchor_transformer_8k_biased_curr": {
+          "n_seeds": 3,
+          "regret_mean": 0.00874425975376404,
+          "regret_sd": 0.0009541854934162282,
+          "mean_ci_low": 0.007712504363633343,
+          "mean_ci_high": 0.009852421026512362,
+          "per_seed_regret": [
+            0.0101,
+            0.0079,
+            0.0083
+          ],
+          "per_seed_best_step": [
+            8000,
+            8000,
+            8000
+          ]
+        },
+        "control_deepsets_8k_std": {
+          "n_seeds": 3,
+          "regret_mean": 0.2702226063573787,
+          "regret_sd": 4.58194848952967e-06,
+          "mean_ci_low": 0.2619366130479586,
+          "mean_ci_high": 0.27880566294818215,
+          "per_seed_regret": [
+            0.2702,
+            0.2702,
+            0.2702
+          ],
+          "per_seed_best_step": [
+            400,
+            7200,
+            1600
+          ]
+        },
+        "blind_refs": {
+          "b2": 0.254,
+          "b4": 0.216,
+          "bit_id_pair": 0.006
+        },
+        "decoupling_old_z9_prior_ref": 0.4567
+      },
+      "aggregated": {
+        "2": {
+          "0_fsq_joint": {
+            "n_seeds": 3,
+            "regret_mean": 0.10212614470470599,
+            "regret_sd": 0.016562347586791107,
+            "gap_to_anchor_mean": 0.09535615050118225,
+            "gap_to_anchor_sd": 0.016562347586791107,
+            "gap_to_best_uncompressed_mean": 0.10009660539860012,
+            "gap_to_best_uncompressed_sd": 0.016562347586791107,
+            "mean_ci_low": 0.09512764529832425,
+            "mean_ci_high": 0.10946817186760767,
+            "per_seed_regret": [
+              0.1156,
+              0.112,
+              0.0788
+            ],
+            "per_seed_gap_to_anchor": [
+              0.1088,
+              0.1052,
+              0.072
+            ],
+            "per_seed_best_step": [
+              7400,
+              7200,
+              7200
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              2000,
+              2400,
+              3000
+            ],
+            "mean_agent_entropy_bits": 1.7404120155141225,
+            "mean_agent_entropy_sd": 0.1433058421560965,
+            "per_seed_agent_entropy": [
+              1.7898,
+              1.5455,
+              1.8859
+            ],
+            "pooled_entropy_bits_mean": 1.7406986774612567,
+            "per_seed_distinct_symbols": [
+              4,
+              4,
+              4
+            ],
+            "gap_to_plain_tr_mean": 0.09535615050118226,
+            "gap_to_isab_mean": 0.10009660539860013
+          },
+          "a_fsq_alt_opt": {
+            "n_seeds": 3,
+            "regret_mean": 0.11099933212897628,
+            "regret_sd": 0.0531819038681375,
+            "gap_to_anchor_mean": 0.10422933792545254,
+            "gap_to_anchor_sd": 0.053181903868137495,
+            "gap_to_best_uncompressed_mean": 0.1089697928228704,
+            "gap_to_best_uncompressed_sd": 0.053181903868137495,
+            "mean_ci_low": 0.10397563105355312,
+            "mean_ci_high": 0.11831687282892239,
+            "per_seed_regret": [
+              0.0445,
+              0.1138,
+              0.1747
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0377,
+              0.1071,
+              0.1679
+            ],
+            "per_seed_best_step": [
+              7800,
+              7000,
+              5000
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              2200,
+              2200,
+              3400
+            ],
+            "mean_agent_entropy_bits": 1.7464674664603708,
+            "mean_agent_entropy_sd": 0.14807564295682188,
+            "per_seed_agent_entropy": [
+              1.9347,
+              1.7318,
+              1.5729
+            ],
+            "pooled_entropy_bits_mean": 1.7467433383966082,
+            "per_seed_distinct_symbols": [
+              4,
+              4,
+              3
+            ],
+            "gap_to_plain_tr_mean": 0.10422933792545255,
+            "gap_to_isab_mean": 0.10896979282287042
+          },
+          "b_fsq_dec_warmstart": {
+            "n_seeds": 3,
+            "regret_mean": 0.04771030168783518,
+            "regret_sd": 0.025201225004131994,
+            "gap_to_anchor_mean": 0.04094030748431147,
+            "gap_to_anchor_sd": 0.02520122500413199,
+            "gap_to_best_uncompressed_mean": 0.04568076238172932,
+            "gap_to_best_uncompressed_sd": 0.025201225004131994,
+            "mean_ci_low": 0.04370433902923642,
+            "mean_ci_high": 0.05187307090056687,
+            "per_seed_regret": [
+              0.0601,
+              0.0705,
+              0.0126
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0533,
+              0.0637,
+              0.0058
+            ],
+            "per_seed_best_step": [
+              6400,
+              6000,
+              7200
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              2000,
+              1600,
+              1600
+            ],
+            "mean_agent_entropy_bits": 1.9303058458461424,
+            "mean_agent_entropy_sd": 0.0187109884564206,
+            "per_seed_agent_entropy": [
+              1.9249,
+              1.9106,
+              1.9554
+            ],
+            "pooled_entropy_bits_mean": 1.9305687418131143,
+            "per_seed_distinct_symbols": [
+              4,
+              4,
+              4
+            ],
+            "gap_to_plain_tr_mean": 0.04094030748431146,
+            "gap_to_isab_mean": 0.04568076238172932
+          },
+          "c_fsq_entropy_bonus": {
+            "n_seeds": 3,
+            "regret_mean": 0.030425817126398386,
+            "regret_sd": 0.016644047183036803,
+            "gap_to_anchor_mean": 0.02365582292287466,
+            "gap_to_anchor_sd": 0.016644047183036807,
+            "gap_to_best_uncompressed_mean": 0.028396277820292526,
+            "gap_to_best_uncompressed_sd": 0.016644047183036803,
+            "mean_ci_low": 0.027522783705187372,
+            "mean_ci_high": 0.033523288108167966,
+            "per_seed_regret": [
+              0.0529,
+              0.0253,
+              0.0131
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0461,
+              0.0185,
+              0.0063
+            ],
+            "per_seed_best_step": [
+              3600,
+              8000,
+              7800
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              2000,
+              1600,
+              1600
+            ],
+            "mean_agent_entropy_bits": 1.9496688172148862,
+            "mean_agent_entropy_sd": 0.004317424868070461,
+            "per_seed_agent_entropy": [
+              1.9446,
+              1.9493,
+              1.9551
+            ],
+            "pooled_entropy_bits_mean": 1.9499528205187264,
+            "per_seed_distinct_symbols": [
+              4,
+              4,
+              4
+            ],
+            "gap_to_plain_tr_mean": 0.023655822922874662,
+            "gap_to_isab_mean": 0.02839627782029253
+          },
+          "d_fsq_staged_channel": {
+            "n_seeds": 3,
+            "regret_mean": 0.05330323695018612,
+            "regret_sd": 0.04499594101416971,
+            "gap_to_anchor_mean": 0.046533242746662394,
+            "gap_to_anchor_sd": 0.04499594101416971,
+            "gap_to_best_uncompressed_mean": 0.05127369764408026,
+            "gap_to_best_uncompressed_sd": 0.04499594101416971,
+            "mean_ci_low": 0.048883641034020375,
+            "mean_ci_high": 0.05787438560165787,
+            "per_seed_regret": [
+              0.0076,
+              0.1145,
+              0.0377
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0009,
+              0.1077,
+              0.031
+            ],
+            "per_seed_best_step": [
+              8000,
+              6000,
+              7800
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              1600,
+              1600,
+              3600
+            ],
+            "mean_agent_entropy_bits": 1.8976334936158892,
+            "mean_agent_entropy_sd": 0.04259988349030022,
+            "per_seed_agent_entropy": [
+              1.9574,
+              1.8746,
+              1.861
+            ],
+            "pooled_entropy_bits_mean": 1.8979586818387577,
+            "per_seed_distinct_symbols": [
+              4,
+              4,
+              4
+            ],
+            "gap_to_plain_tr_mean": 0.0465332427466624,
+            "gap_to_isab_mean": 0.05127369764408026
+          },
+          "e_fsq_biased_curr_plus_best": {
+            "n_seeds": 3,
+            "regret_mean": 0.008530598476193666,
+            "regret_sd": 0.0032680324077810105,
+            "gap_to_anchor_mean": -0.00021366127757037248,
+            "gap_to_anchor_sd": 0.0032680324077810105,
+            "gap_to_best_uncompressed_mean": 0.006501059170087809,
+            "gap_to_best_uncompressed_sd": 0.00326803240778101,
+            "mean_ci_low": 0.007475005710887608,
+            "mean_ci_high": 0.009684439045636432,
+            "per_seed_regret": [
+              0.0128,
+              0.0049,
+              0.0078
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0041,
+              -0.0038,
+              -0.0009
+            ],
+            "per_seed_best_step": [
+              8000,
+              8000,
+              8000
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              4200,
+              4200,
+              4200
+            ],
+            "mean_agent_entropy_bits": 1.956189788615206,
+            "mean_agent_entropy_sd": 0.002139978621021504,
+            "per_seed_agent_entropy": [
+              1.9532,
+              1.9575,
+              1.9579
+            ],
+            "pooled_entropy_bits_mean": 1.9564691725659753,
+            "per_seed_distinct_symbols": [
+              4,
+              4,
+              4
+            ],
+            "gap_to_plain_tr_mean": 0.0017606042726699437,
+            "gap_to_isab_mean": 0.006501059170087809
+          },
+          "e_fsq_biased_curr_plus_best_keys0": {
+            "n_seeds": 3,
+            "regret_mean": 0.26005124541661884,
+            "regret_sd": 0.001203689249228879,
+            "gap_to_anchor_mean": 0.2513069856628548,
+            "gap_to_anchor_sd": 0.001203689249228879,
+            "gap_to_best_uncompressed_mean": 0.258021706110513,
+            "gap_to_best_uncompressed_sd": 0.001203689249228879,
+            "mean_ci_low": 0.2518608871468793,
+            "mean_ci_high": 0.268377065264688,
+            "per_seed_regret": [
+              0.2598,
+              0.2616,
+              0.2587
+            ],
+            "per_seed_gap_to_anchor": [
+              0.2511,
+              0.2529,
+              0.25
+            ],
+            "per_seed_best_step": [
+              7000,
+              8000,
+              6400
+            ],
+            "n_escaped": 0,
+            "per_seed_escape": [
+              null,
+              null,
+              null
+            ],
+            "mean_agent_entropy_bits": 1.882257272311789,
+            "mean_agent_entropy_sd": 0.11725339410688114,
+            "per_seed_agent_entropy": [
+              1.9828,
+              1.7178,
+              1.9461
+            ],
+            "pooled_entropy_bits_mean": 1.882670390434998,
+            "per_seed_distinct_symbols": [
+              4,
+              4,
+              4
+            ],
+            "gap_to_plain_tr_mean": 0.25328125121309514,
+            "gap_to_isab_mean": 0.258021706110513
+          }
+        },
+        "4": {
+          "0_fsq_joint": {
+            "n_seeds": 3,
+            "regret_mean": 0.024130246765273197,
+            "regret_sd": 0.003531901944200505,
+            "gap_to_anchor_mean": 0.01736025256174947,
+            "gap_to_anchor_sd": 0.0035319019442005047,
+            "gap_to_best_uncompressed_mean": 0.02210070745916734,
+            "gap_to_best_uncompressed_sd": 0.003531901944200505,
+            "mean_ci_low": 0.020856046512870055,
+            "mean_ci_high": 0.027698082660554124,
+            "per_seed_regret": [
+              0.0194,
+              0.0278,
+              0.0253
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0126,
+              0.021,
+              0.0185
+            ],
+            "per_seed_best_step": [
+              7400,
+              8000,
+              7400
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              1800,
+              2000,
+              2000
+            ],
+            "mean_agent_entropy_bits": 2.9568315913126746,
+            "mean_agent_entropy_sd": 0.06761291870067161,
+            "per_seed_agent_entropy": [
+              2.8898,
+              3.0494,
+              2.9313
+            ],
+            "pooled_entropy_bits_mean": 2.958785506216405,
+            "per_seed_distinct_symbols": [
+              13,
+              15,
+              16
+            ],
+            "gap_to_plain_tr_mean": 0.017360252561749473,
+            "gap_to_isab_mean": 0.02210070745916734
+          },
+          "a_fsq_alt_opt": {
+            "n_seeds": 3,
+            "regret_mean": 0.05273907082903736,
+            "regret_sd": 0.020706425338194653,
+            "gap_to_anchor_mean": 0.04596907662551364,
+            "gap_to_anchor_sd": 0.02070642533819465,
+            "gap_to_best_uncompressed_mean": 0.050709531522931506,
+            "gap_to_best_uncompressed_sd": 0.020706425338194653,
+            "mean_ci_low": 0.048216045034158474,
+            "mean_ci_high": 0.05750720281552863,
+            "per_seed_regret": [
+              0.0793,
+              0.0287,
+              0.0502
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0725,
+              0.022,
+              0.0435
+            ],
+            "per_seed_best_step": [
+              7800,
+              8000,
+              8000
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              3000,
+              2600,
+              2600
+            ],
+            "mean_agent_entropy_bits": 2.9080851286131,
+            "mean_agent_entropy_sd": 0.26405060473881764,
+            "per_seed_agent_entropy": [
+              2.784,
+              2.6651,
+              3.2752
+            ],
+            "pooled_entropy_bits_mean": 2.9100498497468053,
+            "per_seed_distinct_symbols": [
+              16,
+              12,
+              14
+            ],
+            "gap_to_plain_tr_mean": 0.04596907662551364,
+            "gap_to_isab_mean": 0.0507095315229315
+          },
+          "b_fsq_dec_warmstart": {
+            "n_seeds": 3,
+            "regret_mean": 0.00994021755816119,
+            "regret_sd": 0.0015890189402094934,
+            "gap_to_anchor_mean": 0.003170223354637467,
+            "gap_to_anchor_sd": 0.0015890189402094934,
+            "gap_to_best_uncompressed_mean": 0.007910678252055332,
+            "gap_to_best_uncompressed_sd": 0.0015890189402094936,
+            "mean_ci_low": 0.008763376752022616,
+            "mean_ci_high": 0.011272508148578718,
+            "per_seed_regret": [
+              0.0103,
+              0.0117,
+              0.0078
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0036,
+              0.0049,
+              0.0011
+            ],
+            "per_seed_best_step": [
+              7400,
+              7600,
+              8000
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              2000,
+              1800,
+              1800
+            ],
+            "mean_agent_entropy_bits": 2.6297509729869346,
+            "mean_agent_entropy_sd": 0.11118227894862497,
+            "per_seed_agent_entropy": [
+              2.4762,
+              2.7357,
+              2.6773
+            ],
+            "pooled_entropy_bits_mean": 2.631775488472473,
+            "per_seed_distinct_symbols": [
+              15,
+              12,
+              13
+            ],
+            "gap_to_plain_tr_mean": 0.0031702233546374676,
+            "gap_to_isab_mean": 0.007910678252055332
+          },
+          "c_fsq_entropy_bonus": {
+            "n_seeds": 3,
+            "regret_mean": 0.01688448181994164,
+            "regret_sd": 0.00424888068877787,
+            "gap_to_anchor_mean": 0.010114487616417917,
+            "gap_to_anchor_sd": 0.00424888068877787,
+            "gap_to_best_uncompressed_mean": 0.014854942513835782,
+            "gap_to_best_uncompressed_sd": 0.004248880688777871,
+            "mean_ci_low": 0.014724099117149598,
+            "mean_ci_high": 0.01921254472303995,
+            "per_seed_regret": [
+              0.014,
+              0.0138,
+              0.0229
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0072,
+              0.007,
+              0.0161
+            ],
+            "per_seed_best_step": [
+              7600,
+              8000,
+              7400
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              1200,
+              1200,
+              1000
+            ],
+            "mean_agent_entropy_bits": 3.8535388693179637,
+            "mean_agent_entropy_sd": 0.11454702424963743,
+            "per_seed_agent_entropy": [
+              3.9183,
+              3.9497,
+              3.6926
+            ],
+            "pooled_entropy_bits_mean": 3.8555371104452107,
+            "per_seed_distinct_symbols": [
+              16,
+              16,
+              16
+            ],
+            "gap_to_plain_tr_mean": 0.010114487616417915,
+            "gap_to_isab_mean": 0.014854942513835782
+          },
+          "d_fsq_staged_channel": {
+            "n_seeds": 3,
+            "regret_mean": 0.026439147116496167,
+            "regret_sd": 0.001691844784862332,
+            "gap_to_anchor_mean": 0.019669152912972443,
+            "gap_to_anchor_sd": 0.001691844784862332,
+            "gap_to_best_uncompressed_mean": 0.02440960781039031,
+            "gap_to_best_uncompressed_sd": 0.001691844784862332,
+            "mean_ci_low": 0.023380048100290634,
+            "mean_ci_high": 0.02964973076378832,
+            "per_seed_regret": [
+              0.0267,
+              0.0283,
+              0.0242
+            ],
+            "per_seed_gap_to_anchor": [
+              0.02,
+              0.0216,
+              0.0175
+            ],
+            "per_seed_best_step": [
+              7800,
+              7800,
+              8000
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              1600,
+              1800,
+              1600
+            ],
+            "mean_agent_entropy_bits": 3.5366537074645925,
+            "mean_agent_entropy_sd": 0.09258716779326225,
+            "per_seed_agent_entropy": [
+              3.5085,
+              3.6615,
+              3.44
+            ],
+            "pooled_entropy_bits_mean": 3.5385750840886367,
+            "per_seed_distinct_symbols": [
+              15,
+              16,
+              16
+            ],
+            "gap_to_plain_tr_mean": 0.019669152912972443,
+            "gap_to_isab_mean": 0.02440960781039031
+          },
+          "e_fsq_biased_curr_plus_best": {
+            "n_seeds": 3,
+            "regret_mean": 0.012613875039180981,
+            "regret_sd": 0.008252760744690005,
+            "gap_to_anchor_mean": 0.003869615285416943,
+            "gap_to_anchor_sd": 0.008252760744690005,
+            "gap_to_best_uncompressed_mean": 0.010584335733075123,
+            "gap_to_best_uncompressed_sd": 0.008252760744690005,
+            "mean_ci_low": 0.010837368633671058,
+            "mean_ci_high": 0.014632894246927238,
+            "per_seed_regret": [
+              0.011,
+              0.0234,
+              0.0034
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0023,
+              0.0147,
+              -0.0053
+            ],
+            "per_seed_best_step": [
+              7800,
+              7400,
+              8000
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              4200,
+              4200,
+              4200
+            ],
+            "mean_agent_entropy_bits": 3.871554222622953,
+            "mean_agent_entropy_sd": 0.07508675969079337,
+            "per_seed_agent_entropy": [
+              3.8921,
+              3.771,
+              3.9515
+            ],
+            "pooled_entropy_bits_mean": 3.873657729523671,
+            "per_seed_distinct_symbols": [
+              16,
+              16,
+              16
+            ],
+            "gap_to_plain_tr_mean": 0.005843880835657259,
+            "gap_to_isab_mean": 0.010584335733075125
+          },
+          "e_fsq_biased_curr_plus_best_keys0": {
+            "n_seeds": 3,
+            "regret_mean": 0.2188179933782987,
+            "regret_sd": 0.017600600360479616,
+            "gap_to_anchor_mean": 0.21007373362453466,
+            "gap_to_anchor_sd": 0.017600600360479616,
+            "gap_to_best_uncompressed_mean": 0.21678845407219283,
+            "gap_to_best_uncompressed_sd": 0.017600600360479616,
+            "mean_ci_low": 0.2105364637648395,
+            "mean_ci_high": 0.2270566881122711,
+            "per_seed_regret": [
+              0.2352,
+              0.1944,
+              0.2268
+            ],
+            "per_seed_gap_to_anchor": [
+              0.2265,
+              0.1857,
+              0.2181
+            ],
+            "per_seed_best_step": [
+              7800,
+              7600,
+              7600
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              4400,
+              6400,
+              6200
+            ],
+            "mean_agent_entropy_bits": 3.744977963330131,
+            "mean_agent_entropy_sd": 0.052974681198985976,
+            "per_seed_agent_entropy": [
+              3.8061,
+              3.752,
+              3.6769
+            ],
+            "pooled_entropy_bits_mean": 3.746859185032001,
+            "per_seed_distinct_symbols": [
+              16,
+              16,
+              16
+            ],
+            "gap_to_plain_tr_mean": 0.21204799917477496,
+            "gap_to_isab_mean": 0.21678845407219283
+          }
+        },
+        "6": {
+          "0_fsq_joint": {
+            "n_seeds": 3,
+            "regret_mean": 0.015692359063196337,
+            "regret_sd": 0.0012637917706247665,
+            "gap_to_anchor_mean": 0.008922364859672611,
+            "gap_to_anchor_sd": 0.0012637917706247663,
+            "gap_to_best_uncompressed_mean": 0.013662819757090479,
+            "gap_to_best_uncompressed_sd": 0.0012637917706247676,
+            "mean_ci_low": 0.013923537550409796,
+            "mean_ci_high": 0.01767263773778866,
+            "per_seed_regret": [
+              0.0171,
+              0.014,
+              0.016
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0103,
+              0.0072,
+              0.0092
+            ],
+            "per_seed_best_step": [
+              7400,
+              8000,
+              7800
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              2000,
+              2000,
+              2000
+            ],
+            "mean_agent_entropy_bits": 3.9508014250879953,
+            "mean_agent_entropy_sd": 0.18438247029101815,
+            "per_seed_agent_entropy": [
+              3.6973,
+              4.1305,
+              4.0246
+            ],
+            "pooled_entropy_bits_mean": 3.955533548638846,
+            "per_seed_distinct_symbols": [
+              34,
+              33,
+              38
+            ],
+            "gap_to_plain_tr_mean": 0.008922364859672613,
+            "gap_to_isab_mean": 0.01366281975709048
+          },
+          "a_fsq_alt_opt": {
+            "n_seeds": 3,
+            "regret_mean": 0.03424068970197509,
+            "regret_sd": 0.005340420328842354,
+            "gap_to_anchor_mean": 0.027470695498451363,
+            "gap_to_anchor_sd": 0.005340420328842355,
+            "gap_to_best_uncompressed_mean": 0.03221115039586923,
+            "gap_to_best_uncompressed_sd": 0.005340420328842352,
+            "mean_ci_low": 0.030938068739211174,
+            "mean_ci_high": 0.03773389022832066,
+            "per_seed_regret": [
+              0.0411,
+              0.0336,
+              0.0281
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0343,
+              0.0268,
+              0.0213
+            ],
+            "per_seed_best_step": [
+              7000,
+              7800,
+              7400
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              2600,
+              1800,
+              2200
+            ],
+            "mean_agent_entropy_bits": 4.266992450738708,
+            "mean_agent_entropy_sd": 0.31376093077950523,
+            "per_seed_agent_entropy": [
+              4.5266,
+              4.4489,
+              3.8255
+            ],
+            "pooled_entropy_bits_mean": 4.27257446383404,
+            "per_seed_distinct_symbols": [
+              38,
+              40,
+              36
+            ],
+            "gap_to_plain_tr_mean": 0.027470695498451363,
+            "gap_to_isab_mean": 0.03221115039586923
+          },
+          "b_fsq_dec_warmstart": {
+            "n_seeds": 3,
+            "regret_mean": 0.008981276540259249,
+            "regret_sd": 0.004104844819727486,
+            "gap_to_anchor_mean": 0.0022112823367355264,
+            "gap_to_anchor_sd": 0.004104844819727487,
+            "gap_to_best_uncompressed_mean": 0.0069517372341533915,
+            "gap_to_best_uncompressed_sd": 0.004104844819727486,
+            "mean_ci_low": 0.007861513576897577,
+            "mean_ci_high": 0.010230327697931012,
+            "per_seed_regret": [
+              0.0146,
+              0.0075,
+              0.0049
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0078,
+              0.0007,
+              -0.0019
+            ],
+            "per_seed_best_step": [
+              7800,
+              8000,
+              8000
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              1800,
+              1600,
+              1400
+            ],
+            "mean_agent_entropy_bits": 3.604499752894156,
+            "mean_agent_entropy_sd": 0.12446322992158697,
+            "per_seed_agent_entropy": [
+              3.4768,
+              3.7732,
+              3.5635
+            ],
+            "pooled_entropy_bits_mean": 3.609677707738436,
+            "per_seed_distinct_symbols": [
+              30,
+              41,
+              36
+            ],
+            "gap_to_plain_tr_mean": 0.002211282336735526,
+            "gap_to_isab_mean": 0.0069517372341533915
+          },
+          "c_fsq_entropy_bonus": {
+            "n_seeds": 3,
+            "regret_mean": 0.015423441435280676,
+            "regret_sd": 0.006579409517804805,
+            "gap_to_anchor_mean": 0.008653447231756954,
+            "gap_to_anchor_sd": 0.006579409517804805,
+            "gap_to_best_uncompressed_mean": 0.013393902129174818,
+            "gap_to_best_uncompressed_sd": 0.006579409517804805,
+            "mean_ci_low": 0.01363608642341301,
+            "mean_ci_high": 0.017371527734981494,
+            "per_seed_regret": [
+              0.0221,
+              0.0065,
+              0.0176
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0154,
+              -0.0003,
+              0.0109
+            ],
+            "per_seed_best_step": [
+              7600,
+              7600,
+              7800
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              1000,
+              1000,
+              1200
+            ],
+            "mean_agent_entropy_bits": 5.594079913437727,
+            "mean_agent_entropy_sd": 0.1518486190349039,
+            "per_seed_agent_entropy": [
+              5.4466,
+              5.803,
+              5.5327
+            ],
+            "pooled_entropy_bits_mean": 5.603473962581796,
+            "per_seed_distinct_symbols": [
+              59,
+              64,
+              62
+            ],
+            "gap_to_plain_tr_mean": 0.008653447231756952,
+            "gap_to_isab_mean": 0.01339390212917482
+          },
+          "d_fsq_staged_channel": {
+            "n_seeds": 3,
+            "regret_mean": 0.019598518454885392,
+            "regret_sd": 0.0036254478413084087,
+            "gap_to_anchor_mean": 0.01282852425136167,
+            "gap_to_anchor_sd": 0.0036254478413084087,
+            "gap_to_best_uncompressed_mean": 0.01756897914877954,
+            "gap_to_best_uncompressed_sd": 0.0036254478413084087,
+            "mean_ci_low": 0.01715073872947252,
+            "mean_ci_high": 0.022480294206611864,
+            "per_seed_regret": [
+              0.0165,
+              0.0176,
+              0.0247
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0097,
+              0.0109,
+              0.0179
+            ],
+            "per_seed_best_step": [
+              7800,
+              7200,
+              7600
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              1600,
+              1600,
+              1200
+            ],
+            "mean_agent_entropy_bits": 5.100697826256213,
+            "mean_agent_entropy_sd": 0.073138648287257,
+            "per_seed_agent_entropy": [
+              5.0014,
+              5.1253,
+              5.1754
+            ],
+            "pooled_entropy_bits_mean": 5.108240892739539,
+            "per_seed_distinct_symbols": [
+              54,
+              49,
+              50
+            ],
+            "gap_to_plain_tr_mean": 0.012828524251361668,
+            "gap_to_isab_mean": 0.017568979148779536
+          },
+          "e_fsq_biased_curr_plus_best": {
+            "n_seeds": 3,
+            "regret_mean": 0.02672751895232781,
+            "regret_sd": 0.005100066217435473,
+            "gap_to_anchor_mean": 0.01798325919856377,
+            "gap_to_anchor_sd": 0.005100066217435472,
+            "gap_to_best_uncompressed_mean": 0.024697979646221956,
+            "gap_to_best_uncompressed_sd": 0.005100066217435472,
+            "mean_ci_low": 0.023581350075014735,
+            "mean_ci_high": 0.030087021278271953,
+            "per_seed_regret": [
+              0.025,
+              0.0337,
+              0.0215
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0162,
+              0.0249,
+              0.0128
+            ],
+            "per_seed_best_step": [
+              7600,
+              7400,
+              6800
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              4200,
+              4200,
+              4200
+            ],
+            "mean_agent_entropy_bits": 5.532670279484766,
+            "mean_agent_entropy_sd": 0.08104421347653626,
+            "per_seed_agent_entropy": [
+              5.5217,
+              5.4393,
+              5.6369
+            ],
+            "pooled_entropy_bits_mean": 5.5418934468385,
+            "per_seed_distinct_symbols": [
+              61,
+              62,
+              64
+            ],
+            "gap_to_plain_tr_mean": 0.019957524748804086,
+            "gap_to_isab_mean": 0.024697979646221953
+          },
+          "e_fsq_biased_curr_plus_best_keys0": {
+            "n_seeds": 3,
+            "regret_mean": 0.08132074086662212,
+            "regret_sd": 0.004834026976318582,
+            "gap_to_anchor_mean": 0.07257648111285808,
+            "gap_to_anchor_sd": 0.004834026976318582,
+            "gap_to_best_uncompressed_mean": 0.07929120156051626,
+            "gap_to_best_uncompressed_sd": 0.004834026976318582,
+            "mean_ci_low": 0.07578037425152358,
+            "mean_ci_high": 0.08724630796270927,
+            "per_seed_regret": [
+              0.0839,
+              0.0745,
+              0.0855
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0752,
+              0.0658,
+              0.0768
+            ],
+            "per_seed_best_step": [
+              7800,
+              7800,
+              7600
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              4200,
+              4200,
+              4200
+            ],
+            "mean_agent_entropy_bits": 5.281166731812962,
+            "mean_agent_entropy_sd": 0.05934396442883622,
+            "per_seed_agent_entropy": [
+              5.2843,
+              5.207,
+              5.3522
+            ],
+            "pooled_entropy_bits_mean": 5.289812343335126,
+            "per_seed_distinct_symbols": [
+              55,
+              58,
+              60
+            ],
+            "gap_to_plain_tr_mean": 0.0745507466630984,
+            "gap_to_isab_mean": 0.07929120156051626
+          }
+        }
+      },
+      "per_seed": {
+        "2": {
+          "0_fsq_joint": [
+            {
+              "arm": "0_fsq_joint",
+              "b": 2,
+              "seed": 0,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.11557126771186592,
+                "ci_low": 0.10864642323513088,
+                "ci_high": 0.12299643435338213,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.10880127350834219,
+              "gap_to_best_uncompressed": 0.11354172840576006,
+              "best_val_kl": 0.12291835088886896,
+              "best_step": 7400,
+              "escape_step": 2000,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.7900411377236745,
+                "mean_agent_entropy_bits": 1.789824330041974
+              }
+            },
+            {
+              "arm": "0_fsq_joint",
+              "b": 2,
+              "seed": 1,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.11201347594220902,
+                "ci_low": 0.10475559788036956,
+                "ci_high": 0.11986540373248618,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.1052434817386853,
+              "gap_to_best_uncompressed": 0.10998393663610316,
+              "best_val_kl": 0.11183001806431128,
+              "best_step": 7200,
+              "escape_step": 2400,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.5458141238901426,
+                "mean_agent_entropy_bits": 1.545489337389698
+              }
+            },
+            {
+              "arm": "0_fsq_joint",
+              "b": 2,
+              "seed": 2,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.07879369046004302,
+                "ci_low": 0.07198091477947235,
+                "ci_high": 0.0855426775169547,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.07202369625651929,
+              "gap_to_best_uncompressed": 0.07676415115393716,
+              "best_val_kl": 0.0872365633656139,
+              "best_step": 7200,
+              "escape_step": 3000,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.8862407707699527,
+                "mean_agent_entropy_bits": 1.8859223791106954
+              }
+            }
+          ],
+          "a_fsq_alt_opt": [
+            {
+              "arm": "a_fsq_alt_opt",
+              "b": 2,
+              "seed": 0,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.04448867749835606,
+                "ci_low": 0.04034126870315077,
+                "ci_high": 0.04908436818555351,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.03771868329483234,
+              "gap_to_best_uncompressed": 0.0424591381922502,
+              "best_val_kl": 0.04678358345591292,
+              "best_step": 7800,
+              "escape_step": 2200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.9350186731976626,
+                "mean_agent_entropy_bits": 1.9346956034281815
+              }
+            },
+            {
+              "arm": "a_fsq_alt_opt",
+              "b": 2,
+              "seed": 1,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.11384541801977043,
+                "ci_low": 0.10606337341464016,
+                "ci_high": 0.12221277174515499,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.1070754238162467,
+              "gap_to_best_uncompressed": 0.11181587871366457,
+              "best_val_kl": 0.11690176744764792,
+              "best_step": 7000,
+              "escape_step": 2200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.7321660387556985,
+                "mean_agent_entropy_bits": 1.7318343415782789
+              }
+            },
+            {
+              "arm": "a_fsq_alt_opt",
+              "b": 2,
+              "seed": 2,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.17466390086880232,
+                "ci_low": 0.1655222510428684,
+                "ci_high": 0.18365347855605868,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.1678939066652786,
+              "gap_to_best_uncompressed": 0.17263436156269646,
+              "best_val_kl": 0.17064192812020923,
+              "best_step": 5000,
+              "escape_step": 3400,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 3,
+                "distinct_symbols_max_agent": 3,
+                "distinct_symbols_min_agent": 3,
+                "pooled_entropy_bits": 1.5730453032364635,
+                "mean_agent_entropy_bits": 1.5728724543746522
+              }
+            }
+          ],
+          "b_fsq_dec_warmstart": [
+            {
+              "arm": "b_fsq_dec_warmstart",
+              "b": 2,
+              "seed": 0,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.06006198712845075,
+                "ci_low": 0.055232940320494375,
+                "ci_high": 0.06514151670094624,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.05329199292492703,
+              "gap_to_best_uncompressed": 0.05803244782234489,
+              "best_val_kl": 0.06080586798969959,
+              "best_step": 6400,
+              "escape_step": 2000,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.9252157546663236,
+                "mean_agent_entropy_bits": 1.9248972353809632
+              }
+            },
+            {
+              "arm": "b_fsq_dec_warmstart",
+              "b": 2,
+              "seed": 1,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.07048665253978365,
+                "ci_low": 0.06484669979231383,
+                "ci_high": 0.07618768669603392,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.06371665833625992,
+              "gap_to_best_uncompressed": 0.06845711323367779,
+              "best_val_kl": 0.0802998425819861,
+              "best_step": 6000,
+              "escape_step": 1600,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.9108537004500459,
+                "mean_agent_entropy_bits": 1.910577767497146
+              }
+            },
+            {
+              "arm": "b_fsq_dec_warmstart",
+              "b": 2,
+              "seed": 2,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.012582265395271165,
+                "ci_low": 0.011033376974901045,
+                "ci_high": 0.014290009304720458,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.0058122711917474425,
+              "gap_to_best_uncompressed": 0.010552726089165309,
+              "best_val_kl": 0.014946580062404931,
+              "best_step": 7200,
+              "escape_step": 1600,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.9556367703229731,
+                "mean_agent_entropy_bits": 1.9554425346603186
+              }
+            }
+          ],
+          "c_fsq_entropy_bonus": [
+            {
+              "arm": "c_fsq_entropy_bonus",
+              "b": 2,
+              "seed": 0,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.05288905897548592,
+                "ci_low": 0.04826203275099202,
+                "ci_high": 0.05782631372178825,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.0461190647719622,
+              "gap_to_best_uncompressed": 0.05085951966938006,
+              "best_val_kl": 0.05883750436247108,
+              "best_step": 3600,
+              "escape_step": 2000,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.9448316117562987,
+                "mean_agent_entropy_bits": 1.94459638044076
+              }
+            },
+            {
+              "arm": "c_fsq_entropy_bonus",
+              "b": 2,
+              "seed": 1,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.02528423184779175,
+                "ci_low": 0.022697613345808474,
+                "ci_high": 0.028122493188551125,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.018514237644268027,
+              "gap_to_best_uncompressed": 0.023254692541685894,
+              "best_val_kl": 0.029392514445821638,
+              "best_step": 8000,
+              "escape_step": 1600,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.9495700226744093,
+                "mean_agent_entropy_bits": 1.9492617338646954
+              }
+            },
+            {
+              "arm": "c_fsq_entropy_bonus",
+              "b": 2,
+              "seed": 2,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.01310416055591748,
+                "ci_low": 0.011608705018761612,
+                "ci_high": 0.014621057414164522,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.006334166352393758,
+              "gap_to_best_uncompressed": 0.011074621249811623,
+              "best_val_kl": 0.015216188036299233,
+              "best_step": 7800,
+              "escape_step": 1600,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.9554568271254713,
+                "mean_agent_entropy_bits": 1.9551483373392027
+              }
+            }
+          ],
+          "d_fsq_staged_channel": [
+            {
+              "arm": "d_fsq_staged_channel",
+              "b": 2,
+              "seed": 0,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.007647303176310058,
+                "ci_low": 0.006758614506128428,
+                "ci_high": 0.008552559968298852,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.0008773089727863352,
+              "gap_to_best_uncompressed": 0.005617763870204201,
+              "best_val_kl": 0.007931638623966192,
+              "best_step": 8000,
+              "escape_step": 1600,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.9576202760670216,
+                "mean_agent_entropy_bits": 1.9573674381877344
+              }
+            },
+            {
+              "arm": "d_fsq_staged_channel",
+              "b": 2,
+              "seed": 1,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.11451875188401746,
+                "ci_low": 0.10645210386346783,
+                "ci_high": 0.12263571544293672,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.10774875768049373,
+              "gap_to_best_uncompressed": 0.1124892125779116,
+              "best_val_kl": 0.11396217098316587,
+              "best_step": 6000,
+              "escape_step": 1600,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.8748755793277176,
+                "mean_agent_entropy_bits": 1.8745501051539128
+              }
+            },
+            {
+              "arm": "d_fsq_staged_channel",
+              "b": 2,
+              "seed": 2,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.03774365579023083,
+                "ci_low": 0.03344020473246487,
+                "ci_high": 0.04243488139373805,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.03097366158670711,
+              "gap_to_best_uncompressed": 0.03571411648412497,
+              "best_val_kl": 0.03988282094974136,
+              "best_step": 7800,
+              "escape_step": 3600,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.8613801901215337,
+                "mean_agent_entropy_bits": 1.8609829375060198
+              }
+            }
+          ],
+          "e_fsq_biased_curr_plus_best": [
+            {
+              "arm": "e_fsq_biased_curr_plus_best",
+              "b": 2,
+              "seed": 0,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.012840389499831637,
+                "ci_low": 0.011043940441334422,
+                "ci_high": 0.014737079484485003,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.004096129746067597,
+              "gap_to_best_uncompressed": 0.010810850193725779,
+              "best_val_kl": 0.011595561451030167,
+              "best_step": 8000,
+              "escape_step": 4200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.9534687198523226,
+                "mean_agent_entropy_bits": 1.9531728383917686
+              }
+            },
+            {
+              "arm": "e_fsq_biased_curr_plus_best",
+              "b": 2,
+              "seed": 1,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.00493025157228721,
+                "ci_low": 0.004480290666456915,
+                "ci_high": 0.00542982918344973,
+                "n": 4000
+              },
+              "gap_to_anchor": -0.00381400818147683,
+              "gap_to_best_uncompressed": 0.0029007122661813527,
+              "best_val_kl": 0.005633386794654356,
+              "best_step": 8000,
+              "escape_step": 4200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.9577475046157264,
+                "mean_agent_entropy_bits": 1.9574914515908683
+              }
+            },
+            {
+              "arm": "e_fsq_biased_curr_plus_best",
+              "b": 2,
+              "seed": 2,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.007821154356462155,
+                "ci_low": 0.006900786024871484,
+                "ci_high": 0.008886408468974562,
+                "n": 4000
+              },
+              "gap_to_anchor": -0.0009231053973018846,
+              "gap_to_best_uncompressed": 0.005791615050356298,
+              "best_val_kl": 0.008267358433508447,
+              "best_step": 8000,
+              "escape_step": 4200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.9581912932298766,
+                "mean_agent_entropy_bits": 1.9579050758629806
+              }
+            }
+          ],
+          "e_fsq_biased_curr_plus_best_keys0": [
+            {
+              "arm": "e_fsq_biased_curr_plus_best_keys0",
+              "b": 2,
+              "seed": 0,
+              "dec_keys": false,
+              "key_scale": 0.0,
+              "key_warmup": 0,
+              "regret_quant": {
+                "mean": 0.2598230572810605,
+                "ci_low": 0.25169312877856265,
+                "ci_high": 0.26836282837724024,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.25107879752729645,
+              "gap_to_best_uncompressed": 0.25779351797495464,
+              "best_val_kl": 0.2550577397550193,
+              "best_step": 7000,
+              "escape_step": null,
+              "escaped": false,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.983240534897614,
+                "mean_agent_entropy_bits": 1.9828499686793373
+              }
+            },
+            {
+              "arm": "e_fsq_biased_curr_plus_best_keys0",
+              "b": 2,
+              "seed": 1,
+              "dec_keys": false,
+              "key_scale": 0.0,
+              "key_warmup": 0,
+              "regret_quant": {
+                "mean": 0.2616262465122942,
+                "ci_low": 0.2536229005046221,
+                "ci_high": 0.2698639611956123,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.2528819867585302,
+              "gap_to_best_uncompressed": 0.2595967072061884,
+              "best_val_kl": 0.25758441656072684,
+              "best_step": 8000,
+              "escape_step": null,
+              "escaped": false,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.718192726955046,
+                "mean_agent_entropy_bits": 1.7177971394916203
+              }
+            },
+            {
+              "arm": "e_fsq_biased_curr_plus_best_keys0",
+              "b": 2,
+              "seed": 2,
+              "dec_keys": false,
+              "key_scale": 0.0,
+              "key_warmup": 0,
+              "regret_quant": {
+                "mean": 0.25870443245650177,
+                "ci_low": 0.25026663215745315,
+                "ci_high": 0.26690440622121164,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.24996017270273774,
+              "gap_to_best_uncompressed": 0.25667489315039593,
+              "best_val_kl": 0.24992886777915146,
+              "best_step": 6400,
+              "escape_step": null,
+              "escaped": false,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.946577909452333,
+                "mean_agent_entropy_bits": 1.9461247087644091
+              }
+            }
+          ]
+        },
+        "4": {
+          "0_fsq_joint": [
+            {
+              "arm": "0_fsq_joint",
+              "b": 4,
+              "seed": 0,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.019351862138110874,
+                "ci_low": 0.01637058152372678,
+                "ci_high": 0.022810695230665128,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.01258186793458715,
+              "gap_to_best_uncompressed": 0.017322322832005018,
+              "best_val_kl": 0.019939906666307124,
+              "best_step": 7400,
+              "escape_step": 1800,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 13,
+                "distinct_symbols_max_agent": 13,
+                "distinct_symbols_min_agent": 13,
+                "pooled_entropy_bits": 2.891585289711728,
+                "mean_agent_entropy_bits": 2.88982237879511
+              }
+            },
+            {
+              "arm": "0_fsq_joint",
+              "b": 4,
+              "seed": 1,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.027779112560890502,
+                "ci_low": 0.02388501311275743,
+                "ci_high": 0.031873368350764916,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.02100911835736678,
+              "gap_to_best_uncompressed": 0.025749573254784646,
+              "best_val_kl": 0.026965770454749616,
+              "best_step": 8000,
+              "escape_step": 2000,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 15,
+                "distinct_symbols_max_agent": 15,
+                "distinct_symbols_min_agent": 14,
+                "pooled_entropy_bits": 3.0515821237383456,
+                "mean_agent_entropy_bits": 3.049408900583655
+              }
+            },
+            {
+              "arm": "0_fsq_joint",
+              "b": 4,
+              "seed": 2,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.025259765596818206,
+                "ci_low": 0.022312544902125964,
+                "ci_high": 0.028410184400232324,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.018489771393294482,
+              "gap_to_best_uncompressed": 0.02323022629071235,
+              "best_val_kl": 0.025738880312692447,
+              "best_step": 7400,
+              "escape_step": 2000,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 16,
+                "distinct_symbols_max_agent": 16,
+                "distinct_symbols_min_agent": 16,
+                "pooled_entropy_bits": 2.9331891051991423,
+                "mean_agent_entropy_bits": 2.931263494559259
+              }
+            }
+          ],
+          "a_fsq_alt_opt": [
+            {
+              "arm": "a_fsq_alt_opt",
+              "b": 4,
+              "seed": 0,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.07925969682467246,
+                "ci_low": 0.07332406937898343,
+                "ci_high": 0.08574211855340726,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.07248970262114873,
+              "gap_to_best_uncompressed": 0.0772301575185666,
+              "best_val_kl": 0.08206333062894788,
+              "best_step": 7800,
+              "escape_step": 3000,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 16,
+                "distinct_symbols_max_agent": 16,
+                "distinct_symbols_min_agent": 15,
+                "pooled_entropy_bits": 2.7862789293651846,
+                "mean_agent_entropy_bits": 2.783954170390033
+              }
+            },
+            {
+              "arm": "a_fsq_alt_opt",
+              "b": 4,
+              "seed": 1,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.028725787403050804,
+                "ci_low": 0.025882583369767186,
+                "ci_high": 0.03173931026163478,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.02195579319952708,
+              "gap_to_best_uncompressed": 0.026696248096944947,
+              "best_val_kl": 0.03447674775123668,
+              "best_step": 8000,
+              "escape_step": 2600,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 12,
+                "distinct_symbols_max_agent": 12,
+                "distinct_symbols_min_agent": 11,
+                "pooled_entropy_bits": 2.666908210763092,
+                "mean_agent_entropy_bits": 2.6651461623433073
+              }
+            },
+            {
+              "arm": "a_fsq_alt_opt",
+              "b": 4,
+              "seed": 2,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.05023172825938882,
+                "ci_low": 0.045441482353724805,
+                "ci_high": 0.05504017963154387,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.0434617340558651,
+              "gap_to_best_uncompressed": 0.04820218895328296,
+              "best_val_kl": 0.046881965805618195,
+              "best_step": 8000,
+              "escape_step": 2600,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 14,
+                "distinct_symbols_max_agent": 14,
+                "distinct_symbols_min_agent": 14,
+                "pooled_entropy_bits": 3.2769624091121394,
+                "mean_agent_entropy_bits": 3.2751550531059594
+              }
+            }
+          ],
+          "b_fsq_dec_warmstart": [
+            {
+              "arm": "b_fsq_dec_warmstart",
+              "b": 4,
+              "seed": 0,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.01034015968249003,
+                "ci_low": 0.00908975151509745,
+                "ci_high": 0.011724297674791748,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.003570165478966307,
+              "gap_to_best_uncompressed": 0.008310620376384172,
+              "best_val_kl": 0.009591760444391613,
+              "best_step": 7400,
+              "escape_step": 2000,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 15,
+                "distinct_symbols_max_agent": 15,
+                "distinct_symbols_min_agent": 13,
+                "pooled_entropy_bits": 2.4784725243147063,
+                "mean_agent_entropy_bits": 2.4761714261575416
+              }
+            },
+            {
+              "arm": "b_fsq_dec_warmstart",
+              "b": 4,
+              "seed": 1,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.011655319996259163,
+                "ci_low": 0.010264394932639833,
+                "ci_high": 0.013303818399296516,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.00488532579273544,
+              "gap_to_best_uncompressed": 0.009625780690153306,
+              "best_val_kl": 0.013996551566744436,
+              "best_step": 7600,
+              "escape_step": 1800,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 12,
+                "distinct_symbols_max_agent": 12,
+                "distinct_symbols_min_agent": 12,
+                "pooled_entropy_bits": 2.7375841727041346,
+                "mean_agent_entropy_bits": 2.7357339104143494
+              }
+            },
+            {
+              "arm": "b_fsq_dec_warmstart",
+              "b": 4,
+              "seed": 2,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.007825172995734377,
+                "ci_low": 0.006935983808330566,
+                "ci_high": 0.008789408371647886,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.0010551787922106542,
+              "gap_to_best_uncompressed": 0.00579563368962852,
+              "best_val_kl": 0.008679499912044034,
+              "best_step": 8000,
+              "escape_step": 1800,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 13,
+                "distinct_symbols_max_agent": 13,
+                "distinct_symbols_min_agent": 12,
+                "pooled_entropy_bits": 2.6792697683985787,
+                "mean_agent_entropy_bits": 2.6773475823889132
+              }
+            }
+          ],
+          "c_fsq_entropy_bonus": [
+            {
+              "arm": "c_fsq_entropy_bonus",
+              "b": 4,
+              "seed": 0,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.013975609092913866,
+                "ci_low": 0.012166791085685665,
+                "ci_high": 0.01581965182132581,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.007205614889390143,
+              "gap_to_best_uncompressed": 0.011946069786808008,
+              "best_val_kl": 0.014031723216055338,
+              "best_step": 7600,
+              "escape_step": 1200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 16,
+                "distinct_symbols_max_agent": 16,
+                "distinct_symbols_min_agent": 16,
+                "pooled_entropy_bits": 3.920297717722334,
+                "mean_agent_entropy_bits": 3.9183193910194203
+              }
+            },
+            {
+              "arm": "c_fsq_entropy_bonus",
+              "b": 4,
+              "seed": 1,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.013785532052819363,
+                "ci_low": 0.012079634725201936,
+                "ci_high": 0.015741914681874598,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.00701553784929564,
+              "gap_to_best_uncompressed": 0.011755992746713507,
+              "best_val_kl": 0.012221465231205602,
+              "best_step": 8000,
+              "escape_step": 1200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 16,
+                "distinct_symbols_max_agent": 16,
+                "distinct_symbols_min_agent": 16,
+                "pooled_entropy_bits": 3.9516427398094525,
+                "mean_agent_entropy_bits": 3.9497337715022285
+              }
+            },
+            {
+              "arm": "c_fsq_entropy_bonus",
+              "b": 4,
+              "seed": 2,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.02289230431409169,
+                "ci_low": 0.01992587154056119,
+                "ci_high": 0.026076067665919436,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.016122310110567965,
+              "gap_to_best_uncompressed": 0.020862765007985833,
+              "best_val_kl": 0.022104988341345253,
+              "best_step": 7400,
+              "escape_step": 1000,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 16,
+                "distinct_symbols_max_agent": 16,
+                "distinct_symbols_min_agent": 16,
+                "pooled_entropy_bits": 3.694670873803845,
+                "mean_agent_entropy_bits": 3.6925634454322416
+              }
+            }
+          ],
+          "d_fsq_staged_channel": [
+            {
+              "arm": "d_fsq_staged_channel",
+              "b": 4,
+              "seed": 0,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.02674982679778144,
+                "ci_low": 0.023801898818158335,
+                "ci_high": 0.02989766331383123,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.019979832594257715,
+              "gap_to_best_uncompressed": 0.024720287491675583,
+              "best_val_kl": 0.03158934636057898,
+              "best_step": 7800,
+              "escape_step": 1600,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 15,
+                "distinct_symbols_max_agent": 15,
+                "distinct_symbols_min_agent": 14,
+                "pooled_entropy_bits": 3.510169843420445,
+                "mean_agent_entropy_bits": 3.5084912732201965
+              }
+            },
+            {
+              "arm": "d_fsq_staged_channel",
+              "b": 4,
+              "seed": 1,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.028338342932839353,
+                "ci_low": 0.02503629914275319,
+                "ci_high": 0.03171664427492919,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.02156834872931563,
+              "gap_to_best_uncompressed": 0.026308803626733497,
+              "best_val_kl": 0.030923673138033462,
+              "best_step": 7800,
+              "escape_step": 1800,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 16,
+                "distinct_symbols_max_agent": 16,
+                "distinct_symbols_min_agent": 16,
+                "pooled_entropy_bits": 3.663419941369432,
+                "mean_agent_entropy_bits": 3.6614766666402687
+              }
+            },
+            {
+              "arm": "d_fsq_staged_channel",
+              "b": 4,
+              "seed": 2,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.024229271618867707,
+                "ci_low": 0.02130194633996037,
+                "ci_high": 0.027334884702604537,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.017459277415343984,
+              "gap_to_best_uncompressed": 0.02219973231276185,
+              "best_val_kl": 0.020016731262786813,
+              "best_step": 8000,
+              "escape_step": 1600,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 16,
+                "distinct_symbols_max_agent": 16,
+                "distinct_symbols_min_agent": 15,
+                "pooled_entropy_bits": 3.4421354674760334,
+                "mean_agent_entropy_bits": 3.4399931825333123
+              }
+            }
+          ],
+          "e_fsq_biased_curr_plus_best": [
+            {
+              "arm": "e_fsq_biased_curr_plus_best",
+              "b": 4,
+              "seed": 0,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.011004826148400983,
+                "ci_low": 0.009396091288443006,
+                "ci_high": 0.012866919731588709,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.0022605663946369432,
+              "gap_to_best_uncompressed": 0.008975286842295125,
+              "best_val_kl": 0.01205227660914926,
+              "best_step": 7800,
+              "escape_step": 4200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 16,
+                "distinct_symbols_max_agent": 16,
+                "distinct_symbols_min_agent": 16,
+                "pooled_entropy_bits": 3.894184928703091,
+                "mean_agent_entropy_bits": 3.892134206186831
+              }
+            },
+            {
+              "arm": "e_fsq_biased_curr_plus_best",
+              "b": 4,
+              "seed": 1,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.023429408979819412,
+                "ci_low": 0.020028240013228123,
+                "ci_high": 0.02726537590761112,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.014685149226055372,
+              "gap_to_best_uncompressed": 0.021399869673713556,
+              "best_val_kl": 0.021141738951319246,
+              "best_step": 7400,
+              "escape_step": 4200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 16,
+                "distinct_symbols_max_agent": 16,
+                "distinct_symbols_min_agent": 16,
+                "pooled_entropy_bits": 3.7731492055542297,
+                "mean_agent_entropy_bits": 3.771045715952565
+              }
+            },
+            {
+              "arm": "e_fsq_biased_curr_plus_best",
+              "b": 4,
+              "seed": 2,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.003407389989322551,
+                "ci_low": 0.003087774599342045,
+                "ci_high": 0.0037663871015818874,
+                "n": 4000
+              },
+              "gap_to_anchor": -0.005336869764441489,
+              "gap_to_best_uncompressed": 0.001377850683216694,
+              "best_val_kl": 0.003521562764067299,
+              "best_step": 8000,
+              "escape_step": 4200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 16,
+                "distinct_symbols_max_agent": 16,
+                "distinct_symbols_min_agent": 16,
+                "pooled_entropy_bits": 3.9536390543136917,
+                "mean_agent_entropy_bits": 3.9514827457294635
+              }
+            }
+          ],
+          "e_fsq_biased_curr_plus_best_keys0": [
+            {
+              "arm": "e_fsq_biased_curr_plus_best_keys0",
+              "b": 4,
+              "seed": 0,
+              "dec_keys": false,
+              "key_scale": 0.0,
+              "key_warmup": 0,
+              "regret_quant": {
+                "mean": 0.23520557326980718,
+                "ci_low": 0.2265323873167674,
+                "ci_high": 0.2433012611110277,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.22646131351604315,
+              "gap_to_best_uncompressed": 0.23317603396370132,
+              "best_val_kl": 0.22889636222571141,
+              "best_step": 7800,
+              "escape_step": 4400,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 16,
+                "distinct_symbols_max_agent": 16,
+                "distinct_symbols_min_agent": 16,
+                "pooled_entropy_bits": 3.8079755889160354,
+                "mean_agent_entropy_bits": 3.806052803133726
+              }
+            },
+            {
+              "arm": "e_fsq_biased_curr_plus_best_keys0",
+              "b": 4,
+              "seed": 1,
+              "dec_keys": false,
+              "key_scale": 0.0,
+              "key_warmup": 0,
+              "regret_quant": {
+                "mean": 0.19439900332442428,
+                "ci_low": 0.18626225420935988,
+                "ci_high": 0.20245346350152493,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.18565474357066025,
+              "gap_to_best_uncompressed": 0.19236946401831842,
+              "best_val_kl": 0.19162611114667308,
+              "best_step": 7600,
+              "escape_step": 6400,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 16,
+                "distinct_symbols_max_agent": 16,
+                "distinct_symbols_min_agent": 16,
+                "pooled_entropy_bits": 3.7538834466800957,
+                "mean_agent_entropy_bits": 3.7520154450173626
+              }
+            },
+            {
+              "arm": "e_fsq_biased_curr_plus_best_keys0",
+              "b": 4,
+              "seed": 2,
+              "dec_keys": false,
+              "key_scale": 0.0,
+              "key_warmup": 0,
+              "regret_quant": {
+                "mean": 0.22684940354066463,
+                "ci_low": 0.21881474976839124,
+                "ci_high": 0.2354153397242607,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.2181051437869006,
+              "gap_to_best_uncompressed": 0.22481986423455877,
+              "best_val_kl": 0.22394035787692684,
+              "best_step": 7600,
+              "escape_step": 6200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 16,
+                "distinct_symbols_max_agent": 16,
+                "distinct_symbols_min_agent": 16,
+                "pooled_entropy_bits": 3.6787185194998715,
+                "mean_agent_entropy_bits": 3.6768656418393046
+              }
+            }
+          ]
+        },
+        "6": {
+          "0_fsq_joint": [
+            {
+              "arm": "0_fsq_joint",
+              "b": 6,
+              "seed": 0,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.01707130115837183,
+                "ci_low": 0.01500292466044183,
+                "ci_high": 0.019470616054838845,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.010301306954848106,
+              "gap_to_best_uncompressed": 0.015041761852265974,
+              "best_val_kl": 0.01641675373002597,
+              "best_step": 7400,
+              "escape_step": 2000,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 34,
+                "distinct_symbols_max_agent": 31,
+                "distinct_symbols_min_agent": 27,
+                "pooled_entropy_bits": 3.70181197107834,
+                "mean_agent_entropy_bits": 3.697321091051713
+              }
+            },
+            {
+              "arm": "0_fsq_joint",
+              "b": 6,
+              "seed": 1,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.014018183246216722,
+                "ci_low": 0.012437352475527429,
+                "ci_high": 0.01579539847214779,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.007248189042693,
+              "gap_to_best_uncompressed": 0.011988643940110864,
+              "best_val_kl": 0.01474222660871514,
+              "best_step": 8000,
+              "escape_step": 2000,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 33,
+                "distinct_symbols_max_agent": 33,
+                "distinct_symbols_min_agent": 30,
+                "pooled_entropy_bits": 4.135144642814914,
+                "mean_agent_entropy_bits": 4.130514540094411
+              }
+            },
+            {
+              "arm": "0_fsq_joint",
+              "b": 6,
+              "seed": 2,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.015987592785000452,
+                "ci_low": 0.01433033551526013,
+                "ci_high": 0.01775189868637935,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.009217598581476728,
+              "gap_to_best_uncompressed": 0.013958053478894596,
+              "best_val_kl": 0.018588862989599116,
+              "best_step": 7800,
+              "escape_step": 2000,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 38,
+                "distinct_symbols_max_agent": 37,
+                "distinct_symbols_min_agent": 34,
+                "pooled_entropy_bits": 4.029644032023284,
+                "mean_agent_entropy_bits": 4.024568644117861
+              }
+            }
+          ],
+          "a_fsq_alt_opt": [
+            {
+              "arm": "a_fsq_alt_opt",
+              "b": 6,
+              "seed": 0,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.04109855586984495,
+                "ci_low": 0.037078413666502656,
+                "ci_high": 0.0455466065964312,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.03432856166632123,
+              "gap_to_best_uncompressed": 0.03906901656373909,
+              "best_val_kl": 0.04236416573277037,
+              "best_step": 7000,
+              "escape_step": 2600,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 38,
+                "distinct_symbols_max_agent": 38,
+                "distinct_symbols_min_agent": 36,
+                "pooled_entropy_bits": 4.532146570349749,
+                "mean_agent_entropy_bits": 4.526559479817477
+              }
+            },
+            {
+              "arm": "a_fsq_alt_opt",
+              "b": 6,
+              "seed": 1,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.03355171786790454,
+                "ci_low": 0.030530358438698717,
+                "ci_high": 0.0366343128596754,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.026781723664380818,
+              "gap_to_best_uncompressed": 0.03152217856179868,
+              "best_val_kl": 0.037831177079760005,
+              "best_step": 7800,
+              "escape_step": 1800,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 40,
+                "distinct_symbols_max_agent": 40,
+                "distinct_symbols_min_agent": 38,
+                "pooled_entropy_bits": 4.454698667025546,
+                "mean_agent_entropy_bits": 4.448877992390096
+              }
+            },
+            {
+              "arm": "a_fsq_alt_opt",
+              "b": 6,
+              "seed": 2,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.02807179536817576,
+                "ci_low": 0.025205434112432146,
+                "ci_high": 0.03102075122885537,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.021301801164652037,
+              "gap_to_best_uncompressed": 0.026042256062069905,
+              "best_val_kl": 0.02765870366203383,
+              "best_step": 7400,
+              "escape_step": 2200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 36,
+                "distinct_symbols_max_agent": 36,
+                "distinct_symbols_min_agent": 33,
+                "pooled_entropy_bits": 3.830878154126826,
+                "mean_agent_entropy_bits": 3.825539880008548
+              }
+            }
+          ],
+          "b_fsq_dec_warmstart": [
+            {
+              "arm": "b_fsq_dec_warmstart",
+              "b": 6,
+              "seed": 0,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.014595177000939654,
+                "ci_low": 0.012714532879906554,
+                "ci_high": 0.016557323787596747,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.007825182797415932,
+              "gap_to_best_uncompressed": 0.012565637694833796,
+              "best_val_kl": 0.013781580629260545,
+              "best_step": 7800,
+              "escape_step": 1800,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 30,
+                "distinct_symbols_max_agent": 30,
+                "distinct_symbols_min_agent": 29,
+                "pooled_entropy_bits": 3.4807680547544124,
+                "mean_agent_entropy_bits": 3.4767682118981678
+              }
+            },
+            {
+              "arm": "b_fsq_dec_warmstart",
+              "b": 6,
+              "seed": 1,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.007454059760386224,
+                "ci_low": 0.006484453063795106,
+                "ci_high": 0.008635068335348856,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.0006840655568625016,
+              "gap_to_best_uncompressed": 0.005424520454280367,
+              "best_val_kl": 0.007112694754501786,
+              "best_step": 8000,
+              "escape_step": 1600,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 41,
+                "distinct_symbols_max_agent": 38,
+                "distinct_symbols_min_agent": 31,
+                "pooled_entropy_bits": 3.7792981466394866,
+                "mean_agent_entropy_bits": 3.7732470445475155
+              }
+            },
+            {
+              "arm": "b_fsq_dec_warmstart",
+              "b": 6,
+              "seed": 2,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.004894592859451869,
+                "ci_low": 0.004385554786991072,
+                "ci_high": 0.005498590970847436,
+                "n": 4000
+              },
+              "gap_to_anchor": -0.001875401344071854,
+              "gap_to_best_uncompressed": 0.0028650535533460116,
+              "best_val_kl": 0.005152141340556716,
+              "best_step": 8000,
+              "escape_step": 1400,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 36,
+                "distinct_symbols_max_agent": 34,
+                "distinct_symbols_min_agent": 32,
+                "pooled_entropy_bits": 3.5689669218214073,
+                "mean_agent_entropy_bits": 3.5634840022367844
+              }
+            }
+          ],
+          "c_fsq_entropy_bonus": [
+            {
+              "arm": "c_fsq_entropy_bonus",
+              "b": 6,
+              "seed": 0,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.022147202278111927,
+                "ci_low": 0.01930283326550345,
+                "ci_high": 0.025148705692288404,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.015377208074588204,
+              "gap_to_best_uncompressed": 0.02011766297200607,
+              "best_val_kl": 0.019384602108812595,
+              "best_step": 7600,
+              "escape_step": 1000,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 59,
+                "distinct_symbols_max_agent": 59,
+                "distinct_symbols_min_agent": 59,
+                "pooled_entropy_bits": 5.455641799893224,
+                "mean_agent_entropy_bits": 5.446589327982669
+              }
+            },
+            {
+              "arm": "c_fsq_entropy_bonus",
+              "b": 6,
+              "seed": 1,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.006491442119193451,
+                "ci_low": 0.005744209072203236,
+                "ci_high": 0.007324529643445322,
+                "n": 4000
+              },
+              "gap_to_anchor": -0.00027855208433027155,
+              "gap_to_best_uncompressed": 0.004461902813087594,
+              "best_val_kl": 0.006018326829944601,
+              "best_step": 7600,
+              "escape_step": 1000,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 64,
+                "distinct_symbols_max_agent": 64,
+                "distinct_symbols_min_agent": 64,
+                "pooled_entropy_bits": 5.812641766601231,
+                "mean_agent_entropy_bits": 5.80299879846717
+              }
+            },
+            {
+              "arm": "c_fsq_entropy_bonus",
+              "b": 6,
+              "seed": 2,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.01763167990853665,
+                "ci_low": 0.01586121693253234,
+                "ci_high": 0.019641347869210752,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.010861685705012926,
+              "gap_to_best_uncompressed": 0.015602140602430793,
+              "best_val_kl": 0.02140244863324767,
+              "best_step": 7800,
+              "escape_step": 1200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 62,
+                "distinct_symbols_max_agent": 62,
+                "distinct_symbols_min_agent": 62,
+                "pooled_entropy_bits": 5.542138321250936,
+                "mean_agent_entropy_bits": 5.53265161386334
+              }
+            }
+          ],
+          "d_fsq_staged_channel": [
+            {
+              "arm": "d_fsq_staged_channel",
+              "b": 6,
+              "seed": 0,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.016478999274546963,
+                "ci_low": 0.014181350058502655,
+                "ci_high": 0.019250632049577613,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.009709005071023239,
+              "gap_to_best_uncompressed": 0.014449459968441106,
+              "best_val_kl": 0.01575123017751459,
+              "best_step": 7800,
+              "escape_step": 1600,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 54,
+                "distinct_symbols_max_agent": 53,
+                "distinct_symbols_min_agent": 49,
+                "pooled_entropy_bits": 5.008840680729916,
+                "mean_agent_entropy_bits": 5.001379205213751
+              }
+            },
+            {
+              "arm": "d_fsq_staged_channel",
+              "b": 6,
+              "seed": 1,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.017634465033883728,
+                "ci_low": 0.01543368734436011,
+                "ci_high": 0.020160202497260173,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.010864470830360004,
+              "gap_to_best_uncompressed": 0.015604925727777871,
+              "best_val_kl": 0.01832245224046554,
+              "best_step": 7200,
+              "escape_step": 1600,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 49,
+                "distinct_symbols_max_agent": 49,
+                "distinct_symbols_min_agent": 49,
+                "pooled_entropy_bits": 5.13299748712224,
+                "mean_agent_entropy_bits": 5.125342112380124
+              }
+            },
+            {
+              "arm": "d_fsq_staged_channel",
+              "b": 6,
+              "seed": 2,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.02468209105622549,
+                "ci_low": 0.021837178785554797,
+                "ci_high": 0.0280300480729978,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.017912096852701766,
+              "gap_to_best_uncompressed": 0.022652551750119633,
+              "best_val_kl": 0.024642499586552923,
+              "best_step": 7600,
+              "escape_step": 1200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 50,
+                "distinct_symbols_max_agent": 50,
+                "distinct_symbols_min_agent": 49,
+                "pooled_entropy_bits": 5.182884510366459,
+                "mean_agent_entropy_bits": 5.175372161174764
+              }
+            }
+          ],
+          "e_fsq_biased_curr_plus_best": [
+            {
+              "arm": "e_fsq_biased_curr_plus_best",
+              "b": 6,
+              "seed": 0,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.02498229942908158,
+                "ci_low": 0.021797854920026286,
+                "ci_high": 0.028172348802024627,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.01623803967531754,
+              "gap_to_best_uncompressed": 0.022952760122975722,
+              "best_val_kl": 0.021323063375789177,
+              "best_step": 7600,
+              "escape_step": 4200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 61,
+                "distinct_symbols_max_agent": 61,
+                "distinct_symbols_min_agent": 60,
+                "pooled_entropy_bits": 5.531308569512024,
+                "mean_agent_entropy_bits": 5.52174232486057
+              }
+            },
+            {
+              "arm": "e_fsq_biased_curr_plus_best",
+              "b": 6,
+              "seed": 1,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.03366079449793044,
+                "ci_low": 0.02979584685813682,
+                "ci_high": 0.03779636127667684,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.0249165347441664,
+              "gap_to_best_uncompressed": 0.03163125519182458,
+              "best_val_kl": 0.029918177465832904,
+              "best_step": 7400,
+              "escape_step": 4200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 62,
+                "distinct_symbols_max_agent": 62,
+                "distinct_symbols_min_agent": 61,
+                "pooled_entropy_bits": 5.448452803589114,
+                "mean_agent_entropy_bits": 5.439327973277828
+              }
+            },
+            {
+              "arm": "e_fsq_biased_curr_plus_best",
+              "b": 6,
+              "seed": 2,
+              "dec_keys": true,
+              "key_scale": 0.1,
+              "key_warmup": 1000,
+              "regret_quant": {
+                "mean": 0.021539462929971415,
+                "ci_low": 0.019150348446881096,
+                "ci_high": 0.024292353756114375,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.012795203176207375,
+              "gap_to_best_uncompressed": 0.01950992362386556,
+              "best_val_kl": 0.01989596482958792,
+              "best_step": 6800,
+              "escape_step": 4200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 64,
+                "distinct_symbols_max_agent": 64,
+                "distinct_symbols_min_agent": 63,
+                "pooled_entropy_bits": 5.645918967414362,
+                "mean_agent_entropy_bits": 5.6369405403159005
+              }
+            }
+          ],
+          "e_fsq_biased_curr_plus_best_keys0": [
+            {
+              "arm": "e_fsq_biased_curr_plus_best_keys0",
+              "b": 6,
+              "seed": 0,
+              "dec_keys": false,
+              "key_scale": 0.0,
+              "key_warmup": 0,
+              "regret_quant": {
+                "mean": 0.08390919282596207,
+                "ci_low": 0.07815348257871055,
+                "ci_high": 0.09005525335417691,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.07516493307219803,
+              "gap_to_best_uncompressed": 0.08187965351985621,
+              "best_val_kl": 0.08499156897876826,
+              "best_step": 7800,
+              "escape_step": 4200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 55,
+                "distinct_symbols_max_agent": 54,
+                "distinct_symbols_min_agent": 53,
+                "pooled_entropy_bits": 5.292780690434057,
+                "mean_agent_entropy_bits": 5.284269855605735
+              }
+            },
+            {
+              "arm": "e_fsq_biased_curr_plus_best_keys0",
+              "b": 6,
+              "seed": 1,
+              "dec_keys": false,
+              "key_scale": 0.0,
+              "key_warmup": 0,
+              "regret_quant": {
+                "mean": 0.0745468559055642,
+                "ci_low": 0.06933010141998783,
+                "ci_high": 0.08028303306115563,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.06580259615180016,
+              "gap_to_best_uncompressed": 0.07251731659945834,
+              "best_val_kl": 0.07303045755854284,
+              "best_step": 7800,
+              "escape_step": 4200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 58,
+                "distinct_symbols_max_agent": 58,
+                "distinct_symbols_min_agent": 55,
+                "pooled_entropy_bits": 5.2155026373891795,
+                "mean_agent_entropy_bits": 5.206983653766618
+              }
+            },
+            {
+              "arm": "e_fsq_biased_curr_plus_best_keys0",
+              "b": 6,
+              "seed": 2,
+              "dec_keys": false,
+              "key_scale": 0.0,
+              "key_warmup": 0,
+              "regret_quant": {
+                "mean": 0.08550617386834009,
+                "ci_low": 0.07985753875587234,
+                "ci_high": 0.09140063747279528,
+                "n": 4000
+              },
+              "gap_to_anchor": 0.07676191411457604,
+              "gap_to_best_uncompressed": 0.08347663456223423,
+              "best_val_kl": 0.08184730849905227,
+              "best_step": 7600,
+              "escape_step": 4200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 60,
+                "distinct_symbols_max_agent": 60,
+                "distinct_symbols_min_agent": 57,
+                "pooled_entropy_bits": 5.361153702182143,
+                "mean_agent_entropy_bits": 5.3522466860665325
+              }
+            }
+          ]
+        }
+      }
+    },
+    "E2": {
+      "anchors": {
+        "prior_kl": 0.41841416622901556,
+        "best_uncompressed_name": "same_data_full_context_transformer (4k steps)",
+        "best_uncompressed_regret": 0.04152961119563544,
+        "anchor_transformer_4k_std": {
+          "n_seeds": 3,
+          "regret_mean": 0.04152961119563544,
+          "regret_sd": 0.0010181217502652077,
+          "mean_ci_low": 0.0381581306010541,
+          "mean_ci_high": 0.0450663713835343,
+          "per_seed_regret": [
+            0.0423,
+            0.0422,
+            0.0401
+          ],
+          "per_seed_best_step": [
+            1000,
+            1000,
+            1000
+          ]
+        },
+        "anchor_transformer_4k_curr": {
+          "n_seeds": 3,
+          "regret_mean": 0.06007738784132157,
+          "regret_sd": 0.0007616501624904809,
+          "mean_ci_low": 0.05490733798698639,
+          "mean_ci_high": 0.06580046824140683,
+          "per_seed_regret": [
+            0.061,
+            0.0601,
+            0.0591
+          ],
+          "per_seed_best_step": [
+            1200,
+            1200,
+            400
+          ]
+        },
+        "extremized_q": {
+          "2": 0.0564730170919411,
+          "4": 0.04179344919217767,
+          "6": 0.04027657543350564
+        },
+        "llr_quantizer": {
+          "2": 0.0331471584922532,
+          "4": 0.018186263395307684,
+          "6": 0.016231234711526543
+        },
+        "nearbayes_per_piece_fct_fresh_ref": 0.0026
+      },
+      "aggregated": {
+        "2": {
+          "0_fsq_joint": {
+            "n_seeds": 3,
+            "regret_mean": 0.07300231496902289,
+            "regret_sd": 0.0030822494253073024,
+            "gap_to_anchor_mean": 0.031472703773387456,
+            "gap_to_anchor_sd": 0.0030822494253073024,
+            "gap_to_best_uncompressed_mean": 0.031472703773387456,
+            "gap_to_best_uncompressed_sd": 0.0030822494253073024,
+            "mean_ci_low": 0.06761759749194293,
+            "mean_ci_high": 0.07860849073097026,
+            "per_seed_regret": [
+              0.077,
+              0.0695,
+              0.0725
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0355,
+              0.028,
+              0.0309
+            ],
+            "per_seed_best_step": [
+              800,
+              1600,
+              2000
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              200,
+              200,
+              200
+            ],
+            "mean_agent_entropy_bits": 1.5771133062156186,
+            "mean_agent_entropy_sd": 0.0036067895799053776,
+            "per_seed_agent_entropy": [
+              1.5786,
+              1.5806,
+              1.5721
+            ],
+            "pooled_entropy_bits_mean": 1.577469392761641,
+            "per_seed_distinct_symbols": [
+              3,
+              3,
+              3
+            ],
+            "gap_to_plain_tr_mean": 0.03147270377338745
+          },
+          "a_fsq_alt_opt": {
+            "n_seeds": 3,
+            "regret_mean": 0.07032757039357417,
+            "regret_sd": 0.009608046726574178,
+            "gap_to_anchor_mean": 0.028797959197938722,
+            "gap_to_anchor_sd": 0.009608046726574178,
+            "gap_to_best_uncompressed_mean": 0.028797959197938722,
+            "gap_to_best_uncompressed_sd": 0.009608046726574178,
+            "mean_ci_low": 0.06506696005807801,
+            "mean_ci_high": 0.07602699683332204,
+            "per_seed_regret": [
+              0.0738,
+              0.0572,
+              0.08
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0323,
+              0.0157,
+              0.0384
+            ],
+            "per_seed_best_step": [
+              3600,
+              3200,
+              3400
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              200,
+              200,
+              200
+            ],
+            "mean_agent_entropy_bits": 1.6894534470905274,
+            "mean_agent_entropy_sd": 0.17976841334247765,
+            "per_seed_agent_entropy": [
+              1.5557,
+              1.9436,
+              1.5691
+            ],
+            "pooled_entropy_bits_mean": 1.6899706409276696,
+            "per_seed_distinct_symbols": [
+              3,
+              4,
+              3
+            ],
+            "gap_to_plain_tr_mean": 0.028797959197938726
+          },
+          "b_fsq_dec_warmstart": {
+            "n_seeds": 3,
+            "regret_mean": 0.07502697817536745,
+            "regret_sd": 0.000847139544380958,
+            "gap_to_anchor_mean": 0.03349736697973201,
+            "gap_to_anchor_sd": 0.000847139544380958,
+            "gap_to_best_uncompressed_mean": 0.03349736697973201,
+            "gap_to_best_uncompressed_sd": 0.000847139544380958,
+            "mean_ci_low": 0.06945442934840866,
+            "mean_ci_high": 0.08102668812951407,
+            "per_seed_regret": [
+              0.0744,
+              0.0762,
+              0.0745
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0328,
+              0.0347,
+              0.033
+            ],
+            "per_seed_best_step": [
+              3600,
+              2400,
+              4000
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              200,
+              1400,
+              200
+            ],
+            "mean_agent_entropy_bits": 1.5764607363822505,
+            "mean_agent_entropy_sd": 0.005542029112410594,
+            "per_seed_agent_entropy": [
+              1.5825,
+              1.5778,
+              1.5691
+            ],
+            "pooled_entropy_bits_mean": 1.5768278052759561,
+            "per_seed_distinct_symbols": [
+              3,
+              3,
+              4
+            ],
+            "gap_to_plain_tr_mean": 0.03349736697973201
+          },
+          "c_fsq_entropy_bonus": {
+            "n_seeds": 3,
+            "regret_mean": 0.06703996115849054,
+            "regret_sd": 0.008320551782074826,
+            "gap_to_anchor_mean": 0.025510349962855103,
+            "gap_to_anchor_sd": 0.008320551782074826,
+            "gap_to_best_uncompressed_mean": 0.025510349962855103,
+            "gap_to_best_uncompressed_sd": 0.008320551782074826,
+            "mean_ci_low": 0.06141231712729955,
+            "mean_ci_high": 0.07289191808794616,
+            "per_seed_regret": [
+              0.0595,
+              0.063,
+              0.0786
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0179,
+              0.0215,
+              0.0371
+            ],
+            "per_seed_best_step": [
+              3200,
+              2400,
+              3200
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              200,
+              200,
+              200
+            ],
+            "mean_agent_entropy_bits": 1.9694056710277532,
+            "mean_agent_entropy_sd": 0.021731737512089906,
+            "per_seed_agent_entropy": [
+              1.979,
+              1.9899,
+              1.9393
+            ],
+            "pooled_entropy_bits_mean": 1.970074026242987,
+            "per_seed_distinct_symbols": [
+              4,
+              4,
+              4
+            ],
+            "gap_to_plain_tr_mean": 0.025510349962855096
+          },
+          "d_fsq_staged_channel": {
+            "n_seeds": 3,
+            "regret_mean": 0.08371448723038209,
+            "regret_sd": 0.007550507535486024,
+            "gap_to_anchor_mean": 0.04218487603474664,
+            "gap_to_anchor_sd": 0.007550507535486022,
+            "gap_to_best_uncompressed_mean": 0.04218487603474664,
+            "gap_to_best_uncompressed_sd": 0.007550507535486022,
+            "mean_ci_low": 0.07701752411721988,
+            "mean_ci_high": 0.09056086184867145,
+            "per_seed_regret": [
+              0.0942,
+              0.0768,
+              0.0802
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0527,
+              0.0352,
+              0.0386
+            ],
+            "per_seed_best_step": [
+              3800,
+              3200,
+              3000
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              200,
+              200,
+              200
+            ],
+            "mean_agent_entropy_bits": 1.4208151450612565,
+            "mean_agent_entropy_sd": 0.16501065579305066,
+            "per_seed_agent_entropy": [
+              1.2207,
+              1.4168,
+              1.6249
+            ],
+            "pooled_entropy_bits_mean": 1.4214230192452444,
+            "per_seed_distinct_symbols": [
+              3,
+              3,
+              4
+            ],
+            "gap_to_plain_tr_mean": 0.04218487603474665
+          },
+          "e_fsq_biased_curr_plus_best": {
+            "n_seeds": 3,
+            "regret_mean": 0.0784093216331357,
+            "regret_sd": 0.006627250059785166,
+            "gap_to_anchor_mean": 0.01833193379181412,
+            "gap_to_anchor_sd": 0.006627250059785166,
+            "gap_to_best_uncompressed_mean": 0.03687971043750025,
+            "gap_to_best_uncompressed_sd": 0.006627250059785166,
+            "mean_ci_low": 0.07190594326612522,
+            "mean_ci_high": 0.08504766227229033,
+            "per_seed_regret": [
+              0.0755,
+              0.0722,
+              0.0876
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0154,
+              0.0121,
+              0.0275
+            ],
+            "per_seed_best_step": [
+              3600,
+              4000,
+              3600
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              200,
+              200,
+              200
+            ],
+            "mean_agent_entropy_bits": 1.7124943033087867,
+            "mean_agent_entropy_sd": 0.04782573520265873,
+            "per_seed_agent_entropy": [
+              1.6611,
+              1.7763,
+              1.7001
+            ],
+            "pooled_entropy_bits_mean": 1.7132621826169914,
+            "per_seed_distinct_symbols": [
+              4,
+              4,
+              4
+            ],
+            "gap_to_plain_tr_mean": 0.03687971043750026
+          }
+        },
+        "4": {
+          "0_fsq_joint": {
+            "n_seeds": 3,
+            "regret_mean": 0.05283203717131151,
+            "regret_sd": 0.0012477525894711988,
+            "gap_to_anchor_mean": 0.011302425975676067,
+            "gap_to_anchor_sd": 0.0012477525894711986,
+            "gap_to_best_uncompressed_mean": 0.011302425975676067,
+            "gap_to_best_uncompressed_sd": 0.0012477525894711986,
+            "mean_ci_low": 0.0483991667698939,
+            "mean_ci_high": 0.057474742958249496,
+            "per_seed_regret": [
+              0.0511,
+              0.0537,
+              0.0537
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0095,
+              0.0122,
+              0.0122
+            ],
+            "per_seed_best_step": [
+              3400,
+              3800,
+              2000
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              200,
+              200,
+              200
+            ],
+            "mean_agent_entropy_bits": 2.484846774079185,
+            "mean_agent_entropy_sd": 0.10325065386575226,
+            "per_seed_agent_entropy": [
+              2.6303,
+              2.423,
+              2.4012
+            ],
+            "pooled_entropy_bits_mean": 2.487104708892226,
+            "per_seed_distinct_symbols": [
+              8,
+              9,
+              7
+            ],
+            "gap_to_plain_tr_mean": 0.011302425975676073
+          },
+          "a_fsq_alt_opt": {
+            "n_seeds": 3,
+            "regret_mean": 0.05430771086484595,
+            "regret_sd": 0.0020100137814463184,
+            "gap_to_anchor_mean": 0.01277809966921051,
+            "gap_to_anchor_sd": 0.0020100137814463184,
+            "gap_to_best_uncompressed_mean": 0.01277809966921051,
+            "gap_to_best_uncompressed_sd": 0.0020100137814463184,
+            "mean_ci_low": 0.04979164627262831,
+            "mean_ci_high": 0.05906384461582026,
+            "per_seed_regret": [
+              0.0515,
+              0.0553,
+              0.0561
+            ],
+            "per_seed_gap_to_anchor": [
+              0.01,
+              0.0137,
+              0.0146
+            ],
+            "per_seed_best_step": [
+              3400,
+              3200,
+              3600
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              200,
+              200,
+              200
+            ],
+            "mean_agent_entropy_bits": 2.4738666770774267,
+            "mean_agent_entropy_sd": 0.038475701301432574,
+            "per_seed_agent_entropy": [
+              2.437,
+              2.4576,
+              2.527
+            ],
+            "pooled_entropy_bits_mean": 2.475897241186781,
+            "per_seed_distinct_symbols": [
+              8,
+              9,
+              11
+            ],
+            "gap_to_plain_tr_mean": 0.012778099669210508
+          },
+          "b_fsq_dec_warmstart": {
+            "n_seeds": 3,
+            "regret_mean": 0.056344551312249774,
+            "regret_sd": 0.0006542007509076748,
+            "gap_to_anchor_mean": 0.014814940116614333,
+            "gap_to_anchor_sd": 0.0006542007509076748,
+            "gap_to_best_uncompressed_mean": 0.014814940116614333,
+            "gap_to_best_uncompressed_sd": 0.0006542007509076748,
+            "mean_ci_low": 0.051279707711350174,
+            "mean_ci_high": 0.06160703034938924,
+            "per_seed_regret": [
+              0.0554,
+              0.0568,
+              0.0568
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0139,
+              0.0153,
+              0.0153
+            ],
+            "per_seed_best_step": [
+              3200,
+              3600,
+              3600
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              200,
+              1400,
+              200
+            ],
+            "mean_agent_entropy_bits": 2.43986217305734,
+            "mean_agent_entropy_sd": 0.08576151332629152,
+            "per_seed_agent_entropy": [
+              2.5242,
+              2.4732,
+              2.3222
+            ],
+            "pooled_entropy_bits_mean": 2.4427443532332234,
+            "per_seed_distinct_symbols": [
+              9,
+              12,
+              8
+            ],
+            "gap_to_plain_tr_mean": 0.014814940116614335
+          },
+          "c_fsq_entropy_bonus": {
+            "n_seeds": 3,
+            "regret_mean": 0.05608233602557655,
+            "regret_sd": 0.002072329353771647,
+            "gap_to_anchor_mean": 0.014552724829941107,
+            "gap_to_anchor_sd": 0.002072329353771647,
+            "gap_to_best_uncompressed_mean": 0.014552724829941107,
+            "gap_to_best_uncompressed_sd": 0.002072329353771647,
+            "mean_ci_low": 0.051281729918878284,
+            "mean_ci_high": 0.06085815767442098,
+            "per_seed_regret": [
+              0.0545,
+              0.059,
+              0.0548
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0129,
+              0.0175,
+              0.0132
+            ],
+            "per_seed_best_step": [
+              4000,
+              2600,
+              2600
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              200,
+              200,
+              200
+            ],
+            "mean_agent_entropy_bits": 3.930673539852389,
+            "mean_agent_entropy_sd": 0.025300465937229136,
+            "per_seed_agent_entropy": [
+              3.9577,
+              3.9374,
+              3.8969
+            ],
+            "pooled_entropy_bits_mean": 3.9350577760356775,
+            "per_seed_distinct_symbols": [
+              16,
+              16,
+              16
+            ],
+            "gap_to_plain_tr_mean": 0.014552724829941112
+          },
+          "d_fsq_staged_channel": {
+            "n_seeds": 3,
+            "regret_mean": 0.06794085447679826,
+            "regret_sd": 0.0010408259129735414,
+            "gap_to_anchor_mean": 0.026411243281162827,
+            "gap_to_anchor_sd": 0.0010408259129735414,
+            "gap_to_best_uncompressed_mean": 0.026411243281162827,
+            "gap_to_best_uncompressed_sd": 0.0010408259129735414,
+            "mean_ci_low": 0.062178281561264946,
+            "mean_ci_high": 0.07398434726198451,
+            "per_seed_regret": [
+              0.0694,
+              0.067,
+              0.0674
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0279,
+              0.0255,
+              0.0259
+            ],
+            "per_seed_best_step": [
+              3400,
+              3800,
+              3200
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              200,
+              200,
+              200
+            ],
+            "mean_agent_entropy_bits": 2.763857969374026,
+            "mean_agent_entropy_sd": 0.20230292733454275,
+            "per_seed_agent_entropy": [
+              2.8021,
+              2.9903,
+              2.4992
+            ],
+            "pooled_entropy_bits_mean": 2.7670205311365543,
+            "per_seed_distinct_symbols": [
+              13,
+              16,
+              12
+            ],
+            "gap_to_plain_tr_mean": 0.026411243281162823
+          },
+          "e_fsq_biased_curr_plus_best": {
+            "n_seeds": 3,
+            "regret_mean": 0.06990284238295573,
+            "regret_sd": 0.007136522461823049,
+            "gap_to_anchor_mean": 0.009825454541634153,
+            "gap_to_anchor_sd": 0.007136522461823049,
+            "gap_to_best_uncompressed_mean": 0.028373231187320287,
+            "gap_to_best_uncompressed_sd": 0.007136522461823049,
+            "mean_ci_low": 0.06371747980633469,
+            "mean_ci_high": 0.07632373488646038,
+            "per_seed_regret": [
+              0.0684,
+              0.0793,
+              0.062
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0083,
+              0.0192,
+              0.002
+            ],
+            "per_seed_best_step": [
+              4000,
+              3200,
+              4000
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              200,
+              200,
+              200
+            ],
+            "mean_agent_entropy_bits": 3.5911172070352197,
+            "mean_agent_entropy_sd": 0.2061377666459042,
+            "per_seed_agent_entropy": [
+              3.6425,
+              3.3169,
+              3.8139
+            ],
+            "pooled_entropy_bits_mean": 3.595117288227918,
+            "per_seed_distinct_symbols": [
+              16,
+              16,
+              16
+            ],
+            "gap_to_plain_tr_mean": 0.02837323118732029
+          }
+        },
+        "6": {
+          "0_fsq_joint": {
+            "n_seeds": 3,
+            "regret_mean": 0.04587140810786955,
+            "regret_sd": 0.0009754151772190105,
+            "gap_to_anchor_mean": 0.004341796912234105,
+            "gap_to_anchor_sd": 0.0009754151772190105,
+            "gap_to_best_uncompressed_mean": 0.004341796912234105,
+            "gap_to_best_uncompressed_sd": 0.0009754151772190105,
+            "mean_ci_low": 0.04210518251014341,
+            "mean_ci_high": 0.04980311589014962,
+            "per_seed_regret": [
+              0.0445,
+              0.0465,
+              0.0467
+            ],
+            "per_seed_gap_to_anchor": [
+              0.003,
+              0.0049,
+              0.0051
+            ],
+            "per_seed_best_step": [
+              2200,
+              1800,
+              2400
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              200,
+              200,
+              200
+            ],
+            "mean_agent_entropy_bits": 3.537876694196745,
+            "mean_agent_entropy_sd": 0.10126728424901095,
+            "per_seed_agent_entropy": [
+              3.4016,
+              3.5679,
+              3.6441
+            ],
+            "pooled_entropy_bits_mean": 3.5436572432524613,
+            "per_seed_distinct_symbols": [
+              17,
+              24,
+              20
+            ],
+            "gap_to_plain_tr_mean": 0.00434179691223411
+          },
+          "a_fsq_alt_opt": {
+            "n_seeds": 3,
+            "regret_mean": 0.04941918497112593,
+            "regret_sd": 0.0009879373895976852,
+            "gap_to_anchor_mean": 0.007889573775490488,
+            "gap_to_anchor_sd": 0.0009879373895976852,
+            "gap_to_best_uncompressed_mean": 0.007889573775490488,
+            "gap_to_best_uncompressed_sd": 0.0009879373895976852,
+            "mean_ci_low": 0.045120578599051366,
+            "mean_ci_high": 0.05393705641333687,
+            "per_seed_regret": [
+              0.0505,
+              0.0481,
+              0.0496
+            ],
+            "per_seed_gap_to_anchor": [
+              0.009,
+              0.0066,
+              0.0081
+            ],
+            "per_seed_best_step": [
+              3400,
+              3400,
+              3800
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              200,
+              200,
+              200
+            ],
+            "mean_agent_entropy_bits": 3.4442931632110194,
+            "mean_agent_entropy_sd": 0.27902827259022484,
+            "per_seed_agent_entropy": [
+              3.6302,
+              3.6528,
+              3.0499
+            ],
+            "pooled_entropy_bits_mean": 3.4525893723178456,
+            "per_seed_distinct_symbols": [
+              26,
+              36,
+              21
+            ],
+            "gap_to_plain_tr_mean": 0.007889573775490488
+          },
+          "b_fsq_dec_warmstart": {
+            "n_seeds": 3,
+            "regret_mean": 0.04992608172624139,
+            "regret_sd": 0.0015455746887812212,
+            "gap_to_anchor_mean": 0.00839647053060595,
+            "gap_to_anchor_sd": 0.0015455746887812212,
+            "gap_to_best_uncompressed_mean": 0.00839647053060595,
+            "gap_to_best_uncompressed_sd": 0.0015455746887812212,
+            "mean_ci_low": 0.04564514149764262,
+            "mean_ci_high": 0.05439444621108918,
+            "per_seed_regret": [
+              0.0491,
+              0.0485,
+              0.0521
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0076,
+              0.007,
+              0.0106
+            ],
+            "per_seed_best_step": [
+              2800,
+              3600,
+              3400
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              200,
+              200,
+              200
+            ],
+            "mean_agent_entropy_bits": 3.4979735572001673,
+            "mean_agent_entropy_sd": 0.06684024613204101,
+            "per_seed_agent_entropy": [
+              3.405,
+              3.5297,
+              3.5592
+            ],
+            "pooled_entropy_bits_mean": 3.5060048224004716,
+            "per_seed_distinct_symbols": [
+              30,
+              29,
+              29
+            ],
+            "gap_to_plain_tr_mean": 0.008396470530605951
+          },
+          "c_fsq_entropy_bonus": {
+            "n_seeds": 3,
+            "regret_mean": 0.05946231463370224,
+            "regret_sd": 0.003489159888232133,
+            "gap_to_anchor_mean": 0.017932703438066803,
+            "gap_to_anchor_sd": 0.003489159888232133,
+            "gap_to_best_uncompressed_mean": 0.017932703438066803,
+            "gap_to_best_uncompressed_sd": 0.003489159888232133,
+            "mean_ci_low": 0.05433952714745258,
+            "mean_ci_high": 0.06488271151531168,
+            "per_seed_regret": [
+              0.0567,
+              0.0573,
+              0.0644
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0151,
+              0.0158,
+              0.0229
+            ],
+            "per_seed_best_step": [
+              2800,
+              3000,
+              3400
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              200,
+              200,
+              200
+            ],
+            "mean_agent_entropy_bits": 5.8454674799747925,
+            "mean_agent_entropy_sd": 0.01527419451358505,
+            "per_seed_agent_entropy": [
+              5.8569,
+              5.8556,
+              5.8239
+            ],
+            "pooled_entropy_bits_mean": 5.862785781522393,
+            "per_seed_distinct_symbols": [
+              64,
+              64,
+              64
+            ],
+            "gap_to_plain_tr_mean": 0.0179327034380668
+          },
+          "d_fsq_staged_channel": {
+            "n_seeds": 3,
+            "regret_mean": 0.058698339443933926,
+            "regret_sd": 0.00038093757988989915,
+            "gap_to_anchor_mean": 0.017168728248298484,
+            "gap_to_anchor_sd": 0.00038093757988989915,
+            "gap_to_best_uncompressed_mean": 0.017168728248298484,
+            "gap_to_best_uncompressed_sd": 0.00038093757988989915,
+            "mean_ci_low": 0.053669102247763834,
+            "mean_ci_high": 0.06407049136725347,
+            "per_seed_regret": [
+              0.0591,
+              0.0588,
+              0.0582
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0176,
+              0.0173,
+              0.0167
+            ],
+            "per_seed_best_step": [
+              3800,
+              3200,
+              4000
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              200,
+              200,
+              200
+            ],
+            "mean_agent_entropy_bits": 4.047548056226586,
+            "mean_agent_entropy_sd": 0.38021943889255255,
+            "per_seed_agent_entropy": [
+              3.5765,
+              4.5076,
+              4.0586
+            ],
+            "pooled_entropy_bits_mean": 4.064665484020874,
+            "per_seed_distinct_symbols": [
+              48,
+              62,
+              58
+            ],
+            "gap_to_plain_tr_mean": 0.017168728248298487
+          },
+          "e_fsq_biased_curr_plus_best": {
+            "n_seeds": 3,
+            "regret_mean": 0.06419703359436589,
+            "regret_sd": 0.00044225274226094533,
+            "gap_to_anchor_mean": 0.00411964575304431,
+            "gap_to_anchor_sd": 0.00044225274226094533,
+            "gap_to_best_uncompressed_mean": 0.02266742239873044,
+            "gap_to_best_uncompressed_sd": 0.00044225274226094533,
+            "mean_ci_low": 0.058564006654247956,
+            "mean_ci_high": 0.0703540308807886,
+            "per_seed_regret": [
+              0.0639,
+              0.0639,
+              0.0648
+            ],
+            "per_seed_gap_to_anchor": [
+              0.0038,
+              0.0038,
+              0.0047
+            ],
+            "per_seed_best_step": [
+              3800,
+              3000,
+              3600
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              200,
+              200,
+              200
+            ],
+            "mean_agent_entropy_bits": 5.764403147178574,
+            "mean_agent_entropy_sd": 0.10431152341959345,
+            "per_seed_agent_entropy": [
+              5.622,
+              5.8689,
+              5.8023
+            ],
+            "pooled_entropy_bits_mean": 5.782038131236561,
+            "per_seed_distinct_symbols": [
+              64,
+              64,
+              64
+            ],
+            "gap_to_plain_tr_mean": 0.02266742239873045
+          }
+        }
+      },
+      "per_seed": {
+        "2": {
+          "0_fsq_joint": [
+            {
+              "arm": "0_fsq_joint",
+              "b": 2,
+              "seed": 0,
+              "regret_quant": {
+                "mean": 0.07701314620022172,
+                "ci_low": 0.07135210012958905,
+                "ci_high": 0.0828131461671846,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.03548353500458628,
+              "gap_to_best_uncompressed": 0.03548353500458628,
+              "best_val_kl": 0.0736804298062122,
+              "best_step": 800,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 3,
+                "distinct_symbols_max_agent": 3,
+                "distinct_symbols_min_agent": 3,
+                "pooled_entropy_bits": 1.5789123266403142,
+                "mean_agent_entropy_bits": 1.5786177337854235
+              }
+            },
+            {
+              "arm": "0_fsq_joint",
+              "b": 2,
+              "seed": 1,
+              "regret_quant": {
+                "mean": 0.06951861761240086,
+                "ci_low": 0.06440120820580572,
+                "ci_high": 0.07504390111713453,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.027989006416765418,
+              "gap_to_best_uncompressed": 0.027989006416765418,
+              "best_val_kl": 0.06918310564556508,
+              "best_step": 1600,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 3,
+                "distinct_symbols_max_agent": 3,
+                "distinct_symbols_min_agent": 3,
+                "pooled_entropy_bits": 1.5808647460988163,
+                "mean_agent_entropy_bits": 1.5805819833172443
+              }
+            },
+            {
+              "arm": "0_fsq_joint",
+              "b": 2,
+              "seed": 2,
+              "regret_quant": {
+                "mean": 0.0724751810944461,
+                "ci_low": 0.06709948414043401,
+                "ci_high": 0.07796842490859161,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.030945569898810664,
+              "gap_to_best_uncompressed": 0.030945569898810664,
+              "best_val_kl": 0.0677051142958106,
+              "best_step": 2000,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 3,
+                "distinct_symbols_max_agent": 3,
+                "distinct_symbols_min_agent": 3,
+                "pooled_entropy_bits": 1.5726311055457929,
+                "mean_agent_entropy_bits": 1.5721402015441874
+              }
+            }
+          ],
+          "a_fsq_alt_opt": [
+            {
+              "arm": "a_fsq_alt_opt",
+              "b": 2,
+              "seed": 0,
+              "regret_quant": {
+                "mean": 0.07380659872430625,
+                "ci_low": 0.06837005032610659,
+                "ci_high": 0.08023799633945793,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.032276987528670815,
+              "gap_to_best_uncompressed": 0.032276987528670815,
+              "best_val_kl": 0.06650275263352902,
+              "best_step": 3600,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 3,
+                "distinct_symbols_max_agent": 3,
+                "distinct_symbols_min_agent": 3,
+                "pooled_entropy_bits": 1.5560169134561894,
+                "mean_agent_entropy_bits": 1.555739074933755
+              }
+            },
+            {
+              "arm": "a_fsq_alt_opt",
+              "b": 2,
+              "seed": 1,
+              "regret_quant": {
+                "mean": 0.05721290285537302,
+                "ci_low": 0.05274314596414471,
+                "ci_high": 0.06202021897091449,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.01568329165973758,
+              "gap_to_best_uncompressed": 0.01568329165973758,
+              "best_val_kl": 0.059438646103601986,
+              "best_step": 3200,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.9444161517773086,
+                "mean_agent_entropy_bits": 1.9435681394605115
+              }
+            },
+            {
+              "arm": "a_fsq_alt_opt",
+              "b": 2,
+              "seed": 2,
+              "regret_quant": {
+                "mean": 0.07996320960104322,
+                "ci_low": 0.07408768388398275,
+                "ci_high": 0.08582277518959369,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.03843359840540778,
+              "gap_to_best_uncompressed": 0.03843359840540778,
+              "best_val_kl": 0.07729628048461921,
+              "best_step": 3400,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 3,
+                "distinct_symbols_max_agent": 3,
+                "distinct_symbols_min_agent": 3,
+                "pooled_entropy_bits": 1.5694788575495107,
+                "mean_agent_entropy_bits": 1.5690531268773147
+              }
+            }
+          ],
+          "b_fsq_dec_warmstart": [
+            {
+              "arm": "b_fsq_dec_warmstart",
+              "b": 2,
+              "seed": 0,
+              "regret_quant": {
+                "mean": 0.07437770523408682,
+                "ci_low": 0.06890519360649494,
+                "ci_high": 0.08029445718639133,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.03284809403845138,
+              "gap_to_best_uncompressed": 0.03284809403845138,
+              "best_val_kl": 0.0699122973424806,
+              "best_step": 3600,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 3,
+                "distinct_symbols_max_agent": 3,
+                "distinct_symbols_min_agent": 3,
+                "pooled_entropy_bits": 1.5827788459990382,
+                "mean_agent_entropy_bits": 1.5825012613884073
+              }
+            },
+            {
+              "arm": "b_fsq_dec_warmstart",
+              "b": 2,
+              "seed": 1,
+              "regret_quant": {
+                "mean": 0.0762235673954567,
+                "ci_low": 0.07055002165713285,
+                "ci_high": 0.08221259975632997,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.03469395619982126,
+              "gap_to_best_uncompressed": 0.03469395619982126,
+              "best_val_kl": 0.0760609481025591,
+              "best_step": 2400,
+              "escape_step": 1400,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 3,
+                "distinct_symbols_max_agent": 3,
+                "distinct_symbols_min_agent": 3,
+                "pooled_entropy_bits": 1.5781479801066451,
+                "mean_agent_entropy_bits": 1.5777654216547763
+              }
+            },
+            {
+              "arm": "b_fsq_dec_warmstart",
+              "b": 2,
+              "seed": 2,
+              "regret_quant": {
+                "mean": 0.07447966189655882,
+                "ci_low": 0.06890807278159818,
+                "ci_high": 0.0805730074458209,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.032950050700923376,
+              "gap_to_best_uncompressed": 0.032950050700923376,
+              "best_val_kl": 0.07469886199917221,
+              "best_step": 4000,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 3,
+                "pooled_entropy_bits": 1.5695565897221853,
+                "mean_agent_entropy_bits": 1.5691155261035676
+              }
+            }
+          ],
+          "c_fsq_entropy_bonus": [
+            {
+              "arm": "c_fsq_entropy_bonus",
+              "b": 2,
+              "seed": 0,
+              "regret_quant": {
+                "mean": 0.05946153506116902,
+                "ci_low": 0.054175447496530284,
+                "ci_high": 0.0647552451972591,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.017931923865533578,
+              "gap_to_best_uncompressed": 0.017931923865533578,
+              "best_val_kl": 0.06142488752350058,
+              "best_step": 3200,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.979782623003371,
+                "mean_agent_entropy_bits": 1.9790021445777661
+              }
+            },
+            {
+              "arm": "c_fsq_entropy_bonus",
+              "b": 2,
+              "seed": 1,
+              "regret_quant": {
+                "mean": 0.06303347242008557,
+                "ci_low": 0.05745684493893096,
+                "ci_high": 0.06887180143295507,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.02150386122445013,
+              "gap_to_best_uncompressed": 0.02150386122445013,
+              "best_val_kl": 0.06203868577157154,
+              "best_step": 2400,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.9906859504710517,
+                "mean_agent_entropy_bits": 1.9898924771535307
+              }
+            },
+            {
+              "arm": "c_fsq_entropy_bonus",
+              "b": 2,
+              "seed": 2,
+              "regret_quant": {
+                "mean": 0.07862487599421704,
+                "ci_low": 0.07260465894643739,
+                "ci_high": 0.08504870763362433,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.0370952647985816,
+              "gap_to_best_uncompressed": 0.0370952647985816,
+              "best_val_kl": 0.07083920879690314,
+              "best_step": 3200,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.939753505254538,
+                "mean_agent_entropy_bits": 1.9393223913519626
+              }
+            }
+          ],
+          "d_fsq_staged_channel": [
+            {
+              "arm": "d_fsq_staged_channel",
+              "b": 2,
+              "seed": 0,
+              "regret_quant": {
+                "mean": 0.09420842795510703,
+                "ci_low": 0.08676944086189974,
+                "ci_high": 0.10156312999595986,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.05267881675947159,
+              "gap_to_best_uncompressed": 0.05267881675947159,
+              "best_val_kl": 0.09970227114576485,
+              "best_step": 3800,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 3,
+                "distinct_symbols_max_agent": 3,
+                "distinct_symbols_min_agent": 3,
+                "pooled_entropy_bits": 1.2215269850393828,
+                "mean_agent_entropy_bits": 1.2207344120794226
+              }
+            },
+            {
+              "arm": "d_fsq_staged_channel",
+              "b": 2,
+              "seed": 1,
+              "regret_quant": {
+                "mean": 0.0767577940499534,
+                "ci_low": 0.07031414499216683,
+                "ci_high": 0.08343214015372401,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.03522818285431797,
+              "gap_to_best_uncompressed": 0.03522818285431797,
+              "best_val_kl": 0.080943952619133,
+              "best_step": 3200,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 3,
+                "distinct_symbols_max_agent": 3,
+                "distinct_symbols_min_agent": 3,
+                "pooled_entropy_bits": 1.4172078295097537,
+                "mean_agent_entropy_bits": 1.4168432526354091
+              }
+            },
+            {
+              "arm": "d_fsq_staged_channel",
+              "b": 2,
+              "seed": 2,
+              "regret_quant": {
+                "mean": 0.08017723968608581,
+                "ci_low": 0.07396898649759306,
+                "ci_high": 0.08668731539633043,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.03864762849045037,
+              "gap_to_best_uncompressed": 0.03864762849045037,
+              "best_val_kl": 0.08095477381356574,
+              "best_step": 3000,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.6255342431865971,
+                "mean_agent_entropy_bits": 1.6248677704689378
+              }
+            }
+          ],
+          "e_fsq_biased_curr_plus_best": [
+            {
+              "arm": "e_fsq_biased_curr_plus_best",
+              "b": 2,
+              "seed": 0,
+              "regret_quant": {
+                "mean": 0.07546238266029766,
+                "ci_low": 0.0692482905837338,
+                "ci_high": 0.08211858938512406,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.015384994818976087,
+              "gap_to_best_uncompressed": 0.03393277146466222,
+              "best_val_kl": 0.07032417848511886,
+              "best_step": 3600,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.6621424794334168,
+                "mean_agent_entropy_bits": 1.6610884301829507
+              }
+            },
+            {
+              "arm": "e_fsq_biased_curr_plus_best",
+              "b": 2,
+              "seed": 1,
+              "regret_quant": {
+                "mean": 0.072177771453768,
+                "ci_low": 0.06601542171771979,
+                "ci_high": 0.07841931473731098,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.012100383612446426,
+              "gap_to_best_uncompressed": 0.030648160258132558,
+              "best_val_kl": 0.07025506860602855,
+              "best_step": 4000,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.776962835919043,
+                "mean_agent_entropy_bits": 1.7762633478634615
+              }
+            },
+            {
+              "arm": "e_fsq_biased_curr_plus_best",
+              "b": 2,
+              "seed": 2,
+              "regret_quant": {
+                "mean": 0.08758781078534142,
+                "ci_low": 0.08045411749692205,
+                "ci_high": 0.09460508269443595,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.027510422944019848,
+              "gap_to_best_uncompressed": 0.04605819958970598,
+              "best_val_kl": 0.09148006837513711,
+              "best_step": 3600,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.700681232498515,
+                "mean_agent_entropy_bits": 1.7001311318799484
+              }
+            }
+          ]
+        },
+        "4": {
+          "0_fsq_joint": [
+            {
+              "arm": "0_fsq_joint",
+              "b": 4,
+              "seed": 0,
+              "regret_quant": {
+                "mean": 0.051067450532338625,
+                "ci_low": 0.04657718495285806,
+                "ci_high": 0.05565729274110787,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.009537839336703186,
+              "gap_to_best_uncompressed": 0.009537839336703186,
+              "best_val_kl": 0.048151706588523,
+              "best_step": 3400,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 8,
+                "distinct_symbols_max_agent": 8,
+                "distinct_symbols_min_agent": 8,
+                "pooled_entropy_bits": 2.6320452185908336,
+                "mean_agent_entropy_bits": 2.6303229037421274
+              }
+            },
+            {
+              "arm": "0_fsq_joint",
+              "b": 4,
+              "seed": 1,
+              "regret_quant": {
+                "mean": 0.05371203223778484,
+                "ci_low": 0.049069195060605274,
+                "ci_high": 0.05851925357612176,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.0121824210421494,
+              "gap_to_best_uncompressed": 0.0121824210421494,
+              "best_val_kl": 0.05299914129258893,
+              "best_step": 3800,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 9,
+                "distinct_symbols_max_agent": 9,
+                "distinct_symbols_min_agent": 8,
+                "pooled_entropy_bits": 2.4260661245837576,
+                "mean_agent_entropy_bits": 2.42299760539361
+              }
+            },
+            {
+              "arm": "0_fsq_joint",
+              "b": 4,
+              "seed": 2,
+              "regret_quant": {
+                "mean": 0.05371662874381106,
+                "ci_low": 0.04955112029621836,
+                "ci_high": 0.058247682557518866,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.012187017548175617,
+              "gap_to_best_uncompressed": 0.012187017548175617,
+              "best_val_kl": 0.05607838562003829,
+              "best_step": 2000,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 7,
+                "distinct_symbols_max_agent": 7,
+                "distinct_symbols_min_agent": 6,
+                "pooled_entropy_bits": 2.4032027835020866,
+                "mean_agent_entropy_bits": 2.401219813101817
+              }
+            }
+          ],
+          "a_fsq_alt_opt": [
+            {
+              "arm": "a_fsq_alt_opt",
+              "b": 4,
+              "seed": 0,
+              "regret_quant": {
+                "mean": 0.051508963005046114,
+                "ci_low": 0.047018300906206345,
+                "ci_high": 0.055977121261780484,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.009979351809410675,
+              "gap_to_best_uncompressed": 0.009979351809410675,
+              "best_val_kl": 0.05198014709070548,
+              "best_step": 3400,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 8,
+                "distinct_symbols_max_agent": 7,
+                "distinct_symbols_min_agent": 6,
+                "pooled_entropy_bits": 2.438753923705808,
+                "mean_agent_entropy_bits": 2.437037838860536
+              }
+            },
+            {
+              "arm": "a_fsq_alt_opt",
+              "b": 4,
+              "seed": 1,
+              "regret_quant": {
+                "mean": 0.055276398231970135,
+                "ci_low": 0.05067989010352521,
+                "ci_high": 0.0601634596100524,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.013746787036334696,
+              "gap_to_best_uncompressed": 0.013746787036334696,
+              "best_val_kl": 0.056320557567813054,
+              "best_step": 3200,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 9,
+                "distinct_symbols_max_agent": 9,
+                "distinct_symbols_min_agent": 8,
+                "pooled_entropy_bits": 2.459407018758262,
+                "mean_agent_entropy_bits": 2.457592526128127
+              }
+            },
+            {
+              "arm": "a_fsq_alt_opt",
+              "b": 4,
+              "seed": 2,
+              "regret_quant": {
+                "mean": 0.0561377713575216,
+                "ci_low": 0.0516767478081534,
+                "ci_high": 0.06105095297562789,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.01460816016188616,
+              "gap_to_best_uncompressed": 0.01460816016188616,
+              "best_val_kl": 0.0570538892525641,
+              "best_step": 3600,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 11,
+                "distinct_symbols_max_agent": 10,
+                "distinct_symbols_min_agent": 8,
+                "pooled_entropy_bits": 2.5295307810962737,
+                "mean_agent_entropy_bits": 2.5269696662436183
+              }
+            }
+          ],
+          "b_fsq_dec_warmstart": [
+            {
+              "arm": "b_fsq_dec_warmstart",
+              "b": 4,
+              "seed": 0,
+              "regret_quant": {
+                "mean": 0.05541966746350903,
+                "ci_low": 0.05059873387340891,
+                "ci_high": 0.06046652293430885,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.01389005626787359,
+              "gap_to_best_uncompressed": 0.01389005626787359,
+              "best_val_kl": 0.053160789311282854,
+              "best_step": 3200,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 9,
+                "distinct_symbols_max_agent": 9,
+                "distinct_symbols_min_agent": 7,
+                "pooled_entropy_bits": 2.527367848492686,
+                "mean_agent_entropy_bits": 2.5241792522374076
+              }
+            },
+            {
+              "arm": "b_fsq_dec_warmstart",
+              "b": 4,
+              "seed": 1,
+              "regret_quant": {
+                "mean": 0.056827249926530654,
+                "ci_low": 0.051893303424846215,
+                "ci_high": 0.06213784801844378,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.015297638730895215,
+              "gap_to_best_uncompressed": 0.015297638730895215,
+              "best_val_kl": 0.056985283640143165,
+              "best_step": 3600,
+              "escape_step": 1400,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 12,
+                "distinct_symbols_max_agent": 10,
+                "distinct_symbols_min_agent": 7,
+                "pooled_entropy_bits": 2.4767103644142128,
+                "mean_agent_entropy_bits": 2.473205476960895
+              }
+            },
+            {
+              "arm": "b_fsq_dec_warmstart",
+              "b": 4,
+              "seed": 2,
+              "regret_quant": {
+                "mean": 0.05678673654670963,
+                "ci_low": 0.05134708583579539,
+                "ci_high": 0.0622167200954151,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.015257125351074194,
+              "gap_to_best_uncompressed": 0.015257125351074194,
+              "best_val_kl": 0.05445097431788622,
+              "best_step": 3600,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 8,
+                "distinct_symbols_max_agent": 8,
+                "distinct_symbols_min_agent": 7,
+                "pooled_entropy_bits": 2.3241548467927706,
+                "mean_agent_entropy_bits": 2.322201789973719
+              }
+            }
+          ],
+          "c_fsq_entropy_bonus": [
+            {
+              "arm": "c_fsq_entropy_bonus",
+              "b": 4,
+              "seed": 0,
+              "regret_quant": {
+                "mean": 0.0544743138232158,
+                "ci_low": 0.049423935625732565,
+                "ci_high": 0.0595201129358347,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.012944702627580358,
+              "gap_to_best_uncompressed": 0.012944702627580358,
+              "best_val_kl": 0.05292011931190025,
+              "best_step": 4000,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 16,
+                "distinct_symbols_max_agent": 16,
+                "distinct_symbols_min_agent": 16,
+                "pooled_entropy_bits": 3.962584212952204,
+                "mean_agent_entropy_bits": 3.9577229859394842
+              }
+            },
+            {
+              "arm": "c_fsq_entropy_bonus",
+              "b": 4,
+              "seed": 1,
+              "regret_quant": {
+                "mean": 0.059008261798295714,
+                "ci_low": 0.05420579525401241,
+                "ci_high": 0.06381316855128281,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.017478650602660274,
+              "gap_to_best_uncompressed": 0.017478650602660274,
+              "best_val_kl": 0.054544252549328584,
+              "best_step": 2600,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 16,
+                "distinct_symbols_max_agent": 16,
+                "distinct_symbols_min_agent": 16,
+                "pooled_entropy_bits": 3.9422967591526357,
+                "mean_agent_entropy_bits": 3.937432208161063
+              }
+            },
+            {
+              "arm": "c_fsq_entropy_bonus",
+              "b": 4,
+              "seed": 2,
+              "regret_quant": {
+                "mean": 0.05476443245521813,
+                "ci_low": 0.05021545887688989,
+                "ci_high": 0.059241191536145425,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.01323482125958269,
+              "gap_to_best_uncompressed": 0.01323482125958269,
+              "best_val_kl": 0.054573668707667874,
+              "best_step": 2600,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 16,
+                "distinct_symbols_max_agent": 16,
+                "distinct_symbols_min_agent": 16,
+                "pooled_entropy_bits": 3.900292356002193,
+                "mean_agent_entropy_bits": 3.896865425456621
+              }
+            }
+          ],
+          "d_fsq_staged_channel": [
+            {
+              "arm": "d_fsq_staged_channel",
+              "b": 4,
+              "seed": 0,
+              "regret_quant": {
+                "mean": 0.06939329112095508,
+                "ci_low": 0.06373040022896795,
+                "ci_high": 0.07540400636441164,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.027863679925319636,
+              "gap_to_best_uncompressed": 0.027863679925319636,
+              "best_val_kl": 0.07156316608507678,
+              "best_step": 3400,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 13,
+                "distinct_symbols_max_agent": 12,
+                "distinct_symbols_min_agent": 10,
+                "pooled_entropy_bits": 2.805591279340392,
+                "mean_agent_entropy_bits": 2.8020639282927036
+              }
+            },
+            {
+              "arm": "d_fsq_staged_channel",
+              "b": 4,
+              "seed": 1,
+              "regret_quant": {
+                "mean": 0.0670077576451818,
+                "ci_low": 0.06130232597890389,
+                "ci_high": 0.07316499421203922,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.02547814644954636,
+              "gap_to_best_uncompressed": 0.02547814644954636,
+              "best_val_kl": 0.060349957714229414,
+              "best_step": 3800,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 16,
+                "distinct_symbols_max_agent": 16,
+                "distinct_symbols_min_agent": 14,
+                "pooled_entropy_bits": 2.9933849492220164,
+                "mean_agent_entropy_bits": 2.990305270182327
+              }
+            },
+            {
+              "arm": "d_fsq_staged_channel",
+              "b": 4,
+              "seed": 2,
+              "regret_quant": {
+                "mean": 0.06742151466425793,
+                "ci_low": 0.06150211847592299,
+                "ci_high": 0.0733840412095027,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.02589190346862249,
+              "gap_to_best_uncompressed": 0.02589190346862249,
+              "best_val_kl": 0.06382590162004789,
+              "best_step": 3200,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 12,
+                "distinct_symbols_max_agent": 11,
+                "distinct_symbols_min_agent": 9,
+                "pooled_entropy_bits": 2.502085364847256,
+                "mean_agent_entropy_bits": 2.4992047096470484
+              }
+            }
+          ],
+          "e_fsq_biased_curr_plus_best": [
+            {
+              "arm": "e_fsq_biased_curr_plus_best",
+              "b": 4,
+              "seed": 0,
+              "regret_quant": {
+                "mean": 0.06835352181452516,
+                "ci_low": 0.06239169670368153,
+                "ci_high": 0.07446754664856284,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.008276133973203585,
+              "gap_to_best_uncompressed": 0.026823910618889717,
+              "best_val_kl": 0.06714100138342811,
+              "best_step": 4000,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 16,
+                "distinct_symbols_max_agent": 16,
+                "distinct_symbols_min_agent": 16,
+                "pooled_entropy_bits": 3.646713664471534,
+                "mean_agent_entropy_bits": 3.642534288444523
+              }
+            },
+            {
+              "arm": "e_fsq_biased_curr_plus_best",
+              "b": 4,
+              "seed": 1,
+              "regret_quant": {
+                "mean": 0.07931432115573124,
+                "ci_low": 0.07217367570560854,
+                "ci_high": 0.08677117507697991,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.01923693331440967,
+              "gap_to_best_uncompressed": 0.0377847099600958,
+              "best_val_kl": 0.07434252098709453,
+              "best_step": 3200,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 16,
+                "distinct_symbols_max_agent": 16,
+                "distinct_symbols_min_agent": 15,
+                "pooled_entropy_bits": 3.320966420894561,
+                "mean_agent_entropy_bits": 3.3169003544753033
+              }
+            },
+            {
+              "arm": "e_fsq_biased_curr_plus_best",
+              "b": 4,
+              "seed": 2,
+              "regret_quant": {
+                "mean": 0.06204068417861078,
+                "ci_low": 0.056587067009713984,
+                "ci_high": 0.06773248293383838,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.0019632963372892068,
+              "gap_to_best_uncompressed": 0.020511072982975338,
+              "best_val_kl": 0.0624181290558235,
+              "best_step": 4000,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 16,
+                "distinct_symbols_max_agent": 16,
+                "distinct_symbols_min_agent": 16,
+                "pooled_entropy_bits": 3.817671779317661,
+                "mean_agent_entropy_bits": 3.8139169781858335
+              }
+            }
+          ]
+        },
+        "6": {
+          "0_fsq_joint": [
+            {
+              "arm": "0_fsq_joint",
+              "b": 6,
+              "seed": 0,
+              "regret_quant": {
+                "mean": 0.044497616531611835,
+                "ci_low": 0.04108843054449334,
+                "ci_high": 0.04804471506603091,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.0029680053359763953,
+              "gap_to_best_uncompressed": 0.0029680053359763953,
+              "best_val_kl": 0.04566219928383501,
+              "best_step": 2200,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 17,
+                "distinct_symbols_max_agent": 17,
+                "distinct_symbols_min_agent": 16,
+                "pooled_entropy_bits": 3.4059584249511663,
+                "mean_agent_entropy_bits": 3.401584019758437
+              }
+            },
+            {
+              "arm": "0_fsq_joint",
+              "b": 6,
+              "seed": 1,
+              "regret_quant": {
+                "mean": 0.04645025445973745,
+                "ci_low": 0.04257222022157249,
+                "ci_high": 0.05030763047346722,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.004920643264102013,
+              "gap_to_best_uncompressed": 0.004920643264102013,
+              "best_val_kl": 0.044998238484836056,
+              "best_step": 1800,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 24,
+                "distinct_symbols_max_agent": 22,
+                "distinct_symbols_min_agent": 19,
+                "pooled_entropy_bits": 3.574459809405448,
+                "mean_agent_entropy_bits": 3.567933341740148
+              }
+            },
+            {
+              "arm": "0_fsq_joint",
+              "b": 6,
+              "seed": 2,
+              "regret_quant": {
+                "mean": 0.046666353332259346,
+                "ci_low": 0.0426548967643644,
+                "ci_high": 0.051057002130950734,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.005136742136623906,
+              "gap_to_best_uncompressed": 0.005136742136623906,
+              "best_val_kl": 0.0470954298748596,
+              "best_step": 2400,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 20,
+                "distinct_symbols_max_agent": 18,
+                "distinct_symbols_min_agent": 17,
+                "pooled_entropy_bits": 3.6505534954007706,
+                "mean_agent_entropy_bits": 3.6441127210916497
+              }
+            }
+          ],
+          "a_fsq_alt_opt": [
+            {
+              "arm": "a_fsq_alt_opt",
+              "b": 6,
+              "seed": 0,
+              "regret_quant": {
+                "mean": 0.050519614570092984,
+                "ci_low": 0.04629226159589789,
+                "ci_high": 0.054999084809782606,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.008990003374457545,
+              "gap_to_best_uncompressed": 0.008990003374457545,
+              "best_val_kl": 0.05253931651576421,
+              "best_step": 3400,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 26,
+                "distinct_symbols_max_agent": 24,
+                "distinct_symbols_min_agent": 21,
+                "pooled_entropy_bits": 3.6382491375381436,
+                "mean_agent_entropy_bits": 3.6301699153639944
+              }
+            },
+            {
+              "arm": "a_fsq_alt_opt",
+              "b": 6,
+              "seed": 1,
+              "regret_quant": {
+                "mean": 0.0481234358317656,
+                "ci_low": 0.04387478773394146,
+                "ci_high": 0.05240936294053907,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.0065938246361301606,
+              "gap_to_best_uncompressed": 0.0065938246361301606,
+              "best_val_kl": 0.044837773341923085,
+              "best_step": 3400,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 36,
+                "distinct_symbols_max_agent": 31,
+                "distinct_symbols_min_agent": 25,
+                "pooled_entropy_bits": 3.663859141730811,
+                "mean_agent_entropy_bits": 3.6528055129817645
+              }
+            },
+            {
+              "arm": "a_fsq_alt_opt",
+              "b": 6,
+              "seed": 2,
+              "regret_quant": {
+                "mean": 0.0496145045115192,
+                "ci_low": 0.04519468646731477,
+                "ci_high": 0.05440272148968893,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.00808489331588376,
+              "gap_to_best_uncompressed": 0.00808489331588376,
+              "best_val_kl": 0.05184287072365031,
+              "best_step": 3800,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 21,
+                "distinct_symbols_max_agent": 19,
+                "distinct_symbols_min_agent": 15,
+                "pooled_entropy_bits": 3.0556598376845825,
+                "mean_agent_entropy_bits": 3.0499040612872994
+              }
+            }
+          ],
+          "b_fsq_dec_warmstart": [
+            {
+              "arm": "b_fsq_dec_warmstart",
+              "b": 6,
+              "seed": 0,
+              "regret_quant": {
+                "mean": 0.04914615271871245,
+                "ci_low": 0.044955171494533125,
+                "ci_high": 0.05360785740304877,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.00761654152307701,
+              "gap_to_best_uncompressed": 0.00761654152307701,
+              "best_val_kl": 0.051223912104888386,
+              "best_step": 2800,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 30,
+                "distinct_symbols_max_agent": 24,
+                "distinct_symbols_min_agent": 22,
+                "pooled_entropy_bits": 3.413297496248558,
+                "mean_agent_entropy_bits": 3.4049956329098925
+              }
+            },
+            {
+              "arm": "b_fsq_dec_warmstart",
+              "b": 6,
+              "seed": 1,
+              "regret_quant": {
+                "mean": 0.048547717998225076,
+                "ci_low": 0.044435103010066805,
+                "ci_high": 0.0527208765282155,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.007018106802589637,
+              "gap_to_best_uncompressed": 0.007018106802589637,
+              "best_val_kl": 0.05040977889985089,
+              "best_step": 3600,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 29,
+                "distinct_symbols_max_agent": 26,
+                "distinct_symbols_min_agent": 22,
+                "pooled_entropy_bits": 3.5378958385024326,
+                "mean_agent_entropy_bits": 3.5297059292753863
+              }
+            },
+            {
+              "arm": "b_fsq_dec_warmstart",
+              "b": 6,
+              "seed": 2,
+              "regret_quant": {
+                "mean": 0.05208437446178664,
+                "ci_low": 0.04754514998832793,
+                "ci_high": 0.05685460470200326,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.0105547632661512,
+              "gap_to_best_uncompressed": 0.0105547632661512,
+              "best_val_kl": 0.04878416358413828,
+              "best_step": 3400,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 29,
+                "distinct_symbols_max_agent": 28,
+                "distinct_symbols_min_agent": 25,
+                "pooled_entropy_bits": 3.5668211324504244,
+                "mean_agent_entropy_bits": 3.559219109415224
+              }
+            }
+          ],
+          "c_fsq_entropy_bonus": [
+            {
+              "arm": "c_fsq_entropy_bonus",
+              "b": 6,
+              "seed": 0,
+              "regret_quant": {
+                "mean": 0.05666190384222216,
+                "ci_low": 0.05174013779359606,
+                "ci_high": 0.06188866121062115,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.01513229264658672,
+              "gap_to_best_uncompressed": 0.01513229264658672,
+              "best_val_kl": 0.056320379479956245,
+              "best_step": 2800,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 64,
+                "distinct_symbols_max_agent": 64,
+                "distinct_symbols_min_agent": 64,
+                "pooled_entropy_bits": 5.874159498199559,
+                "mean_agent_entropy_bits": 5.85691237742473
+              }
+            },
+            {
+              "arm": "c_fsq_entropy_bonus",
+              "b": 6,
+              "seed": 1,
+              "regret_quant": {
+                "mean": 0.05734405024305879,
+                "ci_low": 0.05240343824196479,
+                "ci_high": 0.06279536720212238,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.01581443904742335,
+              "gap_to_best_uncompressed": 0.01581443904742335,
+              "best_val_kl": 0.05877030186923912,
+              "best_step": 3000,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 64,
+                "distinct_symbols_max_agent": 64,
+                "distinct_symbols_min_agent": 64,
+                "pooled_entropy_bits": 5.871163310192792,
+                "mean_agent_entropy_bits": 5.855610473847764
+              }
+            },
+            {
+              "arm": "c_fsq_entropy_bonus",
+              "b": 6,
+              "seed": 2,
+              "regret_quant": {
+                "mean": 0.06438098981582578,
+                "ci_low": 0.0588750054067969,
+                "ci_high": 0.06996410613319153,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.022851378620190342,
+              "gap_to_best_uncompressed": 0.022851378620190342,
+              "best_val_kl": 0.06457233198838463,
+              "best_step": 3400,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 64,
+                "distinct_symbols_max_agent": 64,
+                "distinct_symbols_min_agent": 64,
+                "pooled_entropy_bits": 5.843034536174827,
+                "mean_agent_entropy_bits": 5.823879588651883
+              }
+            }
+          ],
+          "d_fsq_staged_channel": [
+            {
+              "arm": "d_fsq_staged_channel",
+              "b": 6,
+              "seed": 0,
+              "regret_quant": {
+                "mean": 0.059114707201239194,
+                "ci_low": 0.05404496791816367,
+                "ci_high": 0.06453640933901068,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.017585096005603755,
+              "gap_to_best_uncompressed": 0.017585096005603755,
+              "best_val_kl": 0.057866052962513695,
+              "best_step": 3800,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 48,
+                "distinct_symbols_max_agent": 38,
+                "distinct_symbols_min_agent": 34,
+                "pooled_entropy_bits": 3.5925826492489983,
+                "mean_agent_entropy_bits": 3.576452009957574
+              }
+            },
+            {
+              "arm": "d_fsq_staged_channel",
+              "b": 6,
+              "seed": 1,
+              "regret_quant": {
+                "mean": 0.0587862105900081,
+                "ci_low": 0.05372918542370611,
+                "ci_high": 0.06416151058632423,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.017256599394372664,
+              "gap_to_best_uncompressed": 0.017256599394372664,
+              "best_val_kl": 0.06059819164174615,
+              "best_step": 3200,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 62,
+                "distinct_symbols_max_agent": 55,
+                "distinct_symbols_min_agent": 49,
+                "pooled_entropy_bits": 4.526649930644701,
+                "mean_agent_entropy_bits": 4.507599128248919
+              }
+            },
+            {
+              "arm": "d_fsq_staged_channel",
+              "b": 6,
+              "seed": 2,
+              "regret_quant": {
+                "mean": 0.058194100540554475,
+                "ci_low": 0.05323315340142173,
+                "ci_high": 0.06351355417642551,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.016664489344919035,
+              "gap_to_best_uncompressed": 0.016664489344919035,
+              "best_val_kl": 0.05974619006941071,
+              "best_step": 4000,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 58,
+                "distinct_symbols_max_agent": 48,
+                "distinct_symbols_min_agent": 43,
+                "pooled_entropy_bits": 4.074763872168922,
+                "mean_agent_entropy_bits": 4.058593030473266
+              }
+            }
+          ],
+          "e_fsq_biased_curr_plus_best": [
+            {
+              "arm": "e_fsq_biased_curr_plus_best",
+              "b": 6,
+              "seed": 0,
+              "regret_quant": {
+                "mean": 0.06388622139350629,
+                "ci_low": 0.05826695475568462,
+                "ci_high": 0.0697811002919493,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.003808833552184719,
+              "gap_to_best_uncompressed": 0.02235661019787085,
+              "best_val_kl": 0.0640523881338446,
+              "best_step": 3800,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 64,
+                "distinct_symbols_max_agent": 64,
+                "distinct_symbols_min_agent": 62,
+                "pooled_entropy_bits": 5.64003339627493,
+                "mean_agent_entropy_bits": 5.621989477250947
+              }
+            },
+            {
+              "arm": "e_fsq_biased_curr_plus_best",
+              "b": 6,
+              "seed": 1,
+              "regret_quant": {
+                "mean": 0.06388240984052725,
+                "ci_low": 0.05824582502136564,
+                "ci_high": 0.06995666394052441,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.0038050219992056752,
+              "gap_to_best_uncompressed": 0.022352798644891807,
+              "best_val_kl": 0.059456751317782275,
+              "best_step": 3000,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 64,
+                "distinct_symbols_max_agent": 64,
+                "distinct_symbols_min_agent": 64,
+                "pooled_entropy_bits": 5.885982063089903,
+                "mean_agent_entropy_bits": 5.8689281579700525
+              }
+            },
+            {
+              "arm": "e_fsq_biased_curr_plus_best",
+              "b": 6,
+              "seed": 2,
+              "regret_quant": {
+                "mean": 0.06482246954906411,
+                "ci_low": 0.0591792401856936,
+                "ci_high": 0.07132432840989211,
+                "n": 2000
+              },
+              "gap_to_anchor": 0.004745081707742536,
+              "gap_to_best_uncompressed": 0.023292858353428668,
+              "best_val_kl": 0.07148901998337158,
+              "best_step": 3600,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 64,
+                "distinct_symbols_max_agent": 64,
+                "distinct_symbols_min_agent": 64,
+                "pooled_entropy_bits": 5.820098934344852,
+                "mean_agent_entropy_bits": 5.8022918063147255
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "elapsed_sec": 7283.26
+}

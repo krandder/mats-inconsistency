@@ -1,0 +1,53 @@
+{
+ "date": "17 Oct",
+ "name": "Round 8 E-MS-SAFE-ANCHOR: 6x6 Stratego search anchored at the current-turn belief, corner worlds vs corrupted rollouts",
+ "status": "nogain",
+ "oneline": "Both rules failed. Anchored at the net's current belief (KL 0.049), naive pooling wrecks it (raw counts 0.64, a fixed-step rule 4.8), while a small fitted step never hurt and helped 5% (0.046). The attention aggregators, fitted on true piece types without held-out stopping, memorised the calibration positions and degraded the anchor to 0.64; rerun post hoc with early stopping, they kept their initial tiny step: safe, but no better than scaled mixing. Window-consistency weighting did not lower MSE; the 'epistemically noisy' rollouts were barely worse than clean ones, so trust gating lost to the plain mean. 3 seeds, reused checkpoints, audited; $0.46 by the ledger ($0.49 counting deletion time).",
+ "led_to": [],
+ "page": {
+  "why": "Rounds 6 and 7 started 6x6 Stratego search from a 4-move-old belief (KL 0.185) and never gave it the net's own current belief (0.047). Gemini's round-8 spec asked two of Kelvin's questions. Can search start from the strong current belief and never make it worse as rollouts are added (K = 0 to 16)? And can a trust head tell legitimate but surprising 'corner worlds' from rollouts that are simply corrupted, so that weighting by window consistency and trust beats the plain mean? It reused round 5's trained networks, so nothing was retrained.",
+  "what": "Beliefs: every pooling rule starts from the net's current belief and adds rollout evidence; rollouts are skewed 85/15 toward one flank and pooled in nested bags of 1 to 16. Naive rules (raw determinization counts; a fixed-step Ataraxos-style rule) are compared with fitted ones (scaled mixing, key deduplication, a 3-layer attention pool and a weight-tied looped attention pool), fitted on calibration positions against the true hidden pieces. Action values: per legal move, 16 clean rollouts whose hidden pieces are drawn from the 4-move-old belief and weighted by how well they explain the opponent's last moves, plus 6 corrupted ones (all sampled pieces changed; half one-move-deep, half random playouts). A trust head, trained on real game results, never sees which rollouts were corrupted. Pre-registered (PREREG-R8-E3.md), 3 seeds, one L4, independent audit, plus one labelled post hoc rerun.",
+  "result": "Naive rules wrecked the anchor: raw counts took KL from 0.049 to 0.640 at 16 rollouts, the fixed-step rule to 4.78. The fitted one-parameter scaled mixing never hurt and reached 0.046. The attention pools, as registered, degraded the anchor to 0.635 and 0.585: their calibration loss fell from 1.12 to 0.98, a sign that they memorised the calibration positions. Rerun post hoc with early stopping on held-out calibration positions, both kept their initial small step in every seed: safe (KL 0.0463 at 16) but no better than scaled mixing. Values: window-consistency weighting did not lower MSE (0.0141 vs 0.0139 for the plain mean); its slightly lower bias was within noise. The trust head ranked rollout errors at +0.33, below the 0.40 bar, and trust gating (0.0153) lost to the plain mean (0.0143).",
+  "sowhat": "A strong current belief was easy to protect here: the rules with a small fitted step stayed below it at every rollout count and gained a few percent. Nothing here found a learned rule that does better than that; the attention pools either memorised their training positions or, held back by early stopping, stayed at their initial small step. The corner-world question did not get a fair test: corrupting every sampled piece barely hurt one-move-deep rollouts, and two opponent moves are too little evidence to weight worlds by. A real test needs rollouts that are clearly worse and more window evidence.",
+  "decided": "Recorded E3-D1 and E3-D2 as failed, as pre-registered; the early-stopping rerun is labelled post hoc and changes no verdict. Not run or chosen: aggregators fitted on many more calibration positions or against a smoothed target; a noisy tier with a verified large error; longer windows for consistency weighting.",
+  "chart": {
+   "bars": [
+    {
+     "label": "current-turn belief (K = 0)",
+     "value": 0.0488,
+     "text": "0.049"
+    },
+    {
+     "label": "scaled mixing, 16 rollouts",
+     "value": 0.0463,
+     "text": "0.046"
+    },
+    {
+     "label": "attention, early-stopped (post hoc)",
+     "value": 0.0463,
+     "text": "0.046"
+    },
+    {
+     "label": "attention as registered",
+     "value": 0.6348,
+     "text": "0.635"
+    },
+    {
+     "label": "raw determinization counts",
+     "value": 0.6397,
+     "text": "0.640"
+    }
+   ],
+   "caption": "KL to the exact posterior per hidden opponent piece (nats) after 16 rollouts, every rule anchored at the net's current belief; 500 test positions, 3-seed means. The fixed-step Ataraxos-style rule (4.78) is off the scale.",
+   "aria": "Bars: current belief 0.049, scaled mixing 0.046, early-stopped attention 0.046, attention as registered 0.635, raw counts 0.640"
+  },
+  "details": {
+   "methods": [
+    "Pre-registered in r8/PREREG-R8-E3.md (sha256 dc5e5681...) at 15:58:30Z, before the registered launch at 15:58:44Z; rules copied verbatim from the spec. The early-stopping rerun was added after the verdicts, announced first, and is labelled post hoc.",
+    "Reused the round-5 checkpoints and data unchanged (parameter hashes checked before and after). Oracle for scoring only: exact posterior over 10,080 setups; Q* from 64 simulator playouts per legal move. Belief pools fitted on calibration positions against the true hidden pieces; the trust head and pooling settings fitted on calibration against real game results.",
+    "D1 on 500 two-flank test positions (nested bags of 1-16 rollouts skewed 85/15); D2 on 240 test positions x every legal move (2,361 pairs), 16 clean + 6 corrupted rollouts each.",
+    "3 seeds, 95% t-intervals across seeds; 318 numbers re-derived from per-item CSVs (4.1e-7). Independent audit (AUDIT-R8-E3.md): supported with corrections; every verdict reproduced, and the anchor KL, the window likelihood and both rollout tiers recomputed on CPU from a checkpoint; wording corrections applied. GPU $0.46 at the list-price ceiling by the ledger ($0.49 counting deletion time) (three on-demand L4 VMs: registered run $0.18, an exploratory rerun lost to a driver bug $0.13, its relaunch $0.15); no VM or disk left."
+   ]
+  }
+ }
+}

@@ -1,0 +1,175 @@
+{
+ "rules": "M7 lead merge: one per-seed table over all workers, and the stage-1 gate under three rules.\n\nReads only files the workers wrote; writes merge/per_seed.csv, merge/arms.csv, merge/gate.json.\nEach worker is compared against the DeepSeek and no-balancing runs of its OWN harness (same code, paired by seed).\nRules (per E, for a wealth arm vs the better same-harness DeepSeek on that worker's primary metric):\n  R1 (w1/PREREG.md, \"applied by the M7 merger\"): lower in 3/3 paired seeds and not collapsed.\n  R2 (w1/M7-w1.md recommendation after the noise floor): R1 and paired mean gap > 1% relative, at BOTH E.\n  R3 (the arm's own worker PREREG): taken from the worker's decision file / report.\nCollapsed = worst-layer max load > 0.5 in >= 2/3 seeds (STUDY-PLAN M7 stop rule).\n",
+ "arms": {
+  "w2:dsfw": {
+   "by_metric": {
+    "bce_all": {
+     "R1_by_E": {
+      "8": true,
+      "64": true
+     },
+     "R2_bothE": true,
+     "primary": true
+    },
+    "bce_last10k": {
+     "R1_by_E": {
+      "8": true,
+      "64": false
+     },
+     "R2_bothE": false,
+     "primary": false
+    }
+   },
+   "R3_own_prereg": false,
+   "R3_source": "w2/results/decision.json: gap not > larger seed sd"
+  },
+  "w2:dsfw_fast": {
+   "by_metric": {
+    "bce_all": {
+     "R1_by_E": {
+      "8": true,
+      "64": false
+     },
+     "R2_bothE": false,
+     "primary": true
+    },
+    "bce_last10k": {
+     "R1_by_E": {
+      "8": true,
+      "64": false
+     },
+     "R2_bothE": false,
+     "primary": false
+    }
+   },
+   "R3_own_prereg": false,
+   "R3_source": "w2/results/decision.json: beats at E=8 only (partial)"
+  },
+  "w2:dsfw_mean": {
+   "by_metric": {
+    "bce_all": {
+     "R1_by_E": {
+      "8": true,
+      "64": false
+     },
+     "R2_bothE": false,
+     "primary": true
+    },
+    "bce_last10k": {
+     "R1_by_E": {
+      "8": false,
+      "64": false
+     },
+     "R2_bothE": false,
+     "primary": false
+    }
+   },
+   "R3_own_prereg": false,
+   "R3_source": "w2/results/decision.json"
+  },
+  "w3:exp3": {
+   "by_metric": {
+    "bce_2nd_half": {
+     "R1_by_E": {
+      "8": false,
+      "64": false
+     },
+     "R2_bothE": false,
+     "primary": true
+    }
+   },
+   "R3_own_prereg": false,
+   "R3_source": "w3/results/decision.json"
+  },
+  "w4:global-b100": {
+   "by_metric": {
+    "bce_last": {
+     "R1_by_E": {
+      "8": false,
+      "64": false
+     },
+     "R2_bothE": false,
+     "primary": true
+    }
+   },
+   "R3_own_prereg": false,
+   "R3_source": "w4/M7-w4.md 'Pre-registered rules applied'; w4/paired.csv"
+  },
+  "w4:global-b1000": {
+   "by_metric": {
+    "bce_last": {
+     "R1_by_E": {
+      "8": false,
+      "64": false
+     },
+     "R2_bothE": false,
+     "primary": true
+    }
+   },
+   "R3_own_prereg": false,
+   "R3_source": "w4/M7-w4.md 'Pre-registered rules applied'; w4/paired.csv"
+  },
+  "w4:perfam-b100": {
+   "by_metric": {
+    "bce_last": {
+     "R1_by_E": {
+      "8": false,
+      "64": false
+     },
+     "R2_bothE": false,
+     "primary": true
+    }
+   },
+   "R3_own_prereg": false,
+   "R3_source": "w4/M7-w4.md 'Pre-registered rules applied'; w4/paired.csv"
+  },
+  "w4:perfam-b1000": {
+   "by_metric": {
+    "bce_last": {
+     "R1_by_E": {
+      "8": false,
+      "64": false
+     },
+     "R2_bothE": false,
+     "primary": true
+    }
+   },
+   "R3_own_prereg": false,
+   "R3_source": "w4/M7-w4.md 'Pre-registered rules applied'; w4/paired.csv"
+  },
+  "w5:bb": {
+   "by_metric": {
+    "bce_2nd_half": {
+     "R1_by_E": {
+      "8": false,
+      "64": false
+     },
+     "R2_bothE": false,
+     "primary": true
+    }
+   },
+   "R3_own_prereg": false,
+   "R3_source": "w5/results/verdict_gpu.json"
+  },
+  "w5:bb-fresh": {
+   "by_metric": {
+    "bce_2nd_half": {
+     "R1_by_E": {
+      "8": false,
+      "64": false
+     },
+     "R2_bothE": false,
+     "primary": true
+    }
+   },
+   "R3_own_prereg": false,
+   "R3_source": "w5/results/verdict_gpu.json"
+  }
+ },
+ "any_R1_bothE_primary": true,
+ "any_R2_bothE_primary": true,
+ "any_R3": false,
+ "passing_R2_primary": [
+  "w2:dsfw"
+ ]
+}

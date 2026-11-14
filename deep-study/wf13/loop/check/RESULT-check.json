@@ -1,0 +1,72 @@
+{
+ "model": "Claude Fable 5.2 (claude-fable-5-2[1m])",
+ "is_kelvins_design": "A variant of FRAME section 5, not the design itself. Present: one score on terminal states, target in proportion to the score, a rollout policy distilled from an amplification. Drifts:\n1. No order policy is learned. The order is a hand rule in every arm: \"most confident cell\" (Sudoku), the books' one-step lookahead, the same for every policy (parity tree), \"most confident first\" (importance form). Section 5 wants the order policy trained on the amplified policy. The headline negative is about this unlearned part.\n2. The tree form is not an aggregation over rollouts. It is a hand-written branch-and-bound: the specification creates every child, bounds partial states (FRAME row 9 gives them no evaluation), owns half the openings and, in the parity world, makes its own draws. Rollouts only choose which leaf to open. The bounds need a score that is a small table of local factors.\n3. No alien concepts or internal state. The policy reads the books' candidates or local numbers and the hand-written graph (row, column, box; each check's parents).\n4. No trust head and no real data anywhere in the loop. Every error is measured against the score's exact answer, not reality.\n5. His consistency requirement (amplified P(X) then P(Y|X) against P(Y) then P(X|Y)) is not tested. \"Same answers across rounds\" is policy independence.\n6. The demonstration's order is dropped; legitimate only because both scores ignore order.\nAlso by hand: the floor, the specification's share, summing out at closed states, the audit.",
+ "verdicts": [
+  {
+   "claim": "Weighted counting needs only the policy's value probabilities; the search's order cancels (PROVEN).",
+   "verdict": "CONFIRMED",
+   "reason": "Own enumeration, c1_order.py: 60 random worlds with random state-dependent order and value policies, error at most 3.3e-16. It fails, as stated, when a value is never proposed (total variation up to 0.72) or the score depends on the route. This is the standard importance-sampling identity: a guarantee, not a finding."
+  },
+  {
+   "claim": "The books' interval contains the score's exact answer for every rollout policy and only shrinks (PROVEN).",
+   "verdict": "CONFIRMED",
+   "reason": "Fresh data, own solver and enumeration (c2_sudoku.py, c3_parity.py, c6_scale.py). Sudoku: 1,602,384 intervals on 180 puzzles I generated (0 solution grids in the training file), 8 policies including an adversary that knows the solutions: 0 outside at zero tolerance, 0 not nested, all 669 closed trees return the exact set; my integer recomputation of the books matches on 115,488 intervals. Parity: 105,600 intervals and 5,280 bounds on the total, 11 policies, 0 outside, 0 audit misses. True by construction of hand-written bounds, so the '11 million' is a bug check, not evidence about policies. Seed 1's other 13 arms were never rescored after the rounding fix."
+  },
+  {
+   "claim": "Bad rollout policies cost openings or width only; the importance form alone is wrong with no warning under an avoiding policy (CHECKED).",
+   "verdict": "CONFIRMED",
+   "reason": "Numbers replicate (c7_guards.py: unguarded avoidance leaves audit width 1.00/0.82/0.84 at 2,048 openings and closes 38-41% of hard Sudoku). Two parts are true by construction and reported as findings. (a) Sudoku closing cost never reads the value probabilities: same order with random values costs 165.5 against 166.6 and 173.9 against 172.4. (b) With no floor the avoiding policy has no support, so the importance form converges to T given the five avoided assumptions = 0: its error 0.434/0.366/0.313 equals a distance computable before any rollout, 0.429/0.361/0.316. The real evidence is in their own table and not in the note: a wrong-goal policy with full support is still 0.41-0.42 off at 256 rollouts. Discrepancy: avoid plus share closes 76-78% of my hard puzzles, not 92-93%."
+  },
+  {
+   "claim": "One round of distillation gives the gain: Sudoku closing cost falls 11-19x, parity importance-form error 6-13x (CHECKED).",
+   "verdict": "CONFIRMED",
+   "reason": "Their checkpoints on 100 hard puzzles they never scored: 919 to 73 and 1,795 to 87. My fresh seed 3 (c4_sloop.py): 705 to 99, which is 7x. Parity on 40 fresh instances per world: 0.43/0.41/0.45 to 0.067/0.045/0.060; fresh seed 2 (c5_ploop.py): 0.42/0.45/0.45 to 0.049/0.047/0.029."
+  },
+  {
+   "claim": "The loop does not compound over rounds (REFUTED by registered bins H3, H4, H5).",
+   "verdict": "GAP",
+   "reason": "The numbers replicate: seed 3 costs 99, 144, 161, 192, 200 by round, one-shot 221, hand rule 44; parity seed 2 is flat after round 1, final/one-shot 0.57 and 1.23 in the two worlds that finished. But the design could not have shown compounding. Sudoku cost depends only on the order, and the order is a hand rule on the value head's confidence. A perfect value head under that rule costs 433 openings, the same as a random order (447). The rise from 73 to 170 is the loop heading to that fixed point: the chosen cell is a fewest-values cell 94% of the time in round 1 and 70% in round 5, as confidence saturates. The budget also closes 100% of training puzzles from round 1. In the parity world rounds differ by less than one standard error (0.015 on 0.03-0.06). Not shown, rather than refuted."
+  },
+  {
+   "claim": "A hand-made order beats the learned one; in the parity world the specification alone gives the narrowest interval (CHECKED).",
+   "verdict": "CONFIRMED",
+   "reason": "Fresh hard puzzles: 44 against 73-200. Fresh parity instances, audit width at 256 openings: specification alone 0.102/0.039/0.153, round 5 0.146/0.052/0.187. 'Learned order' is a misnomer: no order was learned (drift 1)."
+  },
+  {
+   "claim": "All extra cost is in branches with no solution; started at the hand rule's level, each round makes the tree dearer while rollouts improve (POST HOC).",
+   "verdict": "CONFIRMED",
+   "reason": "c8_mask.py on fresh hard puzzles: 46, 68, 83, 87, 88, 91 and 45, 63, 80, 89, 92, 91. Partly by construction. With one solution every policy spends the same openings on the solution path, so the rest is dead branches by identity. The untrained network under that rule IS the fewest-values-left rule (it picks a fewest-values cell 100% of the time; uniform probabilities over the remaining values give 1/count), then training moves it away (94% to 74%). The dead-branch split itself was not re-run."
+  },
+  {
+   "claim": "The target is silent about order, so the order must be trained on measured search cost; that would compound (CONJECTURE).",
+   "verdict": "NOT CHECKED",
+   "reason": "Not run by either of us. The first half matches what I measured. It is also the fail-first principle of constraint search and the premise of learning-to-branch work; I did not search that literature and the note does not cite it."
+  },
+  {
+   "claim": "Tree plus the specification's draws is far more accurate per call than one pass of M (H8 major); the policy's own one pass is worse than M's (CHECKED).",
+   "verdict": "CONFIRMED",
+   "reason": "Fresh instances, M run on the same ones: audit-point error 0.008/0.003/0.011 at 256 openings against 0.218/0.214/0.211 for one pass of M; policy one pass 0.28/0.28/0.25. Not a result about the loop: the untrained policy gets the same error (0.009/0.003/0.009) and the specification alone is better (0.006/0.003/0.006). It is exact inference on a small table against one pass."
+  },
+  {
+   "claim": "No narrowing by the registered test; the guard is the specification's share in the parity world and the floor in Sudoku (CHECKED).",
+   "verdict": "CONFIRMED",
+   "reason": "Guards re-run on fresh data (c7_guards.py): without the share, round-5 audit width at 1,024 openings is 0.10/0.06/0.14 against 0.003/0.001/0.002; avoid plus share matches the honest policy; in Sudoku the floor closes 100% and the share alone 76-78%. The narrowing numbers (KL flat at 1.1-1.5, under-proposed share 2-8%) I read from their output and did not recompute."
+  },
+  {
+   "claim": "At 40 assumptions the certain interval stays wide at 16,384 openings (0.19 with 60 checks, 0.94 with 30) while the probabilistic one stays useful (CHECKED).",
+   "verdict": "CONFIRMED",
+   "reason": "Direction holds on 8 fresh instances (c6_scale.py); the numbers are medians over very uneven instances. Certain width at 16,384 openings: 0.08 with 60 checks (range 0.01-1.00; theirs 0.19 and 0.53), 0.93 with 30. Audit with 65,536 draws: 0.004 at 4,096 openings, 0.036 at 16,384 with 30 checks. 'At most 0.04' needs 65,536 draws; with the 4,096 used elsewhere it is 0.20, and my worst instance is 0.25. No rollout policy is in this test, and no exact answer exists at this size (0 contradictions in 1,280 cross-checks; 0 of 360 outside with 20 hidden)."
+  },
+  {
+   "claim": "Trust head, decisions, an order-dependent soft score, a larger rule world (UNKNOWN).",
+   "verdict": "NOT CHECKED",
+   "reason": "Not built by the author, not built by me."
+  },
+  {
+   "claim": "Audit: pre-registration, no solver in an arm, disjoint test, memorisation, equal compute.",
+   "verdict": "GAP",
+   "reason": "PREREG.md was hashed at 17:19:18Z and the runs launched in the same second; bins were followed and the two wrong H6 sentences reported. The hash covers PREREG.md and four helper files only, and one of those changed afterwards; sk.py, spol.py, srun.py and sscore.py were edited after the hash (the rounding fix and post hoc options, disclosed). No exact answer leaks into an arm, but the amplification is itself a complete backtracking search (Sudoku) and exact summation (parity), by design. Test sets are disjoint: 0 of 60 parity test vectors among the 640 training vectors. Memorisation cannot produce the cost numbers, since they do not read values. The one-shot control matched gradient steps but spent 5-10x more openings than the loop, unreported. One-pass networks of two or three sizes on the search axis, required by the brief, are missing."
+  }
+ ],
+ "plain_words": "Context: this is the independent check of the \"full loop\" run (rollout policy, amplification, distillation over five rounds, in 6x6 Sudoku and the 20-assumption parity world). I re-ran every claim with my own scripts, fresh puzzles and instances, and fresh training seeds.\n\n1. Every number I re-ran came back close. The interval always held the score's exact answer (1.7 million fresh intervals, including an adversary that knows the solutions). One round of distillation gives a large gain, and later rounds add nothing.\n2. \"The loop did not compound\" is weaker than it reads. No order policy was learned: the order is a hand rule, \"fill the cell the network is most sure of\". In Sudoku the cost to close depends only on that order, not on the values the network proposes (same order with random values: 166 against 167 openings). A perfect value network under that rule costs 433 openings, the same as a random order; fewest-values-left costs 44. So the climb from 73 to 170 is the hand rule degrading as the network gets surer. Your design, with the order trained on the amplified policy, was not tested.\n3. Three results are true by construction. The interval guarantee belongs to hand-written bounds. Weighted counting under a policy that never proposes part of the space converges to a different, computable answer. The accuracy in the parity world comes from the specification's own draws: an untrained policy does as well.\n4. The safety result needs a score that is a small table whose factors the specification can bound on partial states. Neither world tests a score that needs the network.\n\nMissed, that you would want:\n- An order head trained on where the search spent its openings (the AlphaZero visit-count target). This is the experiment that tests your design, and it is small on this code.\n- A budget that keeps binding. Here round 1 closes every training puzzle, and I think (not tested) a budget too small to finish any puzzle would leave the loop with no target at all.\n- The honest evidence that rollouts alone do not protect: a wrong-goal policy with full support is still 0.41 off at 256 rollouts. It is in their table, not in the note.\n- A trust head, real data, and your consistency across queries: none are in this loop.\n- Prior work on choosing the order in constraint search (fail-first, learning to branch) is not cited; I did not search it either.\n\nI don't know whether a learned order would compound. Nobody ran it.\n\nScripts and outputs: /home/agent/workspaces/mats/work/deep-study/wf13/loop/check/ (c1 to c8, out/). CPU only, no cluster job. The seed-2 parity replication for world 101 was still scoring its last rounds when I wrote this; worlds 102 and 103 finished."
+}

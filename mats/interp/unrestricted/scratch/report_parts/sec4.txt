@@ -1,0 +1,87 @@
+## 4. Which known random object is this most like? (Kelvin's question)
+
+For each analogy: how close it is, what is known, what a proof of similarity would need, and my verdict. My
+assessment is in `notes/analogies.md`; astra's (round 2, section 3(e)) reaches the same verdicts in weaker words
+("no reduction supplied"), which I adopt.
+
+### 4.1 Derandomising threshold circuits (CAPP for TC0)
+- **Close in the worst case (PROVEN, hardness lane Thm 4.1).** On Boolean inputs, a threshold gate with integer
+  weights and threshold is relu(S - theta + 1) - relu(S - theta), and steep ramps binarise Gaussian inputs. So
+  constant-depth threshold circuits of size s become ReLU nets of constant depth (with constant overhead) and size
+  O(s), whose Gaussian mean is the acceptance probability up to O(m/K). Deterministic estimation for constant-depth
+  ReLU nets would therefore give deterministic CAPP for TC0. The mean is also an integral of counting problems:
+  E relu(z) = int_0^inf P(z > t) dt.
+- **What is known** (titles verified; theorem details from memory). Unconditional pseudorandom generators and
+  deterministic approximate counting exist for halfspaces (Gopalan-Kane-Meka 2015, seed nearly logarithmic), low-degree
+  PTFs (Meka-Zuckerman; Kane) and intersections of few halfspaces (Harsha-Klivans-Meka; O'Donnell-Servedio-Tan). For
+  polynomial-size depth-2 threshold circuits nothing comparable is known; even lower bounds are about n^{1.5} gates and
+  n^{2.5} wires (Kane-Williams, STOC 2016), and Williams' algorithms-to-lower-bounds framework ties non-trivial CAPP
+  algorithms for a class to lower bounds against it.
+- **Where the known depth-1 theory runs out for ReLU nets (PROVEN for the bound; the conclusion is about known
+  techniques).** One ReLU layer has a closed-form Gaussian mean. A second layer on k first-layer units splits input
+  space into at most 2^k regions, and each output-threshold event there is an intersection of at most k + 1
+  halfspaces, so fooling each to error eta gives 2^k eta [A]. That is useful for few units and useless at k = n. I know
+  of no other route for width-n nets at depth 2.
+- **Two calibrations.** Derandomisation asks for deterministic polynomial time at constant eps; ARC asks to match
+  sampling at every eps. The known PRG-based counting algorithms for one halfspace cost (n/eps)^{O((log log(n/eps))^2)}
+  evaluations, more than sampling's O(1/eps^2) as eps -> 0 (an upper bound on what they cost, not a lower bound for
+  deterministic methods). And by Beck's discrepancy theorem no N-point set has error below about N^{-1/2 - 1/(2(n-1))}
+  on every spherical cap, so against a rich class a fixed point set can at best match sampling. The random ensembles
+  also behave differently [A]: in the infinite-width limit, for 0 < c < 1, sign gates contract correlations
+  ((2/pi) arcsin c < c) while ReLU expands them (kappa(c) > c).
+- **On random weights the analogy's core question disappears** (3.1, in the idealised model): determinism is free
+  there, so the barrier that makes TC0 derandomisation hard cannot appear; what remains is efficiency, which the TC0
+  literature does not address. I found no study of average-case CAPP for random threshold circuits under an
+  SD-normalised error (astra: none verified).
+- **Proof of similarity would need** a reduction from worst-case depth-2 TC0 CAPP to random-weight mean estimation that
+  preserves the instance law, the precision, the loss normalisation and the cost advantage. The embedding needs integer
+  weights with steep ramps, far from He weights; and the hardness lane's planting result (Prop. 3.2) only bounds how
+  undetectable planting can change the distribution of the mean, so it neither supplies nor excludes such a
+  reduction. **Verdict: no transfer is established and I see no route to one.** The analogy is accurate worst-case
+  context (deterministic estimation of depth >= 2 ReLU nets sits at the TC0 frontier) and a useful calibration.
+
+### 4.2 Convex-body volume
+- **What is known** (from memory unless marked). Randomised polynomial-time relative approximation for membership
+  oracles (Dyer-Frieze-Kannan 1991). Deterministic oracle algorithms cannot approximate within exponential factors
+  (Elekes 1986; Barany-Furedi 1987). Exact volume is #P-hard for explicit H- and V-polytopes. For explicit H-polytopes,
+  deterministic polynomial-time approximation is open in general; the known deterministic FPTAS/QPTAS for structured
+  polytopes use correlation decay or zero-freeness (Gamarnik-Smedira, arXiv 2312.03906; Bencs-Regts 2024; arXiv
+  2409.07283; abstracts verified). promise-BPP = promise-P would derandomise explicit finite-input problems such as
+  explicit polytope volume, not oracle access.
+- **The ReLU analogue exists in both models.** White box (PROVEN [A]): mu(W) = sum_s B_s E[X 1{X in C_s}], a sum of
+  Gaussian first moments of explicit polyhedral cones (each cut out by at most n L inequalities; up to 2^{nL} of
+  them), and tail probabilities are sums of Gaussian volumes. It is a piecewise-linear integrand, not one convex body.
+  Black box (PROVEN, hardness lane Thms 2.1 and 2.3, worst case over explicit families): no query algorithm beats MC by
+  more than a small constant (about 4 on the uniform-input family; the constants differ for other variants [A]), and a
+  deterministic query algorithm loses a factor of order its number of queries, because mass can be hidden where it
+  does not look. That is the ReLU form of Elekes and Barany-Furedi, with the same limitation: reading the weights
+  exposes what queries cannot see [A].
+- **A link (HEURISTIC).** The known deterministic volume algorithms for structured polytopes use correlation decay. The
+  ReLU counterpart is contraction of backward value functions across depth, which makes layer-local errors
+  depth-free (hardness lane Thm 6.12). At criticality the scale mode provably never contracts (hardness lane
+  Prop. 6.7). That does not exclude methods that handle the scale analytically.
+- **Proof of similarity would need** a white-box lower bound for deterministic approximation of Gaussian moments of
+  explicit cones, converted to SD-normalised mean accuracy. At polynomial scale that would contradict promise-BPP =
+  promise-P for an explicit problem; the #NSETH result of the hardness lane concerns worst-case nets, not the volume of
+  one explicit cone; and on random weights determinism is free in the idealised model, which does not rule out
+  hardness shared by randomised and deterministic estimators. **Verdict: the similarity is proven in the oracle model;
+  for white-box or average-case versions no reduction is established.**
+
+### 4.3 Spin glasses (for comparison)
+- The mean is the infinite-temperature end (3.4); tails at tiny p are the low-temperature end.
+- COMPUTED. For the infinite-width ReLU kernel kappa_L of L layers, (kappa_L'')^{-1/2} shows no concavity violation on
+  my grids for L <= 8 and is not concave from L = 9: astra proved it at L = 9, q = 0.4 by outward-rounded interval
+  arithmetic. With the external field h^2 = kappa_L'(0) the relevant interval is [qhat, 1), h^2 + xi'(qhat) =
+  qhat xi''(qhat); my post-hoc scan found violations only from L = 10, but the review's interval computation shows a
+  violation at L = 9, q = 0.5, inside the interval (qhat = 0.4926). So the first failure is at depth 9 in both forms.
+  My registered P12 (concave at every depth) is refuted.
+- HEURISTIC reading, a testable statement about a Gaussian surrogate only. In spherical spin glasses, concavity of
+  (xi'')^{-1/2} is the condition under which Lipschitz algorithms reach the maximum (Subag; Huang-Sellke). Its failure
+  suggests an overlap gap for maximising the surrogate field from depth 9. It is not a result about the actual net:
+  the ReLU output field is not Gaussian; the kernel's second derivative is infinite at q = 1, outside the smoothness
+  assumptions; Huang-Sellke's hardness theorem is stated for even mixtures (abstract verified) while this mixture has
+  odd terms, including the field; and failure of a sufficient condition does not itself prove a gap. Whether ARC's
+  1e-12 tails (7-13 SD at n = 256) sit below the algorithmic threshold would need that threshold evaluated for this
+  kernel, which I have not done.
+- **Verdict:** spin glasses give the only precise, testable observation found here, about a Gaussian surrogate of deep
+  ReLU nets and near-maximal outputs. It says nothing about means.

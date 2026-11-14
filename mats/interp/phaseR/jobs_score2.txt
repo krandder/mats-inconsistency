@@ -1,0 +1,13 @@
+/home/agent/.venvs/aggext/bin/python truth_hi.py results/rare_d16_L4_tanh3_s0.3_n0.json 40,50,60 > logs/truth_hi_d16_tanh3.log 2>&1
+/home/agent/.venvs/aggext/bin/python truth_hi.py results/rare_d16_L4_relu1.414_s0.3_n0.json 40,50,60 > logs/truth_hi_d16_relu.log 2>&1; /home/agent/.venvs/aggext/bin/python post_kqgs.py results/rare_d16_L4_relu1.414_s0.3_n0.json > logs/post_kqgs_d16_relu.log 2>&1
+/home/agent/.venvs/aggext/bin/python post_kqgs.py results/rare_d64_L4_tanh0.75_s0.3_n0.json > logs/post_kqgs_d64.log 2>&1
+/home/agent/.venvs/aggext/bin/python post_kqgs.py results/rare_d16_L4_tanh0.75_s0.3_n0.json > logs/post_kqgs_d16.log 2>&1
+/home/agent/.venvs/aggext/bin/python score.py 256 4 tanh 0.75 0.3 0 - > logs/score_d256_L4_tanh0.75.log 2>&1
+/home/agent/.venvs/aggext/bin/python score.py 256 4 tanh 3.0 0.3 0 - > logs/score_d256_L4_tanh3.0.log 2>&1
+/home/agent/.venvs/aggext/bin/python score.py 256 4 relu 1.414 0.3 0 - > logs/score_d256_L4_relu1.414.log 2>&1
+/home/agent/.venvs/aggext/bin/python score.py 32 16 tanh 0.75 0.3 0 - > logs/score_d32_L16_tanh0.75.log 2>&1
+/home/agent/.venvs/aggext/bin/python score.py 32 16 tanh 3.0 0.3 0 - > logs/score_d32_L16_tanh3.log 2>&1
+/home/agent/.venvs/aggext/bin/python score.py 64 8 relu 1.414 0.3 0 - > logs/score_d64_relu1.414_s0.3.log 2>&1
+/home/agent/.venvs/aggext/bin/python score.py 128 4 tanh 0.75 0.3 0 - > logs/score_d128_L4_tanh0.75.log 2>&1
+/home/agent/.venvs/aggext/bin/python score.py 256 4 tanh 0.25 0.3 0 - > logs/score_d256_L4_tanh0.25.log 2>&1
+/home/agent/.venvs/aggext/bin/python score.py 8 4 tanh 0.75 0.3 0 1,2,3,4 GC GC _gcdeep > logs/score_d8_tanh0.75_gcdeep.log 2>&1

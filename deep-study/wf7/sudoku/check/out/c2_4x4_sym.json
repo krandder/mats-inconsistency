@@ -1,0 +1,180 @@
+{
+ "RES": {
+  "own confidence: lowest entropy": {
+   "valid_mass": 0.9940457992344081,
+   "all288": 0.12200412657199866,
+   "heldout96": 0.25129073897511933,
+   "train192": 0.057360820370438326
+  },
+  "own confidence: top probability": {
+   "valid_mass": 0.9536620253484122,
+   "all288": 0.20263362353167036,
+   "heldout96": 0.0066535761137860305,
+   "train192": 0.30062364724061297
+  },
+  "own confidence: top-1 minus top-2": {
+   "valid_mass": 0.9543135980858709,
+   "all288": 0.1636260455233245,
+   "heldout96": 0.1545349278607322,
+   "train192": 0.16817160435462064
+  },
+  "least confident first": {
+   "valid_mass": 0.7157294061428561,
+   "all288": 0.4004806682901396,
+   "heldout96": 0.5135869891591032,
+   "train192": 0.34392750785565784
+  },
+  "raster order": {
+   "valid_mass": 0.99255500865043,
+   "all288": 0.10175319202498034,
+   "heldout96": 0.33409179211827666,
+   "train192": -0.014416108021668705
+  },
+  "pi_trust (the worker's learned net)": {
+   "valid_mass": 0.9921627074567958,
+   "all288": 0.09353688387668146,
+   "heldout96": 0.3452576665718583,
+   "train192": -0.032323507470906065
+  },
+  "one random fixed order (mean over 256, my seeds)": {
+   "valid_mass": 0.9170275414320357,
+   "all288": 0.16961735272170397,
+   "heldout96": 0.35758648789435377,
+   "train192": 0.07563278513537952
+  },
+  "uniform mixture over 256 random orders (my seeds)": {
+   "valid_mass": 0.9170275414320357,
+   "all288": 0.09586105659133626,
+   "heldout96": 0.28819874090023134,
+   "train192": -0.0003077855631117288
+  },
+  "best of 256 random fixed orders (picked with the true law)": {
+   "valid_mass": 0.9912344010756586,
+   "all288": 0.051240827774675424,
+   "heldout96": 0.13146325294510497,
+   "train192": 0.011129615189460651
+  },
+  "inconsistency_std": {
+   "v": 0.39418483542981203
+  },
+  "exact optimum of the trust MDP, true law (DP)": {
+   "valid_mass": 0.9964410445495457,
+   "all288": 0.00459727398933385,
+   "heldout96": 0.005638073259494725,
+   "train192": 0.004076874354254301
+  },
+  "DP with the TRAINING orbit as reality (entropy order off the table)": {
+   "valid_mass": 0.995427948139339,
+   "all288": 0.5037738912096357,
+   "heldout96": 2.217393300976619,
+   "train192": -0.3530358136738556
+  },
+  "DP with the HELD-OUT orbit as reality (entropy order off the table)": {
+   "valid_mass": 0.9907257707866732,
+   "all288": 0.2705899525616591,
+   "heldout96": -0.6477196364959124,
+   "train192": 0.7297447470904448
+  },
+  "V0": {
+   "all": 0.0045972448088038576,
+   "train": 0.05242930588196604,
+   "held": 0.45089256843138337
+  },
+  "learned mixture of the six routes (EM on training grids)": {
+   "valid_mass": 0.9927202022219549,
+   "all288": 0.06629378849041867,
+   "heldout96": 0.2959811901321334,
+   "train192": -0.04854991233043826
+  }
+ },
+ "WALK": {
+  "pi_trust (the worker's learned net)": {
+   "n": 25725,
+   "mass_valid": 0.9921627074567958,
+   "mass_invalid": 0.00782187156778099,
+   "pruned": 1.5396631028855765e-05,
+   "max_invalid": 0.00011059063450642438,
+   "min_valid": 0.0014994895361206666,
+   "tau": -8.441535751189804,
+   "exp_tau": 0.0002157186056563167,
+   "invalid_accepted": 0,
+   "valid_rejected": 0,
+   "heldout_rejected": 0,
+   "pruned_below_tau": true,
+   "max_frontier": 25725
+  },
+  "own confidence: lowest entropy": {
+   "n": 17125,
+   "mass_valid": 0.9940457992344083,
+   "mass_invalid": 0.005943913164988876,
+   "pruned": 1.0298121829589057e-05,
+   "max_invalid": 7.638436395393905e-05,
+   "min_valid": 0.001049278293317228,
+   "tau": -8.85965269083681,
+   "exp_tau": 0.00014200437502011662,
+   "invalid_accepted": 0,
+   "valid_rejected": 0,
+   "heldout_rejected": 0,
+   "pruned_below_tau": true,
+   "max_frontier": 17125
+  },
+  "exact optimum of the trust MDP, true law (DP)": {
+   "n": 15500,
+   "mass_valid": 0.9964410445495457,
+   "mass_invalid": 0.003550705783121793,
+   "pruned": 8.270109135248099e-06,
+   "max_invalid": 2.0456435890045848e-05,
+   "min_valid": 0.002986275859685074,
+   "tau": -7.8137281997769605,
+   "exp_tau": 0.00040414848929313857,
+   "invalid_accepted": 0,
+   "valid_rejected": 0,
+   "heldout_rejected": 0,
+   "pruned_below_tau": true,
+   "max_frontier": 15500
+  }
+ },
+ "DESC": {
+  "DP optimum (true law)": {
+   "free_per_route": 5.46875,
+   "mean_step_free": 3.1765079365079365,
+   "forced_taken_when_avail": 0.7633032858389066,
+   "excess_total": 0.004597273989334425,
+   "excess_free": 0.002363676760989643,
+   "excess_forced_nonlocal": 0.0003366247269190757,
+   "excess_forced_local": 0.0018969725014257063,
+   "route_minus_ln288": 0.00459727398933385
+  },
+  "pi_trust (worker's net)": {
+   "free_per_route": 6.666666666666667,
+   "mean_step_free": 4.133333333333334,
+   "forced_taken_when_avail": 0.9,
+   "excess_total": 0.09353688387668202,
+   "excess_free": 0.09119978788931986,
+   "excess_forced_nonlocal": 0.00018038944270099618,
+   "excess_forced_local": 0.00215670654466117,
+   "route_minus_ln288": 0.09353688387668146
+  },
+  "lowest entropy": {
+   "free_per_route": 6.666666666666667,
+   "mean_step_free": 4.375,
+   "forced_taken_when_avail": 0.9151515151515152,
+   "excess_total": 0.12200412657199881,
+   "excess_free": 0.11935345759928045,
+   "excess_forced_nonlocal": 0.0003110859341480439,
+   "excess_forced_local": 0.002339583038570304,
+   "route_minus_ln288": 0.12200412657199866
+  },
+  "top probability": {
+   "free_per_route": 5.791666666666667,
+   "mean_step_free": 4.643884892086331,
+   "forced_taken_when_avail": 0.8982742960944596,
+   "excess_total": 0.20263362353167078,
+   "excess_free": 0.15651264518915606,
+   "excess_forced_nonlocal": 0.04473351190805867,
+   "excess_forced_local": 0.001387466434456049,
+   "route_minus_ln288": 0.20263362353167036
+  }
+ },
+ "calls": 1820455
+}

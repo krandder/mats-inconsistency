@@ -1,0 +1,11 @@
+{
+ "id": "E-P2-4",
+ "question": "Does tie VSP keep rising with more iterations and hold on larger mazes, and does the canonical rule extrapolate?",
+ "setup": "Decisive arms (M-tree, U-canon, U-min): T = 300 -> 1000 on 100 tie mazes per cell (n <= 33), T = 3000 on 50 per p at n = 33, n = 59 at T = 300 and 1000; slope of tie VSP against n per seed.",
+ "result": "M-tree: n33 T300 0.0, T3000 0.0, n59 T300 0.0, T1000 0.0; U-canon: n33 T300 1.5 [0.6, 2.4], T3000 1.8 [1.0, 2.5], n59 T300 0.1 [-0.3, 0.5], T1000 0.2 [-0.2, 0.7]; U-min: n33 T300 5.0 [-20.4, 30.4], T3000 4.5 [-14.6, 23.6], n59 T300 0.2 [-2.9, 3.4], T1000 0.5 [0.5, 0.5]. Deep-eval seeds: M-tree 1, U-canon 4, U-min 2. Slope per n (VSP per unit n): n/a (needs >= 2 floor sizes).",
+ "status": "Informative",
+ "files": [
+  "puzzles/P2/eval.py",
+  "puzzles/P2/results/p2_results.json"
+ ]
+}

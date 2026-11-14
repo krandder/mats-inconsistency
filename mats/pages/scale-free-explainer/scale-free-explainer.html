@@ -1,0 +1,977 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scale-free combination, depth and hardness: study notes</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous" referrerpolicy="no-referrer">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+  // After KaTeX renders, keep punctuation that follows inline math on the same line as the math.
+  function glueMathPunctuation() {
+    document.querySelectorAll('.katex').forEach(function (k) {
+      // auto-render wraps each formula in a plain span; the punctuation follows that wrapper.
+      var p = k.parentNode;
+      var e = (p && p.tagName === 'SPAN' && !p.className && p.childNodes.length === 1) ? p : k;
+      var n = e.nextSibling;
+      if (!n || n.nodeType !== 3) return;
+      var m = n.nodeValue.match(/^[,.;:)\]]+/);
+      if (!m) return;
+      var w = document.createElement('span');
+      w.style.whiteSpace = 'nowrap';
+      e.parentNode.insertBefore(w, e);
+      w.appendChild(e);
+      w.appendChild(document.createTextNode(m[0]));
+      n.nodeValue = n.nodeValue.slice(m[0].length);
+    });
+  }
+</script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous" referrerpolicy="no-referrer" onload="renderMathInElement(document.body,{delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false}); glueMathPunctuation();"></script>
+<style>
+  :root { color-scheme: light; }
+  body { margin: 0; background: #fff; color: #111; font-family: Arial, Helvetica, sans-serif; font-size: 17px; line-height: 1.55; }
+  main { max-width: 800px; margin: 0 auto; padding: 24px 16px 96px; }
+  h1 { font-size: 1.65em; line-height: 1.25; margin: 0.3em 0 0.4em; }
+  h2 { font-size: 1.35em; line-height: 1.3; margin: 2.4em 0 0.6em; padding-bottom: 0.2em; border-bottom: 1px solid #bbb; }
+  h3 { font-size: 1.12em; line-height: 1.35; margin: 2em 0 0.4em; }
+  p, li { margin: 0.5em 0; }
+  ul, ol { padding-left: 1.4em; }
+  .st { font-weight: bold; font-size: 0.8em; letter-spacing: 0.02em; white-space: nowrap; }
+  .src { font-size: 0.85em; color: #555; margin-top: 0; }
+  .us { margin-top: 1em; }
+  .tw { overflow-x: auto; margin: 0.8em 0; }
+  table { border-collapse: collapse; font-size: 0.9em; }
+  th, td { border: 1px solid #bbb; padding: 4px 8px; text-align: left; vertical-align: top; }
+  th { background: #f2f2f2; font-weight: bold; }
+  figure { margin: 1.2em 0 1.4em; }
+  figure svg { display: block; width: 100%; max-width: 660px; height: auto; }
+  figcaption { font-size: 0.88em; color: #333; margin-top: 0.4em; }
+  code { font-family: Menlo, Consolas, monospace; font-size: 0.86em; }
+  .katex { font-size: 1.1em; }
+  .katex-display { overflow-x: auto; overflow-y: hidden; padding: 2px 0; }
+  nav ol { margin: 0.3em 0; }
+  nav li { margin: 0.15em 0; }
+  .small { font-size: 0.9em; }
+</style>
+</head>
+<body>
+<main>
+
+<h1>Scale-free combination, directions at depth, and the hardness of beating sampling</h1>
+
+<p>Study notes for Kelvin, 29 October 2026. Every result and number below comes from our reports in <code>outbox/</code> (listed at the end); nothing was re-run. The worked examples are small computations added for this page and checked by brute force.</p>
+
+<p class="small">Labels are the reports' own. <span class="st">PROVEN</span>: a proof in the report, or a cited theorem. <span class="st">PROVEN UNDER</span>: proven given the named hypotheses. <span class="st">HEURISTIC</span>: an argument without proof. <span class="st">CONJECTURE</span>: a stated guess. <span class="st">MEASURED</span>: a number from our runs; it supports a claim, it does not prove it. The Lyapunov report also uses <span class="st">APPROXIMATION</span>, <span class="st">FORECAST</span>, <span class="st">ILLUSTRATIVE</span> and <span class="st">UNRESOLVED</span>.</p>
+
+<nav>
+<p><b>Contents</b></p>
+<ol>
+<li><a href="#p1">Scale-free information combination</a>
+  <ol>
+  <li><a href="#s1-1">Hierarchies, cuts and messages; Bayesian aggregation sends one number</a></li>
+  <li><a href="#s1-2">Six ways to measure tangledness, and where they disagree</a></li>
+  <li><a href="#s1-3">A complete graph with a rank-one coupling: treewidth n−1, rank-width 1</a></li>
+  <li><a href="#s1-4">Parity: every bit interacts, one bit crosses</a></li>
+  <li><a href="#s1-5">Routing, content and rounds: the open-latent profile</a></li>
+  <li><a href="#s1-6">Keyed aggregation (binding)</a></li>
+  <li><a href="#s1-7">Rounds: the two-round broadcast-consensus result</a></li>
+  <li><a href="#s1-8">Attention: routing cost is sign-rank</a></li>
+  <li><a href="#s1-9">Part 1 in brief</a></li>
+  </ol></li>
+<li><a href="#p2">Directions that matter at depth</a>
+  <ol>
+  <li><a href="#s2-1">What "k directions carried jointly" means</a></li>
+  <li><a href="#s2-2">One input path: a Gaussian product of half width</a></li>
+  <li><a href="#s2-3">One block for all inputs: gate disagreement spreads the sensitivity</a></li>
+  <li><a href="#s2-4">The optimal whitened block</a></li>
+  <li><a href="#s2-5">What the non-Gaussian families showed; the 16-dimensional learned code</a></li>
+  <li><a href="#s2-6">The best we can hope for: not established</a></li>
+  </ol></li>
+<li><a href="#p3">Hardness of beating sampling, in plain terms</a>
+  <ol>
+  <li><a href="#s3-1">The question, made precise</a></li>
+  <li><a href="#s3-2">Black box: sampling is optimal up to about 4×</a></li>
+  <li><a href="#s3-3">What no theorem can say, and what makes means easy</a></li>
+  <li><a href="#s3-4">The worst case: circuits inside ReLU nets, and #NSETH</a></li>
+  <li><a href="#s3-5">Determinism is free on random weights</a></li>
+  <li><a href="#s3-6">Restricted-class bounds on random nets</a></li>
+  <li><a href="#s3-7">ARC's (L/n)^K scaling, clarified</a></li>
+  <li><a href="#s3-8">What is open</a></li>
+  </ol></li>
+<li><a href="#sources">Sources</a></li>
+</ol>
+</nav>
+
+<!-- ============================ PART 1 ============================ -->
+
+<h2 id="p1">Part 1. Scale-free information combination</h2>
+
+<p>The question: when does information combine along a hierarchy with small messages at every scale, and which tasks provably need more? Main source <code>scale-free-theory-2026-10-29.md</code>, with the literature note <code>lit-tangledness-architectures-2026-10-29.md</code>.</p>
+
+<h3 id="s1-1">1.1 Hierarchies, cuts and messages; Bayesian aggregation sends one number</h3>
+<p class="src">Source: scale-free-theory §1, §2 (T1), §5.1-5.2; lit-tangledness, proposal.</p>
+
+<p>Items \(x_1,\dots,x_N\) (tokens, sources, reports) feed a target: a function \(f(x)\) or a posterior \(p(y\mid x)\). A <i>hierarchy</i> is a rooted binary tree whose leaves are the items. Node \(v\) covers the item set \(S_v\) and sends a <i>message</i> \(m_v\) that depends only on \(x_{S_v}\), computed from its children's messages by a <i>merge</i>. The <i>cut</i> at \(v\) separates \(S_v\) from the other items. A <i>round</i> is one upward pass; between rounds the root may broadcast something down. The hidden variables of the input law (the answer, each source's reliability, shared errors, group memberships) are the <i>latents</i>.</p>
+
+<figure>
+<svg viewBox="0 0 520 215" role="img" aria-labelledby="f1t">
+<title id="f1t">A binary tree over eight items; the subtree of node v is marked as one side of a cut</title>
+<rect x="14" y="62" width="240" height="140" rx="10" fill="none" stroke="#1d4ed8" stroke-width="1.4" stroke-dasharray="6 4"/>
+<text x="24" y="80" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#1d4ed8">S<tspan dy="4" font-size="10">v</tspan></text>
+<g stroke="#444" stroke-width="1.3">
+<line x1="257" y1="30" x2="381" y2="80"/>
+<line x1="133" y1="80" x2="71" y2="130"/><line x1="133" y1="80" x2="195" y2="130"/>
+<line x1="381" y1="80" x2="319" y2="130"/><line x1="381" y1="80" x2="443" y2="130"/>
+<line x1="71" y1="130" x2="40" y2="180"/><line x1="71" y1="130" x2="102" y2="180"/>
+<line x1="195" y1="130" x2="164" y2="180"/><line x1="195" y1="130" x2="226" y2="180"/>
+<line x1="319" y1="130" x2="288" y2="180"/><line x1="319" y1="130" x2="350" y2="180"/>
+<line x1="443" y1="130" x2="412" y2="180"/><line x1="443" y1="130" x2="474" y2="180"/>
+</g>
+<line x1="257" y1="30" x2="133" y2="80" stroke="#1d4ed8" stroke-width="3.2"/>
+<text x="150" y="50" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#1d4ed8">m<tspan dy="4" font-size="10">v</tspan></text>
+<g fill="#fff" stroke="#222" stroke-width="1.3">
+<circle cx="257" cy="30" r="7"/><circle cx="133" cy="80" r="7"/><circle cx="381" cy="80" r="7"/>
+<circle cx="71" cy="130" r="6"/><circle cx="195" cy="130" r="6"/><circle cx="319" cy="130" r="6"/><circle cx="443" cy="130" r="6"/>
+<circle cx="40" cy="180" r="13"/><circle cx="102" cy="180" r="13"/><circle cx="164" cy="180" r="13"/><circle cx="226" cy="180" r="13"/>
+<circle cx="288" cy="180" r="13"/><circle cx="350" cy="180" r="13"/><circle cx="412" cy="180" r="13"/><circle cx="474" cy="180" r="13"/>
+</g>
+<g font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#111" text-anchor="middle">
+<text x="38" y="184">x<tspan dy="3" font-size="9">1</tspan></text><text x="100" y="184">x<tspan dy="3" font-size="9">2</tspan></text>
+<text x="162" y="184">x<tspan dy="3" font-size="9">3</tspan></text><text x="224" y="184">x<tspan dy="3" font-size="9">4</tspan></text>
+<text x="286" y="184">x<tspan dy="3" font-size="9">5</tspan></text><text x="348" y="184">x<tspan dy="3" font-size="9">6</tspan></text>
+<text x="410" y="184">x<tspan dy="3" font-size="9">7</tspan></text><text x="472" y="184">x<tspan dy="3" font-size="9">8</tspan></text>
+<text x="118" y="84">v</text>
+<text x="257" y="16">root</text>
+</g>
+</svg>
+<figcaption>Figure 1. A hierarchy over eight items. Node \(v\) covers \(S_v=\{x_1,\dots,x_4\}\); the dashed line is the cut. Everything the rest of the tree learns about \(x_1,\dots,x_4\) passes through the one message \(m_v\).</figcaption>
+</figure>
+
+<p>Because \(m_v\) is the only channel, a tree computation is a one-way protocol from \(S_v\) to the other items. The smallest exact message at \(v\) has one value per class of contents of \(S_v\) that some completion can tell apart (their Nerode classes); with \(K_f(S_v)\) such classes it needs \(\lceil\log_2K_f(S_v)\rceil\) bits, which is the one-way communication complexity across the cut. <span class="st">PROVEN</span> (T1)</p>
+
+<p><b>Worked example: Gaussian aggregation.</b> Let \(\theta\sim N(0,1/\tau_0)\) and let source \(i\) report \(x_i=\theta+e_i\) with independent \(e_i\sim N(0,1/I)\). Its log-likelihood is</p>
+\[\log p(x_i\mid\theta)=I\,x_i\,\theta-\tfrac I2\,\theta^2+(\text{terms without }\theta).\]
+<p>Summed over a group \(S\) this is \(\theta\cdot I s_S-\tfrac{|S|I}{2}\theta^2+\dots\) with \(s_S=\sum_{i\in S}x_i\). The tree knows \(|S|\), so one number, \(s_S\), crosses each cut. The merge is \(s_{A\cup B}=s_A+s_B\) at every scale, and the root has the exact posterior: precision \(\tau_0+NI\), mean \(Is/(\tau_0+NI)\). More generally, when \(\theta\) is the only open latent of a \(d\)-parameter exponential family, the additive message has \(d\) numbers (the rank of the family of log-likelihoods, after dropping terms that depend on \(x\) alone or on \(\theta\) alone). <span class="st">PROVEN</span></p>
+
+<p>How far this extends. Fixed-size additive messages for every \(N\) exist only for exponential families, where they are sums (Koopman-Pitman-Darmois; <span class="st">PROVEN UNDER</span> regularity). Smooth non-exponential families need about \(\log(MN/\delta)^d\) additive numbers per source for KL \(\le\delta\) (T3a; <span class="st">PROVEN UNDER</span> a compact prior and a complex-analytic bound \(M\)). The tiny-PFN world is close to this case (it meets T3a's conditions only approximately): each source has an unknown reliability, and its evidence about \(y^*\) is fixed by two numbers, its query reading and the sum of its squared residuals. With a general merge two numbers per source would do; with an additive merge each source must send its log-likelihood as a function of \(y^*\), and one round of Chebyshev coefficients needed 48-64 numbers per source for KL \(\le10^{-3}\), at every \(N\) from 3 to 4096 <span class="st">MEASURED</span> (N1e). Section 1.7 shows how a second round shrinks this.</p>
+
+<p><b>The same model as a graph.</b> Integrate \(\theta\) out. The items are jointly Gaussian with precision matrix \(I\cdot\mathrm{Id}-c\,\mathbf 1\mathbf 1^{\top}\), \(c=I^2/(\tau_0+NI)\) (Sherman-Morrison). No off-diagonal entry is zero, so every pair of items is dependent given all the others: the item graph is complete and its treewidth is \(N-1\), although a single latent carries everything. <span class="st">PROVEN</span> (Gaussian case; generic otherwise). One shared latent turns its items into a clique; 1.3 explains why that clique is harmless.</p>
+
+<figure>
+<svg viewBox="0 0 520 195" role="img" aria-labelledby="f2t">
+<title id="f2t">Left, one latent theta joined to six items; right, the complete graph on the six items after theta is integrated out</title>
+<g stroke="#444" stroke-width="1.3">
+<line x1="110" y1="95" x2="110" y2="30"/><line x1="110" y1="95" x2="166.3" y2="62.5"/><line x1="110" y1="95" x2="166.3" y2="127.5"/>
+<line x1="110" y1="95" x2="110" y2="160"/><line x1="110" y1="95" x2="53.7" y2="127.5"/><line x1="110" y1="95" x2="53.7" y2="62.5"/>
+</g>
+<g stroke="#444" stroke-width="1.1">
+<line x1="410" y1="30" x2="466.3" y2="62.5"/><line x1="410" y1="30" x2="466.3" y2="127.5"/><line x1="410" y1="30" x2="410" y2="160"/>
+<line x1="410" y1="30" x2="353.7" y2="127.5"/><line x1="410" y1="30" x2="353.7" y2="62.5"/>
+<line x1="466.3" y1="62.5" x2="466.3" y2="127.5"/><line x1="466.3" y1="62.5" x2="410" y2="160"/><line x1="466.3" y1="62.5" x2="353.7" y2="127.5"/>
+<line x1="466.3" y1="62.5" x2="353.7" y2="62.5"/>
+<line x1="466.3" y1="127.5" x2="410" y2="160"/><line x1="466.3" y1="127.5" x2="353.7" y2="127.5"/><line x1="466.3" y1="127.5" x2="353.7" y2="62.5"/>
+<line x1="410" y1="160" x2="353.7" y2="127.5"/><line x1="410" y1="160" x2="353.7" y2="62.5"/>
+<line x1="353.7" y1="127.5" x2="353.7" y2="62.5"/>
+</g>
+<circle cx="110" cy="95" r="15" fill="#fff" stroke="#1d4ed8" stroke-width="2"/>
+<g fill="#fff" stroke="#222" stroke-width="1.3">
+<circle cx="110" cy="30" r="9"/><circle cx="166.3" cy="62.5" r="9"/><circle cx="166.3" cy="127.5" r="9"/>
+<circle cx="110" cy="160" r="9"/><circle cx="53.7" cy="127.5" r="9"/><circle cx="53.7" cy="62.5" r="9"/>
+<circle cx="410" cy="30" r="9"/><circle cx="466.3" cy="62.5" r="9"/><circle cx="466.3" cy="127.5" r="9"/>
+<circle cx="410" cy="160" r="9"/><circle cx="353.7" cy="127.5" r="9"/><circle cx="353.7" cy="62.5" r="9"/>
+</g>
+<g font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#111" text-anchor="middle">
+<text x="110" y="100" fill="#1d4ed8" font-size="15">θ</text>
+<text x="255" y="86">integrate θ out</text>
+<text x="110" y="188">one latent joined to every item</text>
+<text x="410" y="188">complete item graph: treewidth N − 1</text>
+</g>
+<line x1="210" y1="95" x2="296" y2="95" stroke="#111" stroke-width="1.4"/>
+<polygon points="296,90 306,95 296,100" fill="#111"/>
+</svg>
+<figcaption>Figure 2. The same Gaussian model drawn two ways. With \(\theta\) kept, one open latent carries everything and one number crosses each cut. With \(\theta\) integrated out, the items form a clique.</figcaption>
+</figure>
+
+<p class="us"><b>What this means for us.</b> In the aggregation track a source's message is its likelihood of the latents still unknown outside it. In the tiny-PFN world each source's reliability is settled inside the source, so the only latent open between sources is the answer \(y^*\), and every message between sources is a function of \(y^*\) alone (T2a, <span class="st">PROVEN</span> from the model). How many numbers that function takes depends on the merge and on the number of rounds (1.7).</p>
+
+<!-- 1.2 -->
+<h3 id="s1-2">1.2 Six ways to measure tangledness, and where they disagree</h3>
+<p class="src">Source: scale-free-theory Plain summary 1, §2-3, §5.6; lit-tangledness Answer summary 4 and table D.</p>
+
+<p>The literature note's first formal attempt fixed one hierarchy and counted the bits \(C(s)\) that a node covering \(s\) inputs sends to the rest: untangled if \(C(s)\) grows sublinearly, a "volume law" if \(C(s)\propto s\). The theory note found that bits across the cuts of one fixed hierarchy call a task tangled when it is only routed, and count precision, which you said is not the point. It then compared six candidate definitions on examples that separate them.</p>
+
+<div class="tw"><table>
+<tr><th></th><th>Definition</th><th>What it counts</th></tr>
+<tr><td>D1</td><td>Bits across the cuts of one fixed hierarchy</td><td>\(\log_2K_f(S)\), with \(K_f(S)\) the number of Nerode classes of a node's contents (T1).</td></tr>
+<tr><td>D2</td><td>Bits across the cuts of an input-dependent hierarchy (routing)</td><td>Each item carries a label of \(b\) bits; a restricted rule (group by label, sort by label, contiguous chunks) builds the tree from the labels; content is counted given the labels. Labels must be charged and the rule restricted, or the labels carry the whole item and the router does the computation (<span class="st">PROVEN</span>, trivially).</td></tr>
+<tr><td>D3</td><td>Rank across a cut: bond dimension, tensor-network min-cut</td><td>Rank of the matrix \(M_S[x_S,x_{S^c}]=F(x)\). For a probability table its nonnegative rank is the fewest latent states that make the two sides conditionally independent (<span class="st">PROVEN</span>, standard). For arithmetic-circuit networks the min-cut of the network's tensor-network graph bounds it (Levine et al.).</td></tr>
+<tr><td>D4</td><td>Treewidth of a dependency graph</td><td>Of the computation, of the items, or of the discrete part of a conditional-Gaussian model. A Boolean circuit of treewidth \(w\) compiles, in time singly exponential in \(w\), into a form with exact counting and expectations (<span class="st">PROVEN</span>, cited).</td></tr>
+<tr><td>D5</td><td>Mutual information across scales</td><td>How the block law \(I(X_B;X_{B^c})\) grows with the block (volume, area, log); renormalisation as the merge map acting on laws of messages.</td></tr>
+<tr><td>D6</td><td>Hierarchical low rank (H-matrices, fast multipole)</td><td>\(\varepsilon\)-rank of well-separated interaction blocks at each scale; scale-free if it does not grow with the scale.</td></tr>
+</table></div>
+
+<p>Examples on which two definitions disagree (all from the report's separation table):</p>
+
+<div class="tw"><table>
+<tr><th>Example</th><th>What the definitions say</th><th>Status</th></tr>
+<tr><td>Keyed aggregation (binding)</td><td>D1: \(\Omega(N)\) bits at some node of every fixed hierarchy. D2: \(O(1)\) bits plus \(\log N\) label bits.</td><td><span class="st">PROVEN</span> (T5; 1.6)</td></tr>
+<tr><td>\(f=\sum_ia_ix_i\) with \(a_i=2^i\)</td><td>D3: rank 2 across every cut. D1: \(2^{|S|}\) classes, because D1 counts the precision of the one number.</td><td><span class="st">PROVEN</span></td></tr>
+<tr><td>Same \(f\) with integer weights: the tail \(P(f\gt t)\)</td><td>\(\mathbb Ef\) is trivial, but the indicator \(1[f\gt t]\) can have rank \(2^{n/2}\) across a balanced cut, and counting knapsack solutions is #P-complete. Low rank does not survive a nonlinear readout.</td><td><span class="st">PROVEN</span></td></tr>
+<tr><td>\(x^{\top}Ux\bmod2\), \(U\) the complete graph</td><td>D4: treewidth \(n-1\). D1 and D3: 2 bits at every cut.</td><td><span class="st">PROVEN</span> (1.3)</td></tr>
+<tr><td>Bayes with one shared \(\theta\), Gaussian</td><td>D4: complete item graph. Open latents: one, at every cut.</td><td><span class="st">PROVEN</span> (Gaussian case)</td></tr>
+<tr><td>\(x^{\top}Ux\bmod2\) on random graphs</td><td>D1 and D3: linear rank-width. Yet \(\sum_x(-1)^{x^{\top}Ux}\) takes polynomial time (Dickson).</td><td><span class="st">PROVEN</span></td></tr>
+<tr><td>Parity</td><td>Untangled under every definition; hard for statistical-query learners.</td><td><span class="st">PROVEN</span>; <span class="st">MEASURED</span> (World 3) (1.4)</td></tr>
+<tr><td>Inner product mod 2 across a cut, uniform inputs</td><td>D5: zero mutual information across the cut. D1: \(\Omega(N)\) bits even on average (Chor and Goldreich).</td><td><span class="st">PROVEN</span></td></tr>
+</table></div>
+
+<p>The report's summary: D1 counts precision and misses routing; D3 counts dimensions but misses tails; D4 at the item level measures a graph rather than a function, and calls the simplest aggregation maximally tangled; D5 describes the data rather than the computation.</p>
+
+<p>Why treewidth keeps coming up anyway: for arbitrary potentials, low treewidth is the only graph property that makes inference tractable (Chandrasekaran et al., under the grid-minor hypothesis; <span class="st">PROVEN</span>, cited in the literature note). The examples above escape it because their potentials are not arbitrary. Gaussian parts, GF(2) quadratics and rank-one couplings have algebra that a graph-only measure cannot see, and for expectations "algebra beats structure": Gaussian models at any density in cubic time, GF(2) quadratic forms under the uniform law, planar zero-field Ising <span class="st">PROVEN</span>. Tails and non-uniform laws bring the hardness back.</p>
+
+<p class="us"><b>What this means for us.</b> To ask whether a task or a net is tangled, count the rank of what must cross a cut once routing is paid for, and count rounds separately. Raw bits, treewidth and mutual information each give the wrong answer on one of the examples above.</p>
+
+<!-- 1.3 -->
+<h3 id="s1-3">1.3 A complete graph with a rank-one coupling: treewidth \(n-1\), rank-width 1</h3>
+<p class="src">Source: scale-free-theory §3 (row D4 vs D1/D3), §4, §5.6 (T10, N3b).</p>
+
+<p>"A complete graph has rank-width 1" and "a complete graph has treewidth \(n-1\)" are both true; the two widths count different things. Take \(n\) bits and</p>
+\[f(x)=\sum_{i\lt j}x_ix_j\bmod 2,\]
+<p>so every pair of bits interacts, with the same coefficient. The interaction graph is the complete graph \(K_n\).</p>
+
+<p><b>Step 1: \(f\) only counts.</b> \(\sum_{i\lt j}x_ix_j=\binom{|x|}{2}\), with \(|x|\) the number of ones, so \(f=1\) exactly when \(|x|\bmod4\) is 2 or 3.</p>
+
+<p><b>Step 2: what crosses a cut.</b> Split the bits into \(S\) and the rest, with \(a=|x_S|\) and \(b=|x_{S^c}|\). Since \(\binom{a+b}{2}=\binom a2+\binom b2+ab\),</p>
+\[f=\underbrace{\tbinom a2}_{\text{inside }S}+\underbrace{\tbinom b2}_{\text{outside}}+\underbrace{a\,b}_{\text{coupling}}\pmod 2.\]
+<p>The coupling term needs only \(a\bmod2\), one bit. Together with \(S\)'s own term \(\binom a2\bmod2\), the message is \(a\bmod4\): 2 bits, at every cut of every tree, for any \(n\). A brute-force count at \(n=12\) on a balanced cut finds exactly 4 classes <span class="st">MEASURED</span> (N3b; rechecked for this page at \(n=6\) and 12).</p>
+
+<p><b>Step 3: why one number carries the coupling.</b> Any pairwise form splits as</p>
+\[f=q_S(x_S)+q_{S^c}(x_{S^c})+x_S^{\top}B\,x_{S^c}\pmod2,\qquad B=A[S,S^c],\]
+<p>where \(B\) is the block of the adjacency matrix between the two sides. The other side needs \(q_S\) (one bit) and the vector \(B^{\top}x_S\), which has \(\mathrm{rank}_{GF(2)}(B)\) independent entries, so</p>
+\[\mathrm{rank}(B)\ \le\ \log_2K_f(S)\ \le\ \mathrm{rank}(B)+1.\]
+<p><span class="st">PROVEN</span> (T10). In \(K_n\) every vertex of \(S\) is joined to every vertex outside in the same way, so \(B\) is the all-ones matrix \(\mathbf 1\mathbf 1^{\top}\), of rank 1, and \(B^{\top}x_S=\big(\sum_{i\in S}x_i\big)\mathbf 1\). One number, the parity of \(S\), carries the whole coupling.</p>
+
+<p><b>Step 4: the two widths.</b> The <i>cut-rank</i> of a cut is \(\mathrm{rank}_{GF(2)}A[S,S^c]\). The <i>rank-width</i> of a graph is the smallest, over trees with the vertices as leaves, of the largest cut-rank along the tree. In \(K_n\) every cut has an all-ones block, so the rank-width is 1, and by T10 the best hierarchy's worst message is the rank-width up to one bit. Treewidth asks how many <i>variables</i> must be held jointly; in \(K_n\) no small set of vertices separates anything, so it is \(n-1\). Rank-width asks how many independent <i>linear combinations</i> of the variables cross; in \(K_n\) all the crossing edges carry the same combination.</p>
+
+<figure>
+<svg viewBox="0 0 660 230" role="img" aria-labelledby="f3t">
+<title id="f3t">Left, the complete graph on six vertices cut three against three, with nine identical crossing edges; right, a matching with three different crossing edges</title>
+<g font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#111">
+<text x="10" y="16">(a) complete graph: 9 edges cross, all alike</text>
+<text x="345" y="16">(b) matching: 3 edges cross, all different</text>
+<text x="55" y="37" text-anchor="middle">S</text><text x="190" y="37" text-anchor="middle">rest</text>
+<text x="380" y="37" text-anchor="middle">S</text><text x="510" y="37" text-anchor="middle">rest</text>
+</g>
+<!-- panel a -->
+<line x1="122" y1="26" x2="122" y2="192" stroke="#888" stroke-width="1.2" stroke-dasharray="5 4"/>
+<g stroke="#999" stroke-width="1.2" fill="none">
+<line x1="55" y1="50" x2="55" y2="110"/><line x1="55" y1="110" x2="55" y2="170"/><path d="M55,50 Q18,110 55,170"/>
+<line x1="190" y1="50" x2="190" y2="110"/><line x1="190" y1="110" x2="190" y2="170"/><path d="M190,50 Q227,110 190,170"/>
+</g>
+<g stroke="#1d4ed8" stroke-width="1.5">
+<line x1="55" y1="50" x2="190" y2="50"/><line x1="55" y1="50" x2="190" y2="110"/><line x1="55" y1="50" x2="190" y2="170"/>
+<line x1="55" y1="110" x2="190" y2="50"/><line x1="55" y1="110" x2="190" y2="110"/><line x1="55" y1="110" x2="190" y2="170"/>
+<line x1="55" y1="170" x2="190" y2="50"/><line x1="55" y1="170" x2="190" y2="110"/><line x1="55" y1="170" x2="190" y2="170"/>
+</g>
+<g fill="#fff" stroke="#222" stroke-width="1.3">
+<circle cx="55" cy="50" r="9"/><circle cx="55" cy="110" r="9"/><circle cx="55" cy="170" r="9"/>
+<circle cx="190" cy="50" r="9"/><circle cx="190" cy="110" r="9"/><circle cx="190" cy="170" r="9"/>
+</g>
+<g font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#111" text-anchor="middle">
+<text x="250" y="115">B =</text>
+<text x="282" y="93">1</text><text x="298" y="93">1</text><text x="314" y="93">1</text>
+<text x="282" y="115">1</text><text x="298" y="115">1</text><text x="314" y="115">1</text>
+<text x="282" y="137">1</text><text x="298" y="137">1</text><text x="314" y="137">1</text>
+<text x="298" y="165">rank 1</text>
+</g>
+<path d="M276,78 L271,78 L271,143 L276,143 M320,78 L325,78 L325,143 L320,143" fill="none" stroke="#111" stroke-width="1.2"/>
+<text x="10" y="216" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#111">crosses: parity of S, plus S's own term (2 bits, any n)</text>
+<!-- panel b -->
+<line x1="445" y1="26" x2="445" y2="192" stroke="#888" stroke-width="1.2" stroke-dasharray="5 4"/>
+<g stroke="#1d4ed8" stroke-width="1.5">
+<line x1="380" y1="50" x2="510" y2="50"/><line x1="380" y1="110" x2="510" y2="110"/><line x1="380" y1="170" x2="510" y2="170"/>
+</g>
+<g fill="#fff" stroke="#222" stroke-width="1.3">
+<circle cx="380" cy="50" r="9"/><circle cx="380" cy="110" r="9"/><circle cx="380" cy="170" r="9"/>
+<circle cx="510" cy="50" r="9"/><circle cx="510" cy="110" r="9"/><circle cx="510" cy="170" r="9"/>
+</g>
+<g font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#111" text-anchor="middle">
+<text x="566" y="115">B =</text>
+<text x="598" y="93">1</text><text x="614" y="93">0</text><text x="630" y="93">0</text>
+<text x="598" y="115">0</text><text x="614" y="115">1</text><text x="630" y="115">0</text>
+<text x="598" y="137">0</text><text x="614" y="137">0</text><text x="630" y="137">1</text>
+<text x="614" y="165">rank 3</text>
+</g>
+<path d="M592,78 L587,78 L587,143 L592,143 M636,78 L641,78 L641,143 L636,143" fill="none" stroke="#111" stroke-width="1.2"/>
+<text x="345" y="216" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#111">crosses: all 3 bits of S (inner product mod 2)</text>
+</svg>
+<figcaption>Figure 3. Many identical crossing edges cost one number in total; a few different ones cost one number each. (a) In \(K_6\) cut 3 | 3, \(B=\mathbf 1\mathbf 1^{\top}\) has rank 1. (b) A matching across the same cut gives \(f=x_1x_4+x_2x_5+x_3x_6\bmod2\), the inner product, with \(B\) the identity: rank 3 across this cut. A tree that first pairs each matched couple has cut-rank at most 1, so for (b) the choice of hierarchy decides: that is routing (1.6).</figcaption>
+</figure>
+
+<p><b>Density is not the issue.</b> At \(n=12\) on a balanced cut: the complete graph gives 4 classes, cut-rank 1, treewidth 11; a random graph \(G(12,1/2)\) gives 64 classes, cut-rank 6; a random 3-regular graph, with only three edges per vertex, gives 48 classes, cut-rank 5 <span class="st">MEASURED</span> (N3b). For large graphs \(G(n,1/2)\) has rank-width about \(n/3\), and sparse random graphs \(G(n,c/n)\) with \(c\gt1\) have linear rank-width (Lee, Lee and Oum; <span class="st">PROVEN</span>, cited). The real rank of the \(\pm1\) matrix \((-1)^f\) across \(S\) is \(2^{\mathrm{rank}_{GF(2)}(B)}\), so the rank view D3 sees the same structure, exponentiated.</p>
+
+<p><b>Back to Bayes.</b> The Gaussian clique of 1.1 is the same picture over the reals. Its precision block across any cut is \(-c\,\mathbf 1_S\mathbf 1_{S^c}^{\top}\), rank one, so the log-density couples the two sides only through \(c\,\big(\sum_{i\in S}x_i\big)\big(\sum_{j\notin S}x_j\big)\). The crossing number is the sum, which is the message of 1.1. (The derivation is added here; the report states the conclusion: a shared latent turns its items into a clique, which is why item-level treewidth overstates tangledness.)</p>
+
+<p class="us"><b>What this means for us.</b> A dense interaction graph, or a dense attention pattern, is not by itself evidence of tangling; the test is the rank of the crossing block under a good hierarchy. For ReLU nets the report argues that the matching count is the entropy of the gate pattern, because every gate is coupled to every other through the Gaussian pre-activations (T10a, <span class="st">HEURISTIC</span>).</p>
+
+<!-- 1.4 -->
+<h3 id="s1-4">1.4 Parity: every bit interacts, one bit crosses</h3>
+<p class="src">Source: scale-free-theory §3, §5.5 (T9), §5.9.</p>
+
+<p>Take \(f(x)=x_1\oplus\cdots\oplus x_n\). Flipping any single bit flips the answer, whatever the other bits are, and in \(\pm1\) form the whole function is the single top-order product \(\prod_i(-1)^{x_i}\). If tangledness meant interaction, parity would be maximally tangled. Across cuts it is the opposite: only one bit crosses any cut (the parity of \(x_S\)), and the \(\pm1\) matrix across the cut is the outer product of two \(\pm1\) vectors, rank 1. Parity is maximally untangled under every definition in 1.2. <span class="st">PROVEN</span></p>
+
+<p>It is still hard to learn. A family of unknown parities is hard for statistical-query learners, and gradients carry exponentially little signal about which parity is the target (Shalev-Shwartz, Shamir and Shammah). Gradient methods fall in the statistical-query class when the gradient precision is coarse relative to the batch size; with fine enough precision SGD can simulate any PAC learner (Abbe, Kamath, Malach, Sandon and Srebro), so this is a regime, not an impossibility. <span class="st">PROVEN</span> (cited). In World 3 the equality version of the chain task was learned and the XOR version never was. <span class="st">MEASURED</span></p>
+
+<p class="us"><b>What this means for us.</b> Untangledness is about what a solution must carry, not about whether training finds it. A task can be cheap to represent and still not be learned by gradient training: World 3's XOR chains are a measured case, and the report reads World FA's binding failure the same way (<span class="st">HEURISTIC</span>; 1.6).</p>
+
+<!-- 1.5 -->
+<h3 id="s1-5">1.5 Routing, content and rounds: the open-latent profile</h3>
+<p class="src">Source: scale-free-theory Plain summary 2, §4, §5.1 (T2, T2a), §5.4-5.5 (T7, T8), §5.7 (T11d).</p>
+
+<p>Your intuition had three parts: things get more complicated as one zooms out; larger structures may have more dimensions; how information combines stays simple. The report's definition, <i>scale-free untangled</i> (SFU), matches them by keeping three costs apart.</p>
+
+<ol>
+<li><b>Routing.</b> Each item carries a label of at most \(b\) bits, and a restricted rule (group by label, sort, contiguous chunks) builds the hierarchy from the labels. Labels may be recomputed between rounds from what was broadcast.</li>
+<li><b>Content.</b> The message at a node is the likelihood of the latents still <i>open</i> there, its size counted in latent states or \(\varepsilon\)-rank at a stated precision: a global function of the open latents with one round, a local expansion around a broadcast estimate with more rounds.</li>
+<li><b>Combination.</b> Every merge, at every scale, does the same two things: add log-likelihoods, and sum out the latents that <i>close</i> at that node.</li>
+</ol>
+
+<p>A latent is <i>closed</i> at node \(S\) if every item and every factor that involves it lies inside \(S\), and <i>open</i> otherwise; the target stays open up to the root. The message \(m_S(u_{\text{open}})\) is the product of everything inside \(S\) with the closed latents summed out; the merge multiplies the children's messages and sums out what closes there (T2, <span class="st">PROVEN</span>, standard: variable elimination along the hierarchy, junction-tree separators). <i>Untangled</i> means \(b=O(\log N)\) and, at every merge, the open latents of the two children together stay small: bounded, or growing with the number of groups rather than of items. Bounding only the parent's open latents is not enough, because summing out a closing block whose internal structure is an expander is #P-hard even when nothing stays open.</p>
+
+<figure>
+<svg viewBox="0 0 640 240" role="img" aria-labelledby="f4t">
+<title id="f4t">Three sources, each with its own reliability latent inside a dashed box, and the answer latent y-star joined to each source's query reading</title>
+<rect x="45" y="78" width="150" height="110" rx="8" fill="none" stroke="#888" stroke-width="1.2" stroke-dasharray="5 4"/>
+<rect x="245" y="78" width="150" height="110" rx="8" fill="none" stroke="#888" stroke-width="1.2" stroke-dasharray="5 4"/>
+<rect x="445" y="78" width="150" height="110" rx="8" fill="none" stroke="#888" stroke-width="1.2" stroke-dasharray="5 4"/>
+<g stroke="#444" stroke-width="1.3">
+<line x1="120" y1="104" x2="80" y2="160"/><line x1="120" y1="104" x2="120" y2="160"/><line x1="120" y1="104" x2="160" y2="160"/>
+<line x1="320" y1="104" x2="280" y2="160"/><line x1="320" y1="104" x2="320" y2="160"/><line x1="320" y1="104" x2="360" y2="160"/>
+<line x1="520" y1="104" x2="480" y2="160"/><line x1="520" y1="104" x2="520" y2="160"/><line x1="520" y1="104" x2="560" y2="160"/>
+</g>
+<g stroke="#1d4ed8" stroke-width="1.6" stroke-dasharray="6 3">
+<line x1="320" y1="40" x2="160" y2="160"/><line x1="320" y1="40" x2="360" y2="160"/><line x1="320" y1="40" x2="560" y2="160"/>
+</g>
+<circle cx="320" cy="34" r="16" fill="#fff" stroke="#1d4ed8" stroke-width="2"/>
+<g fill="#fff" stroke="#222" stroke-width="1.3">
+<circle cx="120" cy="100" r="14"/><circle cx="320" cy="100" r="14"/><circle cx="520" cy="100" r="14"/>
+<circle cx="80" cy="165" r="8"/><circle cx="120" cy="165" r="8"/>
+<circle cx="280" cy="165" r="8"/><circle cx="320" cy="165" r="8"/>
+<circle cx="480" cy="165" r="8"/><circle cx="520" cy="165" r="8"/>
+</g>
+<g fill="#cfcfcf" stroke="#222" stroke-width="1.3">
+<circle cx="160" cy="165" r="8"/><circle cx="360" cy="165" r="8"/><circle cx="560" cy="165" r="8"/>
+</g>
+<g font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#111" text-anchor="middle">
+<text x="320" y="39" fill="#1d4ed8">y*</text>
+<text x="120" y="105">v<tspan dy="3" font-size="9">1</tspan></text><text x="320" y="105">v<tspan dy="3" font-size="9">2</tspan></text><text x="520" y="105">v<tspan dy="3" font-size="9">3</tspan></text>
+<text x="120" y="208">closed inside: v<tspan dy="3" font-size="9">1</tspan></text>
+<text x="320" y="208">closed inside: v<tspan dy="3" font-size="9">2</tspan></text>
+<text x="520" y="208">closed inside: v<tspan dy="3" font-size="9">3</tspan></text>
+<text x="320" y="232">open at every cut between sources: y* (closes only at the root)</text>
+</g>
+</svg>
+<figcaption>Figure 4. The tiny-PFN world as open and closed latents. Dashed boxes are source subtrees. A source's reliability \(v_s\) touches only its own items, so it is summed out inside the box. The answer \(y^*\) touches every source's query reading (shaded), so it is open at every cut between sources: each box's message is a function of \(y^*\).</figcaption>
+</figure>
+
+<p>Examples, all <span class="st">PROVEN</span> from the model unless marked:</p>
+<ul>
+<li>Tiny-PFN world: each source's reliability closes inside the source, and between sources only \(y^*\) is open (T2a).</li>
+<li>Shared-error groups with visible membership: the open latents at a cut are the shared errors of the groups the cut splits, so message size grows with the number of straddling groups, not of items. A hierarchy aligned with the groups (routing by the membership label) leaves only \(y^*\) open.</li>
+<li>Hidden membership, \(G\) groups and \(T\) past questions: about \(GT+1\) latents are open at a cut between sources, until a pilot round lets the sources be re-routed into group-aligned subtrees.</li>
+<li>Correlated errors with an inverse-Wishart covariance (World FA, variant b): the full posterior of \(\Sigma\) needs a trader's whole error history to cross a trader cut, but the query predictive needs only \(O(T^2)\) numbers per side, which add across cuts (Sylvester's identity; <span class="st">PROVEN UNDER</span> the matrix-normal / inverse-Wishart model with a block-diagonal prior scale; a diagonal-plus-rank-\(k\) prior adds \(O(kT)\) numbers). A coupling that looked global is untangled in time coordinates.</li>
+</ul>
+
+<p>The three costs, side by side:</p>
+<div class="tw"><table>
+<tr><th>Cost</th><th>What is counted</th><th>Cheap when</th><th>Expensive when</th></tr>
+<tr><td>Routing</td><td>label bits per item saying which items combine</td><td>the rule is "same label", "before or after", "contiguous chunk"</td><td>items must be grouped by similarity: grouping by the correlation of \(T\)-step histories needs keys of about \(\min(T,1/\rho^2)\) bits per item (T7; <span class="st">PROVEN</span> for the sign-string promise problem, <span class="st">HEURISTIC</span> for iid histories)</td></tr>
+<tr><td>Content</td><td>message size: the likelihood of the open latents</td><td>few latents open at each merge</td><td>many open latents in one round: size exponential in their number (T4a, <span class="st">HEURISTIC</span>, and measured; 1.7)</td></tr>
+<tr><td>Rounds</td><td>upward passes, with a broadcast between them</td><td>a consensus can be broadcast and messages written relative to it (1.7)</td><td>lookups of 3 or more hops across a cut that separates the tables need \(\Omega(n)\) bits in one pass; \(k\) rounds need \(O(k\log n)\) (T8, <span class="st">PROVEN</span> for such cuts)</td></tr>
+</table></div>
+
+<p>How your three phrases map:</p>
+<ul>
+<li>"Zooming out, things get more complicated": at larger scales the open latents are those of larger structures (groups, groups of groups), so the message may grow with scale.</li>
+<li>"It is fine for larger structures to have more dimensions": the size is set by the open latents at that scale, not by how many items lie below. Under noise it <i>must</i> grow. If the root sees one bounded \(m\)-dimensional message, each coordinate with range \(R\) and noise \(\sigma\), then estimating \(\theta\) to within a factor \(c\) of the posterior variance needs
+\[m\ \ge\ \frac{\log_2\big((1+NI)/c\big)}{\log_2\big(1+R^2/\sigma^2\big)},\]
+which grows like \(\log N\) (T11d, <span class="st">PROVEN UNDER</span> a Gaussian model). Each bounded noisy coordinate carries a bounded number of bits, while the posterior's precision grows like \(N\).</li>
+<li>"How information combines stays simple": every merge adds log-likelihoods and sums out what closes; only the set of open latents changes with scale.</li>
+</ul>
+
+<p>Status: the definition is a choice, not a claim; theorems T2-T4 are what make it the natural one. It is junction-tree message passing with the items as leaves (open latents are the separators; routing by labels is context-specific independence). What the report adds is this reading of your three phrases, the role of rounds, and the measurements.</p>
+
+<p class="us"><b>What this means for us.</b> Message sizes can be predicted before training by counting the open latents at each cut. For the planned shared-error world W2, the prediction is that a group-aligned tree needs the same message size as the world without groups, while a tree that splits groups needs a size that grows with the number of split groups (P2, to be pre-registered).</p>
+
+<!-- 1.6 -->
+<h3 id="s1-6">1.6 Keyed aggregation (binding): \(\Omega(N)\) bits for every fixed hierarchy, \(O(1)+\log N\) routed</h3>
+<p class="src">Source: scale-free-theory Plain summary 1 and 4, §5.4 (T5), §6.2 (A3).</p>
+
+<p>Items are pairs \((k_i,a_i)\): a key and a bit. The target is \(f=1\) if some key carries two items with \(a=1\). Its Bayesian cousin is World FA, where reports must be bound to their sources before they can be combined.</p>
+
+<p><b>Every fixed hierarchy needs \(\Omega(N)\) bits somewhere.</b> Every binary tree with \(N\) leaves has a node \(v\) with \(N/3\le|S_v|\le2N/3\) (walk down from the root, always into the larger child, until the subtree has at most \(2N/3\) leaves). Place about \(N/3\) keys so that each has one item inside \(S_v\) and one outside, and set every other bit to 0. Then \(f=1\) exactly when the set of keys with \(a=1\) inside meets the set with \(a=1\) outside: the complement of set disjointness on \(N/3\) elements. Disjointness needs \(\Omega(N)\) bits of communication even with shared randomness and error 1/3 (Razborov; Kalyanasundaram and Schnitger), and the tree is a one-way protocol across the cut at \(v\) (1.1), so \(m_v\) needs \(\Omega(N)\) bits. <span class="st">PROVEN</span> (T5)</p>
+
+<p><b>Routed, no message exceeds 2 bits.</b> Give each item its key as a label (\(\log N\) bits) and build the tree by grouping equal labels. Inside a group the message is the count of items with \(a=1\), capped at two (0, 1, or "two or more"); above the groups it is one bit, "some group reached two". <span class="st">PROVEN</span> (T5)</p>
+
+<figure>
+<svg viewBox="0 0 660 240" role="img" aria-labelledby="f5t">
+<title id="f5t">Left, a fixed positional tree in which each of four keys has one item on each side of the root cut; right, a tree that first groups items with equal keys</title>
+<g font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#111">
+<text x="10" y="18">(a) fixed positional tree</text>
+<text x="350" y="18">(b) tree built by grouping equal keys</text>
+</g>
+<g stroke="#444" stroke-width="1.3">
+<line x1="163" y1="55" x2="87" y2="100"/><line x1="163" y1="55" x2="239" y2="100"/>
+<line x1="87" y1="100" x2="49" y2="145"/><line x1="87" y1="100" x2="125" y2="145"/>
+<line x1="239" y1="100" x2="201" y2="145"/><line x1="239" y1="100" x2="277" y2="145"/>
+<line x1="49" y1="145" x2="30" y2="190"/><line x1="49" y1="145" x2="68" y2="190"/>
+<line x1="125" y1="145" x2="106" y2="190"/><line x1="125" y1="145" x2="144" y2="190"/>
+<line x1="201" y1="145" x2="182" y2="190"/><line x1="201" y1="145" x2="220" y2="190"/>
+<line x1="277" y1="145" x2="258" y2="190"/><line x1="277" y1="145" x2="296" y2="190"/>
+<line x1="503" y1="55" x2="427" y2="100"/><line x1="503" y1="55" x2="579" y2="100"/>
+<line x1="427" y1="100" x2="389" y2="145"/><line x1="427" y1="100" x2="465" y2="145"/>
+<line x1="579" y1="100" x2="541" y2="145"/><line x1="579" y1="100" x2="617" y2="145"/>
+<line x1="389" y1="145" x2="370" y2="190"/><line x1="389" y1="145" x2="408" y2="190"/>
+<line x1="465" y1="145" x2="446" y2="190"/><line x1="465" y1="145" x2="484" y2="190"/>
+<line x1="541" y1="145" x2="522" y2="190"/><line x1="541" y1="145" x2="560" y2="190"/>
+<line x1="617" y1="145" x2="598" y2="190"/><line x1="617" y1="145" x2="636" y2="190"/>
+</g>
+<line x1="163" y1="64" x2="163" y2="212" stroke="#1d4ed8" stroke-width="1.6" stroke-dasharray="6 4"/>
+<g fill="#fff" stroke="#222" stroke-width="1.3">
+<circle cx="163" cy="55" r="6"/><circle cx="87" cy="100" r="6"/><circle cx="239" cy="100" r="6"/>
+<circle cx="49" cy="145" r="6"/><circle cx="125" cy="145" r="6"/><circle cx="201" cy="145" r="6"/><circle cx="277" cy="145" r="6"/>
+<circle cx="503" cy="55" r="6"/><circle cx="427" cy="100" r="6"/><circle cx="579" cy="100" r="6"/>
+<circle cx="389" cy="145" r="6"/><circle cx="465" cy="145" r="6"/><circle cx="541" cy="145" r="6"/><circle cx="617" cy="145" r="6"/>
+<circle cx="30" cy="190" r="12"/><circle cx="68" cy="190" r="12"/><circle cx="106" cy="190" r="12"/><circle cx="144" cy="190" r="12"/>
+<circle cx="182" cy="190" r="12"/><circle cx="220" cy="190" r="12"/><circle cx="258" cy="190" r="12"/><circle cx="296" cy="190" r="12"/>
+<circle cx="370" cy="190" r="12"/><circle cx="408" cy="190" r="12"/><circle cx="446" cy="190" r="12"/><circle cx="484" cy="190" r="12"/>
+<circle cx="522" cy="190" r="12"/><circle cx="560" cy="190" r="12"/><circle cx="598" cy="190" r="12"/><circle cx="636" cy="190" r="12"/>
+</g>
+<g font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#111" text-anchor="middle">
+<text x="30" y="195">A</text><text x="68" y="195">B</text><text x="106" y="195">C</text><text x="144" y="195">D</text>
+<text x="182" y="195">C</text><text x="220" y="195">A</text><text x="258" y="195">D</text><text x="296" y="195">B</text>
+<text x="370" y="195">A</text><text x="408" y="195">A</text><text x="446" y="195">B</text><text x="484" y="195">B</text>
+<text x="522" y="195">C</text><text x="560" y="195">C</text><text x="598" y="195">D</text><text x="636" y="195">D</text>
+</g>
+<g font-family="Arial, Helvetica, sans-serif" font-size="12.5" fill="#111">
+<text x="10" y="228">every key straddles the root cut: 4 bits (one per key) cross</text>
+<text x="350" y="228">groups send 0, 1 or "2+"; above them, 1 bit</text>
+</g>
+</svg>
+<figcaption>Figure 5. Keyed aggregation on 8 items with keys A-D (each item also carries a bit \(a\), not shown). (a) With every key split across the root cut, the left half's contents fall into \(2^4=16\) classes (checked by brute force), so 4 bits, \(N/2\), must cross. (b) Grouped by key, no message exceeds 2 bits.</figcaption>
+</figure>
+
+<p>For World FA itself (flat tokens in random order, per-trader statistics combined nonlinearly) the same lower bound is <span class="st">HEURISTIC</span>: it needs its own argument. One attention head can route by trader ID (1.8), and the arms given the binding did learn, so the report reads World FA's failure as a failure of learning rather than of representation (<span class="st">HEURISTIC</span>). The proposed mechanism: at uniform attention the gradient toward "attend to the same ID" is close to zero until the content path is useful, and the content path is useless until binding exists, a saddle that neither part leaves on its own (A3, <span class="st">HEURISTIC</span>; consistent with 0 of 15 flat runs learning).</p>
+
+<p class="us"><b>What this means for us.</b> Binding is cheap once routing is paid for with labels, which is why World FA's failure is read as a learning problem rather than a limit of representation (<span class="st">HEURISTIC</span>). The planned 2 × 2 experiment (oracle or learned routing, dense or tree combination) separates the two: both architectures are predicted to fail on flat tokens and to succeed with oracle routing (P4).</p>
+
+<!-- 1.7 -->
+<h3 id="s1-7">1.7 Rounds: the two-round broadcast-consensus result</h3>
+<p class="src">Source: scale-free-theory Plain summary 3, §5.3 (T4, T4a), N1c-N1e, N1d, N2.</p>
+
+<p><b>One round.</b> Each source writes once, without seeing anything else, and the root adds. The message must pin down the source's log-likelihood on the whole region where the final posterior might lie, a global function of the open latents. For location-type families its size is roughly the number of resolution cells of that region, \((\text{prior width}/\text{feature width})^D\) times a polylog in \(N/\delta\), so it grows exponentially in the number \(D\) of open latents (T4a, <span class="st">HEURISTIC</span>; <span class="st">MEASURED</span> below).</p>
+
+<p><b>Two rounds.</b> Round 1 sends a few additive numbers per source, enough for a pilot estimate, and the root broadcasts the pilot. Round 2 sends the \(\binom{D+p}{p}-1\) non-constant coefficients of a degree-\(p\) expansion of each source's log-likelihood on a window of radius \(h\approx\sqrt{\log N/N}\) around the pilot; the root adds them, truncates to the window and normalises. Inside the window each source's remainder is \(O(h^{p+1})\), so the log-posterior is off by about \(Nh^{p+1}\), and the KL restricted to the window, about half the variance of that error, is</p>
+\[\mathrm{KL}_{\text{window}}\ \approx\ N^{1-p}\quad\text{up to logs}.\]
+<p>The error falls as \(N\) grows, because the posterior narrows and the local expansion gets better. <span class="st">PROVEN UNDER</span>: \(p+1\) bounded derivatives near the truth; posterior concentration (mass outside the window \(o(1)\)); a pilot inside the window with high probability; a unimodal posterior (label symmetry, as with exchangeable hidden groups, must be broken first). The KL is window-conditional: hard truncation makes the full forward KL infinite when Bayes has mass outside the window.</p>
+
+<figure>
+<svg viewBox="0 0 650 215" role="img" aria-labelledby="f6t">
+<title id="f6t">Left, one source's log-likelihood sampled over the whole prior range; right, the same curve with only a narrow window around the broadcast pilot described</title>
+<g font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#111">
+<text x="20" y="16">One round: describe ℓ<tspan dy="3" font-size="9">i</tspan><tspan dy="-3">(y*) on the whole prior range</tspan></text>
+<text x="340" y="16">Two rounds: describe ℓ<tspan dy="3" font-size="9">i</tspan><tspan dy="-3"> only near the pilot</tspan></text>
+</g>
+<line x1="30" y1="148" x2="300" y2="148" stroke="#888" stroke-width="1.2"/>
+<path d="M30.0,140.0 L33.4,138.3 L36.8,136.7 L40.1,135.0 L43.5,133.5 L46.9,131.9 L50.2,130.4 L53.6,128.9 L57.0,127.5 L60.4,126.1 L63.8,124.7 L67.1,123.4 L70.5,122.1 L73.9,120.9 L77.2,119.7 L80.6,118.5 L84.0,117.3 L87.4,116.2 L90.8,115.1 L94.1,114.0 L97.5,112.9 L100.9,111.8 L104.2,110.7 L107.6,109.5 L111.0,108.3 L114.4,106.9 L117.8,105.4 L121.1,103.7 L124.5,101.9 L127.9,99.9 L131.2,97.7 L134.6,95.3 L138.0,92.9 L141.4,90.4 L144.8,87.9 L148.1,85.4 L151.5,83.0 L154.9,80.7 L158.2,78.5 L161.6,75.9 L165.0,72.3 L168.4,66.8 L171.8,59.3 L175.1,51.4 L178.5,45.0 L181.9,41.0 L185.2,40.1 L188.6,42.1 L192.0,47.1 L195.4,54.2 L198.8,62.1 L202.1,69.1 L205.5,73.8 L208.9,76.9 L212.2,79.3 L215.6,81.6 L219.0,83.9 L222.4,86.3 L225.8,88.8 L229.1,91.3 L232.5,93.8 L235.9,96.2 L239.2,98.5 L242.6,100.6 L246.0,102.6 L249.4,104.3 L252.8,106.0 L256.1,107.4 L259.5,108.7 L262.9,110.0 L266.2,111.1 L269.6,112.2 L273.0,113.3 L276.4,114.4 L279.8,115.5 L283.1,116.6 L286.5,117.8 L289.9,118.9 L293.2,120.1 L296.6,121.3 L300.0,122.6" fill="none" stroke="#111" stroke-width="1.6"/>
+<g fill="#1d4ed8">
+<circle cx="30.3" cy="139.9" r="2.4"/><circle cx="32.6" cy="138.7" r="2.4"/><circle cx="37.2" cy="136.5" r="2.4"/><circle cx="43.9" cy="133.3" r="2.4"/>
+<circle cx="52.8" cy="129.3" r="2.4"/><circle cx="63.5" cy="124.8" r="2.4"/><circle cx="76.0" cy="120.1" r="2.4"/><circle cx="90.0" cy="115.4" r="2.4"/>
+<circle cx="105.3" cy="110.4" r="2.4"/><circle cx="121.6" cy="103.5" r="2.4"/><circle cx="138.7" cy="92.4" r="2.4"/><circle cx="156.2" cy="79.9" r="2.4"/>
+<circle cx="173.8" cy="54.4" r="2.4"/><circle cx="191.3" cy="45.9" r="2.4"/><circle cx="208.4" cy="76.6" r="2.4"/><circle cx="224.7" cy="88.0" r="2.4"/>
+<circle cx="240.0" cy="99.0" r="2.4"/><circle cx="254.0" cy="106.5" r="2.4"/><circle cx="266.5" cy="111.2" r="2.4"/><circle cx="277.2" cy="114.7" r="2.4"/>
+<circle cx="286.1" cy="117.6" r="2.4"/><circle cx="292.8" cy="120.0" r="2.4"/><circle cx="297.4" cy="121.6" r="2.4"/><circle cx="299.7" cy="122.5" r="2.4"/>
+</g>
+<g font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#555" text-anchor="middle">
+<text x="30" y="163">−5.5</text><text x="165" y="163">y*</text><text x="300" y="163">5.5</text>
+</g>
+<text x="20" y="195" font-family="Arial, Helvetica, sans-serif" font-size="12.5" fill="#111">sampled everywhere: 48-64 numbers per source</text>
+<text x="20" y="211" font-family="Arial, Helvetica, sans-serif" font-size="12.5" fill="#111">for KL ≤ 0.001 (tiny-PFN, N1e)</text>
+<!-- panel B -->
+<rect x="507.1" y="28" width="29.4" height="120" fill="#dbe5f7"/>
+<line x1="350" y1="148" x2="620" y2="148" stroke="#888" stroke-width="1.2"/>
+<path d="M350.0,140.0 L353.4,138.3 L356.8,136.7 L360.1,135.0 L363.5,133.5 L366.9,131.9 L370.2,130.4 L373.6,128.9 L377.0,127.5 L380.4,126.1 L383.8,124.7 L387.1,123.4 L390.5,122.1 L393.9,120.9 L397.2,119.7 L400.6,118.5 L404.0,117.3 L407.4,116.2 L410.8,115.1 L414.1,114.0 L417.5,112.9 L420.9,111.8 L424.2,110.7 L427.6,109.5 L431.0,108.3 L434.4,106.9 L437.8,105.4 L441.1,103.7 L444.5,101.9 L447.9,99.9 L451.2,97.7 L454.6,95.3 L458.0,92.9 L461.4,90.4 L464.8,87.9 L468.1,85.4 L471.5,83.0 L474.9,80.7 L478.2,78.5 L481.6,75.9 L485.0,72.3 L488.4,66.8 L491.8,59.3 L495.1,51.4 L498.5,45.0 L501.9,41.0 L505.2,40.1 L508.6,42.1 L512.0,47.1 L515.4,54.2 L518.8,62.1 L522.1,69.1 L525.5,73.8 L528.9,76.9 L532.2,79.3 L535.6,81.6 L539.0,83.9 L542.4,86.3 L545.8,88.8 L549.1,91.3 L552.5,93.8 L555.9,96.2 L559.2,98.5 L562.6,100.6 L566.0,102.6 L569.4,104.3 L572.8,106.0 L576.1,107.4 L579.5,108.7 L582.9,110.0 L586.2,111.1 L589.6,112.2 L593.0,113.3 L596.4,114.4 L599.8,115.5 L603.1,116.6 L606.5,117.8 L609.9,118.9 L613.2,120.1 L616.6,121.3 L620.0,122.6" fill="none" stroke="#aaa" stroke-width="1.4"/>
+<path d="M507.1,41.2 L508.6,42.1 L512.0,47.1 L515.4,54.2 L518.8,62.1 L522.1,69.1 L525.5,73.8 L528.9,76.9 L532.2,79.3 L535.6,81.6 L536.5,82.2" fill="none" stroke="#111" stroke-width="2"/>
+<g fill="#1d4ed8">
+<circle cx="507.8" cy="41.4" r="2.6"/><circle cx="513.2" cy="49.4" r="2.6"/><circle cx="521.8" cy="68.5" r="2.6"/><circle cx="530.5" cy="78.1" r="2.6"/><circle cx="535.8" cy="81.7" r="2.6"/>
+</g>
+<polygon points="516.3,22 527.3,22 521.8,30" fill="#111"/>
+<text x="532" y="30" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">pilot (broadcast)</text>
+<path d="M499.7,192.0 L501.2,192.0 L502.7,192.0 L504.1,192.0 L505.6,191.9 L507.1,191.7 L508.6,191.3 L510.0,190.4 L511.5,188.9 L513.0,186.5 L514.5,182.9 L515.9,178.4 L517.4,173.3 L518.9,168.6 L520.3,165.2 L521.8,164.0 L523.3,165.2 L524.8,168.6 L526.2,173.3 L527.7,178.4 L529.2,182.9 L530.7,186.5 L532.1,188.9 L533.6,190.4 L535.1,191.3 L536.5,191.7 L538.0,191.9 L539.5,192.0 L541.0,192.0 L542.4,192.0 L543.9,192.0" fill="none" stroke="#1d4ed8" stroke-width="1.6"/>
+<line x1="350" y1="192" x2="620" y2="192" stroke="#ddd" stroke-width="1"/>
+<text x="548" y="180" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#1d4ed8">posterior of all N</text>
+<text x="548" y="194" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#1d4ed8">sources: narrow</text>
+<text x="340" y="211" font-family="Arial, Helvetica, sans-serif" font-size="12.5" fill="#111">3 + 5 numbers: KL 8.6e-8 at N = 1024</text>
+</svg>
+<figcaption>Figure 6. An illustration, not data: one source's log-likelihood \(\ell_i(y^*)\) with the sharp-then-wide shape of a three-component mixture. One round has to describe it everywhere the answer might be. After a pilot is broadcast, only the shaded window matters, because the posterior of all \(N\) sources is narrow (width about \(1/\sqrt N\)), and a few local coefficients describe \(\ell_i\) there.</figcaption>
+</figure>
+
+<p>In one line: one round must ship the likelihood everywhere it might matter; two rounds ship it only where it does. This is the classical one-step estimator (van der Vaart 1998, §5.7) and its distributed versions, and it is your design for the aggregation track: agents write their messages after reading the consensus.</p>
+
+<p>Numbers on the tiny-PFN world (N1e; KL at the 95th percentile; the two-round columns are window-conditional) <span class="st">MEASURED</span>:</p>
+<div class="tw"><table>
+<tr><th>\(N\)</th><th>one round, 16 numbers</th><th>one round, 64 numbers</th><th>two rounds, 3 + 5 = 8 numbers</th><th>two rounds, 3 + 7 = 10 numbers</th></tr>
+<tr><td>64</td><td>0.36</td><td>7.0e-5</td><td>fails (window missed the posterior in 10% of episodes)</td><td>fails</td></tr>
+<tr><td>1024</td><td>3.3</td><td>9.8e-5</td><td>8.6e-8</td><td>5.4e-11</td></tr>
+<tr><td>4096</td><td>14</td><td>1.0e-4</td><td>2.5e-10</td><td>1.7e-12</td></tr>
+</table></div>
+<ul>
+<li>At \(N\ge1024\) the two-round error falls steeply with \(N\) at fixed size (about \(N^{-4}\) from 1024 to 4096 at \(p=4\), at least as fast as \(N^{1-p}\) predicts), while the one-round error stays put or creeps up. Below \(N\approx64\) the consensus is too vague for a local window; two rounds fail at \(N=3\) in 89% of episodes. <span class="st">MEASURED</span></li>
+<li>Small codes a network might learn (N1d, mean KL): one round with 2 numbers stays at 0.13-0.23 from \(N=8\) to 1024; two rounds with 2 + 2 numbers fall from \(1.2\times10^{-2}\) at \(N=8\) to \(4.9\times10^{-7}\) at \(N=1024\). <span class="st">MEASURED</span></li>
+<li>More open latents (N2, KL \(\le10^{-3}\) with tensor Chebyshev codes): one round needs 24, 1,024 and 32,768 numbers for \(D=1,2,3\); two rounds need 7, 28 and 347. The empirical one-round linear rank at RMS error \(10^{-3}\) is 19, 334 and 1,646. <span class="st">MEASURED</span></li>
+</ul>
+
+<p>The report's reading: once routing is solved, rounds, not the shape of the hierarchy, are the main lever on message size. A transformer gets rounds for free, since each layer reads pooled context and then writes; this is one way depth can substitute for width.</p>
+
+<p class="us"><b>What this means for us.</b> Writing messages after reading the consensus turns a global description of each source's evidence into a few local numbers, and makes the error fall with \(N\), once \(N\) is large enough for the consensus to localise (here \(N\gtrsim64\)). The planned tree experiment tests this directly (P1: a two-pass tree with about 4-8 numbers per source should reach the KL that a one-pass tree reaches only with much larger messages, once \(N\ge64\)).</p>
+
+<!-- 1.8 -->
+<h3 id="s1-8">1.8 Attention: routing cost is sign-rank</h3>
+<p class="src">Source: scale-free-theory §5.4 (T6, T6a, T6b), §6.1 (A1), addendum (M3, M4, M5).</p>
+
+<p>A hard-threshold head lets token \(i\) attend to token \(j\) when \(q_i\cdot k_j\ge t\). It can realise a routing relation \(R\) with key dimension \(d\) only if the sign pattern of \(R\) has sign-rank at most \(d+1\) (absorb \(t\) into one coordinate), and sign-rank \(d\) suffices (with \(t=0\)); this is the definition of sign-rank. <span class="st">PROVEN</span> (T6)</p>
+
+<p><b>Worked check.</b> For "attend to tokens with my label", with labels \(1,\dots,N\), take</p>
+\[q_i=\big(2i,\ \tfrac12-i^2,\ 1\big),\qquad k_j=\big(j,\ 1,\ -j^2\big),\qquad q_i\cdot k_j=\tfrac12-(i-j)^2,\]
+<p>positive exactly when \(i=j\): three dimensions for any \(N\). For "attend to earlier tokens", \(q_i=(i+\tfrac12,\ 1)\) and \(k_j=(1,\ -j)\) give \(i-j+\tfrac12\), positive exactly when \(j\le i\): two dimensions. With noise or bounded logits, random \(\pm1\) codes of length \(O(\log N)\) give margin 1/2. Hadamard-type routing ("attend when \(\langle i,j\rangle\bmod2=0\)") needs sign-rank at least \(\sqrt N\) (Forster 2002). Natural routing (same source, same question, before or after, nearby) is cheap; parity-like routing is not.</p>
+
+<p><b>Sharp selection.</b> To put a fraction \(1-\delta\) of a softmax's mass on one item out of \(N\), the logit range must be at least \(\log\big((N-1)(1-\delta)/\delta\big)\), about 11.5 for \(N=1024\) and \(\delta=0.01\) (computed here). With query and key entries bounded by \(B\) this needs \(B\) of order \(\sqrt{\log N}\), which is exactly the regime where Alman and Song show that attention cannot be approximated in time \(n^{2-\Omega(1)}\) (worst case, \(d=O(\log n)\), additive error \(1/\mathrm{poly}(n)\), assuming SETH), while \(B=o(\sqrt{\log n})\) allows \(n^{1+o(1)}\). <span class="st">PROVEN</span> (arithmetic plus the cited theorem). This does not make every sharp routing task hard: routing by label costs \(O(N\log N)\) by sorting, or \(O(N)\) by hashing.</p>
+
+<p><b>One query is already scale-free.</b> For one query, the triples (max logit, normaliser, weighted value sum) over any set of keys merge associatively, by the online-softmax rule used in FlashAttention. So one query's attention is a reduction along any hierarchy, with \(d+2\) numbers per message. <span class="st">PROVEN</span> (T6b). A dense layer runs \(N\) such reductions; the genuinely different ones are its <i>routing classes</i>.</p>
+
+<p><b>The sink is the prior.</b> Let tokens carry Gaussian messages about \(y\), with precision \(\tau_j\) and mean \(\mu_j\). A head with logits \(\log\tau_j+c\) and values \(\mu_j\), plus a sink token with logit \(\log\tau_0+c\) and value \(\mu_0\), outputs \(\sum_j\tau_j\mu_j/\sum_j\tau_j\): the posterior mean under the prior \(N(\mu_0,1/\tau_0)\). The sink's weight, readable through an extra channel of its value, is \(\tau_0\) times the posterior variance. <span class="st">PROVEN</span> (A1, an identity). Without the sink, the merged message loses its total precision.</p>
+
+<p><b>On our 2-layer tiny-PFN nets</b> (pre-registered substitution tests on the nine clean nets that learned the task; the numbers are <span class="st">MEASURED</span>, readings of mechanism are marked separately):</p>
+<ul>
+<li>Both layers are very sensitive to label alignment: scrambling which token is which costs 0.4-4.4 nats, 20 to several hundred times the nets' own distance from Bayes (0.006-0.022 nats).</li>
+<li>Both layers are also sensitive to episode-specific attention: keeping the labels but using another episode's attention costs 0.2-1.05 nats. Part of this may be dependence on the random per-episode IDs rather than on content; either way, the attention does more than route by labels.</li>
+<li>In the combining layer, a surrogate made of a label table plus one effect per key meets the registered criterion in 9 of 9 nets (0.02-0.04 nats), though in absolute terms it moves the nets away from Bayes. That the per-key effects are precisions, so that the layer is a Gaussian per-source merge, is a <span class="st">CONJECTURE</span> with correlational support. In block 1 the same surrogate fails in 5 of 9 nets (0.04-0.34 nats); block 1's episode-specific attention seems pair-specific.</li>
+<li>The log of the query token's attention to itself correlates with the log of Bayes's posterior variance (best-head \(r\) 0.56-0.85 in 7 of 9 clean nets, 0.56-0.81 in 8 of 12 noisy phase-B nets), with log-log slope 0.26-0.62 rather than the 1 of an exact sink. That the query token acts as the prior sink of the identity above is a <span class="st">CONJECTURE</span> these correlations are consistent with, not something they establish.</li>
+<li>What block 2 reads from each context token compresses linearly to a shared rank of 3-4 (KL \(\le0.01\) to the net in 7 of 9 nets, with the query token's own state left untouched). This is an achieved compression, not an intrinsic dimension and not a per-source message size: a source has five tokens, and its Bayes sufficient statistic is two numbers.</li>
+</ul>
+
+<p class="us"><b>What this means for us.</b> "Dense attention mostly pays for routing" needs refining for our nets: attention in both layers is highly sensitive to label alignment and also to episode-specific attention. A label-plus-per-key surrogate captures the combining layer by the registered criterion but not block 1, and whether the combining layer is a precision-weighted merge with a sink is still a conjecture. Phase B located the big-miss departure from Bayes in block 1's within-source pooling, so block 1 is where an account of the departures as merge errors (M2) has to work.</p>
+
+<!-- 1.9 -->
+<h3 id="s1-9">1.9 Part 1 in brief</h3>
+<p class="src">Source: scale-free-theory §7-8; lit-tangledness Answer summary 2-4.</p>
+
+<ul>
+<li>The report's proposal: measure tangledness by the size (states or rank) of what must cross each cut once routing is paid for, and count rounds separately. This is a definition, chosen because T2-T4 make it the natural one.</li>
+<li>Routing by labels is cheap (sign-rank 3 for equality; sorting or hashing). Routing by similarity or parity-like relations is not.</li>
+<li>Messages written after a broadcast consensus are local and small, and their error falls with \(N\).</li>
+<li>The report lists where tangledness is necessary: similarity-based routing (T6a, T7), hidden structure near the detection threshold (T4a, T7), multi-hop lookups without enough rounds (T8), and genuinely global couplings such as quadratics on expanders (T10). The statuses differ: T4a is <span class="st">HEURISTIC</span>, the others <span class="st">PROVEN</span> in the stated settings.</li>
+<li>Literature: tangledness has never been shown necessary; it has repeatedly been shown to buy capacity and ease learning; and no strictly low-treewidth model at transformer loss on a natural task was found.</li>
+</ul>
+
+<p class="us"><b>What this means for us.</b> The report names three candidates for a major advance. (1) M2: show that trained transformers do in-context Bayes as this kind of computation, with each departure from Bayes predicted as the error of the architecture's merge family at some scale (C2, <span class="st">CONJECTURE</span>; the big-miss departure already fits). (2) M3: an untangled architecture (label routing, additive natural-parameter messages, a broadcast round) at transformer loss whose output law is exact given the latents, beating sampling on certified tails. (3) A necessity map with matching lower bounds. A fundamental blocker would be: two-pass trees fail to match the dense transformer on hidden group membership at any moderate message size, which would mean dense attention earns its cost through structure discovery.</p>
+
+<!-- ============================ PART 2 ============================ -->
+
+<h2 id="p2">Part 2. Directions that matter at depth</h2>
+
+<p>Your ask, via main: "On the non-gaussian dependence: I think we can prove, based on the lyapunov theory, how many dimensions that are fully dependent are needed per layer. This would show maybe what is the best we can hope for?" The report's short answer: yes for one input path, and that count is small; it is not what limits a description that uses one block for all inputs; and "the best we can hope for" does not follow as a theorem. Sources: <code>lyapunov-dimension-2026-10-29.md</code>, <code>nongauss-family-2026-10-29.md</code>.</p>
+
+<h3 id="s2-1">2.1 What "k directions carried jointly" means</h3>
+<p class="src">Source: lyapunov-dimension §1-2 (Theorem A).</p>
+
+<p>ARC's nets: \(x\sim N(0,I_n)\), \(z_l=W_lh_{l-1}\), \(a_l=\mathrm{relu}(z_l)\), \(h_l=a_l\) plus small noise (\(\sigma=0.001\)), \(W_l\) with iid \(N(0,2/n)\) entries, no bias. Cut at layer \(c\), with \(L'=L-c\) layers to go. A family <i>carries a block \(B\) jointly</i> (\(B\) an \(n\times k\) matrix of linear functionals) if its law of \(z_c\) has the exact joint law of \(B^{\top}z_c\); everything else may be wrong. Its output error is \(e=\mathbb E_QF-\mathbb E_PF\), with \(F\) the downstream mean map, scored as ARC do: \(\mathrm{nMSE}=|e|^2/\mathrm{tr}\,\mathrm{Var}(a_L)\).</p>
+
+<p>Two ways to count directions, for a per-path Jacobian \(J\) with singular values \(s_1\ge s_2\ge\dots\), and for a positive semidefinite matrix \(A\):</p>
+\[N_{\text{surv}}(J;\delta)=\#\{k:\ s_k\ge\delta s_1\},\qquad k^*_F(A;\eta)=\min\Big\{k:\ \sum_{j\gt k}\lambda_j(A)\le\eta\,\mathrm{tr}A\Big\}.\]
+<p>The first counts directions amplified within a factor \(\delta\) of the top; the second counts the directions needed to leave at most a fraction \(\eta\) of the energy outside. The coordinator's heuristic, from Newman's Lyapunov exponents, is \(N_{\text{surv}}\approx1+(2n/L')\ln(1/\delta)\): about 75 at \(n=256\), \(L'=32\), \(\delta=0.01\).</p>
+
+<p>In principle the question has an exact answer. With \(F_B(z)=\mathbb E_P[F(z)\mid B^{\top}z]\), the error of any family exact on the block is \(e=\mathbb E_Q[F-F_B]\), and locally its worst case is governed by \(\mathbb E_P\,\mathrm{Cov}_P(F\mid B^{\top}z)\), the part of the downstream map that the block does not determine (Theorem A, <span class="st">PROVEN</span>; the chi-square bound is sharp only locally). So the right \(k\) is the smallest number of linear features of the state that make the downstream mean map nearly a function of them, a sufficient-dimension-reduction count. Everything below estimates it through linear response, which is where the Lyapunov structure enters.</p>
+
+<p class="us"><b>What this means for us.</b> This is the M1 representation question. A sample-free estimator would carry some joint law layer by layer, and \(k\) says how large that law must be. By Theorem A the count is set by what the downstream map depends on, which need not be where the state varies most.</p>
+
+<!-- 2.2 -->
+<h3 id="s2-2">2.2 One input path: a Gaussian product of half width; free probability, not Lyapunov</h3>
+<p class="src">Source: lyapunov-dimension Summary 1, §3-4 (Theorem C, Corollary C2); nongauss-family §4 (T5b).</p>
+
+<p><b>Theorem C</b> <span class="st">PROVEN</span> for the noiseless net, on the event that no layer dies (it fails with probability at most \(N(n+1)2^{-n}\)). Fix a cut state and draw the downstream weights. Along that one path the Jacobian \(J=D_NW_N\cdots D_1W_1D_0\), with \(D_l\) the 0/1 gate masks, satisfies</p>
+\[J^{\top}J=\hat J^{\top}\hat J+rr^{\top},\qquad \hat J=B_N\,H_N\cdots H_1\,B_0^{\top},\]
+<p>where, given the active counts \(m_l\) (each \(\mathrm{Bin}(n,1/2)\) given the past), the \(H_l\) are independent \((m_l-1)\times(m_{l-1}-1)\) matrices with iid \(N(0,2/n)\) entries. Apart from one radial direction, one path's Jacobian is exactly a product of independent Gaussian matrices about \(n/2\) wide with entry variance \(2/n=1/(n/2)\): a critical Gaussian product at half the width. About half the units are active in every layer (at ARC's cuts, measured 0.51-0.53).</p>
+
+<p>Why the masks do not spoil the Gaussianity (from the proof): the mask at layer \(l\) depends on \(W_l\) only through \(g_l=W_le_{l-1}\), the image of the current direction \(e_{l-1}\). The part of \(W_l\) acting on directions orthogonal to \(e_{l-1}\) is independent of \(g_l\), hence of the mask, so at every layer the angular part of the Jacobian meets fresh Gaussian weights restricted to the active units. Pennington, Schoenholz and Ganguli treated masks and weights as free; Theorem C shows that this is exact at finite width apart from one radial direction, and identifies the law as Fuss-Catalan at width \(n/2\).</p>
+
+<p><b>Two limits of a Gaussian product</b> \(W_N\cdots W_1\) of width \(n\) and depth \(N\):</p>
+<ul>
+<li>Lyapunov limit, \(N\to\infty\) at fixed \(n\) (Newman 1986, <span class="st">PROVEN</span>): the exponents satisfy \(\lambda_1-\lambda_k\approx(k-1)/(2n)\), hence \(N_{\text{surv}}(\delta)\approx1+(2n/N)\ln(1/\delta)\). This is the heuristic.</li>
+<li>Free limit, \(n\to\infty\) at fixed \(N\) (<span class="st">PROVEN</span>): the squared singular values follow the Fuss-Catalan law \(\mathrm{FC}_N\), and the top one sits at its edge \((N+1)^{N+1}/N^N\). For large \(N\) inside this limit, \(N_{\text{surv}}(\delta)\approx nG(\delta)/(N+1)\) with \(G=0.79,\ 2.11,\ 6.34,\ 10.46\) at \(\delta=e^{-1},\ e^{-2},\ 0.01,\ 0.001\), against Lyapunov's \(2\ln(1/\delta)=2,\ 4,\ 9.21,\ 13.82\) (edge law, <span class="st">PROVEN</span> in the iterated limit, checked numerically).</li>
+</ul>
+
+<p>Our nets have depth below width (\(L'\) between \(n/8\) and \(n/2\)), and the measured counts follow the free-probability formula, not Newman's <span class="st">MEASURED</span>; no theorem covers \(N\) proportional to \(n\). The reason Newman over-counts: below the Lyapunov regime the top singular value sits at the free edge, boosted relative to the bulk (\(\log s_1\) measured +2.10 at \(n=256\), \(N=32\); free edge +2.24; Newman's prediction −0.06), and fewer directions lie within a factor \(\delta\) of a boosted top.</p>
+
+<p>For ReLU, Theorem C turns this into \(N_{\text{surv}}\approx(n/2)\,\nu_{L'}(\delta)\approx nG(\delta)/\big(2(L'+1)\big)\) (Corollary C2: <span class="st">PROVEN UNDER</span> the fixed-depth free limit and edge convergence, for the angular part; <span class="st">HEURISTIC</span> for the radial row, which moves the count by about one direction; at \(L'\propto n\), <span class="st">MEASURED</span> only).</p>
+
+<div class="tw"><table>
+<tr><th>\(L'\)</th><th>\(N_{\text{surv}}(0.01)\) measured on ARC's net</th><th>Fuss-Catalan at \(n/2\)</th><th>Lyapunov at \(n/2\)</th><th>heuristic \(1+(2n/L')\ln(1/\delta)\)</th></tr>
+<tr><td>8</td><td>69.5</td><td>68.1</td><td>148</td><td>296</td></tr>
+<tr><td>16</td><td>42.4</td><td>41.2</td><td>75</td><td>148</td></tr>
+<tr><td>32</td><td>24.5</td><td>22.8</td><td>38</td><td>75</td></tr>
+</table></div>
+<p class="small">256 × 64, cut at layer 32, net 113, 64 paths. <span class="st">MEASURED</span></p>
+
+<p>So about 24 directions at 256 × 64 with 32 layers to go, a third of the heuristic's 75: a factor 2 because ReLU halves the effective width, and a factor 1.5 from the free-probability edge. The counts hold within 1-2 directions at widths 128-512 at fixed \(L'/n\) <span class="st">MEASURED</span>; the nongauss lane found 13, 8 and 4 directions within \(e^{-1}\) of the top at \(L'/n=1/32,\ 1/16,\ 1/8\), the same at widths 128, 256 and 512 <span class="st">MEASURED</span>.</p>
+
+<p class="us"><b>What this means for us.</b> For one input, the downstream net is sensitive to a few tens of directions, and the count depends on \(L'/n\), not on \(n\). This is the best case for a description: it is per input, and each count is relative to that input's own top direction, so it does not identify one common subspace.</p>
+
+<!-- 2.3 -->
+<h3 id="s2-3">2.3 One block for all inputs: gate disagreement spreads the sensitivity</h3>
+<p class="src">Source: lyapunov-dimension Summary 2, §5 (Theorem D, two-replica formula), §7, §8.</p>
+
+<p>A family uses one block for all inputs, so its first-order error involves the input-averaged sensitivity \(M=\mathbb E_xJ_x^{\top}J_x\), not one \(J_x\).</p>
+
+<p><b>Theorem D</b> <span class="st">PROVEN</span>. For every \(k\)-dimensional subspace \(U\),</p>
+\[\mathbb E_x\big\|J_xP_{U^{\perp}}\big\|_F^2\ \ge\ \sum_{j\gt k}\lambda_j(M)\ \ge\ \mathbb E_x\sum_{j\gt k}s_j(J_x)^2 .\]
+<p>The best fixed block leaves at least the average of what each path's own best block leaves, with equality only if one subspace is the top-\(k\) subspace for almost every path. Blocks chosen per class of inputs land in between. (Proof: Ky Fan; the maximum of an average is at most the average of the maxima.)</p>
+
+<figure>
+<svg viewBox="0 0 560 200" role="img" aria-labelledby="f7t">
+<title id="f7t">Three thin ellipses at different angles, one per input, and their average, a circle</title>
+<g fill="none" stroke-width="1.8">
+<ellipse cx="140" cy="95" rx="80" ry="14" stroke="#111"/>
+<ellipse cx="140" cy="95" rx="80" ry="14" stroke="#555" transform="rotate(60 140 95)"/>
+<ellipse cx="140" cy="95" rx="80" ry="14" stroke="#999" transform="rotate(120 140 95)"/>
+</g>
+<g fill="none" stroke="#ddd" stroke-width="1.2">
+<ellipse cx="420" cy="95" rx="80" ry="14"/>
+<ellipse cx="420" cy="95" rx="80" ry="14" transform="rotate(60 420 95)"/>
+<ellipse cx="420" cy="95" rx="80" ry="14" transform="rotate(120 420 95)"/>
+</g>
+<circle cx="420" cy="95" r="57" fill="none" stroke="#1d4ed8" stroke-width="2.2"/>
+<line x1="245" y1="95" x2="300" y2="95" stroke="#111" stroke-width="1.4"/>
+<polygon points="300,90 310,95 300,100" fill="#111"/>
+<g font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#111" text-anchor="middle">
+<text x="277" y="85">average</text>
+<text x="140" y="190">sensitivity of three inputs: each thin</text>
+<text x="420" y="190">their average M: spread out</text>
+</g>
+</svg>
+<figcaption>Figure 7. Each input's sensitivity \(J_x^{\top}J_x\) is concentrated in a few directions, but different inputs favour different directions because their gates differ. One fixed block has to serve the average \(M\), which is spread (Theorem D).</figcaption>
+</figure>
+
+<p><b>How fast paths decorrelate</b> (two-replica formula; <span class="st">HEURISTIC</span>, annealed; within 0-20% of measurements). The structure two paths share decays by \(r_l^2\) per layer, with \(r_l=2o_l/n\approx1-\theta_l/\pi\), where \(o_l\) counts the units active on both paths and \(\theta_l\) is the angle between their states. Two paths stay coherent for about \(\sum_{l\lt L'}r^{2l}\) layers.</p>
+
+<p><b>Worked consequence.</b> If a fraction \(d\) of the gates differs per layer, then \(r=1-d\) and</p>
+\[\sum_{l\lt L'}(1-d)^{2l}\ \approx\ \frac{1-e^{-2dL'}}{2d}\ \text{ coherent layers, a share }\ \frac{1-e^{-2dL'}}{2dL'}\ \text{ of the }L'.\]
+<p>At \(d=1/(2L')\) the share is \(1-e^{-1}\approx64\%\). With \(L'=32\): 64% needs about 1.6% disagreement per layer, half needs about 2.5%, 90% about 0.3% (the report's figures). Measured, two inputs disagree on 6-10% of the gates per layer at layers 33-40, which gives about 6.7 coherent layers out of 32. Coherence over the remaining depth needs per-layer disagreement below about \(1/(2L')\), and the nets sit several times above it.</p>
+
+<p>Measured consequences (256 × 64, cut 32, \(L'=32\)) <span class="st">MEASURED</span>:</p>
+<ul>
+<li>Leaving \(10^{-4}\) of the energy outside takes 185 of the roughly 195 live directions of \(M\), against 25 for one path.</li>
+<li>The tail of \(M\) barely changes from \(L'=8\) to 32: beyond the roughly 6 coherent layers, depth adds little that a fixed block can use.</li>
+<li>Separate blocks for up to 64 classes of inputs (k-means on states, cells, signs of uncertain gates, clusters of masks) lowered the averaged tail by 14-17% on held-out paths (30% in-sample, biased favourably), against a gap of three orders of magnitude to one path. At \(k=24\): 0.22 and 0.15 (two nets) with 64 classes, 0.25 and 0.19 with one block, about \(1.3\times10^{-4}\) for one path.</li>
+<li>Inside the best 64 classes the disagreement is still 4-7% per layer, about 9 coherent layers. Extrapolating the measured rate, half-coherence would take about \(4\times10^7\) classes (<span class="st">ILLUSTRATIVE</span>, not a claim).</li>
+<li>Downstream noise alone flips the gates of 1.3% of (input, neuron) pairs at depth 32 (\(\sigma=0.001\)), so even exact knowledge of the cut state leaves some decoherence.</li>
+<li>Gate flips re-route a single path's response more than they change its size: pathwise linear response fails from perturbations of about 0.01, while the mean square stays within 20-40% of the linearisation up to 0.3. For a fixed block they matter through the input average, which is what turns 25 directions per path into about 185.</li>
+</ul>
+
+<p class="us"><b>What this means for us.</b> The concentration of single paths is real, but a description with one block for all inputs cannot use it, and coarse input classes recover almost none of it. An input-conditional description would have to resolve the gate patterns of many downstream layers.</p>
+
+<!-- 2.4 -->
+<h3 id="s2-4">2.4 The optimal whitened block</h3>
+<p class="src">Source: lyapunov-dimension Summary 3, §2 (Theorem B), §6, §13 (pre-registered oracle run).</p>
+
+<p><b>Theorem B.</b> Keep the block exact and replace the residual of the linear regression on the block by an independent copy. To first order the error is \(\mathrm{tr}(M\,\mathrm{Schur}_B)\), with \(\mathrm{Schur}_B=\Sigma-\Sigma B(B^{\top}\Sigma B)^{-1}B^{\top}\Sigma\) the residual covariance and \(\Sigma=\mathrm{Cov}\,z_c\). Over all \(k\)-dimensional blocks,</p>
+\[\min_B\ \mathrm{tr}(M\,\mathrm{Schur}_B)=\sum_{j\gt k}\lambda_j(S),\qquad S=\Sigma^{1/2}M\,\Sigma^{1/2},\]
+<p>attained by \(B=\Sigma^{-1/2}V_k\), with \(V_k\) the top-\(k\) eigenvectors of \(S\). The bound and the optimisation are <span class="st">PROVEN</span>; the first-order step that replaces the true second moment by \(\mathrm{tr}(M\,\mathrm{Cov}\,\Delta)\) is an untested <span class="st">APPROXIMATION</span> (A1).</p>
+
+<p>In words: an error in some direction costs how much the state varies there times how much the output responds there. Whiten the state, so that every direction has unit spread; in those coordinates the sensitivity is \(S\), so keep its top \(k\) directions and map them back. Principal components use the spread alone, sensitivity directions use \(M\) alone, and the optimal block uses both. At depth the state is collapsed (participation ratio 11.7-12.5 at layer 32, mean direction removed), so the spread does much of the concentrating.</p>
+
+<div class="tw"><table>
+<tr><th>\(k\)</th><th>optimal block</th><th>top-\(k\) principal components</th></tr>
+<tr><td>16</td><td>0.093</td><td>0.18</td></tr>
+<tr><td>32</td><td>0.028</td><td>0.080</td></tr>
+<tr><td>64</td><td>0.0050</td><td>0.024</td></tr>
+</table></div>
+<p class="small">First-order tails as a share of the \(k=0\) value; net 113, cut 32, \(L'=32\). Computed on proxies, later confirmed to about two digits in the families' own chart. <span class="st">MEASURED</span></p>
+
+<p>These tails track the nongauss lane's measured errors as \(\mathrm{nMSE}\approx C\cdot\text{tail}\) (exponent 1.00, \(C=2.7\times10^{-4}\), \(R^2=0.96\) on family means and 0.77 per net at cut 32; weaker at cut 48). <span class="st">MEASURED</span>, a descriptive association.</p>
+
+<p>Run afterwards as a pre-registered oracle family (256 × 64, nets 113-116, cuts at layers 32 and 48) <span class="st">MEASURED</span>:</p>
+<ul>
+<li>The optimal block reached nMSE \(10^{-5}\) with 16-24 directions from either cut, where principal-component blocks needed 32-64 on seven of the eight net-cut pairs (16 on the eighth).</li>
+<li>At equal \(k\) its error was lower than the principal-component block's by geometric means of 3.1 and 4.5 at cut 32 (\(k=16\) and 32) and 1.9 and 2.3 at cut 48, and lower than the bidirectional block's by 1.6-2.8.</li>
+<li>The association, fitted on other families, predicted every point above the floor within a factor 2.5 at cut 32.</li>
+<li>Re-projected at every layer from 32 to 63, a 64-direction optimal block ended at \(1.8\text{-}3.6\times10^{-5}\), above \(10^{-5}\) and far above the single-cut errors of comparable blocks. It still beat the principal-component block in all 8 composed comparisons (by 1.08-6.5×). How much of the composed error is projection bias rather than particle noise is <span class="st">UNRESOLVED</span>.</li>
+</ul>
+
+<p>Why the heuristic's 75 came out close to the 64 principal components measured at one cut: coincidence. It over-counts one path's directions about threefold (2.2), and a fixed block needs a few times more than one path (2.3); at 256 × 64 the two errors roughly cancel.</p>
+
+<p class="us"><b>What this means for us.</b> If a description carries a linear block, choose it from \(S=\Sigma^{1/2}M\Sigma^{1/2}\) rather than from principal components: about half the directions for the same single-cut error. The bottleneck is composition rather than any single cut: re-projecting at every layer costs far more error than one cut does.</p>
+
+<!-- 2.5 -->
+<h3 id="s2-5">2.5 What the non-Gaussian families showed; the 16-dimensional learned code</h3>
+<p class="src">Source: nongauss-family Summary, §2-4 (T6); lyapunov-dimension §10.</p>
+
+<p>Your brief to the nongauss lane: "we should just stop assuming any gaussian part whatsoever then. Let us seek a family that is fully non-gaussian, even if its bad at the input, and hope that it at least scales on depth." Each family was fitted to the true state at a cut (an oracle fit; no costs claimed), the true network was run from there, and the output error was tracked with depth.</p>
+
+<ul>
+<li>None of the fully non-Gaussian families was shown to scale on depth, meaning: pass both the single-cut test and the layer-by-layer composition test at a useful level. Errors grow about 5-10× from one layer after a deep cut to the output, Gaussian or not, and exact non-Gaussian marginals buy only 1.2-1.7×. <span class="st">MEASURED</span></li>
+<li>What helped was carrying more of the state's joint law. With the top \(k\) principal components drawn jointly and the rest independent with exact marginals, the error from cut 32 to layer 64 falls from \(1.8\times10^{-4}\) (\(k=0\)) to \(1.6\times10^{-5}\) (32), \(1.4\times10^{-6}\) (64) and \(7.7\times10^{-7}\) (128). The 64- and 128-dimensional blocks pass the single-cut rule, but they are empirical joint laws: structured sampling. <span class="st">MEASURED</span></li>
+<li>Re-projecting at every layer accumulates error: the 64-block ends at \(5.7\times10^{-5}\) and \(3.2\times10^{-5}\) on two nets, against \(1.4\times10^{-6}\) from one cut. For the good families, single cuts understate the composed error by 5-40×, and the errors do not simply add (a linearised sum of single-cut errors over-predicts the chains by 27-155×). <span class="st">MEASURED</span></li>
+<li>Most of the error is orthogonal to the true mean vector (77% for one Gaussian, 91% for the 16-block), so it is not mainly an error of scale. <span class="st">MEASURED</span></li>
+</ul>
+
+<p><b>The learned code</b> (test T6: net 113, cut at \(3L/4\); pre-registered rule "compact structure"). An MLP encoder maps the state's direction \(z/|z|\) to a \(k\)-dimensional code and a decoder maps it back, keeping the radius; the pair is trained end to end through the true downstream layers on each path's output error. At \(k=16\) <span class="st">MEASURED</span>:</p>
+<div class="tw"><table>
+<tr><th>width</th><th>each path's output error (share of the output variance)</th><th>bias of the mean through the decoder</th></tr>
+<tr><td>128</td><td>0.84%</td><td>5.7e-6</td></tr>
+<tr><td>256</td><td>0.40%</td><td>1.6e-6</td></tr>
+<tr><td>512</td><td>0.48%</td><td>3.1e-6</td></tr>
+</table></div>
+<ul>
+<li>At \(k=16\) a trained linear bottleneck is about 3× worse, and a PCA projection 7-9× worse. At the earlier cut \(L/2\) (width 256) the MLP needs 64 dimensions and still misses 1% (1.05%).</li>
+<li>A stricter test pairs one path's code with the reconstruction residual of an independent path, the analogue of "block exact, rest independent". Its bias reaches \(10^{-5}\) only with a 64-dimensional PCA code; no MLP code meets it.</li>
+<li>Three measures say the number of directions the downstream net cares about is tens, and grows little or not at all from width 128 to 512 at fixed \(L/n\): the per-path count, the bidirectional count (90% of \(S\)'s trace in 11-13 directions, 99% in 33-46), and the learned code size. The principal-component ladder's literal pre-registered verdict is "about linear in \(n\)", but its width-512 values sit within noise.</li>
+</ul>
+<p>Theorem A allows any sufficient statistic, so a nonlinear code is a legitimate block. Its law must still be carried across inputs and pushed through the layers, and a code whose latent law is pushed exactly was not tried.</p>
+
+<p class="us"><b>What this means for us.</b> Low dimension is available per path: 16 nonlinear dimensions reproduce each path's output to under 1% at \(3L/4\). What we lack is a way to carry the joint law of such a code across inputs and push it layer by layer with small error. That, more than the dimension count, is where M1 is stuck.</p>
+
+<!-- 2.6 -->
+<h3 id="s2-6">2.6 The best we can hope for: not established</h3>
+<p class="src">Source: lyapunov-dimension Summary 4, §10, §11.</p>
+
+<p>Part 2 concerns one class of descriptions: carry an exact joint law on a linear block of \(k\) directions, approximate the rest, and, for an estimator, re-project layer by layer. Nothing here is a lower bound on algorithms.</p>
+<ul>
+<li>One path: about \(nG(\delta)/(2L')\) directions. At \(n=256\), \(\delta=0.01\): 23-25 with \(L'=32\), 41-42 with \(L'=16\), 68-70 with \(L'=8\).</li>
+<li>One block for all inputs, one cut: 16-24 optimal directions for nMSE \(10^{-5}\) at 256 × 64 <span class="st">MEASURED</span>; about 43 principal components at widths 128, 256 and 512 alike (interpolated through the association).</li>
+<li>One block per layer, re-projected: roughly 90-130 principal components (65-95 optimal directions) for a composed \(10^{-5}\) at 256 × 64 <span class="st">FORECAST</span>, not measured.</li>
+<li>Carrying a \(k\)-dimensional joint law, with the representations tried: particles are sampling in \(k\) dimensions, and each push still needs the whole layer because the block is not closed under the layer map; grids cost exponentially in \(k\); moments and cumulants need closures, whose errors accumulate at criticality; cells with Gaussian or independent residuals stayed above the sampler at matched budgets, or were tested only as oracles. Quasi-Monte Carlo and smoothing were left open.</li>
+</ul>
+<p>A positive result inside this class would need a structure in the block's law that the layer maps preserve in closed form, for example Gaussian conditionals on a few discrete variables, or a tensor train of bounded rank. The report sees no sign of one: gates carry 28-40 bits per deep layer and are nearly independent pairwise, and non-Gaussianity within cells grows with depth. None of the representations tried beats sampling; whether any algorithm does at depth proportional to width is open.</p>
+
+<p class="us"><b>What this means for us.</b> The Lyapunov count settles something narrower than "the best we can hope for": per path, and for one block at one cut, tens of directions suffice. The open part is a law on those directions that the layer maps preserve in closed form, or a route outside this class (nonlinear latent codes, backward or observable-specific approximations, control variates, bias correction).</p>
+
+<!-- ============================ PART 3 ============================ -->
+
+<h2 id="p3">Part 3. Hardness of beating sampling, in plain terms</h2>
+
+<p>Your ask: "Can we get a subagent do a deep math/TCS attempt at proving some hardness bounds on making mean estimates on outputs on the limit (as deep/wide as needed) better than random sampling?" Source: <code>hardness-mean-estimation-2026-10-29.md</code>, with <code>arc-deep-networks-2026-10-29.md</code> for ARC's scaling in 3.7.</p>
+
+<h3 id="s3-1">3.1 The question, made precise</h3>
+<p class="src">Source: hardness §1, Summary.</p>
+
+<p>The target is \(\mu(W)=\mathbb E_xf_W(x)\) for a ReLU network. Monte Carlo with \(N\) forward passes has mean squared error exactly \(V(W)/N\), at a cost of \(N\) passes of \(\Theta(E)\) operations each (\(E\) = number of weights; \(2n^2L\) for a dense MLP). An estimator's <i>advantage</i> at budget \(T\) is \(\mathrm{Adv}(T)=\mathrm{MSE}_{\text{MC}}(T)/\mathrm{MSE}(A_T)\). For tiny tolerances exact computation can win for trivial reasons, so the meaningful statements hold uniformly over a polynomial window of budgets.</p>
+
+<p>Results depend on the access model (<i>black box</i>: choose inputs, see outputs; <i>white box</i>: read the weights; white box with <i>advice</i>: a string from an "explainer", ARC's setting) and on the class of estimators (randomized or deterministic; <i>uniform</i>, one program for all sizes, or <i>nonuniform</i>, allowed to depend on the size, for example through hard-coded inputs).</p>
+
+<p>ARC's matching sampling principle (MSP), in these terms: a "mechanistic" estimator (working test: it avoids random or pseudorandom sampling), helped by advice of length \(O(|\theta|)\), should match sampling's error at equal cost, \(\mathrm{Adv}(T)\ge1/C\) at every budget. For random MLPs the advice is empty, the guarantee is on average over the random weights, and the depth is a fixed constant.</p>
+
+<p class="us"><b>What this means for us.</b> "Beat sampling" means something only after fixing the access model, the estimator class and a budget window. The report recommends stating the M1 bar over a window (for example \(10^9\) to \(3\times10^{11}\) FLOPs at 256 × 32, as in our arc-noisy runs) and against the best sampler, not at one budget against plain Monte Carlo.</p>
+
+<!-- 3.2 -->
+<h3 id="s3-2">3.2 Black box: sampling is optimal up to about 4×</h3>
+<p class="src">Source: hardness Summary, §2 (Theorem 2.1, Corollary 2.2, Theorem 2.3).</p>
+
+<p>The construction: split \([0,1]\) into \(m=2N\) equal cells. In cell \(j\) place a bump \(g_j\) of height 1, a trapezoid built from four ReLUs, and give it a random sign: \(f_s=\sum_js_jg_j\) with \(s_j=\pm1\). The mean is \(\sum_js_ja_j\), where \(a\) is a bump's area. A query at \(x\) reveals only the sign of the cell containing \(x\), so \(N\) queries reveal at most \(N\) signs. The other \(N\) or more signs remain fair coins, and each adds \(a^2\) to an error that no algorithm can avoid: \(\mathrm{MSE}\ge Na^2\). Monte Carlo with \(N\) samples has error \(\sum_j(b-a^2)/N\), with \(b=\mathbb E\,g_j^2\). As the ramps narrow, the ratio tends to \(4(1-1/(2N))\): no query algorithm, whether adaptive, randomized or computationally unbounded, beats Monte Carlo by more than a factor of about 4 on this family. <span class="st">PROVEN</span></p>
+
+<figure>
+<svg viewBox="0 36 600 140" role="img" aria-labelledby="f8t">
+<title id="f8t">Eight cells on the unit interval with bumps of random sign; four queried cells show their sign, the other four are unknown</title>
+<g stroke="#111" stroke-width="1.3" fill="#d9d9d9">
+<polygon points="34,90 42,50 89.5,50 97.5,90"/>
+<polygon points="169,90 177,130 224.5,130 232.5,90"/>
+<polygon points="236.5,90 244.5,50 292,50 300,90"/>
+<polygon points="439,90 447,50 494.5,50 502.5,90"/>
+</g>
+<g stroke="#999" stroke-width="1.2" fill="none" stroke-dasharray="4 3">
+<polygon points="101.5,90 109.5,50 157,50 165,90"/><polygon points="101.5,90 109.5,130 157,130 165,90"/>
+<polygon points="304,90 312,50 359.5,50 367.5,90"/><polygon points="304,90 312,130 359.5,130 367.5,90"/>
+<polygon points="371.5,90 379.5,50 427,50 435,90"/><polygon points="371.5,90 379.5,130 427,130 435,90"/>
+<polygon points="506.5,90 514.5,50 562,50 570,90"/><polygon points="506.5,90 514.5,130 562,130 570,90"/>
+</g>
+<line x1="30" y1="90" x2="570" y2="90" stroke="#111" stroke-width="1.3"/>
+<g stroke="#111" stroke-width="1">
+<line x1="30" y1="85" x2="30" y2="95"/><line x1="97.5" y1="86" x2="97.5" y2="94"/><line x1="165" y1="86" x2="165" y2="94"/>
+<line x1="232.5" y1="86" x2="232.5" y2="94"/><line x1="300" y1="86" x2="300" y2="94"/><line x1="367.5" y1="86" x2="367.5" y2="94"/>
+<line x1="435" y1="86" x2="435" y2="94"/><line x1="502.5" y1="86" x2="502.5" y2="94"/><line x1="570" y1="85" x2="570" y2="95"/>
+</g>
+<g fill="#1d4ed8">
+<polygon points="57.8,152 69.8,152 63.8,142"/><polygon points="192.8,152 204.8,152 198.8,142"/>
+<polygon points="260.3,152 272.3,152 266.3,142"/><polygon points="462.8,152 474.8,152 468.8,142"/>
+</g>
+<g font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#777" text-anchor="middle">
+<text x="133" y="76">?</text><text x="336" y="76">?</text><text x="403" y="76">?</text><text x="538" y="76">?</text>
+</g>
+<g font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">
+<text x="26" y="110" text-anchor="end">0</text><text x="575" y="110">1</text>
+<text x="30" y="170">queries (triangles) reveal 4 of the 8 signs; the other 4 stay fair coins</text>
+</g>
+</svg>
+<figcaption>Figure 8. The black-box lower bound with \(N=4\) queries and \(2N=8\) cells. Queried cells show their bump's sign; the other four signs are coin flips that no algorithm can learn from its queries, and each adds \(a^2\) to its error.</figcaption>
+</figure>
+
+<ul>
+<li>One trapezoid per network (four units) already gives the factor-4 bound, in a variant where a single random cell carries the bump. So black-box hardness is not limited by the parameter count; what grows with \(N\) is the precision of the weights, that is, where the bumps sit. <span class="st">PROVEN</span></li>
+<li>Deterministic black-box algorithms lose by a factor of order \(N\). Run one on a fixed function, note which cells it queries, and hide bumps in the others: it gives the same answer for two functions whose means differ by about 1/2, so its worst-case squared error is at least about 1/16, against Monte Carlo's at most \(3/(4N)\). <span class="st">PROVEN</span> (Theorem 2.3)</li>
+<li>These are worst-case statements about explicit families. On ARC's random nets structured samplers do gain constant factors (Kerdock designs about 2.4× at 256 × 32), and nothing here bounds them. Quantum amplitude estimation beats the \(1/\varepsilon^2\) rate given coherent access; the barrier is classical.</li>
+</ul>
+
+<p class="us"><b>What this means for us.</b> An estimator that only runs the network cannot do much better than sampling in the worst case. Any real gain has to come from using the weights (white-box access), which is the setting of M1 and of ARC's mechanistic estimators.</p>
+
+<!-- 3.3 -->
+<h3 id="s3-3">3.3 What no theorem can say, and what makes means easy</h3>
+<p class="src">Source: hardness §3 (Propositions 3.1-3.4, Corollary 3.3), §7 (Proposition 7.1, pseudorandomness).</p>
+
+<ul>
+<li>No coarse hardness. With outputs in \([a,b]\), sampling reaches any inverse-polynomial precision in randomized polynomial time. So no superpolynomial lower bound holds for randomized estimators, and every "cannot beat sampling" must be fine-grained (about exponents or constant factors of polynomial costs) or about a restricted class of estimators (black box, deterministic, a formal "mechanistic"). <span class="st">PROVEN</span> (3.1)</li>
+<li>Pseudorandom functions have predictable means: the constant 1/2 is accurate for all but a negligible fraction of keys. <span class="st">PROVEN</span>, given PRF security (3.3)</li>
+<li>Planting structure that no efficient white-box test detects cannot move the distribution of the mean by more than about that test's advantage (in Lévy distance). It does not show that the mean of one planted instance is easy. <span class="st">PROVEN</span> (3.2)</li>
+<li>The "know-nothing" estimate (the mean over random weights) beats \(N\)-sample Monte Carlo exactly when \((N+1)\rho\lt1\), with \(\rho\) the correlation, over the weights, of outputs at independent inputs. A family can be hard at budget \(N\) only if \(\rho\) is at least about \(1/N\): hardness needs long-range structure across inputs, not randomness. <span class="st">PROVEN</span> (3.4)</li>
+<li>So "deep critical nets act like pseudorandom functions" cannot be the mechanism of any hardness (and bias-free He-ReLU nets are not pseudorandom: \(f(2x)=2f(x)\) distinguishes them). The low-degree method cannot give hardness evidence here either. <span class="st">PROVEN</span> (logical; §7)</li>
+</ul>
+
+<p class="us"><b>What this means for us.</b> There will be no clean "mean estimation is hard" theorem for random nets. If deep random nets are hard to estimate, the cause is structured long-range dependence that cannot be computed to the precision sampling reaches. The report's candidates are the shared, multiplicatively fluctuating output scale, the couplings of the collapsed state, and the scale mode that never contracts (3.6).</p>
+
+<!-- 3.4 -->
+<h3 id="s3-4">3.4 The worst case: circuits inside ReLU nets, and what #NSETH says</h3>
+<p class="src">Source: hardness §4 (Theorem 4.1, Corollaries 4.2-4.3, Proposition 4.4), §8-9.</p>
+
+<p><b>Theorem 4.1</b> <span class="st">PROVEN</span>. Any Boolean circuit \(C\) with \(m\) inputs and \(s\) gates becomes a ReLU network \(f\) with at most \(2m+2s\) units, weights in \(\{0,\pm1,\pm K\}\) and biases in \(\{0,\pm1\}\), such that</p>
+\[\Big|\ \mathbb E_{x\sim N(0,I_m)}f(x)-\Pr_u\big[C(u)=1\big]\ \Big|\ \le\ \frac{m}{K\sqrt{2\pi}}.\]
+<p>There are also a bias-free (positively homogeneous) version and a version with small absolute noise on every unit. The pieces:</p>
+<div class="tw"><table>
+<tr><th>piece</th><th>ReLU form</th><th>why it works</th></tr>
+<tr><td>input bit</td><td>\(\beta(x)=\mathrm{relu}(Kx)-\mathrm{relu}(Kx-1)=\mathrm{clamp}(Kx,0,1)\)</td><td>equals \(1[x\gt0]\) except when \(0\lt x\lt1/K\)</td></tr>
+<tr><td>NOT \(a\)</td><td>\(\mathrm{relu}(1-a)\)</td><td>exact on \(\{0,1\}\)</td></tr>
+<tr><td>AND\((a,b)\)</td><td>\(\mathrm{relu}(a+b-1)\)</td><td>exact on \(\{0,1\}\)</td></tr>
+<tr><td>OR\((a,b)\)</td><td>\(\mathrm{relu}(a+b)-\mathrm{relu}(a+b-1)\)</td><td>exact on \(\{0,1\}\)</td></tr>
+</table></div>
+<p>The signs of independent Gaussian coordinates are independent fair bits, so the network's Gaussian mean is the circuit's acceptance probability, except on thin strips where some \(x_i\) lies in \((0,1/K)\). Checked numerically on 6 random circuits (\(m=10\), \(s=40\), \(K=1000\)): for example, exact 0.2500 against network means 0.2502 ± 0.0007 with biases, 0.2498 ± 0.0009 bias-free, and 0.2501 ± 0.0007 with noise \(\sigma=0.02\).</p>
+
+<p><b>What #NSETH says.</b> #NSETH is the hypothesis that, for every \(\varepsilon\gt0\) and large enough \(k\), counting the satisfying assignments of \(k\)-SAT formulas on \(v\) variables cannot be done in time \(2^{(1-\varepsilon)v}\), even by a nondeterministic machine whose every branch outputs the correct count or rejects. Under it, no deterministic algorithm computes \(\mathbb Ef\) to within ±1/24 in time \(O(E^{2-\varepsilon})\) for every ReLU network with \(E\) edges (outputs in [0, 1], variance at least 1/5), while Monte Carlo does it in time about \(E\log(1/\delta)\). Deterministic: about \(E^2\). Sampling: about \(E\). In the worst case, a deterministic method loses a factor of about the network size. <span class="st">PROVEN UNDER</span> #NSETH (Corollary 4.3, adapting Chen and Tell 2021, who also give a matching upper bound under one-way functions plus strong hardness assumptions).</p>
+
+<p><b>The opposite cannot be proven either.</b> A deterministic estimator accurate to ±1/12 for every ReLU network in subexponential time would make CAPP nontrivially approximable, which by Impagliazzo, Kabanets and Wigderson gives NEXP ⊄ P/poly. Such estimators are believed to exist, but proving that they do would prove a circuit lower bound far beyond current techniques. <span class="st">PROVEN</span> (reduction plus cited theorem; Corollary 4.2)</p>
+
+<p><b>Why this is about constructed networks, not natural ones.</b></p>
+<ul>
+<li>The hard instances are circuits wired into a ReLU network with weights in \(\{0,\pm1,\pm K\}\); for #NSETH, a specific counting test built from a \(k\)-SAT instance. The statements are worst case over all networks of a given size.</li>
+<li>They do not apply to random He-ReLU nets, where only average-case statements make sense (3.5), and results on random nets do not transfer to trained nets either (trained weights are not rotation invariant).</li>
+<li>A trainer can embed circuits, so adversarially trained networks inherit the barriers; nothing here rules out efficient estimation for trained nets with structure.</li>
+<li>The proof uses DAG networks of near-linear size. For layered MLPs the carried wires change the size accounting, so the fine-grained version needs a separate argument there.</li>
+<li>ARC's MSP allows advice of length \(O(|\theta|)\): when a worst-case circuit sits in \(\theta\), the advice can state the answer. So these results do not refute the MSP. They do refute the reading "for every network, a deterministic estimator without instance-specific advice matches sampling": its constant-factor version is false under #NSETH, and its subexponential version cannot be proven without a major circuit lower bound. <span class="st">PROVEN</span> (logical relations; Proposition 4.4)</li>
+</ul>
+
+<p class="us"><b>What this means for us.</b> For interpretable-by-design architectures: any architecture that can embed Boolean circuits at near-linear size inherits these barriers, so "interpretable by design" helps only if it blocks such embeddings (bounded treewidth, or probabilistic circuits with exact moments, at the costs listed in the literature note). For M1 on random nets these barriers do not apply.</p>
+
+<!-- 3.5 -->
+<h3 id="s3-5">3.5 Determinism is free on random weights</h3>
+<p class="src">Source: hardness §3 (Proposition 3.5), §4 (Proposition 4.4), §9.</p>
+
+<p>For any prior over networks and any randomized estimator with average error \(\Delta\), some fixed setting of its random bits has average error at most \(\Delta\): the average over coin values is at most \(\Delta\), so some coin value is. In particular, for each size, some fixed set of inputs chosen without looking at \(W\) matches Monte Carlo on average over \(W\). For He-ReLU nets with Gaussian input, whose law is invariant under rotating the first layer, every fixed design has exactly the average error of its random rotation. <span class="st">PROVEN</span> (3.5)</p>
+
+<p>So in ARC's random-MLP instance (average over \(W\), no advice), requiring the estimator to be deterministic excludes nothing, nonuniformly. "Mechanistic" must be formalised some other way, for example as "never evaluates \(f_W\) at a point" or "propagates a bounded description layer by layer". Whether explicit, uniform designs match sampling is not settled here.</p>
+
+<p>The contrast with 3.4: in the worst case determinism costs a factor of about the network size (under #NSETH); on average over random weights it costs nothing. Chen and Tell's conditional average-case derandomization (overhead \(n^{\varepsilon}\) over samplable input distributions) is consistent with this, though it is not a theorem about the Gaussian MSP.</p>
+
+<p class="us"><b>What this means for us.</b> No impossibility proof for M1 is possible until "sample-free" is formalised. Any negative result for M1 has to be about a stated class of descriptions, which is what the restricted-class bounds below are.</p>
+
+<!-- 3.6 -->
+<h3 id="s3-6">3.6 Restricted-class bounds on random nets</h3>
+<p class="src">Source: hardness Summary, §6 (Lemmas 6.1, 6.4, 6.6, 6.10; Theorem 6.5; Propositions 6.7-6.13), §7 (Proposition 7.2), §9.</p>
+
+<p>Setting: \(x\sim N(0,I_n)\), \(W_l\) with iid \(N(0,2/n)\) entries, no bias, depth \(L=\alpha n\). Each result concerns a specific observable or a specific class of estimators; none transfers automatically to ARC's per-neuron means.</p>
+
+<div class="tw"><table>
+<tr><th>What is assumed</th><th>What is shown</th><th>Status</th></tr>
+<tr><td>One input's output scale \(G_L=\|h_L\|^2/\|x\|^2\)</td><td>A product of \(L\) independent per-layer factors with mean 1 and variance \(5/n\), so \(\mathbb EG_L^2=(1+5/n)^L\to e^{5\alpha}\). The scale is shared across inputs: its covariance stays bounded below at \(L\propto n\).</td><td><span class="st">PROVEN</span> (exact; sharing asymptotic)</td></tr>
+<tr><td>An estimator that ignores the first part of the layers (knows the rest exactly, any computation)</td><td>Worth at most a constant number of Monte Carlo samples for the mean squared output norm; estimated upper bound 1.3-3 samples at widths 64-128 when the first half is ignored. Ignoring the last half: worth at most about 2-4 samples.</td><td><span class="st">PROVEN</span> (asymptotic) and <span class="st">MEASURED</span>; the last-half case <span class="st">MEASURED</span> only</td></tr>
+<tr><td>Any layer-by-layer description</td><td>Its output error is exactly the signed sum of its local errors, each tested against that layer's true backward function; the terms can cancel.</td><td><span class="st">PROVEN</span></td></tr>
+<tr><td>A relative scale error at some layer, bias-free net</td><td>Reaches the output undiminished. Independent errors of relative variance \(v\) per layer add up to about \(Lv\), so matching sampling needs \(v\) of order \(\varepsilon^2/L\).</td><td><span class="st">PROVEN</span> (noiseless)</td></tr>
+<tr><td>A mean error orthogonal to the states</td><td>Survives one layer with factor \(1-\mathbb E[\text{angle}]/\pi\), and the angle shrinks like \(3\pi/l\). If this kept holding, survival from layer \(\ell\) to \(L\) would be about \((\ell/L)^3\), and constant local errors \(e\) would add up to about \(e^2L/4\) in mean square.</td><td><span class="st">PROVEN</span> (one step; angle law); <span class="st">HEURISTIC</span> (accumulation)</td></tr>
+<tr><td>Per-layer surrogates of fixed accuracy, along the true path</td><td>Lose a constant fraction of one input's output scale at \(L\propto n\): a degree-2 polynomial surrogate at \(\alpha=1/4\) has normalized error 0.107, whatever \(n\).</td><td><span class="st">PROVEN</span> (exact)</td></tr>
+<tr><td>A fixed-order expansion in the per-layer gain factors</td><td>First order (linear response around mean field) keeps a fraction \(5\alpha/(e^{5\alpha}-1)\) of the output-scale fluctuation: 50% at \(\alpha=1/4\), 3% at \(\alpha=1\).</td><td><span class="st">PROVEN</span> (exact)</td></tr>
+<tr><td>A closure that treats neurons as independent</td><td>Once the state's covariance is near rank one, it misjudges the next layer's pre-activation variance by O(1) (relative error about \(\sqrt2\)). That He-ReLU states are near rank one at depth (participation ratio 2-4 at depths 32-64) is a measurement.</td><td><span class="st">PROVEN</span> (exact second moments); premise <span class="st">MEASURED</span></td></tr>
+<tr><td>Contraction</td><td>If the backward functions contract, layer-local errors are depth-free. Small noise need not give useful one-step contraction.</td><td><span class="st">PROVEN</span></td></tr>
+</table></div>
+
+<p>The report's summary: a layer-local description must use the early layers (and, by measurement, the late ones), keep its output-scale errors of order \(\varepsilon^2/L\) per layer, keep the couplings once the state collapses, and keep the signed sum of its local errors below sampling's error at equal cost. These are necessary conditions for specific observables, not an impossibility proof.</p>
+
+<p class="us"><b>What this means for us.</b> These are design constraints for any M1 family. The scale constraint does not explain Part 2's error growth after a cut, which is mostly orthogonal to the true mean vector (2.5); the Lyapunov report reads that growth through the signed-sum identity, where each later layer adds a local term, so it can come from new conversions at later gates as well as from transport.</p>
+
+<!-- 3.7 -->
+<h3 id="s3-7">3.7 ARC's \((L/n)^K\) scaling, clarified</h3>
+<p class="src">Source: arc-deep-networks §1 (ARC's results, runtime bounds, crossover arithmetic); hardness §6.3-6.4; lit-tangledness table A.</p>
+
+<p>ARC's method propagates cumulants of order up to \(K\) layer by layer (Wu et al. 2026). What they prove, for polynomial activations at fixed depth, is that it matches sampling and, in its factorized form, beats it by a factor that grows with width. What they conjecture is the depth dependence:</p>
+\[\mathrm{MSE}_K\ \le\ c_K\,(L/n)^K,\]
+<p><span class="st">CONJECTURE</span> (ARC's), "although the dependence on \(L\) is difficult to analyze precisely". At width 256 with 2, 4 and 8 hidden layers the error roughly follows \(L^K\); the factorized versions beat Monte Carlo by about 1,000× with 2 hidden layers and 10-100× with 4, and start to underperform with 8 once \(K\) reaches 4 (ARC, measured). Sampling's error does not grow with depth.</p>
+
+<p><b>Compare at equal compute.</b> One Monte Carlo sample is one forward pass, about \(2Ln^2\) FLOPs. ARC's runtime bound for the basic order-\(K\) algorithm is at most \(c'_KLn^{K+1}\) (factorized, \(K\ge3\): \(c''_KL^2n^K\)). At the method's cost Monte Carlo gets \(N=c'_KLn^{K+1}/(2Ln^2)=(c'_K/2)\,n^{K-1}\) samples, so</p>
+\[\frac{\mathrm{MSE}_{\text{method}}}{\mathrm{MSE}_{\text{MC}}\ \text{at equal FLOPs}}\ =\ c_K\Big(\frac Ln\Big)^K\cdot\frac{c'_K}{2}\,n^{K-1}\ =\ \frac{c_Kc'_K}{2}\cdot\frac{L^K}{n}\]
+<p>(arithmetic on ARC's conjecture and runtime bounds, from our arc-deep-networks note; for the factorized algorithm the ratio is \(\tfrac{c_Kc''_K}{2}L^{K+1}/n^2\)).</p>
+
+<div class="tw"><table>
+<tr><th>Regime</th><th>The bound \(c_K(L/n)^K\)</th><th>Monte Carlo at equal compute</th><th>Ratio \(\propto L^K/n\)</th></tr>
+<tr><td>Fixed width, deeper</td><td>grows like \(L^K\)</td><td>does not grow with depth</td><td>grows: the method loses beyond a crossover depth</td></tr>
+<tr><td>Fixed depth, wider</td><td>falls like \(n^{-K}\)</td><td>falls like \(n^{-(K-1)}\)</td><td>falls: the method wins by a factor that grows with width (ARC's proven regime)</td></tr>
+<tr><td>Depth \(L=\alpha n\)</td><td>fixed at \(c_K\alpha^K\)</td><td>still falls like \(n^{-(K-1)}\): more samples fit in the method's growing budget</td><td>grows like \(\alpha^Kn^{K-1}\): the advantage at equal compute shrinks as width grows</td></tr>
+</table></div>
+
+<p>Along depth proportional to width, \(L/n\) is fixed and the error bound stops improving, but one run of the method costs more and more forward passes as the net widens (about \(1.5n\) for \(K=2\) in our accounting), so sampling at equal compute keeps getting better. If the bound were tight, \(K=2\) would lose to Monte Carlo by a factor growing like \(n\). Setting the ratio to 1 gives the crossover depth: \(L^*\propto n^{1/K}\) for the basic algorithm and \(n^{2/(K+1)}\) for the factorized one, so \(\sqrt n\) for \(K=2\) and for factorized \(K=3\); a contest participant's grid fits \(L^*\approx2\sqrt n\). No fixed \(K\) reaches depth proportional to width, which ARC list as open. ARC's contest saw the same at 256 × 32 ("the best-performing methods in Phase 1 tended to be based on variations of sampling") and moved Phase 2 to 1,024 × 16.</p>
+
+<p><b>What we measured</b> (hardness §6.3, ARC's own code) <span class="st">MEASURED</span>:</p>
+<ul>
+<li>Along \(L=n/8,\ n/4,\ n/2\), the gain of \(K=2\) over plain Monte Carlo at equal cost falls from 2-8 at widths 32-128 to 0.65-1.1 at width 1024 (4 seeds; the intervals include 1).</li>
+<li>Its error does fall with width at fixed \(L/n\) (slopes of \(\log\mathrm{nMSE}\) against \(\log n\) of −0.41, −0.56 and −0.74 for \(\alpha=1/8,\ 1/4,\ 1/2\)), so the bound \(c_2\alpha^2\) is far from tight there; it is an upper bound, so this does not contradict ARC. Monte Carlo at equal cost falls with slope −1, so \(K=2\) loses ground slowly.</li>
+<li>At fixed width the loss ratio grows 4-5× per doubling of depth at shallow depth (error like depth²) and 1.2-2× per doubling beyond depth 64.</li>
+<li>Factorized \(K=3\), at 14-251× the cost of \(K=2\), falls behind fast: gain 2.16, 0.80, 0.38 and 0.08 at widths 32, 64, 128 and 256 with depth \(n/8\), and a loss of 27-247× at depth \(n/4\).</li>
+</ul>
+
+<div class="tw"><table>
+<tr><th>width</th><th>depth 4</th><th>depth 16</th><th>depth 64</th><th>depth 256</th><th>depth 512</th></tr>
+<tr><td>128</td><td>0.03</td><td>0.38</td><td>0.48</td><td></td><td></td></tr>
+<tr><td>256</td><td>0.02</td><td>0.29</td><td>0.72</td><td></td><td></td></tr>
+<tr><td>512</td><td>0.01</td><td>0.14</td><td>0.74</td><td>1.26</td><td></td></tr>
+<tr><td>1024</td><td>0.01</td><td>0.10</td><td>0.58</td><td>1.91</td><td>2.29</td></tr>
+</table></div>
+<p class="small">\(K=2\)'s error relative to Monte Carlo at equal cost (1/gain, median over seeds; below 1 means \(K=2\) wins). <span class="st">MEASURED</span>. Down a column (fixed depth, wider) \(K=2\) does better; along a row (fixed width, deeper) it does worse.</p>
+
+<p>The report's Conjecture 6.A <span class="st">CONJECTURE</span>: for each fixed \(K\) and \(\alpha\), the advantage of order-\(K\) cumulant propagation over Monte Carlo at equal cost stays bounded as \(n\) grows, and tends to 0 (fast for factorized \(K=3\), slowly if at all for \(K=2\)).</p>
+
+<p class="us"><b>What this means for us.</b> The M1 regime, depth proportional to width, is outside what any fixed-order cumulant closure reaches, by ARC's own conjecture plus their cost bounds, and our measurements agree (slowly for \(K=2\), fast for factorized \(K=3\)). Matching sampling there needs a different kind of description.</p>
+
+<!-- 3.8 -->
+<h3 id="s3-8">3.8 What is open</h3>
+<p class="src">Source: hardness Summary ("Open"), §6.4, §8.</p>
+
+<ul>
+<li>Whether any polynomial-time estimator beats sampling by a factor that grows with width at depth proportional to width.</li>
+<li>Conjecture 6.B <span class="st">CONJECTURE</span>: no layer-local estimator (a description of polynomial size, propagated layer by layer by a polynomial-time map, never evaluating \(f_W\) at a point) has more than a constant advantage \(C(\alpha)\) over sampling at \(L=\alpha n\), at any budget in a polynomial window. A proof would need lower bounds on the local errors in the non-contracting directions for every polynomial-size description, which is beyond current techniques.</li>
+<li>ARC's alternative, an estimator that matches sampling at every budget for random MLPs at \(L=\alpha n\), is not refuted and is consistent with 6.B. At the lowest budget the cheapest closure already roughly matches plain Monte Carlo (within about 3× either way up to width 1024); the open part is the higher budgets, where the existing hierarchy falls behind.</li>
+<li>Trained networks with structure: nothing rules out efficient estimation.</li>
+<li>Noisy networks: noise gives forgetting in the ordered and chaotic phases, and at the critical point only at \(\sigma\approx0.1\) (measured). If that forgetting holds in the sense of Theorem 6.12's hypothesis, layer-local errors become depth-free, but this is not proven for these networks.</li>
+<li>Narrow networks, \(n\) fixed and \(L\to\infty\).</li>
+</ul>
+
+<p class="us"><b>What this means for us.</b> Two realistic targets: a formal class of "mechanistic" descriptions with a proven bound, or a description outside the layer-local closures that keeps the full coupling structure, tracks the scale exactly and keeps its accumulated local errors small. Part 2 suggests that such a description, if it carries a linear block, needs a non-Gaussian joint law of tens of directions per layer, and nothing we have built carries such a law better than sampling.</p>
+
+<!-- ============================ SOURCES ============================ -->
+
+<h2 id="sources">Sources</h2>
+<ul>
+<li><code>outbox/scale-free-theory-2026-10-29.md</code>, including its addendum (M3-M5): Part 1.</li>
+<li><code>outbox/lit-tangledness-architectures-2026-10-29.md</code>: the first formal attempt and the literature in Part 1; by-design architectures in 3.4.</li>
+<li><code>outbox/lyapunov-dimension-2026-10-29.md</code>: Part 2.</li>
+<li><code>outbox/nongauss-family-2026-10-29.md</code>: Part 2.</li>
+<li><code>outbox/hardness-mean-estimation-2026-10-29.md</code>: Part 3.</li>
+<li><code>outbox/arc-deep-networks-2026-10-29.md</code>: ARC's runtime bounds, depth results and the crossover arithmetic in 3.7.</li>
+</ul>
+<p class="small">The worked-example arithmetic (complete-graph classes, the Gaussian clique's rank-one block, binding classes, coherence sums, the black-box ratio, sign-rank vectors) is checked by <code>work/explainers/scale-free-explainer-checks.py</code>.</p>
+
+</main>
+</body>
+</html>

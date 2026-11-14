@@ -1,0 +1,11 @@
+GPT-6 (Codex).
+
+1. High — DAG summaries still count failed sizes. review/draft4.md:45–46,129–131,720–726,750–751,864: results/dag_W32s0final.json:greedy[tau=0.01].test.flip = 0.010437, so 73.3% fails. Its smallest saved passing size is sweep_question[K=7654]: 80.0%, flip 0.005524. Seed 1 passes at 76.0%; the final-model range is therefore 76–80%, not “about 75%” across both seeds. Likewise, dag_W64s0final.json:greedy[tau=0.01] gives 49.8% at flip 0.010529, failing; the passing greedy size is 58.483% at flip 0.004883. Report 43.1% for seed 1’s checkpoint and 58.5% for seed 0’s final model, not “50–58%” for seed 0. W2’s hit/miss labels survive.
+
+2. Medium — Column-(b) ratios do not match the saved rows. draft4.md:135,577–578,870; results/algrel_W64s003ck.json and algrel_W64s001ck.json:bar.b,bar.c. Using MSE(b)/MSE(c) at matching N gives 0.812–1.072 for sigma=.03 and 0.878–0.932 for sigma=.01. Scaling each matching MC row as MSE(c) × FLOPs(c)/FLOPs(b) gives equal-FLOP disadvantages of 2.51–31.81× and 2.84–27.67×, respectively. Thus C3’s “0.95–1.13x” and “3–26x” need correction. Its qualitative hit survives.
+
+3. Medium — Final prediction scoring needs the tested-seed qualification. draft4.md:860,867 declares “hit everywhere”/“hit,” but both W64 JSON:model fields identify seed 1 only. PREREG.md:202 requires a family per seed. These families are complete; the registered per-seed coverage remains partial, as the report itself acknowledges at lines 890–891.
+
+4. Low — Rank 21 is unverified. draft4.md:46,130,722; results/lowrank_W32s1final.json:rows contains rank 20 failing at 1.5366% and rank 22 passing at 0.8896%, with no rank-21 result. State “22 demonstrated; 21 untested” rather than counting 21 as a successful size.
+
+Checked 2026-10-29 04:59 UTC. Both W64 bars contain 16 estimates and truths; their reported biases, MSEs, correlations and oracle comparisons check out. No files modified.

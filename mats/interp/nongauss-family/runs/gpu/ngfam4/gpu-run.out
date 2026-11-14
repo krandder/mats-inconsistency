@@ -1,0 +1,280 @@
+creating soup-gpu-ngfam4-1029183040-21896 (g2-standard-8 + nvidia-l4, STANDARD) in us-west1-b ...
+WARNING: Some requests generated warnings:
+ - Disk size: '100 GB' is larger than image size: '50 GB'. You might need to resize the root repartition manually if the operating system does not support automatic resizing. See https://cloud.google.com/compute/docs/disks/add-persistent-disk#resize_pd for details.
+
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-8 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-west1-b zone. Consider trying your request in the us-west1-a
+      zone(s), which currently has capacity to accommodate your request. Alternatively,
+      you can try your request again with a different VM hardware configuration or
+      at a later time. For more information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-8
+      zone: us-west1-b
+      zonesAvailable: us-west1-a
+    reason: resource_availability
+message: The zone 'projects/GCP_PROJECT/zones/us-west1-b' does not have enough resources
+  available to fulfill the request.  'NULL:0/NULL:0/NULL:0 (state:STOCKOUT, sub-state:STOCKOUT,
+  resource type:compute)'.
+
+creating soup-gpu-ngfam4-1029183040-21896 (g2-standard-8 + nvidia-l4, STANDARD) in us-west1-a ...
+NAME                              ZONE        MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP     STATUS
+soup-gpu-ngfam4-1029183040-21896  us-west1-a  g2-standard-8               [ip-removed]   [ip-removed]  RUNNING
+waiting for soup-gpu-ngfam4-1029183040-21896 ([ip-removed]) startup script (up to 25 min) ...
+gpu=NVIDIA L4, 580.178.04
+nvcc=Build cuda_12.9.r12.9/compiler.35813241_0
+clang=Ubuntu clang version 18.1.3 (1ubuntu1)
+bun=1.3.14
+bend=v2.0.29@c8691aa
+READY: soup-gpu-ngfam4-1029183040-21896 us-west1-a [ip-removed]
+rsync /tmp/l4runs/ngfam4 -> soup-gpu-ngfam4-1029183040-21896:/root/soup
+W: http://packages.cloud.google.com/apt/dists/apt-transport-artifact-registry-stable/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
+W: https://us-apt.pkg.dev/projects/gce-ai-infra/dists/gpudirect-gib-apt/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
+
+Running kernel seems to be up-to-date.
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
++ nvidia-smi -L
+GPU 0: NVIDIA L4 (UUID: GPU-9bc3cf92-9565-126d-ad64-eba60759f522)
++ /root/venv/bin/python -c 'import torch; print(torch.__version__, torch.cuda.is_available())'
+2.15.0+cu132 True
++ sha256sum lib/anet.py lib/bf.py lib/gauss_relu.py lib/gmprop.py lib/ng.py lib/ng2.py scratch/amp.py scratch/analyze.py scratch/analyze2.py scratch/comp.py scratch/e0.py scratch/e0_table.py scratch/e1.py scratch/explore_shape.py scratch/lyap.py scratch/peek.py scratch/run.py scratch/run2.py scratch/sum_e0.py scratch/sum_shape.py scratch/truth.py scratch/gpu_job.sh scratch/gpu_job2.sh scratch/gpu_job3.sh scratch/gpu_job4.sh lib/rtable_ng.json
+f84b1701fa0f0f2489bb7ccf1e7db39c653da7b9910b6981f47fa39063b298f0  lib/anet.py
+dbec1ef30737f79255e3458985e27fd321f98c4d57d010b2a4ad4b9b37669b55  lib/bf.py
+a73c23a45c17d413d50bd5099e64529daed7466b982267e60280c5e8a408a5b8  lib/gauss_relu.py
+c833c99e6e9043393038c19e64e75aa194d5345a86795af70edc76ac56d4b440  lib/gmprop.py
+76db7e70b8620adff378cafe046d4fd55c0a90c48d21d4941eff449cb6d847ed  lib/ng.py
+e14393723b9b13f1ba9140adfb6ae8ec005611cfffff75be5cfa16ce6a162143  lib/ng2.py
+62267b69d7f648c00ca7fa681dbedec9cde9c728fc9b00e744658a796509ea97  scratch/amp.py
+12a93357b5a2b8e4db652e1b3c61f1c47bdda4e55ef02bf1403bf0f2e1cc29f3  scratch/analyze.py
+d430fea5d554e3f71763a17e8e5e144067d17d46cd020ec220f2b4ab36209410  scratch/analyze2.py
+df9068f36c264f5299d36a6c2ed7e2becfce4695d1e20c7e8170074d2871fb9c  scratch/comp.py
+bfbf4637affffd470f9fa442ae95961eb15524fe105aefdef661e4d43a7fd5d9  scratch/e0.py
+99b682695ef14c338a5c7343ceb18616d69c2723354909a5f121495fed1f9bfd  scratch/e0_table.py
+4e46ae55c30313ac80e3b0bd784f4b4135b0db8ff1cd543b340d0c4045568443  scratch/e1.py
+76c1ff35927b7add9c4f9ade64b0302d1caf73526d4743f0e39cc0b27737c97f  scratch/explore_shape.py
+c365e60f782795f1ab56283d02348259cff9eedce7fc62b3e739e910eae57aa8  scratch/lyap.py
+6022776fcb5dca9c8e9b531abc412b488703967dff4144d71e79ae7adba64ba3  scratch/peek.py
+0c1d882b41543fc193c9951f8438ea8223a2cff3b5d4640b3cc28e913e91ae2f  scratch/run.py
+fbfc52b649f46037a267955adb65e1a538123504b81d29750d95b7fffb9a6e76  scratch/run2.py
+54f613f0cc35b780dd3533ea81041ea8842d565f86d1e7ead2f07a7c6c22469f  scratch/sum_e0.py
+e3cd35323483ebaf0772fe7a9e149558fb4c64cc755ba91df72dbf40fefa48ad  scratch/sum_shape.py
+4b5e7232a35349e922e77bb51ea2efb231687aa3619077b6ca1e1175acf7f83e  scratch/truth.py
+a6321922164b68053e8ff91ce3887e9d55d31342a201adad2228b2c83fa8c557  scratch/gpu_job.sh
+83a1981cb1ae8599b71740e452a774a34e5fdc83c0d95c3eb43510cdb8fbeea5  scratch/gpu_job2.sh
+4ce7875503a0691341a171f3f8c043ccd7a15a62dbf5d76b2d7758b84dc7b1fd  scratch/gpu_job3.sh
+f55f89f910bae72a075d4e9d12e699d3d074f753a07367f63ee79b73061c036c  scratch/gpu_job4.sh
+949a65b3f4a72b356b8052aa0d0d70343f2bdaa3387db210db484d189448b613  lib/rtable_ng.json
++ date -u
+Thu Oct 29 18:35:13 UTC 2026
++ /root/venv/bin/python scratch/amp.py --n 128 --L 32 --nets 113,114,115,116 --cuts 16,24 --out /root/runs/ngfam4/a2
+n 128 net 113 cut 16 Lo 20: S pr 7.2 k90 13 k99 36 (halves k90 13/13, k99 36/36) top1/4/16 0.30/0.62/0.93 | PMP pr 24.4 k90 47 k99 89 | state PR 9.9  1s
+n 128 net 113 cut 16 Lo 24: S pr 7.3 k90 12 k99 36 (halves k90 12/12, k99 36/36) top1/4/16 0.30/0.62/0.94 | PMP pr 18.6 k90 46 k99 88 | state PR 9.9  1s
+n 128 net 113 cut 16 Lo 32: S pr 7.5 k90 12 k99 36 (halves k90 12/12, k99 36/36) top1/4/16 0.28/0.62/0.94 | PMP pr 20.6 k90 46 k99 88 | state PR 9.9  1s
+n 128 net 113 cut 24 Lo 28: S pr 6.8 k90 10 k99 27 (halves k90 10/10, k99 27/27) top1/4/16 0.29/0.68/0.96 | PMP pr 19.6 k90 32 k99 64 | state PR 8.8  0s
+n 128 net 113 cut 24 Lo 32: S pr 6.3 k90 9 k99 25 (halves k90 9/9, k99 25/25) top1/4/16 0.31/0.69/0.97 | PMP pr 15.7 k90 30 k99 64 | state PR 8.8  0s
+n 128 net 114 cut 16 Lo 20: S pr 7.9 k90 13 k99 33 (halves k90 13/13, k99 33/33) top1/4/16 0.27/0.61/0.94 | PMP pr 22.6 k90 42 k99 82 | state PR 8.7  0s
+n 128 net 114 cut 16 Lo 24: S pr 6.2 k90 11 k99 32 (halves k90 11/11, k99 32/32) top1/4/16 0.32/0.69/0.95 | PMP pr 13.6 k90 38 k99 81 | state PR 8.7  0s
+n 128 net 114 cut 16 Lo 32: S pr 6.1 k90 11 k99 31 (halves k90 11/11, k99 31/31) top1/4/16 0.33/0.68/0.95 | PMP pr 11.6 k90 37 k99 81 | state PR 8.7  0s
+n 128 net 114 cut 24 Lo 28: S pr 4.0 k90 8 k99 25 (halves k90 8/8, k99 25/25) top1/4/16 0.45/0.78/0.97 | PMP pr 19.5 k90 33 k99 67 | state PR 4.5  0s
+n 128 net 114 cut 24 Lo 32: S pr 3.3 k90 8 k99 23 (halves k90 8/8, k99 23/23) top1/4/16 0.52/0.80/0.98 | PMP pr 13.4 k90 30 k99 66 | state PR 4.5  0s
+n 128 net 115 cut 16 Lo 20: S pr 7.3 k90 13 k99 34 (halves k90 13/13, k99 34/34) top1/4/16 0.29/0.63/0.94 | PMP pr 24.4 k90 42 k99 76 | state PR 11.4  0s
+n 128 net 115 cut 16 Lo 24: S pr 7.2 k90 12 k99 33 (halves k90 12/12, k99 33/33) top1/4/16 0.29/0.65/0.95 | PMP pr 20.6 k90 41 k99 75 | state PR 11.4  0s
+n 128 net 115 cut 16 Lo 32: S pr 6.4 k90 11 k99 32 (halves k90 11/11, k99 32/32) top1/4/16 0.33/0.67/0.95 | PMP pr 17.5 k90 40 k99 75 | state PR 11.4  0s
+n 128 net 115 cut 24 Lo 28: S pr 4.9 k90 9 k99 26 (halves k90 9/9, k99 26/26) top1/4/16 0.38/0.76/0.97 | PMP pr 18.1 k90 32 k99 70 | state PR 7.2  0s
+n 128 net 115 cut 24 Lo 32: S pr 5.1 k90 8 k99 25 (halves k90 8/8, k99 25/25) top1/4/16 0.33/0.78/0.97 | PMP pr 14.3 k90 30 k99 68 | state PR 7.2  0s
+n 128 net 116 cut 16 Lo 20: S pr 6.5 k90 12 k99 34 (halves k90 12/12, k99 34/34) top1/4/16 0.33/0.65/0.95 | PMP pr 23.6 k90 45 k99 87 | state PR 8.7  0s
+n 128 net 116 cut 16 Lo 24: S pr 6.4 k90 11 k99 33 (halves k90 11/11, k99 33/33) top1/4/16 0.32/0.68/0.95 | PMP pr 20.3 k90 43 k99 87 | state PR 8.7  0s
+n 128 net 116 cut 16 Lo 32: S pr 6.4 k90 11 k99 32 (halves k90 11/11, k99 32/32) top1/4/16 0.31/0.69/0.95 | PMP pr 20.0 k90 43 k99 86 | state PR 8.7  0s
+n 128 net 116 cut 24 Lo 28: S pr 6.0 k90 9 k99 26 (halves k90 9/9, k99 26/26) top1/4/16 0.28/0.74/0.97 | PMP pr 18.2 k90 34 k99 72 | state PR 6.2  0s
+n 128 net 116 cut 24 Lo 32: S pr 5.7 k90 8 k99 25 (halves k90 8/8, k99 25/25) top1/4/16 0.31/0.74/0.97 | PMP pr 14.0 k90 30 k99 70 | state PR 6.2  0s
+done
++ /root/venv/bin/python scratch/amp.py --n 256 --L 64 --nets 113,114,115,116 --cuts 32,48 --out /root/runs/ngfam4/a2
+n 256 net 113 cut 32 Lo 36: S pr 10.7 k90 18 k99 55 (halves k90 18/18, k99 55/55) top1/4/16 0.19/0.55/0.89 | PMP pr 41.4 k90 72 k99 146 | state PR 11.8  1s
+n 256 net 113 cut 32 Lo 40: S pr 10.2 k90 16 k99 52 (halves k90 16/16, k99 52/52) top1/4/16 0.19/0.56/0.90 | PMP pr 28.4 k90 66 k99 145 | state PR 11.8  1s
+n 256 net 113 cut 32 Lo 48: S pr 9.8 k90 16 k99 51 (halves k90 16/16, k99 51/51) top1/4/16 0.20/0.58/0.91 | PMP pr 22.2 k90 63 k99 144 | state PR 11.8  1s
+n 256 net 113 cut 32 Lo 64: S pr 9.3 k90 16 k99 51 (halves k90 16/16, k99 51/51) top1/4/16 0.22/0.59/0.91 | PMP pr 20.3 k90 63 k99 143 | state PR 11.8  1s
+n 256 net 113 cut 48 Lo 52: S pr 7.1 k90 12 k99 35 (halves k90 12/12, k99 35/35) top1/4/16 0.27/0.65/0.95 | PMP pr 32.2 k90 45 k99 103 | state PR 9.4  1s
+n 256 net 113 cut 48 Lo 56: S pr 6.8 k90 11 k99 31 (halves k90 11/11, k99 31/31) top1/4/16 0.28/0.67/0.96 | PMP pr 21.8 k90 38 k99 98 | state PR 9.4  1s
+n 256 net 113 cut 48 Lo 64: S pr 6.3 k90 10 k99 30 (halves k90 10/10, k99 30/30) top1/4/16 0.29/0.69/0.96 | PMP pr 17.0 k90 35 k99 97 | state PR 9.4  1s
+n 256 net 114 cut 32 Lo 36: S pr 8.3 k90 13 k99 41 (halves k90 13/13, k99 41/41) top1/4/16 0.24/0.61/0.93 | PMP pr 33.8 k90 53 k99 120 | state PR 12.4  1s
+n 256 net 114 cut 32 Lo 40: S pr 6.8 k90 11 k99 36 (halves k90 11/11, k99 36/36) top1/4/16 0.26/0.66/0.95 | PMP pr 23.0 k90 47 k99 117 | state PR 12.4  1s
+n 256 net 114 cut 32 Lo 48: S pr 6.4 k90 11 k99 35 (halves k90 11/11, k99 35/35) top1/4/16 0.27/0.70/0.95 | PMP pr 14.6 k90 44 k99 114 | state PR 12.4  1s
+n 256 net 114 cut 32 Lo 64: S pr 5.5 k90 10 k99 33 (halves k90 10/10, k99 33/33) top1/4/16 0.34/0.73/0.96 | PMP pr 13.7 k90 44 k99 114 | state PR 12.4  1s
+n 256 net 114 cut 48 Lo 52: S pr 5.5 k90 10 k99 32 (halves k90 10/10, k99 32/32) top1/4/16 0.35/0.73/0.95 | PMP pr 33.4 k90 51 k99 115 | state PR 6.2  1s
+n 256 net 114 cut 48 Lo 56: S pr 4.9 k90 9 k99 29 (halves k90 9/9, k99 29/29) top1/4/16 0.39/0.75/0.96 | PMP pr 22.1 k90 42 k99 109 | state PR 6.2  1s
+n 256 net 114 cut 48 Lo 64: S pr 3.7 k90 8 k99 26 (halves k90 8/8, k99 26/26) top1/4/16 0.48/0.78/0.97 | PMP pr 11.8 k90 36 k99 105 | state PR 6.2  1s
+n 256 net 115 cut 32 Lo 36: S pr 7.6 k90 13 k99 41 (halves k90 13/13, k99 41/41) top1/4/16 0.27/0.63/0.93 | PMP pr 33.4 k90 53 k99 118 | state PR 10.5  1s
+n 256 net 115 cut 32 Lo 40: S pr 6.3 k90 11 k99 37 (halves k90 11/11, k99 37/37) top1/4/16 0.32/0.67/0.95 | PMP pr 23.1 k90 46 k99 114 | state PR 10.5  1s
+n 256 net 115 cut 32 Lo 48: S pr 6.7 k90 11 k99 37 (halves k90 11/11, k99 37/37) top1/4/16 0.30/0.66/0.95 | PMP pr 17.2 k90 43 k99 111 | state PR 10.5  1s
+n 256 net 115 cut 32 Lo 64: S pr 6.2 k90 11 k99 36 (halves k90 11/11, k99 36/36) top1/4/16 0.32/0.69/0.95 | PMP pr 14.0 k90 42 k99 110 | state PR 10.5  1s
+n 256 net 115 cut 48 Lo 52: S pr 5.7 k90 10 k99 31 (halves k90 10/10, k99 31/31) top1/4/16 0.35/0.68/0.95 | PMP pr 31.2 k90 49 k99 110 | state PR 8.2  1s
+n 256 net 115 cut 48 Lo 56: S pr 5.1 k90 10 k99 28 (halves k90 10/10, k99 28/28) top1/4/16 0.39/0.70/0.96 | PMP pr 19.6 k90 38 k99 103 | state PR 8.2  1s
+n 256 net 115 cut 48 Lo 64: S pr 5.2 k90 9 k99 26 (halves k90 9/9, k99 26/26) top1/4/16 0.36/0.74/0.97 | PMP pr 13.4 k90 33 k99 99 | state PR 8.2  1s
+n 256 net 116 cut 32 Lo 36: S pr 9.1 k90 14 k99 40 (halves k90 14/14, k99 40/40) top1/4/16 0.23/0.59/0.92 | PMP pr 33.9 k90 49 k99 108 | state PR 10.5  1s
+n 256 net 116 cut 32 Lo 40: S pr 7.8 k90 13 k99 37 (halves k90 13/13, k99 37/37) top1/4/16 0.26/0.64/0.94 | PMP pr 22.7 k90 43 k99 103 | state PR 10.5  1s
+n 256 net 116 cut 32 Lo 48: S pr 7.3 k90 12 k99 35 (halves k90 12/12, k99 35/35) top1/4/16 0.27/0.65/0.95 | PMP pr 16.0 k90 39 k99 100 | state PR 10.5  1s
+n 256 net 116 cut 32 Lo 64: S pr 7.1 k90 12 k99 35 (halves k90 12/12, k99 35/35) top1/4/16 0.26/0.67/0.95 | PMP pr 11.2 k90 37 k99 99 | state PR 10.5  1s
+n 256 net 116 cut 48 Lo 52: S pr 6.0 k90 10 k99 29 (halves k90 10/10, k99 29/29) top1/4/16 0.30/0.70/0.96 | PMP pr 29.9 k90 42 k99 94 | state PR 7.1  1s
+n 256 net 116 cut 48 Lo 56: S pr 5.3 k90 8 k99 25 (halves k90 8/8, k99 25/25) top1/4/16 0.34/0.75/0.97 | PMP pr 18.8 k90 32 k99 86 | state PR 7.1  1s
+n 256 net 116 cut 48 Lo 64: S pr 5.2 k90 8 k99 23 (halves k90 8/8, k99 23/23) top1/4/16 0.35/0.76/0.98 | PMP pr 12.6 k90 28 k99 82 | state PR 7.1  1s
+done
++ /root/venv/bin/python scratch/amp.py --n 512 --L 128 --nets 113,114,115,116 --cuts 64,96 --out /root/runs/ngfam4/a2
+n 512 net 113 cut 64 Lo 68: S pr 7.3 k90 15 k99 55 (halves k90 15/15, k99 55/55) top1/4/16 0.30/0.61/0.91 | PMP pr 61.7 k90 87 k99 196 | state PR 10.4  3s
+n 512 net 113 cut 64 Lo 72: S pr 9.1 k90 15 k99 51 (halves k90 15/15, k99 51/51) top1/4/16 0.23/0.58/0.91 | PMP pr 43.1 k90 71 k99 185 | state PR 10.4  4s
+n 512 net 113 cut 64 Lo 80: S pr 9.1 k90 14 k99 48 (halves k90 14/14, k99 48/48) top1/4/16 0.23/0.59/0.92 | PMP pr 29.9 k90 63 k99 179 | state PR 10.4  4s
+n 512 net 113 cut 64 Lo 128: S pr 8.5 k90 13 k99 46 (halves k90 13/13, k99 46/46) top1/4/16 0.22/0.62/0.93 | PMP pr 22.8 k90 60 k99 177 | state PR 10.4  5s
+n 512 net 113 cut 96 Lo 100: S pr 7.6 k90 15 k99 51 (halves k90 15/15, k99 51/51) top1/4/16 0.28/0.63/0.91 | PMP pr 59.8 k90 84 k99 191 | state PR 10.9  4s
+n 512 net 113 cut 96 Lo 104: S pr 7.9 k90 14 k99 45 (halves k90 14/14, k99 45/45) top1/4/16 0.26/0.62/0.92 | PMP pr 41.0 k90 68 k99 178 | state PR 10.9  5s
+n 512 net 113 cut 96 Lo 112: S pr 7.8 k90 13 k99 41 (halves k90 13/13, k99 41/41) top1/4/16 0.24/0.65/0.93 | PMP pr 27.2 k90 59 k99 171 | state PR 10.9  5s
+n 512 net 113 cut 96 Lo 128: S pr 7.0 k90 12 k99 39 (halves k90 12/12, k99 39/39) top1/4/16 0.28/0.68/0.94 | PMP pr 18.1 k90 54 k99 168 | state PR 10.9  5s
+n 512 net 114 cut 64 Lo 68: S pr 9.0 k90 15 k99 50 (halves k90 15/15, k99 50/50) top1/4/16 0.23/0.58/0.91 | PMP pr 58.7 k90 79 k99 179 | state PR 10.4  3s
+n 512 net 114 cut 64 Lo 72: S pr 9.4 k90 15 k99 43 (halves k90 15/15, k99 43/43) top1/4/16 0.23/0.56/0.92 | PMP pr 36.3 k90 57 k99 160 | state PR 10.4  3s
+n 512 net 114 cut 64 Lo 80: S pr 7.9 k90 13 k99 38 (halves k90 13/13, k99 38/38) top1/4/16 0.28/0.60/0.94 | PMP pr 22.8 k90 48 k99 152 | state PR 10.4  4s
+n 512 net 114 cut 64 Lo 128: S pr 7.7 k90 11 k99 36 (halves k90 11/11, k99 36/36) top1/4/16 0.23/0.65/0.95 | PMP pr 14.6 k90 43 k99 147 | state PR 10.4  4s
+n 512 net 114 cut 96 Lo 100: S pr 7.2 k90 13 k99 40 (halves k90 13/12, k99 40/40) top1/4/16 0.26/0.68/0.93 | PMP pr 54.3 k90 70 k99 150 | state PR 7.6  4s
+n 512 net 114 cut 96 Lo 104: S pr 6.5 k90 11 k99 33 (halves k90 11/11, k99 33/33) top1/4/16 0.26/0.72/0.95 | PMP pr 30.5 k90 47 k99 123 | state PR 7.6  5s
+n 512 net 114 cut 96 Lo 112: S pr 6.6 k90 10 k99 29 (halves k90 10/10, k99 29/29) top1/4/16 0.27/0.72/0.96 | PMP pr 19.6 k90 34 k99 110 | state PR 7.6  5s
+n 512 net 114 cut 96 Lo 128: S pr 6.5 k90 9 k99 28 (halves k90 9/9, k99 28/28) top1/4/16 0.27/0.72/0.97 | PMP pr 14.8 k90 29 k99 105 | state PR 7.6  5s
+n 512 net 115 cut 64 Lo 68: S pr 8.8 k90 20 k99 72 (halves k90 20/20, k99 72/72) top1/4/16 0.27/0.55/0.87 | PMP pr 68.1 k90 110 k99 241 | state PR 10.3  3s
+n 512 net 115 cut 64 Lo 72: S pr 9.0 k90 18 k99 66 (halves k90 19/18, k99 66/66) top1/4/16 0.26/0.57/0.88 | PMP pr 49.8 k90 98 k99 234 | state PR 10.3  3s
+n 512 net 115 cut 64 Lo 80: S pr 9.0 k90 17 k99 64 (halves k90 17/17, k99 64/64) top1/4/16 0.26/0.56/0.89 | PMP pr 38.5 k90 94 k99 232 | state PR 10.3  4s
+n 512 net 115 cut 64 Lo 128: S pr 9.2 k90 17 k99 63 (halves k90 17/17, k99 63/63) top1/4/16 0.24/0.57/0.90 | PMP pr 32.2 k90 92 k99 230 | state PR 10.3  4s
+n 512 net 115 cut 96 Lo 100: S pr 9.5 k90 21 k99 69 (halves k90 21/21, k99 69/69) top1/4/16 0.26/0.55/0.86 | PMP pr 63.6 k90 102 k99 225 | state PR 12.0  4s
+n 512 net 115 cut 96 Lo 104: S pr 8.5 k90 18 k99 61 (halves k90 18/18, k99 61/61) top1/4/16 0.26/0.61/0.89 | PMP pr 43.0 k90 88 k99 216 | state PR 12.0  5s
+n 512 net 115 cut 96 Lo 112: S pr 7.9 k90 16 k99 57 (halves k90 16/16, k99 57/57) top1/4/16 0.27/0.62/0.91 | PMP pr 30.3 k90 81 k99 212 | state PR 12.0  5s
+n 512 net 115 cut 96 Lo 128: S pr 7.1 k90 14 k99 53 (halves k90 14/14, k99 53/54) top1/4/16 0.26/0.67/0.92 | PMP pr 21.1 k90 77 k99 209 | state PR 12.0  5s
+n 512 net 116 cut 64 Lo 68: S pr 11.1 k90 18 k99 56 (halves k90 18/18, k99 56/56) top1/4/16 0.19/0.53/0.89 | PMP pr 60.3 k90 84 k99 187 | state PR 11.6  3s
+n 512 net 116 cut 64 Lo 72: S pr 9.9 k90 16 k99 49 (halves k90 16/16, k99 49/49) top1/4/16 0.20/0.56/0.90 | PMP pr 35.5 k90 64 k99 174 | state PR 11.6  3s
+n 512 net 116 cut 64 Lo 80: S pr 8.7 k90 14 k99 44 (halves k90 14/14, k99 44/44) top1/4/16 0.21/0.59/0.93 | PMP pr 24.1 k90 55 k99 168 | state PR 11.6  4s
+n 512 net 116 cut 64 Lo 128: S pr 5.7 k90 11 k99 39 (halves k90 11/11, k99 39/39) top1/4/16 0.34/0.70/0.95 | PMP pr 10.5 k90 47 k99 161 | state PR 11.6  4s
+n 512 net 116 cut 96 Lo 100: S pr 5.2 k90 10 k99 40 (halves k90 10/10, k99 41/40) top1/4/16 0.36/0.72/0.95 | PMP pr 59.4 k90 79 k99 180 | state PR 6.1  4s
+n 512 net 116 cut 96 Lo 104: S pr 4.6 k90 9 k99 33 (halves k90 9/9, k99 33/33) top1/4/16 0.38/0.76/0.96 | PMP pr 35.5 k90 59 k99 162 | state PR 6.1  5s
+n 512 net 116 cut 96 Lo 112: S pr 4.1 k90 8 k99 29 (halves k90 8/8, k99 29/29) top1/4/16 0.37/0.80/0.97 | PMP pr 24.0 k90 48 k99 153 | state PR 6.1  5s
+n 512 net 116 cut 96 Lo 128: S pr 3.7 k90 7 k99 26 (halves k90 7/7, k99 26/26) top1/4/16 0.37/0.83/0.98 | PMP pr 18.4 k90 45 k99 150 | state PR 6.1  5s
+done
++ date -u
+Thu Oct 29 18:36:16 UTC 2026
++ /root/venv/bin/python scratch/lyap.py --n 128 --L 32 --nets 113,114 --cuts 8 --Lps 4,8,16 --out /root/runs/ngfam4/a2
+n 128 net 113 cut 8 L' 4: N_surv e^-1/e^-2/e^-3 12.4/25.9/36.7 (Gaussian-product 2n/L' 64); PR 12.20; rank 57; gap k=2,4,8,16: -0.033 -0.082 -0.163 -0.305; lambda1 +0.285  13s
+n 128 net 113 cut 8 L' 8: N_surv e^-1/e^-2/e^-3 6.7/15.2/23.3 (Gaussian-product 2n/L' 32); PR 6.57; rank 57; gap k=2,4,8,16: -0.030 -0.072 -0.138 -0.255; lambda1 +0.179  13s
+n 128 net 113 cut 8 L' 16: N_surv e^-1/e^-2/e^-3 4.1/8.8/13.5 (Gaussian-product 2n/L' 16); PR 3.80; rank 54; gap k=2,4,8,16: -0.022 -0.055 -0.109 -0.213; lambda1 +0.100  13s
+n 128 net 114 cut 8 L' 4: N_surv e^-1/e^-2/e^-3 13.8/27.7/38.8 (Gaussian-product 2n/L' 64); PR 13.44; rank 60; gap k=2,4,8,16: -0.027 -0.068 -0.140 -0.280; lambda1 +0.288  14s
+n 128 net 114 cut 8 L' 8: N_surv e^-1/e^-2/e^-3 7.6/16.1/24.0 (Gaussian-product 2n/L' 32); PR 7.34; rank 57; gap k=2,4,8,16: -0.025 -0.062 -0.122 -0.242; lambda1 +0.174  14s
+n 128 net 114 cut 8 L' 16: N_surv e^-1/e^-2/e^-3 4.0/8.7/13.8 (Gaussian-product 2n/L' 16); PR 3.72; rank 56; gap k=2,4,8,16: -0.024 -0.055 -0.110 -0.210; lambda1 +0.110  14s
+done
++ /root/venv/bin/python scratch/lyap.py --n 256 --L 64 --nets 113,114 --cuts 16 --Lps 8,16,32 --out /root/runs/ngfam4/a2
+/root/soup/scratch/lyap.py:55: UserWarning: torch.linalg.svd: During SVD computation with the selected cusolver driver, batches 0, 5, 8, 10, 20, and other 2 batches failed to converge. A more accurate method will be used to compute the SVD as a fallback. Check doc at https://pytorch.org/docs/stable/generated/torch.linalg.svd.html (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/cuda/linalg/BatchLinearAlgebraLib.cpp:691.)
+  s = torch.linalg.svdvals(J)                             # (B, n), descending
+n 256 net 113 cut 16 L' 8: N_surv e^-1/e^-2/e^-3 13.4/29.9/46.4 (Gaussian-product 2n/L' 64); PR 13.76; rank 118; gap k=2,4,8,16: -0.015 -0.039 -0.075 -0.142; lambda1 +0.185  140s
+n 256 net 113 cut 16 L' 16: N_surv e^-1/e^-2/e^-3 7.8/17.4/27.4 (Gaussian-product 2n/L' 32); PR 7.72; rank 114; gap k=2,4,8,16: -0.012 -0.030 -0.060 -0.113; lambda1 +0.110  140s
+n 256 net 113 cut 16 L' 32: N_surv e^-1/e^-2/e^-3 4.5/9.5/15.0 (Gaussian-product 2n/L' 16); PR 4.19; rank 100; gap k=2,4,8,16: -0.010 -0.025 -0.051 -0.097; lambda1 +0.064  140s
+n 256 net 114 cut 16 L' 8: N_surv e^-1/e^-2/e^-3 14.0/31.7/48.8 (Gaussian-product 2n/L' 64); PR 14.45; rank 121; gap k=2,4,8,16: -0.016 -0.037 -0.074 -0.137; lambda1 +0.195  126s
+n 256 net 114 cut 16 L' 16: N_surv e^-1/e^-2/e^-3 8.2/18.1/28.0 (Gaussian-product 2n/L' 32); PR 8.11; rank 110; gap k=2,4,8,16: -0.011 -0.029 -0.058 -0.109; lambda1 +0.103  126s
+n 256 net 114 cut 16 L' 32: N_surv e^-1/e^-2/e^-3 4.3/9.4/14.8 (Gaussian-product 2n/L' 16); PR 4.03; rank 99; gap k=2,4,8,16: -0.010 -0.026 -0.052 -0.098; lambda1 +0.061  126s
+done
++ /root/venv/bin/python scratch/lyap.py --n 512 --L 128 --nets 113,114 --cuts 32 --Lps 16,32,64 --out /root/runs/ngfam4/a2
+/root/soup/scratch/lyap.py:55: UserWarning: torch.linalg.svd: During SVD computation with the selected cusolver driver, batches 0, 1, 2, 3, 4, and other 27 batches failed to converge. A more accurate method will be used to compute the SVD as a fallback. Check doc at https://pytorch.org/docs/stable/generated/torch.linalg.svd.html (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/cuda/linalg/BatchLinearAlgebraLib.cpp:691.)
+  s = torch.linalg.svdvals(J)                             # (B, n), descending
+Terminated
++ echo 'T5b-512 FAILED'
+T5b-512 FAILED
++ date -u
+Thu Oct 29 19:05:20 UTC 2026
++ /root/venv/bin/python scratch/comp.py --n 128 --L 32 --net 113 --cut 24 --ks 1,4,16,64 --models pca,lin,mlp --out /root/runs/ngfam4/a2
+n 128 L 32 net 113 cut 24: VAR 1.543e-02, channel floor (pathwise nMSE of the noise alone) 9.133e-05
+  pca k   1: pathwise nMSE 4.482e-01 (x floor 4907.4); mean bias 7.14e-02, with shuffled residual 6.77e-04 (noise ~3.4e-06); last train loss nan  0s
+  pca k   4: pathwise nMSE 2.718e-01 (x floor 2976.3); mean bias 1.31e-02, with shuffled residual 5.78e-04 (noise ~2.1e-06); last train loss nan  0s
+  pca k  16: pathwise nMSE 6.672e-02 (x floor 730.5); mean bias 3.55e-04, with shuffled residual 1.15e-04 (noise ~5.1e-07); last train loss nan  0s
+  pca k  64: pathwise nMSE 1.558e-03 (x floor 17.1); mean bias 5.77e-07, with shuffled residual 4.38e-07 (noise ~1.2e-08); last train loss nan  0s
+/root/soup/scratch/comp.py:141: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  hist.append((step, float(loss)))
+  lin k   1: pathwise nMSE 3.195e-01 (x floor 3498.5); mean bias 8.68e-03, with shuffled residual 3.08e-03 (noise ~2.4e-06); last train loss 3.177e-01  18s
+  lin k   4: pathwise nMSE 1.549e-01 (x floor 1696.1); mean bias 1.60e-03, with shuffled residual 5.34e-03 (noise ~1.2e-06); last train loss 1.597e-01  16s
+  lin k  16: pathwise nMSE 2.401e-02 (x floor 262.9); mean bias 3.03e-05, with shuffled residual 4.42e-03 (noise ~1.8e-07); last train loss 2.377e-02  16s
+  lin k  64: pathwise nMSE 4.476e-03 (x floor 49.0); mean bias 4.10e-06, with shuffled residual 3.59e-03 (noise ~3.4e-08); last train loss 4.491e-03  16s
+  mlp k   1: pathwise nMSE 2.381e-01 (x floor 2606.5); mean bias 2.19e-03, with shuffled residual 1.85e-02 (noise ~1.8e-06); last train loss 2.364e-01  19s
+  mlp k   4: pathwise nMSE 8.878e-02 (x floor 972.0); mean bias 3.39e-04, with shuffled residual 4.53e-03 (noise ~6.8e-07); last train loss 9.075e-02  19s
+  mlp k  16: pathwise nMSE 8.385e-03 (x floor 91.8); mean bias 5.70e-06, with shuffled residual 4.89e-04 (noise ~6.4e-08); last train loss 8.238e-03  19s
+  mlp k  64: pathwise nMSE 4.860e-03 (x floor 53.2); mean bias 2.73e-06, with shuffled residual 4.56e-04 (noise ~3.7e-08); last train loss 4.892e-03  19s
+done
++ /root/venv/bin/python scratch/comp.py --n 256 --L 64 --net 113 --cut 48 --ks 1,4,16,64 --models pca,lin,mlp --out /root/runs/ngfam4/a2
+n 256 L 64 net 113 cut 48: VAR 1.831e-02, channel floor (pathwise nMSE of the noise alone) 5.162e-04
+  pca k   1: pathwise nMSE 2.051e-01 (x floor 397.3); mean bias 2.09e-02, with shuffled residual 7.87e-05 (noise ~1.6e-06); last train loss nan  0s
+  pca k   4: pathwise nMSE 1.343e-01 (x floor 260.1); mean bias 7.70e-03, with shuffled residual 7.92e-05 (noise ~1.0e-06); last train loss nan  0s
+  pca k  16: pathwise nMSE 3.683e-02 (x floor 71.3); mean bias 3.59e-04, with shuffled residual 2.17e-05 (noise ~2.8e-07); last train loss nan  0s
+  pca k  64: pathwise nMSE 3.211e-03 (x floor 6.2); mean bias 2.21e-06, with shuffled residual 1.34e-06 (noise ~2.5e-08); last train loss nan  0s
+/root/soup/scratch/comp.py:141: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  hist.append((step, float(loss)))
+  lin k   1: pathwise nMSE 1.632e-01 (x floor 316.2); mean bias 3.41e-03, with shuffled residual 6.67e-04 (noise ~1.2e-06); last train loss 1.635e-01  37s
+  lin k   4: pathwise nMSE 6.907e-02 (x floor 133.8); mean bias 5.69e-04, with shuffled residual 1.11e-03 (noise ~5.3e-07); last train loss 6.904e-02  35s
+  lin k  16: pathwise nMSE 1.163e-02 (x floor 22.5); mean bias 1.88e-05, with shuffled residual 1.12e-03 (noise ~8.9e-08); last train loss 1.168e-02  36s
+  lin k  64: pathwise nMSE 1.403e-03 (x floor 2.7); mean bias 4.29e-07, with shuffled residual 4.92e-04 (noise ~1.1e-08); last train loss 1.438e-03  35s
+  mlp k   1: pathwise nMSE 1.133e-01 (x floor 219.5); mean bias 6.89e-04, with shuffled residual 1.68e-02 (noise ~8.6e-07); last train loss 1.120e-01  44s
+  mlp k   4: pathwise nMSE 4.591e-02 (x floor 88.9); mean bias 1.39e-04, with shuffled residual 2.09e-03 (noise ~3.5e-07); last train loss 4.640e-02  44s
+  mlp k  16: pathwise nMSE 4.026e-03 (x floor 7.8); mean bias 1.60e-06, with shuffled residual 3.12e-04 (noise ~3.1e-08); last train loss 3.996e-03  44s
+  mlp k  64: pathwise nMSE 1.480e-03 (x floor 2.9); mean bias 4.87e-07, with shuffled residual 1.82e-04 (noise ~1.1e-08); last train loss 1.495e-03  45s
+done
++ /root/venv/bin/python scratch/comp.py --n 512 --L 128 --net 113 --cut 96 --ks 1,4,16,64 --models pca,lin,mlp --out /root/runs/ngfam4/a2
+n 512 L 128 net 113 cut 96: VAR 4.166e-03, channel floor (pathwise nMSE of the noise alone) 1.395e-03
+  pca k   1: pathwise nMSE 1.634e-01 (x floor 117.1); mean bias 1.88e-02, with shuffled residual 6.14e-05 (noise ~1.2e-06); last train loss nan  2s
+  pca k   4: pathwise nMSE 9.432e-02 (x floor 67.6); mean bias 3.53e-03, with shuffled residual 5.83e-05 (noise ~7.2e-07); last train loss nan  2s
+  pca k  16: pathwise nMSE 3.553e-02 (x floor 25.5); mean bias 2.15e-04, with shuffled residual 1.85e-05 (noise ~2.7e-07); last train loss nan  2s
+  pca k  64: pathwise nMSE 5.396e-03 (x floor 3.9); mean bias 4.61e-06, with shuffled residual 1.20e-06 (noise ~4.1e-08); last train loss nan  2s
+/root/soup/scratch/comp.py:141: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  hist.append((step, float(loss)))
+  lin k   1: pathwise nMSE 1.142e-01 (x floor 81.9); mean bias 2.93e-03, with shuffled residual 2.06e-03 (noise ~8.7e-07); last train loss 1.148e-01  195s
+  lin k   4: pathwise nMSE 5.181e-02 (x floor 37.1); mean bias 4.27e-04, with shuffled residual 2.95e-03 (noise ~4.0e-07); last train loss 5.183e-02  195s
+  lin k  16: pathwise nMSE 1.344e-02 (x floor 9.6); mean bias 2.57e-05, with shuffled residual 6.16e-04 (noise ~1.0e-07); last train loss 1.351e-02  195s
+  lin k  64: pathwise nMSE 2.145e-03 (x floor 1.5); mean bias 6.27e-07, with shuffled residual 1.21e-03 (noise ~1.6e-08); last train loss 2.230e-03  195s
+  mlp k   1: pathwise nMSE 8.155e-02 (x floor 58.4); mean bias 6.56e-04, with shuffled residual 1.15e-02 (noise ~6.2e-07); last train loss 8.114e-02  222s
+  mlp k   4: pathwise nMSE 3.347e-02 (x floor 24.0); mean bias 1.22e-04, with shuffled residual 8.62e-04 (noise ~2.6e-07); last train loss 3.342e-02  223s
+  mlp k  16: pathwise nMSE 4.779e-03 (x floor 3.4); mean bias 3.07e-06, with shuffled residual 1.12e-04 (noise ~3.6e-08); last train loss 4.784e-03  223s
+  mlp k  64: pathwise nMSE 1.197e-03 (x floor 0.9); mean bias 2.68e-07, with shuffled residual 1.21e-04 (noise ~9.1e-09); last train loss 1.229e-03  224s
+done
++ /root/venv/bin/python scratch/comp.py --n 256 --L 64 --net 113 --cut 32 --ks 1,4,16,64 --models pca,lin,mlp --out /root/runs/ngfam4/a2
+n 256 L 64 net 113 cut 32: VAR 1.832e-02, channel floor (pathwise nMSE of the noise alone) 1.025e-03
+  pca k   1: pathwise nMSE 2.875e-01 (x floor 280.5); mean bias 3.91e-02, with shuffled residual 8.27e-05 (noise ~2.2e-06); last train loss nan  0s
+  pca k   4: pathwise nMSE 2.246e-01 (x floor 219.2); mean bias 8.64e-03, with shuffled residual 8.97e-05 (noise ~1.7e-06); last train loss nan  0s
+  pca k  16: pathwise nMSE 1.027e-01 (x floor 100.2); mean bias 7.71e-04, with shuffled residual 4.65e-05 (noise ~7.8e-07); last train loss nan  0s
+  pca k  64: pathwise nMSE 1.810e-02 (x floor 17.7); mean bias 1.19e-05, with shuffled residual 5.07e-06 (noise ~1.4e-07); last train loss nan  0s
+/root/soup/scratch/comp.py:141: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  hist.append((step, float(loss)))
+  lin k   1: pathwise nMSE 2.030e-01 (x floor 198.1); mean bias 7.96e-03, with shuffled residual 8.19e-03 (noise ~1.5e-06); last train loss 2.027e-01  48s
+  lin k   4: pathwise nMSE 1.122e-01 (x floor 109.5); mean bias 1.71e-03, with shuffled residual 5.02e-03 (noise ~8.6e-07); last train loss 1.119e-01  47s
+  lin k  16: pathwise nMSE 4.740e-02 (x floor 46.3); mean bias 1.28e-04, with shuffled residual 2.81e-03 (noise ~3.6e-07); last train loss 4.749e-02  47s
+  lin k  64: pathwise nMSE 9.537e-03 (x floor 9.3); mean bias 4.14e-06, with shuffled residual 2.33e-03 (noise ~7.3e-08); last train loss 9.575e-03  47s
+  mlp k   1: pathwise nMSE 1.572e-01 (x floor 153.4); mean bias 2.32e-03, with shuffled residual 2.28e-03 (noise ~1.2e-06); last train loss 1.572e-01  56s
+  mlp k   4: pathwise nMSE 6.965e-02 (x floor 68.0); mean bias 5.91e-04, with shuffled residual 2.08e-03 (noise ~5.3e-07); last train loss 6.947e-02  56s
+  mlp k  16: pathwise nMSE 2.132e-02 (x floor 20.8); mean bias 2.20e-05, with shuffled residual 4.15e-04 (noise ~1.6e-07); last train loss 2.086e-02  56s
+  mlp k  64: pathwise nMSE 1.052e-02 (x floor 10.3); mean bias 3.79e-06, with shuffled residual 1.38e-04 (noise ~8.0e-08); last train loss 1.070e-02  56s
+done
++ date -u
+Thu Oct 29 19:48:18 UTC 2026
++ echo JOB-DONE
+JOB-DONE
+rsync soup-gpu-ngfam4-1029183040-21896:/root/runs -> /tmp/l4runs/ngfam4/runs
+Deleted [https://www.googleapis.com/compute/v1/projects/GCP_PROJECT/zones/us-west1-a/instances/soup-gpu-ngfam4-1029183040-21896].
+GPU-RUN EXIT 0

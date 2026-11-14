@@ -1,0 +1,35 @@
+=== S1: noise room payout vs trader-grid precision D and coin bias theta ===
+cum EIG = O3 (plannable payout, bits); regret = O4 (log2 wealth of the true-coin trader)
+structured room, toy class: O3 = 8.62, O4 = 17.28 bits (toy output.txt, T=4000)
+
+ theta=0.5000 D= 4  O3/O4 at n=100,1e3,4e3,1e4,1e5,1e6:   2.71/  3.21    2.80/  3.28    2.80/  3.28    2.80/  3.28    2.80/  3.28    2.80/  3.28   EIG at 1e6 = 0.0e+00
+ theta=0.5000 D= 8  O3/O4 at n=100,1e3,4e3,1e4,1e5,1e6:   2.84/  3.17    3.05/  3.33    3.08/  3.36    3.10/  3.36    3.11/  3.37    3.11/  3.37   EIG at 1e6 = -9.1e-15
+ theta=0.5000 D=12  O3/O4 at n=100,1e3,4e3,1e4,1e5,1e6:   2.87/  3.16    3.12/  3.35    3.17/  3.38    3.20/  3.39    3.20/  3.40    3.21/  3.40   EIG at 1e6 = 6.5e-10
+ theta=0.5000 D=16  O3/O4 at n=100,1e3,4e3,1e4,1e5,1e6:   2.89/  3.16    3.17/  3.36    3.22/  3.40    3.25/  3.41    3.26/  3.42    3.27/  3.42   EIG at 1e6 = 1.2e-09
+
+ theta=0.3183 D= 4  O3/O4 at n=100,1e3,4e3,1e4,1e5,1e6:   3.89/  5.74    6.28/  8.56    6.28/  9.18    6.28/  8.31    6.28/ 21.94    6.28/122.49   EIG at 1e6 = 0.0e+00
+ theta=0.3183 D= 8  O3/O4 at n=100,1e3,4e3,1e4,1e5,1e6:   3.86/  5.33    6.10/  7.78    6.79/  8.69    7.15/  8.32   10.43/ 13.64   14.01/ 25.51   EIG at 1e6 = 1.2e-05
+ theta=0.3183 D=12  O3/O4 at n=100,1e3,4e3,1e4,1e5,1e6:   3.84/  5.20    6.03/  7.54    6.78/  8.46    7.19/  8.20    9.93/ 12.49   11.67/ 14.63   EIG at 1e6 = 4.9e-07
+ theta=0.3183 D=16  O3/O4 at n=100,1e3,4e3,1e4,1e5,1e6:   3.83/  5.13    5.99/  7.42    6.77/  8.34    7.20/  8.14    9.76/ 12.09   11.49/ 14.13   EIG at 1e6 = 5.6e-07
+
+=== S2a: passive O3 (cum ex-ante EIG, bits) per room, toy market incl. change-points, T=4000 ===
+ D= 4: dark=2.86  noise=8.86  noise(1/pi)=10.03  structured=8.62
+ D=12: dark=2.88  noise=9.16  noise(1/pi)=10.06  structured=8.32
+
+=== S2b: greedy agent argmax lambda*EIG - cost, rooms dark/noise/structured, T=6000 ===
+ (toy.py: D=4, theta=1/2.)   last-1000 = rooms chosen in the final 1000 steps
+ D= 4 theta=0.500 C equal costs              visits {'dark': 2047, 'noise': 1345, 'structured': 2608}  last-1000 {'dark': 425, 'noise': 15, 'structured': 560}
+ D= 4 theta=0.500 A costs 0/1/1, lambda=1e4  visits {'dark': 5037, 'noise': 708, 'structured': 255}  last-1000 {'dark': 1000, 'noise': 0, 'structured': 0}
+ D= 4 theta=0.318 C equal costs              visits {'dark': 2047, 'noise': 1688, 'structured': 2265}  last-1000 {'dark': 739, 'noise': 44, 'structured': 217}
+ D= 4 theta=0.318 A costs 0/1/1, lambda=1e4  visits {'dark': 4419, 'noise': 1326, 'structured': 255}  last-1000 {'dark': 1000, 'noise': 0, 'structured': 0}
+ D=12 theta=0.500 C equal costs              visits {'dark': 839, 'noise': 4137, 'structured': 1024}  last-1000 {'dark': 275, 'noise': 725, 'structured': 0}
+ D=12 theta=0.500 A costs 0/1/1, lambda=1e4  visits {'dark': 4625, 'noise': 1120, 'structured': 255}  last-1000 {'dark': 1000, 'noise': 0, 'structured': 0}
+ D=12 theta=0.318 C equal costs              visits {'dark': 297, 'noise': 5192, 'structured': 511}  last-1000 {'dark': 42, 'noise': 958, 'structured': 0}
+ D=12 theta=0.318 A costs 0/1/1, lambda=1e4  visits {'dark': 2541, 'noise': 3204, 'structured': 255}  last-1000 {'dark': 949, 'noise': 51, 'structured': 0}
+
+=== S3: entropy sum_k<=N q(k) log2 1/q(k) of the change-point prior (summed per dyadic level) ===
+  k up to 2^10        Elias-gamma (toy):  2.488 bits   1/(k log^2 k)-type:  4.081 bits
+  k up to 2^30        Elias-gamma (toy):  2.500 bits   1/(k log^2 k)-type:  5.567 bits
+  k up to 2^100       Elias-gamma (toy):  2.500 bits   1/(k log^2 k)-type:  6.989 bits
+  k up to 2^1000      Elias-gamma (toy):  2.500 bits   1/(k log^2 k)-type:  9.416 bits
+  k up to 2^1000000   Elias-gamma (toy):  2.500 bits   1/(k log^2 k)-type: 16.345 bits

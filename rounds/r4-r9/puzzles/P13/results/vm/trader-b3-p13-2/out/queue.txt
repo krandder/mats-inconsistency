@@ -1,0 +1,5 @@
+pil_econ_F0 econ_maze.py --mode econ --W0 20 --frac 0.5 --wealth_cap 1 --lam_c 1 --lam_v 0.3 --train_pick random --D 30 --lr 1e-3 --bs 50 --diag_every 100 --final_ckpt 1 --iters 1650 --seed 100 --out out/pil_econ_F0
+ev_pil_econ_F0@pil_econ_F0 eval_maze.py --kind trader --ckpt out/pil_econ_F0.pt --sets v9,m13,v33,m59 --jopt none --mult 12  --out out/ev_pil_econ_F0
+pil_econ_F0_x@ev_pil_econ_F0 econ_maze.py --mode econ --W0 20 --frac 0.5 --wealth_cap 1 --lam_c 1 --lam_v 0.3 --train_pick random --D 30 --lr 1e-3 --bs 50 --diag_every 100 --final_ckpt 1 --ckpt_every 300 --iters 3300 --seed 100 --out out/pil_econ_F0
+ev_pil_econ_F0_x@pil_econ_F0_x eval_maze.py --kind trader --ckpt out/pil_econ_F0.pt --sets v9,m13,v33,m59 --jopt none --mult 12  --out out/ev_pil_econ_F0_x
+END

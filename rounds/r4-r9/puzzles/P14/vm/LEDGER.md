@@ -1,0 +1,103 @@
+- 2026-09-29T20:13:49Z CREATE vm=trader-b3-p14-1 zone=us-central1-a epoch=1790712829 type=c2d-highcpu-32 spot max_run=6h rate_ceiling=1.20 spend_before=0
+- 2026-09-29T20:15:21Z READY vm=trader-b3-p14-1 ip=[ip-removed] cpus=32 torch=2.14.0+cpu 
+- 2026-09-29T20:31:51Z START vm=trader-b3-p14-1 queue=queue_tune1.txt jobs=108 parallel=28
+- 2026-09-29T20:37:32Z SYNC vm=trader-b3-p14-1 verified_files=73 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T20:43:42Z SYNC vm=trader-b3-p14-1 verified_files=103 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T20:50:03Z SYNC vm=trader-b3-p14-1 verified_files=105 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T20:50:30Z CREATE vm=trader-b3-p14-2 zone=us-central1-c epoch=1790715030 type=c2d-highcpu-32 spot max_run=6h rate_ceiling=1.20 spend_before=0.70
+- 2026-09-29T20:51:57Z READY vm=trader-b3-p14-2 ip=[ip-removed] cpus=32 torch=2.14.0+cpu 
+- 2026-09-29T20:53:41Z START vm=trader-b3-p14-2 queue=queue_tdist_tune.txt jobs=34 parallel=28
+- 2026-09-29T20:55:37Z DELETE vm=trader-b3-p14-1 epoch=1790715174 reason="gone without delete: spot preempted at 2026-09-29T13:52:54.925-07:00" leftover_disks="trader-b3-p14-2	us-central1-c" spend_now=0.94
+- 2026-09-29T20:55:39Z AUTORESUME from=trader-b3-p14-1 to=trader-b3-p14-1-r1 queue=queue_tune1.txt
+- 2026-09-29T20:56:51Z CREATE vm=trader-b3-p14-1-r1 zone=us-central1-c epoch=1790715411 type=c2d-highcpu-32 spot max_run=6h rate_ceiling=1.20 spend_before=0.88
+- 2026-09-29T20:58:38Z READY vm=trader-b3-p14-1-r1 ip=[ip-removed] cpus=32 torch=2.14.0+cpu 
+- 2026-09-29T20:59:46Z START vm=trader-b3-p14-1-r1 queue=queue_tune1.txt jobs=108 parallel=28
+- 2026-09-29T21:00:58Z SYNC vm=trader-b3-p14-1-r1 verified_files=58 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T21:05:06Z SYNC vm=trader-b3-p14-2 verified_files=98 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T21:06:50Z SYNC vm=trader-b3-p14-1-r1 verified_files=58 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T21:09:15Z START vm=trader-b3-p14-2 queue=queue_tune2spec.txt jobs=120 parallel=18
+- 2026-09-29T21:12:46Z SYNC vm=trader-b3-p14-1-r1 verified_files=70 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T21:14:10Z SYNC vm=trader-b3-p14-2 verified_files=184 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T21:15:29Z SYNC vm=trader-b3-p14-2 verified_files=206 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T21:16:48Z SYNC vm=trader-b3-p14-2 verified_files=225 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T21:18:14Z SYNC-PARTIAL vm=trader-b3-p14-2 (files changing during tar skipped)
+- 2026-09-29T21:18:14Z SYNC vm=trader-b3-p14-2 verified_files=249 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T21:18:54Z SYNC-PARTIAL vm=trader-b3-p14-1-r1 (files changing during tar skipped)
+- 2026-09-29T21:18:54Z SYNC vm=trader-b3-p14-1-r1 verified_files=102 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T21:19:54Z SYNC-PARTIAL vm=trader-b3-p14-2 (files changing during tar skipped)
+- 2026-09-29T21:19:55Z SYNC vm=trader-b3-p14-2 verified_files=264 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T21:21:22Z SYNC-PARTIAL vm=trader-b3-p14-2 (files changing during tar skipped)
+- 2026-09-29T21:21:25Z SYNC vm=trader-b3-p14-2 verified_files=294 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T21:25:11Z SYNC vm=trader-b3-p14-1-r1 verified_files=144 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T21:25:51Z SYNC vm=trader-b3-p14-2 verified_files=338 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T21:26:47Z START vm=trader-b3-p14-2 queue=queue_bracket_dist.txt jobs=4 parallel=4
+- 2026-09-29T21:27:26Z SYNC vm=trader-b3-p14-1-r1 verified_files=156 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T21:29:46Z START vm=trader-b3-p14-2 queue=queue_bracket_spec.txt jobs=114 parallel=24
+- 2026-09-29T21:30:43Z SYNC-PARTIAL vm=trader-b3-p14-2 (files changing during tar skipped)
+- 2026-09-29T21:30:43Z SYNC vm=trader-b3-p14-2 verified_files=440 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T21:31:25Z SYNC vm=trader-b3-p14-1-r1 verified_files=190 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T21:37:15Z SYNC vm=trader-b3-p14-1-r1 verified_files=218 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T21:43:05Z START vm=trader-b3-p14-1-r1 queue=queue_bracket_spec_tail.txt jobs=44 parallel=24
+- 2026-09-29T21:43:26Z SYNC-PARTIAL vm=trader-b3-p14-1-r1 (files changing during tar skipped)
+- 2026-09-29T21:43:27Z SYNC vm=trader-b3-p14-1-r1 verified_files=442 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T21:43:56Z SYNC-PARTIAL vm=trader-b3-p14-1-r1 (files changing during tar skipped)
+- 2026-09-29T21:43:56Z SYNC vm=trader-b3-p14-1-r1 verified_files=438 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T21:44:35Z SYNC-PARTIAL vm=trader-b3-p14-2 (files changing during tar skipped)
+- 2026-09-29T21:44:35Z SYNC vm=trader-b3-p14-2 verified_files=566 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T21:46:14Z SYNC vm=trader-b3-p14-1-r1 verified_files=554 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T21:46:28Z START vm=trader-b3-p14-1-r1 queue=queue_bracket_bpl1d.txt jobs=6 parallel=6
+- 2026-09-29T21:47:53Z START vm=trader-b3-p14-1-r1 queue=queue_tdist_bpstar.txt jobs=10 parallel=6
+- 2026-09-29T21:49:24Z SYNC-PARTIAL vm=trader-b3-p14-1-r1 (files changing during tar skipped)
+- 2026-09-29T21:49:24Z SYNC vm=trader-b3-p14-1-r1 verified_files=586 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T21:49:34Z SYNC-PARTIAL vm=trader-b3-p14-1-r1 (files changing during tar skipped)
+- 2026-09-29T21:49:35Z SYNC vm=trader-b3-p14-1-r1 verified_files=589 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T21:52:19Z SYNC-PARTIAL vm=trader-b3-p14-1-r1 (files changing during tar skipped)
+- 2026-09-29T21:52:20Z SYNC vm=trader-b3-p14-1-r1 verified_files=606 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T21:55:16Z SYNC vm=trader-b3-p14-1-r1 verified_files=610 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T21:58:11Z SYNC vm=trader-b3-p14-1-r1 verified_files=610 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T21:58:22Z SYNC vm=trader-b3-p14-1-r1 verified_files=610 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T21:59:22Z START vm=trader-b3-p14-1-r1 queue=queue_bracket_dist_bpstar.txt jobs=4 parallel=4
+- 2026-09-29T22:01:06Z SYNC-PARTIAL vm=trader-b3-p14-1-r1 (files changing during tar skipped)
+- 2026-09-29T22:01:06Z SYNC vm=trader-b3-p14-1-r1 verified_files=614 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T22:01:18Z SYNC vm=trader-b3-p14-1-r1 verified_files=615 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T22:02:48Z SYNC vm=trader-b3-p14-1-r1 verified_files=618 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T22:03:10Z SYNC vm=trader-b3-p14-2 verified_files=645 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T22:03:46Z FREEZE PREREG.md sha256=001137d167eca5af205b0a61991b50ce81f45757d7904b0212a8b6cd24b13791
+- 2026-09-29T22:06:11Z START vm=trader-b3-p14-1-r1 queue=queue_evalall_0.txt jobs=145 parallel=28
+- 2026-09-29T22:06:58Z SYNC vm=trader-b3-p14-1-r1 verified_files=656 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T22:07:02Z START vm=trader-b3-p14-2 queue=queue_evalall_1.txt jobs=145 parallel=28
+- 2026-09-29T22:09:26Z RULE tdist_stats.py code-type rule written before any T-dist eval result (post-freeze departure, descriptive only) sha256=50bccc22f4d2f8c8
+- 2026-09-29T22:18:18Z SYNC vm=trader-b3-p14-1-r1 verified_files=684 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T22:20:58Z RULE-FIX tdist_stats.py docstring times corrected to 22:08Z/22:09Z (rule unchanged; no T-dist eval result yet) sha256=aefbf132b05780d1
+- 2026-09-29T22:29:26Z SYNC vm=trader-b3-p14-1-r1 verified_files=684 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T22:40:35Z SYNC vm=trader-b3-p14-1-r1 verified_files=690 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T22:46:19Z SYNC vm=trader-b3-p14-1-r1 verified_files=690 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T22:51:42Z SYNC vm=trader-b3-p14-1-r1 verified_files=699 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T22:57:25Z SYNC-PARTIAL vm=trader-b3-p14-1-r1 (files changing during tar skipped)
+- 2026-09-29T22:57:26Z SYNC vm=trader-b3-p14-1-r1 verified_files=732 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T23:12:29Z FIX watchdog bug: ssh inside the per-VM loop consumed the VM list on stdin, so only the first listed VM (trader-b3-p14-1-r1) was synced/idle-checked since 20:59; trader-b3-p14-2 was covered only by manual syncs (last 22:03) and its 6h max-run. vm.sh now reads the list on fd 3; watchdog restarted (pid 1519841)
+- 2026-09-29T23:18:55Z SYNC-PARTIAL vm=trader-b3-p14-2 (files changing during tar skipped)
+- 2026-09-29T23:18:56Z SYNC vm=trader-b3-p14-2 verified_files=922 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T23:19:14Z SYNC-PARTIAL vm=trader-b3-p14-2 (files changing during tar skipped)
+- 2026-09-29T23:19:14Z SYNC vm=trader-b3-p14-2 verified_files=923 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T23:19:31Z SYNC-PARTIAL vm=trader-b3-p14-1-r1 (files changing during tar skipped)
+- 2026-09-29T23:19:33Z SYNC vm=trader-b3-p14-1-r1 verified_files=828 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T23:19:48Z FIX sync bug: remote tar exited 1 when a checkpoint changed while read, so every sync during busy periods failed silently (r1 last good 22:57, -2 last good 22:03). tar now tolerates exit 1 (sha256 check drops changed files); manual syncs of both VMs verified; watchdog restarted again
+- 2026-09-29T23:20:22Z SYNC-PARTIAL vm=trader-b3-p14-1-r1 (files changing during tar skipped)
+- 2026-09-29T23:20:23Z SYNC vm=trader-b3-p14-1-r1 verified_files=837 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T23:20:46Z SYNC-PARTIAL vm=trader-b3-p14-2 (files changing during tar skipped)
+- 2026-09-29T23:20:47Z SYNC vm=trader-b3-p14-2 verified_files=927 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T23:26:49Z SYNC-PARTIAL vm=trader-b3-p14-1-r1 (files changing during tar skipped)
+- 2026-09-29T23:26:50Z SYNC vm=trader-b3-p14-1-r1 verified_files=872 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T23:27:19Z SYNC-PARTIAL vm=trader-b3-p14-2 (files changing during tar skipped)
+- 2026-09-29T23:27:20Z SYNC vm=trader-b3-p14-2 verified_files=963 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T23:32:55Z SYNC vm=trader-b3-p14-1-r1 verified_files=918 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T23:33:17Z SYNC-PARTIAL vm=trader-b3-p14-2 (files changing during tar skipped)
+- 2026-09-29T23:33:20Z SYNC vm=trader-b3-p14-2 verified_files=1015 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T23:39:10Z SYNC vm=trader-b3-p14-2 verified_files=1018 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T23:43:15Z SYNC vm=trader-b3-p14-1-r1 verified_files=917 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T23:43:30Z SYNC vm=trader-b3-p14-2 verified_files=1017 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T23:44:26Z SYNC vm=trader-b3-p14-1-r1 verified_files=917 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T23:45:38Z DELETE vm=trader-b3-p14-1-r1 epoch=1790725538 reason="eval done, final sync verified" leftover_disks="trader-b3-p14-2	us-central1-c" spend_now=7.66
+- 2026-09-29T23:45:56Z SYNC vm=trader-b3-p14-2 verified_files=1017 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P14/results
+- 2026-09-29T23:47:03Z DELETE vm=trader-b3-p14-2 epoch=1790725623 reason="eval done, final sync verified" leftover_disks="none" spend_now=7.69

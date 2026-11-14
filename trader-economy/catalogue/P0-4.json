@@ -1,0 +1,14 @@
+{
+ "id": "P0-4",
+ "question": "Does shortening the credit horizon to k=1 (chunked backprop) hurt DT-Recall's extrapolation?",
+ "setup": "Matched ladder: prefix P1 (full progressive) vs P4 (k=1) 8 seeds each, P4-cm (k=1, 22.4k steps compute-matched) 3 seeds, P5 (k=8) 2 seeds; mazes M-prog (bansal alpha 1) vs M4 (k=1), 3 seed pairs, 15k steps.",
+ "result": "Prefix: no. P4 8/8 at 0.9948\u00b10.0068 vs P1 0.9998\u00b10.0006 (Fisher p=1.0, median gap 0 pp, paired per-seed gaps <= 2.2 pp); P4-cm 0.966\u00b10.130 (3/3); F1 refuted on prefix. Mazes: M4 minus M-prog on 33x33@300 = +0.0, -31.6, +0.2 pp with every arm under-trained: inconclusive. Side finding: k=1 models stay correct without converging (P4 fixed points on fL512 per seed 0-500 of 500, rest 2-cycles or wandering, still 1.0 after 30k iterations), while every P1 seed ends at a fixed point.",
+ "status": "Informative",
+ "files": [
+  "puzzles/P0/train.py",
+  "puzzles/P0/vm/plan.py",
+  "puzzles/P0/RESULTS.md",
+  "puzzles/P0/results/p0_results.json",
+  "puzzles/P0/results/chart_p0.json"
+ ]
+}

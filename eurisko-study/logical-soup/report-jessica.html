@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Evolved traders in a prediction market</title>
+<meta name="description" content="A note for Jessica Taylor on an experiment that grows logical-induction-style traders by evolution inside an LMSR market, run in Bend2.">
+<style>
+:root{--bg:#fbfbf9;--fg:#1b1b1b;--muted:#5b5b57;--line:#e2e1dc;--accent:#2c5f8a;--box:#f1f3f6;--mono:ui-monospace,SFMono-Regular,Menlo,monospace}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141516;--fg:#e8e8e4;--muted:#a3a39c;--line:#2d2f31;--accent:#8ab8dd;--box:#1e2124}}
+:root[data-theme="dark"]{--bg:#141516;--fg:#e8e8e4;--muted:#a3a39c;--line:#2d2f31;--accent:#8ab8dd;--box:#1e2124}
+html{background:var(--bg)}body{background:var(--bg);color:var(--fg);font:17px/1.55 Georgia,"Times New Roman",serif;max-width:820px;margin:0 auto;padding:32px 16px 64px}
+h1{font-size:1.9rem;line-height:1.2;margin:0 0 .3em}h2{font-size:1.25rem;margin:2em 0 .5em;border-bottom:1px solid var(--line);padding-bottom:.25em}
+h3{font-size:1.05rem;margin:1.4em 0 .3em}p{margin:.6em 0}.lede{color:var(--muted);font-style:italic}
+table{border-collapse:collapse;width:100%;font-size:.92rem;margin:.8em 0;font-family:system-ui,sans-serif}th,td{border-bottom:1px solid var(--line);padding:.35em .5em;text-align:right;vertical-align:top}th:first-child,td:first-child{text-align:left}th{color:var(--muted);font-weight:600}
+.box{background:var(--box);border-left:3px solid var(--accent);padding:.8em 1em;margin:1em 0;border-radius:4px}
+code{font-family:var(--mono);font-size:.88em}a{color:var(--accent)}figure{margin:1em 0}img{width:100%;border-radius:6px;background:#fff}figcaption{color:var(--muted);font-size:.9rem}
+ol li,ul li{margin:.3em 0}.small{color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+<h1>Evolved traders in a prediction market</h1>
+<p class="lede">A note for Jessica Taylor from Kelvin and his research agents, 27 September 2026. It describes an experiment, not a result we are confident in yet, and ends with the questions we would most like your view on.</p>
+
+<h2>1. What this is, in one paragraph</h2>
+<p>We built a small artificial world in which programs compete to predict binary sequences. Each program is a "trader" in the sense of the logical induction paper: it reads current market prices and past outcomes, and places bets. A market maker (a logarithmic market scoring rule, LMSR) turns the bets into prices. Traders that predict better than the market gain wealth; wealth is the only resource, it pays for computation, and a trader that runs out of it dies. A trader that gets rich copies itself, with mutation, onto a poor neighbour. Nothing is designed except the market rules and a tiny instruction set. The question we are asking is whether this population, driven only by selection on trading profit, behaves like an approximate logical inductor: do prices become calibrated, do cheap patterns get priced out, does coherence between related questions emerge from arbitrage, and how does the frontier of "what gets priced" move as we add more compute?</p>
+
+<h2>2. Why we tried it</h2>
+<p>The logical induction construction enumerates all polynomial-time traders and finds prices no trader can exploit indefinitely. That is not something one can run. Two older ideas suggested a substitute. Doug Lenat's EURISKO (1976-84) kept a population of heuristics with a "worth" score and let heuristics modify heuristics; it found clever things and then stalled, partly because credit assignment was hand-tuned and the compute was tiny. Eric Baum's "Hayek machine" (1990s) ran an economy of programs with conserved money and property rights, and learned. Our experiment merges the two under the market from your paper: evolution supplies the traders, the market supplies the credit assignment, and a modern runtime (Bend2, a language that compiles one program to CPU threads and CUDA) supplies the scale. Kelvin's framing is a "bitter-lesson" version of symbolic AI: keep programs as the hypothesis space, throw out hand-written heuristics, and let search plus a market do the work.</p>
+
+<h2>3. The world, precisely</h2>
+<ul>
+<li><b>Traders.</b> A fixed-size bytecode program for a small stack machine over 32-bit integers, with market primitives: read the price of question <i>q</i>, read its last <i>k</i> outcomes, read own wealth, emit a demand (buy or sell whole shares of <i>q</i>). Every run of a trader gets a fixed fuel of 256 instructions, then stops. Reads cost extra fuel, so attention is bounded by wealth. All prices are visible to every trader.</li>
+<li><b>Questions.</b> Synthetic binary streams of graded difficulty: periodic sequences (period 2 to 16), a 16-bit linear-feedback shift register, rows of elementary cellular automata (rules 30 and 110), "is <i>n</i> prime" for increasing <i>n</i>, the parity of digits of pi, and compound questions A∧B and A∨B over pairs of base questions, so coherence can be tested. Between 256 and 4096 questions are live at once.</li>
+<li><b>Market.</b> One LMSR per question (liquidity 64 shares), one price update per epoch from the aggregate demand. Payoff is demand × (outcome − price). A budgeter clips each trader's demand so its worst-case loss is at most its wealth, as in the paper. The market maker's bounded subsidy is the only way wealth enters the world; there is no other income.</li>
+<li><b>Life and death.</b> Each trader pays one cash unit per instruction executed. Below one share of wealth it is inert. Above twice its starting wealth it splits: a mutated copy takes half the wealth and overwrites the poorest neighbour on a grid, whose wealth is destroyed. Background mutation flips one byte per cell with probability 1 in 10,000 per epoch.</li>
+<li><b>Reference traders.</b> Hand-written traders run "in shadow": they read the same prices and place the same kind of bets, but in a separate ledger, so they never affect prices, never replicate and never die. They are our exploitability probes: a constant-0.5 trader, a momentum trader, pattern detectors of period 2, 4 and 8, and an arbitrageur that trades violations of P(A∧B) ≤ min(P(A), P(B)) and P(A∨B) ≥ max(P(A), P(B)). If the population approximates a logical inductor, the profit of each of these should stop growing.</li>
+<li><b>Scale.</b> 4,096 to 65,536 traders, 5,000 epochs per run, three random seeds per configuration. The whole world is one program in Bend2; the same code ran on a laptop-class JavaScript lane, on CPU threads, and on CUDA, with bit-identical results and an accounting identity (wealth' = wealth + P&amp;L − fuel − destroyed) checked every epoch.</li>
+</ul>
+
+<h2>4. What happened</h2>
+<p>The numbers below are Brier scores of the market price against the outcome (0.25 is the score of a constant 0.5; 0 is perfect), averaged over the last 50 of 5,000 epochs and over three seeds. "Traders per question" is the population size divided by the number of live questions.</p>
+
+<table>
+<tr><th>traders per question</th><th>population</th><th>questions</th><th>periodic</th><th>primality</th><th>A∧B</th><th>A∨B</th><th>LFSR</th><th>momentum probe</th><th>arbitrage probe</th></tr>
+<tr><td>64</td><td>16k</td><td>256</td><td>0.084</td><td>0.091</td><td>0.120</td><td>0.221</td><td>0.263</td><td>loses</td><td>gains</td></tr>
+<tr><td>16</td><td>4k</td><td>256</td><td>0.149</td><td>0.120</td><td>0.147</td><td>0.236</td><td>0.260</td><td>flat</td><td>gains</td></tr>
+<tr><td>16</td><td>16k</td><td>1024</td><td>0.133</td><td>0.108</td><td>0.132</td><td>0.232</td><td>0.256</td><td>flat</td><td>gains</td></tr>
+<tr><td>16</td><td>64k</td><td>4096</td><td>0.126</td><td>0.104</td><td>0.127</td><td>0.228</td><td>0.257</td><td>loses</td><td>gains</td></tr>
+<tr><td>4</td><td>16k</td><td>4096</td><td>0.204</td><td>0.177</td><td>0.188</td><td>0.253</td><td>0.256</td><td>gains a lot</td><td>gains</td></tr>
+<tr><td>1</td><td>4k</td><td>4096</td><td>0.241</td><td>0.238</td><td>0.239</td><td>0.250</td><td>0.251</td><td>gains a lot</td><td>gains</td></tr>
+</table>
+<p class="small">"Loses / gains" is the sign of the reference trader's cumulative profit slope over the last 1,000 epochs. Seed-to-seed standard deviations are 0.001 to 0.03; the full table with them is in the <a href="index.html">technical report</a>.</p>
+
+<figure><img src="plots/brier_vs_K.png" alt="Brier score per question family against population size"><figcaption>Brier per family against population size, one line per number of questions. The lines separate by traders per question, not by population.</figcaption></figure>
+
+<h3>What we read from this</h3>
+<ol>
+<li><b>The controlling quantity is traders per question.</b> Three configurations with 16 traders per question, spanning a 16-fold range of population, give the same scores on every question family. More traders per question means more lottery tickets and more replication pressure per question; per-trader compute barely matters: a separate sweep from 64 to 4,096 instructions of fuel per run, at 16 traders per question, moved the periodic score only from 0.144 to 0.126, about one seed standard deviation.</li>
+<li><b>Cheap patterns get priced out, at high enough density.</b> At 64 traders per question the market beats the momentum and pattern probes: their profit turns negative. At 4 per question they profit steadily. That is the exploitability property of a logical inductor showing up, but only for the simplest trader class.</li>
+<li><b>Coherence does not emerge.</b> A∧B is priced whenever A and B are, but A∨B never is, and the arbitrage probe's profit grows in every configuration; violations of P(A∧B) ≤ min(P(A),P(B)) sit between 0.01 and 0.09 and never decay. In the paper the arbitrageur is among the enumerated traders and gets priced out. Here it has to be found by evolution, and in 5,000 epochs it never was. Restricting traders to see only nearby prices made no difference, so information is not the constraint; the population simply never produced the program.</li>
+<li><b>The frontier stops early.</b> The shift register, cellular automaton rule 110 and the digits of pi are never priced at any density we tried. Rule 30 is priced <i>worse</i> than chance at low density, because lineages that profit on the easy families emit the same demand on every question and drag the random ones the wrong way. "Primality" at 0.09 is not primality: it is the base rate plus the even/odd rhythm of the primes, which a period-2 detector finds.</li>
+<li><b>The ecology is unequal but not a monoculture.</b> Wealth Gini is 0.75 to 0.82 everywhere; the number of distinct genotypes stays close to the population size.</li>
+</ol>
+
+<h2>5. What the runtime bought us</h2>
+<p>Bend2 gave exactness and portability: the same program produced byte-identical outputs on three backends, which made resuming after cloud spot-instance preemptions trivial (three preemptions, all recovered from verified checkpoints without manual work). It did not yet give a GPU multiplier: on an NVIDIA L4 the world runs at about 3.4 million trader instructions per second against 2 to 3 million on CPU, and an A100 is no faster, because 90% of wall time is the runtime's host-side bookkeeping and the kernel is register-limited. The entire experiment cost about $10 of GPU time.</p>
+
+<h2>6. Questions we would value your view on</h2>
+<ol>
+<li><b>Is wealth-weighted evolution a reasonable finite approximation of the logical induction criterion?</b> The construction's guarantee comes from enumerating all traders and the budgeter. Here the trader class is "programs that evolution finds under selection on profit", which is much narrower, and the budgeter is the only piece of the paper we kept. What property should we expect to hold, and what is the right test of it beyond "reference traders stop profiting"?</li>
+<li><b>Why does arbitrage not evolve, and what would make it?</b> Reading three prices and trading their inconsistency is a short program, and the opportunity is large and persistent. Candidate explanations: the reward for coherence trades is small per trade compared with betting on a biased base question; the mutation operator (byte flips) rarely assembles three coordinated reads; or the compound questions resolve too rarely to reward the trade. Is there a known reason arbitrage should be hard for selection but easy for enumeration?</li>
+<li><b>Does the "traders per question" collapse have a theoretical reading?</b> It looks like a density of exploration per market. Is there a version of the paper's argument where the number of traders per sentence, rather than total traders, is the relevant resource?</li>
+<li><b>What would you change in the world?</b> We are considering: a periodic held-out family to measure transfer (we used pi, which is uninformative because pi is never priced); longer runs (20,000 epochs) at 256 to 1,024 traders per question; conditional questions and a combinatorial market instead of independent LMSRs; and real forecasting questions once transfer works.</li>
+</ol>
+
+<h2>7. Where the details are</h2>
+<p>The <a href="index.html">technical report</a> has the full tables, the ablations (bootstrap income, local visibility, held-out family), the GPU measurements and the corrections we made along the way. The <a href="plots.html">plots page</a> has the time series. Two background documents explain the motivation: a <a href="eurisko-study.html">study of EURISKO, Yudkowsky's early writings on it, and the modern landscape of LLM-driven algorithm discovery</a>, and a <a href="ideas.html">survey of self-modifying agents and which of their inner loops a fast parallel runtime can accelerate</a>. All code, runs and per-epoch metrics are on Kelvin's machines and can be shared on request.</p>
+<p class="small">Prepared by Kelvin's research agents (an Anthropic Claude model as scientific lead; builders on OpenAI and Anthropic models), reviewed for numbers against the run logs on 27 September 2026. Every figure above is the mean of three seeds unless stated.</p>
+</body>
+</html>

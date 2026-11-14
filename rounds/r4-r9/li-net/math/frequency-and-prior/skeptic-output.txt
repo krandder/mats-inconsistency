@@ -1,0 +1,29 @@
+=== S1: R3 sandwich + tilt, R4 Pythagoras + KKT, R6, across 40 random (theory, prior, price) draws ===
+  min Pythagorean margin D(y,P)-D(y,x*)-Coh   : -2.91e-05
+  min KKT <grad h(x*)-grad h(P), v-x*> (free rows): -5.59e-05
+  min sandwich slack (value-lo, hi-value)       : 9.69e-04
+  max tilt-form error (forced rows dropped)     : 2.29e-04
+  min D(f,P)-Coh (R6)                           : 4.35e-02
+  check.py L-BFGS-on-softmax Coh above the accurate value by >1e-4 in 5 of 40 draws; worst excess 1.60e-03
+
+=== S2: R7 block map across seeds and step sizes: monotone KL, Chen-Teboulle bound, empirical rate ===
+  seed=2001 b0/bP= 0.01: KL t=1 2.26e+00, t=20 1.25e+00, t=120 2.82e-01; monotone=True; bound holds=True; per-step ratio (t>=60) ~ 0.9871
+  seed=2002 b0/bP= 0.10: KL t=1 1.69e+00, t=20 8.76e-02, t=120 1.17e-04; monotone=True; bound holds=True; per-step ratio (t>=60) ~ 0.9359
+  seed=2003 b0/bP= 1.00: KL t=1 1.18e-01, t=20 5.50e-07, t=120 1.30e-16; monotone=True; bound holds=True; per-step ratio (t>=60) ~ nan
+  seed=2004 b0/bP= 0.10: KL t=1 6.67e-01, t=20 5.57e-02, t=120 1.02e-03; monotone=True; bound holds=True; per-step ratio (t>=60) ~ 0.9642
+  seed=2005 b0/bP= 0.03: KL t=1 5.80e-01, t=20 2.23e-01, t=120 3.12e-02; monotone=True; bound holds=True; per-step ratio (t>=60) ~ 0.9803
+
+=== S3: R5 'or, equivalently' check: PDG-with-data objective vs CE + lambda*Coh ===
+  coherent f          : CE(y,P)=4.25667  Coh_T(P)=0.00000  PDG objective - prior NLL (= bP*CE, R5) = 4.25667   CE + 1.0*Coh = 4.25667
+  perturbed, same CE  : CE(y,P)=4.25667  Coh_T(P)=0.10181  PDG objective - prior NLL (= bP*CE, R5) = 4.25667   CE + 1.0*Coh = 4.35847
+  -> the PDG-with-data objective cannot see Coh beyond CE; it is not equivalent to CE + lambda*Coh.
+  Lemma 1 bound check: bP*CE(y,P) >= bP*Coh_T(P) for 200 random P: True
+
+=== S4: Ideas 'self-distillation unbiased if deeper prices are calibrated' ===
+  calibration of P_M: E[y | P_M] = 0.4986  P_M = 0.4986
+  distillation target E[P_M | z] = [np.float64(0.4986), np.float64(0.4986)]  vs Bayes E[y | z] = [np.float64(0.0983), np.float64(0.8991)]
+  -> calibration alone is not enough; need P_M = E[y | G] with G containing F_N.
+
+=== S5: R1b with the generator's mixed widths (2 or 3) and without-replacement draws ===
+  #2-clauses satisfied per world: {45}  #3-clauses: {140}
+  max |p(w|T) - pi(w|Mod T)| over 50 mixed-width theories: 8.3e-17

@@ -1,0 +1,18 @@
+{
+ "id": "E-MR-1",
+ "question": "Does paying every step of a recurrent residual net its own log-score change make it extrapolate to longer inputs?",
+ "status": "Gain",
+ "setup": "Market ResNet phase 1: one recurrent residual block (width 128) with streams x (input, re-injected), b (belief logits, each step paid its LMSR/log-score change) and h (scratch); prefix-sum parity, trained on lengths 8-32 with T = 24 steps, 10000 iterations, batch 128, 3 seeds per arm, L4 spot GPUs. Arms: A final loss only, B per-step market scoring rule, Bds deep supervision, C B plus a gain head for priced halting, Ctt train-time halting, D PonderNet, P Bansal et al. 2022 progressive loss (the bar). Tested at L64 and L128 to a cap of twice the length.",
+ "result": "Yes. Exact accuracy L64 / L128: B, Bds and C 1.000 / 1.000 in every seed; Ctt 1.000 / 0.999; A 0.63 +- 0.80 / 0.11 +- 0.39; P 0.99 +- 0.03 / 0.64 +- 0.82 (seeds 0.78, 0.87, 0.26); PonderNet 0.007 / 0.000. C meets the bar (extrapolates at least as well as A) and beats Bansal at L128. Deep supervision does as well, so the gain comes from scoring every step, not from the market form of the score. Monotone improvement is not guaranteed: at L128 only 0.50 (B) to 0.75 (Bds) of examples never lose log score at any step.",
+ "files": [
+  "market-resnet/RESULTS.md",
+  "market-resnet/mresnet.py",
+  "market-resnet/train.py",
+  "market-resnet/evaluate.py",
+  "market-resnet/analyze_mr.py",
+  "market-resnet/results/summary.json",
+  "market-resnet/charts/p1_fixed_steps_L64.json",
+  "market-resnet/charts/p1_fixed_steps_L128.json",
+  "GPU-LEDGER.md"
+ ]
+}

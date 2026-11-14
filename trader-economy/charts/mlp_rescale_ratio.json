@@ -1,0 +1,58 @@
+{
+ "id": "mlp_rescale_ratio",
+ "kind": "bar",
+ "title": "Rescale unit by c=10 (in x10, out /10, same function): pay or cost at c=10 / at c=1",
+ "unit": "ratio (1 = invariant)",
+ "source": "trader-economy/results/rescale_summary.json",
+ "note": "relu, 16 units, top-6 units x 5 seeds; normalized goods = activation / reference std",
+ "bars": [
+  {
+   "label": "Shapley pay, in-agent",
+   "value": 1.0,
+   "ci": 0.0,
+   "highlight": false
+  },
+  {
+   "label": "LOO pay, in-agent",
+   "value": 1.0,
+   "ci": 0.0,
+   "highlight": false
+  },
+  {
+   "label": "Activation-share pay, in-agent",
+   "value": 6.1293,
+   "ci": 0.1837,
+   "highlight": false
+  },
+  {
+   "label": "L2 cost, in-agent",
+   "value": 100.0,
+   "ci": 0.0,
+   "highlight": false
+  },
+  {
+   "label": "L2 cost, out-agent",
+   "value": 0.01,
+   "ci": 0.0,
+   "highlight": false
+  },
+  {
+   "label": "Activation-share, normalized goods",
+   "value": 1.0,
+   "ci": 0.0,
+   "highlight": true
+  },
+  {
+   "label": "L2 cost out-agent, normalized goods",
+   "value": 1.0,
+   "ci": 0.0,
+   "highlight": true
+  },
+  {
+   "label": "L2 cost in-agent, normalized goods",
+   "value": 100.0,
+   "ci": 0.0,
+   "highlight": false
+  }
+ ]
+}

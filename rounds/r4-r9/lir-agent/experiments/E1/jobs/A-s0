@@ -1,0 +1,6 @@
+0 30 warm-roles-s0 --arm P --seed 0 --sft-steps 100 --sft-batch 16 --rl-steps 0 --eval-n 16
+0 30 warm-fused-s0 --arm B0 --seed 0 --sft-steps 100 --sft-batch 16 --rl-steps 0 --eval-n 16
+1 42 P-on-s0 --arm P --seed 0 --init-from /root/runs/ckpt/warm-roles-s0/warm.pt --sft-steps 0 --rl-steps 60 --eval-every 30 --eval-n 128 --p-reward approval
+2 42 D-on-s0 --arm M0 --seed 0 --init-from /root/runs/ckpt/warm-fused-s0/warm.pt --sft-steps 0 --rl-steps 60 --eval-every 30 --eval-n 128 --p-reward approval
+1 42 F-on-s0 --arm B0 --seed 0 --init-from /root/runs/ckpt/warm-fused-s0/warm.pt --sft-steps 0 --rl-steps 60 --eval-every 30 --eval-n 128 --p-reward approval
+2 42 P-off-s0 --arm P --seed 0 --init-from /root/runs/ckpt/warm-roles-s0/warm.pt --sft-steps 0 --rl-steps 60 --eval-every 30 --eval-n 128 --p-reward env

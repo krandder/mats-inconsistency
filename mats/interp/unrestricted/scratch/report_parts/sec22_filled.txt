@@ -1,0 +1,56 @@
+### 2.2 Results against MC, RB-MC and RQMC at equal FLOPs (MEASURED, pre-registered)
+
+Setup: 72 census nets (3 healthy seeds per configuration, seeds from 5000; healthy rates in section 6). Truth: 8
+scrambled-Sobol radius-exact replicates at 2^23 points (2^21 for widths 16-32); truth errors 1e-16 to 1e-9 in nMSE.
+RQMC: scrambled Sobol, radius exact, 8-32 replicates per N up to 2^22 (2^20 for widths 16-32). Every comparison uses
+the B&B record's own cost. Medians over the 3 nets, primary arm (gap priority, midpoint splits); full tables for both
+arms in `results/eval_tables.md`:
+
+| n | L | B&B nMSE at 2^16 / 2^20 / 2^22 passes | RQMC : B&B at 2^16 / 2^20 / 2^22 | RB-MC : B&B at 2^22 | exact mass | certified nMSE (final) |
+|---|---|---|---|---|---|---|
+| 3 | 4 | 6.6e-06 / 2.1e-10 / 1.5e-12 | 2.0e-04 / 0.019 / 2.9 | 1.1e+05 | 0.93 | 9.0e-11 |
+| 3 | 8 | 1.1e-06 / 6.4e-11 / 3.5e-13 | 4.9e-04 / 0.29 / 2.6 | 5.3e+05 | 0.97 | 4.8e-11 |
+| 3 | 16 | 6.6e-07 / 3.3e-10 / 9.3e-13 | 3.0e-03 / 0.068 / 1.2 | 1.6e+05 | 0.97 | 3.3e-10 |
+| 3 | 32 | 2.3e-08 / 9.6e-13 / 6.1e-15 | 0.095 / 2.7 / 13 | 2.6e+07 | 0.99 | 8.9e-09 |
+| 4 | 4 | 9.6e-05 / 4.5e-07 / 2.7e-08 | 1.2e-04 / 7.6e-04 / 8.5e-04 | 7.3 | 0.40 | 7.4e-05 |
+| 4 | 8 | 8.2e-04 / 1.6e-06 / 2.4e-07 | 1.1e-04 / 5.3e-04 / 6.7e-03 | 0.83 | 0.36 | 4.6e-04 |
+| 4 | 16 | 1.0e-04 / 1.1e-06 / 1.7e-07 | 2.5e-04 / 1.6e-04 / 1.3e-04 | 1.1 | 0.52 | 9.6e+03 |
+| 4 | 32 | 3.5e-05 / 8.8e-07 / 7.3e-08 | 1.4e-03 / 7.7e-04 / 6.5e-04 | 2.7 | 0.39 | 3.5e+06 |
+| 6 | 4 | 8.2e-03 / 8.2e-04 / 3.1e-04 | 1.7e-05 / 4.3e-06 / 1.5e-06 | 6.5e-04 | 0.00 | 0.87 |
+| 6 | 8 | 8.6e-03 / 9.2e-04 / 3.0e-04 | 7.8e-06 / 1.6e-06 / 8.8e-07 | 6.3e-04 | 0.00 | 8 |
+| 6 | 16 | 4.0e-03 / 4.4e-04 / 1.1e-04 | 1.7e-04 / 2.9e-05 / 2.8e-05 | 1.9e-03 | 0.00 | 7.9e+05 |
+| 6 | 32 | 1.5e-03 / 1.3e-04 / 4.0e-05 | 1.4e-04 / 3.9e-05 / 2.9e-05 | 5.1e-03 | 0.00 | 7.5e+10 |
+| 6 | 64 | 3.9e-03 / 5.6e-04 / 1.4e-04 | 5.4e-05 / 7.1e-06 / 4.0e-06 | 1.4e-03 | 0.00 | 1.9e+24 |
+| 8 | 4 | 0.025 / 7.4e-03 / 3.5e-03 | 7.9e-06 / 1.2e-06 / - | 6.0e-05 | 0.00 | 5.5 |
+| 8 | 8 | 0.023 / 6.2e-03 / 2.6e-03 | 5.6e-06 / 1.6e-06 / 5.5e-07 | 7.9e-05 | 0.00 | 4.5e+02 |
+| 8 | 16 | 0.023 / 3.9e-03 / 1.4e-03 | 3.2e-05 / 2.1e-06 / 2.8e-06 | 1.5e-04 | 0.00 | 4.5e+06 |
+| 8 | 32 | 0.013 / 4.7e-03 / 2.0e-03 | 6.6e-05 / 1.1e-05 / 6.6e-06 | 1.0e-04 | 0.00 | 1.3e+16 |
+| 8 | 64 | 0.017 / 4.5e-03 / 2.3e-03 | 1.5e-05 / 3.4e-06 / 1.2e-06 | 8.6e-05 | 0.00 | 2.6e+34 |
+
+PENDING_BIG
+
+Reading the table:
+- **Width 3.** The B&B certifies 93-99% of the Gaussian mass as exactly integrated and its certificate reaches nMSE
+  1e-11 to 1e-8 (P5: hit on 6 of 6 nets at depth <= 8). Against RQMC it reaches parity only at 1e6-4e6 passes, where
+  both are near nMSE 1e-12 and most of the B&B's errors fall below ten times the truth's own error, so they are not
+  resolved. Resolved wins of 3x or more: 4 of 24 runs (both arms), all at depth 16-32 (3.8x, 5x, 11x and 12-18x at
+  2.7e5-4.2e6 passes). At depth 4-8, none (P1, registered for depth <= 8: refuted). Deep width-3 nets are easier because
+  they collapse onto few gate patterns (14-32 per net at every depth, section 3.5).
+- **Width 4.** 10^3-10^4 times worse than RQMC at every budget (P2: hit, 12 of 12 nets); at 4e6 passes it is between
+  slightly worse than and 7x better than radius-exact MC.
+- **Widths 6-8.** 10^4-10^6 times worse than RQMC and 10^3-10^4 times worse than radius-exact MC at every budget
+  (P3 and P8: hit, 30 of 30 nets). No cell is ever certified exact (exact mass below 1%), and the certificate is
+  vacuous: its nMSE grows from about 1 at depth 4 to 1e16-1e34 at depth 32-64, because symbolic bounds through
+  unstable units compound with depth.
+- **Monotone in width** (P6: hit): the median nMSE at 2^20 passes is 6e-11, 2e-6, 9e-4, 6e-3 at widths 3, 4, 6, 8
+  (depth 8) and 3e-10, 1e-6, 4e-4, 4e-3 (depth 16).
+- **The secondary arm** (backward-sensitivity priority) is within a factor of a few of the primary everywhere and
+  better at width 3 and depth 16-32 (above).
+- **Sensitivity to the FLOP undercounts astra found** (post hoc): if every B&B cost were doubled (the most those
+  undercounts can amount to), RQMC gets twice the budget, and at width 3 it improves fast with budget: of the five
+  resolved wins of 3x or more, one stays above 3x (12x becomes 5.6x), three fall to 0.4-2.3x, and one cannot be
+  checked (RQMC was not run beyond 2^22). The width-3 wins are therefore fragile; the losses elsewhere only grow.
+- **Deterministic Sobol points** (P7, an empirical prediction whose rationale was wrong [A]): the centred,
+  unscrambled Sobol set had 0.30, 0.22 and 0.37 times the nMSE of scrambled Sobol (geometric means over the 54 nets of
+  widths 3-8, at N = 2^10, 2^14, 2^18): it was 2.7-4.5x better, outside the registered band [1/3, 3]. So a fixed
+  deterministic point set did better than its randomised version here; it is still sampling at fixed points.

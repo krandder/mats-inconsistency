@@ -1,0 +1,198 @@
+# L1 lead verbatim excerpts (extracted 2026-09-27 ~23:15Z with sed from pypdf text / arXiv abs meta).
+# Each block: source, file line range. Cluster A PDFs cached in /tmp/traders-net/L1/A (not synced).
+
+=== 1401.1465 lines 750,757 (Balduzzi 2014: feedback plasticity accuracy)
+and delay lines in D (which learn starting points) thus allows the network to implicitly compute
+derivatives and thereby determine directions of travel.
+For the foveator, it is easy to read oﬀ the correspondence between the NE, N, and NW movements
+of the actuators and the locations of objects driving the movements.
+(iii) Shutting oﬀ feedback plasticity (top rows of Fig 2 and 3) slightly worsens performance, from
+98% to 95% for the tracker and from 95% to 93% for the foveator. However, it dramatically worsens
+the “reaction times” of the networks, quantiﬁed as the number of times the actuators correctly engage
+per 1000 tics.
+
+=== cs/0105025 lines 118,124 (Kwee 2001: birth threshold)
+the actual revenue is larger than its bid, an agent can increa se its wealth.
+Birth, death and taxes. Agents are allowed to create children if their
+wealth is larger than some predetermined number (here 1000) . Parents en-
+dorse their oﬀspring with a minimum amount of money which is s ubtracted
+from their wealth, but in return parents receive a share c of their children’s
+future proﬁt. Children’s rules are randomly created, copie d or mutated from
+their parents with probabilities pr, pc and pm, respectively. See Table 1 for
+
+=== cs/0105025 lines 135,140 (Kwee 2001: parameters incl. copyright share)
+R 100.0 reward value
+ǫ 0.01 children always bid this amount higher than highest bid
+u 0.25 increase level if (1- u) instances are solved; decrease if less than u.
+t 1e-3 execution tax
+c 0.25 copyright share
+m 0.5 mutation ratio
+
+=== cs/0105025 lines 153,157 (Kwee 2001: stability is an art)
+4 Implementation
+We found Hayek4 rather diﬃcult to reproduce. Several parame ters require
+tuning — making Hayek stable still seems to remain an art. Par ameter
+settings of our Hayek system are summarized in Table 1; for a d etailed
+explanation see [2]. For small task sizes our program tends t o ﬁnd reliable
+
+=== 1206.6443 lines 726,734 (Storkey 2012: in-sample wealth adaptation)
+by requiring a minimum of ten of observations per tree
+leaf. Individual decision trees were extracted from the
+random forest after it has been trained on all of the
+training data, and were used to generate each of the
+20 agents’ beliefs. In our comparisons, market wealths
+were adapted on the complete training set with 1 train-
+ing epoch. 30 iterations of each test were performed
+3Available at: http://archive.ics.uci.edu/ml/
+to generate meaningful statistics, with data being ran-
+
+=== 2606.02859 lines 104,110 (Economy of Minds: abstract numbers (MATH 15.9->57.0; finance 45.0->60.0))
+global awareness, explicit coordination, engineered topology, or prescribed communication protocols.
+We implement this framework using LLM-based agents and evaluate it on five digital agentic tasks,
+where EOM improves mathematical reasoning from 15.9% to 57.0%, raises financial research
+performance from 45.0% to 60.0%, increases scientific research accuracy over the baseline from
+5.0% to 20.0%, reduces accelerator-design average energy-delay product to 39.3 versus 80.2 for a
+strong domain-specific method, and attains a best distributed-system optimization cost of 657 versus
+930 for the baseline. Across these domains, we show with detailed cases that the agent society
+
+=== 2606.02859 lines 312,316 (Economy of Minds: Finance-Agent-Bench)
+accelerator design, EOM reduces average EDP to 39.3, compared with 43.1 for the same-backbone
+complete REACTagent and 80.2 for the domain-specific DOSA baseline in Table 1 (right).
+Figure 4 shows that, on Finance-Agent-Bench, EOM rises from 45.0% at initialization to 60.0%
+after 30 training tasks. This outperforms Multi-Agent Debate at 50.0%, REACTat 45.0%, and GEA
+at 50.0%, even though each partial agent in EOM can access only one tool. On FrontierScience-
+
+=== 2606.02859 lines 1742,1746 (Economy of Minds: 6 founders)
+for deciding when to act.
+Gen. Born Mutated agent New behavior Trigger
+0 ep. 0 6 founders — Initial population
+1 ep. 2Evaluator-9163 Cheap pre-eval checks before
+request_eval()
+
+=== 1102.1465 abs meta (Barbu-Lay: CT lymph node)
+content="Prediction markets are used in real life to predict outcomes of interest such as presidential elections. This paper presents a mathematical theory of a
+rtificial prediction markets for supervised learning of conditional probability estimators. The artificial prediction market is a novel method for fusing the pr
+ediction information of features or trained classifiers, where the fusion result is the contract price on the possible outcomes. The market can be trained onlin
+e by updating the participants&#39; budgets using training examples. Inspired by the real prediction markets, the equations that govern the market are derived f
+rom simple and reasonable assumptions. Efficient numerical algorithms are presented for solving these equations. The obtained artificial prediction market is sh
+own to be a maximum likelihood estimator. It generalizes linear aggregation, existent in boosting and random forest, as well as logistic regression and some ker
+nel methods. Furthermore, the market mechanism allows the aggregation of specialized classifiers that participate only on specific instances. Experimental compa
+risons show that the artificial prediction markets often outperform random forest and implicit online learning on synthetic data and real UCI datasets. Moreover
+, an extensive evaluation for pelvic and abdominal lymph node detection in CT data shows that the prediction market improves adaboost&#39;s detection rate from 
+79.6% to 81.2% at 3 false positives/volume."
+
+=== 1711.03705 lines 320,340 (Sahoo 2017 Hedge Backpropagation: multiplicative weights over depth classifiers)
+siﬁer is denoted by α(l), and the loss suffered by the model
+isL(F(x),y ) = ∑L
+l=0α(l)L(f(l)(x),y ). During the online
+learning procedure, we need to learnα(l), Θ(l) andW (l).
+We propose to learnα(l) using the Hedge Algorithm (Fre-
+und and Schapire 1997). At the ﬁrst iteration, all weights α
+are uniformly distributed, i.e.,α(l) = 1
+L+1,l = 0,...,L . At
+every iteration, the classiﬁer f(l) makes a prediction ˆyt
+(l).
+When the ground truth is revealed, the classiﬁer’s weight is
+updated based on the loss suffered by the classiﬁer as:
+α(l)
+t+1←α(l)
+t βL(f (l)(x),y)
+where β ∈ (0, 1) is the discount rate parameter, and
+L(f(l)(x),y ) ∈ (0, 1) (Freund and Schapire 1997). Thus,
+a classiﬁer’s weight is discounted by a factor ofβL(f (l)(x),y)
+in every iteration. At the end of every round, the weights α
+are normalized such that∑
+lα(l)
+
+=== 1711.03705 lines 388,398 (Sahoo 2017: smoothing floor s)
+α weights of deeper classiﬁers to a very small value (due
+to poor initial performance as compared to shallower clas-
+siﬁers), which would affect the update in Eq. (3), and re-
+sult in deeper classiﬁers having slow learning. To alleviate
+this, we introduce a smoothing parameters∈ (0, 1) which
+is used to set a minimum weight for each classiﬁer. After the
+weight update of the classiﬁers in each iteration, the weights
+are set as: α(l) ← max
+(
+α(l), s
+L
+
+=== 1711.03705 lines 546,550 (Sahoo 2017: beta=0.99, s=0.2)
+mance for the baselines. For HBP, we attached a classiﬁer to
+each of the 19 hidden layers (and not directly to the input).
+This gave 19 classiﬁers each with depth from 2,..., 20. We
+set β = 0.99 and the smoothing parameter s = 0.2. Im-
+plementation was in Keras (Chollet 2015). We also com-
+
+=== 2306.13812 lines 746,772 (Dohare 2023/24 continual backprop: contribution utility)
+Continual backpropagation selectively reinitializes low-utility units in the network. Selective reinit-
+ialization has two steps. The first step is to find low-utility units and the second is to reinitialize them.
+Every time step, a fraction of hidden units ρ, called replacement-rate, are reinitialized in every layer. When
+a new hidden unit is added, its outgoing weights are initialized to zero. Initializing the outgoing weights
+as zero ensures that the newly added hidden units do not affect the already learned function. However,
+initializing the outgoing weight to zero makes the new unit vulnerable to immediate reinitialized as it has
+zero utility. To protect new units from immediate reinitialization, they are protected from a reinitialization
+for maturity threshold m number of updates.
+One major limitation of prior work on selective reinitialization is that the utility measure is limited to
+networks with a single hidden layer and one output. We overcome this limitation by proposing a utility
+measure that can be applied to arbitrary networks. Our utility measure has two parts. The first part
+measures the contribution of the units to its consumers. A consumer is any unit that uses the output of a
+given unit. A consumer can be other hidden units or the output units of the network. And the second part
+of the utility measures units’ ability to adapt.
+The first part of our utility measure, called the contribution utility , is defined for each connection or
+weight and each unit. The basic intuition behind the contribution utility is that magnitude of the product
+of units’ activation and outgoing weight gives information about how valuable this connection is to its
+consumers. If a hidden unit’s contribution to its consumer is small, its contribution can be overwhelmed
+by contributions from other hidden units. In such a case, the hidden unit is not useful to its consumer.
+The same measure of connection utility has been proposed for the network pruning problem [58]. We define
+the contribution utility of a hidden unit as the sum of the utilities of all its outgoing connections. The
+contribution utility is measured as a running average of instantaneous contributions with a decay rate, η.
+In a feed-forward neural network, the contribution-utility, cl,i,t, of the ith hidden unit in layer l at time t is
+updated as
+cl,i,t =η∗cl,i,t−1 + (1−η)∗|hl,i,t|∗
+nl+1X
+k=1
+
+=== 2306.13812 abs meta
+Modern deep-learning systems are specialized to problem settings in which training occurs once and then never again, as opposed to continual-learning settings i
+n which training occurs continually. If deep-learning systems are applied in a continual learning setting, then it is well known that they may fail to remember 
+earlier examples. More fundamental, but less well known, is that they may also lose their ability to learn on new examples, a phenomenon called loss of plastici
+ty. We provide direct demonstrations of loss of plasticity using the MNIST and ImageNet datasets repurposed for continual learning as sequences of tasks. In Ima
+geNet, binary classification performance dropped from 89% accuracy on an early task down to 77%, about the level of a linear network, on the 2000th task. Loss o
+f plasticity occurred with a wide range of deep network architectures, optimizers, activation functions, batch normalization, dropout, but was substantially eas
+ed by L2-regularization, particularly when combined with weight perturbation. Further, we introduce a new algorithm -- continual backpropagation -- which slight
+ly modifies conventional backpropagation to reinitialize a small fraction of less-used units after each example and appears to maintain plasticity indefinitely.
+
+=== 1911.11134 abs meta
+Many applications require sparse neural networks due to space or inference time restrictions. There is a large body of work on training dense networks to yield 
+sparse networks for inference, but this limits the size of the largest trainable sparse model to that of the largest trainable dense model. In this paper we int
+roduce a method to train sparse neural networks with a fixed parameter count and a fixed computational cost throughout training, without sacrificing accuracy re
+lative to existing dense-to-sparse training methods. Our method updates the topology of the sparse network during training by using parameter magnitudes and inf
+requent gradient calculations. We show that this approach requires fewer floating-point operations (FLOPs) to achieve a given level of accuracy compared to prio
+r techniques. We demonstrate state-of-the-art sparse training results on a variety of networks and datasets, including ResNet-50, MobileNets on Imagenet-2012, a
+nd RNNs on WikiText-103. Finally, we provide some insights into why allowing the topology to change during the optimization can overcome local minima encountere
+d when the topology remains static. Code used in our work can be found in github.com/google-research/rigl.
+
+=== 2405.10955 abs meta
+Despite the stunning progress recently in large-scale deep neural network applications, our understanding of their microstructure, &#39;energy&#39; functions, a
+nd optimal design remains incomplete. Here, we present a new game-theoretic framework, called statistical teleodynamics, that reveals important insights into th
+ese key properties. The optimally robust design of such networks inherently involves computational benefit-cost trade-offs that are not adequately captured by p
+hysics-inspired models. These trade-offs occur as neurons and connections compete to increase their effective utilities under resource constraints during traini
+ng. In a fully trained network, this results in a state of arbitrage equilibrium, where all neurons in a given layer have the same effective utility, and all co
+nnections to a given layer have the same effective utility. The equilibrium is characterized by the emergence of two lognormal distributions of connection weigh
+ts and neuronal output as the universal microstructure of large deep neural networks. We call such a network the Jaynes Machine. Our theoretical predictions are
+ shown to be supported by empirical data from seven large-scale deep neural networks. We also show that the Hopfield network and the Boltzmann Machine are the s
+ame special case of the Jaynes Machine.
+
+=== 2310.09952 abs meta
+Despite considerable theoretical progress in the training of neural networks viewed as a multi-agent system of neurons, particularly concerning biological plaus
+ibility and decentralized training, their applicability to real-world problems remains limited due to scalability issues. In contrast, error-backpropagation has
+ demonstrated its effectiveness for training deep networks in practice. In this study, we propose a local objective for neurons that, when pursued by neurons in
+dividually, align them to exhibit similarities to error-backpropagation in terms of efficiency and scalability during training. For this purpose, we examine a n
+eural network comprising decentralized, self-interested neurons seeking to maximize their local objective -- attention from subsequent layer neurons -- and iden
+tify the optimal strategy for neurons. We also analyze the relationship between this strategy and backpropagation, establishing conditions under which the deriv
+ed strategy is equivalent to error-backpropagation. Lastly, we demonstrate the learning capacity of these multi-agent neural networks through experiments on thr
+ee datasets and showcase their superior performance relative to error-backpropagation in a catastrophic forgetting benchmark.
+
+=== 2512.10969 (MoB) full text, grep '4 Experts' (from /tmp/traders-net/L1C/full_2512.10969.txt)
+ EWC. (4) Gated MoE : Multi-expert with learned gating (Knockout test). Config. 4 Experts (SimpleCNN), 5 seeds. 4.2 Main Results T

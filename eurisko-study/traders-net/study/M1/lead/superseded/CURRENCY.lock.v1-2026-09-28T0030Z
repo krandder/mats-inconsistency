@@ -1,0 +1,20 @@
+{
+  "_what": "traders-net settled currency (Gate A). Every later arm imports it via M1/currency.py. JSON; do not edit without an M1 lead line in STATUS.md.",
+  "locked_at": "2026-09-28T00:30Z",
+  "locked_by": "M1 lead (worker 1)",
+  "code": {"module": "traders-net/study/M1/books_v2.py", "class": "BooksV2", "sha256": "1510010403253e27253a6cf0d656a73657271ab8f2a951a8e281f003ed5f96cc"},
+  "wealth_book": "lmsr",
+  "wealth_book_def": "unit income = a . dz/da (surrogate below) times (y - p_bar); p_bar = mean price on a 16-step midpoint path from prior l0 to z; readout book = exact log-score gain log p_z(y) - log p_l0(y); maker account -l0 (y - p_bar) kept separately",
+  "prior": {"kind": "running per-question base rate", "formula": "(n1 + 1) / (n + 2)", "prior_a": 1.0, "prior_b": 1.0, "updated_by": "BooksV2.observe after booking; labels revealed so far only"},
+  "path_steps": 16,
+  "settlement": "prequential",
+  "settlement_order": ["acc = bk.account(win, y, mask, freeze_attn=True)  # pre-update weights, labels not yet trained on", "bk.add(acc)", "bk.observe(win, y, mask)", "optimiser step on the same block"],
+  "delayed_labels": "book at the trade price (weights and l0 at trade time), settle at reveal (S0 li_families.DelayBook)",
+  "attribution_rule": "cp: LayerNorm denominators AND attention patterns detached (freeze_ln=True inside BooksV2, freeze_attn=True in account). Exactly conservative: coalition wealth = sum of members, internal transfers cancel.",
+  "families": "one group per family by default; coarser partitions (e.g. {prng},{rest}) allowed for cost, state them",
+  "diagnostic_books": {"tangent": "c.(y - sigmoid(z)) at trade price; zero-mean calibration diagnostic, not wealth", "meanbase_lmsr": "(a - a_bar).g_lmsr; sensitivity variant of the wealth book", "absag": "sum |a.g| (tangent); the |a.g| predictor for M2/M3"},
+  "not_the_currency": ["wealth-net v1 books (in-sample, live attention: leaks QK+AV up to ~0.4 |R|)", "in-sample books of any kind (pay memorisation: PRNG sign flips)", "norm growth (under Adam R^2 <= 0.2 vs wealth for neurons)"],
+  "separate_predictor_for_M2": "live grad x input (-a.dL/da with live LN and attention): tracks single-unit zero ablation better than any conservative rule (w4 section 5); report it next to the currency, never instead of it",
+  "stop_rule_applied": "M1: in-sample vs prequential Spearman >= 0.9 at every granularity -> cheap books. tangent/meanbase fail (heads -0.50/-0.22, neurons -0.19/-0.17); lmsr passes on ranks (0.92/0.98/0.98) but its PRNG income flips sign (+0.26 in-sample vs -0.29 held-out per step), so: prequential books everywhere.",
+  "evidence": ["M1/w3/AUDIT-w3.md", "M1/w3/results/summary-w3.csv", "M1/w4/AUDIT-w4.md", "M1/w4/results/s{1,2,3}-step*.json", "M1/w1/AUDIT-w1.md", "M1/w1/results/cp_vs_v1_lmsr.csv", "M1/AUDIT.md"]
+}

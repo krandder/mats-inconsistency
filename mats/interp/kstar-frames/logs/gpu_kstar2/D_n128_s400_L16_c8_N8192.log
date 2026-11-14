@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/root/runs/kstar2/scratch/r4_mlp.py", line 40, in <module>
+    uA, DA, VA, sA = prep(d['zA'][:Nt], d['VA'][:Nt], d['sA'][:Nt])
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/runs/kstar2/scratch/r4_mlp.py", line 36, in prep
+    return (z / z.norm(dim=-1, keepdim=True), (z > 0).to(f32), torch.from_numpy(V).to(f32).to(kf.DEV),
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 200.00 MiB. GPU 0 has a total capacity of 22.03 GiB of which 84.56 MiB is free. Process 4278 has 1.74 GiB memory in use. Process 4397 has 19.06 GiB memory in use. Process 4399 has 420.00 MiB memory in use. Process 4428 has 488.00 MiB memory in use. Including non-PyTorch memory, this process has 236.00 MiB memory in use. Of the allocated memory 12.00 MiB is allocated by PyTorch, and 8.00 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)

@@ -1,0 +1,14 @@
+{
+ "id": "P0-5",
+ "question": "How does the maze bar model hold up under distribution shift?",
+ "setup": "M-ref (w=128) at 300 iterations on a 3x3x2 grid: size 9/19/33, extra-opening probability p 0/0.01/0.05, dead-end start 0/1; 100 mazes per cell (one cell could not be generated).",
+ "result": "On its own distribution (p 0, de 1) 1.0/1.0/0.99 at 9/19/33; without the dead-end start 0.72/0.74/0.77. Loops break it: p 0.01 gives 0.63-0.84 at 9x9 but 0.07 at 33x33; p 0.05 gives 0.33 at 9x9 and 0.0-0.04 at 19-33. Exact, checker and Knutson scoring agree in every cell.",
+ "status": "Informative",
+ "files": [
+  "puzzles/P0/build_frozen.py",
+  "puzzles/P0/frozen/manifest.json",
+  "puzzles/P0/RESULTS.md",
+  "puzzles/P0/results/p0_results.json",
+  "puzzles/P0/results/chart_p0.json"
+ ]
+}

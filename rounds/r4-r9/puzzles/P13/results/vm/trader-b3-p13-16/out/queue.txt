@@ -1,0 +1,8 @@
+lad_A1 econ_maze.py --mode econ --W0 20 --frac 0.5 --wealth_cap 1 --lam_c 1 --lam_v 0.3 --train_pick random --D 30 --lr 1e-3 --bs 50 --diag_every 100 --bcap 10 --W0 0.5 --final_ckpt 1 --ckpt_every 300 --iters 1650 --seed 100 --out out/lad_A1
+lad_A2 econ_maze.py --mode econ --W0 20 --frac 0.5 --wealth_cap 1 --lam_c 1 --lam_v 0.3 --train_pick random --D 30 --lr 1e-3 --bs 50 --diag_every 100 --bcap 10 --bounty lindahl --final_ckpt 1 --ckpt_every 300 --iters 1650 --seed 100 --out out/lad_A2
+ev_lad_A1@lad_A1 eval_maze.py --kind trader --ckpt out/lad_A1.pt --sets v9,m13,v33,m59 --jopt none --mult 12  --out out/ev_lad_A1
+ev_lad_A2@lad_A2 eval_maze.py --kind trader --ckpt out/lad_A2.pt --sets v9,m13,v33,m59 --jopt none --mult 12  --out out/ev_lad_A2
+lad_A1_x@ev_lad_A1 econ_maze.py --mode econ --W0 20 --frac 0.5 --wealth_cap 1 --lam_c 1 --lam_v 0.3 --train_pick random --D 30 --lr 1e-3 --bs 50 --diag_every 100 --bcap 10 --W0 0.5 --final_ckpt 1 --ckpt_every 300 --iters 3300 --seed 100 --out out/lad_A1
+ev_lad_A1_x@lad_A1_x eval_maze.py --kind trader --ckpt out/lad_A1.pt --sets v9,m13,v33,m59 --jopt none --mult 12  --out out/ev_lad_A1_x
+ev99_pil_econ_F0 eval_maze.py --kind trader --ckpt in/pil_econ_F0.pt --sets e99 --jopt none --mult 12 --limit 100 --out out/ev99_pil_econ_F0
+END

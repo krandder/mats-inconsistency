@@ -1,0 +1,76 @@
+{
+ "model": "Claude Fable 5.2 (claude-fable-5-2[1m])",
+ "plain_words": "Context: on 10 Nov you said the GFlowNet is the rollout policy, the search is the amplification on top of many rollouts, and the rollout policy is distilled from it and improves over time. I ran that loop in 6x6 Sudoku and the parity world (20 hidden assumptions), both with trained world models. The amplification either weights K finished rollouts, or grows a tree where the rollout policy chooses what to open while the specification keeps the books and returns an interval.\n1. Your safety claim held. For every rollout policy (untrained, trained, wrong goal, one that refuses part of the space) the score's exact answer was inside the interval, in about 11 million checked intervals. Bad policies cost openings or width, never the answer. Three false alarms were a rounding error in my bookkeeping, fixed.\n2. The protection is the books, not the rollouts: weighted counting alone, fed by the refusing policy, is off by 0.3-0.4 at any number of rollouts and shows nothing.\n3. The loop did not compound. Round 1 gives almost all the gain (openings to close a hard Sudoku: 785 and 1,796 become 73 and 95; parity error of weighted counting 0.44 becomes 0.04-0.07). Rounds 2-5 add nothing, and the Sudoku cost climbs back to about 170. Training once on the untrained search's output did as well in one seed, worse in the other.\n4. A hand-made order is still cheaper (43 openings against 73 at best); in the parity world the narrowest interval comes from the specification searching alone.\n5. Why, I think: finding the score and proving nothing else is there want different orders. Your target says which values, never which order, and nearly all the cost is in branches that score nothing, where distillation has no target. Started at the hand rule's level, each round made the tree dearer (46 to 95 openings) while the rollouts got better. An order trained on the cost the search measured is my conjecture for the missing half; not built.\n6. At 40 assumptions the certain interval stays 0.2-0.9 wide after 16,384 openings; the one from the specification's own draws is at most 0.04.\nI don't know: whether a cost-trained order compounds; 9x9 or any world where the budget keeps binding; a trust head; decisions.",
+ "note_path": "/home/agent/workspaces/mats/work/deep-study/wf13/loop/NOTE.md",
+ "claims": [
+  {
+   "claim": "Weighted counting of rollouts needs only the policy's value probabilities; the search's own order cancels, so any policy with full support on values converges to the score-proportional target.",
+   "status": "PROVEN",
+   "evidence": "NOTE section 2; exact enumeration check_order.py -> out/check_order.out (errors below 3e-15; counting visits undivided is off by up to 0.72 TV). Depends on the score not depending on the demonstration's order (true in both worlds; with an order-dependent soft M the tree must count (order, filling) pairs)."
+  },
+  {
+   "claim": "The specification's books give an interval that contains the score's exact answer for every rollout policy, and it only shrinks.",
+   "status": "PROVEN",
+   "evidence": "Verified: 0 outside in 2 x 5,220,864 Sudoku intervals and 518,400 parity intervals (+25,920 bounds on the total), apart from 3 float-cancellation artifacts in my first Sudoku scoring (sdebug.py: 0 after the fix; seed 1's other 13 arms not re-run, addendum A1). All 7,749 closed Sudoku trees returned exactly the exact solution set. out/s_s{1,2}.json, out/p_w10{1,2,3}_s1.json."
+  },
+  {
+   "claim": "Bad rollout policies (random, wrong goal, avoiding part of the space) cost openings or width only; the importance form alone gives a wrong answer with no warning under an avoiding policy.",
+   "status": "CHECKED",
+   "evidence": "NOTE section 4: random 2.5x openings (Sudoku), 8-16x (parity); avoid/no-guard leaves the interval open (parity audit width 0.84-0.98) while its importance-form error stays 0.30-0.42 at 256 rollouts. Two registered H6 sentences were wrong (addendum A2)."
+  },
+  {
+   "claim": "One round of distillation gives the gain: Sudoku closing cost falls 11-19x, parity importance-form error 6-13x.",
+   "status": "CHECKED",
+   "evidence": "Registered, 2 seeds / 3 worlds: hard C 785->73 and 1,796->95; E_IS(64) 0.42-0.46 -> 0.035-0.071. out/report.md."
+  },
+  {
+   "claim": "The loop compounds over rounds (cost for a given interval width keeps falling; beats one round of the same total training).",
+   "status": "REFUTED",
+   "evidence": "Registered bins H3, H4, H5 all null. Sudoku hard C by round: 785,73,145,145,144,166 and 1796,95,93,142,152,171; one-shot 150 and 246 (final/one-shot 1.10, 0.98 and 0.69, 0.32). Parity audit width at 256 openings: final/round0 0.88, 0.83, 0.92. Scope: this implementation, a fixed budget that stops binding after round 1."
+  },
+  {
+   "claim": "A hand-made order beats the learned one: fewest-values-left 43-44 openings vs 73-171 learned; in the parity world the specification alone gives the narrowest interval.",
+   "status": "CHECKED",
+   "evidence": "NOTE sections 3, 6; a dev pilot with exact conditionals as the policy and its own confident-first order was 10x wider (out/pilot2_w311.out)."
+  },
+  {
+   "claim": "All the extra cost is in branches that contain no solution; started from the hand rule's level, each round of distillation makes the tree dearer while rollouts improve.",
+   "status": "CHECKED",
+   "evidence": "POST HOC: out/sdiag_s1.out (openings in dead branches: hand 16.8, learned 46.8-139.4; one seed); out/mask_summary.out (hard C 46,67,86,86,86,95 and 45,64,76,83,87,89; rollout success 35%->57%, 34%->52%; two seeds)."
+  },
+  {
+   "claim": "The score-proportional target is silent about order, so the order must be trained on the cost the search measured; that would make the loop compound.",
+   "status": "CONJECTURE",
+   "evidence": "NOTE section 8; first half is an argument (every order of a demonstration scores the same), second half not run."
+  },
+  {
+   "claim": "Tree plus the specification's own draws is far more accurate per call than one pass: error 0.003-0.011 at 256 calls vs 0.19-0.22 for one pass of M (H8 major); the distilled policy's own one-pass belief (0.26-0.28) is worse than M's.",
+   "status": "CHECKED",
+   "evidence": "NOTE section 6, fig/fig2_parity.png; the specification alone does as well with no network call."
+  },
+  {
+   "claim": "No narrowing by the registered test; the guard that works is the specification's share in the parity world and the floor in Sudoku.",
+   "status": "CHECKED",
+   "evidence": "NOTE section 5; weak tail signal only (under-proposed share 2-8%, lower for the one-shot control in two worlds)."
+  },
+  {
+   "claim": "At 40 assumptions the certain interval stays wide (0.19 with 60 checks, 0.94 with 30, at 16,384 openings) while the probabilistic interval from the specification's draws stays useful (0.013 at 4,096; 0.039 at 16,384).",
+   "status": "CHECKED",
+   "evidence": "out/pscale.json (registered), out/pscale2_summary.out (post hoc). No exact answer at that size: nestedness and a cross-check against the certain interval at a larger budget only."
+  },
+  {
+   "claim": "Anything with a trust head, decisions, an order-dependent soft score, or a larger rule world.",
+   "status": "UNKNOWN",
+   "evidence": "Not built. Depends on FRAME Q4 and Q7, still open."
+  }
+ ],
+ "open_questions": [
+  "Does an order head trained on the search's measured cost (size of the branch that had to be opened), with exploration over orders, make the loop compound?",
+  "Does the loop compound where the fixed budget keeps binding after round 1 (9x9 Sudoku, more assumptions)?",
+  "Is there any learned signal that helps prove the rest of the space empty, or is that always the specification's bound and share?",
+  "What happens with a soft M whose numbers depend on the demonstration's order (the tree must then count order-filling pairs)?",
+  "The books need outward rounding or exact arithmetic before anyone relies on the interval (one float bug found here).",
+  "Trust head on top of the amplified output, and decisions (Q4): not touched."
+ ],
+ "compute_used": "CPU only on the shared host (nice 19, at most 3 processes), about 80 minutes of registered and post hoc runs. No cluster job: srun --test-only (ids 57871, 57872) gave a start date of 21 Nov, so I fell back to CPU."
+}

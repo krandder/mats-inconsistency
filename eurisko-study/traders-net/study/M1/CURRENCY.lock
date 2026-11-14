@@ -1,0 +1,30 @@
+{
+  "_what": "traders-net settled currency (Gate A, after the 00:25Z RETARGET). Later arms import it via M1/currency.py. JSON; do not edit without an M1 lead line in STATUS.md.",
+  "locked_at": "2026-09-28T01:40Z",
+  "locked_by": "M1 lead",
+  "supersedes": "M1/lead/superseded/CURRENCY.lock.v1-2026-09-28T0030Z (worker-1 lock: cp/lmsr books for every unit)",
+  "headline": "no bookkeeping currency for generic neurons; committed-trader settlement only",
+  "why": [
+    "(a) toy, provable: for a unit entering the logit linearly, gradient credit C = -w L'(w) and ablation value V = L(0) - L(w) satisfy V >= C (convexity); C = 0 at the optimum while V = I(X;Y) = 0.1109 nats; C < 0 < V on (1, 2.1786). Simulated redundant units: credit -75.7 +- 1.9 (Adam) / -50.5 +- 0.1 (SGD) while settlement +468 / +488 and ablation dBCE +0.024 / +0.026 (M1/lead/results/toy_summary.json)",
+    "(b) wealth-net: oracle-important neurons carry negative book credit at rates near or above the base rate under several books (M1/lead/results/sign_census_summary.csv); book sign is not an importance signal",
+    "(c) three-rules settlement for attention: conserves to quadrature (<= 5.1e-4 |R| at 16 steps), ranks = cp ranks (Spearman >= 0.97), no gain vs ablation, no lock-in change (M1/lead/results/three_agg.csv)"
+  ],
+  "committed_traders": {
+    "who": "only units that post an explicit price/position on a question (readout heads, explicit trader modules). Generic hidden neurons, MLP units and heads are NOT paid.",
+    "rule": "exact LMSR log-score: payoff = log p_after(y) - log p_trade(y), booked at the price at trade time, settled when the label is revealed (prequential; never on labels already trained on)",
+    "prior": {"kind": "running per-question base rate", "formula": "(n1 + 1) / (n + 2)", "prior_a": 1.0, "prior_b": 1.0},
+    "helper": "currency.committed_settlement(p_trade, p_after, y)"
+  },
+  "attention_and_gates_optional": {
+    "rule": "three rules: LayerNorm denominators detached + Euler for linear nodes; S = q.k/sqrt(dh) split half/half; softmax as LMSR market: values paid at prior pi = 1/Q, routing credit (a - pi).u via 16-step midpoint IG path from S = 0",
+    "code": "M1/lead/three_rules.py LMSRSoftmaxAV",
+    "status": "conservative diagnostic only; measured no ranking or lock-in gain over cp, so not a currency"
+  },
+  "code": {"module": "traders-net/study/M1/books_v2.py", "class": "BooksV2", "sha256": "1510010403253e27253a6cf0d656a73657271ab8f2a951a8e281f003ed5f96cc", "role": "diagnostic books only (tangent/lmsr/meanbase, cp rule); kept for comparison, not wealth"},
+  "prior": {"kind": "running per-question base rate", "formula": "(n1 + 1) / (n + 2)", "prior_a": 1.0, "prior_b": 1.0, "updated_by": "BooksV2.observe after booking"},
+  "path_steps": 16,
+  "settlement": "prequential",
+  "separate_predictor_for_M2": "live grad x input (-a.dL/da with live LN and attention) tracks single-unit zero ablation best (heads 0.63 +- 0.22, neurons 0.38 +- 0.08 Spearman); report it as a predictor, never as wealth",
+  "not_the_currency": ["any per-neuron or per-head gradient book (tangent, lmsr, cp, v1, three rules)", "in-sample books (PRNG sign flips)", "norm growth (Adam R^2 <= 0.19 vs wealth)"],
+  "evidence": ["M1/AUDIT.md", "M1/lead/PREREG-lead.md", "M1/lead/results/toy_summary.json", "M1/lead/results/sign_census_summary.csv", "M1/lead/results/three_agg.csv", "M1/w1/AUDIT-w1.md", "M1/w2/AUDIT-w2.md", "M1/w3/AUDIT-w3.md", "M1/w4/AUDIT-w4.md"]
+}

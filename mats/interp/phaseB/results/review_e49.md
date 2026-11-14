@@ -1,0 +1,13 @@
+Model: GPT-6 (Codex)
+
+Checked 2026-10-30; read-only source/hash, metadata, JSON/table and NPZ-scalar inspection; no Python, training or bootstrap rerun.
+
+1. **High — mechanism is not established.** Draft:17,54 calls this a learning limit rather than a representational limit and infers failure to use products. `pfn_pre.py:16,27` adds a finite-width, LayerNorm-conditioned block to every token, including the query; it changes routing as well as feature computation. Neither representability at the required accuracy nor the learned internal statistics was tested. Fix: “consistent with a learning limitation under this recipe”; retain product computation as a hypothesis. E19 already warns that placement does not isolate pooling order (Update 29).
+
+2. **High — world-1 benefit is conditional, not overall.** `results/e49.json:w1.per_seed` gives all-12 mean KL 0.05148 pre versus 0.02350 ctrl. P198 correctly excludes pre stalls 0,1,7,9 and ctrl stall 3, leaving 2,4,5,6,8,10,11. Fix the title/plain-words conclusion to say “among jointly acquired seeds”; report the all-seed tradeoff alongside the valid registered 0.49. Similar survivor KL does not establish equivalence to E48: pre/mag's interval is [0.54,2.21].
+
+3. **Medium — sign shares are overinterpreted.** `e49_summ.py:39` measures finite-family geometric-averaging gain divided by family KL, not the proportion of computation using signs. `results/e49.json:w2.1` falls from 0.324 to 0.256, contradicting blanket “unchanged” wording; D2's similar fraction also need not imply unchanged absolute sensitivity. Fix: report averaging gains by dimension; replace “nearly sign-invariant” with “small measured averaging gain.” D1 beating prod is only a point estimate ([0.71,1.02]).
+
+4. **Medium — “untouched … every format” is false.** Draft:55; Update 58's table reports rom 0.133 ctrl, 0.073 mag and 0.087 sgnsq. E49's 0.126 versus 0.133 uses different acquired subsets and supplies no equivalence test. Fix: “the positive departure survives”; LayerNorm remains a candidate explanation, not an identified cause.
+
+Survive: registered architecture/creation order, shared-initialisation construction, ctrl evaluator builders, streams/schedules, acquisition rules, multiplicity-preserving paired bootstrap code, JSON/table decisions (P198 point-pass; P199 fail; P200 world-1 pass/D2 fail), descriptive sign/negation shares, rom/lab/xq, level gaps and learning medians. The type diagnostic's dissociation from high error survives descriptively. Reword: equivalence, invariance and mechanism claims. Fail: unconditional world-1 improvement and “untouched by every format.”

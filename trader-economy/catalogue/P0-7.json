@@ -1,0 +1,14 @@
+{
+ "id": "P0-7",
+ "question": "Did market-resnet's pilot gain come from per-step pay, or from lacking the progressive loss?",
+ "setup": "MR-P: market-resnet backbone (w=128) trained with P1's progressive loss and random starts (T=24, 10k steps, 3 seeds), vs market-resnet's single-seed pilot checkpoints A, B, Bds re-evaluated in the P0 harness. Spec test: T=24 on fL256 and fL512. The final-grid comparison (P-mr) was not run: no GRID_DONE in market-resnet.",
+ "result": "Spec test at floor: MR-P and pilots A/B/Bds all 0.0 on fL256 and fL512 at T=24 (falsifier 5 true in letter: True). At T=100 still near floor (fL256 MR-P 0.019 vs B 0.006; fL512 MR-P 0.0 vs B 0.0). Off floor on legacy sets MR-P matches pilot B (L64@100 0.999 vs 1.0; mix@24 0.74 vs 0.75; L128@256 0.552 vs 0.41; L128@100 0.244 vs 0.334) and beats pilot A everywhere: the pilot's B-over-A gain looks like a loss/schedule artefact, not per-step pay (single-seed B). The backbone itself is far behind DT-Recall on extrapolation: fL512@300 0.0007 vs P1 0.9998.",
+ "status": "Informative",
+ "files": [
+  "puzzles/P0/mr_adapter.py",
+  "puzzles/P0/results/vm/general/eval",
+  "puzzles/P0/RESULTS.md",
+  "puzzles/P0/results/p0_results.json",
+  "puzzles/P0/results/chart_p0.json"
+ ]
+}

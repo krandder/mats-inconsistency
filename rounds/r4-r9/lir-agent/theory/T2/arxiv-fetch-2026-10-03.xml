@@ -1,0 +1,252 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/kl4gTozWA1YpHou0uDcMAv6ExZ0</id>
+  <title>arXiv Query: search_query=&amp;id_list=1609.03543,2305.17601,2002.06673,1711.05541,1508.04145,2410.04332,2410.13787,2604.17140,2412.20732&amp;start=0&amp;max_results=20</title>
+  <updated>2026-10-03T17:39:35Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=&amp;start=0&amp;max_results=20&amp;id_list=1609.03543,2305.17601,2002.06673,1711.05541,1508.04145,2410.04332,2410.13787,2604.17140,2412.20732" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>20</opensearch:itemsPerPage>
+  <opensearch:totalResults>9</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2002.06673v4</id>
+    <title>Performative Prediction</title>
+    <updated>2021-02-26T22:07:40Z</updated>
+    <link href="https://arxiv.org/abs/2002.06673v4" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2002.06673v4" rel="related" type="application/pdf" title="pdf"/>
+    <summary>When predictions support decisions they may influence the outcome they aim to predict. We call such predictions performative; the prediction influences the target. Performativity is a well-studied phenomenon in policy-making that has so far been neglected in supervised learning. When ignored, performativity surfaces as undesirable distribution shift, routinely addressed with retraining.
+  We develop a risk minimization framework for performative prediction bringing together concepts from statistics, game theory, and causality. A conceptual novelty is an equilibrium notion we call performative stability. Performative stability implies that the predictions are calibrated not against past outcomes, but against the future outcomes that manifest from acting on the prediction. Our main results are necessary and sufficient conditions for the convergence of retraining to a performatively stable point of nearly minimal loss.
+  In full generality, performative prediction strictly subsumes the setting known as strategic classification. We thus also give the first sufficient conditions for retraining to overcome strategic feedback effects.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.GT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2020-02-16T20:29:42Z</published>
+    <arxiv:comment>published at ICML'20; fixed some typos</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Juan C. Perdomo</name>
+    </author>
+    <author>
+      <name>Tijana Zrnic</name>
+    </author>
+    <author>
+      <name>Celestine Mendler-Dünner</name>
+    </author>
+    <author>
+      <name>Moritz Hardt</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1711.05541v5</id>
+    <title>Good and safe uses of AI Oracles</title>
+    <updated>2018-06-05T11:13:48Z</updated>
+    <link href="https://arxiv.org/abs/1711.05541v5" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1711.05541v5" rel="related" type="application/pdf" title="pdf"/>
+    <summary>It is possible that powerful and potentially dangerous artificial intelligence (AI) might be developed in the future. An Oracle is a design which aims to restrain the impact of a potentially dangerous AI by restricting the agent to no actions besides answering questions. Unfortunately, most Oracles will be motivated to gain more control over the world by manipulating users through the content of their answers, and Oracles of potentially high intelligence might be very successful at this \citep{DBLP:journals/corr/AlfonsecaCACAR16}. In this paper we present two designs for Oracles which, even under pessimistic assumptions, will not manipulate their users into releasing them and yet will still be incentivised to provide their users with helpful answers. The first design is the counterfactual Oracle -- which choses its answer as if it expected nobody to ever read it. The second design is the low-bandwidth Oracle -- which is limited by the quantity of information it can transmit.</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2017-11-15T12:47:17Z</published>
+    <arxiv:comment>11 pages, 2 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Stuart Armstrong</name>
+    </author>
+    <author>
+      <name>Xavier O'Rorke</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1609.03543v5</id>
+    <title>Logical Induction</title>
+    <updated>2020-12-07T22:26:59Z</updated>
+    <link href="https://arxiv.org/abs/1609.03543v5" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1609.03543v5" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We present a computable algorithm that assigns probabilities to every logical statement in a given formal language, and refines those probabilities over time. For instance, if the language is Peano arithmetic, it assigns probabilities to all arithmetical statements, including claims about the twin prime conjecture, the outputs of long-running computations, and its own probabilities. We show that our algorithm, an instance of what we call a logical inductor, satisfies a number of intuitive desiderata, including: (1) it learns to predict patterns of truth and falsehood in logical statements, often long before having the resources to evaluate the statements, so long as the patterns can be written down in polynomial time; (2) it learns to use appropriate statistical summaries to predict sequences of statements whose truth values appear pseudorandom; and (3) it learns to have accurate beliefs about its own current beliefs, in a manner that avoids the standard paradoxes of self-reference. For example, if a given computer program only ever produces outputs in a certain range, a logical inductor learns this fact in a timely manner; and if late digits in the decimal expansion of $π$ are difficult to predict, then a logical inductor learns to assign $\approx 10\%$ probability to "the $n$th digit of $π$ is a 7" for large $n$. Logical inductors also learn to trust their future beliefs more than their current beliefs, and their beliefs are coherent in the limit (whenever $φ\implies ψ$, $\mathbb{P}_\infty(φ) \le \mathbb{P}_\infty(ψ)$, and so on); and logical inductors strictly dominate the universal semimeasure in the limit.
+  These properties and many others all follow from a single logical induction criterion, which is motivated by a series of stock trading analogies. Roughly speaking, each logical sentence $φ$ is associated with a stock that is worth \$1 per share if [...]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.LO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.PR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2016-09-12T19:30:56Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Scott Garrabrant</name>
+    </author>
+    <author>
+      <name>Tsvi Benson-Tilsen</name>
+    </author>
+    <author>
+      <name>Andrew Critch</name>
+    </author>
+    <author>
+      <name>Nate Soares</name>
+    </author>
+    <author>
+      <name>Jessica Taylor</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1508.04145v1</id>
+    <title>Reflective Oracles: A Foundation for Classical Game Theory</title>
+    <updated>2015-08-17T20:08:37Z</updated>
+    <link href="https://arxiv.org/abs/1508.04145v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1508.04145v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Classical game theory treats players as special---a description of a game contains a full, explicit enumeration of all players---even though in the real world, "players" are no more fundamentally special than rocks or clouds. It isn't trivial to find a decision-theoretic foundation for game theory in which an agent's coplayers are a non-distinguished part of the agent's environment. Attempts to model both players and the environment as Turing machines, for example, fail for standard diagonalization reasons.
+  In this paper, we introduce a "reflective" type of oracle, which is able to answer questions about the outputs of oracle machines with access to the same oracle. These oracles avoid diagonalization by answering some queries randomly. We show that machines with access to a reflective oracle can be used to define rational agents using causal decision theory. These agents model their environment as a probabilistic oracle machine, which may contain other agents as a non-distinguished part.
+  We show that if such agents interact, they will play a Nash equilibrium, with the randomization in mixed strategies coming from the randomization in the oracle's answers. This can be seen as providing a foundation for classical game theory in which players aren't special.</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.GT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2015-08-17T20:08:37Z</published>
+    <arxiv:comment>Extended version of "Reflective Oracles: A Foundation for Game Theory in Artificial Intelligence" accepted to LORI-V</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Benja Fallenstein</name>
+    </author>
+    <author>
+      <name>Jessica Taylor</name>
+    </author>
+    <author>
+      <name>Paul F. Christiano</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2305.17601v2</id>
+    <title>Incentivizing honest performative predictions with proper scoring rules</title>
+    <updated>2023-05-30T17:20:13Z</updated>
+    <link href="https://arxiv.org/abs/2305.17601v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2305.17601v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Proper scoring rules incentivize experts to accurately report beliefs, assuming predictions cannot influence outcomes. We relax this assumption and investigate incentives when predictions are performative, i.e., when they can influence the outcome of the prediction, such as when making public predictions about the stock market. We say a prediction is a fixed point if it accurately reflects the expert's beliefs after that prediction has been made. We show that in this setting, reports maximizing expected score generally do not reflect an expert's beliefs, and we give bounds on the inaccuracy of such reports. We show that, for binary predictions, if the influence of the expert's prediction on outcomes is bounded, it is possible to define scoring rules under which optimal reports are arbitrarily close to fixed points. However, this is impossible for predictions over more than two outcomes. We also perform numerical simulations in a toy setting, showing that our bounds are tight in some situations and that prediction error is often substantial (greater than 5-10%). Lastly, we discuss alternative notions of optimality, including performative stability, and show that they incentivize reporting fixed points.</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-05-28T00:53:26Z</published>
+    <arxiv:comment>Accepted for the 39th Conference on Uncertainty in Artificial Intelligence (UAI 2023)</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Caspar Oesterheld</name>
+    </author>
+    <author>
+      <name>Johannes Treutlein</name>
+    </author>
+    <author>
+      <name>Emery Cooper</name>
+    </author>
+    <author>
+      <name>Rubi Hudson</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2410.04332v2</id>
+    <title>Gradient Routing: Masking Gradients to Localize Computation in Neural Networks</title>
+    <updated>2024-11-29T18:52:41Z</updated>
+    <link href="https://arxiv.org/abs/2410.04332v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2410.04332v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Neural networks are trained primarily based on their inputs and outputs, without regard for their internal mechanisms. These neglected mechanisms determine properties that are critical for safety, like (i) transparency; (ii) the absence of sensitive information or harmful capabilities; and (iii) reliable generalization of goals beyond the training distribution. To address this shortcoming, we introduce gradient routing, a training method that isolates capabilities to specific subregions of a neural network. Gradient routing applies data-dependent, weighted masks to gradients during backpropagation. These masks are supplied by the user in order to configure which parameters are updated by which data points. We show that gradient routing can be used to (1) learn representations which are partitioned in an interpretable way; (2) enable robust unlearning via ablation of a pre-specified network subregion; and (3) achieve scalable oversight of a reinforcement learner by localizing modules responsible for different behaviors. Throughout, we find that gradient routing localizes capabilities even when applied to a limited, ad-hoc subset of the data. We conclude that the approach holds promise for challenging, real-world applications where quality data are scarce.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-10-06T02:43:49Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Alex Cloud</name>
+    </author>
+    <author>
+      <name>Jacob Goldman-Wetzler</name>
+    </author>
+    <author>
+      <name>Evžen Wybitul</name>
+    </author>
+    <author>
+      <name>Joseph Miller</name>
+    </author>
+    <author>
+      <name>Alexander Matt Turner</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2604.17140v1</id>
+    <title>Local Inconsistency Resolution: The Interplay between Attention and Control in Probabilistic Models</title>
+    <updated>2026-04-18T20:32:19Z</updated>
+    <link href="https://arxiv.org/abs/2604.17140v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2604.17140v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We present a generic algorithm for learning and approximate inference with an intuitive epistemic interpretation: iteratively focus on a subset of the model and resolve inconsistencies using the parameters under control. This framework, which we call Local Inconsistency Resolution (LIR) is built upon Probabilistic Dependency Graphs (PDGs), which provide a flexible representational foundation capable of capturing inconsistent beliefs. We show how LIR unifies and generalizes a wide variety of important algorithms in the literature, including the Expectation-Maximization (EM) algorithm, belief propagation, adversarial training, GANs, and GFlowNets. In the last case, LIR actually suggests a more natural loss, which we demonstrate improves GFlowNet convergence. Each method can be recovered as a specific instance of LIR by choosing a procedure to direct focus (attention and control). We implement this algorithm for discrete PDGs and study its properties on synthetically generated PDGs, comparing its behavior to the global optimization semantics of the full PDG.</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-04-18T20:32:19Z</published>
+    <arxiv:comment>9 page body,</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <arxiv:journal_ref>Proceedings of the The 29th International Conference on Artificial Intelligence and Statistics, 2026</arxiv:journal_ref>
+    <author>
+      <name>Oliver E. Richardson</name>
+    </author>
+    <author>
+      <name>Mandana Samiei</name>
+    </author>
+    <author>
+      <name>Mehran Shakerinava</name>
+    </author>
+    <author>
+      <name>Joseph D. Viviano</name>
+    </author>
+    <author>
+      <name>Abdessamad El Kabid</name>
+    </author>
+    <author>
+      <name>Ali Parviz</name>
+    </author>
+    <author>
+      <name>Yoshua Bengio</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2412.20732v1</id>
+    <title>Joint Scoring Rules: Zero-Sum Competition Avoids Performative Prediction</title>
+    <updated>2024-12-30T06:06:45Z</updated>
+    <link href="https://arxiv.org/abs/2412.20732v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2412.20732v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In a decision-making scenario, a principal could use conditional predictions from an expert agent to inform their choice. However, this approach would introduce a fundamental conflict of interest. An agent optimizing for predictive accuracy is incentivized to manipulate their principal towards more predictable actions, which prevents that principal from being able to deterministically select their true preference. We demonstrate that this impossibility result can be overcome through the joint evaluation of multiple agents. When agents are made to engage in zero-sum competition, their incentive to influence the action taken is eliminated, and the principal can identify and take the action they most prefer. We further prove that this zero-sum setup is unique, efficiently implementable, and applicable under stochastic choice. Experiments in a toy environment demonstrate that training on a zero-sum objective significantly enhances both predictive accuracy and principal utility, and can eliminate previously learned manipulative behavior.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-12-30T06:06:45Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Rubi Hudson</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2410.13787v1</id>
+    <title>Looking Inward: Language Models Can Learn About Themselves by Introspection</title>
+    <updated>2024-10-17T17:24:10Z</updated>
+    <link href="https://arxiv.org/abs/2410.13787v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2410.13787v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Humans acquire knowledge by observing the external world, but also by introspection. Introspection gives a person privileged access to their current state of mind (e.g., thoughts and feelings) that is not accessible to external observers. Can LLMs introspect? We define introspection as acquiring knowledge that is not contained in or derived from training data but instead originates from internal states. Such a capability could enhance model interpretability. Instead of painstakingly analyzing a model's internal workings, we could simply ask the model about its beliefs, world models, and goals. More speculatively, an introspective model might self-report on whether it possesses certain internal states such as subjective feelings or desires and this could inform us about the moral status of these states. Such self-reports would not be entirely dictated by the model's training data.
+  We study introspection by finetuning LLMs to predict properties of their own behavior in hypothetical scenarios. For example, "Given the input P, would your output favor the short- or long-term option?" If a model M1 can introspect, it should outperform a different model M2 in predicting M1's behavior even if M2 is trained on M1's ground-truth behavior. The idea is that M1 has privileged access to its own behavioral tendencies, and this enables it to predict itself better than M2 (even if M2 is generally stronger).
+  In experiments with GPT-4, GPT-4o, and Llama-3 models (each finetuned to predict itself), we find that the model M1 outperforms M2 in predicting itself, providing evidence for introspection. Notably, M1 continues to predict its behavior accurately even after we intentionally modify its ground-truth behavior. However, while we successfully elicit introspection on simple tasks, we are unsuccessful on more complex tasks or those requiring out-of-distribution generalization.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-10-17T17:24:10Z</published>
+    <arxiv:comment>15 pages, 9 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Felix J Binder</name>
+    </author>
+    <author>
+      <name>James Chua</name>
+    </author>
+    <author>
+      <name>Tomek Korbak</name>
+    </author>
+    <author>
+      <name>Henry Sleight</name>
+    </author>
+    <author>
+      <name>John Hughes</name>
+    </author>
+    <author>
+      <name>Robert Long</name>
+    </author>
+    <author>
+      <name>Ethan Perez</name>
+    </author>
+    <author>
+      <name>Miles Turpin</name>
+    </author>
+    <author>
+      <name>Owain Evans</name>
+    </author>
+  </entry>
+</feed>

@@ -1,0 +1,61 @@
+{
+  "env": "E1",
+  "visibility": "none",
+  "alignment": "unaligned",
+  "regime": "fresh",
+  "device": "cuda",
+  "config": {
+    "width": 128,
+    "layers": 4,
+    "heads": 4,
+    "steps": 3000,
+    "batch": 512,
+    "lr": 0.001,
+    "val_frac": 0.1,
+    "eval_every": 100,
+    "patience": 1000,
+    "dropout": 0.1,
+    "weight_decay": 0.01
+  },
+  "n_train_episodes": 1536000,
+  "dev_regret": {
+    "mean": 0.9584233733733046,
+    "ci_low": 0.8993170496062973,
+    "ci_high": 1.0145339112238787,
+    "n": 2000
+  },
+  "seen_train_regret": {
+    "mean": 0.996315211638083,
+    "ci_low": 0.9382901946912677,
+    "ci_high": 1.0522903970442372,
+    "n": 2048
+  },
+  "train_dev_gap": -0.03789183826477838,
+  "wall_seconds": 247.72927260398865,
+  "loss_log": [
+    {
+      "step": 500,
+      "loss_ema": -0.8596630620044242
+    },
+    {
+      "step": 1000,
+      "loss_ema": -1.0860454635881616
+    },
+    {
+      "step": 1500,
+      "loss_ema": -1.2175178572984597
+    },
+    {
+      "step": 2000,
+      "loss_ema": -1.3001773619697072
+    },
+    {
+      "step": 2500,
+      "loss_ema": -1.3680489005160048
+    },
+    {
+      "step": 3000,
+      "loss_ema": -1.3890631650808656
+    }
+  ]
+}

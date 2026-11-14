@@ -1,0 +1,18 @@
+# world 102, size-M network (wf10's M): data only (trajectories and M's numbers). No arm is trained or evaluated here.
+export CUDA_VISIBLE_DEVICES=""
+export PY=/cluster/home/user/grpo-pilot/venv/bin/python
+export PROBWORLD=/cluster/home/user/wave7/probworld
+export LEVELS=1,4 SMALL=1 NTHREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1
+cd /cluster/home/user/wave13/consistency/code
+P=$PROBWORLD/ckpt; CK=$P/M_w102_M.pt
+D=../data/w102; mkdir -p $D ../out/w102
+date -u
+sha256sum cgen.py cmodel.py
+$PY -c "import torch; print('cuda visible:', torch.cuda.is_available())"
+for p in lab0/6 lab1/6 lab2/6 lab3/6 lab4/6 lab5/6 c1 c20/2 c21/2 t30/2 t31/2; do
+  $PY -B cgen.py 102 $CK $D cpuM M $p > ../logs/gen_w102_$(echo $p | tr / -).log 2>&1 &
+done
+$PY -B cgen.py 102 $CK $D cpuM M t12 S=$P/M_w102_S.pt L=$P/M_w102_L.pt > ../logs/gen_w102_t12.log 2>&1 &
+wait
+tail -q -n 1 ../logs/gen_w102_*.log
+date -u

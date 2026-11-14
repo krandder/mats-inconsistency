@@ -1,0 +1,34 @@
+- 2026-09-29T22:41:50Z CREATE vm=trader-fu-p8-1 zone=us-central1-a epoch=1790721710 type=c2d-highcpu-32 spot max_run=6h rate_ceiling=1.20 item_spend_before=0.00 total_before=0.00
+- 2026-09-29T22:43:30Z READY vm=trader-fu-p8-1 ip=[ip-removed] cpus=32 torch=2.14.0+cpu 
+- 2026-09-29T22:47:07Z START vm=trader-fu-p8-1 queue=probe_queue.txt jobs=4 parallel=4
+- 2026-09-29T22:50:19Z SYNC vm=trader-fu-p8-1 verified_files=7 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item3/vmout
+- 2026-09-29T22:56:05Z SYNC vm=trader-fu-p8-1 verified_files=9 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item3/vmout
+- 2026-09-29T23:12:30Z DELETE vm=trader-fu-p8-1 epoch=1790723406 reason="gone without delete: spot preempted at 2026-09-29T16:10:06.788-07:00" leftover_disks="trader-fu-p10-1	us-central1-a" total_spend_now=0.92
+- 2026-09-29T23:12:32Z AUTORESUME from=trader-fu-p8-1 to=trader-fu-p8-1-r1 queue=probe_queue.txt
+- 2026-09-29T23:13:16Z CREATE vm=trader-fu-p8-1-r1 zone=us-central1-c epoch=1790723596 type=c2d-highcpu-32 spot max_run=6h rate_ceiling=1.20 item_spend_before=0.57 total_before=0.88
+- 2026-09-29T23:14:54Z READY vm=trader-fu-p8-1-r1 ip=[ip-removed] cpus=32 torch=2.14.0+cpu 
+- 2026-09-29T23:15:43Z START vm=trader-fu-p8-1-r1 queue=probe_queue.txt jobs=4 parallel=4
+- 2026-09-29T23:20:20Z START vm=trader-fu-p8-1-r1 queue=main_queue.txt jobs=1 parallel=1
+- 2026-09-30T00:13:37Z SYNC vm=trader-fu-p8-1-r1 verified_files=55 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item3/vmout
+- 2026-09-30T00:15:03Z WATCHDOG-FIX restarted watchdog (old pid 814166 -> 2849968): its while-read loop lost stdin to ssh, so each 5-min cycle only checked/synced the first listed VM (c1-1 until 23:34, then p10-1); p8-1-r1 had no watchdog sync 23:20-00:13 (manual verified sync 00:13:37). GCP max-run 6h + delete-on-termination backstop was in place throughout. [reworded 01:58Z: the upper-case word here broke item_spend (it matched the DELETE-line pattern with no vm= field), so from 00:15Z to the end the watchdog under-counted item2/item3 spend and did not enforce their caps; realised spend stayed under both caps]
+- 2026-09-30T00:15:05Z SYNC vm=trader-fu-p8-1-r1 verified_files=55 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item3/vmout
+- 2026-09-30T00:20:46Z SYNC vm=trader-fu-p8-1-r1 verified_files=55 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item3/vmout
+- 2026-09-30T00:24:10Z START vm=trader-fu-p8-1-r1 queue=main_queue2.txt jobs=1 parallel=1 (driver swap, DEVIATION-1.md: driver2 adopted the 31 running jobs; old driver killed 00:24:09Z; resume file now points at main_queue2.txt) [logged 2026-09-30T00:26:23Z]
+- 2026-09-30T00:26:39Z SYNC vm=trader-fu-p8-1-r1 verified_files=64 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item3/vmout
+- 2026-09-30T00:32:30Z SYNC vm=trader-fu-p8-1-r1 verified_files=78 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item3/vmout
+- 2026-09-30T00:38:16Z SYNC vm=trader-fu-p8-1-r1 verified_files=78 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item3/vmout
+- 2026-09-30T00:46:03Z SYNC vm=trader-fu-p8-1-r1 verified_files=78 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item3/vmout
+- 2026-09-30T00:51:36Z SYNC vm=trader-fu-p8-1-r1 verified_files=78 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item3/vmout
+- 2026-09-30T00:57:02Z SYNC vm=trader-fu-p8-1-r1 verified_files=78 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item3/vmout
+- 2026-09-30T01:02:40Z SYNC vm=trader-fu-p8-1-r1 verified_files=80 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item3/vmout
+- 2026-09-30T01:08:28Z SYNC vm=trader-fu-p8-1-r1 verified_files=90 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item3/vmout
+- 2026-09-30T01:14:07Z SYNC vm=trader-fu-p8-1-r1 verified_files=99 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item3/vmout
+- 2026-09-30T01:20:04Z SYNC vm=trader-fu-p8-1-r1 verified_files=103 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item3/vmout
+- 2026-09-30T01:25:25Z SYNC vm=trader-fu-p8-1-r1 verified_files=103 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item3/vmout
+- 2026-09-30T01:30:41Z SYNC vm=trader-fu-p8-1-r1 verified_files=103 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item3/vmout
+- 2026-09-30T01:35:53Z SYNC vm=trader-fu-p8-1-r1 verified_files=104 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item3/vmout
+- 2026-09-30T01:41:05Z SYNC vm=trader-fu-p8-1-r1 verified_files=104 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item3/vmout
+- 2026-09-30T01:46:31Z SYNC vm=trader-fu-p8-1-r1 verified_files=109 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item3/vmout
+- 2026-09-30T01:49:06Z SYNC vm=trader-fu-p8-1-r1 verified_files=115 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item3/vmout
+- 2026-09-30T01:49:18Z SYNC vm=trader-fu-p8-1-r1 verified_files=115 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item3/vmout
+- 2026-09-30T01:50:27Z DELETE vm=trader-fu-p8-1-r1 epoch=1790733027 reason="item3 done: G3:s2 failed, driver stopped" leftover_disks="none" total_spend_now=1.25

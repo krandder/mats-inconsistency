@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ngo × consistency-ft</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap">
+<style>
+  :root {
+    --paper: #fafbf9; --card: #ffffff; --ink: #151a20; --ink-2: #565d66;
+    --ink-3: #8a9097; --line: #e2e5e1;
+    --accent: #2563c7; --accent-soft: #e8effb;   /* exact / mechanism */
+    --ours: #0e8a6c;  --ours-soft: #e4f3ee;      /* open lane / ours */
+    --gate: #b07207;  --gate-soft: #f8efdd;      /* warning / hazard */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #14171c; --card: #1b1f26; --ink: #eef1f4; --ink-2: #aab2bb;
+      --ink-3: #7d848d; --line: #2c313a;
+      --accent: #6b9fe8; --accent-soft: #1d2c45;
+      --ours: #3db392; --ours-soft: #17322b;
+      --gate: #d99a33; --gate-soft: #35290f;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #14171c; --card: #1b1f26; --ink: #eef1f4; --ink-2: #aab2bb;
+    --ink-3: #7d848d; --line: #2c313a;
+    --accent: #6b9fe8; --accent-soft: #1d2c45;
+    --ours: #3db392; --ours-soft: #17322b;
+    --gate: #d99a33; --gate-soft: #35290f;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink);
+         font: 400 16px/1.6 "IBM Plex Sans", system-ui, sans-serif; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 44px 24px 90px; }
+  .eyebrow { font: 500 12px/1 "IBM Plex Mono", monospace; letter-spacing: .14em;
+             text-transform: uppercase; color: var(--accent); margin: 0 0 12px; }
+  h1 { font: 700 clamp(28px,5vw,42px)/1.12 "Source Serif 4", Georgia, serif;
+       margin: 0 0 10px; text-wrap: balance; }
+  .standfirst { font-size: 17.5px; color: var(--ink-2); max-width: 720px; margin: 0 0 34px; }
+  .figframe { background: var(--card); border: 1px solid var(--line);
+              border-radius: 10px; padding: 18px; overflow-x: auto; margin: 0 0 10px; }
+  figure { margin: 0 0 36px; }
+  figure svg { max-width: 100%; height: auto; display: block; margin: 0 auto; min-width: 820px; }
+  figcaption { font-size: 13.5px; color: var(--ink-2); max-width: 720px; margin-top: 8px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 14px; }
+  .cardc { background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+           padding: 18px 20px; }
+  .cardc h3 { font: 600 16.5px/1.35 "IBM Plex Sans", sans-serif; margin: 8px 0 8px; text-wrap: balance; }
+  .cardc p { margin: 0; font-size: 14.5px; color: var(--ink-2); }
+  .tag { display: inline-block; font: 500 11px/1 "IBM Plex Mono", monospace;
+         letter-spacing: .06em; padding: 5px 8px; border-radius: 999px; text-transform: uppercase; }
+  .tag.exact { background: var(--accent-soft); color: var(--accent); }
+  .tag.ours  { background: var(--ours-soft); color: var(--ours); }
+  .tag.warn  { background: var(--gate-soft); color: var(--gate); }
+  .tag.frame { background: transparent; color: var(--ink-2); border: 1px solid var(--line); }
+  h2 { font: 600 23px/1.25 "Source Serif 4", Georgia, serif; margin: 44px 0 14px; }
+  .foot { margin-top: 48px; padding-top: 14px; border-top: 1px solid var(--line);
+          font-size: 13px; color: var(--ink-3); max-width: 720px; }
+  .foot a { color: var(--accent); }
+  code { font: 400 .92em "IBM Plex Mono", monospace; background: var(--accent-soft);
+         padding: 1px 5px; border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">consistency-ft · research map</p>
+  <h1>Ngo × consistency-ft</h1>
+  <p class="standfirst">Richard Ngo's recent agency program and our coherence-finetuning project turn out to share one spine: Garrabrant induction. His theory says what coherent beliefs <em>are</em> for a composite agent; our training is a way to buy them for a single model. Six connections, mapped.</p>
+
+  <figure>
+    <div class="figframe">
+    <svg viewBox="0 0 1040 470" role="img" aria-label="Bridge diagram: Ngo's ideas on the left and consistency-ft components on the right, both grounded in Garrabrant induction in the center; labeled arrows carry the six connections." font-family="IBM Plex Sans, system-ui, sans-serif">
+      <defs>
+        <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
+        </marker>
+      </defs>
+      <!-- column headers -->
+      <g font-size="12" font-family="IBM Plex Mono, monospace" fill="var(--ink-3)" text-anchor="middle">
+        <text x="160" y="26">NGO'S PROGRAM (2025–26)</text>
+        <text x="520" y="26">THE SHARED SPINE</text>
+        <text x="880" y="26">CONSISTENCY-FT</text>
+      </g>
+      <g fill="none" stroke-width="1.3">
+        <!-- left column -->
+        <rect x="30" y="44" width="260" height="72" rx="8" stroke="var(--line)" fill="var(--card)"/>
+        <rect x="30" y="136" width="260" height="86" rx="8" stroke="var(--line)" fill="var(--card)"/>
+        <rect x="30" y="242" width="260" height="72" rx="8" stroke="var(--line)" fill="var(--card)"/>
+        <rect x="30" y="334" width="260" height="86" rx="8" stroke="var(--line)" fill="var(--card)"/>
+        <!-- center spine -->
+        <rect x="400" y="150" width="240" height="150" rx="10" stroke="var(--accent)" stroke-width="1.8" fill="var(--accent-soft)"/>
+        <!-- right column -->
+        <rect x="750" y="44" width="260" height="72" rx="8" stroke="var(--line)" fill="var(--card)"/>
+        <rect x="750" y="136" width="260" height="86" rx="8" stroke="var(--line)" fill="var(--card)"/>
+        <rect x="750" y="242" width="260" height="72" rx="8" stroke="var(--gate)" fill="var(--card)"/>
+        <rect x="750" y="334" width="260" height="86" rx="8" stroke="var(--ours)" fill="var(--card)"/>
+        <!-- arrows into / out of spine -->
+        <g stroke="var(--ink-3)" color="var(--ink-3)" marker-end="url(#a)">
+          <path d="M290 80 C 360 80 380 160 397 175"/>
+          <path d="M290 179 L 396 200"/>
+          <path d="M290 278 C 360 278 380 250 397 240"/>
+          <path d="M643 190 C 700 175 710 90 746 82"/>
+          <path d="M643 215 L 746 178"/>
+          <path d="M643 250 C 700 262 710 275 746 276"/>
+          <path d="M643 282 C 700 305 700 370 746 375"/>
+          <path d="M290 375 C 480 430 640 420 746 390"/>
+        </g>
+      </g>
+      <!-- text -->
+      <g fill="var(--ink)" font-size="13">
+        <text x="44" y="68" font-weight="600">Coalitional agency</text>
+        <text x="44" y="86" fill="var(--ink-2)" font-size="12">a composite agent's beliefs are</text>
+        <text x="44" y="101" fill="var(--ink-2)" font-size="12">internal prediction-market prices</text>
+
+        <text x="44" y="160" font-weight="600">Webs of beliefs / identity</text>
+        <text x="44" y="178" fill="var(--ink-2)" font-size="12">actions = self-fulfilling beliefs;</text>
+        <text x="44" y="193" fill="var(--ink-2)" font-size="12">identity = a chosen belief that</text>
+        <text x="44" y="208" fill="var(--ink-2)" font-size="12">makes itself true (FixDT)</text>
+
+        <text x="44" y="266" font-weight="600">Drives vs anchors</text>
+        <text x="44" y="284" fill="var(--ink-2)" font-size="12">goals push credences up;</text>
+        <text x="44" y="299" fill="var(--ink-2)" font-size="12">evidence pins them down</text>
+
+        <text x="44" y="358" font-weight="600">Formal scientific epistemology</text>
+        <text x="44" y="376" fill="var(--ink-2)" font-size="12">trader wealth = degree of truth</text>
+        <text x="44" y="391" fill="var(--ink-2)" font-size="12">of models; 4 named gaps incl.</text>
+        <text x="44" y="406" fill="var(--ink-2)" font-size="12">wealth concentration</text>
+
+        <text x="520" y="180" font-weight="600" text-anchor="middle" font-size="14">Garrabrant induction</text>
+        <text x="520" y="206" text-anchor="middle" fill="var(--ink-2)" font-size="12">criterion: no efficient trader</text>
+        <text x="520" y="223" text-anchor="middle" fill="var(--ink-2)" font-size="12">can Dutch-book the market</text>
+        <text x="520" y="249" text-anchor="middle" fill="var(--ink-2)" font-size="12">Affine Coherence · martingale</text>
+        <text x="520" y="266" text-anchor="middle" fill="var(--ink-2)" font-size="12">(No Expected Net Update) ·</text>
+        <text x="520" y="283" text-anchor="middle" fill="var(--ink-2)" font-size="12">soft self-trust · limit coherence</text>
+
+        <text x="764" y="68" font-weight="600">Check battery (Paleka)</text>
+        <text x="764" y="86" fill="var(--ink-2)" font-size="12">every check = an affine constraint</text>
+        <text x="764" y="101" fill="var(--ink-2)" font-size="12">on prices (Affine Coherence)</text>
+
+        <text x="764" y="160" font-weight="600">RLEF reward</text>
+        <text x="764" y="178" font-size="12" font-family="IBM Plex Mono, monospace">−Exploit(c,S) − λ·KL(c‖base)</text>
+        <text x="764" y="196" fill="var(--ink-2)" font-size="12">= amortize the arbitrageur into</text>
+        <text x="764" y="211" fill="var(--ink-2)" font-size="12">weights; λ = drive/anchor dial</text>
+
+        <text x="764" y="266" font-weight="600" fill="var(--gate)">Quarantine rule</text>
+        <text x="764" y="284" fill="var(--ink-2)" font-size="12">no self-referential propositions in</text>
+        <text x="764" y="299" fill="var(--ink-2)" font-size="12">training — fixed-point selection risk</text>
+
+        <text x="764" y="358" font-weight="600" fill="var(--ours)">Dynamic ExpEvidence check</text>
+        <text x="764" y="376" fill="var(--ink-2)" font-size="12">P(φ) now = E[P(φ) after thinking];</text>
+        <text x="764" y="391" fill="var(--ink-2)" font-size="12">unmeasured for LLMs — open lane</text>
+      </g>
+      <g fill="var(--ink-3)" font-size="11" font-family="IBM Plex Mono, monospace">
+        <text x="345" y="112" text-anchor="middle">prices = beliefs</text>
+        <text x="345" y="186" text-anchor="middle">local ≠ global</text>
+        <text x="345" y="244" text-anchor="middle">tiny drives</text>
+        <text x="695" y="112" text-anchor="middle">= constraints</text>
+        <text x="695" y="186" text-anchor="middle">= reward</text>
+        <text x="695" y="254" text-anchor="middle">soft thresholds</text>
+        <text x="695" y="342" text-anchor="middle">martingale</text>
+        <text x="430" y="443">gap #2: wealth concentration ↔ which circuits the gradient reinforces</text>
+      </g>
+    </svg>
+    </div>
+    <figcaption>Ngo's theory and our training loop both reduce to the same criterion: beliefs no trader can exploit. His posts supply the theory of what coherent composite beliefs are; Garrabrant induction supplies the theorems; consistency-ft amortizes the market's fixed point into model weights.</figcaption>
+  </figure>
+
+  <h2>The six connections</h2>
+  <div class="cards">
+    <div class="cardc"><span class="tag exact">exact</span>
+      <h3>RLEF is amortized logical induction</h3>
+      <p>The LI criterion — no efficient bounded-risk trader makes unbounded profit — is our reward, idealized. Our LP adversary is a restricted trader; a model at LI's fixed point scores zero on the whole benchmark. Strengthening the adversary stepwise (memory, conditional strategies, cross-tuple portfolios) is the principled roadmap for new checks.</p>
+    </div>
+    <div class="cardc"><span class="tag frame">framing</span>
+      <h3>Incoherence = a market with no arbitrageur</h3>
+      <p>Coalitional agency says a composite agent's beliefs are market prices. gpt-oss pricing P and ¬P both at 0.10 (buy both for $0.18, collect $1) is an unarbitraged bag of heuristics. Training installs the arbitrageur — and the scale-free claim means the same objective applies to multi-agent stacks.</p>
+    </div>
+    <div class="cardc"><span class="tag warn">hazard</span>
+      <h3>Self-fulfilling beliefs need quarantine</h3>
+      <p>Ngo: actions and identity are beliefs that make themselves true. For propositions about the model's own outputs, coherence pressure does fixed-point <em>selection</em> — and stable fixed points are provably not optimal ones (performative prediction). v0 trains on world-propositions only.</p>
+    </div>
+    <div class="cardc"><span class="tag frame">framing</span>
+      <h3>Our λ is his drive/anchor dial</h3>
+      <p>Goals as drives (upward pressure on credences) balanced by anchors (evidence) is structurally our loss: coherence pressure + λ·anchor. Strong drive with a weak anchor distorts beliefs — that's our A₀ collapse arm, predicted by his frame. The λ sweep is a drive/anchor phase diagram.</p>
+    </div>
+    <div class="cardc"><span class="tag warn">hazard</span>
+      <h3>Soft thresholds or broken self-trust</h3>
+      <p>LI's self-trust theorems hold only with continuous threshold indicators; sharp conditionals fail on self-referential sentences. Reward shaping in the RL loop should avoid hard cutoffs — a free, theorem-backed design rule.</p>
+    </div>
+    <div class="cardc"><span class="tag ours">open lane</span>
+      <h3>The dynamic check nobody has built</h3>
+      <p>LI's martingale theorem: today's probability equals today's expectation of the future probability. Paleka's ExpEvidence check is the static version; the dynamic one — does more chain-of-thought move beliefs in expectation? — is unmeasured and untrained for LLMs. The most natural check for reasoning models, and unclaimed.</p>
+    </div>
+  </div>
+
+  <p class="foot">Full synthesis with sources and epistemic tags: <code>docs/ngo-connections.md</code> in the repo · companion pages: <a href="/">dashboard</a> · <a href="/proposal.html">RLEF×Forecasting proposal</a> · primary sources: Ngo's <em>Mind the Future</em> (scale-free agency, webs of beliefs, formal scientific epistemology), Garrabrant et&nbsp;al. 2016, Paleka et&nbsp;al. 2024.</p>
+</div>
+</body>
+</html>

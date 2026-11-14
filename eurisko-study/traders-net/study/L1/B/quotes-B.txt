@@ -1,0 +1,295 @@
+# Extracted with pypdf from arxiv PDFs, 2026-09-27; 'file:line' refers to /tmp/traders-net/L1B/<id>.txt (scratch)
+=== 2005.07683 lines 199-218
+∂Wi,j
+> 0 andWi,j < 0
+It means that during training Wi,j is increasing while being positive or is decreasing while being
+negative. It is equivalent to saying thatSi,j is increasing whenWi,j is moving away from 0. Inversely,
+Si,j is decreasing when ∂L
+∂Si,j
+> 0 which means thatWi,j is shrinking towards 0.
+While magnitude pruning selects the most important weights as the ones which maximize their
+distance to 0 (|Wi,j|), movement pruning selects the weights which are moving the most away from
+0 (Si,j). For this reason, magnitude pruning can be seen as a 0th order method, whereas movement
+pruning is based on a 1st order signal. In fact, S can be seen as an accumulator of movement: from
+equation (2), afterT gradient updates, we have
+S(T)
+i,j =−αS
+∑
+t<T
+( ∂L
+∂Wi,j
+)(t)W (t)
+i,j (3)
+=== 1906.10771 lines 96-111
+averaged gradients and weight values that are readily
+available during training.
+• We compare two variants of our method using the
+ﬁrst and second-order Taylor expansions, respectively,
+against a greedy search (“oracle”), and show that both
+variants achieve state-of-the-art results, with our ﬁrst-
+order criteria being signiﬁcantly faster to compute with
+slightly worse accuracy.
+We also ﬁnd that using a squared loss as a measure
+for contribution leads to better correlations with the
+oracle and better accuracy when compared to signed
+difference [21].
+Estimated Spearman correlation with the oracle on
+ResNets and DenseNets trained on ImageNet show
+signiﬁcant agreement (>93%), a large improvement
+over previous methods [16, 21, 22, 27, 33], leading to
+=== 1906.10771 lines 289-318
+2 (W),...,I (1)
+M (W)}. (6)
+To approximate the joint importance of a structural set
+of parameters WS, e.g. a convolutional ﬁlter, we have two
+alternatives. We can deﬁne it as a group contribution:
+I (1)
+S (W) ≜
+(∑
+s∈S
+gsws
+)2
+, (7)
+or, alternatively, sum the importance of the individual pa-
+rameters in the set,
+ˆI (1)
+S (W) ≜
+∑
+s∈S
+I (1)
+s (W) =
+∑
+s∈S
+(gsws)2. (8)
+For insight into these two options, and to simplify cal-
+culations, we add “gates” to the network, z = 1M , with
+weights equal to 1 and dimensionality equal to the number
+of neurons (feature maps) M. Gating layers make impor-
+tance score computation easier, as they: a) are not involved
+in optimization; b) have a constant value, therefore allowing
+W to be omitted from Eq. (4-8); and c) implicitly combine
+=== 1906.10771 lines 370-383
+Our pruning method takes a trained network as input and
+prunes it during an iterative ﬁne-tuning process with a small
+learning rate. During each epoch, the following steps are
+repeated:
+1. For each minibatch, we compute parameter gradients
+and update network weights by gradient descent. We
+also compute the importance of each neuron (or ﬁlter)
+using the gradient averaged over the minibatch, as de-
+scribed in (7) or (8). (Or, the second-order importance
+estimate may be computed if the Hessian is available.)
+2. After a predeﬁned number of minibatches, we average
+the importance score of each neuron (or ﬁlter) over the
+of minibatches, and remove the N neurons with the
+smallest importance scores.
+=== 1906.10771 lines 585-597
+oracle, emphasizing importance of reestimating the criteria
+after each pruning iteration, allowing the values to adjust to
+changes in the network architecture.
+An interesting observation is that the OBD method per-
+forms poorly in spite of having a good correlation with the
+oracle in Table 1. The reason for this discrepancy is that
+when we evaluate correlation with the oracle, we square
+estimates of OBD to make them comparable to the way
+the oracle was estimated. However, during pruning, we
+use signed values of OBD, as was prescribed in [ 21]. As
+mentioned earlier, for deep networks, the diagonal of the
+Hessian is not positive for all elements and removing those
+with negative impact results in increased network instability.
+=== 1909.01440 lines 95-125
+training process, so we measure motion along the loss with respect to the entire training set, here
+denoted simply L(θ). We analyze the loss landscape of the training set instead of the validation
+set because we aim to measure training, not training confounded with issues of memorization vs.
+generalization (though the latter certainly should be the topic of future studies).
+The approach in this paper derives from a straightforward application of the fundamental theorem of
+calculus to a path integral along the loss landscape:
+L(θT )−L(θ0) =
+∫
+C
+⟨∇θL(θ),dθ⟩ (1)
+whereC is any path fromθ0 toθT and⟨·,·⟩ is the dot product. This equation states that the change in
+loss fromθ0 toθT may be calculated by integrating the dot product of the loss gradient and parameter
+motion along a path from θ0 toθT . Because ∇θL(θ) is the gradient of a function and thus is a
+conservative ﬁeld, any path fromθ0 toθT may be used; in this paper we consider the path taken by
+the optimizer during the course of training. We may approximate this path integral fromθ0 toθT by
+using a series of ﬁrst order Taylor approximations along the training path. If we index training steps
+byt∈ [0, 1,...,T ], the ﬁrst order approximation for the change in loss during one step of training is
+the following, rewritten as a sum of its individual components:
+L(θt+1)−L(θt)≈⟨∇ θL(θt), θt+1−θt⟩ (2)
+=
+K−1∑
+i=0
+(∇θL(θt))(i)(θ(i)
+t+1−θ(i)
+t ) :=
+K−1∑
+i=0
+At,i (3)
+where∇θL(θt) represents the gradient of the loss of the whole training set w.r.t.θ evaluated atθt,
+v(i) represents thei-th element of a vectorv, and the parameter vectorθ containsK elements. Note
+that while we evaluate model learning by tracking progress along the training set loss landscape
+=== 1909.01440 lines 277-285
+Averaged over the entire run, only 50.66% of parameters helped (see Table 1). Note that in both runs
+we can see that in the earliest iterations, the percent of weights helping is higher, but only slightly.
+Barely over 50% of parameters help during training. According to our deﬁnition, for each
+iteration of training, parameters can help, hurt, or not impact the overall loss. With that in mind, we
+count the number of parameters that help, hurt, or neither, across all training iterations and for various
+networks; two examples of networks are shown in Figure 3 (all other networks shown in Section S3).
+The data show that in a typical training iteration, close to half of parameters are helping and close
+to half are hurting! This ratio is slightly skewed towards helping in early iterations but stays fairly
+constant during training. Averaged across all iterations, the percentage of helping parameters for
+=== 1805.12233 lines 165-172
+4.1 Properties of Conductance
+Conductance is a natural reﬁnement of Integrated Gradients. Consequently, several properties of
+Integrated Gradients carry over to conductance. Here, we mention some relevant properties.
+Conductances satisfy a property called completeness which means that the conductances for any
+single hidden layer add up to the difference between the predictionsF (x)−F (x′). 2 An immediate
+2The proof follows from the fact that Integrated Gradients satisﬁes completeness and the fact that derivative
+∂F
+∂xi
+=== 1805.12233 lines 205-215
+Saturation of neural networks is a central issue that hinders the understanding of nonlinear networks.
+This issue was discussed in details in [ 7] for Integrated Gradients. Basically, for a network, or a
+sub-network, even when the output crucially depends on some input, the gradient of the output
+w.r.t. the input can be near-zero.
+As an artiﬁcial example, suppose the network ﬁrst transforms the inputx linearly toy = 2x, and then
+transforms it toz = max(y, 1). Suppose the input is x = 1 (wherez is saturated at value 1), with
+0 being the baseline. Then for the hidden unit of y, gradient ofz w.r.t.y is 0. Gradient*activation
+would be 0 fory, which does not reﬂect the intuitive importance ofy. Like in Integrated Gradients,
+in computing conductance, we consider all extrapolated inputs forx between 0 and 1, and look at the
+gradients of output w.r.t.y at these points. This takes the non-saturated region into account, and ends
+up attributing 1 toy, as desired.
+=== 1805.12233 lines 271-276
+5.1 Ablation Study
+We sanity check the conductance of ﬁlters by comparing them with the drop in the pre-softmax
+score for the top predicted label if we ablate the ﬁlters. We call this the ablation score for a ﬁlter. 3.
+Because we are going to ablate the ﬁlters one by one, this is pretty much like computing a discrete
+gradient. So it is going to be artifactually similar to gradient*ablation. However, this eval will
+separate internal-inﬂuence and activations from conductance and gradient*activation.
+=== 1703.01365 lines 236-240
+Axiom: Completeness. Integrated gradients satisfy an
+axiom called completeness that the attributions add up to
+the difference between the output of F at the input x and
+the baselinex′. This axiom is identiﬁed as being desirable
+by Deeplift and LRP. It is a sanity check that the attribu-
+=== 1703.01365 lines 380-390
+Completeness.
+Remark 4. We note that these path integrated gradients
+have been used within the cost-sharing literature in eco-
+nomics where the function models the cost of a project as
+a function of the demands of various participants, and the
+attributions correspond to cost-shares. Integrated gradi-
+ents correspond to a cost-sharing method called Aumann-
+Shapley (Aumann & Shapley, 1974). Proposition 2 holds
+for our attribution problem because mathematically the
+cost-sharing problem corresponds to the attribution prob-
+lem with the benchmark ﬁxed at the zero vector. (Imple-
+=== 2402.05602 lines 500-515
+tion of the softmax function should inherently incorporate
+a bias term. This is due to the fact that even when the input
+is zero, the softmax function yields a value of 1
+N (whereN
+represents the dimension of the inputs) which is analogous
+to a virtual bias term.
+Proposition 3.1 Decomposing the softmax function by a
+Taylor decomposition(4) at reference pointx yields the fol-
+lowing relevance propagation rule:
+Rl−1
+i =xi(Rl
+i−si
+X
+j
+Rl
+j) (13)
+=== 2402.05602 lines 606-630
+N
+P
+kx2
+k +ε.
+The work (Ali et al., 2022) demonstrates that when lin-
+earizing LayerNorm at x, the bias term absorbs most of
+the relevance equal to Var[x]/(Var[x] +ε), effectively ab-
+sorbing 99% of the relevance with commonly used values
+ofε = 10−6 and Var[x] = 1. Hence, a linearization at x is
+not meaningful. As a solution, (Ali et al., 2022) proposes to
+regardg(x) as a constant, which transforms the normaliza-
+tion operation (18) into a (linear) element-wise operation,
+on which the identity rule (9) can be applied, as discussed
+in Appendix A.2.2. In the following, we prove that this
+heuristic can be derived from the Deep Taylor Decomposi-
+tion framework.
+Proposition 3.4 Decomposing LayerNorm or RMSNorm by
+a Taylor decomposition (4) with reference point 0 (without
+bias or distributing the bias uniformly) yields the identity
+relevance propagation rule:
+Rl−1
+i =Rl
+i (19)
+There is no bias that absorbs relevance. The proof is
+given in Appendix A.3.4. This rule enforces a strict no-
+=== 2002.09815 lines 114-121
+In order to evaluate the contribution of elements (neurons) in the model, we would like to “zero out”
+these elements. In a convnet, this is done by ﬁxing the output of a ﬁlter to be its mean output for
+set of validation images. This will kill the ﬂow of information through that ﬁlter while keeping the
+mean statistics of the propagated signal from that layer intact (which is not the case if the output is
+replaced by all zeros). We are interested in subsetsS⊆N (i.e. sub networks), and we write V (S) to
+denote the performance of the model after all elements inN\S are zeroed out. Note that we do not
+retrain the model after certain elements are zeroed out (all of the weights of the network are ﬁxed).
+We simply take the modiﬁed network and evaluate its test performanceV (S). The reason for doing
+=== 2002.09815 lines 187-202
+Early Truncation The main computational expense in the equation above is computing the marginal
+contribution of every element:V (Si
+π∪{i})−V (Si
+π). For early elements in π,Si
+π is small. For a
+small enoughSi
+π, the model’s performanceV (Si
+π⊆ N) degrades to zero or negligible as a large
+number of connections in the network are removed (see Appendix D for examples). By utilizing
+this fact, for a sampled permutationπ, we can abstain from computing the marginal contribution of
+elements that appear early on i.e.φ(Si
+π∪{i})−φ(Si
+π)≈ 0 ifSi
+π is small. In this work, we deﬁne
+a “performance threshold” below which the model is considered dead. This truncation can lead to
+substantial computational savings (close to one order of magnitude).
+=== 2307.15771 lines 207-230
+2.5. Ablation-based and unembedding-based importance measures disagree in most layers
+We calculate the importance of each layer according to both ablation and unembedding-based
+measures of importance for all layers of Chinchilla 7B for all prompts in the Counterfact dataset. For
+each prompt we calculateΔunembed,𝑙 and Δablate,𝑙 at the final token position for every attention and
+MLP layer.
+These results are shown in Figure 2, which shows average and per-prompt results, demonstrating
+a substantial disagreement betweenΔunembed and Δablate. This is surprising as we would expect that
+4
+The Hydra Effect: Emergent Self-repair in Language Model Computations
+(a)
+ (b)
+(c)
+ (d)
+Figure 2| Measurements of (a) unembedding-based and (b) ablation-based impact for MLP and
+attention layers for a 7B parameter language model on the Counterfact dataset. Grey lines indicate
+per-prompt data, blue line indicates average across prompts. (c) Comparison of unembedding- and
+ablation-based impact measures across all layers showing low correlation andΔunembed > Δablate for
+most prompts and layers, contrary to expectations. (d) Quantification of correlation betweenΔunembed
+and Δablate and proportion of prompts whereΔunembed > Δablate across layers.
+ablating a layer not only destroys its impact on the logits from unembedding but potentially also
+breaks further downstream network components, so we would expect that the ablation-based measure
+would be greater than or equal to the unembedding measure. As Figure 2 shows, this is far from the
+case. We now demonstrate that the lack of correlation between ablation and unembedding measures
+of component importance at all but the late layers of the network is due to downstream changes in
+=== 1803.03635 lines 104-116
+they are appropriately initialized.
+Identifying winning tickets. We identify a winning ticket by training a network and pruning its
+smallest-magnitude weights. The remaining, unpruned connections constitute the architecture of the
+winning ticket. Unique to our work, each unpruned connection’s value is then reset to its initialization
+from original network before it was trained. This forms our central experiment:
+1. Randomly initialize a neural network f (x;θ0) (whereθ0∼D θ).
+2. Train the network for j iterations, arriving at parametersθj.
+3. Prune p% of the parameters inθj, creating a maskm.
+4. Reset the remaining parameters to their values inθ0, creating the winning ticketf (x;m⊙θ0).
+As described, this pruning approach is one-shot: the network is trained once, p% of weights are
+pruned, and the surviving weights are reset. However, in this paper, we focus oniterative pruning,
+which repeatedly trains, prunes, and resets the network overn rounds; each round prunesp
+1

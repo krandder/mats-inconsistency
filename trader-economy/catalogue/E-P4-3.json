@@ -1,0 +1,12 @@
+{
+ "id": "E-P4-3",
+ "question": "With noisy latents, does AS-PAY track usefulness u and AS-SOFTFLIP track reach r?",
+ "setup": "6 SIIT nets on circuits with calibrated noisy nodes (5 accepted, 3 calibrated); Spearman of each pay rule with u and with r, clustered by circuit.",
+ "result": "Half. AS-PAY tracks u more than r: 0.79 vs 0.68, difference +0.11 [0.08, 0.15]. AS-SOFTFLIP does not track r more than u: -0.003 [-0.013, 0.013]. Only 3 calibrated circuits, so the intervals are wide.",
+ "status": "Informative",
+ "files": [
+  "puzzles/P4/RESULTS.md",
+  "puzzles/P4/analyze.py",
+  "puzzles/P4/results/summary.json"
+ ]
+}

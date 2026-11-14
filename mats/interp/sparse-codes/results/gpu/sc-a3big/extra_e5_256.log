@@ -1,0 +1,9 @@
+== arc_n256_s0.01_seed65 E5 truth 16777216 paths (120s)
+Traceback (most recent call last):
+  File "/root/soup/gpu/run_e5.py", line 204, in <module>
+    cop = Copula(fF); ind = Copula(fF, indep=True)
+          ^^^^^^^^^^
+  File "/root/soup/gpu/run_e5.py", line 113, in __init__
+    ranks = torch.where(onb, blk, torch.full_like(blk, -1.0)).argsort(0).argsort(0).double()   # zeros first
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 514.00 MiB. GPU 0 has a total capacity of 22.03 GiB of which 466.88 MiB is free. Process 4162 has 8.22 GiB memory in use. Including non-PyTorch memory, this process has 6.64 GiB memory in use. Process 4415 has 6.71 GiB memory in use. Of the allocated memory 5.99 GiB is allocated by PyTorch, and 412.95 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)

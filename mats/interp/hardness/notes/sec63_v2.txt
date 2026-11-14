@@ -1,0 +1,31 @@
+### 6.3 Measured: ARC's cumulant closures against plain Monte Carlo along depth proportional to width (MEASURED)
+
+`numerics/k2_scaling.py` (ARC's own code via work/arc-noisy/kprop_noisy.py, K = 2 "simple", average metric, sigma = 0;
+truth by plain Monte Carlo with 2^15-2^17 paths, its 1/N floor subtracted; ARC's FLOP counter for K = 2, plain Monte
+Carlo charged n(2n - 1) + n per layer per path). One net per seed of depth n/2, scored at every depth (truncation
+convention). N_eq = number of Monte Carlo paths with the same cost as K = 2 (about 1.5 n); gain = (1/N_eq) / nMSE_K2,
+summarized by its geometric mean over seeds with a bootstrap interval.
+
+[TABLE_K2]
+
+Read by depth instead of by depth/width ratio, the median over seeds of 1/gain = nMSE_K2 x N_eq (below 1: K = 2 wins):
+
+[TABLE_DEPTH]
+
+What this shows, with its limits:
+- At fixed width, K = 2's error grows roughly like depth^2 at shallow depth (ARC's observation), then levels off: from
+  depth 32-64 on, 1/gain stays between about 0.2 and 1.3 at every width tested, up to depth [DMAX]. At fixed depth it
+  improves with width, as ARC proved for fixed depth.
+- Along L = alpha n (alpha = 1/8, 1/4, 1/2), K = 2 at its own (single, low) budget stays within a factor of about 1-3 of
+  plain Monte Carlo up to n = [NMAX]. Its advantage does not grow with n (fitted slopes of nMSE against n are -0.3 to
+  -0.9, against -1 for Monte Carlo at equal cost); at alpha = 1/8 it falls from 8 at n = 32 toward the level of the
+  other ratios.
+- If ARC's conjectured rate c_2 (L/n)^2 were attained at depth proportional to width, K = 2 would lose to Monte Carlo
+  by a factor growing like n. It does not, so that upper bound is far from tight there; the conjecture is about an upper
+  bound, so this does not contradict it.
+- Limits: plain Monte Carlo, not the best black-box sampler (Kerdock designs are about 2.4x better at 256 x 32); ARC's
+  discounted FLOP count (raw counts are about 1.3x higher); 16 seeds per width up to 512 and few at 1024, with
+  heavy-tailed per-net errors; sigma = 0; one budget point per method.
+
+[K3F_PARAGRAPH]
+

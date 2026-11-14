@@ -1,0 +1,11 @@
+{
+ "id": "E-P2-0",
+ "question": "Stage-0 toy: can a tree of latent codes hold a long-range parity choice that a factorised belief cannot?",
+ "setup": "1D broadcast parity (two equally likely answers per string), depth-recurrent 1D trunk, progressive market loss; U (factorised), M-global (K=2), M-tile (8-position leaves), M-tree (binary tree, K=2, <= 2 levels in training, up to 4 at test); 3 seeds, 3000 steps, CPU. Readout: exact match while U has not resolved (U never resolves here).",
+ "result": "Exact match in U's unresolved window: n=32: M-tree 51%, M-global 48%, M-tile 27%; n=64: M-tree 51%, M-global 50%, M-tile 6%; n=128: M-tree 51%, M-global 49%, M-tile 2%. Pre-registered pass (M-tree >= 40% and M-tile <= 5% at n=64 and 128): False.",
+ "status": "Problem",
+ "files": [
+  "puzzles/P2/toy.py",
+  "puzzles/P2/results/toy/summary.json"
+ ]
+}

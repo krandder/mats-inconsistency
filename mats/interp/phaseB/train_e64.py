@@ -1,0 +1,33 @@
+"""E64 training (PREREG-B amendment 72, planned): pfn_e64.py's variants ('nocons', 'codeln'; or any pfn_own / pfn_uni variant, or none
+for the baseline) under train_sw.py's unchanged recipe (world 1, amendment 45's fixed 90,000-step schedule) with e48_fmt.py's formats.
+No parameter is added, so with the same seed every parameter starts as in the baseline net of that seed and the episodes are the
+baseline's.
+usage: python train_e64.py --variant nocons|codeln --f0 ctrl --f1 ctrl --seed S --out DIR [train_sw.py options]
+"""
+import sys
+
+sys.path.insert(0, '/home/agent/workspaces/mats/work/tiny-pfn')
+sys.path.insert(0, '/home/agent/workspaces/mats/work/tiny-pfn-interp/heads')
+import pfn2 as P2  # noqa: E402
+import pfn_e64 as P64  # noqa: E402
+import e48_fmt  # noqa: E402
+import train_sw as TS  # noqa: E402
+
+VARIANT = None
+if '--variant' in sys.argv:
+    i = sys.argv.index('--variant'); VARIANT = sys.argv[i + 1]; del sys.argv[i:i + 2]
+TS.F = e48_fmt
+_base_build = P2.build
+
+
+def build(meta):
+    if VARIANT:
+        meta['variant'] = VARIANT
+        return P64.build_any(meta, P2, P2.fin_of(meta['ds']))
+    return _base_build(meta)
+
+
+TS.P2.build = build
+
+if __name__ == '__main__':
+    TS.main()

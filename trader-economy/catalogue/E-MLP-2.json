@@ -1,0 +1,12 @@
+{
+ "id": "E-MLP-2",
+ "question": "Do the other pay rules train hidden units as well as backprop?",
+ "setup": "Same network; units follow the gradient of their own LOO pay or their fixed-order MSR pay.",
+ "result": "LOO gives exactly the backprop function at cost 0 (logit gap 0.000) and 0.435 at cost 0.0005, but it pays out only 21% of the pot and useful units go bankrupt 142\u00b124 times per run. Fixed-order MSR reaches 0.439\u00b10.005 with 1-2 surviving units (29\u00b16 connections vs 386 for backprop): the first unit in the order takes all the value.",
+ "status": "Informative",
+ "files": [
+  "exp_mlp.py",
+  "results/mlp_summary.json",
+  "charts/mlp_logloss_synth.json"
+ ]
+}

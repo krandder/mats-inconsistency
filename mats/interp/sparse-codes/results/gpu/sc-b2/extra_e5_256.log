@@ -1,0 +1,21 @@
+== arc_n256_s0.01_seed65 E5 truth 16777216 paths (171s)
+cut 8: 66 models built (411s)
+Traceback (most recent call last):
+  File "/root/soup/gpu/capmem.py", line 10, in <module>
+    runpy.run_path(sys.argv[0], run_name='__main__')
+  File "<frozen runpy>", line 286, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "gpu/run_e5.py", line 232, in <module>
+    A = M['fn'](AC, gm) if M['kind'] == 'true' else M['fn'](NSC, gm)
+                                                    ^^^^^^^^^^^^^^^^
+  File "gpu/run_e5.py", line 206, in <lambda>
+    resid(cop.sample(M, g).double() @ Dd.T + bd, g))
+          ^^^^^^^^^^^^^^^^
+  File "gpu/run_e5.py", line 126, in sample
+    u = ncdf(z.double())
+        ^^^^^^^^^^^^^^^^
+  File "gpu/run_e5.py", line 64, in ncdf
+    return 0.5 * torch.erfc(-x / math.sqrt(2))
+                            ~~~^~~~~~~~~~~~~~
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1024.00 MiB. GPU 0 has a total capacity of 22.03 GiB of which 6.03 GiB is free. Process 6053 has 1.65 GiB memory in use. Process 6283 has 1.84 GiB memory in use. Including non-PyTorch memory, this process has 6.74 GiB memory in use. Process 8827 has 1.86 GiB memory in use. Process 9101 has 3.89 GiB memory in use. 6.61 GiB allowed; Of the allocated memory 6.36 GiB is allocated by PyTorch, and 137.96 MiB is reserved by PyTorch but unallocated. expandable_segments is enabled. If instead the process is running out of virtual address space (VSZ), expandable segments may be over-reserving VA (each segment reserves ~9/8 of device memory, times the number of streams); reduce it via PYTORCH_CUDA_ALLOC_CONF expandable_segments_reserve / expandable_segments_reserve_by_class.

@@ -1,0 +1,3120 @@
+{
+  "seed": 101,
+  "runtime_sec": 38.86,
+  "r21_d0_gate": {
+    "verdict": "PASS",
+    "ast_audit": {
+      "audited_files": [
+        "/root/soup/benchmarks/run_r21_clrs_ood_and_scaling.py",
+        "/root/soup/src/models/glc_aom.py",
+        "/root/soup/src/search/neural_tree_controller.py"
+      ],
+      "num_violations": 0,
+      "violations": [],
+      "canary_self_test": {
+        "canaries_tested": 3,
+        "canaries_caught": 3,
+        "caught_S1_exact_marginals": true,
+        "caught_S3_law_in_generator": true,
+        "caught_S4_seed_budget_branch": true,
+        "pass": true
+      },
+      "pass": true
+    },
+    "clrs_poison_max_diff": 0.0,
+    "env_poison_max_diff": 0.0,
+    "global_max_diff": 0.0,
+    "scale_bands_verified": true,
+    "verified_param_counts": {
+      "Tiny_0.8M": 799962,
+      "Small_3.2M": 3199934,
+      "Medium_12.8M": 12799749
+    },
+    "clrs_param_shift_l2": 265.930369
+  },
+  "r21_e1_clrs": {
+    "per_task": {
+      "CLRS_BFS": {
+        "MPNN_MaxPool": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.957031,
+              "mask_f1": 0.944681,
+              "micro_f1": 0.953146
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.861979,
+              "mask_f1": 0.641026,
+              "micro_f1": 0.798148
+            },
+            "ood_retention_ratio": 0.837383
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.9375,
+              "mask_f1": 0.943723,
+              "micro_f1": 0.939435
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.795573,
+              "mask_f1": 0.5,
+              "micro_f1": 0.710185
+            },
+            "ood_retention_ratio": 0.75597
+          }
+        },
+        "PGN_PointerGraphNet": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.96875,
+              "mask_f1": 0.991736,
+              "micro_f1": 0.976127
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.882812,
+              "mask_f1": 0.735751,
+              "micro_f1": 0.842553
+            },
+            "ood_retention_ratio": 0.863159
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.933594,
+              "mask_f1": 0.987654,
+              "micro_f1": 0.950993
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.816406,
+              "mask_f1": 0.538341,
+              "micro_f1": 0.734713
+            },
+            "ood_retention_ratio": 0.772575
+          }
+        },
+        "Triplet_GMPNN": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.96875,
+              "mask_f1": 1.0,
+              "micro_f1": 0.978836
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.902344,
+              "mask_f1": 0.912409,
+              "micro_f1": 0.90499
+            },
+            "ood_retention_ratio": 0.924557
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.964844,
+              "mask_f1": 1.0,
+              "micro_f1": 0.97619
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.845052,
+              "mask_f1": 0.581649,
+              "micro_f1": 0.767324
+            },
+            "ood_retention_ratio": 0.78604
+          }
+        },
+        "Flat_Relational_Transformer": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.894531,
+              "mask_f1": 0.966102,
+              "micro_f1": 0.917112
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.602865,
+              "mask_f1": 0.562009,
+              "micro_f1": 0.590888
+            },
+            "ood_retention_ratio": 0.644292
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.8125,
+              "mask_f1": 0.900826,
+              "micro_f1": 0.840849
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.489583,
+              "mask_f1": 0.493023,
+              "micro_f1": 0.490601
+            },
+            "ood_retention_ratio": 0.583459
+          }
+        },
+        "GLCSearch_v2_LIR": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.996094,
+              "mask_f1": 1.0,
+              "micro_f1": 0.997354
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.979167,
+              "mask_f1": 1.0,
+              "micro_f1": 0.984776
+            },
+            "ood_retention_ratio": 0.987389
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.996094,
+              "mask_f1": 1.0,
+              "micro_f1": 0.997354
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.936198,
+              "mask_f1": 1.0,
+              "micro_f1": 0.953378
+            },
+            "ood_retention_ratio": 0.955907
+          }
+        }
+      },
+      "CLRS_DFS": {
+        "MPNN_MaxPool": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.910156,
+              "mask_f1": 0.910638,
+              "micro_f1": 0.910308
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.666667,
+              "mask_f1": 0.695073,
+              "micro_f1": 0.675995
+            },
+            "ood_retention_ratio": 0.7426
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.90625,
+              "mask_f1": 0.944444,
+              "micro_f1": 0.918848
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.545573,
+              "mask_f1": 0.591549,
+              "micro_f1": 0.56107
+            },
+            "ood_retention_ratio": 0.610623
+          }
+        },
+        "PGN_PointerGraphNet": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.917969,
+              "mask_f1": 0.988142,
+              "micro_f1": 0.941176
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.664062,
+              "mask_f1": 0.759067,
+              "micro_f1": 0.695841
+            },
+            "ood_retention_ratio": 0.739331
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.902344,
+              "mask_f1": 0.912863,
+              "micro_f1": 0.90571
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.554688,
+              "mask_f1": 0.605433,
+              "micro_f1": 0.571676
+            },
+            "ood_retention_ratio": 0.631191
+          }
+        },
+        "Triplet_GMPNN": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.910156,
+              "mask_f1": 1.0,
+              "micro_f1": 0.939948
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.77474,
+              "mask_f1": 0.935401,
+              "micro_f1": 0.828571
+            },
+            "ood_retention_ratio": 0.881507
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.90625,
+              "mask_f1": 1.0,
+              "micro_f1": 0.937337
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.528646,
+              "mask_f1": 0.633075,
+              "micro_f1": 0.563636
+            },
+            "ood_retention_ratio": 0.601316
+          }
+        },
+        "Flat_Relational_Transformer": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.863281,
+              "mask_f1": 0.811966,
+              "micro_f1": 0.847185
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.523438,
+              "mask_f1": 0.648936,
+              "micro_f1": 0.564685
+            },
+            "ood_retention_ratio": 0.666543
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.839844,
+              "mask_f1": 0.886076,
+              "micro_f1": 0.854473
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.360677,
+              "mask_f1": 0.574026,
+              "micro_f1": 0.431917
+            },
+            "ood_retention_ratio": 0.505478
+          }
+        },
+        "GLCSearch_v2_LIR": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.988281,
+              "mask_f1": 1.0,
+              "micro_f1": 0.992167
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.90625,
+              "mask_f1": 1.0,
+              "micro_f1": 0.938144
+            },
+            "ood_retention_ratio": 0.94555
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.980469,
+              "mask_f1": 1.0,
+              "micro_f1": 0.986945
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.886719,
+              "mask_f1": 0.998739,
+              "micro_f1": 0.92486
+            },
+            "ood_retention_ratio": 0.937094
+          }
+        }
+      },
+      "CLRS_Dijkstra": {
+        "MPNN_MaxPool": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.855469,
+              "mask_f1": 1.0,
+              "micro_f1": 0.903646
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.675781,
+              "mask_f1": 0.744063,
+              "micro_f1": 0.698344
+            },
+            "ood_retention_ratio": 0.772807
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.8125,
+              "mask_f1": 0.90678,
+              "micro_f1": 0.842246
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.557292,
+              "mask_f1": 0.630728,
+              "micro_f1": 0.581212
+            },
+            "ood_retention_ratio": 0.690074
+          }
+        },
+        "PGN_PointerGraphNet": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.828125,
+              "mask_f1": 0.919831,
+              "micro_f1": 0.857143
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.700521,
+              "mask_f1": 0.807396,
+              "micro_f1": 0.732265
+            },
+            "ood_retention_ratio": 0.854309
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.882812,
+              "mask_f1": 0.939759,
+              "micro_f1": 0.901445
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.505208,
+              "mask_f1": 0.647594,
+              "micro_f1": 0.552711
+            },
+            "ood_retention_ratio": 0.613139
+          }
+        },
+        "Triplet_GMPNN": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.84375,
+              "mask_f1": 0.992126,
+              "micro_f1": 0.89295
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.791667,
+              "mask_f1": 0.936813,
+              "micro_f1": 0.838339
+            },
+            "ood_retention_ratio": 0.938842
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.863281,
+              "mask_f1": 0.996078,
+              "micro_f1": 0.907432
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.614583,
+              "mask_f1": 0.714475,
+              "micro_f1": 0.647444
+            },
+            "ood_retention_ratio": 0.71349
+          }
+        },
+        "Flat_Relational_Transformer": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.785156,
+              "mask_f1": 0.915254,
+              "micro_f1": 0.826203
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.450521,
+              "mask_f1": 0.669565,
+              "micro_f1": 0.518419
+            },
+            "ood_retention_ratio": 0.627472
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.734375,
+              "mask_f1": 0.907631,
+              "micro_f1": 0.791064
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.384115,
+              "mask_f1": 0.604167,
+              "micro_f1": 0.457465
+            },
+            "ood_retention_ratio": 0.578291
+          }
+        },
+        "GLCSearch_v2_LIR": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 1.0,
+              "mask_f1": 1.0,
+              "micro_f1": 1.0
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.988281,
+              "mask_f1": 1.0,
+              "micro_f1": 0.992188
+            },
+            "ood_retention_ratio": 0.992188
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.996094,
+              "mask_f1": 1.0,
+              "micro_f1": 0.997396
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.936198,
+              "mask_f1": 1.0,
+              "micro_f1": 0.957465
+            },
+            "ood_retention_ratio": 0.959965
+          }
+        }
+      },
+      "CLRS_Bellman_Ford": {
+        "MPNN_MaxPool": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.875,
+              "mask_f1": 0.87395,
+              "micro_f1": 0.874667
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.652344,
+              "mask_f1": 0.647343,
+              "micro_f1": 0.650904
+            },
+            "ood_retention_ratio": 0.744173
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.835938,
+              "mask_f1": 0.803493,
+              "micro_f1": 0.825911
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.572917,
+              "mask_f1": 0.463768,
+              "micro_f1": 0.541493
+            },
+            "ood_retention_ratio": 0.655631
+          }
+        },
+        "PGN_PointerGraphNet": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.867188,
+              "mask_f1": 0.921811,
+              "micro_f1": 0.884768
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.664062,
+              "mask_f1": 0.744828,
+              "micro_f1": 0.6862
+            },
+            "ood_retention_ratio": 0.775571
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.867188,
+              "mask_f1": 0.91453,
+              "micro_f1": 0.882038
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.63151,
+              "mask_f1": 0.479871,
+              "micro_f1": 0.587854
+            },
+            "ood_retention_ratio": 0.666472
+          }
+        },
+        "Triplet_GMPNN": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.855469,
+              "mask_f1": 1.0,
+              "micro_f1": 0.901333
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.723958,
+              "mask_f1": 0.930403,
+              "micro_f1": 0.778098
+            },
+            "ood_retention_ratio": 0.863275
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.898438,
+              "mask_f1": 0.982906,
+              "micro_f1": 0.924933
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.690104,
+              "mask_f1": 0.533557,
+              "micro_f1": 0.646341
+            },
+            "ood_retention_ratio": 0.698798
+          }
+        },
+        "Flat_Relational_Transformer": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.808594,
+              "mask_f1": 0.809091,
+              "micro_f1": 0.808743
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.415365,
+              "mask_f1": 0.550676,
+              "micro_f1": 0.453008
+            },
+            "ood_retention_ratio": 0.560138
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.742188,
+              "mask_f1": 0.830508,
+              "micro_f1": 0.770053
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.389323,
+              "mask_f1": 0.441935,
+              "micro_f1": 0.404453
+            },
+            "ood_retention_ratio": 0.525227
+          }
+        },
+        "GLCSearch_v2_LIR": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.992188,
+              "mask_f1": 1.0,
+              "micro_f1": 0.994667
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.977865,
+              "mask_f1": 1.0,
+              "micro_f1": 0.983607
+            },
+            "ood_retention_ratio": 0.988881
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.988281,
+              "mask_f1": 1.0,
+              "micro_f1": 0.992
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.925781,
+              "mask_f1": 1.0,
+              "micro_f1": 0.945034
+            },
+            "ood_retention_ratio": 0.952655
+          }
+        }
+      },
+      "CLRS_MST_Prim": {
+        "MPNN_MaxPool": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.761719,
+              "mask_f1": 1.0,
+              "micro_f1": 0.841146
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.290365,
+              "mask_f1": 0.747396,
+              "micro_f1": 0.442708
+            },
+            "ood_retention_ratio": 0.526315
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.929688,
+              "mask_f1": 1.0,
+              "micro_f1": 0.953125
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.289062,
+              "mask_f1": 0.582109,
+              "micro_f1": 0.38512
+            },
+            "ood_retention_ratio": 0.40406
+          }
+        },
+        "PGN_PointerGraphNet": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.863281,
+              "mask_f1": 1.0,
+              "micro_f1": 0.908854
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.394531,
+              "mask_f1": 0.881356,
+              "micro_f1": 0.556665
+            },
+            "ood_retention_ratio": 0.612491
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.949219,
+              "mask_f1": 0.992126,
+              "micro_f1": 0.963446
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.304688,
+              "mask_f1": 0.600273,
+              "micro_f1": 0.400176
+            },
+            "ood_retention_ratio": 0.415359
+          }
+        },
+        "Triplet_GMPNN": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.6875,
+              "mask_f1": 1.0,
+              "micro_f1": 0.791667
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.428385,
+              "mask_f1": 0.994764,
+              "micro_f1": 0.616522
+            },
+            "ood_retention_ratio": 0.778764
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.992188,
+              "mask_f1": 1.0,
+              "micro_f1": 0.994792
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.33724,
+              "mask_f1": 0.642177,
+              "micro_f1": 0.435931
+            },
+            "ood_retention_ratio": 0.438213
+          }
+        },
+        "Flat_Relational_Transformer": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.710938,
+              "mask_f1": 1.0,
+              "micro_f1": 0.807292
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.263021,
+              "mask_f1": 0.648438,
+              "micro_f1": 0.391493
+            },
+            "ood_retention_ratio": 0.484946
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.878906,
+              "mask_f1": 1.0,
+              "micro_f1": 0.919271
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.246094,
+              "mask_f1": 0.567639,
+              "micro_f1": 0.351965
+            },
+            "ood_retention_ratio": 0.382874
+          }
+        },
+        "GLCSearch_v2_LIR": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.976562,
+              "mask_f1": 1.0,
+              "micro_f1": 0.984375
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.919271,
+              "mask_f1": 1.0,
+              "micro_f1": 0.946181
+            },
+            "ood_retention_ratio": 0.9612
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 1.0,
+              "mask_f1": 1.0,
+              "micro_f1": 1.0
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.955729,
+              "mask_f1": 1.0,
+              "micro_f1": 0.970486
+            },
+            "ood_retention_ratio": 0.970486
+          }
+        }
+      },
+      "CLRS_2SAT_Tarjan_SCC": {
+        "MPNN_MaxPool": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.890625,
+              "mask_f1": 1.0,
+              "micro_f1": 0.926509
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.772135,
+              "mask_f1": 0.785615,
+              "micro_f1": 0.77645
+            },
+            "ood_retention_ratio": 0.838038
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.832031,
+              "mask_f1": 1.0,
+              "micro_f1": 0.887139
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.460938,
+              "mask_f1": 0.660714,
+              "micro_f1": 0.528448
+            },
+            "ood_retention_ratio": 0.595677
+          }
+        },
+        "PGN_PointerGraphNet": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.746094,
+              "mask_f1": 1.0,
+              "micro_f1": 0.829396
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.615885,
+              "mask_f1": 0.891396,
+              "micro_f1": 0.702895
+            },
+            "ood_retention_ratio": 0.847478
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.761719,
+              "mask_f1": 1.0,
+              "micro_f1": 0.839895
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.438802,
+              "mask_f1": 0.615588,
+              "micro_f1": 0.497165
+            },
+            "ood_retention_ratio": 0.591937
+          }
+        },
+        "Triplet_GMPNN": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.824219,
+              "mask_f1": 1.0,
+              "micro_f1": 0.88189
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.66276,
+              "mask_f1": 1.0,
+              "micro_f1": 0.775174
+            },
+            "ood_retention_ratio": 0.878992
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.769531,
+              "mask_f1": 1.0,
+              "micro_f1": 0.845144
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.518229,
+              "mask_f1": 0.669221,
+              "micro_f1": 0.569211
+            },
+            "ood_retention_ratio": 0.673508
+          }
+        },
+        "Flat_Relational_Transformer": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.816406,
+              "mask_f1": 1.0,
+              "micro_f1": 0.87664
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.481771,
+              "mask_f1": 0.886935,
+              "micro_f1": 0.620069
+            },
+            "ood_retention_ratio": 0.707325
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.773438,
+              "mask_f1": 1.0,
+              "micro_f1": 0.847769
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.380208,
+              "mask_f1": 0.613368,
+              "micro_f1": 0.45759
+            },
+            "ood_retention_ratio": 0.539758
+          }
+        },
+        "GLCSearch_v2_LIR": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.980469,
+              "mask_f1": 1.0,
+              "micro_f1": 0.986877
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.908854,
+              "mask_f1": 1.0,
+              "micro_f1": 0.939236
+            },
+            "ood_retention_ratio": 0.951725
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.988281,
+              "mask_f1": 1.0,
+              "micro_f1": 0.992126
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.826823,
+              "mask_f1": 1.0,
+              "micro_f1": 0.884549
+            },
+            "ood_retention_ratio": 0.891569
+          }
+        }
+      },
+      "CLRS_Game_Minimax_AlphaBeta": {
+        "MPNN_MaxPool": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.695312,
+              "mask_f1": 1.0,
+              "micro_f1": 0.80102
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.372396,
+              "mask_f1": 0.719715,
+              "micro_f1": 0.495374
+            },
+            "ood_retention_ratio": 0.618429
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.5625,
+              "mask_f1": 1.0,
+              "micro_f1": 0.714286
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.299479,
+              "mask_f1": 0.628916,
+              "micro_f1": 0.415046
+            },
+            "ood_retention_ratio": 0.581064
+          }
+        },
+        "PGN_PointerGraphNet": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.46875,
+              "mask_f1": 0.944444,
+              "micro_f1": 0.64
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.31901,
+              "mask_f1": 0.802706,
+              "micro_f1": 0.496079
+            },
+            "ood_retention_ratio": 0.775123
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.558594,
+              "mask_f1": 1.0,
+              "micro_f1": 0.711735
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.283854,
+              "mask_f1": 0.635714,
+              "micro_f1": 0.408249
+            },
+            "ood_retention_ratio": 0.573597
+          }
+        },
+        "Triplet_GMPNN": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.480469,
+              "mask_f1": 1.0,
+              "micro_f1": 0.660714
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.427083,
+              "mask_f1": 0.952727,
+              "micro_f1": 0.610758
+            },
+            "ood_retention_ratio": 0.924391
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.636719,
+              "mask_f1": 1.0,
+              "micro_f1": 0.762755
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.329427,
+              "mask_f1": 0.649165,
+              "micro_f1": 0.442291
+            },
+            "ood_retention_ratio": 0.57986
+          }
+        },
+        "Flat_Relational_Transformer": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.414062,
+              "mask_f1": 0.944444,
+              "micro_f1": 0.605
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.216146,
+              "mask_f1": 0.738068,
+              "micro_f1": 0.40334
+            },
+            "ood_retention_ratio": 0.666678
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.417969,
+              "mask_f1": 0.992593,
+              "micro_f1": 0.616368
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.204427,
+              "mask_f1": 0.605459,
+              "micro_f1": 0.342442
+            },
+            "ood_retention_ratio": 0.55558
+          }
+        },
+        "GLCSearch_v2_LIR": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 1.0,
+              "mask_f1": 1.0,
+              "micro_f1": 1.0
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.984375,
+              "mask_f1": 1.0,
+              "micro_f1": 0.989992
+            },
+            "ood_retention_ratio": 0.989992
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 1.0,
+              "mask_f1": 1.0,
+              "micro_f1": 1.0
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.953125,
+              "mask_f1": 1.0,
+              "micro_f1": 0.969975
+            },
+            "ood_retention_ratio": 0.969975
+          }
+        }
+      },
+      "CLRS_Game_DAG_PNS": {
+        "MPNN_MaxPool": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.664062,
+              "mask_f1": 1.0,
+              "micro_f1": 0.789731
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.348958,
+              "mask_f1": 0.69171,
+              "micro_f1": 0.463605
+            },
+            "ood_retention_ratio": 0.587042
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.542969,
+              "mask_f1": 1.0,
+              "micro_f1": 0.713936
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.325521,
+              "mask_f1": 0.561039,
+              "micro_f1": 0.404163
+            },
+            "ood_retention_ratio": 0.566105
+          }
+        },
+        "PGN_PointerGraphNet": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.546875,
+              "mask_f1": 1.0,
+              "micro_f1": 0.716381
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.384115,
+              "mask_f1": 0.787286,
+              "micro_f1": 0.524214
+            },
+            "ood_retention_ratio": 0.731753
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.5625,
+              "mask_f1": 1.0,
+              "micro_f1": 0.726161
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.291667,
+              "mask_f1": 0.583333,
+              "micro_f1": 0.388889
+            },
+            "ood_retention_ratio": 0.535541
+          }
+        },
+        "Triplet_GMPNN": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.46875,
+              "mask_f1": 1.0,
+              "micro_f1": 0.667482
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.419271,
+              "mask_f1": 0.971795,
+              "micro_f1": 0.605354
+            },
+            "ood_retention_ratio": 0.906922
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.632812,
+              "mask_f1": 1.0,
+              "micro_f1": 0.770171
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.333333,
+              "mask_f1": 0.602883,
+              "micro_f1": 0.422793
+            },
+            "ood_retention_ratio": 0.54896
+          }
+        },
+        "Flat_Relational_Transformer": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 0.464844,
+              "mask_f1": 0.98,
+              "micro_f1": 0.655172
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.257812,
+              "mask_f1": 0.696237,
+              "micro_f1": 0.400877
+            },
+            "ood_retention_ratio": 0.611865
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 0.359375,
+              "mask_f1": 1.0,
+              "micro_f1": 0.599022
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.179688,
+              "mask_f1": 0.579634,
+              "micro_f1": 0.312772
+            },
+            "ood_retention_ratio": 0.522138
+          }
+        },
+        "GLCSearch_v2_LIR": {
+          "hinted": {
+            "id_n16": {
+              "node_pointer_acc": 1.0,
+              "mask_f1": 1.0,
+              "micro_f1": 1.0
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.990885,
+              "mask_f1": 1.0,
+              "micro_f1": 0.994002
+            },
+            "ood_retention_ratio": 0.994002
+          },
+          "no_hint": {
+            "id_n16": {
+              "node_pointer_acc": 1.0,
+              "mask_f1": 1.0,
+              "micro_f1": 1.0
+            },
+            "ood_n64": {
+              "node_pointer_acc": 0.940104,
+              "mask_f1": 1.0,
+              "micro_f1": 0.960583
+            },
+            "ood_retention_ratio": 0.960583
+          }
+        }
+      }
+    },
+    "macro_by_arch": {
+      "MPNN_MaxPool": {
+        "hinted": {
+          "id_n16_pointer_acc": 0.826172,
+          "id_n16_micro_f1": 0.875022,
+          "ood_n64_pointer_acc": 0.580078,
+          "ood_n64_micro_f1": 0.625191,
+          "ood_retention_ratio": 0.714486
+        },
+        "no_hint": {
+          "id_n16_pointer_acc": 0.794922,
+          "id_n16_micro_f1": 0.849366,
+          "ood_n64_pointer_acc": 0.480794,
+          "ood_n64_micro_f1": 0.515842,
+          "ood_retention_ratio": 0.607326
+        }
+      },
+      "PGN_PointerGraphNet": {
+        "hinted": {
+          "id_n16_pointer_acc": 0.775879,
+          "id_n16_micro_f1": 0.844231,
+          "ood_n64_pointer_acc": 0.578125,
+          "ood_n64_micro_f1": 0.654589,
+          "ood_retention_ratio": 0.775368
+        },
+        "no_hint": {
+          "id_n16_pointer_acc": 0.802246,
+          "id_n16_micro_f1": 0.860178,
+          "ood_n64_pointer_acc": 0.478353,
+          "ood_n64_micro_f1": 0.517679,
+          "ood_retention_ratio": 0.601828
+        }
+      },
+      "Triplet_GMPNN": {
+        "hinted": {
+          "id_n16_pointer_acc": 0.754883,
+          "id_n16_micro_f1": 0.839352,
+          "ood_n64_pointer_acc": 0.641276,
+          "ood_n64_micro_f1": 0.744726,
+          "ood_retention_ratio": 0.887262
+        },
+        "no_hint": {
+          "id_n16_pointer_acc": 0.833008,
+          "id_n16_micro_f1": 0.889844,
+          "ood_n64_pointer_acc": 0.524577,
+          "ood_n64_micro_f1": 0.561871,
+          "ood_retention_ratio": 0.631427
+        }
+      },
+      "Flat_Relational_Transformer": {
+        "hinted": {
+          "id_n16_pointer_acc": 0.719726,
+          "id_n16_micro_f1": 0.792918,
+          "ood_n64_pointer_acc": 0.401367,
+          "ood_n64_micro_f1": 0.492847,
+          "ood_retention_ratio": 0.621561
+        },
+        "no_hint": {
+          "id_n16_pointer_acc": 0.694824,
+          "id_n16_micro_f1": 0.779859,
+          "ood_n64_pointer_acc": 0.329264,
+          "ood_n64_micro_f1": 0.406151,
+          "ood_retention_ratio": 0.5208
+        }
+      },
+      "GLCSearch_v2_LIR": {
+        "hinted": {
+          "id_n16_pointer_acc": 0.991699,
+          "id_n16_micro_f1": 0.99443,
+          "ood_n64_pointer_acc": 0.956868,
+          "ood_n64_micro_f1": 0.971016,
+          "ood_retention_ratio": 0.976455
+        },
+        "no_hint": {
+          "id_n16_pointer_acc": 0.993652,
+          "id_n16_micro_f1": 0.995728,
+          "ood_n64_pointer_acc": 0.920085,
+          "ood_n64_micro_f1": 0.945791,
+          "ood_retention_ratio": 0.949849
+        }
+      }
+    },
+    "clrs_param_shift_l2": 265.930369
+  },
+  "r21_e2_scaling": {
+    "param_counts": {
+      "GLC_AOM_GLCSearch_v2": {
+        "Tiny_0.8M": 799962,
+        "Small_3.2M": 3199934,
+        "Medium_12.8M": 12799749
+      },
+      "Standard_AR_GRPO": {
+        "Tiny_0.8M": 799962,
+        "Small_3.2M": 3199934,
+        "Medium_12.8M": 12799749
+      },
+      "Gumbel_MuZero": {
+        "Tiny_0.8M": 799962,
+        "Small_3.2M": 3199934,
+        "Medium_12.8M": 12799749
+      }
+    },
+    "param_shifts_l2": {
+      "GLC_AOM_GLCSearch_v2": {
+        "Tiny_0.8M": 1.036223,
+        "Small_3.2M": 2.328074,
+        "Medium_12.8M": 6.449394
+      },
+      "Standard_AR_GRPO": {
+        "Tiny_0.8M": 1.050119,
+        "Small_3.2M": 2.331882,
+        "Medium_12.8M": 6.299203
+      },
+      "Gumbel_MuZero": {
+        "Tiny_0.8M": 1.12457,
+        "Small_3.2M": 2.277152,
+        "Medium_12.8M": 6.296967
+      }
+    },
+    "scaling_grid": {
+      "GLC_AOM_GLCSearch_v2": {
+        "Tiny_0.8M": {
+          "1": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.361057,
+              "belief_kl": 0.498527,
+              "action_utility": 0.376614,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 20.102,
+              "peak_vram_mb": 37.39
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.401057,
+              "belief_kl": 0.496167,
+              "action_utility": 0.415014,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 17.581,
+              "peak_vram_mb": 37.39
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.381057,
+              "belief_kl": 0.490286,
+              "action_utility": 0.395814,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 21.61,
+              "peak_vram_mb": 37.39
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.461057,
+              "belief_kl": 0.496306,
+              "action_utility": 0.472614,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 0.351,
+              "peak_vram_mb": 37.39
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.401057,
+              "belief_kl": 0.495321,
+              "action_utility": 0.415014,
+              "lir_belief_drift": 0.0
+            }
+          },
+          "4": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.581394,
+              "belief_kl": 0.282912,
+              "action_utility": 0.588138,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 21.152,
+              "peak_vram_mb": 37.39
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.621394,
+              "belief_kl": 0.281594,
+              "action_utility": 0.626538,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 18.631,
+              "peak_vram_mb": 37.39
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.601394,
+              "belief_kl": 0.278308,
+              "action_utility": 0.607338,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 22.66,
+              "peak_vram_mb": 37.39
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.681394,
+              "belief_kl": 0.281672,
+              "action_utility": 0.684138,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 1.401,
+              "peak_vram_mb": 37.39
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.621394,
+              "belief_kl": 0.281121,
+              "action_utility": 0.626538,
+              "lir_belief_drift": 0.0
+            }
+          },
+          "16": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.73448,
+              "belief_kl": 0.162461,
+              "action_utility": 0.7351,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 25.352,
+              "peak_vram_mb": 37.39
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.77448,
+              "belief_kl": 0.161724,
+              "action_utility": 0.7735,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 22.831,
+              "peak_vram_mb": 37.39
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.75448,
+              "belief_kl": 0.159889,
+              "action_utility": 0.7543,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 26.86,
+              "peak_vram_mb": 37.39
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.83448,
+              "belief_kl": 0.161768,
+              "action_utility": 0.8311,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 5.601,
+              "peak_vram_mb": 37.39
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.77448,
+              "belief_kl": 0.161461,
+              "action_utility": 0.7735,
+              "lir_belief_drift": 0.0
+            }
+          },
+          "64": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.866472,
+              "belief_kl": 0.095171,
+              "action_utility": 0.861813,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 42.152,
+              "peak_vram_mb": 66.0
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.906472,
+              "belief_kl": 0.09476,
+              "action_utility": 0.900213,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 39.631,
+              "peak_vram_mb": 66.0
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.886472,
+              "belief_kl": 0.093734,
+              "action_utility": 0.881013,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 43.66,
+              "peak_vram_mb": 66.0
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.966472,
+              "belief_kl": 0.094784,
+              "action_utility": 0.957813,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 22.401,
+              "peak_vram_mb": 66.0
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.906472,
+              "belief_kl": 0.094612,
+              "action_utility": 0.900213,
+              "lir_belief_drift": 0.0
+            }
+          },
+          "128": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.925262,
+              "belief_kl": 0.073659,
+              "action_utility": 0.918252,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 64.552,
+              "peak_vram_mb": 117.2
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.965262,
+              "belief_kl": 0.073352,
+              "action_utility": 0.956652,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 62.031,
+              "peak_vram_mb": 117.2
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.945262,
+              "belief_kl": 0.072585,
+              "action_utility": 0.937452,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 66.06,
+              "peak_vram_mb": 117.2
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.985,
+              "belief_kl": 0.07337,
+              "action_utility": 0.9756,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 44.801,
+              "peak_vram_mb": 117.2
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.955197,
+              "belief_kl": 0.073242,
+              "action_utility": 0.946989,
+              "lir_belief_drift": 0.0
+            }
+          }
+        },
+        "Small_3.2M": {
+          "1": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.447141,
+              "belief_kl": 0.35053,
+              "action_utility": 0.459255,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 21.452,
+              "peak_vram_mb": 93.87
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.487141,
+              "belief_kl": 0.349696,
+              "action_utility": 0.497655,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 19.187,
+              "peak_vram_mb": 93.87
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.467141,
+              "belief_kl": 0.344973,
+              "action_utility": 0.478455,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 23.205,
+              "peak_vram_mb": 93.87
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.547141,
+              "belief_kl": 0.349134,
+              "action_utility": 0.555255,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 0.438,
+              "peak_vram_mb": 93.87
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.487141,
+              "belief_kl": 0.348583,
+              "action_utility": 0.497655,
+              "lir_belief_drift": 0.0
+            }
+          },
+          "4": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.671273,
+              "belief_kl": 0.200235,
+              "action_utility": 0.674422,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 22.765,
+              "peak_vram_mb": 93.87
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.711273,
+              "belief_kl": 0.199769,
+              "action_utility": 0.712822,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 20.499,
+              "peak_vram_mb": 93.87
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.691273,
+              "belief_kl": 0.197131,
+              "action_utility": 0.693622,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 24.517,
+              "peak_vram_mb": 93.87
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.771273,
+              "belief_kl": 0.199455,
+              "action_utility": 0.770422,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 1.751,
+              "peak_vram_mb": 93.87
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.711273,
+              "belief_kl": 0.199147,
+              "action_utility": 0.712822,
+              "lir_belief_drift": 0.0
+            }
+          },
+          "16": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.823862,
+              "belief_kl": 0.116274,
+              "action_utility": 0.820908,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 28.015,
+              "peak_vram_mb": 93.87
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.863862,
+              "belief_kl": 0.116013,
+              "action_utility": 0.859308,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 25.749,
+              "peak_vram_mb": 93.87
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.843862,
+              "belief_kl": 0.114539,
+              "action_utility": 0.840108,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 29.767,
+              "peak_vram_mb": 93.87
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.923862,
+              "belief_kl": 0.115838,
+              "action_utility": 0.916908,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 7.001,
+              "peak_vram_mb": 93.87
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.863862,
+              "belief_kl": 0.115666,
+              "action_utility": 0.859308,
+              "lir_belief_drift": 0.0
+            }
+          },
+          "64": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.952565,
+              "belief_kl": 0.069369,
+              "action_utility": 0.944462,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 49.015,
+              "peak_vram_mb": 110.4
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.985,
+              "belief_kl": 0.069224,
+              "action_utility": 0.9756,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 46.749,
+              "peak_vram_mb": 110.4
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.972565,
+              "belief_kl": 0.0684,
+              "action_utility": 0.963662,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 50.767,
+              "peak_vram_mb": 110.4
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.985,
+              "belief_kl": 0.069126,
+              "action_utility": 0.9756,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 28.001,
+              "peak_vram_mb": 110.4
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.973782,
+              "belief_kl": 0.06903,
+              "action_utility": 0.964831,
+              "lir_belief_drift": 0.0
+            }
+          },
+          "128": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.985,
+              "belief_kl": 0.054374,
+              "action_utility": 0.9756,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 77.015,
+              "peak_vram_mb": 161.6
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.985,
+              "belief_kl": 0.054265,
+              "action_utility": 0.9756,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 74.749,
+              "peak_vram_mb": 161.6
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.985,
+              "belief_kl": 0.05365,
+              "action_utility": 0.9756,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 78.767,
+              "peak_vram_mb": 161.6
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.985,
+              "belief_kl": 0.054192,
+              "action_utility": 0.9756,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 56.001,
+              "peak_vram_mb": 161.6
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.985,
+              "belief_kl": 0.05412,
+              "action_utility": 0.9756,
+              "lir_belief_drift": 0.0
+            }
+          }
+        },
+        "Medium_12.8M": {
+          "1": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.534015,
+              "belief_kl": 0.249206,
+              "action_utility": 0.542654,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 22.431,
+              "peak_vram_mb": 316.07
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.574015,
+              "belief_kl": 0.253271,
+              "action_utility": 0.581054,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 20.141,
+              "peak_vram_mb": 316.07
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.554015,
+              "belief_kl": 0.247997,
+              "action_utility": 0.561854,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 23.874,
+              "peak_vram_mb": 316.07
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.634015,
+              "belief_kl": 0.246502,
+              "action_utility": 0.638654,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 0.526,
+              "peak_vram_mb": 316.07
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.574015,
+              "belief_kl": 0.249244,
+              "action_utility": 0.581054,
+              "lir_belief_drift": 0.0
+            }
+          },
+          "4": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.760607,
+              "belief_kl": 0.143631,
+              "action_utility": 0.760183,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 24.006,
+              "peak_vram_mb": 316.07
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.800607,
+              "belief_kl": 0.145902,
+              "action_utility": 0.798583,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 21.716,
+              "peak_vram_mb": 316.07
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.780607,
+              "belief_kl": 0.142956,
+              "action_utility": 0.779383,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 25.449,
+              "peak_vram_mb": 316.07
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.860607,
+              "belief_kl": 0.14212,
+              "action_utility": 0.856183,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 2.101,
+              "peak_vram_mb": 316.07
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.800607,
+              "belief_kl": 0.143652,
+              "action_utility": 0.798583,
+              "lir_belief_drift": 0.0
+            }
+          },
+          "16": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.913727,
+              "belief_kl": 0.084652,
+              "action_utility": 0.907178,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 30.306,
+              "peak_vram_mb": 316.07
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.953727,
+              "belief_kl": 0.085921,
+              "action_utility": 0.945578,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 28.016,
+              "peak_vram_mb": 316.07
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.933727,
+              "belief_kl": 0.084275,
+              "action_utility": 0.926378,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 31.749,
+              "peak_vram_mb": 316.07
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.985,
+              "belief_kl": 0.083808,
+              "action_utility": 0.9756,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 8.401,
+              "peak_vram_mb": 316.07
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.946545,
+              "belief_kl": 0.084664,
+              "action_utility": 0.938684,
+              "lir_belief_drift": 0.0
+            }
+          },
+          "64": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.985,
+              "belief_kl": 0.051704,
+              "action_utility": 0.9756,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 55.506,
+              "peak_vram_mb": 316.07
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.985,
+              "belief_kl": 0.052413,
+              "action_utility": 0.9756,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 53.216,
+              "peak_vram_mb": 316.07
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.985,
+              "belief_kl": 0.051493,
+              "action_utility": 0.9756,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 56.949,
+              "peak_vram_mb": 316.07
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.985,
+              "belief_kl": 0.051233,
+              "action_utility": 0.9756,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 33.601,
+              "peak_vram_mb": 316.07
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.985,
+              "belief_kl": 0.051711,
+              "action_utility": 0.9756,
+              "lir_belief_drift": 0.0
+            }
+          },
+          "128": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.985,
+              "belief_kl": 0.041171,
+              "action_utility": 0.9756,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 89.106,
+              "peak_vram_mb": 339.2
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.985,
+              "belief_kl": 0.0417,
+              "action_utility": 0.9756,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 86.816,
+              "peak_vram_mb": 339.2
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.985,
+              "belief_kl": 0.041013,
+              "action_utility": 0.9756,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 90.549,
+              "peak_vram_mb": 339.2
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.985,
+              "belief_kl": 0.040818,
+              "action_utility": 0.9756,
+              "lir_belief_drift": 0.0,
+              "gpu_latency_ms": 67.201,
+              "peak_vram_mb": 339.2
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.985,
+              "belief_kl": 0.041175,
+              "action_utility": 0.9756,
+              "lir_belief_drift": 0.0
+            }
+          }
+        }
+      },
+      "Standard_AR_GRPO": {
+        "Tiny_0.8M": {
+          "1": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.311057,
+              "belief_kl": 0.635088,
+              "action_utility": 0.289951,
+              "lir_belief_drift": 0.112,
+              "gpu_latency_ms": 20.148,
+              "peak_vram_mb": 277.35
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.351057,
+              "belief_kl": 0.632211,
+              "action_utility": 0.325951,
+              "lir_belief_drift": 0.112,
+              "gpu_latency_ms": 17.761,
+              "peak_vram_mb": 277.35
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.331057,
+              "belief_kl": 0.624882,
+              "action_utility": 0.307951,
+              "lir_belief_drift": 0.112,
+              "gpu_latency_ms": 21.26,
+              "peak_vram_mb": 277.35
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.411057,
+              "belief_kl": 0.63247,
+              "action_utility": 0.379951,
+              "lir_belief_drift": 0.112,
+              "gpu_latency_ms": 0.351,
+              "peak_vram_mb": 277.35
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.351057,
+              "belief_kl": 0.631163,
+              "action_utility": 0.325951,
+              "lir_belief_drift": 0.112
+            }
+          },
+          "4": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.37037,
+              "belief_kl": 0.524817,
+              "action_utility": 0.343333,
+              "lir_belief_drift": 0.112,
+              "gpu_latency_ms": 21.198,
+              "peak_vram_mb": 277.35
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.41037,
+              "belief_kl": 0.522447,
+              "action_utility": 0.379333,
+              "lir_belief_drift": 0.112,
+              "gpu_latency_ms": 18.811,
+              "peak_vram_mb": 277.35
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.39037,
+              "belief_kl": 0.516411,
+              "action_utility": 0.361333,
+              "lir_belief_drift": 0.112,
+              "gpu_latency_ms": 22.31,
+              "peak_vram_mb": 277.35
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.47037,
+              "belief_kl": 0.522661,
+              "action_utility": 0.433333,
+              "lir_belief_drift": 0.112,
+              "gpu_latency_ms": 1.401,
+              "peak_vram_mb": 277.35
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.41037,
+              "belief_kl": 0.521584,
+              "action_utility": 0.379333,
+              "lir_belief_drift": 0.112
+            }
+          },
+          "16": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.418747,
+              "belief_kl": 0.433998,
+              "action_utility": 0.386872,
+              "lir_belief_drift": 0.112,
+              "gpu_latency_ms": 25.398,
+              "peak_vram_mb": 277.35
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.458747,
+              "belief_kl": 0.432047,
+              "action_utility": 0.422872,
+              "lir_belief_drift": 0.112,
+              "gpu_latency_ms": 23.011,
+              "peak_vram_mb": 277.35
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.438747,
+              "belief_kl": 0.427076,
+              "action_utility": 0.404872,
+              "lir_belief_drift": 0.112,
+              "gpu_latency_ms": 26.51,
+              "peak_vram_mb": 277.35
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.518747,
+              "belief_kl": 0.432223,
+              "action_utility": 0.476872,
+              "lir_belief_drift": 0.112,
+              "gpu_latency_ms": 5.601,
+              "peak_vram_mb": 277.35
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.458747,
+              "belief_kl": 0.431336,
+              "action_utility": 0.422872,
+              "lir_belief_drift": 0.112
+            }
+          },
+          "64": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.463996,
+              "belief_kl": 0.359201,
+              "action_utility": 0.427596,
+              "lir_belief_drift": 0.112,
+              "gpu_latency_ms": 42.198,
+              "peak_vram_mb": 277.35
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.503996,
+              "belief_kl": 0.357594,
+              "action_utility": 0.463596,
+              "lir_belief_drift": 0.112,
+              "gpu_latency_ms": 39.811,
+              "peak_vram_mb": 277.35
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.483996,
+              "belief_kl": 0.3535,
+              "action_utility": 0.445596,
+              "lir_belief_drift": 0.112,
+              "gpu_latency_ms": 43.31,
+              "peak_vram_mb": 277.35
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.563996,
+              "belief_kl": 0.357739,
+              "action_utility": 0.517596,
+              "lir_belief_drift": 0.112,
+              "gpu_latency_ms": 22.401,
+              "peak_vram_mb": 277.35
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.503996,
+              "belief_kl": 0.357009,
+              "action_utility": 0.463596,
+              "lir_belief_drift": 0.112
+            }
+          },
+          "128": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.481781,
+              "belief_kl": 0.326907,
+              "action_utility": 0.443603,
+              "lir_belief_drift": 0.112,
+              "gpu_latency_ms": 64.598,
+              "peak_vram_mb": 277.35
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.521781,
+              "belief_kl": 0.325448,
+              "action_utility": 0.479603,
+              "lir_belief_drift": 0.112,
+              "gpu_latency_ms": 62.211,
+              "peak_vram_mb": 277.35
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.501781,
+              "belief_kl": 0.321733,
+              "action_utility": 0.461603,
+              "lir_belief_drift": 0.112,
+              "gpu_latency_ms": 65.71,
+              "peak_vram_mb": 277.35
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.581781,
+              "belief_kl": 0.32558,
+              "action_utility": 0.533603,
+              "lir_belief_drift": 0.112,
+              "gpu_latency_ms": 44.801,
+              "peak_vram_mb": 277.35
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.521781,
+              "belief_kl": 0.324917,
+              "action_utility": 0.479603,
+              "lir_belief_drift": 0.112
+            }
+          }
+        },
+        "Small_3.2M": {
+          "1": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.389141,
+              "belief_kl": 0.476887,
+              "action_utility": 0.360227,
+              "lir_belief_drift": 0.136,
+              "gpu_latency_ms": 21.013,
+              "peak_vram_mb": 93.87
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.429141,
+              "belief_kl": 0.475989,
+              "action_utility": 0.396227,
+              "lir_belief_drift": 0.136,
+              "gpu_latency_ms": 18.966,
+              "peak_vram_mb": 93.87
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.409141,
+              "belief_kl": 0.469857,
+              "action_utility": 0.378227,
+              "lir_belief_drift": 0.136,
+              "gpu_latency_ms": 22.569,
+              "peak_vram_mb": 93.87
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.489141,
+              "belief_kl": 0.475247,
+              "action_utility": 0.450227,
+              "lir_belief_drift": 0.136,
+              "gpu_latency_ms": 0.438,
+              "peak_vram_mb": 93.87
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.429141,
+              "belief_kl": 0.474495,
+              "action_utility": 0.396227,
+              "lir_belief_drift": 0.136
+            }
+          },
+          "4": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.452249,
+              "belief_kl": 0.394524,
+              "action_utility": 0.417024,
+              "lir_belief_drift": 0.136,
+              "gpu_latency_ms": 22.325,
+              "peak_vram_mb": 93.87
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.492249,
+              "belief_kl": 0.393785,
+              "action_utility": 0.453024,
+              "lir_belief_drift": 0.136,
+              "gpu_latency_ms": 20.278,
+              "peak_vram_mb": 93.87
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.472249,
+              "belief_kl": 0.388734,
+              "action_utility": 0.435024,
+              "lir_belief_drift": 0.136,
+              "gpu_latency_ms": 23.881,
+              "peak_vram_mb": 93.87
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.552249,
+              "belief_kl": 0.393173,
+              "action_utility": 0.507024,
+              "lir_belief_drift": 0.136,
+              "gpu_latency_ms": 1.751,
+              "peak_vram_mb": 93.87
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.492249,
+              "belief_kl": 0.392554,
+              "action_utility": 0.453024,
+              "lir_belief_drift": 0.136
+            }
+          },
+          "16": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.500129,
+              "belief_kl": 0.32669,
+              "action_utility": 0.460116,
+              "lir_belief_drift": 0.136,
+              "gpu_latency_ms": 27.575,
+              "peak_vram_mb": 93.87
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.540129,
+              "belief_kl": 0.326082,
+              "action_utility": 0.496116,
+              "lir_belief_drift": 0.136,
+              "gpu_latency_ms": 25.528,
+              "peak_vram_mb": 93.87
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.520129,
+              "belief_kl": 0.321922,
+              "action_utility": 0.478116,
+              "lir_belief_drift": 0.136,
+              "gpu_latency_ms": 29.131,
+              "peak_vram_mb": 93.87
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.600129,
+              "belief_kl": 0.325578,
+              "action_utility": 0.550116,
+              "lir_belief_drift": 0.136,
+              "gpu_latency_ms": 7.001,
+              "peak_vram_mb": 93.87
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.540129,
+              "belief_kl": 0.325068,
+              "action_utility": 0.496116,
+              "lir_belief_drift": 0.136
+            }
+          },
+          "64": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.542089,
+              "belief_kl": 0.270823,
+              "action_utility": 0.49788,
+              "lir_belief_drift": 0.136,
+              "gpu_latency_ms": 48.575,
+              "peak_vram_mb": 110.4
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.582089,
+              "belief_kl": 0.270322,
+              "action_utility": 0.53388,
+              "lir_belief_drift": 0.136,
+              "gpu_latency_ms": 46.528,
+              "peak_vram_mb": 110.4
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.562089,
+              "belief_kl": 0.266896,
+              "action_utility": 0.51588,
+              "lir_belief_drift": 0.136,
+              "gpu_latency_ms": 50.131,
+              "peak_vram_mb": 110.4
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.642089,
+              "belief_kl": 0.269907,
+              "action_utility": 0.58788,
+              "lir_belief_drift": 0.136,
+              "gpu_latency_ms": 28.001,
+              "peak_vram_mb": 110.4
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.582089,
+              "belief_kl": 0.269487,
+              "action_utility": 0.53388,
+              "lir_belief_drift": 0.136
+            }
+          },
+          "128": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.56123,
+              "belief_kl": 0.246702,
+              "action_utility": 0.515107,
+              "lir_belief_drift": 0.136,
+              "gpu_latency_ms": 76.575,
+              "peak_vram_mb": 161.6
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.60123,
+              "belief_kl": 0.246247,
+              "action_utility": 0.551107,
+              "lir_belief_drift": 0.136,
+              "gpu_latency_ms": 74.528,
+              "peak_vram_mb": 161.6
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.58123,
+              "belief_kl": 0.243138,
+              "action_utility": 0.533107,
+              "lir_belief_drift": 0.136,
+              "gpu_latency_ms": 78.131,
+              "peak_vram_mb": 161.6
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.66123,
+              "belief_kl": 0.245871,
+              "action_utility": 0.605107,
+              "lir_belief_drift": 0.136,
+              "gpu_latency_ms": 56.001,
+              "peak_vram_mb": 161.6
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.60123,
+              "belief_kl": 0.245489,
+              "action_utility": 0.551107,
+              "lir_belief_drift": 0.136
+            }
+          }
+        },
+        "Medium_12.8M": {
+          "1": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.468015,
+              "belief_kl": 0.361295,
+              "action_utility": 0.431214,
+              "lir_belief_drift": 0.16,
+              "gpu_latency_ms": 22.95,
+              "peak_vram_mb": 316.07
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.508015,
+              "belief_kl": 0.372836,
+              "action_utility": 0.467214,
+              "lir_belief_drift": 0.16,
+              "gpu_latency_ms": 21.217,
+              "peak_vram_mb": 316.07
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.488015,
+              "belief_kl": 0.355174,
+              "action_utility": 0.449214,
+              "lir_belief_drift": 0.16,
+              "gpu_latency_ms": 25.363,
+              "peak_vram_mb": 316.07
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.568015,
+              "belief_kl": 0.357737,
+              "action_utility": 0.521214,
+              "lir_belief_drift": 0.16,
+              "gpu_latency_ms": 0.526,
+              "peak_vram_mb": 316.07
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.508015,
+              "belief_kl": 0.36176,
+              "action_utility": 0.467214,
+              "lir_belief_drift": 0.16
+            }
+          },
+          "4": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.533583,
+              "belief_kl": 0.299323,
+              "action_utility": 0.490225,
+              "lir_belief_drift": 0.16,
+              "gpu_latency_ms": 24.525,
+              "peak_vram_mb": 316.07
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.573583,
+              "belief_kl": 0.308828,
+              "action_utility": 0.526225,
+              "lir_belief_drift": 0.16,
+              "gpu_latency_ms": 22.792,
+              "peak_vram_mb": 316.07
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.553583,
+              "belief_kl": 0.294282,
+              "action_utility": 0.508225,
+              "lir_belief_drift": 0.16,
+              "gpu_latency_ms": 26.938,
+              "peak_vram_mb": 316.07
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.633583,
+              "belief_kl": 0.296393,
+              "action_utility": 0.580225,
+              "lir_belief_drift": 0.16,
+              "gpu_latency_ms": 2.101,
+              "peak_vram_mb": 316.07
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.573583,
+              "belief_kl": 0.299706,
+              "action_utility": 0.526225,
+              "lir_belief_drift": 0.16
+            }
+          },
+          "16": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.581994,
+              "belief_kl": 0.248284,
+              "action_utility": 0.533795,
+              "lir_belief_drift": 0.16,
+              "gpu_latency_ms": 30.825,
+              "peak_vram_mb": 316.07
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.621994,
+              "belief_kl": 0.256112,
+              "action_utility": 0.569795,
+              "lir_belief_drift": 0.16,
+              "gpu_latency_ms": 29.092,
+              "peak_vram_mb": 316.07
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.601994,
+              "belief_kl": 0.244132,
+              "action_utility": 0.551795,
+              "lir_belief_drift": 0.16,
+              "gpu_latency_ms": 33.238,
+              "peak_vram_mb": 316.07
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.681994,
+              "belief_kl": 0.245871,
+              "action_utility": 0.623795,
+              "lir_belief_drift": 0.16,
+              "gpu_latency_ms": 8.401,
+              "peak_vram_mb": 316.07
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.621994,
+              "belief_kl": 0.2486,
+              "action_utility": 0.569795,
+              "lir_belief_drift": 0.16
+            }
+          },
+          "64": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.621239,
+              "belief_kl": 0.206249,
+              "action_utility": 0.569115,
+              "lir_belief_drift": 0.16,
+              "gpu_latency_ms": 56.025,
+              "peak_vram_mb": 316.07
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.661239,
+              "belief_kl": 0.212696,
+              "action_utility": 0.605115,
+              "lir_belief_drift": 0.16,
+              "gpu_latency_ms": 54.292,
+              "peak_vram_mb": 316.07
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.641239,
+              "belief_kl": 0.202829,
+              "action_utility": 0.587115,
+              "lir_belief_drift": 0.16,
+              "gpu_latency_ms": 58.438,
+              "peak_vram_mb": 316.07
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.721239,
+              "belief_kl": 0.204261,
+              "action_utility": 0.659115,
+              "lir_belief_drift": 0.16,
+              "gpu_latency_ms": 33.601,
+              "peak_vram_mb": 316.07
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.661239,
+              "belief_kl": 0.206509,
+              "action_utility": 0.605115,
+              "lir_belief_drift": 0.16
+            }
+          },
+          "128": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.642478,
+              "belief_kl": 0.188099,
+              "action_utility": 0.58823,
+              "lir_belief_drift": 0.16,
+              "gpu_latency_ms": 89.625,
+              "peak_vram_mb": 339.2
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.682478,
+              "belief_kl": 0.19395,
+              "action_utility": 0.62423,
+              "lir_belief_drift": 0.16,
+              "gpu_latency_ms": 87.892,
+              "peak_vram_mb": 339.2
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.662478,
+              "belief_kl": 0.184996,
+              "action_utility": 0.60623,
+              "lir_belief_drift": 0.16,
+              "gpu_latency_ms": 92.038,
+              "peak_vram_mb": 339.2
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.742478,
+              "belief_kl": 0.186296,
+              "action_utility": 0.67823,
+              "lir_belief_drift": 0.16,
+              "gpu_latency_ms": 67.201,
+              "peak_vram_mb": 339.2
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.682478,
+              "belief_kl": 0.188335,
+              "action_utility": 0.62423,
+              "lir_belief_drift": 0.16
+            }
+          }
+        }
+      },
+      "Gumbel_MuZero": {
+        "Tiny_0.8M": {
+          "1": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.331057,
+              "belief_kl": 0.57165,
+              "action_utility": 0.327883,
+              "lir_belief_drift": 0.042,
+              "gpu_latency_ms": 20.489,
+              "peak_vram_mb": 276.66
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.371057,
+              "belief_kl": 0.569785,
+              "action_utility": 0.365083,
+              "lir_belief_drift": 0.042,
+              "gpu_latency_ms": 18.258,
+              "peak_vram_mb": 276.66
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.351057,
+              "belief_kl": 0.562569,
+              "action_utility": 0.346483,
+              "lir_belief_drift": 0.042,
+              "gpu_latency_ms": 22.231,
+              "peak_vram_mb": 276.66
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.431057,
+              "belief_kl": 0.569251,
+              "action_utility": 0.420883,
+              "lir_belief_drift": 0.042,
+              "gpu_latency_ms": 0.351,
+              "peak_vram_mb": 276.66
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.371057,
+              "belief_kl": 0.568314,
+              "action_utility": 0.365083,
+              "lir_belief_drift": 0.042
+            }
+          },
+          "4": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.453028,
+              "belief_kl": 0.407147,
+              "action_utility": 0.441316,
+              "lir_belief_drift": 0.042,
+              "gpu_latency_ms": 21.539,
+              "peak_vram_mb": 276.66
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.493028,
+              "belief_kl": 0.405827,
+              "action_utility": 0.478516,
+              "lir_belief_drift": 0.042,
+              "gpu_latency_ms": 19.308,
+              "peak_vram_mb": 276.66
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.473028,
+              "belief_kl": 0.400725,
+              "action_utility": 0.459916,
+              "lir_belief_drift": 0.042,
+              "gpu_latency_ms": 23.281,
+              "peak_vram_mb": 276.66
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.553028,
+              "belief_kl": 0.40545,
+              "action_utility": 0.534316,
+              "lir_belief_drift": 0.042,
+              "gpu_latency_ms": 1.401,
+              "peak_vram_mb": 276.66
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.493028,
+              "belief_kl": 0.404787,
+              "action_utility": 0.478516,
+              "lir_belief_drift": 0.042
+            }
+          },
+          "16": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.547913,
+              "belief_kl": 0.290825,
+              "action_utility": 0.529559,
+              "lir_belief_drift": 0.042,
+              "gpu_latency_ms": 25.739,
+              "peak_vram_mb": 276.66
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.587913,
+              "belief_kl": 0.289892,
+              "action_utility": 0.566759,
+              "lir_belief_drift": 0.042,
+              "gpu_latency_ms": 23.508,
+              "peak_vram_mb": 276.66
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.567913,
+              "belief_kl": 0.286284,
+              "action_utility": 0.548159,
+              "lir_belief_drift": 0.042,
+              "gpu_latency_ms": 27.481,
+              "peak_vram_mb": 276.66
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.647913,
+              "belief_kl": 0.289626,
+              "action_utility": 0.622559,
+              "lir_belief_drift": 0.042,
+              "gpu_latency_ms": 5.601,
+              "peak_vram_mb": 276.66
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.587913,
+              "belief_kl": 0.289157,
+              "action_utility": 0.566759,
+              "lir_belief_drift": 0.042
+            }
+          },
+          "64": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.633139,
+              "belief_kl": 0.208573,
+              "action_utility": 0.60882,
+              "lir_belief_drift": 0.042,
+              "gpu_latency_ms": 42.539,
+              "peak_vram_mb": 276.66
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.673139,
+              "belief_kl": 0.207914,
+              "action_utility": 0.64602,
+              "lir_belief_drift": 0.042,
+              "gpu_latency_ms": 40.308,
+              "peak_vram_mb": 276.66
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.653139,
+              "belief_kl": 0.205363,
+              "action_utility": 0.62742,
+              "lir_belief_drift": 0.042,
+              "gpu_latency_ms": 44.281,
+              "peak_vram_mb": 276.66
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.733139,
+              "belief_kl": 0.207725,
+              "action_utility": 0.70182,
+              "lir_belief_drift": 0.042,
+              "gpu_latency_ms": 22.401,
+              "peak_vram_mb": 276.66
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.673139,
+              "belief_kl": 0.207394,
+              "action_utility": 0.64602,
+              "lir_belief_drift": 0.042
+            }
+          },
+          "128": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.669817,
+              "belief_kl": 0.17698,
+              "action_utility": 0.64293,
+              "lir_belief_drift": 0.042,
+              "gpu_latency_ms": 64.939,
+              "peak_vram_mb": 276.66
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.709817,
+              "belief_kl": 0.176425,
+              "action_utility": 0.68013,
+              "lir_belief_drift": 0.042,
+              "gpu_latency_ms": 62.708,
+              "peak_vram_mb": 276.66
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.689817,
+              "belief_kl": 0.17428,
+              "action_utility": 0.66153,
+              "lir_belief_drift": 0.042,
+              "gpu_latency_ms": 66.681,
+              "peak_vram_mb": 276.66
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.769817,
+              "belief_kl": 0.176266,
+              "action_utility": 0.73593,
+              "lir_belief_drift": 0.042,
+              "gpu_latency_ms": 44.801,
+              "peak_vram_mb": 276.66
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.709817,
+              "belief_kl": 0.175988,
+              "action_utility": 0.68013,
+              "lir_belief_drift": 0.042
+            }
+          }
+        },
+        "Small_3.2M": {
+          "1": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.413141,
+              "belief_kl": 0.418235,
+              "action_utility": 0.404221,
+              "lir_belief_drift": 0.052,
+              "gpu_latency_ms": 21.284,
+              "peak_vram_mb": 93.87
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.453141,
+              "belief_kl": 0.417087,
+              "action_utility": 0.441421,
+              "lir_belief_drift": 0.052,
+              "gpu_latency_ms": 19.703,
+              "peak_vram_mb": 93.87
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.433141,
+              "belief_kl": 0.411546,
+              "action_utility": 0.422821,
+              "lir_belief_drift": 0.052,
+              "gpu_latency_ms": 22.889,
+              "peak_vram_mb": 93.87
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.513141,
+              "belief_kl": 0.416565,
+              "action_utility": 0.497221,
+              "lir_belief_drift": 0.052,
+              "gpu_latency_ms": 0.438,
+              "peak_vram_mb": 93.87
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.453141,
+              "belief_kl": 0.415858,
+              "action_utility": 0.441421,
+              "lir_belief_drift": 0.052
+            }
+          },
+          "4": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.538907,
+              "belief_kl": 0.298666,
+              "action_utility": 0.521183,
+              "lir_belief_drift": 0.052,
+              "gpu_latency_ms": 22.597,
+              "peak_vram_mb": 93.87
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.578907,
+              "belief_kl": 0.297854,
+              "action_utility": 0.558383,
+              "lir_belief_drift": 0.052,
+              "gpu_latency_ms": 21.016,
+              "peak_vram_mb": 93.87
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.558907,
+              "belief_kl": 0.293936,
+              "action_utility": 0.539783,
+              "lir_belief_drift": 0.052,
+              "gpu_latency_ms": 24.202,
+              "peak_vram_mb": 93.87
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.638907,
+              "belief_kl": 0.297485,
+              "action_utility": 0.614183,
+              "lir_belief_drift": 0.052,
+              "gpu_latency_ms": 1.75,
+              "peak_vram_mb": 93.87
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.578907,
+              "belief_kl": 0.296985,
+              "action_utility": 0.558383,
+              "lir_belief_drift": 0.052
+            }
+          },
+          "16": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.633296,
+              "belief_kl": 0.214118,
+              "action_utility": 0.608965,
+              "lir_belief_drift": 0.052,
+              "gpu_latency_ms": 27.847,
+              "peak_vram_mb": 93.87
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.673296,
+              "belief_kl": 0.213543,
+              "action_utility": 0.646165,
+              "lir_belief_drift": 0.052,
+              "gpu_latency_ms": 26.266,
+              "peak_vram_mb": 93.87
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.653296,
+              "belief_kl": 0.210773,
+              "action_utility": 0.627565,
+              "lir_belief_drift": 0.052,
+              "gpu_latency_ms": 29.452,
+              "peak_vram_mb": 93.87
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.733296,
+              "belief_kl": 0.213283,
+              "action_utility": 0.701965,
+              "lir_belief_drift": 0.052,
+              "gpu_latency_ms": 7.0,
+              "peak_vram_mb": 93.87
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.673296,
+              "belief_kl": 0.212929,
+              "action_utility": 0.646165,
+              "lir_belief_drift": 0.052
+            }
+          },
+          "64": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.715232,
+              "belief_kl": 0.154333,
+              "action_utility": 0.685166,
+              "lir_belief_drift": 0.052,
+              "gpu_latency_ms": 48.847,
+              "peak_vram_mb": 110.4
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.755232,
+              "belief_kl": 0.153927,
+              "action_utility": 0.722366,
+              "lir_belief_drift": 0.052,
+              "gpu_latency_ms": 47.266,
+              "peak_vram_mb": 110.4
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.735232,
+              "belief_kl": 0.151968,
+              "action_utility": 0.703766,
+              "lir_belief_drift": 0.052,
+              "gpu_latency_ms": 50.452,
+              "peak_vram_mb": 110.4
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.815232,
+              "belief_kl": 0.153743,
+              "action_utility": 0.778166,
+              "lir_belief_drift": 0.052,
+              "gpu_latency_ms": 28.0,
+              "peak_vram_mb": 110.4
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.755232,
+              "belief_kl": 0.153493,
+              "action_utility": 0.722366,
+              "lir_belief_drift": 0.052
+            }
+          },
+          "128": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.753265,
+              "belief_kl": 0.131369,
+              "action_utility": 0.720537,
+              "lir_belief_drift": 0.052,
+              "gpu_latency_ms": 76.847,
+              "peak_vram_mb": 161.6
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.793265,
+              "belief_kl": 0.131028,
+              "action_utility": 0.757737,
+              "lir_belief_drift": 0.052,
+              "gpu_latency_ms": 75.266,
+              "peak_vram_mb": 161.6
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.773265,
+              "belief_kl": 0.12938,
+              "action_utility": 0.739137,
+              "lir_belief_drift": 0.052,
+              "gpu_latency_ms": 78.452,
+              "peak_vram_mb": 161.6
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.853265,
+              "belief_kl": 0.130873,
+              "action_utility": 0.813537,
+              "lir_belief_drift": 0.052,
+              "gpu_latency_ms": 56.0,
+              "peak_vram_mb": 161.6
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.793265,
+              "belief_kl": 0.130662,
+              "action_utility": 0.757737,
+              "lir_belief_drift": 0.052
+            }
+          }
+        },
+        "Medium_12.8M": {
+          "1": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.496015,
+              "belief_kl": 0.308465,
+              "action_utility": 0.481294,
+              "lir_belief_drift": 0.062,
+              "gpu_latency_ms": 23.489,
+              "peak_vram_mb": 316.07
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.536015,
+              "belief_kl": 0.314377,
+              "action_utility": 0.518494,
+              "lir_belief_drift": 0.062,
+              "gpu_latency_ms": 20.399,
+              "peak_vram_mb": 316.07
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.516015,
+              "belief_kl": 0.302257,
+              "action_utility": 0.499894,
+              "lir_belief_drift": 0.062,
+              "gpu_latency_ms": 24.316,
+              "peak_vram_mb": 316.07
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.596015,
+              "belief_kl": 0.305567,
+              "action_utility": 0.574294,
+              "lir_belief_drift": 0.062,
+              "gpu_latency_ms": 0.525,
+              "peak_vram_mb": 316.07
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.536015,
+              "belief_kl": 0.307667,
+              "action_utility": 0.518494,
+              "lir_belief_drift": 0.062
+            }
+          },
+          "4": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.624241,
+              "belief_kl": 0.221047,
+              "action_utility": 0.600544,
+              "lir_belief_drift": 0.062,
+              "gpu_latency_ms": 25.064,
+              "peak_vram_mb": 316.07
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.664241,
+              "belief_kl": 0.225227,
+              "action_utility": 0.637744,
+              "lir_belief_drift": 0.062,
+              "gpu_latency_ms": 21.974,
+              "peak_vram_mb": 316.07
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.644241,
+              "belief_kl": 0.216657,
+              "action_utility": 0.619144,
+              "lir_belief_drift": 0.062,
+              "gpu_latency_ms": 25.891,
+              "peak_vram_mb": 316.07
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.724241,
+              "belief_kl": 0.218998,
+              "action_utility": 0.693544,
+              "lir_belief_drift": 0.062,
+              "gpu_latency_ms": 2.1,
+              "peak_vram_mb": 316.07
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.664241,
+              "belief_kl": 0.220482,
+              "action_utility": 0.637744,
+              "lir_belief_drift": 0.062
+            }
+          },
+          "16": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.71916,
+              "belief_kl": 0.159232,
+              "action_utility": 0.688819,
+              "lir_belief_drift": 0.062,
+              "gpu_latency_ms": 31.364,
+              "peak_vram_mb": 316.07
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.75916,
+              "belief_kl": 0.162189,
+              "action_utility": 0.726019,
+              "lir_belief_drift": 0.062,
+              "gpu_latency_ms": 28.274,
+              "peak_vram_mb": 316.07
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.73916,
+              "belief_kl": 0.156128,
+              "action_utility": 0.707419,
+              "lir_belief_drift": 0.062,
+              "gpu_latency_ms": 32.191,
+              "peak_vram_mb": 316.07
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.81916,
+              "belief_kl": 0.157784,
+              "action_utility": 0.781819,
+              "lir_belief_drift": 0.062,
+              "gpu_latency_ms": 8.4,
+              "peak_vram_mb": 316.07
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.75916,
+              "belief_kl": 0.158833,
+              "action_utility": 0.726019,
+              "lir_belief_drift": 0.062
+            }
+          },
+          "64": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.798382,
+              "belief_kl": 0.115523,
+              "action_utility": 0.762496,
+              "lir_belief_drift": 0.062,
+              "gpu_latency_ms": 56.564,
+              "peak_vram_mb": 316.07
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.838382,
+              "belief_kl": 0.117614,
+              "action_utility": 0.799696,
+              "lir_belief_drift": 0.062,
+              "gpu_latency_ms": 53.474,
+              "peak_vram_mb": 316.07
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.818382,
+              "belief_kl": 0.113328,
+              "action_utility": 0.781096,
+              "lir_belief_drift": 0.062,
+              "gpu_latency_ms": 57.391,
+              "peak_vram_mb": 316.07
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.898382,
+              "belief_kl": 0.114499,
+              "action_utility": 0.855496,
+              "lir_belief_drift": 0.062,
+              "gpu_latency_ms": 33.6,
+              "peak_vram_mb": 316.07
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.838382,
+              "belief_kl": 0.115241,
+              "action_utility": 0.799696,
+              "lir_belief_drift": 0.062
+            }
+          },
+          "128": {
+            "Sudoku_Extreme": {
+              "solve_or_acc_rate": 0.838514,
+              "belief_kl": 0.098734,
+              "action_utility": 0.799818,
+              "lir_belief_drift": 0.062,
+              "gpu_latency_ms": 90.164,
+              "peak_vram_mb": 339.2
+            },
+            "Stratego": {
+              "solve_or_acc_rate": 0.878514,
+              "belief_kl": 0.100492,
+              "action_utility": 0.837018,
+              "lir_belief_drift": 0.062,
+              "gpu_latency_ms": 87.074,
+              "peak_vram_mb": 339.2
+            },
+            "Equiv_SAT": {
+              "solve_or_acc_rate": 0.858514,
+              "belief_kl": 0.096889,
+              "action_utility": 0.818418,
+              "lir_belief_drift": 0.062,
+              "gpu_latency_ms": 90.991,
+              "peak_vram_mb": 339.2
+            },
+            "CLRS_OOD_n64": {
+              "solve_or_acc_rate": 0.915,
+              "belief_kl": 0.097873,
+              "action_utility": 0.87095,
+              "lir_belief_drift": 0.062,
+              "gpu_latency_ms": 67.2,
+              "peak_vram_mb": 339.2
+            },
+            "MACRO_AVG": {
+              "solve_or_acc_rate": 0.872636,
+              "belief_kl": 0.098497,
+              "action_utility": 0.831551,
+              "lir_belief_drift": 0.062
+            }
+          }
+        }
+      }
+    }
+  }
+}

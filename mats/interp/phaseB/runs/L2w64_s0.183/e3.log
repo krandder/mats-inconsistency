@@ -1,0 +1,13 @@
+/home/agent/.venvs/aggext/lib/python3.12/site-packages/torch/jit/_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+/home/agent/workspaces/mats/work/cm-interp-B/e3.py:55: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  return float(fro.mean()), float(top.mean())
+{'net': 'trained', 'map': 'emb->a1', 'exp_p': 0.7842456698417664, 'top_p': 7.385087490081787, 'exp_q': 0.8113786578178406, 'top_q': 7.516826152801514, 'q_tr': 0.552885890007019, 'p_var': 0.549304187297821}
+Traceback (most recent call last):
+  File "/home/agent/workspaces/mats/work/cm-interp-B/e3.py", line 102, in <module>
+    run(sys.argv[1])
+  File "/home/agent/workspaces/mats/work/cm-interp-B/e3.py", line 88, in run
+    L = torch.linalg.cholesky(C.double() + 1e-6 * torch.eye(C.shape[0], dtype=torch.float64)).float()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch._C._LinAlgError: linalg.cholesky: The factorization could not be completed because the input is not positive-definite (the leading minor of order 591 is not positive-definite).

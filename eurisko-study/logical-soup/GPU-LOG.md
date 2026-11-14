@@ -1,0 +1,175 @@
+# GPU-LOG
+
+Every GPU VM create, delete and watchdog action for the logical-induction soup, one line each,
+appended by `infra/gpu-up.sh`, `infra/gpu-down.sh`, `infra/gpu-run.sh` and `infra/gpu-watchdog.sh`.
+Budget: $200 total (Kelvin, 2026-09-27). Project GCP_PROJECT, region us-central1.
+
+Spend estimate (`infra/lib.sh spend_usd`): per VM, `cost_usd` from its DELETE line (rate ceiling x age),
+or `reserve_usd` from its CREATE line (rate ceiling x 6 h) while no DELETE line exists.
+`gpu-up.sh` refuses to create when spend + the new VM's reserve would exceed $200.
+Rates are UNVERIFIED ceilings (public on-demand list prices; the Cloud Billing API is disabled in
+this project); spot VMs bill less, so the estimate over-counts.
+
+Line kinds: CREATE, CREATE-FAILED, READY, STARTUP-FAILED, STARTUP-TIMEOUT, RUN, RUN-END,
+RUN-SYNC-FAILED, DELETE, DELETE-FAILED, WATCHDOG.
+
+## Log
+
+- 2026-09-27T10:39Z CREATE vm=soup-gpu-20260927-1039 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run=55m rate_usd_h=0.87 (UNVERIFIED ceiling: on-demand list price, Billing API disabled; spot is lower) reserve_usd=5.22 spent_before_usd=0.00 by=gpu-up.sh
+- 2026-09-27T10:40Z STARTUP-FAILED vm=soup-gpu-20260927-1039 FAILED: FAIL bun (see /var/log/soup-startup.log on the VM); deleting
+- 2026-09-27T10:42Z DELETE vm=soup-gpu-20260927-1039 zone=us-central1-a type=g2-standard-8 age_h=0.03 cost_usd=0.03 (rate ceiling x age) sync=ok(4.0K) reason="gpu-down.sh"
+- 2026-09-27T10:42Z CREATE vm=soup-gpu-20260927-1042 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run=55m rate_usd_h=0.87 (UNVERIFIED ceiling: on-demand list price, Billing API disabled; spot is lower) reserve_usd=5.22 spent_before_usd=0.03 by=gpu-up.sh
+- 2026-09-27T10:44Z READY vm=soup-gpu-20260927-1042 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 nvcc=Build cuda_12.9.r12.9/compiler.35813241_0 clang=Ubuntu clang version 18.1.3 (1ubuntu1) bun=1.3.14 bend=v2.0.29@c8691aa
+- 2026-09-27T10:44Z RUN vm=soup-gpu-20260927-1042 timeout=20m cmd="bash scripts/gpu-smoke-k12.sh"
+- 2026-09-27T10:45Z WATCHDOG vm=soup-gpu-20260927-1042 age_h=0.04 status=RUNNING action=posted
+- 2026-09-27T10:45Z RUN-END vm=soup-gpu-20260927-1042 rc=0
+- 2026-09-27T10:46Z DELETE vm=soup-gpu-20260927-1042 zone=us-central1-a type=g2-standard-8 age_h=0.04 cost_usd=0.03 (rate ceiling x age) sync=ok(344K) reason="gpu-run.sh finished rc=0: bash scripts/gpu-smoke-k12.sh"
+- 2026-09-27T10:47:18Z COST-AUDIT vm=soup-gpu-20260927-1039 rate_usd_h=0.87 duration_s=175.292 age_h=0.048692 cost_usd=0.042362 basis=insert-to-delete-operation (UNVERIFIED rate ceiling; includes deletion time omitted by earlier DELETE estimate)
+- 2026-09-27T10:47:18Z COST-AUDIT vm=soup-gpu-20260927-1042 rate_usd_h=0.87 duration_s=208.215 age_h=0.057838 cost_usd=0.050319 basis=insert-to-delete-operation (UNVERIFIED rate ceiling; includes deletion time omitted by earlier DELETE estimate)
+- 2026-09-27T10:47:18Z VERIFIED no logical-soup instances or experiment boot disks remain; gcloud list results=[]/[]; two sequential attempts (first failed startup), total_vm_seconds=383.507, estimated_total_usd=0.092681. Evidence: runs/gpu-smoke-k12/deletion-check.json and cost-audit.json.
+- 2026-09-27T11:02Z CREATE vm=soup-gpu-20260927-1102 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run=55m rate_usd_h=0.87 (UNVERIFIED ceiling: on-demand list price, Billing API disabled; spot is lower) reserve_usd=5.22 spent_before_usd=0.09 by=gpu-up.sh
+- 2026-09-27T11:04Z READY vm=soup-gpu-20260927-1102 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 nvcc=Build cuda_12.9.r12.9/compiler.35813241_0 clang=Ubuntu clang version 18.1.3 (1ubuntu1) bun=1.3.14 bend=v2.0.29@c8691aa
+- 2026-09-27T11:04Z RUN vm=soup-gpu-20260927-1102 timeout=30m cmd="bash scripts/gpu-cube-bench.sh"
+- 2026-09-27T11:06Z RUN-END vm=soup-gpu-20260927-1102 rc=0
+- 2026-09-27T11:07Z DELETE vm=soup-gpu-20260927-1102 zone=us-central1-a type=g2-standard-8 age_h=0.06 cost_usd=0.05 (rate ceiling x age) sync=ok(8.0K) reason="gpu-run.sh finished rc=0: bash scripts/gpu-cube-bench.sh"
+- 2026-09-27T11:08:32Z COST-AUDIT vm=soup-gpu-20260927-1102 rate_usd_h=0.87 duration_s=277.980 age_h=0.077217 cost_usd=0.067179 basis=insert-to-delete-operation (UNVERIFIED ceiling; includes deletion time)
+- 2026-09-27T11:08:32Z VERIFIED instances=[] disks=[] via gcloud compute instances/disks list; one L4 for pool-on8tb, actual CUDA dispatch, lifetime 4.63min; evidence runs/gpu-cube/cost-audit.json and deletion-*.json.
+- 2026-09-27T11:18Z CREATE vm=soup-gpu-20260927-1117 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run=55m rate_usd_h=0.87 (UNVERIFIED ceiling: on-demand list price, Billing API disabled; spot is lower) reserve_usd=5.22 spent_before_usd=0.16 by=gpu-up.sh
+- 2026-09-27T11:19Z READY vm=soup-gpu-20260927-1117 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 nvcc=Build cuda_12.9.r12.9/compiler.35813241_0 clang=Ubuntu clang version 18.1.3 (1ubuntu1) bun=1.3.14 bend=v2.0.29@c8691aa
+- 2026-09-27T11:19Z RUN vm=soup-gpu-20260927-1117 timeout=45m cmd="bash scripts/gpu-scaling-bench.sh l4"
+- 2026-09-27T11:30Z WATCHDOG vm=soup-gpu-20260927-1117 age_h=0.21 status=RUNNING action=posted
+- 2026-09-27T11:42Z RUN-END vm=soup-gpu-20260927-1117 rc=0
+- 2026-09-27T11:43Z DELETE vm=soup-gpu-20260927-1117 zone=us-central1-a type=g2-standard-8 age_h=0.42 cost_usd=0.37 (rate ceiling x age) sync=ok(936K) reason="gpu-run.sh finished rc=0: bash scripts/gpu-scaling-bench.sh l4"
+- 2026-09-27T11:44:43Z COST-AUDIT vm=soup-gpu-20260927-1117 rate_usd_h=0.87 duration_s=1559.219 age_h=0.433116 cost_usd=0.376811 basis=insert-to-delete-operation (UNVERIFIED ceiling)
+- 2026-09-27T11:44:43Z VERIFIED instances=[] disks=[] via gcloud lists after L4 scaling; evidence runs/gpu-scaling-l4/deletion-*.json.
+- 2026-09-27T11:45Z WATCHDOG vm=soup-gpu-20260927-1144 age_h=0.00 status=PROVISIONING action=posted
+- 2026-09-27T11:45Z CREATE vm=soup-gpu-20260927-1144 zone=us-central1-b type=a2-highgpu-1g gpu=1xnvidia-tesla-a100 model=SPOT max_run=28m rate_usd_h=3.69 (UNVERIFIED ceiling: on-demand list price, Billing API disabled; spot is lower) reserve_usd=22.14 spent_before_usd=0.54 by=gpu-up.sh
+- 2026-09-27T11:47Z READY vm=soup-gpu-20260927-1144 ip=[ip-removed] gpu=NVIDIA A100-SXM4-40GB, 580.173.02 nvcc=Build cuda_12.9.r12.9/compiler.35813241_0 clang=Ubuntu clang version 18.1.3 (1ubuntu1) bun=1.3.14 bend=v2.0.29@c8691aa
+- 2026-09-27T11:47Z RUN vm=soup-gpu-20260927-1144 timeout=24m cmd="bash scripts/gpu-scaling-bench.sh a100"
+- 2026-09-27T11:55Z RUN-SYNC-FAILED vm=soup-gpu-20260927-1144 (gpu-down.sh will retry with scp)
+- 2026-09-27T11:55Z RUN-END vm=soup-gpu-20260927-1144 rc=255
+- 2026-09-27T11:56:58Z PREEMPTED vm=soup-gpu-20260927-1144 system operation=compute.instances.preempted start=2026-09-27T04:53:20.993-07:00 end=2026-09-27T04:53:32.715-07:00; K20 interrupted, only backed-up K18 profiles recovered.
+- 2026-09-27T11:56:58Z COST-AUDIT vm=soup-gpu-20260927-1144 rate_usd_h=3.69 duration_s=491.939 age_h=0.136650 cost_usd=0.504237 basis=successful-insert-to-preemption-end (UNVERIFIED ceiling; failed zone-a allocation excluded)
+- 2026-09-27T11:56:58Z VERIFIED instances=[] disks=[] via gcloud lists after A100 preemption; evidence runs/gpu-scaling-a100/deletion-*.json.
+- 2026-09-27T11:59Z CREATE vm=soup-gpu-20260927-1158 zone=us-central1-b type=a2-highgpu-1g gpu=1xnvidia-tesla-a100 model=SPOT max_run=28m rate_usd_h=3.69 (UNVERIFIED ceiling: on-demand list price, Billing API disabled; spot is lower) reserve_usd=22.14 spent_before_usd=1.04 by=gpu-up.sh
+- 2026-09-27T12:00Z WATCHDOG vm=soup-gpu-20260927-1158 age_h=0.02 status=RUNNING action=posted
+- 2026-09-27T12:00Z READY vm=soup-gpu-20260927-1158 ip=[ip-removed] gpu=NVIDIA A100-SXM4-40GB, 580.173.02 nvcc=Build cuda_12.9.r12.9/compiler.35813241_0 clang=Ubuntu clang version 18.1.3 (1ubuntu1) bun=1.3.14 bend=v2.0.29@c8691aa
+- 2026-09-27T12:00Z RUN vm=soup-gpu-20260927-1158 timeout=24m cmd="env GPU_BENCH_OUT=/root/runs/gpu-scaling-a100-retry bash scripts/gpu-scaling-bench.sh a100"
+- 2026-09-27T12:19Z RUN-END vm=soup-gpu-20260927-1158 rc=0
+- 2026-09-27T12:20Z DELETE vm=soup-gpu-20260927-1158 zone=us-central1-b type=a2-highgpu-1g age_h=0.34 cost_usd=1.25 (rate ceiling x age) sync=ok(900K) reason="gpu-run.sh finished rc=0: env GPU_BENCH_OUT=/root/runs/gpu-scaling-a100-retry bash scripts/gpu-scaling-ben"
+- 2026-09-27T12:21:21Z COST-AUDIT vm=soup-gpu-20260927-1158 rate_usd_h=3.69 duration_s=1288.956 age_h=0.358043 cost_usd=1.321180 basis=successful-insert-to-delete-operation (UNVERIFIED ceiling; failed zone-a allocation excluded)
+- 2026-09-27T12:21:21Z VERIFIED instances=[] disks=[] via gcloud lists; pool-dhl36 three sequential rentals (L4, preempted A100, replacement A100), total_vm_seconds=3340.114 total_vm_minutes=55.669 estimated_total_usd=2.202229; all deleted. Evidence: runs/gpu-scaling-a100-retry/deletion-*.json and per-run cost-audit.json.
+- 2026-09-27T12:31Z CREATE vm=soup-gpu-phase3-k16-f12-s1-0927123049-30192 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run=6h rate_usd_h=0.87 (UNVERIFIED ceiling: on-demand list price, Billing API disabled; spot is lower) reserve_usd=5.22 spent_before_usd=2.36 group=pool-sddpv run=phase3-k16-f12-s1 by=gpu-up.sh
+- 2026-09-27T12:31Z CREATE vm=soup-gpu-phase3-k16-f12-s2-0927123111-12092 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run=6h rate_usd_h=0.87 (UNVERIFIED ceiling: on-demand list price, Billing API disabled; spot is lower) reserve_usd=5.22 spent_before_usd=7.58 group=pool-sddpv run=phase3-k16-f12-s2 by=gpu-up.sh
+- 2026-09-27T12:31Z CREATE vm=soup-gpu-phase3-k16-f12-s3-0927123131-10550 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run=6h rate_usd_h=0.87 (UNVERIFIED ceiling: on-demand list price, Billing API disabled; spot is lower) reserve_usd=5.22 spent_before_usd=12.80 group=pool-sddpv run=phase3-k16-f12-s3 by=gpu-up.sh
+- 2026-09-27T12:32Z READY vm=soup-gpu-phase3-k16-f12-s1-0927123049-30192 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 nvcc=Build cuda_12.9.r12.9/compiler.35813241_0 clang=Ubuntu clang version 18.1.3 (1ubuntu1) bun=1.3.14 bend=v2.0.29@c8691aa
+- 2026-09-27T12:32Z RUN vm=soup-gpu-phase3-k16-f12-s1-0927123049-30192 timeout=5h25m cmd="1 "
+- 2026-09-27T12:32Z RUN-END vm=soup-gpu-phase3-k16-f12-s1-0927123049-30192 rc=125
+- 2026-09-27T12:33Z READY vm=soup-gpu-phase3-k16-f12-s2-0927123111-12092 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 nvcc=Build cuda_12.9.r12.9/compiler.35813241_0 clang=Ubuntu clang version 18.1.3 (1ubuntu1) bun=1.3.14 bend=v2.0.29@c8691aa
+- 2026-09-27T12:33Z RUN vm=soup-gpu-phase3-k16-f12-s2-0927123111-12092 timeout=5h25m cmd="2 "
+- 2026-09-27T12:33Z RUN-END vm=soup-gpu-phase3-k16-f12-s2-0927123111-12092 rc=125
+- 2026-09-27T12:33Z READY vm=soup-gpu-phase3-k16-f12-s3-0927123131-10550 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 nvcc=Build cuda_12.9.r12.9/compiler.35813241_0 clang=Ubuntu clang version 18.1.3 (1ubuntu1) bun=1.3.14 bend=v2.0.29@c8691aa
+- 2026-09-27T12:33Z RUN vm=soup-gpu-phase3-k16-f12-s3-0927123131-10550 timeout=5h25m cmd="3 "
+- 2026-09-27T12:33Z RUN-END vm=soup-gpu-phase3-k16-f12-s3-0927123131-10550 rc=125
+- 2026-09-27T12:33Z DELETE vm=soup-gpu-phase3-k16-f12-s1-0927123049-30192 zone=us-central1-a type=g2-standard-8 age_h=0.03 cost_usd=0.03 (rate ceiling x age) sync=skipped reason="gpu-run.sh finished rc=125: 1 "
+- 2026-09-27T12:34Z DELETE vm=soup-gpu-phase3-k16-f12-s2-0927123111-12092 zone=us-central1-a type=g2-standard-8 age_h=0.03 cost_usd=0.03 (rate ceiling x age) sync=skipped reason="gpu-run.sh finished rc=125: 2 "
+- 2026-09-27T12:34:09Z COST-AUDIT vm=soup-gpu-phase3-k16-f12-s1-0927123049-30192 duration_s=171.995 rate_usd_h=0.87 cost_usd=0.041565 basis=successful-insert-to-deletion-or-preemption-end UNVERIFIED-ceiling instances=[] disks=[]
+- 2026-09-27T12:34:13Z COST-AUDIT vm=soup-gpu-phase3-k16-f12-s2-0927123111-12092 duration_s=168.427 rate_usd_h=0.87 cost_usd=0.040703 basis=successful-insert-to-deletion-or-preemption-end UNVERIFIED-ceiling instances=[] disks=[]
+- 2026-09-27T12:34Z DELETE vm=soup-gpu-phase3-k16-f12-s3-0927123131-10550 zone=us-central1-a type=g2-standard-8 age_h=0.03 cost_usd=0.03 (rate ceiling x age) sync=skipped reason="gpu-run.sh finished rc=125: 3 "
+- 2026-09-27T12:34:33Z COST-AUDIT vm=soup-gpu-phase3-k16-f12-s3-0927123131-10550 duration_s=170.081 rate_usd_h=0.87 cost_usd=0.041103 basis=successful-insert-to-deletion-or-preemption-end UNVERIFIED-ceiling instances=[] disks=[]
+- 2026-09-27T12:52Z PENDING-CREATE vm=soup-gpu-phase3-k16-f12-s2-0927125236-9564 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=5.22 group=pool-sddpv run=phase3-k16-f12-s2 by=gpu-up.sh
+- 2026-09-27T12:52Z CREATE vm=soup-gpu-phase3-k16-f12-s2-0927125236-9564 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run=6h rate_usd_h=0.87 (UNVERIFIED ceiling: on-demand list price, Billing API disabled; spot is lower) reserve_usd=5.22 spent_before_usd=2.49 group=pool-sddpv run=phase3-k16-f12-s2 by=gpu-up.sh
+- 2026-09-27T12:53Z PENDING-CREATE vm=soup-gpu-phase3-k16-f12-s3-0927125236-5129 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=5.22 group=pool-sddpv run=phase3-k16-f12-s3 by=gpu-up.sh
+- 2026-09-27T12:53Z CREATE vm=soup-gpu-phase3-k16-f12-s3-0927125236-5129 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run=6h rate_usd_h=0.87 (UNVERIFIED ceiling: on-demand list price, Billing API disabled; spot is lower) reserve_usd=5.22 spent_before_usd=7.71 group=pool-sddpv run=phase3-k16-f12-s3 by=gpu-up.sh
+- 2026-09-27T12:53Z PENDING-CREATE vm=soup-gpu-phase3-k16-f12-s1-0927125236-22746 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=5.22 group=pool-sddpv run=phase3-k16-f12-s1 by=gpu-up.sh
+- 2026-09-27T12:53Z CREATE vm=soup-gpu-phase3-k16-f12-s1-0927125236-22746 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run=6h rate_usd_h=0.87 (UNVERIFIED ceiling: on-demand list price, Billing API disabled; spot is lower) reserve_usd=5.22 spent_before_usd=12.93 group=pool-sddpv run=phase3-k16-f12-s1 by=gpu-up.sh
+- 2026-09-27T12:54Z PENDING-CREATE vm=soup-gpu-utilisation-hash-0927125423-24184 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=5.22 group=pool-7tcu9 run=utilisation-hash by=gpu-up.sh
+- 2026-09-27T12:54Z READY vm=soup-gpu-phase3-k16-f12-s2-0927125236-9564 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 nvcc=Build cuda_12.9.r12.9/compiler.35813241_0 clang=Ubuntu clang version 18.1.3 (1ubuntu1) bun=1.3.14 bend=v2.0.29@c8691aa 
+- 2026-09-27T12:54Z RUN vm=soup-gpu-phase3-k16-f12-s2-0927125236-9564 timeout=19500s cmd="2 "
+- 2026-09-27T12:54Z CREATE vm=soup-gpu-utilisation-hash-0927125423-24184 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run=28m rate_usd_h=0.87 (UNVERIFIED ceiling: on-demand list price, Billing API disabled; spot is lower) reserve_usd=5.22 spent_before_usd=18.15 group=pool-7tcu9 run=utilisation-hash by=gpu-up.sh
+- 2026-09-27T12:54Z RUN-END vm=soup-gpu-phase3-k16-f12-s2-0927125236-9564 rc=1
+- 2026-09-27T12:54Z READY vm=soup-gpu-phase3-k16-f12-s3-0927125236-5129 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 nvcc=Build cuda_12.9.r12.9/compiler.35813241_0 clang=Ubuntu clang version 18.1.3 (1ubuntu1) bun=1.3.14 bend=v2.0.29@c8691aa 
+- 2026-09-27T12:55Z RUN vm=soup-gpu-phase3-k16-f12-s3-0927125236-5129 timeout=19500s cmd="3 "
+- 2026-09-27T12:55Z RUN-END vm=soup-gpu-phase3-k16-f12-s3-0927125236-5129 rc=1
+- 2026-09-27T12:55Z READY vm=soup-gpu-phase3-k16-f12-s1-0927125236-22746 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 nvcc=Build cuda_12.9.r12.9/compiler.35813241_0 clang=Ubuntu clang version 18.1.3 (1ubuntu1) bun=1.3.14 bend=v2.0.29@c8691aa 
+- 2026-09-27T12:55Z RUN vm=soup-gpu-phase3-k16-f12-s1-0927125236-22746 timeout=19500s cmd="1 "
+- 2026-09-27T12:55Z RUN-END vm=soup-gpu-phase3-k16-f12-s1-0927125236-22746 rc=1
+- 2026-09-27T12:55Z DELETE vm=soup-gpu-phase3-k16-f12-s2-0927125236-9564 zone=us-central1-a type=g2-standard-8 age_h=0.03 cost_usd=0.03 (rate ceiling x age) sync=skipped reason="gpu-run.sh finished rc=1: 2 "
+- 2026-09-27T12:56:01Z COST-AUDIT vm=soup-gpu-phase3-k16-f12-s2-0927125236-9564 duration_s=175.206 rate_usd_h=0.87 cost_usd=0.042341 basis=successful-insert-to-deletion-or-preemption-end UNVERIFIED-ceiling instances=[] disks=[]
+- 2026-09-27T12:56Z DELETE vm=soup-gpu-phase3-k16-f12-s3-0927125236-5129 zone=us-central1-a type=g2-standard-8 age_h=0.04 cost_usd=0.03 (rate ceiling x age) sync=skipped reason="gpu-run.sh finished rc=1: 3 "
+- 2026-09-27T12:56:22Z COST-AUDIT vm=soup-gpu-phase3-k16-f12-s3-0927125236-5129 duration_s=178.791 rate_usd_h=0.87 cost_usd=0.043208 basis=successful-insert-to-deletion-or-preemption-end UNVERIFIED-ceiling instances=[] disks=[]
+- 2026-09-27T12:56Z READY vm=soup-gpu-utilisation-hash-0927125423-24184 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 nvcc=Build cuda_12.9.r12.9/compiler.35813241_0 clang=Ubuntu clang version 18.1.3 (1ubuntu1) bun=1.3.14 bend=v2.0.29@c8691aa 
+- 2026-09-27T12:56Z DELETE vm=soup-gpu-phase3-k16-f12-s1-0927125236-22746 zone=us-central1-a type=g2-standard-8 age_h=0.04 cost_usd=0.03 (rate ceiling x age) sync=skipped reason="gpu-run.sh finished rc=1: 1 "
+- 2026-09-27T12:56Z RUN vm=soup-gpu-utilisation-hash-0927125423-24184 timeout=24m cmd="bash scripts/gpu-utilisation-bench.sh "
+- 2026-09-27T12:56:41Z COST-AUDIT vm=soup-gpu-phase3-k16-f12-s1-0927125236-22746 duration_s=180.516 rate_usd_h=0.87 cost_usd=0.043625 basis=successful-insert-to-deletion-or-preemption-end UNVERIFIED-ceiling instances=[] disks=[]
+- 2026-09-27T12:56:46Z VERIFIED group=pool-sddpv instances=[] disks=[] after all seed supervisors exited; evidence=runs/phase3/infra/final-deletion.json
+- 2026-09-27T12:57Z PENDING-CREATE vm=soup-gpu-phase3-k16-f12-s2-0927125738-14987 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=5.22 group=pool-sddpv run=phase3-k16-f12-s2 by=gpu-up.sh
+- 2026-09-27T12:58Z CREATE vm=soup-gpu-phase3-k16-f12-s2-0927125738-14987 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run=6h rate_usd_h=0.87 (UNVERIFIED ceiling: on-demand list price, Billing API disabled; spot is lower) reserve_usd=5.22 spent_before_usd=7.83 group=pool-sddpv run=phase3-k16-f12-s2 by=gpu-up.sh
+- 2026-09-27T12:58Z PENDING-CREATE vm=soup-gpu-phase3-k16-f12-s3-0927125738-25987 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=5.22 group=pool-sddpv run=phase3-k16-f12-s3 by=gpu-up.sh
+- 2026-09-27T12:58Z CREATE vm=soup-gpu-phase3-k16-f12-s3-0927125738-25987 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run=6h rate_usd_h=0.87 (UNVERIFIED ceiling: on-demand list price, Billing API disabled; spot is lower) reserve_usd=5.22 spent_before_usd=13.05 group=pool-sddpv run=phase3-k16-f12-s3 by=gpu-up.sh
+- 2026-09-27T12:58Z PENDING-CREATE vm=soup-gpu-phase3-k16-f12-s1-0927125738-30082 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=5.22 group=pool-sddpv run=phase3-k16-f12-s1 by=gpu-up.sh
+- 2026-09-27T12:58Z CREATE vm=soup-gpu-phase3-k16-f12-s1-0927125738-30082 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run=6h rate_usd_h=0.87 (UNVERIFIED ceiling: on-demand list price, Billing API disabled; spot is lower) reserve_usd=5.22 spent_before_usd=18.27 group=pool-sddpv run=phase3-k16-f12-s1 by=gpu-up.sh
+- 2026-09-27T12:59Z READY vm=soup-gpu-phase3-k16-f12-s2-0927125738-14987 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 nvcc=Build cuda_12.9.r12.9/compiler.35813241_0 clang=Ubuntu clang version 18.1.3 (1ubuntu1) bun=1.3.14 bend=v2.0.29@c8691aa 
+- 2026-09-27T13:00Z RUN vm=soup-gpu-phase3-k16-f12-s2-0927125738-14987 timeout=19500s cmd="2 "
+- 2026-09-27T13:00Z WATCHDOG vm=soup-gpu-phase3-k16-f12-s1-0927125738-30082 age_h=0.02 status=RUNNING action=posted
+- 2026-09-27T13:00Z WATCHDOG vm=soup-gpu-phase3-k16-f12-s2-0927125738-14987 age_h=0.04 status=RUNNING action=posted
+- 2026-09-27T13:00Z WATCHDOG vm=soup-gpu-phase3-k16-f12-s3-0927125738-25987 age_h=0.03 status=RUNNING action=posted
+- 2026-09-27T13:00Z WATCHDOG vm=soup-gpu-utilisation-hash-0927125423-24184 age_h=0.09 status=RUNNING action=posted
+- 2026-09-27T13:00Z READY vm=soup-gpu-phase3-k16-f12-s3-0927125738-25987 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 nvcc=Build cuda_12.9.r12.9/compiler.35813241_0 clang=Ubuntu clang version 18.1.3 (1ubuntu1) bun=1.3.14 bend=v2.0.29@c8691aa 
+- 2026-09-27T13:00Z RUN vm=soup-gpu-phase3-k16-f12-s3-0927125738-25987 timeout=19500s cmd="3 "
+- 2026-09-27T13:00Z READY vm=soup-gpu-phase3-k16-f12-s1-0927125738-30082 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 nvcc=Build cuda_12.9.r12.9/compiler.35813241_0 clang=Ubuntu clang version 18.1.3 (1ubuntu1) bun=1.3.14 bend=v2.0.29@c8691aa 
+- 2026-09-27T13:00Z RUN vm=soup-gpu-phase3-k16-f12-s1-0927125738-30082 timeout=19500s cmd="1 "
+- 2026-09-27T13:07Z RUN-END vm=soup-gpu-utilisation-hash-0927125423-24184 rc=0
+- 2026-09-27T13:08Z DELETE vm=soup-gpu-utilisation-hash-0927125423-24184 zone=us-central1-a type=g2-standard-8 age_h=0.22 cost_usd=0.19 (rate ceiling x age) sync=skipped reason="gpu-run.sh finished rc=0: bash scripts/gpu-utilisation-bench.sh "
+- 2026-09-27T13:09:38Z COST-AUDIT vm=soup-gpu-utilisation-hash-0927125423-24184 duration_s=849.478 rate_usd_h=0.87 cost_usd=0.205291 basis=successful-insert-to-deletion-or-preemption-end UNVERIFIED-ceiling instances=[] disks=[]
+- 2026-09-27T14:00Z WATCHDOG vm=soup-gpu-phase3-k16-f12-s1-0927125738-30082 age_h=1.02 status=RUNNING action=posted
+- 2026-09-27T14:00Z WATCHDOG vm=soup-gpu-phase3-k16-f12-s2-0927125738-14987 age_h=1.04 status=RUNNING action=posted
+- 2026-09-27T14:00Z WATCHDOG vm=soup-gpu-phase3-k16-f12-s3-0927125738-25987 age_h=1.03 status=RUNNING action=posted
+- 2026-09-27T15:15Z WATCHDOG vm=soup-gpu-phase3-k16-f12-s1-0927125738-30082 age_h=2.27 status=RUNNING action=posted
+- 2026-09-27T15:15Z WATCHDOG vm=soup-gpu-phase3-k16-f12-s2-0927125738-14987 age_h=2.29 status=RUNNING action=posted
+- 2026-09-27T15:15Z WATCHDOG vm=soup-gpu-phase3-k16-f12-s3-0927125738-25987 age_h=2.28 status=RUNNING action=posted
+- 2026-09-27T15:32Z RUN-END vm=soup-gpu-phase3-k16-f12-s3-0927125738-25987 rc=255
+- 2026-09-27T15:33:21Z COST-AUDIT vm=soup-gpu-phase3-k16-f12-s3-0927125738-25987 duration_s=9188.953 rate_usd_h=0.87 cost_usd=2.220664 basis=successful-insert-to-deletion-or-preemption-end UNVERIFIED-ceiling instances=[] disks=[]
+- 2026-09-27T15:33Z PENDING-CREATE vm=soup-gpu-phase3-k16-f12-s3-0927153332-928 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=5.22 group=pool-sddpv run=phase3-k16-f12-s3 by=gpu-up.sh
+- 2026-09-27T15:34Z CREATE vm=soup-gpu-phase3-k16-f12-s3-0927153332-928 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run=6h rate_usd_h=0.87 (UNVERIFIED ceiling: on-demand list price, Billing API disabled; spot is lower) reserve_usd=5.22 spent_before_usd=15.48 group=pool-sddpv run=phase3-k16-f12-s3 by=gpu-up.sh
+- 2026-09-27T15:35Z READY vm=soup-gpu-phase3-k16-f12-s3-0927153332-928 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 nvcc=Build cuda_12.9.r12.9/compiler.35813241_0 clang=Ubuntu clang version 18.1.3 (1ubuntu1) bun=1.3.14 bend=v2.0.29@c8691aa 
+- 2026-09-27T15:35Z RUN vm=soup-gpu-phase3-k16-f12-s3-0927153332-928 timeout=19500s cmd="3 "
+- 2026-09-27T15:45Z WATCHDOG vm=soup-gpu-phase3-k16-f12-s3-0927153332-928 age_h=0.19 status=RUNNING action=posted
+- 2026-09-27T15:52Z RUN-END vm=soup-gpu-phase3-k16-f12-s2-0927125738-14987 rc=255
+- 2026-09-27T15:53Z DELETE vm=soup-gpu-phase3-k16-f12-s2-0927125738-14987 zone=us-central1-a type=g2-standard-8 age_h=2.91 cost_usd=2.53 (already gone) sync=skipped reason="gpu-run.sh finished rc=255: 2 "
+- 2026-09-27T15:53:19Z COST-AUDIT vm=soup-gpu-phase3-k16-f12-s2-0927125738-14987 duration_s=10501.411 rate_usd_h=0.87 cost_usd=2.537841 basis=successful-insert-to-deletion-or-preemption-end UNVERIFIED-ceiling instances=[] disks=[]
+- 2026-09-27T15:53Z PENDING-CREATE vm=soup-gpu-phase3-k16-f12-s2-0927155329-2263 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=5.22 group=pool-sddpv run=phase3-k16-f12-s2 by=gpu-up.sh
+- 2026-09-27T15:54Z CREATE vm=soup-gpu-phase3-k16-f12-s2-0927155329-2263 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run=6h rate_usd_h=0.87 (UNVERIFIED ceiling: on-demand list price, Billing API disabled; spot is lower) reserve_usd=5.22 spent_before_usd=18.02 group=pool-sddpv run=phase3-k16-f12-s2 by=gpu-up.sh
+- 2026-09-27T15:55Z READY vm=soup-gpu-phase3-k16-f12-s2-0927155329-2263 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 nvcc=Build cuda_12.9.r12.9/compiler.35813241_0 clang=Ubuntu clang version 18.1.3 (1ubuntu1) bun=1.3.14 bend=v2.0.29@c8691aa 
+- 2026-09-27T15:56Z RUN vm=soup-gpu-phase3-k16-f12-s2-0927155329-2263 timeout=19500s cmd="2 "
+- 2026-09-27T16:00Z WATCHDOG vm=soup-gpu-phase3-k16-f12-s2-0927155329-2263 age_h=0.10 status=RUNNING action=posted
+- 2026-09-27T16:00Z RUN-END vm=soup-gpu-phase3-k16-f12-s1-0927125738-30082 rc=255
+- 2026-09-27T16:01Z DELETE vm=soup-gpu-phase3-k16-f12-s1-0927125738-30082 zone=us-central1-a type=g2-standard-8 age_h=3.04 cost_usd=2.64 (rate ceiling x age) sync=skipped reason="gpu-run.sh finished rc=255: 1 "
+- 2026-09-27T16:01:45Z COST-AUDIT vm=soup-gpu-phase3-k16-f12-s1-0927125738-30082 duration_s=10963.236 rate_usd_h=0.87 cost_usd=2.649449 basis=successful-insert-to-deletion-or-preemption-end UNVERIFIED-ceiling instances=[] disks=[]
+- 2026-09-27T16:02Z PENDING-CREATE vm=soup-gpu-phase3-k16-f12-s1-0927160155-741 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=5.22 group=pool-sddpv run=phase3-k16-f12-s1 by=gpu-up.sh
+- 2026-09-27T16:02Z CREATE vm=soup-gpu-phase3-k16-f12-s1-0927160155-741 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run=6h rate_usd_h=0.87 (UNVERIFIED ceiling: on-demand list price, Billing API disabled; spot is lower) reserve_usd=5.22 spent_before_usd=20.67 group=pool-sddpv run=phase3-k16-f12-s1 by=gpu-up.sh
+- 2026-09-27T16:04Z READY vm=soup-gpu-phase3-k16-f12-s1-0927160155-741 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 nvcc=Build cuda_12.9.r12.9/compiler.35813241_0 clang=Ubuntu clang version 18.1.3 (1ubuntu1) bun=1.3.14 bend=v2.0.29@c8691aa 
+- 2026-09-27T16:04Z RUN vm=soup-gpu-phase3-k16-f12-s1-0927160155-741 timeout=19500s cmd="1 "
+- 2026-09-27T16:15Z WATCHDOG vm=soup-gpu-phase3-k16-f12-s1-0927160155-741 age_h=0.21 status=RUNNING action=posted
+- 2026-09-27T16:19Z RUN-END vm=soup-gpu-phase3-k16-f12-s1-0927160155-741 rc=0
+- 2026-09-27T16:20Z DELETE vm=soup-gpu-phase3-k16-f12-s1-0927160155-741 zone=us-central1-a type=g2-standard-8 age_h=0.29 cost_usd=0.25 (rate ceiling x age) sync=skipped reason="gpu-run.sh finished rc=0: 1 "
+- 2026-09-27T16:20:42Z COST-AUDIT vm=soup-gpu-phase3-k16-f12-s1-0927160155-741 duration_s=1099.911 rate_usd_h=0.87 cost_usd=0.265812 basis=successful-insert-to-deletion-or-preemption-end UNVERIFIED-ceiling instances=[] disks=[]
+- 2026-09-27T16:22Z RUN-END vm=soup-gpu-phase3-k16-f12-s3-0927153332-928 rc=0
+- 2026-09-27T16:23Z DELETE vm=soup-gpu-phase3-k16-f12-s3-0927153332-928 zone=us-central1-a type=g2-standard-8 age_h=0.81 cost_usd=0.70 (rate ceiling x age) sync=skipped reason="gpu-run.sh finished rc=0: 3 "
+- 2026-09-27T16:23:53Z COST-AUDIT vm=soup-gpu-phase3-k16-f12-s3-0927153332-928 duration_s=2981.383 rate_usd_h=0.87 cost_usd=0.720501 basis=successful-insert-to-deletion-or-preemption-end UNVERIFIED-ceiling instances=[] disks=[]
+- 2026-09-27T16:31Z RUN-END vm=soup-gpu-phase3-k16-f12-s2-0927155329-2263 rc=255
+- 2026-09-27T16:31Z DELETE vm=soup-gpu-phase3-k16-f12-s2-0927155329-2263 zone=us-central1-a type=g2-standard-8 age_h=0.63 cost_usd=0.55 (already gone) sync=skipped reason="gpu-run.sh finished rc=255: 2 "
+- 2026-09-27T16:32:18Z COST-AUDIT vm=soup-gpu-phase3-k16-f12-s2-0927155329-2263 duration_s=2273.824 rate_usd_h=0.87 cost_usd=0.549507 basis=successful-insert-to-deletion-or-preemption-end UNVERIFIED-ceiling instances=[] disks=[]
+- 2026-09-27T16:32Z PENDING-CREATE vm=soup-gpu-phase3-k16-f12-s2-0927163228-5401 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=5.22 group=pool-sddpv run=phase3-k16-f12-s2 by=gpu-up.sh
+- 2026-09-27T16:33Z CREATE-FAILED vm=soup-gpu-phase3-k16-f12-s2-0927163228-5401 type=g2-standard-8 zones=us-central1-a us-central1-b us-central1-c err="ERROR: (gcloud.compute.instances.create) Could not fetch resource: --- code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS errorDetails: - help:     links:     - description: Troubleshooting documentation"
+- 2026-09-27T16:33:49Z VERIFIED group=pool-sddpv instances=[] disks=[] after all seed supervisors exited; evidence=runs/phase3/infra/final-deletion.json
+- 2026-09-27T16:35:10Z COST-AUDIT vm=soup-gpu-phase3-k16-f12-s2-0927163228-5401 duration_s=0 rate_usd_h=0.87 cost_usd=0 basis=three-failed-inserts-no-allocation instances=[] disks=[]
+- 2026-09-27T16:38Z PENDING-CREATE vm=soup-gpu-phase3-k16-f12-s2-0927163831-10801 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=5.22 group=pool-sddpv run=phase3-k16-f12-s2 by=gpu-up.sh
+- 2026-09-27T16:39Z CREATE vm=soup-gpu-phase3-k16-f12-s2-0927163831-10801 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run=6h rate_usd_h=0.87 (UNVERIFIED ceiling: on-demand list price, Billing API disabled; spot is lower) reserve_usd=5.22 spent_before_usd=11.76 group=pool-sddpv run=phase3-k16-f12-s2 by=gpu-up.sh
+- 2026-09-27T16:40Z READY vm=soup-gpu-phase3-k16-f12-s2-0927163831-10801 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 nvcc=Build cuda_12.9.r12.9/compiler.35813241_0 clang=Ubuntu clang version 18.1.3 (1ubuntu1) bun=1.3.14 bend=v2.0.29@c8691aa 
+- 2026-09-27T16:40Z RUN vm=soup-gpu-phase3-k16-f12-s2-0927163831-10801 timeout=19500s cmd="2 "
+- 2026-09-27T16:45Z WATCHDOG vm=soup-gpu-phase3-k16-f12-s2-0927163831-10801 age_h=0.10 status=RUNNING action=posted
+- 2026-09-27T16:50Z RUN-END vm=soup-gpu-phase3-k16-f12-s2-0927163831-10801 rc=0
+- 2026-09-27T16:51Z DELETE vm=soup-gpu-phase3-k16-f12-s2-0927163831-10801 zone=us-central1-a type=g2-standard-8 age_h=0.20 cost_usd=0.17 (rate ceiling x age) sync=skipped reason="gpu-run.sh finished rc=0: 2 "
+- 2026-09-27T16:51:41Z COST-AUDIT vm=soup-gpu-phase3-k16-f12-s2-0927163831-10801 duration_s=757.730 rate_usd_h=0.87 cost_usd=0.183118 basis=successful-insert-to-deletion-or-preemption-end UNVERIFIED-ceiling instances=[] disks=[]
+- 2026-09-27T16:51:46Z VERIFIED group=pool-sddpv instances=[] disks=[] after all seed supervisors exited; evidence=runs/phase3/infra/final-deletion.json

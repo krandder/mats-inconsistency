@@ -1,0 +1,12 @@
+  - name: traders-net runs
+    uid: traders-net-runs
+    type: yesoreyeram-infinity-datasource
+    access: proxy
+    url: http://traders-runs.observability.svc.cluster.local:8767
+    editable: false
+    jsonData:
+      allowedHosts:
+        - http://traders-runs.observability.svc.cluster.local:8767
+      timeoutInSeconds: 30
+      customHealthCheckEnabled: true
+      customHealthCheckUrl: /runs.json

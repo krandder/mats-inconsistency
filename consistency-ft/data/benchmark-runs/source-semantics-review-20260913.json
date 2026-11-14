@@ -1,0 +1,1551 @@
+{
+  "schema_version": 1,
+  "audit_id": "condcond-semantics-readmission-20260913-v1",
+  "status": "source_text_review_only_not_a_production_manifest",
+  "reviewer": "/root/consistency_completion",
+  "created_at": "2026-09-13T04:14:24.411728+00:00",
+  "source": {
+    "path": "data/tuples/CondCond.jsonl",
+    "sha256": "e5119a651b92246d249f1b517efb5309d7f188df428eda3e3a5d5b92af58fd99",
+    "selection": "First 30 JSONL records, matching common.load_tuples(..., 30)",
+    "tuple_count": 30
+  },
+  "formula_reference": {
+    "path": "common.py",
+    "function": "violation",
+    "check_type": "CondCond",
+    "expression": "abs(P * Q_given_P * R_given_P_and_Q - P_and_Q_and_R)",
+    "assumption": "Each occurrence of P, Q and R denotes the same event, including date bounds, quantity definitions, and substantive constraints. Different events may use different windows."
+  },
+  "method": {
+    "all_30_titles_and_full_bodies_read": true,
+    "source_texts_modified": false,
+    "inference_performed": false,
+    "model_responses_reviewed_for_this_audit": false,
+    "event_probabilities_generated": false,
+    "topic_eligibility_decisions_made": false,
+    "production_manifests_modified": false,
+    "repair_text_applied": false,
+    "scope": "Textual correspondence only; no real-world outcome, policy, actor, or election assessment.",
+    "full_body_rule": "Read every body after its title. A later paragraph can restore a shortened title or premise. Missing date bounds cannot be inherited from a different standalone field.",
+    "reporting_rule": "Omitted reporting boilerplate alone is not automatically a clear defect. An explicit change between event-time and confirmation-time bounds is substantive.",
+    "status_meanings": {
+      "clear_defect": "A specific cross-field event, bound, anchor, predicate, or quantity discrepancy supported by source quotations.",
+      "caveat": "Potentially confusing wording or shared ambiguity, without a clear cross-field event-definition defect established from the full bodies.",
+      "no_clear_defect_found": "No clear cross-field defect found in this review; not a proof of perfect semantics or a topic-eligibility decision."
+    },
+    "repair_policy": "Minimal repair suggestions are text only and generally copy the explicit definition already present in another field. They are not authorization to modify the source. A shared creation date must be resolved from original metadata rather than guessed."
+  },
+  "summary": {
+    "status_counts": {
+      "caveat": 4,
+      "clear_defect": 21,
+      "no_clear_defect_found": 5
+    },
+    "tuple_ids_by_status": {
+      "clear_defect": [
+        "2028/CondCondChecker:2",
+        "2028/CondCondChecker:3",
+        "2028/CondCondChecker:5",
+        "2028/CondCondChecker:7",
+        "2028/CondCondChecker:8",
+        "2028/CondCondChecker:10",
+        "2028/CondCondChecker:12",
+        "2028/CondCondChecker:13",
+        "2028/CondCondChecker:15",
+        "2028/CondCondChecker:17",
+        "2028/CondCondChecker:18",
+        "2028/CondCondChecker:19",
+        "2028/CondCondChecker:20",
+        "2028/CondCondChecker:21",
+        "2028/CondCondChecker:22",
+        "2028/CondCondChecker:23",
+        "2028/CondCondChecker:24",
+        "2028/CondCondChecker:25",
+        "2028/CondCondChecker:26",
+        "2028/CondCondChecker:27",
+        "2028/CondCondChecker:30"
+      ],
+      "caveat": [
+        "2028/CondCondChecker:11",
+        "2028/CondCondChecker:14",
+        "2028/CondCondChecker:16",
+        "2028/CondCondChecker:28"
+      ],
+      "no_clear_defect_found": [
+        "2028/CondCondChecker:1",
+        "2028/CondCondChecker:4",
+        "2028/CondCondChecker:6",
+        "2028/CondCondChecker:9",
+        "2028/CondCondChecker:29"
+      ]
+    }
+  },
+  "reviews": [
+    {
+      "tuple_id": "2028/CondCondChecker:1",
+      "check_type": "CondCond",
+      "source_path": "data/tuples/CondCond.jsonl",
+      "source_line": 1,
+      "question_ids": {
+        "P": "34b3e9b1-21ab-46c3-b7c8-948b3f2a9a29",
+        "Q_given_P": "334975ce-a5be-4923-af5c-0346b81eee6e",
+        "R_given_P_and_Q": "f10a63e5-ffe7-41ae-a5ba-fa30331ec898",
+        "P_and_Q_and_R": "1a816382-4607-47dd-b9c6-9ecf6adef061"
+      },
+      "status": "no_clear_defect_found",
+      "finding_codes": [],
+      "assessment": "The full bodies preserve the P, Q and R predicates and the October 1, 2024 to January 1, 2028 bounds across their appearances.",
+      "proposed_minimal_repair_text": "None proposed.",
+      "evidence": [
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 1,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "f10a63e5-ffe7-41ae-a5ba-fa30331ec898",
+          "source_part": "body",
+          "quote": "Suppose the following is true: Both (a) the United States Democratic Party officially proposes new nuclear safety regulations, documented in an official statement or legislative bill introduced by the party, and (b) Taiwan implements a nationwide ban on single-use plastics, officially enacted and published in Taiwan's official legal records covering the entire nation, occur between October 1, 2024, and January 1, 2028. \n\nThen, will an AI system be used to develop a new environmental policy in the United Kingdom before January 1, 2028? This will be resolved as 'Yes' if, between October 1, 2024, and January 1, 2028, an AI system is officially used to develop a new environmental policy in the United Kingdom, with the policy being formally adopted by the UK government and publicly documented as being developed with the assistance of an AI system."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 1,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "1a816382-4607-47dd-b9c6-9ecf6adef061",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if all of the following conditions are met between October 1, 2024, and January 1, 2028: (a) The United States Democratic Party officially proposes new nuclear safety regulations. The proposal must be documented in an official statement or legislative bill introduced by the party. (b) Taiwan implements a nationwide ban on single-use plastics. The ban must be officially enacted and published in Taiwan's official legal records and must cover the entire nation. (c) An AI system is officially used to develop a new environmental policy in the United Kingdom. The policy must be formally adopted by the UK government and publicly documented as being developed with the assistance of an AI system."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "tuple_id": "2028/CondCondChecker:2",
+      "check_type": "CondCond",
+      "source_path": "data/tuples/CondCond.jsonl",
+      "source_line": 2,
+      "question_ids": {
+        "P": "0bbd4463-4080-40eb-85e9-debf2525f181",
+        "Q_given_P": "0e690a8d-6588-43c8-8c54-6b1b260f1e45",
+        "R_given_P_and_Q": "6468038b-0d8a-4f05-bed3-acb01b96b41f",
+        "P_and_Q_and_R": "af8a4d12-ecca-4b37-8616-8517e2ac7de5"
+      },
+      "status": "clear_defect",
+      "finding_codes": [
+        "missing_event_lower_bound"
+      ],
+      "assessment": "R_given_P_and_Q gives P, Q and R only January 1, 2028 upper bounds. P and Q_given_P supply October 1, 2024 lower bounds for P and Q, and the conjunction supplies that lower bound for all three. The complete R body does not restore the omitted starts.",
+      "proposed_minimal_repair_text": "In R_given_P_and_Q, reproduce the October 1, 2024 to January 1, 2028 window for each of P, Q and R, preserving the existing substantive and documentation criteria.",
+      "evidence": [
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 2,
+          "question_field": "P",
+          "question_id": "0bbd4463-4080-40eb-85e9-debf2525f181",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if a new method for reducing the environmental impact of nuclear waste is developed and commercially implemented between October 1, 2024, and January 1, 2028. The method must be documented in scientific literature and verified by a recognized environmental regulatory authority."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 2,
+          "question_field": "Q_given_P",
+          "question_id": "0e690a8d-6588-43c8-8c54-6b1b260f1e45",
+          "source_part": "body",
+          "quote": "Suppose the following is true: A new method for reducing the environmental impact of nuclear waste is developed and commercially implemented between October 1, 2024, and January 1, 2028. This method must be documented in scientific literature and verified by a recognized environmental regulatory authority. Then, will Elon Musk announce a manned mission to Mars before January 1, 2028? The announcement must be made publicly and reported by major international news outlets between October 1, 2024, and January 1, 2028."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 2,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "6468038b-0d8a-4f05-bed3-acb01b96b41f",
+          "source_part": "body",
+          "quote": "Suppose the following is true: (a) A new method for reducing nuclear waste impact on the environment is developed and commercially implemented by January 1, 2028, and (b) Elon Musk announces a manned mission to Mars before January 1, 2028. The nuclear waste method must be documented in scientific literature and verified by a recognized environmental regulatory authority. The Mars mission announcement must be made publicly and reported by major international news outlets.\n\nGiven these conditions, will Canada implement a nationwide artificial intelligence policy before January 1, 2028? The policy must be formally announced by the Government of Canada and documented in official government publications or press releases."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 2,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "af8a4d12-ecca-4b37-8616-8517e2ac7de5",
+          "source_part": "body",
+          "quote": "(a) A new method for reducing the environmental impact of nuclear waste must be developed and commercially implemented between October 1, 2024, and January 1, 2028. The method must be documented in scientific literature and verified by a recognized environmental regulatory authority. (b) Elon Musk must announce a manned mission to Mars publicly between October 1, 2024, and January 1, 2028. The announcement must be reported by major international news outlets. (c) The Government of Canada must officially implement a nationwide artificial intelligence policy between October 1, 2024, and January 1, 2028. The policy must be formally announced and documented in official government publications or press releases."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "tuple_id": "2028/CondCondChecker:3",
+      "check_type": "CondCond",
+      "source_path": "data/tuples/CondCond.jsonl",
+      "source_line": 3,
+      "question_ids": {
+        "P": "87f01c54-f482-4e8e-8bda-14d72f96f3a9",
+        "Q_given_P": "89a2605b-69ec-4571-b17e-bbfade109171",
+        "R_given_P_and_Q": "8240ad11-4c06-404e-b051-c99b2b0e956a",
+        "P_and_Q_and_R": "2b263fb0-ba89-4f74-bca6-88a24245ca34"
+      },
+      "status": "clear_defect",
+      "finding_codes": [
+        "missing_event_lower_bound"
+      ],
+      "assessment": "The complete R_given_P_and_Q body omits the October 1, 2024 lower bounds attached to P and Q in the earlier fields and to all three events in the conjunction.",
+      "proposed_minimal_repair_text": "In R_given_P_and_Q, apply the October 1, 2024 to January 1, 2028 window explicitly to both antecedents and the outcome; retain each existing predicate and its documentation requirements.",
+      "evidence": [
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 3,
+          "question_field": "P",
+          "question_id": "87f01c54-f482-4e8e-8bda-14d72f96f3a9",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if any candidate for the US presidential election in 2028 publicly supports research funding for dark matter between October 1, 2024, and January 1, 2028. Public support must be documented through official campaign statements or verified public speeches."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 3,
+          "question_field": "Q_given_P",
+          "question_id": "89a2605b-69ec-4571-b17e-bbfade109171",
+          "source_part": "body",
+          "quote": "Suppose the following is true: At least one candidate for the US presidential election in 2028 publicly supports research funding for dark matter before January 1, 2028. This support must be documented through official campaign statements or verified public speeches, and it must occur between October 1, 2024, and January 1, 2028.\n\nThen, given this condition, will a new international treaty specifically aimed at nuclear safety be signed and ratified before January 1, 2028? For this to resolve as 'Yes', the treaty must be signed and ratified by at least five countries between October 1, 2024, and January 1, 2028, and it must be officially documented and published by a recognized international organization. If the condition is not met, resolves N/A."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 3,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "8240ad11-4c06-404e-b051-c99b2b0e956a",
+          "source_part": "body",
+          "quote": "Suppose the following is true: Both of the following occur before January 1, 2028: (a) Any candidate for the US presidential election in 2028 publicly supports research funding for dark matter, documented through official campaign statements or verified public speeches. (b) A new international treaty specifically aimed at nuclear safety is signed and ratified by at least five countries, officially documented and published by a recognized international organization.\n\nThen, is it true that the US Senate will pass a resolution imposing new economic sanctions on Russia before January 1, 2028? The resolution must be officially recorded in the US Senate's legislative records."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 3,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "2b263fb0-ba89-4f74-bca6-88a24245ca34",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if all of the following conditions are met between October 1, 2024, and January 1, 2028: (a) Any candidate for the US presidential election in 2028 publicly supports research funding for dark matter. Public support must be documented through official campaign statements or verified public speeches. (b) A new international treaty specifically aimed at nuclear safety is signed and ratified by at least five countries. The treaty must be officially documented and published by a recognized international organization. (c) The US Senate passes a resolution imposing new economic sanctions on Russia. The resolution must be officially recorded in the US Senate's legislative records."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "tuple_id": "2028/CondCondChecker:4",
+      "check_type": "CondCond",
+      "source_path": "data/tuples/CondCond.jsonl",
+      "source_line": 4,
+      "question_ids": {
+        "P": "207e578a-d009-4a21-b464-6ef375f9a64f",
+        "Q_given_P": "0c16ca07-fe80-49b1-912d-3d478ce69858",
+        "R_given_P_and_Q": "b51c85fb-01d3-492f-b234-f4454b4cbf97",
+        "P_and_Q_and_R": "52f51095-3ef1-4e36-bbe8-01a75d342f27"
+      },
+      "status": "no_clear_defect_found",
+      "finding_codes": [],
+      "assessment": "Q consistently has only a January 1, 2028 upper bound in Q_given_P, the R antecedent, and the conjunction. P and R consistently have their own October 1, 2024 lower bounds. Different events need not share one date window.",
+      "proposed_minimal_repair_text": "None proposed.",
+      "evidence": [
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 4,
+          "question_field": "Q_given_P",
+          "question_id": "0c16ca07-fe80-49b1-912d-3d478ce69858",
+          "source_part": "body",
+          "quote": "Suppose the following is true: A new pharmacological method for treating radiation sickness is approved by the U.S. Food and Drug Administration (FDA) between October 1, 2024, and January 1, 2028, as documented in the official records of the FDA. Then, will an AI system be used to successfully edit human genes in a clinical setting before January 1, 2028?\n\nResolution criteria for the outcome: This question will be resolved as 'Yes' if an AI system is used to successfully edit human genes in a clinical setting before January 1, 2028. The gene editing must be documented in a peer-reviewed medical journal and involve at least one human subject, with the AI system playing a crucial role in the editing process.\n\nIf the condition is not met, resolves N/A."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 4,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "b51c85fb-01d3-492f-b234-f4454b4cbf97",
+          "source_part": "body",
+          "quote": "Suppose the following is true: Both (a) a new pharmacological method for treating radiation sickness is approved by the U.S. Food and Drug Administration (FDA) between October 1, 2024, and January 1, 2028, with the approval documented in the official records of the FDA, and (b) an AI system is used to successfully edit human genes in a clinical setting before January 1, 2028, with the gene editing documented in a peer-reviewed medical journal and involving at least one human subject, where the AI system plays a crucial role in the editing process. Then, will an AI-driven drug discovery platform developed in Mexico receive approval from the U.S. Food and Drug Administration (FDA) for at least one drug between October 1, 2024, and January 1, 2028? The approval must be officially documented by the FDA and reported by reputable news sources."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 4,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "52f51095-3ef1-4e36-bbe8-01a75d342f27",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if all of the following conditions are met before January 1, 2028: (a) A new pharmacological method for treating radiation sickness is approved by the U.S. Food and Drug Administration (FDA) between October 1, 2024, and January 1, 2028, with the approval documented in the official records of the FDA. (b) An AI system is used to successfully edit human genes in a clinical setting before January 1, 2028, with the gene editing documented in a peer-reviewed medical journal and involving at least one human subject, where the AI system plays a crucial role in the editing process. (c) An AI-driven drug discovery platform developed in Mexico receives approval from the U.S. Food and Drug Administration (FDA) for at least one drug between October 1, 2024, and January 1, 2028, with the approval officially documented by the FDA and reported by reputable news sources."
+        }
+      ],
+      "caveats": [
+        "The N/A settlement wording when a condition fails is a conditional-settlement caveat, not by itself a different event definition."
+      ]
+    },
+    {
+      "tuple_id": "2028/CondCondChecker:5",
+      "check_type": "CondCond",
+      "source_path": "data/tuples/CondCond.jsonl",
+      "source_line": 5,
+      "question_ids": {
+        "P": "ba053f49-90cf-4841-8d5f-4666744ddb7c",
+        "Q_given_P": "f1861a55-eb41-46a7-ae8d-01974b3d5280",
+        "R_given_P_and_Q": "1c18d429-2d5d-42d9-bb51-93dcffdb1d30",
+        "P_and_Q_and_R": "424430db-c6eb-47c6-958f-4e62e5a08a23"
+      },
+      "status": "clear_defect",
+      "finding_codes": [
+        "missing_event_lower_bound"
+      ],
+      "assessment": "The complete R body supplies only a January 1, 2028 upper bound for its two premises and outcome. The earlier fields and conjunction attach October 1, 2024 lower bounds to the corresponding events.",
+      "proposed_minimal_repair_text": "In R_given_P_and_Q, restore the October 1, 2024 to January 1, 2028 window to P, Q and R. Preserve the full antecedent criteria when copying the clauses.",
+      "evidence": [
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 5,
+          "question_field": "P",
+          "question_id": "ba053f49-90cf-4841-8d5f-4666744ddb7c",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if the US Senate passes legislation that mandates the use of AI in environmental policy analysis between October 1, 2024, and January 1, 2028. The legislation must be signed into law and documented in the official records of the US Senate."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 5,
+          "question_field": "Q_given_P",
+          "question_id": "f1861a55-eb41-46a7-ae8d-01974b3d5280",
+          "source_part": "body",
+          "quote": "This conditional question explores the relationship between two separate events occurring before January 1, 2028. \n\nSuppose the following is true: The US Senate passes legislation mandating the use of AI in environmental policy analysis before January 1, 2028. This means that between October 1, 2024, and January 1, 2028, the US Senate must pass and have signed into law such legislation, as documented in the official records.\n\nThen, is the following also true: A current or former executive of Tesla, Inc. runs for a major political office in the United States within the same timeframe. This includes officially announcing their candidacy for positions like President, Vice President, Senator, or Governor, with the candidacy being recognized by the Federal Election Commission (FEC) or the relevant state election authority."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 5,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "1c18d429-2d5d-42d9-bb51-93dcffdb1d30",
+          "source_part": "body",
+          "quote": "Suppose the following is true: Both of the following occur before January 1, 2028: (a) The US Senate passes legislation mandating the use of AI in environmental policy analysis, and (b) A Tesla executive runs for a major political office in the United States. The legislation must be signed into law and documented in the official records of the US Senate. A current or former executive of Tesla, Inc. must officially announce their candidacy and run for a major political office in the United States, recognized by the Federal Election Commission (FEC) or the relevant state election authority. Then, is it true that France will officially join a new international energy agreement before January 1, 2028? The agreement must be ratified by the French government and publicly documented."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 5,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "424430db-c6eb-47c6-958f-4e62e5a08a23",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if all of the following events occur between October 1, 2024, and January 1, 2028: (a) The US Senate passes legislation that mandates the use of AI in environmental policy analysis. The legislation must be signed into law and documented in the official records of the US Senate. (b) A current or former executive of Tesla, Inc. officially announces their candidacy and runs for a major political office in the United States. Major political offices include positions such as President, Vice President, Senator, or Governor. The candidacy must be officially recognized and listed by the Federal Election Commission (FEC) or the relevant state election authority. (c) France officially joins a new international energy agreement. The agreement must be ratified by the French government and publicly documented."
+        }
+      ],
+      "caveats": [
+        "Q uses running and candidacy language in related ways; this assessment does not rely on treating those words as distinct events."
+      ]
+    },
+    {
+      "tuple_id": "2028/CondCondChecker:6",
+      "check_type": "CondCond",
+      "source_path": "data/tuples/CondCond.jsonl",
+      "source_line": 6,
+      "question_ids": {
+        "P": "e94dd969-00ff-464f-9d93-1a4892bb49cf",
+        "Q_given_P": "adcb4c23-2fb3-4dcb-855f-b527e141a057",
+        "R_given_P_and_Q": "a1336577-74d0-45d6-8b75-1003ed62ecf3",
+        "P_and_Q_and_R": "1e21f605-02cd-41e2-b1fb-6504513080c1"
+      },
+      "status": "no_clear_defect_found",
+      "finding_codes": [],
+      "assessment": "P consistently uses calendar years 2024 through 2028, Q uses January 1, 2025 through December 31, 2027, and R uses its named 2027 event with publication between October 1, 2024 and January 1, 2028. Their different windows do not break event identity.",
+      "proposed_minimal_repair_text": "None proposed.",
+      "evidence": [
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 6,
+          "question_field": "P",
+          "question_id": "e94dd969-00ff-464f-9d93-1a4892bb49cf",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if the GDP growth rate of the European Union, as reported by the World Bank or the International Monetary Fund (IMF), exceeds 4% for any calendar year between 2024 and 2028. The growth rate must be based on official annual GDP growth data."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 6,
+          "question_field": "Q_given_P",
+          "question_id": "adcb4c23-2fb3-4dcb-855f-b527e141a057",
+          "source_part": "body",
+          "quote": "This question explores the potential correlation between the economic growth of the European Union and Japan. \n\nSuppose the following is true: The GDP growth rate of the European Union, as reported by the World Bank or the International Monetary Fund (IMF), exceeds 4% for any calendar year between 2024 and 2028. The growth rate must be based on official annual GDP growth data.\n\nThen, is the following also true? Japan's annual GDP growth rate exceeds 3% in any calendar year from January 1, 2025, to December 31, 2027. The GDP growth rate will be determined based on official data released by the World Bank or the International Monetary Fund (IMF).\n\nResolution criteria: If the condition is met (EU's GDP growth exceeding 4%), the question resolves 'Yes' if Japan's GDP growth exceeds 3% in the specified period, and 'No' otherwise. If the condition is not met, the question resolves 'N/A'."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 6,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "a1336577-74d0-45d6-8b75-1003ed62ecf3",
+          "source_part": "body",
+          "quote": "Suppose the following is true: The European Union's GDP growth rate exceeds 4% for any calendar year between 2024 and 2028, as reported by the World Bank or the International Monetary Fund (IMF), and Japan's GDP growth rate exceeds 3% in any calendar year from January 1, 2025, to December 31, 2027, based on official data released by the World Bank or the International Monetary Fund (IMF). Then, will a Canadian political party include environmental science policies as a key platform in the 2027 federal election? \n\nResolution criteria for the condition: Both conditions must be met for the condition to resolve as 'Yes'.\n\nResolution criteria for the outcome: Resolves 'Yes' if any major Canadian political party includes environmental science policies as a key platform in their campaign for the 2027 federal election, with the platform officially published and recognized by reputable news sources between October 1, 2024, and January 1, 2028."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 6,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "1e21f605-02cd-41e2-b1fb-6504513080c1",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if all of the following conditions are met: (a) The GDP growth rate of the European Union, as reported by the World Bank or the International Monetary Fund (IMF), exceeds 4% for any calendar year between 2024 and 2028. The growth rate must be based on official annual GDP growth data. (b) Japan's annual GDP growth rate exceeds 3% in any calendar year from January 1, 2025, to December 31, 2027, based on official data released by the World Bank or the International Monetary Fund (IMF). (c) Any major Canadian political party includes environmental science policies as a key platform in their campaign for the 2027 federal election. The platform must be officially published and recognized by reputable news sources between October 1, 2024, and January 1, 2028."
+        }
+      ],
+      "caveats": [
+        "The algebraic chain identity does not require P, Q and R to happen in chronological order. Conditional settlement boilerplate is not independently treated as a defect."
+      ]
+    },
+    {
+      "tuple_id": "2028/CondCondChecker:7",
+      "check_type": "CondCond",
+      "source_path": "data/tuples/CondCond.jsonl",
+      "source_line": 7,
+      "question_ids": {
+        "P": "9ce3c920-3d24-49c8-995e-fd931b84e154",
+        "Q_given_P": "eadcc8e0-a5c0-47c1-b6c6-510860df96cb",
+        "R_given_P_and_Q": "5e4f49db-4db8-4d2c-aa0b-87f23fa8eb24",
+        "P_and_Q_and_R": "9348a291-7eb2-4eb8-aeea-d2e5452cf4ad"
+      },
+      "status": "clear_defect",
+      "finding_codes": [
+        "missing_event_lower_bound"
+      ],
+      "assessment": "Q_given_P gives Q only an upper bound, while both the R premise and conjunction give Q an October 1, 2024 lower bound. R_given_P_and_Q gives R only an upper bound, while the conjunction gives R a creation-date lower bound.",
+      "proposed_minimal_repair_text": "Add the October 1, 2024 lower bound to Q in Q_given_P and the source creation-date lower bound to R in R_given_P_and_Q. Resolve the creation date from source metadata before replacing it with a calendar date; do not assume it equals October 1, 2024.",
+      "evidence": [
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 7,
+          "question_field": "Q_given_P",
+          "question_id": "eadcc8e0-a5c0-47c1-b6c6-510860df96cb",
+          "source_part": "body",
+          "quote": "Then, will OpenAI release an AI system capable of passing the US bar exam before January 1, 2028?"
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 7,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "5e4f49db-4db8-4d2c-aa0b-87f23fa8eb24",
+          "source_part": "body",
+          "quote": "Suppose the following is true: (a) France and China officially sign a bilateral trade agreement specifically involving biotechnology between October 1, 2024, and January 1, 2028, with the agreement being officially documented and recognized by both governments, and (b) OpenAI releases an AI system capable of passing the US bar exam at any point between October 1, 2024, and January 1, 2028, with the AI system achieving a passing score on the bar exam as defined by the National Conference of Bar Examiners (NCBE) and this achievement being confirmed by reputable sources. Given these conditions, will a national government publicly announce the adoption of an artificial intelligence policy that was developed in collaboration with OpenAI before January 1, 2028? The announcement must be made through official government channels and explicitly mention OpenAI's involvement."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 7,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "9348a291-7eb2-4eb8-aeea-d2e5452cf4ad",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if all of the following conditions are met: (1) France and China officially sign a bilateral trade agreement specifically involving biotechnology between October 1, 2024, and January 1, 2028, with the agreement being officially documented and recognized by both governments. (2) OpenAI releases an AI system capable of passing the US bar exam at any point between October 1, 2024, and January 1, 2028, with the AI system achieving a passing score on the bar exam as defined by the National Conference of Bar Examiners (NCBE) and this achievement being confirmed by reputable sources. (3) A national government publicly announces the adoption of an artificial intelligence policy that was developed in collaboration with OpenAI between the creation date of this question and January 1, 2028. The announcement must be made through official government channels and explicitly mention OpenAI's involvement."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "tuple_id": "2028/CondCondChecker:8",
+      "check_type": "CondCond",
+      "source_path": "data/tuples/CondCond.jsonl",
+      "source_line": 8,
+      "question_ids": {
+        "P": "a6cee38b-98c7-4cb6-949c-af9589bbaeff",
+        "Q_given_P": "d37a9081-4f69-4bf5-b671-30a169235a8d",
+        "R_given_P_and_Q": "9b404256-1338-4290-b80a-f3ccb8933cf9",
+        "P_and_Q_and_R": "74faaefb-ad5a-4aa0-9a39-1c4947d8ffaa"
+      },
+      "status": "clear_defect",
+      "finding_codes": [
+        "missing_event_lower_bound"
+      ],
+      "assessment": "The complete R body gives both antecedents only a January 1, 2028 upper bound, while the corresponding earlier fields and conjunction include October 1, 2024 starts. R itself has the same upper-bound-only wording in the conditional and conjunction.",
+      "proposed_minimal_repair_text": "Restore the October 1, 2024 to January 1, 2028 window for P and Q in R_given_P_and_Q. Preserve the existing R window.",
+      "evidence": [
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 8,
+          "question_field": "P",
+          "question_id": "a6cee38b-98c7-4cb6-949c-af9589bbaeff",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if a film primarily produced in Taiwan wins the Academy Award for Best International Feature Film at any Academy Awards ceremony held between October 1, 2024, and January 1, 2028. The win must be officially announced by the Academy of Motion Picture Arts and Sciences."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 8,
+          "question_field": "Q_given_P",
+          "question_id": "d37a9081-4f69-4bf5-b671-30a169235a8d",
+          "source_part": "body",
+          "quote": "Suppose the following is true: A film primarily produced in Taiwan wins the Academy Award for Best International Feature Film at any Academy Awards ceremony held between October 1, 2024, and January 1, 2028. The win must be officially announced by the Academy of Motion Picture Arts and Sciences. Then, will the United States hold a presidential election resulting in a new president before January 1, 2028? The question will resolve as 'Yes' if, within this timeframe, the United States holds a presidential election that results in the election of a new president, who must be officially confirmed by the relevant U.S. election authorities and reported by major news outlets. If the condition is not met, the question resolves as N/A."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 8,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "9b404256-1338-4290-b80a-f3ccb8933cf9",
+          "source_part": "body",
+          "quote": "Suppose the following is true: Both of the following occur before January 1, 2028: (a) A film primarily produced in Taiwan wins the Academy Award for Best International Feature Film, with the win officially announced by the Academy of Motion Picture Arts and Sciences; and (b) The United States holds a presidential election resulting in a new president, with the new president officially confirmed by the relevant U.S. election authorities and reported by major news outlets.\n\nThen, will Brazil reduce deforestation in the Amazon by at least 70% compared to 2020 levels before January 1, 2028? The deforestation data must be verified by Brazil's National Institute for Space Research (INPE) or another reputable environmental monitoring organization."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 8,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "74faaefb-ad5a-4aa0-9a39-1c4947d8ffaa",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if all of the following conditions are met before January 1, 2028: (a) A film primarily produced in Taiwan wins the Academy Award for Best International Feature Film at any Academy Awards ceremony held between October 1, 2024, and January 1, 2028, with the win officially announced by the Academy of Motion Picture Arts and Sciences; (b) The United States holds a presidential election between October 1, 2024, and January 1, 2028, resulting in the election of a new president, with the new president officially confirmed by the relevant U.S. election authorities and reported by major news outlets; and (c) Brazil reduces deforestation in the Amazon by at least 70% compared to 2020 levels before January 1, 2028, with the deforestation data verified by Brazil's National Institute for Space Research (INPE) or another reputable environmental monitoring organization."
+        }
+      ],
+      "caveats": [
+        "Q_given_P says within this timeframe after giving the October 1, 2024 to January 1, 2028 premise window. This is treated as a within-body reference; standalone fields do not inherit missing dates from other fields."
+      ]
+    },
+    {
+      "tuple_id": "2028/CondCondChecker:9",
+      "check_type": "CondCond",
+      "source_path": "data/tuples/CondCond.jsonl",
+      "source_line": 9,
+      "question_ids": {
+        "P": "243ba03c-1d9a-440b-97a1-986bb5f58a53",
+        "Q_given_P": "ef1b0f85-d8a7-497e-b610-128d8653dc53",
+        "R_given_P_and_Q": "4a27ab40-7dc2-460b-8921-646c8f003026",
+        "P_and_Q_and_R": "c3740efd-a6bf-442b-ae86-8cdf98f9afa9"
+      },
+      "status": "no_clear_defect_found",
+      "finding_codes": [],
+      "assessment": "The full R body explicitly expands its shortened premise introduction and restores all P and Q criteria and date bounds. R is also bounded consistently with the conjunction.",
+      "proposed_minimal_repair_text": "None proposed.",
+      "evidence": [
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 9,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "4a27ab40-7dc2-460b-8921-646c8f003026",
+          "source_part": "body",
+          "quote": "Suppose the following is true: Both of the following occur: (a) A NATO member country invokes Article 5 before January 1, 2028, and (b) Brazil's GDP growth rate exceeds 3% for any calendar year between 2025 and 2027. This means: \n\n(a) Any NATO member country invokes Article 5 between October 1, 2024, and January 1, 2028. The invocation must be officially confirmed by NATO's official records and public statements.\n\n(b) Brazil's Gross Domestic Product (GDP) growth rate, as reported by the Brazilian Institute of Geography and Statistics (IBGE), exceeds 3% for any calendar year between January 1, 2025, and December 31, 2027. The growth rate must be based on IBGE's official annual GDP data.\n\nThen, is the following true? China achieves net positive energy output from a nuclear fusion reactor before January 1, 2028. This requires that, between October 1, 2024, and January 1, 2028, a nuclear fusion reactor in China achieves net positive energy output, meaning the reactor produces more energy than it consumes. The achievement must be verified by a reputable scientific organization or governmental body."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 9,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "c3740efd-a6bf-442b-ae86-8cdf98f9afa9",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if all of the following conditions are met: (a) Any NATO member country invokes Article 5 between October 1, 2024, and January 1, 2028. The invocation must be officially confirmed by NATO's official records and public statements. (b) Brazil's Gross Domestic Product (GDP) growth rate, as reported by the Brazilian Institute of Geography and Statistics (IBGE), exceeds 3% for any calendar year between January 1, 2025, and December 31, 2027. The growth rate must be based on IBGE's official annual GDP data. (c) Between October 1, 2024, and January 1, 2028, a nuclear fusion reactor in China achieves net positive energy output, meaning the reactor produces more energy than it consumes. The achievement must be verified by a reputable scientific organization or governmental body."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "tuple_id": "2028/CondCondChecker:10",
+      "check_type": "CondCond",
+      "source_path": "data/tuples/CondCond.jsonl",
+      "source_line": 10,
+      "question_ids": {
+        "P": "cc35d0bf-99dd-447f-846e-f4254109d8ce",
+        "Q_given_P": "3b289daf-1496-4883-9f0c-bda1e15a6692",
+        "R_given_P_and_Q": "b7f8e46c-e3c3-436a-beee-d787f23a6ff9",
+        "P_and_Q_and_R": "c2184901-1fdf-45f1-88ea-2f435ae0fa30"
+      },
+      "status": "clear_defect",
+      "finding_codes": [
+        "changed_temporal_anchor",
+        "missing_event_lower_bound",
+        "missing_quantity_baseline"
+      ],
+      "assessment": "P and the conjunction use a creation-date lower bound for P; Q_given_P instead uses now, and the full R premise drops the start altogether. The R premise also omits Q's October 1, 2024 lower bound and the explicit comparison to existing processes. A reduction threshold without the same baseline need not describe the same quantity.",
+      "proposed_minimal_repair_text": "Use P's source creation-date anchor for P in both conditional premises. In the R premise, reproduce Q's October 1, 2024 to January 1, 2028 implementation window and its comparison to existing processes. Resolve any creation-date calendar value from source metadata.",
+      "evidence": [
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 10,
+          "question_field": "P",
+          "question_id": "cc35d0bf-99dd-447f-846e-f4254109d8ce",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if a member country of NATO holds a national referendum specifically on the issue of NATO membership between the creation date of this question and January 1, 2028. The referendum must be officially recorded and the results certified by the relevant national election authorities."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 10,
+          "question_field": "Q_given_P",
+          "question_id": "3b289daf-1496-4883-9f0c-bda1e15a6692",
+          "source_part": "body",
+          "quote": "Suppose the following is true: A member country of NATO holds a national referendum on NATO membership between now and January 1, 2028. The referendum must be officially recorded and the results certified by the relevant national election authorities.\n\nThen, is the following also true? A new chemical process that reduces greenhouse gas emissions by at least 30% compared to existing processes is commercially implemented between October 1, 2024, and January 1, 2028. The implementation must be documented in a peer-reviewed scientific journal or confirmed by an authorized governmental body.\n\nResolution criteria: If the condition regarding the NATO referendum is met, the question resolves based on the implementation of the chemical process. If the condition is not met, the question resolves as N/A."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 10,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "b7f8e46c-e3c3-436a-beee-d787f23a6ff9",
+          "source_part": "body",
+          "quote": "Suppose the following is true: Before January 1, 2028, (a) a member country of NATO holds a national referendum on NATO membership, and (b) a new chemical process that reduces greenhouse gas emissions by at least 30% is commercially implemented. Then, will China announce the development of a commercial nuclear fusion reactor before January 1, 2028?\n\nResolution Criteria:\n- For the condition: (a) The NATO referendum must be officially recorded and results certified by the national election authorities. (b) The new chemical process must be documented in a peer-reviewed scientific journal or confirmed by an authorized governmental body.\n- For the outcome: The Chinese government or a Chinese energy company must publicly announce the development of a commercial nuclear fusion reactor, with the announcement reported by major news outlets and confirmed by official Chinese sources, between October 1, 2024, and January 1, 2028."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 10,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "c2184901-1fdf-45f1-88ea-2f435ae0fa30",
+          "source_part": "body",
+          "quote": "(a) A member country of NATO must hold a national referendum specifically on the issue of NATO membership between the creation date of this question and January 1, 2028. The referendum must be officially recorded and the results certified by the relevant national election authorities.\n\n(b) A new chemical process that reduces greenhouse gas emissions by at least 30% compared to existing processes must be commercially implemented between October 1, 2024, and January 1, 2028. The implementation must be documented in a peer-reviewed scientific journal or confirmed by an authorized governmental body.\n\n(c) The Chinese government or a Chinese energy company must publicly announce the development of a commercial nuclear fusion reactor between October 1, 2024, and January 1, 2028. The announcement must be reported by major news outlets and confirmed by official Chinese sources."
+        }
+      ],
+      "caveats": [
+        "The source alone does not identify now with the question creation date. This is a textual anchor issue, not a claim about any real-world event."
+      ]
+    },
+    {
+      "tuple_id": "2028/CondCondChecker:11",
+      "check_type": "CondCond",
+      "source_path": "data/tuples/CondCond.jsonl",
+      "source_line": 11,
+      "question_ids": {
+        "P": "c331546d-8811-42b2-a3a2-10f4bdf9d8f6",
+        "Q_given_P": "b817a4c0-39b7-48be-80ea-cf1aba040260",
+        "R_given_P_and_Q": "bcfee09e-40c6-44a0-9425-9036e4fd7e14",
+        "P_and_Q_and_R": "43a7cece-a5fc-48bb-b60e-eb70e171a2a7"
+      },
+      "status": "caveat",
+      "finding_codes": [
+        "conditional_settlement_wording"
+      ],
+      "assessment": "The full bodies preserve all three event definitions and bounds. R_given_P_and_Q nevertheless says the question resolves Yes if the two premises hold before separately asking Then and giving the outcome resolution. This can confuse premise satisfaction with conditional-outcome settlement.",
+      "proposed_minimal_repair_text": "For optional clarity, replace the premise-only resolves-Yes sentence with wording that labels those clauses as assumptions, retaining the existing Then outcome and all criteria.",
+      "evidence": [
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 11,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "bcfee09e-40c6-44a0-9425-9036e4fd7e14",
+          "source_part": "body",
+          "quote": "Suppose the following is true: Both of the following occur by January 1, 2028: (a) The European Union implements a policy mandating electric vehicle adoption targets for member states, and (b) The US House of Representatives passes legislation to advance nuclear energy technology. This question will be resolved as 'Yes' if both of the following conditions are met: (1) The European Union implements a new policy mandating specific electric vehicle adoption targets for its member states between October 1, 2024, and January 1, 2028. The policy must be officially enacted and published in the EU's official records. (2) The US House of Representatives passes legislation specifically aimed at advancing nuclear energy technology between October 1, 2024, and January 1, 2028. The legislation must be officially passed and recorded in the official records of the US House of Representatives. \n\nThen, will Canada establish its own space agency-led mission to Mars before January 1, 2028? This question will be resolved as 'Yes' if, between the creation date of this question (October 1, 2024) and January 1, 2028, Canada establishes and officially announces a space agency-led mission to Mars. The mission must be led by the Canadian Space Agency (CSA) and the announcement must be reported by reputable news sources."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 11,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "43a7cece-a5fc-48bb-b60e-eb70e171a2a7",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if all of the following conditions are met: (1) The European Union implements a new policy mandating specific electric vehicle adoption targets for its member states between October 1, 2024, and January 1, 2028. The policy must be officially enacted and published in the EU's official records. (2) The US House of Representatives passes legislation specifically aimed at advancing nuclear energy technology between October 1, 2024, and January 1, 2028. The legislation must be officially passed and recorded in the official records of the US House of Representatives. (3) Between October 1, 2024, and January 1, 2028, Canada establishes and officially announces a space agency-led mission to Mars. The mission must be led by the Canadian Space Agency (CSA) and the announcement must be reported by reputable news sources."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "tuple_id": "2028/CondCondChecker:12",
+      "check_type": "CondCond",
+      "source_path": "data/tuples/CondCond.jsonl",
+      "source_line": 12,
+      "question_ids": {
+        "P": "e30d287d-3b59-482f-a22f-6204490e778f",
+        "Q_given_P": "6d08fbd2-2d7e-4f3e-ac1e-4e921e85127f",
+        "R_given_P_and_Q": "8f135cbd-3e82-4fa4-8d7e-b479956e7520",
+        "P_and_Q_and_R": "32ce27f7-ff55-45d0-add1-1016239aa368"
+      },
+      "status": "clear_defect",
+      "finding_codes": [
+        "missing_event_lower_bound",
+        "missing_event_upper_bound",
+        "omitted_predicate_constraint"
+      ],
+      "assessment": "The R premises omit the October 1, 2024 starts from the corresponding earlier fields and conjunction. Its Q premise also omits the requirement for specific guidelines or regulations for antibiotic use and resistance management. Its R outcome lacks the explicit before-January-1-2028 cutoff that appears in the conjunction; following the named event is only a lower ordering condition.",
+      "proposed_minimal_repair_text": "Copy the complete P and Q antecedent definitions into R_given_P_and_Q, including their October 1, 2024 to January 1, 2028 windows and the Q guideline criterion. Add the conjunction's explicit January 1, 2028 upper cutoff to the R outcome.",
+      "evidence": [
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 12,
+          "question_field": "P",
+          "question_id": "e30d287d-3b59-482f-a22f-6204490e778f",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if, between October 1, 2024, and January 1, 2028, a person with a professional background in chemistry is elected to either the House of Representatives or the Senate in the US Congress. The individual's professional background must be verifiable through official biographical information or reputable sources."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 12,
+          "question_field": "Q_given_P",
+          "question_id": "6d08fbd2-2d7e-4f3e-ac1e-4e921e85127f",
+          "source_part": "body",
+          "quote": "Suppose the following is true: Between October 1, 2024, and January 1, 2028, a person with a professional background in chemistry is elected to either the House of Representatives or the Senate in the US Congress. The individual's professional background must be verifiable through official biographical information or reputable sources.\n\nThen, will an international policy framework for the prevention and control of antibiotic-resistant bacteria be adopted by at least 50 countries between October 1, 2024, and January 1, 2028? The framework must be officially endorsed by an international organization such as the World Health Organization (WHO) and must include specific guidelines or regulations for antibiotic use and resistance management."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 12,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "8f135cbd-3e82-4fa4-8d7e-b479956e7520",
+          "source_part": "body",
+          "quote": "Suppose the following is true: Both of the following occur before January 1, 2028: (a) A chemist is elected to the US Congress, and (b) At least 50 countries adopt an international policy framework for antibiotic-resistant bacteria. The chemist must be verifiable through official biographical information or reputable sources, and the policy framework must be endorsed by an international organization like WHO. Then, does the US Senate have at least 55 Democratic members following the 2026 midterm elections, verified by official Senate records?"
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 12,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "32ce27f7-ff55-45d0-add1-1016239aa368",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if all of the following conditions are met between October 1, 2024, and January 1, 2028: (a) A person with a professional background in chemistry is elected to either the House of Representatives or the Senate in the US Congress. The individual's professional background must be verifiable through official biographical information or reputable sources. (b) An international policy framework for the prevention and control of antibiotic-resistant bacteria is adopted by at least 50 countries. The framework must be officially endorsed by an international organization such as the World Health Organization (WHO) and must include specific guidelines or regulations for antibiotic use and resistance management. (c) Following the 2026 midterm elections and before January 1, 2028, the US Senate has at least 55 members who are officially affiliated with the Democratic Party. The composition must be verified by official Senate records."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "tuple_id": "2028/CondCondChecker:13",
+      "check_type": "CondCond",
+      "source_path": "data/tuples/CondCond.jsonl",
+      "source_line": 13,
+      "question_ids": {
+        "P": "0e96dd66-4aaf-40d4-a871-3e266c10ff65",
+        "Q_given_P": "630cee9b-df59-4497-bd83-a0da9dd36042",
+        "R_given_P_and_Q": "cb69fccc-1999-4b9b-a41e-9a74885da8da",
+        "P_and_Q_and_R": "90e13513-ee1b-4fca-bbce-d920ec915698"
+      },
+      "status": "clear_defect",
+      "finding_codes": [
+        "changed_quantity_predicate"
+      ],
+      "assessment": "Q_given_P and the conjunction define Q as the net change in seats held by any single party exceeding ten. The full R premise instead says composition changes by more than ten seats, with no net or single-party restriction. Those are different quantity definitions.",
+      "proposed_minimal_repair_text": "In the R premise, reproduce the exact Q definition from Q_given_P: net change in the number of seats held by any single party, retaining its threshold, date window and confirmation criteria. Align the shortened conjunction title with its already explicit body for clarity.",
+      "evidence": [
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 13,
+          "question_field": "Q_given_P",
+          "question_id": "630cee9b-df59-4497-bd83-a0da9dd36042",
+          "source_part": "body",
+          "quote": "Then, will the net change in the number of seats held by any single party in the US House of Representatives be greater than 10 seats as a result of the 2026 elections?"
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 13,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "cb69fccc-1999-4b9b-a41e-9a74885da8da",
+          "source_part": "body",
+          "quote": "(2) The composition of the US House of Representatives changes by more than 10 seats in the 2026 elections, with results confirmed by the Federal Election Commission (FEC) between October 1, 2024, and January 1, 2028."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 13,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "90e13513-ee1b-4fca-bbce-d920ec915698",
+          "source_part": "body",
+          "quote": "(2) The net change in the number of seats held by any single party in the US House of Representatives is greater than 10 seats as a result of the 2026 elections."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "tuple_id": "2028/CondCondChecker:14",
+      "check_type": "CondCond",
+      "source_path": "data/tuples/CondCond.jsonl",
+      "source_line": 14,
+      "question_ids": {
+        "P": "3e4b4a8d-38ea-45f3-bc36-aec2321f1ff2",
+        "Q_given_P": "7036990f-1d23-4def-8638-d347b9850185",
+        "R_given_P_and_Q": "76305719-dc17-4e5b-81a9-7070cce94c0b",
+        "P_and_Q_and_R": "a17fb68a-65e5-4841-8334-c1e605fc6ce6"
+      },
+      "status": "caveat",
+      "finding_codes": [
+        "title_shorthand_resolved_by_body"
+      ],
+      "assessment": "The R title shortens P to an actual phase-out, while all full bodies consistently require enactment of a policy aimed at a phase-out. The complete R body also restores the explicit date windows. The title can mislead, but the full-body event correspondence is preserved.",
+      "proposed_minimal_repair_text": "Optionally change the R title to say enacts a nationwide policy to phase out coal-fired power plants, matching its body.",
+      "evidence": [
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 14,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "76305719-dc17-4e5b-81a9-7070cce94c0b",
+          "source_part": "title",
+          "quote": "Given both Australia phases out coal and US Supreme Court rules on energy policy, will the US pass a federal AI energy law by 2028?"
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 14,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "76305719-dc17-4e5b-81a9-7070cce94c0b",
+          "source_part": "body",
+          "quote": "Suppose the following is true: Both of the following occur before January 1, 2028: (a) Australia enacts a nationwide policy to phase out coal-fired power plants, officially enacted and published in Australia's legal records between October 1, 2024, and January 1, 2028. (b) The US Supreme Court issues a ruling on a case concerning energy policy, documented in the official records of the Supreme Court between October 1, 2024, and January 1, 2028.\n\nThen, will the United States pass a federal law regulating the ethical use of artificial intelligence in energy management before January 1, 2028? The law must be officially enacted and documented in US federal legal records between October 1, 2024, and January 1, 2028."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 14,
+          "question_field": "P",
+          "question_id": "3e4b4a8d-38ea-45f3-bc36-aec2321f1ff2",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if, between the creation date of this question (October 1, 2024) and January 1, 2028, Australia enacts a nationwide policy specifically aimed at phasing out coal-fired power plants. The policy must be officially enacted and published in Australia's legal records."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 14,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "a17fb68a-65e5-4841-8334-c1e605fc6ce6",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if all of the following conditions are met: (a) Between October 1, 2024, and January 1, 2028, Australia enacts a nationwide policy specifically aimed at phasing out coal-fired power plants. The policy must be officially enacted and published in Australia's legal records. (b) The US Supreme Court issues a ruling on a case concerning energy policy at any point between October 1, 2024, and January 1, 2028. The ruling must be documented in the official records of the Supreme Court. (c) Between October 1, 2024, and January 1, 2028, the United States passes a federal law specifically aimed at regulating the ethical use of artificial intelligence in energy management. The law must be officially enacted and documented in US federal legal records."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "tuple_id": "2028/CondCondChecker:15",
+      "check_type": "CondCond",
+      "source_path": "data/tuples/CondCond.jsonl",
+      "source_line": 15,
+      "question_ids": {
+        "P": "f814af0e-7bed-4122-91c0-90d9687c2515",
+        "Q_given_P": "2bdc9af1-e409-464b-b78c-6b45dcc102c2",
+        "R_given_P_and_Q": "f61df70a-4a6a-465f-abac-3cbcd5f85323",
+        "P_and_Q_and_R": "c6dde713-6572-47a0-b22c-0f0de1dd463d"
+      },
+      "status": "clear_defect",
+      "finding_codes": [
+        "missing_event_lower_bound"
+      ],
+      "assessment": "The full R body omits the October 1, 2024 lower bounds from P and Q. Earlier fields and the conjunction give those bounds. R itself consistently uses a creation-date lower bound in both occurrences.",
+      "proposed_minimal_repair_text": "Restore the October 1, 2024 to January 1, 2028 window for both premises in R_given_P_and_Q. Preserve R's shared creation-date window without guessing its calendar anchor.",
+      "evidence": [
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 15,
+          "question_field": "P",
+          "question_id": "f814af0e-7bed-4122-91c0-90d9687c2515",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if, between October 1, 2024, and January 1, 2028, OpenAI releases a tool specifically designed to reduce carbon emissions in any industry. The tool must be publicly announced and available for use, with its primary function being the reduction of carbon emissions."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 15,
+          "question_field": "Q_given_P",
+          "question_id": "2bdc9af1-e409-464b-b78c-6b45dcc102c2",
+          "source_part": "body",
+          "quote": "Suppose the following is true: OpenAI releases a tool specifically designed to reduce carbon emissions in any industry between October 1, 2024, and January 1, 2028. The tool must be publicly announced and available for use, with its primary function being the reduction of carbon emissions.\n\nThen, will France complete the construction of a new nuclear power plant before January 1, 2028? This resolves as 'Yes' if a new nuclear power plant in France is officially completed and begins operations between October 1, 2024, and January 1, 2028. The completion must be confirmed by the French government or a reputable energy organization."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 15,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "f61df70a-4a6a-465f-abac-3cbcd5f85323",
+          "source_part": "body",
+          "quote": "This question explores the conditional scenario where both of the following occur before January 1, 2028: (a) OpenAI releases a tool specifically designed to reduce carbon emissions in any industry, publicly announced and available for use, with its primary function being the reduction of carbon emissions; (b) A new nuclear power plant in France is officially completed and begins operations, confirmed by the French government or a reputable energy organization.\n\nGiven these conditions are met, will a current member of the US Congress publicly endorse the use of machine learning for legislative decision-making before January 1, 2028? The endorsement must occur between the creation date of this question and January 1, 2028, in an official capacity such as during a congressional session, in a press release, or on the member's official website."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 15,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "c6dde713-6572-47a0-b22c-0f0de1dd463d",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if all of the following conditions are met: (1) Between October 1, 2024, and January 1, 2028, OpenAI releases a tool specifically designed to reduce carbon emissions in any industry. The tool must be publicly announced and available for use, with its primary function being the reduction of carbon emissions. (2) Between October 1, 2024, and January 1, 2028, a new nuclear power plant in France is officially completed and begins operations. The completion must be confirmed by the French government or a reputable energy organization. (3) Between the creation date of this question and January 1, 2028, a current member of the US Congress publicly endorses the use of machine learning for legislative decision-making. The endorsement must be made in an official capacity, such as during a congressional session, in a press release, or on the member's official website."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "tuple_id": "2028/CondCondChecker:16",
+      "check_type": "CondCond",
+      "source_path": "data/tuples/CondCond.jsonl",
+      "source_line": 16,
+      "question_ids": {
+        "P": "b3eb8051-7c01-4143-855f-66da09581030",
+        "Q_given_P": "a0bb706c-6e4b-4763-8ccc-c28ed09adbfc",
+        "R_given_P_and_Q": "56ebeb23-dda5-47d8-827a-cc131289fc68",
+        "P_and_Q_and_R": "6353cac6-2ab4-49fd-8313-6f2c61220598"
+      },
+      "status": "caveat",
+      "finding_codes": [
+        "shared_quantity_wording_ambiguity"
+      ],
+      "assessment": "The full bodies preserve P, Q and R, including date windows. R and the conjunction both mix singular a new trade agreement with plural agreements. That is shared ambiguity about one multilateral agreement versus multiple agreements, not a cross-field change.",
+      "proposed_minimal_repair_text": "If clarifying later, explicitly choose the intended one-agreement or multiple-agreements interpretation and apply the identical wording to both R occurrences. No direction is selected in this review.",
+      "evidence": [
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 16,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "56ebeb23-dda5-47d8-827a-cc131289fc68",
+          "source_part": "body",
+          "quote": "Then, is it true that Iran will enter into a new trade agreement with at least three countries before January 1, 2028?"
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 16,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "56ebeb23-dda5-47d8-827a-cc131289fc68",
+          "source_part": "body",
+          "quote": "The agreements must be officially signed and publicly announced by the involved countries."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 16,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "6353cac6-2ab4-49fd-8313-6f2c61220598",
+          "source_part": "body",
+          "quote": "(3) Iran enters into a new trade agreement with at least three different countries, with agreements that must be officially signed and publicly announced by the involved countries."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "tuple_id": "2028/CondCondChecker:17",
+      "check_type": "CondCond",
+      "source_path": "data/tuples/CondCond.jsonl",
+      "source_line": 17,
+      "question_ids": {
+        "P": "5576c991-397e-49cf-af2f-5cc806211140",
+        "Q_given_P": "05536309-6742-44db-8d67-2802c0908d6d",
+        "R_given_P_and_Q": "a3fbd1ec-4778-4037-a625-b7c26b6852d9",
+        "P_and_Q_and_R": "f0a266d5-a06f-4cad-a5bf-c8f59b1f2141"
+      },
+      "status": "clear_defect",
+      "finding_codes": [
+        "missing_event_lower_bound"
+      ],
+      "assessment": "R_given_P_and_Q asks for R before January 1, 2028 with no October 1, 2024 lower bound; the conjunction explicitly requires R between those dates. P and Q are consistently reproduced.",
+      "proposed_minimal_repair_text": "Add between October 1, 2024 and January 1, 2028 to the R approval outcome in R_given_P_and_Q, matching the conjunction.",
+      "evidence": [
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 17,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "a3fbd1ec-4778-4037-a625-b7c26b6852d9",
+          "source_part": "body",
+          "quote": "Suppose the following is true: (a) Between October 1, 2024, and January 1, 2028, a candidate in a national election campaign publicly commits to funding microbiology research, and this commitment is officially documented and reported by reputable news sources. (b) Renewable energy sources account for at least 50% of the total energy production in the United States for any calendar year between October 1, 2024, and January 1, 2028, with data verified by the U.S. Energy Information Administration (EIA) or another reputable energy statistics organization. Given these conditions, will a new nuclear power plant in the United States receive an environmental impact assessment approval before January 1, 2028? This approval must be documented and confirmed by the U.S. Environmental Protection Agency (EPA) or another relevant governmental body."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 17,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "f0a266d5-a06f-4cad-a5bf-c8f59b1f2141",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if all of the following conditions are met: (a) Between October 1, 2024, and January 1, 2028, any candidate in a national election campaign publicly commits to funding microbiology research, with the commitment being officially documented and reported by reputable news sources. (b) Renewable energy sources (such as wind, solar, hydro, and geothermal) account for at least 50% of the total energy production in the United States for any calendar year between October 1, 2024, and January 1, 2028, with the data verified by the U.S. Energy Information Administration (EIA) or another reputable energy statistics organization. (c) A new nuclear power plant in the United States receives an environmental impact assessment approval between October 1, 2024, and January 1, 2028, with the approval documented and confirmed by the U.S. Environmental Protection Agency (EPA) or another relevant governmental body."
+        }
+      ],
+      "caveats": [
+        "Q's calendar-year-within-date-window wording is awkward but consistently copied; it is not independently classified as a cross-field mismatch."
+      ]
+    },
+    {
+      "tuple_id": "2028/CondCondChecker:18",
+      "check_type": "CondCond",
+      "source_path": "data/tuples/CondCond.jsonl",
+      "source_line": 18,
+      "question_ids": {
+        "P": "99fe3c55-1885-420c-a67e-a2fbcffe152d",
+        "Q_given_P": "242d5ce2-873f-4a78-8641-43944622a0b5",
+        "R_given_P_and_Q": "4eaf70fb-25e6-4cd8-9da2-814d976f09ae",
+        "P_and_Q_and_R": "25c0ab95-6160-4ab0-8c8e-57f7332d959c"
+      },
+      "status": "clear_defect",
+      "finding_codes": [
+        "changed_event_vs_confirmation_window",
+        "missing_event_lower_bound"
+      ],
+      "assessment": "Q_given_P requires Q to occur in the October 1, 2024 to January 1, 2028 window and separately be confirmed. The conjunction instead dates the confirmation within that window. The R premise gives confirmation only a January 1, 2028 upper cutoff and omits the October start. Event time and confirmation time are not interchangeable predicates.",
+      "proposed_minimal_repair_text": "Choose Q_given_P's existing event-occurrence window as the shared definition and copy it into the R premise and conjunction, retaining confirmation as a separate requirement. If a confirmation deadline is intended, specify that additional requirement identically in every Q occurrence.",
+      "evidence": [
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 18,
+          "question_field": "Q_given_P",
+          "question_id": "242d5ce2-873f-4a78-8641-43944622a0b5",
+          "source_part": "body",
+          "quote": "The reduction must occur between October 1, 2024, and January 1, 2028, and be confirmed by official reports from Brazil's National Institute for Space Research (INPE) or another reputable environmental monitoring organization."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 18,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "4eaf70fb-25e6-4cd8-9da2-814d976f09ae",
+          "source_part": "body",
+          "quote": "Suppose the following is true: (a) France's 2027 presidential election results in a candidate winning with over 60% of the vote, confirmed by the French Ministry of the Interior and published in the official election results, AND (b) Brazil achieves a 50% reduction in deforestation rates in the Amazon compared to 2023 levels, confirmed by official reports from Brazil's National Institute for Space Research (INPE) or another reputable environmental monitoring organization by January 1, 2028. \n\nThen, will Australia implement a national policy specifically targeting net-zero carbon emissions by 2050 at any point between October 1, 2024, and January 1, 2028, with the policy being officially signed into law and documented in the Australian Government's official records?"
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 18,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "25c0ab95-6160-4ab0-8c8e-57f7332d959c",
+          "source_part": "body",
+          "quote": "(1) France's 2027 presidential election will result in a candidate winning with over 60% of the vote if the result is officially confirmed by the French Ministry of the Interior and published in the official election results. (2) Brazil will achieve a 50% reduction in deforestation rates in the Amazon compared to 2023 levels if, between October 1, 2024, and January 1, 2028, the reduction is confirmed by official reports from Brazil's National Institute for Space Research (INPE) or another reputable environmental monitoring organization. (3) Australia will implement a national policy specifically targeting net-zero carbon emissions by 2050 if, at any point between October 1, 2024, and January 1, 2028, the policy is officially signed into law and documented in the Australian Government's official records."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "tuple_id": "2028/CondCondChecker:19",
+      "check_type": "CondCond",
+      "source_path": "data/tuples/CondCond.jsonl",
+      "source_line": 19,
+      "question_ids": {
+        "P": "819c32b0-6319-49a7-b3a1-9ba14b81b515",
+        "Q_given_P": "a35b805b-7210-4832-874c-0461c16aac95",
+        "R_given_P_and_Q": "19fe50db-0f70-4695-bd00-909d5f910c90",
+        "P_and_Q_and_R": "3aab8331-7df3-4051-916e-96a1ba8946af"
+      },
+      "status": "clear_defect",
+      "finding_codes": [
+        "changed_event_predicate",
+        "missing_event_lower_bound"
+      ],
+      "assessment": "P requires a launch of a spacecraft that reaches the Moon, with launch and Moon landing confirmation. The Q and R premises require a successful launch to the Moon without the reaching/landing criteria; the conjunction includes reaching but omits the explicit landing confirmation. The Q outcome and R premise give Q only an upper bound, while the conjunction gives Q an October 1, 2024 start. The R premise also drops P's October start.",
+      "proposed_minimal_repair_text": "Use P's complete reaches-the-Moon and launch-and-landing confirmation criteria wherever P appears, with its October 1, 2024 to January 1, 2028 window. Add the conjunction's October 1, 2024 lower bound to Q in both conditional fields. Preserve R's currently shared upper-bound-only window.",
+      "evidence": [
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 19,
+          "question_field": "P",
+          "question_id": "819c32b0-6319-49a7-b3a1-9ba14b81b515",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if, between October 1, 2024, and January 1, 2028, the United Kingdom successfully launches a spacecraft that reaches the Moon. The launch and Moon landing must be confirmed by a reputable space agency or space tracking organization such as NASA or ESA."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 19,
+          "question_field": "Q_given_P",
+          "question_id": "a35b805b-7210-4832-874c-0461c16aac95",
+          "source_part": "body",
+          "quote": "Suppose the following is true: The United Kingdom successfully launches a spacecraft to the Moon between October 1, 2024, and January 1, 2028, with confirmation from a reputable space agency or space tracking organization such as NASA or ESA. Then, will any country announce the establishment of a permanent human settlement on the Moon before January 1, 2028? The announcement must come from an official government source and include plans for continuous human habitation."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 19,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "19fe50db-0f70-4695-bd00-909d5f910c90",
+          "source_part": "body",
+          "quote": "Suppose the following is true: Before January 1, 2028, (a) the United Kingdom successfully launches a spacecraft to the Moon, confirmed by a reputable space agency or space tracking organization such as NASA or ESA, and (b) any country announces the establishment of a permanent human settlement on the Moon, with the announcement coming from an official government source and including plans for continuous human habitation. \n\nGiven these conditions, will India install at least 200 GW of renewable energy capacity, as reported by the Ministry of New and Renewable Energy, before 2028-01-01? \n\nResolution criteria: The question resolves as 'Yes' if India installs at least 200 GW of renewable energy capacity, officially recognized and documented by the Ministry of New and Renewable Energy, at any point before 2028-01-01. Otherwise, it resolves as 'No'. If the condition is not met, it resolves as 'N/A'."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 19,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "3aab8331-7df3-4051-916e-96a1ba8946af",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if all of the following occur: (a) Between October 1, 2024, and January 1, 2028, the United Kingdom successfully launches a spacecraft that reaches the Moon, confirmed by a reputable space agency or space tracking organization such as NASA or ESA. (b) Between October 1, 2024, and January 1, 2028, any country announces the establishment of a permanent human settlement on the Moon, with the announcement coming from an official government source and including plans for continuous human habitation. (c) India installs at least 200 GW of renewable energy capacity, as reported by the Ministry of New and Renewable Energy, at any point before 2028-01-01. The installation must be officially recognized and documented by the Ministry of New and Renewable Energy."
+        }
+      ],
+      "caveats": [
+        "This independently confirms the event/date component of the existing CondCond:19 record in runs/scope-review-agent.json. This review does not repeat or adopt that record's topic-boundary judgment.",
+        "R's any-point-before-2028 window is broad but appears in both the R conditional and conjunction; it is not itself a mismatch."
+      ]
+    },
+    {
+      "tuple_id": "2028/CondCondChecker:20",
+      "check_type": "CondCond",
+      "source_path": "data/tuples/CondCond.jsonl",
+      "source_line": 20,
+      "question_ids": {
+        "P": "bf4a364d-9f4e-4eac-af96-a06af3a5912e",
+        "Q_given_P": "c655adba-5b7b-430e-9fee-263c06c0089f",
+        "R_given_P_and_Q": "6535fbf3-b52e-4b30-b5ad-3b2d765c37c1",
+        "P_and_Q_and_R": "15890706-a67f-4740-be52-70290d2ae6ad"
+      },
+      "status": "clear_defect",
+      "finding_codes": [
+        "missing_quantity_baseline"
+      ],
+      "assessment": "R_given_P_and_Q requires a reduction threshold without identifying a reference baseline. The conjunction restricts the same threshold to comparison with levels recorded in 2023. The threshold therefore is not attached to an identical quantity in both fields.",
+      "proposed_minimal_repair_text": "Add compared to the levels recorded in 2023 to the R outcome in R_given_P_and_Q, preserving its existing threshold, enactment window and documentation requirement.",
+      "evidence": [
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 20,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "6535fbf3-b52e-4b30-b5ad-3b2d765c37c1",
+          "source_part": "body",
+          "quote": "Then, will the US Congress enact a federal law mandating a nationwide reduction in greenhouse gas emissions by at least 30% before January 1, 2028?"
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 20,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "15890706-a67f-4740-be52-70290d2ae6ad",
+          "source_part": "body",
+          "quote": "(3) between October 1, 2024, and January 1, 2028, the US Congress enacts a federal law that mandates a nationwide reduction in greenhouse gas emissions by at least 30% compared to the levels recorded in 2023."
+        }
+      ],
+      "caveats": [
+        "Some P/Q reporting qualifiers are shortened in the R premise; the clear-defect judgment relies on the explicit missing R baseline."
+      ]
+    },
+    {
+      "tuple_id": "2028/CondCondChecker:21",
+      "check_type": "CondCond",
+      "source_path": "data/tuples/CondCond.jsonl",
+      "source_line": 21,
+      "question_ids": {
+        "P": "e4a056c0-9463-4045-a91d-ce97a53cb52b",
+        "Q_given_P": "e9820546-b88a-4d50-a9c9-ca30d15d45ab",
+        "R_given_P_and_Q": "083e777c-34b5-4876-94e4-46f0351425d4",
+        "P_and_Q_and_R": "a7b440c8-1e2a-4e26-9622-71b57efc9f94"
+      },
+      "status": "clear_defect",
+      "finding_codes": [
+        "missing_event_lower_bound"
+      ],
+      "assessment": "The full R conditional gives the outcome only a January 1, 2028 upper bound. The conjunction's opening explicitly applies an October 1, 2024 lower bound to all three events, including that outcome. The premise bounds are preserved by within the same time frame.",
+      "proposed_minimal_repair_text": "Add the October 1, 2024 lower bound to the R outcome in R_given_P_and_Q, matching the conjunction; retain the existing approval documentation criterion.",
+      "evidence": [
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 21,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "083e777c-34b5-4876-94e4-46f0351425d4",
+          "source_part": "body",
+          "quote": "Suppose the following is true: Both (a) Mexico passes legislation allowing genetic editing of human embryos for non-medical trait enhancement between October 1, 2024, and January 1, 2028, and (b) the European Union implements regulations governing the ethical use of AI in healthcare within the same time frame. Given these conditions, will a genetically modified crop be approved for commercial use in the European Union before January 1, 2028? The crop approval must be officially documented and published by the European Food Safety Authority (EFSA)."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 21,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "a7b440c8-1e2a-4e26-9622-71b57efc9f94",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if all of the following occur between October 1, 2024, and January 1, 2028: (1) Mexico passes legislation that explicitly allows genetic editing of human embryos for non-medical trait enhancement. The legislation must be officially enacted and published in Mexico's official legal records. (2) The European Union officially implements regulations specifically governing the ethical use of artificial intelligence in healthcare. The implementation must be confirmed through official EU documentation or announcements. (3) A genetically modified crop is approved for commercial use in the European Union. The approval must be officially documented and published by the European Food Safety Authority (EFSA)."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "tuple_id": "2028/CondCondChecker:22",
+      "check_type": "CondCond",
+      "source_path": "data/tuples/CondCond.jsonl",
+      "source_line": 22,
+      "question_ids": {
+        "P": "779bc20d-5719-45f1-bd7d-40fe1cfdc8e4",
+        "Q_given_P": "dc9285fe-8923-4e5e-85c9-4cdb4c19fe84",
+        "R_given_P_and_Q": "790fec92-3534-461e-82f3-efbd12424476",
+        "P_and_Q_and_R": "a11b4de2-7dd2-457f-8ebc-bb6131638c07"
+      },
+      "status": "clear_defect",
+      "finding_codes": [
+        "missing_event_lower_bound"
+      ],
+      "assessment": "The full R body gives P and Q only January 1, 2028 upper bounds. P and Q_given_P use creation-date lower bounds, and the conjunction explicitly identifies those starts as October 1, 2024. The R outcome has no start date in either occurrence.",
+      "proposed_minimal_repair_text": "In R_given_P_and_Q, copy the P and Q creation-date lower bounds, explicitly October 1, 2024 as identified by the conjunction. Preserve the shared upper-bound-only window for R.",
+      "evidence": [
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 22,
+          "question_field": "P",
+          "question_id": "779bc20d-5719-45f1-bd7d-40fe1cfdc8e4",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if Amazon launches a commercial space tourism service between the creation date of this question and January 1, 2028. The service must be publicly available for purchase and operational, with at least one successful flight carrying paying customers."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 22,
+          "question_field": "Q_given_P",
+          "question_id": "dc9285fe-8923-4e5e-85c9-4cdb4c19fe84",
+          "source_part": "body",
+          "quote": "Suppose the following is true: Amazon launches a commercial space tourism service between the creation date of this question and January 1, 2028. The service must be publicly available for purchase and operational, with at least one successful flight carrying paying customers. Then, will the US House of Representatives pass a bill to impose new economic sanctions on China before January 1, 2028? This question will be resolved as 'Yes' if, between the creation date of this question (October 1, 2024) and January 1, 2028, the US House of Representatives passes a bill that imposes new economic sanctions on China. The bill must be officially passed by a majority vote in the House and recorded in the official congressional records."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 22,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "790fec92-3534-461e-82f3-efbd12424476",
+          "source_part": "body",
+          "quote": "Suppose the following is true: \n\n(a) Amazon launches a commercial space tourism service before January 1, 2028. The service must be publicly available for purchase and operational, with at least one successful flight carrying paying customers.\n\n(b) The US House of Representatives passes a bill to impose new economic sanctions on China before January 1, 2028. The bill must be officially passed by a majority vote in the House and recorded in the official congressional records.\n\nThen, is it true that any NATO member state will officially withdraw from the alliance before January 1, 2028? This requires an official notification of withdrawal and completion of the withdrawal process, confirmed by official NATO documentation."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 22,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "a11b4de2-7dd2-457f-8ebc-bb6131638c07",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if all of the following conditions are met:\n\n(a) Amazon launches a commercial space tourism service between the creation date of this question (October 1, 2024) and January 1, 2028. The service must be publicly available for purchase and operational, with at least one successful flight carrying paying customers.\n\n(b) The US House of Representatives passes a bill that imposes new economic sanctions on China between the creation date of this question (October 1, 2024) and January 1, 2028. The bill must be officially passed by a majority vote in the House and recorded in the official congressional records.\n\n(c) Any NATO member state officially notifies NATO of its intention to withdraw from the alliance and completes the withdrawal process before January 1, 2028. The withdrawal must be confirmed by official NATO documentation."
+        }
+      ],
+      "caveats": [
+        "For P, earlier fields leave the creation date implicit while the conjunction makes it explicit. This review does not infer creation dates elsewhere from this tuple."
+      ]
+    },
+    {
+      "tuple_id": "2028/CondCondChecker:23",
+      "check_type": "CondCond",
+      "source_path": "data/tuples/CondCond.jsonl",
+      "source_line": 23,
+      "question_ids": {
+        "P": "7d6a9607-6adf-41dc-9e65-cc24f7d017ed",
+        "Q_given_P": "cadd1185-1a96-4edb-8e56-7b11d46c02d4",
+        "R_given_P_and_Q": "6bff8023-b7c3-4c46-83f6-0165332e9c60",
+        "P_and_Q_and_R": "346e7158-309f-4c57-ba4d-abc34a7ae1f0"
+      },
+      "status": "clear_defect",
+      "finding_codes": [
+        "missing_event_lower_bound"
+      ],
+      "assessment": "Q_given_P omits P's October 1, 2024 start. P identifies that creation date explicitly, and both the R premise and conjunction preserve it. The full Q body never restores the omitted start.",
+      "proposed_minimal_repair_text": "Copy P's October 1, 2024 to January 1, 2028 window into the premise of Q_given_P, retaining its existing substantive and documentation criteria.",
+      "evidence": [
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 23,
+          "question_field": "P",
+          "question_id": "7d6a9607-6adf-41dc-9e65-cc24f7d017ed",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if, between the creation date (2024-10-01) and January 1, 2028, the Government of India officially implements a nationwide artificial intelligence policy. The policy must be formally announced by the Government of India and documented in official government publications or press releases."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 23,
+          "question_field": "Q_given_P",
+          "question_id": "cadd1185-1a96-4edb-8e56-7b11d46c02d4",
+          "source_part": "body",
+          "quote": "Suppose the following is true: India implements a nationwide artificial intelligence policy before January 1, 2028. This policy must be formally announced by the Government of India and documented in official government publications or press releases. Then, will Brazil's GDP growth rate exceed 3% for any calendar year between 2025 and 2027? The GDP growth rate must be based on the official annual GDP data reported by the Brazilian Institute of Geography and Statistics (IBGE)."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 23,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "6bff8023-b7c3-4c46-83f6-0165332e9c60",
+          "source_part": "body",
+          "quote": "Suppose the following are true: (a) The Government of India officially implements a nationwide artificial intelligence policy between October 1, 2024, and January 1, 2028, as announced and documented in official government publications or press releases. (b) Brazil's Gross Domestic Product (GDP) growth rate, as reported by the Brazilian Institute of Geography and Statistics (IBGE), exceeds 3% for any calendar year between January 1, 2025, and December 31, 2027, based on IBGE's official annual GDP data.\n\nGiven these conditions, will Taiwan's GDP growth rate exceed 5% in any calendar year between 2024 and 2027? The GDP growth rate will be based on official annual data published by Taiwan's Directorate General of Budget, Accounting and Statistics or a similarly authoritative body. The event must occur between the creation date of this question and January 1, 2028."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 23,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "346e7158-309f-4c57-ba4d-abc34a7ae1f0",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if all of the following conditions are met: (a) The Government of India officially implements a nationwide artificial intelligence policy between October 1, 2024, and January 1, 2028. The policy must be formally announced and documented in official government publications or press releases. (b) Brazil's Gross Domestic Product (GDP) growth rate, as reported by the Brazilian Institute of Geography and Statistics (IBGE), exceeds 3% for any calendar year between January 1, 2025, and December 31, 2027, based on IBGE's official annual GDP data. (c) Taiwan's GDP growth rate exceeds 5% in any calendar year between 2024 and 2027, based on official annual data published by Taiwan's Directorate General of Budget, Accounting and Statistics or a similarly authoritative body. The event must occur between the creation date of this question and January 1, 2028."
+        }
+      ],
+      "caveats": [
+        "The R calendar-year/creation-date wording is repeated in the conjunction; no extra cross-field mismatch is asserted from that shared wording."
+      ]
+    },
+    {
+      "tuple_id": "2028/CondCondChecker:24",
+      "check_type": "CondCond",
+      "source_path": "data/tuples/CondCond.jsonl",
+      "source_line": 24,
+      "question_ids": {
+        "P": "c83c7b00-af68-4d2b-a8f4-e853bc0542da",
+        "Q_given_P": "523a2b44-bbc6-4fff-b500-f531fea83e9a",
+        "R_given_P_and_Q": "e2ea0504-0515-43c9-a418-2cf93f7b09a3",
+        "P_and_Q_and_R": "61c5f3c0-a5c0-4eca-8b34-6c6847bdf9df"
+      },
+      "status": "clear_defect",
+      "finding_codes": [
+        "missing_event_lower_bound"
+      ],
+      "assessment": "The full R body gives its premises and outcome only January 1, 2028 upper bounds. P and Q_given_P give P and Q October 1, 2024 starts, and the conjunction explicitly applies that start to all three events.",
+      "proposed_minimal_repair_text": "In R_given_P_and_Q, copy the October 1, 2024 to January 1, 2028 window for each premise and the outcome, preserving the verification and announcement criteria.",
+      "evidence": [
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 24,
+          "question_field": "P",
+          "question_id": "c83c7b00-af68-4d2b-a8f4-e853bc0542da",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if Japan successfully lands a spacecraft on the Moon between October 1, 2024, and January 1, 2028. The landing must be confirmed by the Japan Aerospace Exploration Agency (JAXA) and reported by reputable space news sources."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 24,
+          "question_field": "Q_given_P",
+          "question_id": "523a2b44-bbc6-4fff-b500-f531fea83e9a",
+          "source_part": "body",
+          "quote": "Suppose the following is true: Japan successfully lands a spacecraft on the Moon between October 1, 2024, and January 1, 2028. The landing must be confirmed by the Japan Aerospace Exploration Agency (JAXA) and reported by reputable space news sources.\n\nThen, will a genetic modification be developed and verified by a recognized scientific authority to reduce the harmful effects of radiation exposure between October 1, 2024, and January 1, 2028? The development must be documented in scientific literature and verified by a recognized scientific authority."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 24,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "e2ea0504-0515-43c9-a418-2cf93f7b09a3",
+          "source_part": "body",
+          "quote": "Suppose the following occurs before January 1, 2028: \n1. Japan successfully lands a spacecraft on the Moon, with the landing confirmed by the Japan Aerospace Exploration Agency (JAXA) and reported by reputable space news sources.\n2. A genetic modification is developed and verified by a recognized scientific authority to reduce the harmful effects of radiation exposure, with the development documented in scientific literature and verified by a recognized scientific authority.\n\nGiven these events, will Japan announce the development of a new space station module in collaboration with NASA before January 1, 2028? The announcement must be made by an official Japanese government agency or NASA and include specific details about the module's development and intended use."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 24,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "61c5f3c0-a5c0-4eca-8b34-6c6847bdf9df",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if all of the following occur between October 1, 2024, and January 1, 2028: (a) Japan successfully lands a spacecraft on the Moon, with the landing confirmed by the Japan Aerospace Exploration Agency (JAXA) and reported by reputable space news sources. (b) A genetic modification is developed and verified by a recognized scientific authority to reduce the harmful effects of radiation exposure, with the development documented in scientific literature and verified by a recognized scientific authority. (c) Japan officially announces the development of a new space station module in collaboration with NASA. The announcement must be made by an official Japanese government agency or NASA and include specific details about the module's development and intended use."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "tuple_id": "2028/CondCondChecker:25",
+      "check_type": "CondCond",
+      "source_path": "data/tuples/CondCond.jsonl",
+      "source_line": 25,
+      "question_ids": {
+        "P": "b7db121b-84cb-4fb1-8129-89b07b2609a9",
+        "Q_given_P": "16a131e2-9fd6-4aa7-9b05-8dbeb4935e09",
+        "R_given_P_and_Q": "016628d8-8e65-49b4-9d72-13d54ed9cf54",
+        "P_and_Q_and_R": "b8216455-3df7-44f2-aca3-b53473a06233"
+      },
+      "status": "clear_defect",
+      "finding_codes": [
+        "missing_event_lower_bound"
+      ],
+      "assessment": "The full R body omits the October 1, 2024 starts attached to P and Q in the earlier fields and to all three events in the conjunction.",
+      "proposed_minimal_repair_text": "In R_given_P_and_Q, restore the October 1, 2024 to January 1, 2028 window for both premises and the outcome. Copy company headquartered in the United States into the P premise to match the exact source criterion.",
+      "evidence": [
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 25,
+          "question_field": "P",
+          "question_id": "b7db121b-84cb-4fb1-8129-89b07b2609a9",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if a machine learning model developed by a company headquartered in the United States wins the Turing Award between October 1, 2024, and January 1, 2028. The award must be officially announced by the Association for Computing Machinery (ACM) and documented on their website."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 25,
+          "question_field": "Q_given_P",
+          "question_id": "16a131e2-9fd6-4aa7-9b05-8dbeb4935e09",
+          "source_part": "body",
+          "quote": "Suppose the following is true: A machine learning model developed by a company headquartered in the United States wins the Turing Award between October 1, 2024, and January 1, 2028. The award must be officially announced by the Association for Computing Machinery (ACM) and documented on their website. Then, is it true that the US House of Representatives will pass legislation specifically aimed at advancing nuclear energy technology between October 1, 2024, and January 1, 2028? The legislation must be officially passed and recorded in the official records of the US House of Representatives."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 25,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "016628d8-8e65-49b4-9d72-13d54ed9cf54",
+          "source_part": "body",
+          "quote": "Suppose the following is true: Both of the following occur before January 1, 2028: (a) A machine learning model developed by a US-based company wins the Turing Award, officially announced by the ACM and documented on their website. (b) The US House of Representatives passes legislation specifically aimed at advancing nuclear energy technology, officially recorded in the US House of Representatives' records. Given this, will an AI system be publicly credited for a scientific discovery in Canada before January 1, 2028? The credit must be confirmed through official announcements and reported by reputable scientific journals or news sources."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 25,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "b8216455-3df7-44f2-aca3-b53473a06233",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if all of the following conditions are met between October 1, 2024, and January 1, 2028: (a) A machine learning model developed by a company headquartered in the United States wins the Turing Award. The award must be officially announced by the Association for Computing Machinery (ACM) and documented on their website. (b) The US House of Representatives passes legislation specifically aimed at advancing nuclear energy technology. The legislation must be officially passed and recorded in the official records of the US House of Representatives. (c) An AI system is publicly credited for a scientific discovery in Canada. The credit must be confirmed through official announcements and reported by reputable scientific journals or news sources."
+        }
+      ],
+      "caveats": [
+        "The R premise also abbreviates company headquartered in the United States as US-based company. The clear-defect classification already follows from the missing starts; no assertion about the real-world award's eligibility rules is made."
+      ]
+    },
+    {
+      "tuple_id": "2028/CondCondChecker:26",
+      "check_type": "CondCond",
+      "source_path": "data/tuples/CondCond.jsonl",
+      "source_line": 26,
+      "question_ids": {
+        "P": "89936dbf-8ce5-48bc-b7a3-583f76c110e9",
+        "Q_given_P": "8ab12a4e-57bf-4ff5-acc3-0d3810648aa7",
+        "R_given_P_and_Q": "e40cf682-fd1a-48d2-8a97-3f643fd73fb7",
+        "P_and_Q_and_R": "a93ff1cd-f006-44db-92b2-d1ecdca0b5ef"
+      },
+      "status": "clear_defect",
+      "finding_codes": [
+        "changed_temporal_anchor"
+      ],
+      "assessment": "P, Q_given_P and the conjunction anchor P to the creation date of this question. The R premise instead says between now and January 1, 2028. The standalone source gives no rule equating now to the creation date, so the P event window is not fixed consistently across evaluations.",
+      "proposed_minimal_repair_text": "Replace now in the R premise with the same source creation-date anchor used by P. If rendering a fixed calendar date, resolve that date from source metadata and apply it identically to every P occurrence.",
+      "evidence": [
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 26,
+          "question_field": "P",
+          "question_id": "89936dbf-8ce5-48bc-b7a3-583f76c110e9",
+          "source_part": "body",
+          "quote": "between the creation date of this question and January 1, 2028"
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 26,
+          "question_field": "Q_given_P",
+          "question_id": "8ab12a4e-57bf-4ff5-acc3-0d3810648aa7",
+          "source_part": "body",
+          "quote": "between the creation date of this question and January 1, 2028"
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 26,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "e40cf682-fd1a-48d2-8a97-3f643fd73fb7",
+          "source_part": "body",
+          "quote": "(1) NASA launches a crewed mission to Mars between now and January 1, 2028, with the launch officially announced and verified by NASA and independent sources."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 26,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "a93ff1cd-f006-44db-92b2-d1ecdca0b5ef",
+          "source_part": "body",
+          "quote": "(1) NASA launches a crewed mission to Mars between the creation date of this question and January 1, 2028."
+        }
+      ],
+      "caveats": [
+        "If external source metadata explicitly binds now to that same original creation date, this discrepancy could be resolved by that evidence. No such external binding is assumed by this source-text review."
+      ]
+    },
+    {
+      "tuple_id": "2028/CondCondChecker:27",
+      "check_type": "CondCond",
+      "source_path": "data/tuples/CondCond.jsonl",
+      "source_line": 27,
+      "question_ids": {
+        "P": "d81c3a4b-45e2-45c0-86dc-978c4e526e10",
+        "Q_given_P": "acf3c5ba-ef63-4a74-9d1b-a151ad561b35",
+        "R_given_P_and_Q": "06fdb3d4-9993-4c44-85db-0b4e9c0c748c",
+        "P_and_Q_and_R": "ad49d404-289e-4844-8ddf-449130309e37"
+      },
+      "status": "clear_defect",
+      "finding_codes": [
+        "missing_event_lower_bound"
+      ],
+      "assessment": "The full R body gives both antecedents and its outcome only January 1, 2028 upper bounds. P and Q_given_P include October 1, 2024 starts, and the conjunction explicitly applies the same start to all three events.",
+      "proposed_minimal_repair_text": "Restore the October 1, 2024 to January 1, 2028 window for both premises and the outcome in R_given_P_and_Q, preserving their substantive and documentation criteria.",
+      "evidence": [
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 27,
+          "question_field": "P",
+          "question_id": "d81c3a4b-45e2-45c0-86dc-978c4e526e10",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if, between October 1, 2024, and January 1, 2028, a new chemical process for large-scale carbon capture is successfully developed and commercially implemented. The process must be verified by independent experts and reported in reputable scientific journals. Commercial implementation means that the process is being used in at least one large-scale industrial application."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 27,
+          "question_field": "Q_given_P",
+          "question_id": "acf3c5ba-ef63-4a74-9d1b-a151ad561b35",
+          "source_part": "body",
+          "quote": "Suppose the following is true: A new chemical process for large-scale carbon capture is successfully developed and commercially implemented between October 1, 2024, and January 1, 2028. This process is verified by independent experts and reported in reputable scientific journals, and it is used in at least one large-scale industrial application. Given this, will India officially implement a universal basic income (UBI) policy at any point between October 1, 2024, and January 1, 2028? The policy must be enacted by the Indian government and officially published in the government's legal records."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 27,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "06fdb3d4-9993-4c44-85db-0b4e9c0c748c",
+          "source_part": "body",
+          "quote": "Suppose the following is true: Before January 1, 2028, both (1) a new chemical process for large-scale carbon capture is successfully developed and commercially implemented, verified by independent experts and reported in reputable scientific journals, and used in at least one large-scale industrial application, and (2) India officially implements a universal basic income policy, enacted by the Indian government and published in legal records. Then, will Brazil hold a national referendum on constitutional amendments before January 1, 2028? The referendum must be officially recognized by the Brazilian government and the results published in official records."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 27,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "ad49d404-289e-4844-8ddf-449130309e37",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if all of the following conditions are met between October 1, 2024, and January 1, 2028: (1) A new chemical process for large-scale carbon capture is successfully developed and commercially implemented. The process must be verified by independent experts and reported in reputable scientific journals. Commercial implementation means that the process is being used in at least one large-scale industrial application. (2) India officially implements a universal basic income (UBI) policy. The policy must be enacted by the Indian government and officially published in the government's legal records. (3) Brazil holds a national referendum specifically on constitutional amendments. The referendum must be officially recognized by the Brazilian government and the results must be published in the country's official records."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "tuple_id": "2028/CondCondChecker:28",
+      "check_type": "CondCond",
+      "source_path": "data/tuples/CondCond.jsonl",
+      "source_line": 28,
+      "question_ids": {
+        "P": "36c74ffa-b6a2-47fb-a2c1-a25325509bd2",
+        "Q_given_P": "e8525405-ac4c-4e27-9ec4-1d9050a25803",
+        "R_given_P_and_Q": "bce06b3e-4933-4b1c-b676-abb191efea3e",
+        "P_and_Q_and_R": "b2d85b81-b0a1-4ebb-ad78-c0fb56a7b525"
+      },
+      "status": "caveat",
+      "finding_codes": [
+        "conjunction_settlement_wording"
+      ],
+      "assessment": "The full event definitions and bounds correspond across fields. The conjunction body separately says this question resolves Yes for each lettered condition rather than explicitly saying all must hold; its title supplies the intended all-of-the-following conjunction.",
+      "proposed_minimal_repair_text": "Optionally add one opening sentence to the conjunction body stating that all three listed conditions must hold, preserving the three existing criteria and their dates.",
+      "evidence": [
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 28,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "b2d85b81-b0a1-4ebb-ad78-c0fb56a7b525",
+          "source_part": "title",
+          "quote": "Will all of the following occur before January 1, 2028: (a) A major Canadian political party includes environmental science policies as a key platform in the 2027 federal election, (b) The US Supreme Court rules on a case involving the entertainment industry, and (c) The percentage of Americans who believe in climate change denial falls below 10%?"
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 28,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "b2d85b81-b0a1-4ebb-ad78-c0fb56a7b525",
+          "source_part": "body",
+          "quote": "(a) This question will be resolved as 'Yes' if any major Canadian political party includes environmental science policies as a key platform in their campaign for the 2027 federal election. The platform must be officially published and recognized by reputable news sources between October 1, 2024, and January 1, 2028. (b) This question will be resolved as 'Yes' if the US Supreme Court issues a ruling on a case involving the entertainment industry at any point between October 1, 2024, and January 1, 2028. The ruling must be documented in the official records of the Supreme Court. (c) This question will be resolved as 'Yes' if, between the creation date of October 1, 2024, and January 1, 2028, the percentage of Americans who believe in climate change denial falls below 10%. The data must be obtained from reputable public opinion polls conducted by organizations such as Gallup, Pew Research Center, or similar institutions."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 28,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "bce06b3e-4933-4b1c-b676-abb191efea3e",
+          "source_part": "body",
+          "quote": "Suppose the following is true: (a) A major Canadian political party includes environmental science policies as a key platform in the 2027 federal election. This means that the platform is officially published and recognized by reputable news sources between October 1, 2024, and January 1, 2028. (b) The US Supreme Court issues a ruling on a case involving the entertainment industry at any point between October 1, 2024, and January 1, 2028, and this ruling is documented in the official records of the Supreme Court.\n\nGiven these conditions, will the percentage of Americans who believe in climate change denial fall below 10% before January 1, 2028? This will be resolved as 'Yes' if the percentage falls below 10% based on reputable public opinion polls conducted by organizations such as Gallup, Pew Research Center, or similar institutions, between October 1, 2024, and January 1, 2028."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "tuple_id": "2028/CondCondChecker:29",
+      "check_type": "CondCond",
+      "source_path": "data/tuples/CondCond.jsonl",
+      "source_line": 29,
+      "question_ids": {
+        "P": "980fee24-6bad-49f2-a9c0-47d80734daf8",
+        "Q_given_P": "408996b2-934b-4e5b-a880-9056aac17a61",
+        "R_given_P_and_Q": "b1829e0e-70ce-41aa-a686-4e2622c8f2b4",
+        "P_and_Q_and_R": "dfda8a6b-2270-47c9-a1b9-8f9c524ce634"
+      },
+      "status": "no_clear_defect_found",
+      "finding_codes": [],
+      "assessment": "The full bodies consistently reproduce all three substantive predicates, documentation criteria, and October 1, 2024 to January 1, 2028 windows.",
+      "proposed_minimal_repair_text": "None proposed.",
+      "evidence": [
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 29,
+          "question_field": "Q_given_P",
+          "question_id": "408996b2-934b-4e5b-a880-9056aac17a61",
+          "source_part": "body",
+          "quote": "Suppose the following is true: Elon Musk announces a project related to nuclear fusion technology before January 1, 2028. This announcement must be made through an official channel such as a press release, social media, or a public event, and it must occur between October 1, 2024, and January 1, 2028.\n\nThen, is it true that a new chemical process will be developed and commercially implemented to safely neutralize nuclear waste by January 1, 2028? The process must be developed and implemented between October 1, 2024, and January 1, 2028, documented in scientific literature, and verified by a recognized nuclear regulatory authority."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 29,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "b1829e0e-70ce-41aa-a686-4e2622c8f2b4",
+          "source_part": "body",
+          "quote": "Suppose the following is true: Both of the following occur between October 1, 2024, and January 1, 2028: (a) Elon Musk announces a project related to nuclear fusion technology, with the announcement made through an official channel such as a press release, social media, or a public event; and (b) a new chemical process is developed and commercially implemented to safely neutralize nuclear waste, with the process documented in scientific literature and verified by a recognized nuclear regulatory authority. \n\nThen, will South Korea and North Korea sign a formal peace treaty between October 1, 2024, and January 1, 2028? The treaty must be officially recognized by both governments and documented by reputable international organizations."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 29,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "dfda8a6b-2270-47c9-a1b9-8f9c524ce634",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if all of the following occur between October 1, 2024, and January 1, 2028: (1) Elon Musk announces a project related to nuclear fusion technology, with the announcement made through an official channel such as a press release, social media, or a public event; (2) a new chemical process is developed and commercially implemented to safely neutralize nuclear waste, with the process documented in scientific literature and verified by a recognized nuclear regulatory authority; and (3) South Korea and North Korea sign a formal peace treaty, with the treaty officially recognized by both governments and documented by reputable international organizations."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "tuple_id": "2028/CondCondChecker:30",
+      "check_type": "CondCond",
+      "source_path": "data/tuples/CondCond.jsonl",
+      "source_line": 30,
+      "question_ids": {
+        "P": "30085105-42d2-415a-931c-d8b1f8865d68",
+        "Q_given_P": "0b5927bd-3479-4726-858b-366c638f0964",
+        "R_given_P_and_Q": "56a06735-73ba-4bad-90c6-a4751e2e7dd0",
+        "P_and_Q_and_R": "f3c3b75e-7589-42b1-b403-b37d2f0c3846"
+      },
+      "status": "clear_defect",
+      "finding_codes": [
+        "missing_event_lower_bound"
+      ],
+      "assessment": "The full R body gives both antecedents only January 1, 2028 upper bounds, omitting the October 1, 2024 starts in P, Q_given_P and the conjunction. Its outcome already retains the full date window.",
+      "proposed_minimal_repair_text": "Restore the October 1, 2024 to January 1, 2028 window for both premises in R_given_P_and_Q. Preserve the outcome's existing date window.",
+      "evidence": [
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 30,
+          "question_field": "P",
+          "question_id": "30085105-42d2-415a-931c-d8b1f8865d68",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if the Democratic Party in the United States proposes any legislation specifically aimed at regulating artificial intelligence technologies between October 1, 2024, and January 1, 2028. The proposal must be formally introduced in either the House of Representatives or the Senate and be documented in official congressional records."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 30,
+          "question_field": "Q_given_P",
+          "question_id": "0b5927bd-3479-4726-858b-366c638f0964",
+          "source_part": "body",
+          "quote": "Suppose the following is true: The Democratic Party in the United States proposes legislation specifically aimed at regulating artificial intelligence technologies between October 1, 2024, and January 1, 2028. The proposal must be formally introduced in either the House of Representatives or the Senate and be documented in official congressional records.\n\nThen, is it true that an AI-driven system will be officially used to analyze player performance in a major international soccer tournament before January 1, 2028? This will resolve as 'Yes' if, between October 1, 2024, and January 1, 2028, an AI-driven system is officially used to analyze player performance in a major international soccer tournament, confirmed by an official announcement from the tournament organizers or a reputable news source."
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 30,
+          "question_field": "R_given_P_and_Q",
+          "question_id": "56a06735-73ba-4bad-90c6-a4751e2e7dd0",
+          "source_part": "body",
+          "quote": "Suppose the following is true: Both of the following occur before January 1, 2028: (a) The Democratic Party in the United States proposes legislation regulating artificial intelligence technologies, formally introduced in either the House of Representatives or the Senate and documented in official congressional records. (b) An AI-driven system is officially used to analyze player performance in a major international soccer tournament, confirmed by an official announcement from the tournament organizers or a reputable news source.\n\nThen, will the Supreme Court of the United States issue a ruling on a case that directly challenges the constitutionality of the Affordable Care Act between October 1, 2024, and January 1, 2028, with the ruling officially documented in SCOTUS records?"
+        },
+        {
+          "source_path": "data/tuples/CondCond.jsonl",
+          "source_line": 30,
+          "question_field": "P_and_Q_and_R",
+          "question_id": "f3c3b75e-7589-42b1-b403-b37d2f0c3846",
+          "source_part": "body",
+          "quote": "This question will be resolved as 'Yes' if all of the following occur between October 1, 2024, and January 1, 2028: (a) The Democratic Party in the United States proposes any legislation specifically aimed at regulating artificial intelligence technologies. The proposal must be formally introduced in either the House of Representatives or the Senate and be documented in official congressional records. (b) An AI-driven system is officially used to analyze player performance in a major international soccer tournament. The use of the system must be confirmed by an official announcement from the tournament organizers or a reputable news source. (c) The Supreme Court of the United States (SCOTUS) issues a ruling on a case that directly challenges the constitutionality of the Affordable Care Act (ACA). The ruling must be officially documented in SCOTUS records."
+        }
+      ],
+      "caveats": []
+    }
+  ],
+  "validation": {
+    "unique_tuple_ids": 30,
+    "all_evidence_quotes_verbatim": true,
+    "all_evidence_question_ids_match_source": true,
+    "original_source_sha256_unchanged": true
+  }
+}

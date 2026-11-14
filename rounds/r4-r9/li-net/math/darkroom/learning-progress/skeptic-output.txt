@@ -1,0 +1,30 @@
+== 1. Prior edge parameter alpha (Beta(alpha,alpha) per context), order mixture 0..4, T=8192, seeds=4
+   C3 = realized info about the truth (cum bits), C2 = agent-side expected info gain (cum bits);
+   rate = per-step C2 x t over the last 512 steps (-> k_eff_alpha/(2 ln2)); D's C3 should be alpha*log2 t
+  alpha=0.05 D  C3    1.43    1.53    1.68   C2    1.96    2.21    2.59   rate  0.19
+  alpha=0.05 N  C3    7.58    8.56   10.78   C2   11.67   12.79   14.32   rate  0.75
+  alpha=0.05 S  C3   19.02   24.19   32.47   C2   14.54   19.12   25.18   rate  2.95
+           alpha*log2(T) = 0.65   ordering by C3 at T: S > N > D   by C2 at T: S > N > D
+  alpha=0.50 D  C3    4.83    5.83    7.33   C2    3.13    3.85    4.95   rate  0.54
+  alpha=0.50 N  C3    4.51    5.66    7.98   C2   11.54   12.98   14.68   rate  0.79
+  alpha=0.50 S  C3   14.18   17.96   25.72   C2   13.03   17.72   23.80   rate  2.95
+           alpha*log2(T) = 6.50   ordering by C3 at T: S > N > D   by C2 at T: S > N > D
+  alpha=1.00 D  C3    8.01   10.00   13.00   C2    3.09    3.93    5.20   rate  0.63
+  alpha=1.00 N  C3    3.67    4.92    7.30   C2   10.24   11.90   13.71   rate  0.81
+  alpha=1.00 S  C3   17.30   20.57   27.89   C2   11.25   15.69   21.73   rate  2.95
+           alpha*log2(T) = 13.00   ordering by C3 at T: S > D > N   by C2 at T: S > N > D
+  alpha=3.00 D  C3   18.16   24.11   33.10   C2    2.62    3.56    4.97   rate  0.70
+  alpha=3.00 N  C3    2.10    3.81    6.34   C2    8.38   10.88   13.03   rate  0.88
+  alpha=3.00 S  C3   31.43   36.61   43.25   C2    7.91   11.88   17.87   rate  2.94
+           alpha*log2(T) = 39.00   ordering by C3 at T: S > D > N   by C2 at T: S > N > D
+
+== 1b. Dark room alone, longer horizon (deterministic, one run): C3 / (log2 t) -> alpha
+  alpha=0.05  C3(2^10)=   1.53  C3(2^16)=   1.83  slope per log2 t = 0.050
+  alpha=0.50  C3(2^10)=   5.83  C3(2^16)=   8.83  slope per log2 t = 0.500
+  alpha=1.00  C3(2^10)=  10.00  C3(2^16)=  16.00  slope per log2 t = 1.000
+  alpha=3.00  C3(2^10)=  24.11  C3(2^16)=  42.09  slope per log2 t = 2.997
+
+== 2. 'Learned structure is worth less than the dark room': fair comparison, both pre-trained N0 (alpha=1/2)
+  N0=     0: info over next 8192 steps  D  4.948   S 23.223   S/D = 4.69
+  N0=  2000: info over next 8192 steps  D  0.857   S  4.755   S/D = 5.55
+  N0= 20000: info over next 8192 steps  D  0.181   S  0.990   S/D = 5.48

@@ -1,0 +1,9 @@
+# PARKED 2026-10-19 (Kelvin): not frozen, not run
+diff --git a/open_spiel/python/algorithms/rnad/rnad.py b/open_spiel/python/algorithms/rnad/rnad.py
+--- a/open_spiel/python/algorithms/rnad/rnad.py
++++ b/open_spiel/python/algorithms/rnad/rnad.py
+@@ -540,7 +540,7 @@ def _v_trace(
+   rho = jnp.exp(log_rhos)
+-  clipped_rho = jnp.clip(rho, a_min=0.0, a_max=c_vtrace)
++  clipped_rho = jnp.clip(rho, min=0.0, max=c_vtrace)
+   ...

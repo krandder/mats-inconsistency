@@ -1,0 +1,95 @@
+== A. Decision VOI (EVSI = E[payoff | n obs] - payoff with no obs), MC = 4000
+G1 own-room forecast of the next symbol, 0-1 payoff (no-info payoff 0.5):
+n             D       N0       N1        S
+1         0.500    0.000    0.170    0.000
+2         0.500    0.000    0.166    0.000
+4         0.500    0.000    0.194    0.205
+8         0.500    0.000    0.240    0.400
+16        0.500    0.000    0.226    0.435
+64        0.500    0.000    0.238    0.445
+same, log2-score VOI (bits gained on the next symbol):
+1         1.000    0.000    0.086    0.000
+4         1.000    0.000    0.163    0.300
+16        1.000    0.000    0.221    0.690
+64        1.000    0.000    0.262    0.702
+value of choosing the room (not VOI) at n=16, 0-1: {'D': np.float64(1.0), 'N0': np.float64(0.5), 'N1': np.float64(0.726), 'S': np.float64(0.935)}
+
+G2 world goal: predict f*(a,b) at a random input (no-info payoff 0.5). VOI:
+n             D       N0       N1    S_irr        S    N_rel
+2         0.000    0.000    0.000    0.000    0.000    0.047
+4         0.000    0.000    0.000    0.000    0.198    0.068
+8         0.000    0.000    0.000    0.000    0.299    0.105
+16        0.000    0.000    0.000    0.000    0.346    0.152
+64        0.000    0.000    0.000    0.000    0.440    0.284
+256       0.000    0.000    0.000    0.000    0.485    0.449
+EVPI (perfect knowledge of f*) = 0.5. Per-step entropy of streams: D 0, N0 1, N1 ~0.72 (avg), S 0.29+, N_rel 2.97 bits
+
+Marginal VOI of the n-th step in S under G2 (VOI(n) - VOI(n_prev)):
+2:0.0000/step 4:0.0989/step 8:0.0254/step 16:0.0058/step 64:0.0020/step 256:0.0002/step
+
+== B. Remove the decision
+G0: one available action -> E[max_a U | obs] - max_a E U = 0 for every room and every n (identity).
+Goal-free substitute 1: score the room's own next symbol by log loss (Bernardo 1979: the log-score
+EVSI on a latent equals mutual information). Total EIG on each room's own latent, bits:
+n=1     D:  1.000 N0:  0.000 N1:  0.260 S:  0.000
+n=4     D:  1.000 N0:  0.000 N1:  0.750 S:  1.296
+n=16    D:  1.000 N0:  0.000 N1:  1.545 S:  2.630
+n=64    D:  1.000 N0:  0.000 N1:  2.433 S:  3.448
+n=256   D:  1.000 N0:  0.000 N1:  3.390 S:  3.865
+n=4096  D:  1.000 N0:  0.000 N1:  5.410 S:  4.000
+-> D capped at 1 bit, S capped at 4 bits (log2 16), N1 grows ~ (1/2) log2 n with no cap: the noisy TV returns.
+
+== C. Scalar weights
+Scale invariance: G2 VOI x 7 ranks the rooms the same: True
+cost c=0.001/step in S, dark costs 0: leave the dark room iff stakes m > 0.020 (best n=4)
+cost c=0.01/step in S, dark costs 0: leave the dark room iff stakes m > 0.202 (best n=4)
+cost c=0.05/step in S, dark costs 0: leave the dark room iff stakes m > 1.011 (best n=4)
+Two goals, w*G1 + (1-w)*G2 at n=16: VOI D = w*0.500, S = w*0.435 + (1-w)*0.346; dark wins iff w > 0.842
+
+== D. Self-market: information is worth what it moves a price by
+Query q, price P0 = prior P(q), P_n = posterior. Decision 'buy or sell one share of q at P0' has VOI = E|P_n - P0|.
+check on q = 'f*(0,1)=1', room S, n=6: realised trading payoff 0.3005 vs E|dP| 0.3054; signed E[dP] -0.0047 (martingale)
+Q_world = {f*(a,b)=1 : 4 inputs}; mean over queries of E|dP|, E dP^2, E KL(P_n||P0), and 0-1 VOI:
+  n=4   D      L1 0.000  L2 0.000  KL 0.000  0-1 0.000
+  n=4   N0     L1 0.000  L2 0.000  KL 0.000  0-1 0.000
+  n=4   S_irr  L1 0.000  L2 0.000  KL 0.000  0-1 0.000
+  n=4   S      L1 0.196  L2 0.090  KL 0.322  0-1 0.193
+  n=4   N_rel  L1 0.070  L2 0.010  KL 0.028  0-1 0.075
+  n=16  D      L1 0.000  L2 0.000  KL 0.000  0-1 0.000
+  n=16  N0     L1 0.000  L2 0.000  KL 0.000  0-1 0.000
+  n=16  S_irr  L1 0.000  L2 0.000  KL 0.000  0-1 0.000
+  n=16  S      L1 0.341  L2 0.167  KL 0.648  0-1 0.341
+  n=16  N_rel  L1 0.152  L2 0.035  KL 0.107  0-1 0.149
+  n=64  D      L1 0.000  L2 0.000  KL 0.000  0-1 0.000
+  n=64  N0     L1 0.000  L2 0.000  KL 0.000  0-1 0.000
+  n=64  S_irr  L1 0.000  L2 0.000  KL 0.000  0-1 0.000
+  n=64  S      L1 0.441  L2 0.218  KL 0.863  0-1 0.440
+  n=64  N_rel  L1 0.287  L2 0.104  KL 0.353  0-1 0.295
+Q_own_next = {next symbol of the room}: E|dP| after 16 obs -> D 0.5, N0 0, N1 ~E|theta-1/2|-ish, S ~0.45 (see G1 table: same ordering, dark first)
+Q_own_bits (every 'x_t=1' as it resolves), total |dP| over 256 steps, room D: 0.5
+Q_own_bits (every 'x_t=1' as it resolves), total |dP| over 256 steps, room N0: 128.0
+Q_own_bits (every 'x_t=1' as it resolves), total |dP| over 256 steps, room S: 27.4
+-> pricing every sentence about your own sensor stream is prediction-error curiosity: noise moves 0.5/step forever.
+
+== E. Goal replaced by a prior component (Kelvin addendum)
+E1. Preferred variable Z = f* (a world latent), ordinary prior with confidence kappa: p(f) ∝ exp(kappa*[f==f0])
+    value of a room = expected KL(posterior on Z || prior on Z) = I(Z; obs), bits. f* drawn from that prior.
+  kappa=  0 n=16: D: 0.000 N0: 0.000 N1: 0.000 S_irr: 0.000 S: 2.634 N_rel: 0.429
+  kappa=  1 n=16: D: 0.000 N0: 0.000 N1: 0.000 S_irr: 0.000 S: 2.547 N_rel: 0.439
+  kappa=  3 n=16: D: 0.000 N0: 0.000 N1: 0.000 S_irr: 0.000 S: 1.853 N_rel: 0.311
+  kappa=  6 n=16: D: 0.000 N0: 0.000 N1: 0.000 S_irr: 0.000 S: 0.261 N_rel: 0.035
+E2. Same, but Z drifts (f* redrawn with hazard h=0.02/step, an ordinary belief about the world).
+    steady-state EIG per step on the current f*, room S vs D/N (D, N0, N1, S_irr: 0 by independence):
+    S: 0.122 bits/step (realised KL per step, t>500), D/N0/N1/S_irr: 0.000
+E3. Z = all latents of all rooms (c, theta, f, g): EIG = Part B table. N1 pays (1/2)log2 n without cap -> noise wins for n > ~256.
+E4. Friston reading: the prior component is a preference over outcomes, held as an ordinary belief.
+    Outcome per step: change (x_t != x_{t-1}) or same. Belief rho ~ Beta(mu*s, (1-mu)*s), mu = 0.6.
+    Room choice by pragmatic value E_room[log p(o | belief)]; the belief updates on what the agent sees.
+    change rates: D 0.000, N0 0.500, S(XOR) 0.497
+    with mu=0.6 the agent starts in: N0
+    strength s=1    : forced dark steps before the agent prefers the dark room k*=1     (k*/s=1.00); absorbing afterwards: True
+    strength s=2    : forced dark steps before the agent prefers the dark room k*=1     (k*/s=0.50); absorbing afterwards: True
+    strength s=10   : forced dark steps before the agent prefers the dark room k*=2     (k*/s=0.20); absorbing afterwards: True
+    strength s=100  : forced dark steps before the agent prefers the dark room k*=20    (k*/s=0.20); absorbing afterwards: True
+    strength s=1000 : forced dark steps before the agent prefers the dark room k*=200   (k*/s=0.20); absorbing afterwards: True
+    a fixed (never-updated) preference is infinite strength: k* = infinity.

@@ -1,0 +1,13 @@
+Model: GPT-6 (Codex)
+
+Checked 2026-10-30 by reading code, metadata, JSON, tables and logs; no Python or training. NPZ-derived statistics were not independently recomputed.
+
+1. **High: invalid bootstrap intervals.** `e44_summ.py:42-44` converts sampled pairs to a set and tests membership, discarding bootstrap multiplicities. This contradicts Amendment 52's pair-resampling procedure; matching the JSON does not validate the intervals. Fix: concatenate each sampled pair's acquired rows, preserving repeated draws, then regenerate every interval. Reused A parents also make the six pairs dependent; disclose this and add parent-level sensitivity analysis separately.
+
+2. **High: causal localisation exceeds the experiment.** `update55_draft.md:3,21,51-54` says attention “decides” the type and block-2 routing “is a consequence.” Single-group swaps establish effects in these backgrounds, not necessity, sufficiency across backgrounds, or mediation. The head's 8/11 nearly matches attention's 9/12 (`results/e44.json:groups`); no reliable superiority or above-chance test is shown. Fix: “Block-1 attention had the highest observed donor-type agreement; block-2 attention had low agreement.” Keep interactions, four A parents, acquisition conditioning and the rom-sign diagnostic beside this conclusion; call the mechanism a hypothesis.
+
+3. **Medium: the asymmetry is overstated.** “B into A worked only” through attention/head is false: b1mlp r9/d6 and b2mlp r4/d0 become A (`results/e44_tables.md:37,57`). A-to-B counts are 3/6, 5/6, 3/6, 2/6, 2/5, 5/5; most groups do not flip a majority. Fix: report these conditional counts and both exceptions; describe greater observed A-to-B susceptibility, not a demonstrated B default. Retain six stalls as separate outcomes.
+
+4. **Medium: similarity overinterpretation.** `e44_summ.py:28,46` computes correlations and separate medians, not the fraction of a pattern transferred. Donor/recipient type differences can explain some similarity advantage. Head similarity 0.36 versus 0.34 does not establish absence of transfer. Fix: report descriptive medians; reserve donor-specific pattern claims for paired contrasts against same-type controls.
+
+**Survive:** tensor-group copying and recipient streams (`train_hy.py:22-38,55-58`), 72 metadata schedules, registered code hashes, acquired counts, T, direction counts, similarity summaries and P185-pass/P186-fail point decisions. **Need rewording:** attention carries type/pattern, A fragility, plain-words summary. **Fail:** registered-bootstrap claim, exclusive B-to-A routes, and established block-2 mediation.

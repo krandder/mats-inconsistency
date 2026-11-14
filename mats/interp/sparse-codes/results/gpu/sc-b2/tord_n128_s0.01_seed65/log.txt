@@ -1,0 +1,33 @@
+== v2 tord_n128_s0.01_seed65 dev=cuda layers=[1, 2, 4, 8, 31] fmults=[1, 2, 4, 8, 16] KS=[8, 16, 32, 64] KD=[1, 2, 4, 8, 16, 32, 64] e3=[] s=[0.01, 0.01, 0.01, 0.01, 0.01]
+sampled train/test 262144+32768, fit 262144, sel/conf 131072 in 2s
+L1 mean F=128 (40s): k8 nu=1.09e+03 rf=1.09e+03 dead=0.00 | k16 nu=684 rf=682 dead=0.00 | k32 nu=325 rf=323 dead=0.00 | k64 nu=116 rf=113 dead=0.02
+L1 mean F=256 (66s): k8 nu=1.07e+03 rf=1.05e+03 dead=0.00 | k16 nu=681 rf=663 dead=0.00 | k32 nu=290 rf=289 dead=0.05 | k64 nu=53.5 rf=52.6 dead=0.09
+L1 mean F=512 (75s): k8 nu=1.02e+03 rf=992 dead=0.00 | k16 nu=725 rf=667 dead=0.00 | k32 nu=293 rf=281 dead=0.01 | k64 nu=55.5 rf=54.5 dead=0.19
+L1 mean F=1024 (73s): k8 nu=983 rf=945 dead=0.00 | k16 nu=695 rf=629 dead=0.00 | k32 nu=371 rf=307 dead=0.00 | k64 nu=56.3 rf=55 dead=0.11
+L1 mean F=2048 (178s): k8 nu=951 rf=908 dead=0.00 | k16 nu=668 rf=597 dead=0.00 | k32 nu=394 rf=309 dead=0.00 | k64 nu=61.8 rf=60.1 dead=0.19
+E2 L1 (111s): G:2.0e-06+-3e-06,c3=0.00 DENSE1:2.0e-06+-3e-06,c3=0.00 DENSEQ2:1.3e-06+-2e-06,c3=0.19 DENSE8:2.6e-06+-2e-06,c3=0.05 DENSEQ16:1.6e-07+-8e-07,c3=0.68 SPARSE_F128_k8:5.8e-07+-1e-06,c3=0.73 SPARSE_F128_k64:2.7e-07+-2e-07,c3=0.93 SPARSE_F256_k32:3.7e-07+-3e-07,c3=0.95 SPARSE_F512_k16:2.0e-06+-9e-07,c3=0.74 SPARSE_F1024_k8:8.9e-07+-2e-06,c3=0.84 SPARSE_F1024_k64:1.0e-07+-8e-08,c3=0.98 SPARSE_F2048_k32:2.0e-07+-6e-07,c3=0.92
+L2 mean F=128 (31s): k8 nu=192 rf=188 dead=0.00 | k16 nu=103 rf=102 dead=0.00 | k32 nu=35.7 rf=35.6 dead=0.00 | k64 nu=8.46 rf=8.31 dead=0.09
+L2 mean F=256 (45s): k8 nu=188 rf=180 dead=0.00 | k16 nu=110 rf=103 dead=0.00 | k32 nu=34.4 rf=34.2 dead=0.12 | k64 nu=4.66 rf=4.53 dead=0.10
+L2 mean F=512 (37s): k8 nu=178 rf=169 dead=0.00 | k16 nu=120 rf=105 dead=0.00 | k32 nu=34.4 rf=33.7 dead=0.08 | k64 nu=4.98 rf=4.87 dead=0.14
+L2 mean F=1024 (70s): k8 nu=170 rf=160 dead=0.00 | k16 nu=114 rf=98.4 dead=0.00 | k32 nu=37.2 rf=33.4 dead=0.01 | k64 nu=5.29 rf=5.15 dead=0.19
+L2 mean F=2048 (174s): k8 nu=164 rf=153 dead=0.00 | k16 nu=110 rf=93.1 dead=0.00 | k32 nu=38.3 rf=33.4 dead=0.01 | k64 nu=5.87 rf=5.64 dead=0.22
+E2 L2 (83s): G:-1.7e-07+-4e-06,c3=0.00 DENSE1:1.2e-07+-3e-06,c3=0.00 DENSEQ2:-3.5e-07+-3e-06,c3=0.19 DENSE8:-5.4e-09+-2e-06,c3=0.09 DENSEQ16:-1.5e-07+-9e-07,c3=0.82 SPARSE_F128_k8:2.0e-07+-8e-07,c3=0.87 SPARSE_F128_k64:6.6e-08+-7e-08,c3=0.90 SPARSE_F256_k32:5.9e-08+-3e-07,c3=0.97 SPARSE_F512_k16:9.1e-07+-1e-06,c3=0.94 SPARSE_F1024_k8:9.0e-07+-1e-06,c3=0.94 SPARSE_F1024_k64:3.9e-08+-3e-08,c3=0.99 SPARSE_F2048_k32:7.7e-09+-3e-07,c3=0.97
+L4 mean F=128 (34s): k8 nu=5.38 rf=5.04 dead=0.00 | k16 nu=2.13 rf=2.12 dead=0.08 | k32 nu=0.546 rf=0.541 dead=0.05 | k64 nu=0.0888 rf=0.0863 dead=0.10
+L4 mean F=256 (44s): k8 nu=5.03 rf=4.66 dead=0.00 | k16 nu=2.16 rf=2.04 dead=0.00 | k32 nu=0.51 rf=0.505 dead=0.17 | k64 nu=0.0573 rf=0.0553 dead=0.02
+L4 mean F=512 (50s): k8 nu=4.72 rf=4.32 dead=0.00 | k16 nu=2.76 rf=2.25 dead=0.00 | k32 nu=0.5 rf=0.496 dead=0.36 | k64 nu=0.0607 rf=0.0587 dead=0.05
+L4 mean F=1024 (66s): k8 nu=4.51 rf=4.09 dead=0.00 | k16 nu=2.82 rf=2.2 dead=0.00 | k32 nu=0.5 rf=0.491 dead=0.17 | k64 nu=0.0676 rf=0.0645 dead=0.09
+L4 mean F=2048 (225s): k8 nu=4.36 rf=3.91 dead=0.00 | k16 nu=2.74 rf=2.1 dead=0.00 | k32 nu=0.506 rf=0.496 dead=0.25 | k64 nu=0.0759 rf=0.0724 dead=0.28
+E2 L4 (117s): G:1.1e-06+-7e-06,c3=0.00 DENSE1:1.3e-06+-5e-06,c3=0.01 DENSEQ2:2.0e-07+-4e-06,c3=0.42 DENSE8:4.5e-07+-1e-06,c3=0.37 DENSEQ16:3.9e-07+-8e-07,c3=0.93 SPARSE_F128_k8:2.8e-06+-2e-06,c3=0.87 SPARSE_F128_k64:2.1e-08+-2e-08,c3=0.99 SPARSE_F256_k32:7.6e-08+-7e-08,c3=0.99 SPARSE_F512_k16:5.8e-07+-7e-07,c3=0.96 SPARSE_F1024_k8:2.9e-06+-1e-06,c3=0.95 SPARSE_F1024_k64:1.6e-08+-6e-09,c3=1.00 SPARSE_F2048_k32:1.1e-07+-8e-08,c3=0.99
+L8 mean F=128 (44s): k8 nu=0.101 rf=0.0997 dead=0.00 | k16 nu=0.0607 rf=0.0606 dead=0.00 | k32 nu=0.0271 rf=0.027 dead=0.00 | k64 nu=0.00793 rf=0.00777 dead=0.03
+L8 mean F=256 (58s): k8 nu=0.0994 rf=0.0965 dead=0.00 | k16 nu=0.0609 rf=0.0591 dead=0.00 | k32 nu=0.0245 rf=0.0243 dead=0.02 | k64 nu=0.00394 rf=0.00384 dead=0.00
+L8 mean F=512 (59s): k8 nu=0.0947 rf=0.0913 dead=0.00 | k16 nu=0.0666 rf=0.0604 dead=0.00 | k32 nu=0.0248 rf=0.0235 dead=0.00 | k64 nu=0.00402 rf=0.00392 dead=0.01
+L8 mean F=1024 (64s): k8 nu=0.0908 rf=0.0869 dead=0.00 | k16 nu=0.0638 rf=0.057 dead=0.00 | k32 nu=0.0292 rf=0.0248 dead=0.00 | k64 nu=0.00427 rf=0.00414 dead=0.02
+L8 mean F=2048 (102s): k8 nu=0.0879 rf=0.0834 dead=0.00 | k16 nu=0.0614 rf=0.054 dead=0.00 | k32 nu=0.0337 rf=0.0262 dead=0.00 | k64 nu=0.00487 rf=0.0047 dead=0.11
+E2 L8 (96s): G:6.2e-07+-3e-07,c3=0.00 DENSE1:2.4e-07+-4e-07,c3=0.01 DENSEQ2:2.6e-07+-4e-07,c3=0.01 DENSE8:2.7e-07+-4e-07,c3=-0.02 DENSEQ16:1.8e-07+-2e-07,c3=-0.12 SPARSE_F128_k8:1.1e-07+-2e-07,c3=-0.63 SPARSE_F128_k64:3.4e-08+-2e-08,c3=0.85 SPARSE_F256_k32:5.5e-08+-6e-08,c3=0.73 SPARSE_F512_k16:2.6e-08+-7e-08,c3=-1.80 SPARSE_F1024_k8:3.5e-07+-2e-07,c3=-0.28 SPARSE_F1024_k64:2.6e-08+-8e-09,c3=0.93 SPARSE_F2048_k32:6.4e-08+-1e-07,c3=0.20
+L31 mean F=128 (23s): k8 nu=0.144 rf=0.143 dead=0.00 | k16 nu=0.088 rf=0.0878 dead=0.00 | k32 nu=0.0397 rf=0.0396 dead=0.00 | k64 nu=0.0121 rf=0.0118 dead=0.07
+L31 mean F=256 (10s): k8 nu=0.142 rf=0.138 dead=0.00 | k16 nu=0.0885 rf=0.0859 dead=0.00 | k32 nu=0.0358 rf=0.0356 dead=0.01 | k64 nu=0.00582 rf=0.00568 dead=0.00
+L31 mean F=512 (11s): k8 nu=0.136 rf=0.131 dead=0.00 | k16 nu=0.0954 rf=0.0869 dead=0.00 | k32 nu=0.0359 rf=0.0344 dead=0.00 | k64 nu=0.00607 rf=0.00594 dead=0.00
+L31 mean F=1024 (31s): k8 nu=0.13 rf=0.125 dead=0.00 | k16 nu=0.0913 rf=0.0818 dead=0.00 | k32 nu=0.0449 rf=0.0374 dead=0.00 | k64 nu=0.00647 rf=0.00629 dead=0.04
+L31 mean F=2048 (152s): k8 nu=0.126 rf=0.12 dead=0.00 | k16 nu=0.0878 rf=0.0776 dead=0.00 | k32 nu=0.0498 rf=0.0384 dead=0.00 | k64 nu=0.00712 rf=0.00687 dead=0.10
+E2 L31 (96s): G:6.8e-07+-5e-07,c3=0.00 DENSE1:6.9e-07+-5e-07,c3=0.00 DENSEQ2:7.1e-07+-6e-07,c3=-0.01 DENSE8:4.5e-07+-5e-07,c3=-0.01 DENSEQ16:3.1e-07+-3e-07,c3=-0.08 SPARSE_F128_k8:4.0e-07+-5e-07,c3=-0.69 SPARSE_F128_k64:1.4e-08+-2e-08,c3=0.77 SPARSE_F256_k32:1.4e-07+-6e-08,c3=0.72 SPARSE_F512_k16:1.5e-07+-2e-07,c3=-1.60 SPARSE_F1024_k8:2.3e-07+-2e-07,c3=-0.56 SPARSE_F1024_k64:2.1e-08+-1e-08,c3=0.95 SPARSE_F2048_k32:4.5e-08+-7e-08,c3=0.33
+ALL DONE 2323s

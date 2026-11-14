@@ -1,0 +1,37 @@
+## A. Section 4.1 split of the U_NW vs U_SE disagreement by read coverage (own code, raw v2 arrays)
+cell share: {'all': np.float64(1.0), 'both': np.float64(0.7404), 'both_skew0': np.float64(0.0513), 'both_skew1-2': np.float64(0.17), 'both_skew3+': np.float64(0.5191), 'both_clean_only': np.float64(0.0165), 'one': np.float64(0.2382), 'none': np.float64(0.0214)}
+mix        all: 0.0033 (0.207) both: 0.0037 (0.208) both_skew0: 0.0009 (0.214) both_skew1-2: 0.0011 (0.210) both_skew3+: 0.0048 (0.207) both_clean_only: 0.0010 (0.203) one: 0.0025 (0.205) none: 0.0005 (0.189)
+mmd        all: 0.0371 (0.117) both: 0.0375 (0.106) both_skew0: 0.0133 (0.116) both_skew1-2: 0.0173 (0.100) both_skew3+: 0.0465 (0.107) both_clean_only: 0.0170 (0.106) one: 0.0383 (0.147) none: 0.0091 (0.169)
+kc         all: 0.0313 (0.113) both: 0.0314 (0.101) both_skew0: 0.0110 (0.117) both_skew1-2: 0.0147 (0.102) both_skew3+: 0.0389 (0.099) both_clean_only: 0.0141 (0.106) one: 0.0333 (0.145) none: 0.0063 (0.169)
+attn       all: 0.0225 (0.073) both: 0.0153 (0.054) both_skew0: 0.0172 (0.067) both_skew1-2: 0.0158 (0.054) both_skew3+: 0.0150 (0.053) both_clean_only: 0.0101 (0.042) one: 0.0459 (0.121) none: 0.0108 (0.161)
+union_call all: 0.0136 (0.033) both: 0.0042 (0.013) both_skew0: 0.0044 (0.013) both_skew1-2: 0.0040 (0.012) both_skew3+: 0.0042 (0.013) both_clean_only: 0.0045 (0.014) one: 0.0436 (0.088) none: 0.0090 (0.135)
+attn: share of its all-cell JSD from shared cells 0.504, one-bag cells 0.486, unread 0.010
+union_call: share of its all-cell JSD from shared cells 0.225, one-bag cells 0.760, unread 0.014
+mix: share of its all-cell JSD from shared cells 0.819, one-bag cells 0.178, unread 0.003
+JSD attn/mix on all: 6.81 (per seed 6.43, 6.74, 7.24); attn/union: 1.65
+JSD attn/mix on both: 4.19 (per seed 3.93, 4.19, 4.45); attn/union: 3.69
+JSD attn/mix on both_skew0: 19.75 (per seed 19.50, 21.58, 18.18); attn/union: 3.96
+JSD attn/mix on both_skew3+: 3.16 (per seed 2.92, 3.17, 3.38); attn/union: 3.59
+JSD attn/mix on one: 18.62 (per seed 17.64, 17.61, 20.60); attn/union: 1.06
+mix: JSD skew3+ / skew0 = 5.44
+mmd: JSD skew3+ / skew0 = 3.49
+kc: JSD skew3+ / skew0 = 3.52
+attn: JSD skew3+ / skew0 = 0.87
+max |own - explore_coverage.json| JSD over seeds/pools/categories: 4.61e-15
+
+## B. Section 5 exploratory: keys centred within each bag (own code)
+v2: centred Pearson 0.406 (0.418, 0.402, 0.398); centred same-across gap 0.845; centred cos by overlap s101 [-0.16, -0.19, -0.1, -0.02, 0.26, 0.72]
+main: centred Pearson 0.166 (0.179, 0.158, 0.160); centred same-across gap 0.385; centred cos by overlap s101 [-0.1, -0.09, -0.05, 0.01, 0.06, 0.32]
+
+## C. Section 8: sycophancy boards (main test split; probe evidence regenerated from stream 2)
+false-note boards 362; of them P*(note) >= 0.5: 20 (0.0552); evidence at the note cell on those boards: hit 12, miss 0, none 8
+
+## D. Token-Masked drift direction (post - pre) on the top-4 / bottom-4 P* cells (raw partB_raw.json)
+tokmask: per seed (drift on top-4, drift on bottom-4, post mu-P* on top-4, on bottom-4): [(0.1749, -0.0427, 0.1752, -0.0427), (0.1479, -0.0457, 0.1471, -0.0455), (0.139, -0.0508, 0.1396, -0.0507)]
+fused: per seed (drift on top-4, drift on bottom-4, post mu-P* on top-4, on bottom-4): [(0.4266, 0.0227, 0.427, 0.0227), (0.3732, -0.0198, 0.3724, -0.0196), (0.3362, 0.0443, 0.3369, 0.0444)]
+truthonly: per seed (drift on top-4, drift on bottom-4, post mu-P* on top-4, on bottom-4): [(-0.0066, -0.0001, -0.0063, -0.0001), (-0.0103, 0.0012, -0.0111, 0.0013), (-0.0013, -0.0009, -0.0007, -0.0008)]
+
+## E. attn_L3 weight per read in preference bags (v2 summary attn_wsum_* / read counts)
+s101: U_NW bag: scarce-SE per-read weight / NW per-read weight = 2.34; U_SE bag: scarce-NW / SE = 2.83
+s102: U_NW bag: scarce-SE per-read weight / NW per-read weight = 2.31; U_SE bag: scarce-NW / SE = 2.62
+s103: U_NW bag: scarce-SE per-read weight / NW per-read weight = 2.32; U_SE bag: scarce-NW / SE = 2.51

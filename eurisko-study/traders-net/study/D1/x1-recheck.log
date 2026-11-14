@@ -1,0 +1,17 @@
+PASS C1 w1 make_claims.py rc 0 
+PASS C1 w1 pi_offsets.py reproduces frac_seeds_with_pair_in_window 
+PASS C1 w2 check_claims.py: every quoted M1/M2/M3 number matches 
+PASS C1 w3 check_w3.py: M5/M6/M7 quotes match their files 
+PASS C1 w3 compare_w3.py rc 0 (seed-4 files from X1/w3/results/seed4 when /tmp is gone) 
+PASS C1 w4 check_w4.py: number file checks ok 
+PASS C1 w5 recompute_summary.py: V1 summary equals CSV, exporter and raw snapshots (rel 1e-6) 
+PASS C2 lead tiebreak.py rc 0 
+PASS C2 lead make_claims.py rc 0 
+PASS C2 CLAIMS.md counts equal claims.json 
+PASS C2 every worker row is in the register (counts equal the worker totals) 
+PASS C2 CLAIMS.md renders one line per row 
+PASS C2 every CLAIMS.md table row has its header column count (pipes escaped) 
+PASS C3 every row has status, checked_at, evidence and rerun 
+PASS C4 every non-/tmp evidence path exists 
+{"ok": true, "n_rows": 209, "counts": {"refuted": 19, "verified": 153, "unverified": 37}, "path_tokens": 364, "missing": 0, "tmp_gone": 0}
+rc=0

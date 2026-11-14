@@ -1,0 +1,147 @@
+{
+ "run": "runs/L2_s0.05",
+ "n_fit": 2048,
+ "K": 8,
+ "floor": {
+  "mean": 0.8020155082749241,
+  "logsd": 0.9082033010380622,
+  "kl": 0.8726342537011902
+ },
+ "n_features": 50,
+ "systematic": {
+  "mean": {
+   "R2": -0.005379979249127587,
+   "fraction": -0.006708073838496619,
+   "model": "MLP (val R2 0.009; best HGB -0.084)"
+  },
+  "logsd": {
+   "R2": 0.3991370139638891,
+   "fraction": 0.43947980976030554,
+   "model": "HGB lr=0.1 leaves=15 l2=0.0 (val R2 0.530; MLP 0.168)"
+  },
+  "kl": {
+   "R2": 0.2199050369803477,
+   "fraction": 0.25200138093094865,
+   "model": "HGB lr=0.1 leaves=15 l2=0.0 (val R2 0.292; MLP 0.207)"
+  }
+ },
+ "ceiling": {
+  "mean": {
+   "R2": -0.01081473270490485,
+   "fraction": -0.013484443372131966
+  },
+  "logsd": {
+   "R2": -0.01898010822739038,
+   "fraction": -0.020898523717868468
+  },
+  "kl": {
+   "R2": -0.016316537637950157,
+   "fraction": -0.01869802562613742
+  }
+ },
+ "ceiling_best_epoch": 0,
+ "e2_picks": {
+  "all-MLP-rank-8": {
+   "index": 4,
+   "params": 12896,
+   "moves": [
+    "backward eps=0.0",
+    "sur m2:LR8",
+    "sur m1:LR8",
+    "sur r2:LR8",
+    "sur r1:LR8"
+   ]
+  },
+  "cheapest": {
+   "index": 11,
+   "params": 12512,
+   "moves": [
+    "backward eps=0.0",
+    "sur m2:LR8",
+    "sur m1:LR8",
+    "sur r2:LR8",
+    "sur r1:LR8",
+    "pool m1 lab0",
+    "pool r1 lab0",
+    "pool r1 lab2",
+    "pool m1 lab2",
+    "prune L1 src2<-src1",
+    "prune L1 src1<-src2",
+    "sur m1:LR4"
+   ]
+  }
+ },
+ "descriptions": {
+  "DAG D1 (real weights)": {
+   "mean": {
+    "R2_systematic": -106.00522186950951,
+    "R2_full": 0.47731492955540533
+   },
+   "logsd": {
+    "R2_systematic": -0.20264341197965452,
+    "R2_full": 0.6920821222047976
+   },
+   "kl": {
+    "R2_systematic": -0.48726468648344423,
+    "R2_full": 0.34085376913520826
+   }
+  },
+  "scenario-mechanism regression": {
+   "mean": {
+    "R2_systematic": 0.41086793792286813,
+    "R2_full": -0.006400514491639031
+   },
+   "logsd": {
+    "R2_systematic": 0.40854600206251324,
+    "R2_full": 0.2126980851697169
+   },
+   "kl": {
+    "R2_systematic": 0.5578313501659103,
+    "R2_full": 0.28314839315140117
+   }
+  },
+  "E3a head (h = 64)": {
+   "mean": {
+    "R2_systematic": -382.79681454214966,
+    "R2_full": -3.0958936391862215
+   },
+   "logsd": {
+    "R2_systematic": -28.80188700147635,
+    "R2_full": -11.340611587365725
+   },
+   "kl": {
+    "R2_systematic": -76.63252554626293,
+    "R2_full": -17.39796490403957
+   }
+  },
+  "E2 all-MLP-rank-8 (step 4, 12,896 parameters)": {
+   "mean": {
+    "R2_systematic": -214.4153938171654,
+    "R2_full": 0.1307260087815998
+   },
+   "logsd": {
+    "R2_systematic": -0.7881347812188,
+    "R2_full": 0.8238407481240239
+   },
+   "kl": {
+    "R2_systematic": -10.984384380889136,
+    "R2_full": -1.309853908941228
+   }
+  },
+  "E2 cheapest (step 11, 12,512 parameters)": {
+   "mean": {
+    "R2_systematic": -294.74345124584386,
+    "R2_full": -0.7423867875846792
+   },
+   "logsd": {
+    "R2_systematic": -1.3724948697166948,
+    "R2_full": 0.5847784569480017
+   },
+   "kl": {
+    "R2_systematic": -39.1850175267566,
+    "R2_full": -8.556990965161889
+   }
+  }
+ },
+ "seconds": 24.611889839172363
+}

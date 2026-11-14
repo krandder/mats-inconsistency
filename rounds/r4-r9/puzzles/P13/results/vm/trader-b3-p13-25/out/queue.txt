@@ -1,0 +1,3 @@
+m_bds_s0 econ_maze.py --mode bptt --ds 1 --covsup 1 --vocsup 1 --ptopt 1 --gradckpt 1 --train_pick random --D 30 --lr 1e-3 --bs 50 --diag_every 100 --bcap 10 --ckpt_every 300 --iters 11762 --seed 0 --out out/m_bds_s0
+ev59_m_bds_s0_none@m_bds_s0 eval_maze.py --kind trader --ckpt out/m_bds_s0.pt --sets v9,v33,m59 --jopt none --mult 12  --out out/ev59_m_bds_s0_none
+END

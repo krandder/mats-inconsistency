@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EURISKO Study Report</title>
+<style>
+:root{--bg:#fbfbf9;--fg:#1d1f22;--muted:#5d6470;--accent:#2457c5;--line:#dcdfe4;--panel:#f1f3f6;--tldr:#eef4ff;--tldr-line:#9db8f0;--code:#eceef2;--warn:#8a5a00}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#15171a;--fg:#e4e6ea;--muted:#9aa2ae;--accent:#86a8f5;--line:#2f343b;--panel:#1d2025;--tldr:#1a2436;--tldr-line:#3d5a93;--code:#262a31;--warn:#e0b050}}
+:root[data-theme="dark"]{--bg:#15171a;--fg:#e4e6ea;--muted:#9aa2ae;--accent:#86a8f5;--line:#2f343b;--panel:#1d2025;--tldr:#1a2436;--tldr-line:#3d5a93;--code:#262a31;--warn:#e0b050}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:16px}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-text-size-adjust:100%}
+.layout{display:grid;grid-template-columns:minmax(0,1fr);max-width:1180px;margin:0 auto;padding:0 16px}
+nav.toc{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 0;margin:0 -16px;padding-left:16px;padding-right:16px}
+nav.toc details summary{cursor:pointer;font-weight:600;color:var(--muted);font-size:14px}
+nav.toc ol{margin:6px 0 4px;padding-left:20px;font-size:14px;line-height:1.5}
+nav.toc a{color:var(--fg);text-decoration:none}
+nav.toc a:hover{color:var(--accent)}
+main{max-width:860px;width:100%;min-width:0;padding-bottom:64px}
+@media (min-width:1180px){.layout{grid-template-columns:260px minmax(0,860px);gap:40px}
+ nav.toc{position:sticky;top:16px;align-self:start;max-height:calc(100vh - 32px);overflow:auto;border:0;margin:24px 0 0;padding:0}
+ nav.toc details summary{pointer-events:none;list-style:none}
+ nav.toc details summary::-webkit-details-marker{display:none}}
+h1{font-size:1.75rem;line-height:1.25;margin:28px 0 8px}
+h2{font-size:1.3rem;margin:36px 0 10px;padding-bottom:4px;border-bottom:1px solid var(--line)}
+p,li{overflow-wrap:anywhere}
+a{color:var(--accent)}
+code{background:var(--code);padding:1px 5px;border-radius:4px;font:0.88em ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+section.tldr{background:var(--tldr);border:1px solid var(--tldr-line);border-radius:10px;padding:4px 20px 12px;margin-top:24px}
+section.tldr h2{border:0;margin-top:14px}
+.tablewrap{overflow-x:auto;margin:14px 0}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+caption{text-align:left;font-weight:600;color:var(--muted);padding-bottom:6px;font-size:13px}
+th,td{border:1px solid var(--line);padding:6px 9px;vertical-align:top;text-align:left}
+th{background:var(--panel)}
+td ul{margin:0;padding-left:18px}
+sup.fn{font-size:0.72em;line-height:0}
+sup.fn a{text-decoration:none}
+li.src{list-style:none;margin-left:-20px}
+.srcn{color:var(--muted);font-variant-numeric:tabular-nums;margin-right:4px}
+.meta{color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="toc" aria-label="Contents"><details open><summary>Contents</summary><ol><li><a href="#1-tl-dr">1. TL;DR</a></li><li><a href="#2-what-was-built">2. What was built</a></li><li><a href="#3-results">3. Results</a></li><li><a href="#4-bend2-and-the-gpu">4. Bend2 and the GPU</a></li><li><a href="#5-what-this-says-about-the-thesis">5. What this says about the thesis</a></li><li><a href="#6-next-experiments-in-order">6. Next experiments (in order)</a></li><li><a href="#7-corrections-and-unverified-items">7. Corrections and unverified items</a></li></ol></details></nav>
+<main>
+<h1>The logical-induction soup: first results</h1>
+<p>eurisko (scientific lead), 2026-09-27. Builders: soup-astra (gpt-6-astra) and three Opus 5.5 subagents. Spec: <code>GOAL.md</code>. Data: <code>runs/phase3/summary.md</code>, <code>runs/fuel/summary.md</code> (fuel sweep), <code>CALIBRATION.md</code>, <code>docs/gpu-phase3.md</code>, <code>docs/gpu-utilisation.md</code>, <code>docs/gpu-scaling.md</code>. Dashboard: <a href="[removed]" rel="noopener">[removed]</a>. Every number below is the mean over 3 seeds of the last 50 epochs of a 5000-epoch run unless stated.</p>
+<section id="1-tl-dr" class="tldr">
+<h2>1. TL;DR</h2>
+<ol><li>
+<strong>It works as a mechanism.</strong> One Bend2 program holds 4k to 64k fuel-bounded trader programs, an LMSR market over up to 4096 synthetic questions, and the rules. Wealth is the only currency, the maker's subsidy the only inflow. The ledger balances exactly every epoch, runs are byte-identical across the JS, native and CUDA lanes, and resume is exact.
+</li><li>
+<strong>The decisive variable is traders per question, K/Q.</strong> Brier scores collapse on K/Q, not on K or Q alone. At 64 traders per question the periodic family reaches Brier 0.084 and primality 0.091 (a base-rate trader scores about 0.25 and 0.10), and the shadow momentum and pattern traders lose money against the market. At 4 per question nothing is priced beyond base rates and the same shadow traders profit heavily.
+</li><li>
+<strong>The inductor property is partial.</strong> Momentum and pattern-k reference traders are beaten at high K/Q. The coherence arbitrageur is never beaten: A∧B is priced but A∨B is not, and AND-coherence violations of 0.01-0.09 persist in every cell. No arbitrage lineage evolved in 5000 epochs.
+</li><li>
+<strong>Never priced, anywhere:</strong> LFSR, cellular automaton rule 110, pi digits (all 0.25). Rule 30 is priced worse than chance (0.26-0.29) at low K/Q, because rich lineages emit the same demand on every question.
+</li><li>
+<strong>Ablations changed little.</strong> A 50-epoch free-income bootstrap and visible-price radius 1 land within noise of the baseline; the held-out family (pi) was a poor choice because pi is never priced even when trained.
+</li><li>
+<strong>Bend2 delivered exactness and portability, not yet a GPU multiplier.</strong> The CUDA cube runs the soup at 3.4M virtual instructions per second on a spot L4 (JS lane 1.1-1.7M, native CPU 2.0-3.2M). An A100 is no faster. CUDA is 10-12% of wall time; Bend2's host-side runtime phases dominate, and the kernel is register-limited (255 registers per thread). Total GPU spend for the whole project: $9.38 plus about $1.20 of smoke tests, of a $200 cap.
+</li></ol>
+</section>
+<section id="2-what-was-built">
+<h2>2. What was built</h2>
+<ul><li>
+<code>src/vm.bend</code>: U32 stack machine, fixed program size, fixed fuel per run, market primitives (read price, read history, read wealth, emit demand).
+</li><li>
+<code>src/market.bend</code>: LMSR per question in Q16 fixed point, budgeter (worst-case loss ≤ wealth), settlement <code>demand × (outcome − price)</code>, subsidy as the only inflow.
+</li><li>
+<code>src/questions.bend</code>: families periodic, LFSR, CA rule 30, CA rule 110, primality of n, pi-digit parity, plus A∧B and A∨B compounds in blocks of four.
+</li><li>
+<code>src/soup.bend</code>: the epoch loop as balanced forks over traders and questions; grid-local replication (offspring gets half the parent's wealth, the displaced neighbour's wealth is burned); death when below one share.
+</li><li>
+<code>src/shadow.bend</code>: reference traders in a shadow ledger (constant 0.5, momentum, pattern-2/4/8, coherence arbitrageur) that never replicate.
+</li><li>
+<code>src/metrics.bend</code>, <code>src/snapshot.bend</code>, <code>scripts/run.sh</code>, <code>scripts/matrix.sh</code>, <code>scripts/summarize.py</code>, <code>infra/</code> (GPU VMs with 6-hour auto-delete, watchdog, preemption resume, cost audit), <code>infra/grafana/</code>.
+</li><li>
+Fixed constants: initial wealth 2^20 (16 shares), split at 2^21, fuel 256 per run (all Phase 3 cells; see the fuel sweep below), b = 64, no free income, all prices visible.
+</li></ul>
+</section>
+<section id="3-results">
+<h2>3. Results</h2>
+<p>### 3.1 The K/Q collapse</p>
+<div class="tablewrap"><table><thead><tr><th>cell</th><th>K</th><th>Q</th><th>K/Q</th><th>periodic</th><th>prime</th><th>A∧B</th><th>A∨B</th><th>LFSR</th><th>CA30</th><th>Δ shadow pattern-2</th><th>Δ shadow arb</th><th>takeoff epoch</th></tr></thead><tbody>
+<tr><td>k14-f8</td><td>16k</td><td>256</td><td>64</td><td>0.084±0.004</td><td>0.091±0.003</td><td>0.120±0.003</td><td>0.221</td><td>0.263</td><td>0.262</td><td>−9.7</td><td>+3.0</td><td>2430 (2/3 seeds)</td></tr>
+<tr><td>k12-f8</td><td>4k</td><td>256</td><td>16</td><td>0.149±0.021</td><td>0.120±0.009</td><td>0.147±0.005</td><td>0.236</td><td>0.260</td><td>0.265</td><td>−0.9</td><td>+8.7</td><td>never ≥50 births</td></tr>
+<tr><td>k14-f10</td><td>16k</td><td>1024</td><td>16</td><td>0.133±0.015</td><td>0.108±0.006</td><td>0.132±0.002</td><td>0.232</td><td>0.256</td><td>0.271</td><td>−15.8</td><td>+24</td><td>231</td></tr>
+<tr><td>k16-f12</td><td>64k</td><td>4096</td><td>16</td><td>0.126±0.007</td><td>0.104±0.001</td><td>0.127±0.001</td><td>0.228</td><td>0.257</td><td>0.275</td><td>−116</td><td>+69</td><td>6</td></tr>
+<tr><td>k12-f10</td><td>4k</td><td>1024</td><td>4</td><td>0.221±0.009</td><td>0.212±0.017</td><td>0.210±0.005</td><td>0.249</td><td>0.253</td><td>0.257</td><td>+83</td><td>+30</td><td>1603</td></tr>
+<tr><td>k14-f12</td><td>16k</td><td>4096</td><td>4</td><td>0.204±0.018</td><td>0.177±0.030</td><td>0.188±0.021</td><td>0.253</td><td>0.256</td><td>0.290</td><td>+243</td><td>+179</td><td>205</td></tr>
+<tr><td>k12-f12</td><td>4k</td><td>4096</td><td>1</td><td>0.241±0.001</td><td>0.238±0.003</td><td>0.239±0.004</td><td>0.250</td><td>0.251</td><td>0.257</td><td>+451</td><td>+53</td><td>1348</td></tr>
+</tbody></table></div>
+<p>Δ shadow = slope of the reference trader's cumulative profit over the last 1000 epochs, in shares per epoch; negative means the market beats it.</p>
+<p>Reading: the three cells with K/Q = 16 (4k/256, 16k/1024, 64k/4096) give the same Brier on every family within seed noise, although K spans 16x. K/Q is the variable. More traders per question means more lottery tickets per question and more replication pressure per question. The takeoff epoch (first epoch with 50 or more births) falls steeply with K: 1300-1600 at 4k, 200-450 at 16k, 6 at 64k; k12-f8 never reaches 50 births per epoch because 4k traders cannot, yet it still prices the periodic family.</p>
+<p>Primality at 0.09 is below what a base-rate trader can do (about 0.10 at these n), so the population found structure beyond the base rate, most likely the even/odd rhythm of the prime sequence; it is not primality.</p>
+<p>### 3.2 What is never priced</p>
+<p>LFSR (16-bit), CA rule 110 and pi digits stay at 0.25 in every cell. Rule 30 is priced below chance (0.26-0.29) wherever K/Q is low: lineages that win on biased families emit the same demand on pseudo-random ones and drag them the wrong way. This is the current frontier of the bitter-lesson curve: none of K up to 64k, Q down to 256, or 5000 epochs moved these families. A trader would need to read history and compute a 16-bit recurrence or a CA row in 256 instructions; the DSL and fuel make this possible, but selection never found it.</p>
+<p>### 3.3 Coherence and the arbitrageur</p>
+<p>A∧B is priced in every cell where A and B are (down to 0.12); A∨B is not (0.22-0.25 everywhere). AND-coherence violations <code>max(0, P(A∧B) − min(P(A), P(B)))</code> average 0.01 at K/Q = 64 and up to 0.09 at K/Q = 4, and never decay to zero. The shadow arbitrageur's profit slope is positive in every cell. In Garrabrant's construction the arbitrageur is among the enumerated traders and gets priced out; here it has to evolve, and in 5000 epochs it did not. Radius-1 visibility (only local prices) made no difference (coh 0.076 vs 0.085), so global information was not the limiting factor at K/Q = 4; the population never produced the program.</p>
+<p>### 3.4 Ablations (K = 16k, Q = 4096, 3 seeds each)</p>
+<div class="tablewrap"><table><thead><tr><th>variant</th><th>periodic</th><th>prime</th><th>A∧B</th><th>coh(A∧B)</th><th>takeoff</th></tr></thead><tbody>
+<tr><td>baseline</td><td>0.204±0.018</td><td>0.177±0.030</td><td>0.188±0.021</td><td>0.085</td><td>205</td></tr>
+<tr><td>free income 4096 for 50 epochs</td><td>0.219±0.005</td><td>0.204±0.008</td><td>0.208±0.006</td><td>0.064</td><td>275</td></tr>
+<tr><td>visible radius 1</td><td>0.209±0.007</td><td>0.188±0.006</td><td>0.192±0.007</td><td>0.076</td><td>357</td></tr>
+<tr><td>held-out pi, released at 2000</td><td>0.208±0.007</td><td>0.181±0.010</td><td>0.196±0.013</td><td>0.088</td><td>455</td></tr>
+</tbody></table></div>
+<p>Bootstrap income is slightly worse (it delays the death of non-traders). Local visibility is a wash. The held-out test is uninformative because pi is never priced; the next run should hold out a periodic family.</p>
+<p>### 3.5 Ecology</p>
+<p>Wealth Gini is 0.75-0.82 in every cell; genotypes stay close to K (no monoculture; ancestry hashes are per cell, so "lineages" is not informative yet). Births per epoch at 5000 are 12-75. The population is diverse but its wealth is concentrated: a few lineages own the market.</p>
+<p>### 3.6 Fuel sweep (K = 4k, Q = 256, 16 traders per question, 3 seeds)</p>
+<div class="tablewrap"><table><thead><tr><th>fuel per run</th><th>periodic</th><th>prime</th><th>A∧B</th><th>LFSR</th><th>CA30</th><th>Δ shadow pattern-2</th><th>Δ shadow arb</th></tr></thead><tbody>
+<tr><td>64</td><td>0.144±0.006</td><td>0.131±0.023</td><td>0.143±0.006</td><td>0.259</td><td>0.276</td><td>−0.6</td><td>+8.6</td></tr>
+<tr><td>256</td><td>0.149±0.021</td><td>0.120±0.009</td><td>0.147±0.005</td><td>0.260</td><td>0.265</td><td>−0.9</td><td>+8.7</td></tr>
+<tr><td>1024</td><td>0.120±0.020</td><td>0.113±0.018</td><td>0.146±0.019</td><td>0.262</td><td>0.270</td><td>−3.8</td><td>+6.5</td></tr>
+<tr><td>4096</td><td>0.126±0.019</td><td>0.104±0.013</td><td>0.130±0.002</td><td>0.261</td><td>0.299</td><td>−6.4</td><td>+5.6</td></tr>
+</tbody></table></div>
+<p>A 64-fold increase in per-trader compute moves the periodic and primality Brier by 0.02-0.03, about one seed standard deviation, and moves nothing on the unpriced families. Compare the K/Q table: going from 4 to 64 traders per question moves periodic from 0.20 to 0.08. Per-trader compute is not the lever; population density per question is. (Runs: <code>runs/fuel/</code>, wall time per run 0.6 h at fuel 64 to 2.9 h at fuel 4096 on the JS lane.)</p>
+</section>
+<section id="4-bend2-and-the-gpu">
+<h2>4. Bend2 and the GPU</h2>
+<ul><li>
+<strong>Exactness.</strong> JS, native CPU and CUDA lanes produce byte-identical CSVs and snapshots; every epoch satisfies wealth' = wealth + P&amp;L − fuel − burned. This is what made the preemption recovery trivial: three spot preemptions and one SSH loss resumed from verified checkpoints with no manual work.
+</li><li>
+<strong>Throughput.</strong> JS lane 1.1-1.7M virtual instructions/s per run (this box, 8 runs in parallel); native CPU on an 8-vCPU L4 VM 2.0-3.2M; CUDA on L4 3.4-3.8M at K = 64k, 2.5M at K = 1M; A100 2.47M at K = 1M, the same as L4.
+</li><li>
+<strong>Why the GPU is not a multiplier yet.</strong> CUDA is 10-12% of wall time; host metrics and reproduction phases dominate. Inside the kernel 3.4 threads per warp are active on average and occupancy is 16% (L4) / 7% (A100), set by 255 registers per thread and a fixed 128×128 grid. A guarded-hashing change gave +7%. Moving settlement and reproduction onto the device is the next step; the register ceiling is Bend2's compiler, not our program.
+</li><li>
+<strong>Spend.</strong> 14 rentals, 10.8 VM-hours, $9.38 ceiling for Phase 3, about $1.20 for the smoke and scaling leaves; zero VMs and disks left (checked 2026-09-27T16:51Z).
+</li></ul>
+</section>
+<section id="5-what-this-says-about-the-thesis">
+<h2>5. What this says about the thesis</h2>
+<p>The bitter-lesson claim was that the frontier of patterns priced correctly expands with compute and nothing hand-coded. What expanded it was traders per question, a population quantity; a 64-fold fuel sweep moved scores by about one seed standard deviation. Within 5000 epochs the frontier stops at "base rates plus the even/odd rhythm plus one periodic family"; recurrences (LFSR, CA) and arbitrage are beyond it. Nothing hand-coded was needed to get this far, and nothing hand-coded is proposed to get further: the levers are K/Q, epochs, and the cost of the host runtime.</p>
+</section>
+<section id="6-next-experiments-in-order">
+<h2>6. Next experiments (in order)</h2>
+<ol><li>
+K/Q = 256 and 1024 at fixed K = 64k (Q = 256, 64) on the GPU lane, 20k epochs: does the frontier reach LFSR or CA30, and does an arbitrageur appear?
+</li><li>
+Hold out a periodic family instead of pi; measure time-to-price.
+</li><li>
+Selection strength: split threshold 2^20.5 and 2^21.5 (replication rate as the actual lever behind K/Q).
+</li><li>
+Device-side settlement and reproduction in the Bend2 cube; re-measure the CUDA fraction. Then the guarded-hash variant.
+</li><li>
+Real prediction questions (weekly world-model questions from calibrated-ai) once a periodic held-out family transfers.
+</li></ol>
+</section>
+<section id="7-corrections-and-unverified-items">
+<h2>7. Corrections and unverified items</h2>
+<ul><li>
+My 16:50Z note "less fuel is better" was wrong: the matrix axis was the number of questions; fuel was 256 in all Phase 3 runs. Withdrawn at 17:05Z.
+</li><li>
+GPU hourly rates are unverified ceilings ($0.87/h L4, $3.69/h A100; the Billing API is disabled in the project).
+</li><li>
+"Lineages" equals the alive count by construction (per-cell ancestry hash); a clade id is needed for real lineage counts.
+</li><li>
+The Grafana wiring patched shared cluster objects live (Grafana deployment volume and a socat sidecar in [removed]) without the policy-6 announcement; filed as a fleet incident, rollback in <code>infra/grafana/README.md</code>.
+</li></ul>
+</section>
+<p class="meta">Rendered from REPORT.md (2026-09-27). Numbers in brackets link to the Sources list.</p>
+</main>
+</div>
+<script>try{if(window.innerWidth<1180)document.querySelector('nav.toc details').removeAttribute('open')}catch(e){}</script>
+</body>
+</html>

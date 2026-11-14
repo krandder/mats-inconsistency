@@ -1,0 +1,26 @@
+   search_S1_HARD.pt: wrong candidates accepted 16; sample of wrong candidates 520
+distinct wrong boards accepted by the pre-set check: 7; sample of distinct wrong candidates: 235
+
+[1] route log T: validation grids min -20.25, 1% quantile -19.21, median -17.40; wrong candidates (sample): median -34.45, 99th percentile -23.07, max -21.01
+    rule violations (pairs of equal digits in a row, column or box) per wrong candidate: median 2, min 2
+    accepted wrong boards: violations per board: median 2, min 2, max 2; log T median -23.50; smallest atom on the route: median -5.26 nats, i.e. probability 0.005; boards whose smallest atom is above 1%: 0.143
+    all wrong candidates (sample): smallest atom on the route: median -10.39 nats; share with smallest atom above 1%: 0.0043
+
+[2] route threshold tau: false accepts on wrong candidates against false rejects on held-out valid grids
+    tau =  -24.28 (pre-set: validation minimum - 2.0 ): wrong candidates accepted 0.0213; valid grids rejected 0.0000
+    tau =  -20.25 (validation minimum                ): wrong candidates accepted 0.0000; valid grids rejected 0.0000
+    tau =  -19.50 (validation 0.5% quantile          ): wrong candidates accepted 0.0000; valid grids rejected 0.0000
+    tau =  -19.21 (validation 1% quantile            ): wrong candidates accepted 0.0000; valid grids rejected 0.0040
+    tau =  -18.60 (validation 5% quantile            ): wrong candidates accepted 0.0000; valid grids rejected 0.0360
+    tau =  -17.96 (validation 20% quantile           ): wrong candidates accepted 0.0000; valid grids rejected 0.1680
+
+[3] pair check: min over ordered pairs (i, j) of log q(x_j | only x_i revealed)
+    real validation grids: min -2.067, median -2.067 -> theta = -4.067 (validation minimum minus 2.0)
+    held-out valid grids rejected: 0.0000 (min -2.067); wrong candidates accepted: 0.00000 (0 of 235); their score: max -8.71, median -9.33
+    gap between the lowest valid score and the highest wrong-candidate score: 6.64 nats
+    the 7 wrong boards that the route check accepted: accepted by the pair check: 0 (their score: max -8.80)
+    calls of M per wrong candidate with early stop: mean 9.9 of 36
+    near-miss boards (cell): accepted 0.0000; max score -8.95
+    near-miss boards (swap): accepted 0.0000; max score -8.99
+total time 328s
+exit 0

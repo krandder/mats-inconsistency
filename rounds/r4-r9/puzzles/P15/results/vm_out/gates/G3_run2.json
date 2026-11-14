@@ -1,0 +1,61 @@
+{
+ "prefix_true": {
+  "exact_at_L1024": 1.0,
+  "mean_KL_q_p": 2.664302536049332e-06
+ },
+ "prefix_flip0": {
+  "pattern_x_zl": [
+   1,
+   1
+  ],
+  "mean_KL_q_p": 0.3943804106897481,
+  "logp_true_before": -2.126928011042974,
+  "logp_true_after": -1.7883758830140826,
+  "n_windows": 5061
+ },
+ "prefix_flip1": {
+  "pattern_x_zl": [
+   1,
+   0
+  ],
+  "mean_KL_q_p": 0.47507170901369117,
+  "logp_true_before": -2.126928011042973,
+  "logp_true_after": -2.091781018805988,
+  "n_windows": 6704
+ },
+ "prefix_flip2": {
+  "pattern_x_zl": [
+   0,
+   1
+  ],
+  "mean_KL_q_p": 0.37267315890924974,
+  "logp_true_before": -2.1269280110429722,
+  "logp_true_after": -2.0917810694970598,
+  "n_windows": 1788
+ },
+ "maze_true": {
+  "exact_at_n59": 1.0,
+  "fp_frac": 1.0,
+  "mean_KL_q_p": 0.0377052424422929
+ },
+ "maze_corridor_fill": {
+  "mean_KL_q_p": 3.545749149041516e-09,
+  "logp_true_before": -1.3132616875182233,
+  "logp_true_after": -0.013935819756695842,
+  "n_windows": 822
+ },
+ "maze_deadend_keep": {
+  "mean_KL_q_p": 2.716951043896187,
+  "logp_true_before": -1.3132616875182233,
+  "logp_true_after": -6.832660779320293,
+  "n_windows": 4832
+ },
+ "maze_corridorNS_fill": {
+  "mean_KL_q_p": 7.4086903801083735e-09,
+  "logp_true_before": -1.313261687518223,
+  "logp_true_after": -0.014445012805943878,
+  "n_windows": 802
+ },
+ "pass": false,
+ "note": "True rules: level logit margin 12 (prefix M=12; maze M=24, margin M/2), head margin 16; a flipped entry has the same margin with the opposite sign. First run (margins 10/8, maze flips at margin 40) failed: when the level margin exceeds the head margin the settlement cannot see a flipped entry. The one-step check uses the same perturbed rule at M=2 (saturated logits give vanishing steps); Adam lr 1e-2, batch 64."
+}

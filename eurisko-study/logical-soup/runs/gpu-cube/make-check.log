@@ -1,0 +1,24 @@
+make: Entering directory '/home/agent/workspaces/eurisko-study/logical-soup/build/pool-on8tb-check'
+typecheck ok  src/market.bend
+typecheck ok  src/metrics.bend
+typecheck ok  src/questions.bend
+typecheck ok  src/shadow.bend
+typecheck ok  src/snapshot.bend
+typecheck ok  src/soup.bend
+typecheck ok  src/types.bend
+typecheck ok  src/vm.bend
+typecheck ok  tests/market_test.bend
+typecheck ok  tests/questions_test.bend
+typecheck ok  tests/shadow_test.bend
+typecheck ok  tests/soup_test.bend
+typecheck ok  tests/vm_test.bend
+market: PASS (512 random batches x both outcomes, 4096 budgets, 512 extreme cases, bounds and goldens)
+questions: PASS (six seeded families, periods 2..16, LFSR full cycle, golden vectors, ring wrap, held-out resume, 512 compounds)
+shadow: PASS (6 tests: pnl, constant 0.5, momentum, pattern-k oracle x525, arbitrageur all outcomes, gating)
+soup: PASS (replication burn, odd split, no repeated idle fuel, income headroom, wide/sparse aggregate, market equivalence/conservation)
+vm: PASS (13 tests: constant, momentum, pattern-k, arbitrageur, fuel stop, wrap, overwrite, qmask, emax, stack, alu, population, radius)
+pytest: summarize.py + matrix.sh Ran 5 tests in 0.566s
+smoke: 256 cells x 10 epochs, 10 rows, 0.57s
+resume: 4 chunks with snapshots == straight run (10 epochs, held-out release, radius)
+make check: GREEN
+make: Leaving directory '/home/agent/workspaces/eurisko-study/logical-soup/build/pool-on8tb-check'

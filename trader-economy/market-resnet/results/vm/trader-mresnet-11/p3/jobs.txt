@@ -1,0 +1,9 @@
+dtr_full_s1 dtr --iters 12000 --seed 1
+econ_cov_voc_rr_s1 econ2 --mode econ --stream cov --voc 1 --train_pick roundrobin --auctionL none --iters 3000 --bs 64 --D 24 --evalL 32,320,3200 --seed 1
+econ_cov_s1 econ2 --mode econ --stream cov --auctionL none --iters 3000 --bs 64 --D 24 --evalL 32,320,3200 --seed 1
+bptt_cov_dscov_rand_s1 econ2 --mode bptt --stream cov --ds 1 --covsup 1 --train_pick random --iters 3000 --bs 64 --D 24 --evalL 32,320,3200 --seed 1
+dtr_eqtime_s1 dtr --time_budget 700 --seed 1
+bptt_cov_dscov_tb1_rand_s1 econ2 --mode bptt --stream cov --ds 1 --covsup 1 --tbptt 1 --train_pick random --iters 3000 --bs 64 --D 24 --evalL 32,320,3200 --seed 1
+bptt_cov_dscov_tb1_s1 econ2 --mode bptt --stream cov --ds 1 --covsup 1 --tbptt 1 --iters 3000 --bs 64 --D 24 --evalL 32,320,3200 --seed 1
+bptt_cov_progcov_s1 econ2 --mode bptt --stream cov --prog 1 --covsup 1 --iters 3000 --bs 64 --D 24 --evalL 32,320,3200 --seed 1
+dtr_eqflop_s1 dtr --width 96 --iters 3090 --seed 1

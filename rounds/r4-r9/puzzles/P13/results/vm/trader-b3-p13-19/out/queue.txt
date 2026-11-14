@@ -1,0 +1,5 @@
+m_econ_s1 econ_maze.py --mode econ --W0 20 --frac 0.5 --wealth_cap 1 --lam_c 1 --lam_v 0.3 --train_pick random --D 30 --lr 1e-3 --bs 50 --diag_every 100 --bcap 10 --ckpt_every 300 --iters 9900 --seed 1 --out out/m_econ_s1
+ev59_m_econ_s1_none@m_econ_s1 eval_maze.py --kind trader --ckpt out/m_econ_s1.pt --sets v9,v33,m59 --jopt none --mult 12  --out out/ev59_m_econ_s1_none
+ev59_m_econ_s1_scale@m_econ_s1 eval_maze.py --kind trader --ckpt out/m_econ_s1.pt --sets m59 --jopt scale --mult 12  --out out/ev59_m_econ_s1_scale
+ev59_m_econ_s1_cap@m_econ_s1 eval_maze.py --kind trader --ckpt out/m_econ_s1.pt --sets m59 --jopt cap --mult 12  --out out/ev59_m_econ_s1_cap
+END

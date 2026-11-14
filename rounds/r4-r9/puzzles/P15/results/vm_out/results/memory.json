@@ -1,0 +1,201 @@
+{
+ "note": "prefix task, strings of length D (N=D cells), one element, fp32; peak = max_memory_allocated during one forward+backward step minus the allocation before it (params excluded). A-prog at its worst case n=0, k=D. A-ckpt = BPTT with checkpoints every round(sqrt(D)) levels.",
+ "gpu": "NVIDIA L4",
+ "rows": [
+  {
+   "arm": "Bl",
+   "D": 16,
+   "B": 32,
+   "peak_bytes": 24127488,
+   "peak_MiB": 23.009765625,
+   "wall_s": 0.23128819465637207
+  },
+  {
+   "arm": "A",
+   "D": 16,
+   "B": 32,
+   "peak_bytes": 3612672,
+   "peak_MiB": 3.4453125,
+   "wall_s": 0.05303776264190674
+  },
+  {
+   "arm": "A-prog",
+   "D": 16,
+   "B": 32,
+   "peak_bytes": 3612672,
+   "peak_MiB": 3.4453125,
+   "wall_s": 0.02911365032196045
+  },
+  {
+   "arm": "A-ds",
+   "D": 16,
+   "B": 32,
+   "peak_bytes": 3935744,
+   "peak_MiB": 3.75341796875,
+   "wall_s": 0.04319274425506592
+  },
+  {
+   "arm": "A-1step",
+   "D": 16,
+   "B": 32,
+   "peak_bytes": 571392,
+   "peak_MiB": 0.544921875,
+   "wall_s": 0.013701796531677246
+  },
+  {
+   "arm": "A-ckpt",
+   "D": 16,
+   "B": 32,
+   "peak_bytes": 1533440,
+   "peak_MiB": 1.46240234375,
+   "wall_s": 0.7240666151046753
+  },
+  {
+   "arm": "Bl",
+   "D": 32,
+   "B": 32,
+   "peak_bytes": 48140800,
+   "peak_MiB": 45.91064453125,
+   "wall_s": 0.0659933090209961
+  },
+  {
+   "arm": "A",
+   "D": 32,
+   "B": 32,
+   "peak_bytes": 13522944,
+   "peak_MiB": 12.896484375,
+   "wall_s": 0.05735349655151367
+  },
+  {
+   "arm": "A-prog",
+   "D": 32,
+   "B": 32,
+   "peak_bytes": 13522944,
+   "peak_MiB": 12.896484375,
+   "wall_s": 0.05804002285003662
+  },
+  {
+   "arm": "A-ds",
+   "D": 32,
+   "B": 32,
+   "peak_bytes": 14824960,
+   "peak_MiB": 14.13818359375,
+   "wall_s": 0.08648872375488281
+  },
+  {
+   "arm": "A-1step",
+   "D": 32,
+   "B": 32,
+   "peak_bytes": 1142784,
+   "peak_MiB": 1.08984375,
+   "wall_s": 0.024863481521606445
+  },
+  {
+   "arm": "A-ckpt",
+   "D": 32,
+   "B": 32,
+   "peak_bytes": 3894784,
+   "peak_MiB": 3.71435546875,
+   "wall_s": 0.09638488292694092
+  },
+  {
+   "arm": "Bl",
+   "D": 128,
+   "B": 32,
+   "peak_bytes": 723697664,
+   "peak_MiB": 690.171875,
+   "wall_s": 0.3003116846084595
+  },
+  {
+   "arm": "A",
+   "D": 128,
+   "B": 32,
+   "peak_bytes": 205105152,
+   "peak_MiB": 195.603515625,
+   "wall_s": 0.23183119297027588
+  },
+  {
+   "arm": "A-prog",
+   "D": 128,
+   "B": 32,
+   "peak_bytes": 205105152,
+   "peak_MiB": 195.603515625,
+   "wall_s": 0.2306309938430786
+  },
+  {
+   "arm": "A-ds",
+   "D": 128,
+   "B": 32,
+   "peak_bytes": 226043392,
+   "peak_MiB": 215.57177734375,
+   "wall_s": 0.3575950860977173
+  },
+  {
+   "arm": "A-1step",
+   "D": 128,
+   "B": 32,
+   "peak_bytes": 4571136,
+   "peak_MiB": 4.359375,
+   "wall_s": 0.10322725772857666
+  },
+  {
+   "arm": "A-ckpt",
+   "D": 128,
+   "B": 32,
+   "peak_bytes": 24114688,
+   "peak_MiB": 22.99755859375,
+   "wall_s": 0.37814056873321533
+  },
+  {
+   "arm": "Bl",
+   "D": 1024,
+   "oom_at_B": [
+    32
+   ],
+   "B": 8,
+   "peak_bytes": 11547279360,
+   "peak_MiB": 11012.34375,
+   "wall_s": 3.0377633571624756
+  },
+  {
+   "arm": "A",
+   "D": 1024,
+   "B": 32,
+   "peak_bytes": 13376284672,
+   "peak_MiB": 12756.619140625,
+   "wall_s": 4.426571607589722
+  },
+  {
+   "arm": "A-prog",
+   "D": 1024,
+   "B": 32,
+   "peak_bytes": 13376284672,
+   "peak_MiB": 12756.619140625,
+   "wall_s": 4.413118243217468
+  },
+  {
+   "arm": "A-ds",
+   "D": 1024,
+   "B": 32,
+   "peak_bytes": 14718199296,
+   "peak_MiB": 14036.36865234375,
+   "wall_s": 5.039482355117798
+  },
+  {
+   "arm": "A-1step",
+   "D": 1024,
+   "B": 32,
+   "peak_bytes": 39452672,
+   "peak_MiB": 37.625,
+   "wall_s": 0.7011736631393433
+  },
+  {
+   "arm": "A-ckpt",
+   "D": 1024,
+   "B": 32,
+   "peak_bytes": 497626624,
+   "peak_MiB": 474.57373046875,
+   "wall_s": 4.750488638877869
+  }
+ ]
+}

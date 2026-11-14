@@ -1,0 +1,13 @@
+2026-09-30T03:11:39Z start test_CONS: ev run --split test --arm CONS
+2026-09-30T03:14:43Z ok test_CONS
+2026-09-30T03:14:43Z start tune_S2: ev run --split tune --arm S2 --params {"lr": 0.001, "E_steps": 10}
+2026-09-30T03:16:00Z ok tune_S2
+2026-09-30T03:16:00Z start tune_S1: ev run --split tune --arm S1 --params {"lr": 0.003, "E_steps": 10}
+2026-09-30T03:17:24Z ok tune_S1
+2026-09-30T03:17:24Z start tune_C5: ev run --split tune --arm C5 --params {"alpha": 8, "rho": 0.25, "lam": 1, "scale": 2}
+2026-09-30T03:17:40Z ok tune_C5
+2026-09-30T03:17:40Z start tune_C4: ev run --split tune --arm C4 --params {"alpha": 8, "rho": 0.25, "lam": 1}
+2026-09-30T03:18:05Z FAIL tune_C4
+2026-09-30T03:18:05Z start tune_C1: ev run --split tune --arm C1
+2026-09-30T03:18:11Z ok tune_C1
+2026-09-30T03:18:11Z start test_S2: ev run --split test --arm S2 --params {"lr": 0.001, "E_steps": 10}

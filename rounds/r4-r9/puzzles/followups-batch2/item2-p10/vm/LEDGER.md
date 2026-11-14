@@ -1,0 +1,32 @@
+- 2026-09-29T22:57:02Z CREATE vm=trader-fu-p10-1 zone=us-central1-a epoch=1790722622 type=c2d-highcpu-32 spot max_run=6h rate_ceiling=1.20 item_spend_before=0.00 total_before=0.30
+- 2026-09-29T22:58:39Z READY vm=trader-fu-p10-1 ip=[ip-removed] cpus=32 torch=2.14.0+cpu 
+- 2026-09-29T23:00:35Z START vm=trader-fu-p10-1 queue=pilot_queue.txt jobs=32 parallel=32
+- 2026-09-29T23:01:39Z SYNC vm=trader-fu-p10-1 verified_files=67 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item2/vmout
+- 2026-09-29T23:06:30Z START vm=trader-fu-p10-1 queue=smoke_queue.txt jobs=2 parallel=1
+- 2026-09-29T23:07:10Z SYNC vm=trader-fu-p10-1 verified_files=218 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item2/vmout
+- 2026-09-29T23:08:31Z START vm=trader-fu-p10-1 queue=smoke_queue2.txt jobs=1 parallel=1
+- 2026-09-29T23:12:04Z START vm=trader-fu-p10-1 queue=queue.txt jobs=1 parallel=1
+- 2026-09-29T23:16:10Z SYNC vm=trader-fu-p10-1 verified_files=150 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item2/vmout
+- 2026-09-29T23:21:52Z SYNC vm=trader-fu-p10-1 verified_files=182 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item2/vmout
+- 2026-09-29T23:27:37Z SYNC vm=trader-fu-p10-1 verified_files=182 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item2/vmout
+- 2026-09-29T23:33:09Z SYNC vm=trader-fu-p10-1 verified_files=182 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item2/vmout
+- 2026-09-29T23:38:52Z SYNC vm=trader-fu-p10-1 verified_files=182 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item2/vmout
+- 2026-09-29T23:44:29Z SYNC vm=trader-fu-p10-1 verified_files=181 sha256_mismatch_skipped=1 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item2/vmout
+- 2026-09-29T23:55:29Z SYNC vm=trader-fu-p10-1 verified_files=180 sha256_mismatch_skipped=2 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item2/vmout
+- 2026-09-30T00:00:56Z SYNC vm=trader-fu-p10-1 verified_files=182 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item2/vmout
+- 2026-09-30T00:06:26Z SYNC vm=trader-fu-p10-1 verified_files=182 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item2/vmout
+- 2026-09-30T00:14:54Z SYNC vm=trader-fu-p10-1 verified_files=182 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item2/vmout
+- 2026-09-30T00:15:03Z WATCHDOG-FIX restarted watchdog (old pid 814166 -> 2849968): its while-read loop lost stdin to ssh, so each 5-min cycle only checked/synced the first listed VM (c1-1 until 23:34, then p10-1); p8-1-r1 had no watchdog sync 23:20-00:13 (manual verified sync 00:13:37). GCP max-run 6h + delete-on-termination backstop was in place throughout. [reworded 01:58Z: the upper-case word here broke item_spend (it matched the DELETE-line pattern with no vm= field), so from 00:15Z to the end the watchdog under-counted item2/item3 spend and did not enforce their caps; realised spend stayed under both caps]
+- 2026-09-30T00:20:32Z SYNC vm=trader-fu-p10-1 verified_files=182 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item2/vmout
+- 2026-09-30T00:26:23Z SYNC vm=trader-fu-p10-1 verified_files=195 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item2/vmout
+- 2026-09-30T00:32:12Z SYNC vm=trader-fu-p10-1 verified_files=239 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item2/vmout
+- 2026-09-30T00:38:00Z SYNC vm=trader-fu-p10-1 verified_files=259 sha256_mismatch_skipped=1 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item2/vmout
+- 2026-09-30T00:45:25Z SYNC vm=trader-fu-p10-1 verified_files=260 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item2/vmout
+- 2026-09-30T00:51:25Z SYNC vm=trader-fu-p10-1 verified_files=259 sha256_mismatch_skipped=1 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item2/vmout
+- 2026-09-30T00:56:52Z SYNC vm=trader-fu-p10-1 verified_files=259 sha256_mismatch_skipped=1 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item2/vmout
+- 2026-09-30T01:02:28Z SYNC vm=trader-fu-p10-1 verified_files=260 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item2/vmout
+- 2026-09-30T01:08:15Z SYNC vm=trader-fu-p10-1 verified_files=259 sha256_mismatch_skipped=1 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item2/vmout
+- 2026-09-30T01:13:51Z SYNC vm=trader-fu-p10-1 verified_files=262 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item2/vmout
+- 2026-09-30T01:19:51Z SYNC vm=trader-fu-p10-1 verified_files=271 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item2/vmout
+- 2026-09-30T01:26:44Z SYNC vm=trader-fu-p10-1 verified_files=284 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/followups-batch2/item2/vmout
+- 2026-09-30T01:27:49Z DELETE vm=trader-fu-p10-1 epoch=1790731669 reason="item2 done: driver finished 55/55" leftover_disks="trader-fu-p8-1-r1	us-central1-c" total_spend_now=1.25

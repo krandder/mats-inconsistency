@@ -1,0 +1,77 @@
+{
+ "arm": "fused",
+ "seed": 999,
+ "model": "Qwen/Qwen3-1.7B",
+ "dtype": "bfloat16",
+ "device": "cuda",
+ "lora_r": 8,
+ "threads": 4,
+ "warm_steps": 20,
+ "warm_batch": 16,
+ "lr_warm": 0.0003,
+ "rl_steps": 12,
+ "groups": 4,
+ "group_size": 4,
+ "lr_rl": 0.0003,
+ "alpha": 1.0,
+ "clip": 1.0,
+ "micro_batch": 8,
+ "eval_every": 6,
+ "eval_n": 16,
+ "eval_mc": 1,
+ "gate_min": 0.3,
+ "gate_abort": 0.2,
+ "out": "/root/runs/r2/fused-s999",
+ "ckpt_dir": "/root/runs/ckpt",
+ "note_rel": 0.35,
+ "lam_syc": 0.5,
+ "n_probes": 10,
+ "K": 4,
+ "time_budget_min": 16.0,
+ "arm_def": {
+  "fused": true,
+  "reward_roles": [
+   "real_belief",
+   "trust_auditor",
+   "amp_rollout",
+   "action_policy"
+  ],
+  "truth_in_rl": true
+ },
+ "model_cfg": {
+  "name": "Qwen/Qwen3-1.7B",
+  "arm_adapters": [
+   "fused"
+  ],
+  "lora_r": 8,
+  "lora_alpha": 16,
+  "targets": [
+   "q_proj",
+   "k_proj",
+   "v_proj",
+   "o_proj",
+   "gate_proj",
+   "up_proj",
+   "down_proj"
+  ],
+  "self_stack_action": false,
+  "dtype": "bfloat16",
+  "device": "cuda",
+  "attn": "sdpa",
+  "seed": 999
+ },
+ "env_cfg": {
+  "W": 7,
+  "H": 7,
+  "ships": [
+   4,
+   3,
+   2
+  ],
+  "n_probes": 10,
+  "eps": 0.1,
+  "note_rel": 0.35,
+  "lam_syc": 0.5,
+  "K": 4
+ }
+}

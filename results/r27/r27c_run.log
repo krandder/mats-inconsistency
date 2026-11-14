@@ -1,0 +1,178 @@
+START 2026-10-20T10:56:39Z commit 4daf29f
+{
+  "R27C_D0_upstream_openspiel_exact_curve_reproduction": {
+    "verdict": "PASS",
+    "max_cfr_cfrplus_curve_abs_err": 0.0,
+    "kuhn_tabular_mmd_inconsistency": 1.0161152994998754e-17,
+    "leduc_tabular_mmd_inconsistency": 0.0,
+    "liars_tabular_mmd_inconsistency": 0.0,
+    "max_oracle_vs_openspiel_value_err": 1.2876665012040434e-11,
+    "min_oracle_check_episodes": 20,
+    "seed_overlap_count": 0
+  },
+  "R27C_D1_proximity_edge_prevents_cycling_and_beats_baselines": {
+    "verdict": "FAIL",
+    "kuhn_abs_bar_pass": true,
+    "leduc_abs_bar_pass": false,
+    "liars_abs_bar_pass": false,
+    "all_games_beat_controls_and_noprox": true,
+    "by_game": {
+      "kuhn_poker": {
+        "mean_nash_conv_ours": 0.042846603042269296,
+        "mean_nash_conv_tabular_same_stages": 0.038138840145645614,
+        "mean_nash_conv_random_net": 0.9095798791669523,
+        "mean_nash_conv_untrained": 0.921493839265505,
+        "mean_nash_conv_noprox": 0.335216938324272,
+        "mean_nash_conv_uniform": 0.9166666666666666,
+        "mean_nash_conv_pot_odds": 1.1189738292011018,
+        "mean_nash_conv_mccfr_ourrun": 0.22963200741294773,
+        "mean_inconsistency_ours": 0.01175697146813481,
+        "mean_inconsistency_noprox": 0.28854827089595225,
+        "ci_vs_random_net": {
+          "mean_diff": 0.8667332761246831,
+          "se": 0.007834025537853048,
+          "ci95_low": 0.8449825342661165,
+          "ci95_high": 0.8884840179832497
+        },
+        "ci_vs_untrained": {
+          "mean_diff": 0.8786472362232358,
+          "se": 0.007878651103566423,
+          "ci95_low": 0.8567725939311776,
+          "ci95_high": 0.9005218785152941
+        },
+        "ci_vs_noprox": {
+          "mean_diff": 0.29237033528200274,
+          "se": 0.08523142515406691,
+          "ci95_low": 0.05572996210396111,
+          "ci95_high": 0.5290107084600444
+        },
+        "ci_vs_uniform": {
+          "mean_diff": 0.8738200636243973,
+          "se": 0.0030657389952246064,
+          "ci95_low": 0.865308207597292,
+          "ci95_high": 0.8823319196515027
+        },
+        "ci_vs_pot_odds": {
+          "mean_diff": 1.0761272261588324,
+          "se": 0.0030657389952245765,
+          "ci95_low": 1.067615370131727,
+          "ci95_high": 1.0846390821859377
+        }
+      },
+      "leduc_poker": {
+        "mean_nash_conv_ours": 1.0808626139766209,
+        "mean_nash_conv_tabular_same_stages": 1.0614806686719926,
+        "mean_nash_conv_random_net": 4.746013159177111,
+        "mean_nash_conv_untrained": 4.749099815040145,
+        "mean_nash_conv_noprox": 2.234867375155187,
+        "mean_nash_conv_uniform": 4.747222222222222,
+        "mean_nash_conv_pot_odds": 4.555044302816748,
+        "mean_nash_conv_mccfr_ourrun": 4.5774254027526515,
+        "mean_inconsistency_ours": 0.2988187973962551,
+        "mean_inconsistency_noprox": 1.2601788431300693,
+        "ci_vs_random_net": {
+          "mean_diff": 3.6651505452004898,
+          "se": 0.020075297469551275,
+          "ci95_low": 3.6094125838057645,
+          "ci95_high": 3.720888506595215
+        },
+        "ci_vs_untrained": {
+          "mean_diff": 3.6682372010635236,
+          "se": 0.016167173400471812,
+          "ci95_low": 3.6233499316108997,
+          "ci95_high": 3.7131244705161475
+        },
+        "ci_vs_noprox": {
+          "mean_diff": 1.1540047611785655,
+          "se": 0.16585408218890266,
+          "ci95_low": 0.6935200065081133,
+          "ci95_high": 1.6144895158490178
+        },
+        "ci_vs_uniform": {
+          "mean_diff": 3.666359608245601,
+          "se": 0.01868809039994727,
+          "ci95_low": 3.6144731511291734,
+          "ci95_high": 3.7182460653620284
+        },
+        "ci_vs_pot_odds": {
+          "mean_diff": 3.4741816888401273,
+          "se": 0.01868809039994727,
+          "ci95_low": 3.4222952317237,
+          "ci95_high": 3.526068145956555
+        }
+      },
+      "liars_dice(numdice=1,dice_sides=4)": {
+        "mean_nash_conv_ours": 0.4546312036186856,
+        "mean_nash_conv_tabular_same_stages": 0.43537984877760916,
+        "mean_nash_conv_random_net": 1.3135124924667254,
+        "mean_nash_conv_untrained": 1.3119470810387333,
+        "mean_nash_conv_noprox": 1.1659238205738598,
+        "mean_nash_conv_uniform": 1.3101190476190476,
+        "mean_nash_conv_pot_odds": 1.3660911881833355,
+        "mean_nash_conv_mccfr_ourrun": 1.2289821788033333,
+        "mean_inconsistency_ours": 0.06209944505974603,
+        "mean_inconsistency_noprox": 0.7952316135495626,
+        "ci_vs_random_net": {
+          "mean_diff": 0.8588812888480397,
+          "se": 0.002280422035418104,
+          "ci95_low": 0.852549822250018,
+          "ci95_high": 0.8652127554460615
+        },
+        "ci_vs_untrained": {
+          "mean_diff": 0.8573158774200479,
+          "se": 0.004132072300271022,
+          "ci95_low": 0.845843405507637,
+          "ci95_high": 0.8687883493324587
+        },
+        "ci_vs_noprox": {
+          "mean_diff": 0.7112926169551742,
+          "se": 0.060335044170360036,
+          "ci95_low": 0.5437756788964851,
+          "ci95_high": 0.8788095550138633
+        },
+        "ci_vs_uniform": {
+          "mean_diff": 0.8554878440003622,
+          "se": 0.00244021940187031,
+          "ci95_low": 0.8487127087864307,
+          "ci95_high": 0.8622629792142936
+        },
+        "ci_vs_pot_odds": {
+          "mean_diff": 0.91145998456465,
+          "se": 0.00244021940187031,
+          "ci95_low": 0.9046848493507186,
+          "ci95_high": 0.9182351197785815
+        }
+      }
+    }
+  },
+  "R27C_D2_neural_policy_commitment_readability_and_stability": {
+    "verdict": "FAIL",
+    "evaluation_type": "objective_alignment_verification",
+    "mean_kuhn_payoff_vs_biased_unread_alpha0": 0.3620719748846221,
+    "mean_kuhn_payoff_vs_biased_readable_alpha1": 0.16007342781571934,
+    "mean_kuhn_payoff_vs_reader_unread_alpha0": -0.15070174650035748,
+    "mean_kuhn_payoff_vs_reader_readable_alpha1": -0.06334262242229449,
+    "mean_kuhn_nash_conv_unread_alpha0": 0.2571735963055063,
+    "mean_kuhn_nash_conv_readable_alpha1": 0.06913521581972377,
+    "max_fixed_point_l1_drift_alpha1": 0.019707842234218453,
+    "ci_payoff_vs_reader_alpha1_vs_alpha0": {
+      "mean_diff": 0.08735912407806298,
+      "se": 0.0025068544497800203,
+      "ci95_low": 0.08039898031152792,
+      "ci95_high": 0.09431926784459804
+    },
+    "ci_payoff_vs_biased_alpha0_vs_alpha1": {
+      "mean_diff": 0.20199854706890283,
+      "se": 0.0020071061441240667,
+      "ci95_low": 0.19642592703943715,
+      "ci95_high": 0.2075711670983685
+    },
+    "ci_nash_conv_alpha0_vs_alpha1": {
+      "mean_diff": 0.18803838048578245,
+      "se": 0.015057827936044994,
+      "ci95_low": 0.14623114781783964,
+      "ci95_high": 0.22984561315372526
+    }
+  }
+}
+END 2026-10-20T11:04:48Z rc=0

@@ -1,0 +1,12 @@
+{
+ "id": "E-AUD-1",
+ "question": "How do the pay rules treat substitutes and complements?",
+ "setup": "10 designed agents, one feature each: x0 and its noisy copy x4, x1 and its copy x5, a complementary pair x6/x7 (useless alone, strong together), weak x2/x3, noise x8/x9. Pay in nats per epoch.",
+ "result": "Substitutes: Shapley pays x0 16.1 and its copy 9.2 (true values 19.0 and 11.8). LOO pays both copies about 0 or less (x4: -1.9). MSR in one order gives the credit to whichever comes first (x4: -1.4 forward, 21.5 reversed). Complements: every rule pays x6 and x7 below zero (Shapley -0.6 and -1.3) while their true values are +7.1 and +7.3. An agent that reports only its own belief carries almost none of the pair's information.",
+ "status": "Problem",
+ "files": [
+  "econ.py",
+  "results/summary.json",
+  "charts/audit_categories.json"
+ ]
+}

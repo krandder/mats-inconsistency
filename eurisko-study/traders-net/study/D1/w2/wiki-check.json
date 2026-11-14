@@ -1,0 +1,76 @@
+{
+  "checked_at": "2026-09-28T14:09:04Z",
+  "claims": [
+    {
+      "id": "register",
+      "claim": "CLAIMS.md: 209 rows, 153 verified / 19 refuted / 37 unverified; check_claims ok",
+      "holds": true,
+      "evidence": "study/X1/CLAIMS.md; study/X1/lead/results/check_claims.json",
+      "detail": "rows=('209', '153', '19', '37') check_claims ok=True at 2026-09-28T13:51:01Z"
+    },
+    {
+      "id": "gate-A",
+      "claim": "currency locked: committed-trader settlement only",
+      "holds": true,
+      "evidence": "study/M1/CURRENCY.lock",
+      "detail": "locked_at 2026-09-28T01:40Z"
+    },
+    {
+      "id": "gate-B4",
+      "claim": "M6 base arms survive",
+      "holds": true,
+      "evidence": "study/M6/lead/M6-verdict.json",
+      "detail": "surviving=['b', 'cg', 'cq', 'fb01', 'fb05', 'g_fp', 'g_1pass', 'g_2pass', 'commit_Cm', 'commit_Cw']"
+    },
+    {
+      "id": "gate-B3",
+      "claim": "no wealth arm passes all three M7 rules (wealth_beats_deepseek=false)",
+      "holds": true,
+      "evidence": "study/M7/merge/gate.json",
+      "detail": "any_R3=False passing_R2=['w2:dsfw']"
+    },
+    {
+      "id": "gates-X1",
+      "claim": "X1 gate flags as listed",
+      "holds": true,
+      "evidence": "study/X1/lead/gates.json",
+      "detail": "{\"A\": \"currency_locked = true\", \"B1\": \"beats_baseline = false\", \"B2\": \"coalition_win = false\", \"B3\": \"wealth_beats_deepseek = false\", \"B4\": \"base_arms_survive = true\"}"
+    },
+    {
+      "id": "gpu-spend",
+      "claim": "GPU spend $6.07 of the $45 cap",
+      "holds": true,
+      "evidence": "study/G1/COST.md",
+      "detail": "total=6.07"
+    },
+    {
+      "id": "zero-vms",
+      "claim": "no traders-net GPU VM, disk or running job left",
+      "holds": true,
+      "evidence": "gcloud compute instances/disks list (project GCP_PROJECT); study/G1/queue/running/",
+      "detail": "rc=0/0 instances=[] disks=[] running=[]"
+    },
+    {
+      "id": "grafana",
+      "claim": "dashboard traders-net loads; no panel FAILs or PENDING",
+      "holds": true,
+      "evidence": "study/D1/w2/grafana-check/latest.json",
+      "detail": "checked_at 2026-09-28T14:07:17+00:00 pass=True panels={'1': 'PASS', '2': 'SKIP', '3': 'PASS', '4': 'PASS', '5': 'PASS', '6': 'PASS', '7': 'PASS', '8': 'PASS', '9': 'PASS', '10': 'PASS', '11': 'PASS', '12': 'PASS', '13': 'PASS', '14': 'PASS', '15': 'PASS'}"
+    },
+    {
+      "id": "page",
+      "claim": "http://[ip-removed]:8765/traders-net/index.html answers 200 with a titled page",
+      "holds": true,
+      "evidence": "http://[ip-removed]:8765/traders-net/index.html",
+      "detail": "status 200 <title>Traders Inside a Net bytes=1792651"
+    },
+    {
+      "id": "wealth-net-page",
+      "claim": "http://[ip-removed]:8765/wealth-net/ answers 200 with a titled page",
+      "holds": true,
+      "evidence": "http://[ip-removed]:8765/wealth-net/",
+      "detail": "status 200 <title>Wealth net books bytes=1059450"
+    }
+  ],
+  "all_hold": true
+}

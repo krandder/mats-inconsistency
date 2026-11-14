@@ -1,0 +1,1044 @@
+{
+  "schema": "tiny-pfn-plateau-historical-query-only-audit-v1",
+  "checked_at": "2026-10-28T11:03:42.107054+00:00",
+  "scope": "retained depth-2 runs meeting the preregistered historical plateau definition",
+  "definitions": {
+    "plateau": "10 consecutive 1,000-update validation observations with gap in inclusive [0.14,0.18]",
+    "paired_difference": "retained checkpoint NLL minus exact query-only Bayes NLL on the same held-out episode",
+    "sample_se": "sample standard deviation of 16,000 paired episode differences divided by sqrt(16,000)",
+    "normal95": "paired mean plus or minus 1.959963984540054 sample SE; no multiplicity adjustment",
+    "interpretation": "a significantly negative difference supports use of some nonquery context; it does not isolate observed labels from contextual readings or establish source-specific binding",
+    "proper_score_identity": "E KL(p(Y|C,Q)||q(Y|Q)) = I(Y;C|Q) + E_Q KL(p(Y|Q)||q(Y|Q))"
+  },
+  "exact_references": {
+    "n_episodes": 16000,
+    "exact_bayes_mean_nll": 0.30056682544626245,
+    "exact_query_only_mean_nll": 0.4855487169676055,
+    "query_only_minus_bayes": {
+      "mean": 0.18498189152134306,
+      "sample_se": 0.004320605701815731
+    },
+    "r16_r4_world_reference_arrays_equal": true
+  },
+  "summary": {
+    "plateau_cases": 21,
+    "negative_mean": 21,
+    "normal95_entirely_negative": 20,
+    "families": {
+      "cold_mixture": {
+        "runs": 4,
+        "mean_difference_range": [
+          -0.04109373643791582,
+          -0.03860894754204611
+        ],
+        "negative_means": 4,
+        "normal95_entirely_negative": 4
+      },
+      "main_gaussian": {
+        "runs": 3,
+        "mean_difference_range": [
+          -0.1420046390552211,
+          -0.022877886134170845
+        ],
+        "negative_means": 3,
+        "normal95_entirely_negative": 3
+      },
+      "micro": {
+        "runs": 14,
+        "mean_difference_range": [
+          -0.02245729689160418,
+          -0.003939329313505285
+        ],
+        "negative_means": 14,
+        "normal95_entirely_negative": 13
+      }
+    }
+  },
+  "cases": [
+    {
+      "config": "w16_h1_L2_mix4",
+      "seed": 3,
+      "family": "cold_mixture",
+      "identity_dimension": 16,
+      "n_episodes": 16000,
+      "model_mean_nll": 0.4469397694255594,
+      "exact_query_only_mean_nll": 0.4855487169676055,
+      "exact_bayes_mean_nll": 0.30056682544626245,
+      "model_minus_exact_query_only_nll": {
+        "mean": -0.03860894754204611,
+        "sample_se": 0.002172419955746793,
+        "normal95": [
+          -0.04286681241460592,
+          -0.03435108266948629
+        ],
+        "z": -17.772322262052626,
+        "mean_negative": true,
+        "normal95_entirely_negative": true
+      },
+      "plateau": {
+        "entry_step": 3000,
+        "confirmation_step": 12000,
+        "stretches": [
+          [
+            3000,
+            25000
+          ]
+        ]
+      },
+      "historical_weak_escape": {
+        "event_step": 26000,
+        "detection_step": 26000
+      },
+      "sustained_escape": {
+        "0.1": null,
+        "0.12": null,
+        "0.05": null
+      },
+      "files": {
+        "meta_json": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w16_h1_L2_mix4_s3/meta.json",
+        "meta_sha256": "777feab2f67147159778f518563e2c763688963de20c60ce680cb508cd7e8f00",
+        "test_preds_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w16_h1_L2_mix4_s3/test_preds.npz",
+        "test_preds_sha256": "4a96cec57a072a9d129720130ac33a8f8c9121f622227da68f64d0b5aa6b5523",
+        "testset_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/testset.npz",
+        "testset_sha256": "f27b3f33d41be2caa8e8e32ddbe1982b35c4235f7926267a4f8e53cc032b29ac"
+      }
+    },
+    {
+      "config": "w16_h1_L2_mix4",
+      "seed": 4,
+      "family": "cold_mixture",
+      "identity_dimension": 16,
+      "n_episodes": 16000,
+      "model_mean_nll": 0.4460153348074083,
+      "exact_query_only_mean_nll": 0.4855487169676055,
+      "exact_bayes_mean_nll": 0.30056682544626245,
+      "model_minus_exact_query_only_nll": {
+        "mean": -0.03953338216019721,
+        "sample_se": 0.002203255368637282,
+        "normal95": [
+          -0.0438516833314708,
+          -0.03521508098892362
+        ],
+        "z": -17.943168423843982,
+        "mean_negative": true,
+        "normal95_entirely_negative": true
+      },
+      "plateau": {
+        "entry_step": 15000,
+        "confirmation_step": 24000,
+        "stretches": [
+          [
+            15000,
+            25000
+          ]
+        ]
+      },
+      "historical_weak_escape": {
+        "event_step": 26000,
+        "detection_step": 26000
+      },
+      "sustained_escape": {
+        "0.1": null,
+        "0.12": null,
+        "0.05": null
+      },
+      "files": {
+        "meta_json": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w16_h1_L2_mix4_s4/meta.json",
+        "meta_sha256": "9f0674a83d4bc6fe1beab1b897864d2513f223f39e2843b502b52796b3c92dd2",
+        "test_preds_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w16_h1_L2_mix4_s4/test_preds.npz",
+        "test_preds_sha256": "3cda1d10e2a31e0872faea6eba326735a4c108e61e4f41dc9645581a219b1c41",
+        "testset_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/testset.npz",
+        "testset_sha256": "f27b3f33d41be2caa8e8e32ddbe1982b35c4235f7926267a4f8e53cc032b29ac"
+      }
+    },
+    {
+      "config": "w16_h2_L2_ds4_mix4",
+      "seed": 1,
+      "family": "cold_mixture",
+      "identity_dimension": 4,
+      "n_episodes": 16000,
+      "model_mean_nll": 0.4444549805296897,
+      "exact_query_only_mean_nll": 0.4855487169676055,
+      "exact_bayes_mean_nll": 0.30056682544626245,
+      "model_minus_exact_query_only_nll": {
+        "mean": -0.04109373643791582,
+        "sample_se": 0.0021479035879932093,
+        "normal95": [
+          -0.04530355011264687,
+          -0.03688392276318477
+        ],
+        "z": -19.132020947136542,
+        "mean_negative": true,
+        "normal95_entirely_negative": true
+      },
+      "plateau": {
+        "entry_step": 4000,
+        "confirmation_step": 13000,
+        "stretches": [
+          [
+            4000,
+            15000
+          ]
+        ]
+      },
+      "historical_weak_escape": {
+        "event_step": 16000,
+        "detection_step": 16000
+      },
+      "sustained_escape": {
+        "0.1": null,
+        "0.12": null,
+        "0.05": null
+      },
+      "files": {
+        "meta_json": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w16_h2_L2_ds4_mix4_s1/meta.json",
+        "meta_sha256": "156f7f95d4bacb461e4d61aefb08b74345432aeaf92b93fe4b2904ddb891a6e4",
+        "test_preds_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w16_h2_L2_ds4_mix4_s1/test_preds.npz",
+        "test_preds_sha256": "34d0b3d2681561ae5dd10bb407ba20930da4330f6aff2f03b936f322b1bc7533",
+        "testset_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/testset_ds4.npz",
+        "testset_sha256": "b5f24569272b46209c32a0091da0a0990bcfe3ad0ec252fc08a88ca47716fe86"
+      }
+    },
+    {
+      "config": "w16_h2_L2",
+      "seed": 2,
+      "family": "main_gaussian",
+      "identity_dimension": 16,
+      "n_episodes": 16000,
+      "model_mean_nll": 0.3435440779123844,
+      "exact_query_only_mean_nll": 0.4855487169676055,
+      "exact_bayes_mean_nll": 0.30056682544626245,
+      "model_minus_exact_query_only_nll": {
+        "mean": -0.1420046390552211,
+        "sample_se": 0.004179765382301583,
+        "normal95": [
+          -0.15019682866835948,
+          -0.1338124494420827
+        ],
+        "z": -33.974308619453275,
+        "mean_negative": true,
+        "normal95_entirely_negative": true
+      },
+      "plateau": {
+        "entry_step": 3000,
+        "confirmation_step": 12000,
+        "stretches": [
+          [
+            3000,
+            40000
+          ]
+        ]
+      },
+      "historical_weak_escape": {
+        "event_step": 41000,
+        "detection_step": 41000
+      },
+      "sustained_escape": {
+        "0.1": {
+          "event_step": 49000,
+          "detection_step": 51000
+        },
+        "0.12": {
+          "event_step": 44000,
+          "detection_step": 46000
+        },
+        "0.05": {
+          "event_step": 87000,
+          "detection_step": 89000
+        }
+      },
+      "files": {
+        "meta_json": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w16_h2_L2_s2/meta.json",
+        "meta_sha256": "e9b5cf568b54eabfc937d323763a772de58188d4bcb733b32088fb1a37844e24",
+        "test_preds_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w16_h2_L2_s2/test_preds.npz",
+        "test_preds_sha256": "51c2f9d7a73fa2e98ec95756956dbf1dac2e316d1abbb290c10f840fefc60717",
+        "testset_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/testset.npz",
+        "testset_sha256": "f27b3f33d41be2caa8e8e32ddbe1982b35c4235f7926267a4f8e53cc032b29ac"
+      }
+    },
+    {
+      "config": "w16_h2_L2",
+      "seed": 3,
+      "family": "main_gaussian",
+      "identity_dimension": 16,
+      "n_episodes": 16000,
+      "model_mean_nll": 0.4623559603458269,
+      "exact_query_only_mean_nll": 0.4855487169676055,
+      "exact_bayes_mean_nll": 0.30056682544626245,
+      "model_minus_exact_query_only_nll": {
+        "mean": -0.023192756621778606,
+        "sample_se": 0.002828055004162265,
+        "normal95": [
+          -0.02873564257623492,
+          -0.017649870667322293
+        ],
+        "z": -8.200956695553677,
+        "mean_negative": true,
+        "normal95_entirely_negative": true
+      },
+      "plateau": {
+        "entry_step": 8000,
+        "confirmation_step": 17000,
+        "stretches": [
+          [
+            8000,
+            17000
+          ],
+          [
+            19000,
+            50000
+          ]
+        ]
+      },
+      "historical_weak_escape": null,
+      "sustained_escape": {
+        "0.1": null,
+        "0.12": null,
+        "0.05": null
+      },
+      "files": {
+        "meta_json": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w16_h2_L2_s3/meta.json",
+        "meta_sha256": "ae07aa2eaf31a3308b3ccb9725e97ccdc460a40e2c701ddfa2b3202b9f9c1834",
+        "test_preds_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w16_h2_L2_s3/test_preds.npz",
+        "test_preds_sha256": "5d111357880b4fd53b11c6cea847bbdb458f3ee191ed35a853fda51fa908afe1",
+        "testset_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/testset.npz",
+        "testset_sha256": "f27b3f33d41be2caa8e8e32ddbe1982b35c4235f7926267a4f8e53cc032b29ac"
+      }
+    },
+    {
+      "config": "w16_h2_L2",
+      "seed": 4,
+      "family": "main_gaussian",
+      "identity_dimension": 16,
+      "n_episodes": 16000,
+      "model_mean_nll": 0.4626708308334347,
+      "exact_query_only_mean_nll": 0.4855487169676055,
+      "exact_bayes_mean_nll": 0.30056682544626245,
+      "model_minus_exact_query_only_nll": {
+        "mean": -0.022877886134170845,
+        "sample_se": 0.0028588211708618807,
+        "normal95": [
+          -0.02848107266730076,
+          -0.01727469960104093
+        ],
+        "z": -8.002559365150354,
+        "mean_negative": true,
+        "normal95_entirely_negative": true
+      },
+      "plateau": {
+        "entry_step": 3000,
+        "confirmation_step": 12000,
+        "stretches": [
+          [
+            3000,
+            50000
+          ]
+        ]
+      },
+      "historical_weak_escape": null,
+      "sustained_escape": {
+        "0.1": null,
+        "0.12": null,
+        "0.05": null
+      },
+      "files": {
+        "meta_json": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w16_h2_L2_s4/meta.json",
+        "meta_sha256": "cd81ac6a227ce878d98a73af6a56d7c7a8bb880ef94bf57df5db78807989d66a",
+        "test_preds_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w16_h2_L2_s4/test_preds.npz",
+        "test_preds_sha256": "582269ba78321906c179c505f57dba02c539bf4c00d4e26a6e3096bfa5a06cbf",
+        "testset_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/testset.npz",
+        "testset_sha256": "f27b3f33d41be2caa8e8e32ddbe1982b35c4235f7926267a4f8e53cc032b29ac"
+      }
+    },
+    {
+      "config": "w32_h2_L2_mix4",
+      "seed": 3,
+      "family": "cold_mixture",
+      "identity_dimension": 16,
+      "n_episodes": 16000,
+      "model_mean_nll": 0.44456845544945794,
+      "exact_query_only_mean_nll": 0.4855487169676055,
+      "exact_bayes_mean_nll": 0.30056682544626245,
+      "model_minus_exact_query_only_nll": {
+        "mean": -0.0409802615181476,
+        "sample_se": 0.002199238182135643,
+        "normal95": [
+          -0.0452906891485588,
+          -0.0366698338877364
+        ],
+        "z": -18.633844142498635,
+        "mean_negative": true,
+        "normal95_entirely_negative": true
+      },
+      "plateau": {
+        "entry_step": 4000,
+        "confirmation_step": 13000,
+        "stretches": [
+          [
+            4000,
+            16000
+          ]
+        ]
+      },
+      "historical_weak_escape": {
+        "event_step": 17000,
+        "detection_step": 17000
+      },
+      "sustained_escape": {
+        "0.1": null,
+        "0.12": null,
+        "0.05": null
+      },
+      "files": {
+        "meta_json": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w32_h2_L2_mix4_s3/meta.json",
+        "meta_sha256": "789b63941a6199701e25e1e57ca41106d0d01fdbf219d040f5841d51648fc910",
+        "test_preds_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w32_h2_L2_mix4_s3/test_preds.npz",
+        "test_preds_sha256": "8eb2418175aa5b536451522c72763aaa3858fd95e6dd6e265cdd3a458aa9751f",
+        "testset_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/testset.npz",
+        "testset_sha256": "f27b3f33d41be2caa8e8e32ddbe1982b35c4235f7926267a4f8e53cc032b29ac"
+      }
+    },
+    {
+      "config": "w4_h1_L2_attn_ds4",
+      "seed": 0,
+      "family": "micro",
+      "identity_dimension": 4,
+      "n_episodes": 16000,
+      "model_mean_nll": 0.4816093876541002,
+      "exact_query_only_mean_nll": 0.4855487169676055,
+      "exact_bayes_mean_nll": 0.30056682544626245,
+      "model_minus_exact_query_only_nll": {
+        "mean": -0.003939329313505285,
+        "sample_se": 0.0027252777810123432,
+        "normal95": [
+          -0.009280775612156714,
+          0.0014021169851461436
+        ],
+        "z": -1.4454780870234685,
+        "mean_negative": true,
+        "normal95_entirely_negative": false
+      },
+      "plateau": {
+        "entry_step": 70000,
+        "confirmation_step": 79000,
+        "stretches": [
+          [
+            70000,
+            79000
+          ],
+          [
+            81000,
+            90000
+          ]
+        ]
+      },
+      "historical_weak_escape": null,
+      "sustained_escape": {
+        "0.1": null,
+        "0.12": null,
+        "0.05": null
+      },
+      "files": {
+        "meta_json": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w4_h1_L2_attn_ds4_s0/meta.json",
+        "meta_sha256": "d2b596431551c33c19d9509d7c43912116775dfe919089404964bdca835b8c38",
+        "test_preds_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w4_h1_L2_attn_ds4_s0/test_preds.npz",
+        "test_preds_sha256": "d79bef5b7773a5c22f64d4dd4103703ccf0534037a4a0963fb0796c353df977e",
+        "testset_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/testset_ds4.npz",
+        "testset_sha256": "b5f24569272b46209c32a0091da0a0990bcfe3ad0ec252fc08a88ca47716fe86"
+      }
+    },
+    {
+      "config": "w4_h1_L2_ds4",
+      "seed": 2,
+      "family": "micro",
+      "identity_dimension": 4,
+      "n_episodes": 16000,
+      "model_mean_nll": 0.4764770512495393,
+      "exact_query_only_mean_nll": 0.4855487169676055,
+      "exact_bayes_mean_nll": 0.30056682544626245,
+      "model_minus_exact_query_only_nll": {
+        "mean": -0.009071665718066184,
+        "sample_se": 0.0028251273199836283,
+        "normal95": [
+          -0.01460881351697426,
+          -0.003534517919158108
+        ],
+        "z": -3.2110643842128694,
+        "mean_negative": true,
+        "normal95_entirely_negative": true
+      },
+      "plateau": {
+        "entry_step": 16000,
+        "confirmation_step": 25000,
+        "stretches": [
+          [
+            16000,
+            50000
+          ]
+        ]
+      },
+      "historical_weak_escape": null,
+      "sustained_escape": {
+        "0.1": null,
+        "0.12": null,
+        "0.05": null
+      },
+      "files": {
+        "meta_json": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w4_h1_L2_ds4_s2/meta.json",
+        "meta_sha256": "405a7cfc8d4070bcc0d988e369bd27afe6409213608f6298658ac6ef117b42c0",
+        "test_preds_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w4_h1_L2_ds4_s2/test_preds.npz",
+        "test_preds_sha256": "3c099cdf602f66200328503f2d6c7b4cecccda691838409bcce202d8f186b515",
+        "testset_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/testset_ds4.npz",
+        "testset_sha256": "b5f24569272b46209c32a0091da0a0990bcfe3ad0ec252fc08a88ca47716fe86"
+      }
+    },
+    {
+      "config": "w4_h1_L2_ds4",
+      "seed": 3,
+      "family": "micro",
+      "identity_dimension": 4,
+      "n_episodes": 16000,
+      "model_mean_nll": 0.47850401811093013,
+      "exact_query_only_mean_nll": 0.4855487169676055,
+      "exact_bayes_mean_nll": 0.30056682544626245,
+      "model_minus_exact_query_only_nll": {
+        "mean": -0.007044698856675361,
+        "sample_se": 0.0027741784020244133,
+        "normal95": [
+          -0.01248198861133209,
+          -0.001607409102018632
+        ],
+        "z": -2.539382056876588,
+        "mean_negative": true,
+        "normal95_entirely_negative": true
+      },
+      "plateau": {
+        "entry_step": 38000,
+        "confirmation_step": 47000,
+        "stretches": [
+          [
+            38000,
+            50000
+          ]
+        ]
+      },
+      "historical_weak_escape": null,
+      "sustained_escape": {
+        "0.1": null,
+        "0.12": null,
+        "0.05": null
+      },
+      "files": {
+        "meta_json": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w4_h1_L2_ds4_s3/meta.json",
+        "meta_sha256": "0af19f83b4e33921dc97a018e9e1b2d2fa95c110580807022c57d3f412be4b03",
+        "test_preds_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w4_h1_L2_ds4_s3/test_preds.npz",
+        "test_preds_sha256": "ea66ef4fbe2039b92eb91b42917bf7ce19582d924b78db03540a15d3228ba089",
+        "testset_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/testset_ds4.npz",
+        "testset_sha256": "b5f24569272b46209c32a0091da0a0990bcfe3ad0ec252fc08a88ca47716fe86"
+      }
+    },
+    {
+      "config": "w4_h1_L2_ds4",
+      "seed": 4,
+      "family": "micro",
+      "identity_dimension": 4,
+      "n_episodes": 16000,
+      "model_mean_nll": 0.4769878070548412,
+      "exact_query_only_mean_nll": 0.4855487169676055,
+      "exact_bayes_mean_nll": 0.30056682544626245,
+      "model_minus_exact_query_only_nll": {
+        "mean": -0.008560909912764281,
+        "sample_se": 0.0026979629342582024,
+        "normal95": [
+          -0.013848820095534363,
+          -0.003272999729994199
+        ],
+        "z": -3.1731013810677426,
+        "mean_negative": true,
+        "normal95_entirely_negative": true
+      },
+      "plateau": {
+        "entry_step": 79000,
+        "confirmation_step": 88000,
+        "stretches": [
+          [
+            79000,
+            90000
+          ]
+        ]
+      },
+      "historical_weak_escape": null,
+      "sustained_escape": {
+        "0.1": null,
+        "0.12": null,
+        "0.05": null
+      },
+      "files": {
+        "meta_json": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w4_h1_L2_ds4_s4/meta.json",
+        "meta_sha256": "9360ed79a2bac4a8e73230c9af6857f03559048bb530c9b4543eebd10764e7fc",
+        "test_preds_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w4_h1_L2_ds4_s4/test_preds.npz",
+        "test_preds_sha256": "5e28d8c2b3107424cb0557f9546ad642fa9d81c623be7db28e670c823fe3a7e6",
+        "testset_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/testset_ds4.npz",
+        "testset_sha256": "b5f24569272b46209c32a0091da0a0990bcfe3ad0ec252fc08a88ca47716fe86"
+      }
+    },
+    {
+      "config": "w8_h1_L2_attn_ds4",
+      "seed": 0,
+      "family": "micro",
+      "identity_dimension": 4,
+      "n_episodes": 16000,
+      "model_mean_nll": 0.4758411441028113,
+      "exact_query_only_mean_nll": 0.4855487169676055,
+      "exact_bayes_mean_nll": 0.30056682544626245,
+      "model_minus_exact_query_only_nll": {
+        "mean": -0.009707572864794152,
+        "sample_se": 0.0027120318346296464,
+        "normal95": [
+          -0.015023057585594347,
+          -0.004392088143993958
+        ],
+        "z": -3.5794465023747826,
+        "mean_negative": true,
+        "normal95_entirely_negative": true
+      },
+      "plateau": {
+        "entry_step": 9000,
+        "confirmation_step": 18000,
+        "stretches": [
+          [
+            9000,
+            50000
+          ]
+        ]
+      },
+      "historical_weak_escape": null,
+      "sustained_escape": {
+        "0.1": null,
+        "0.12": null,
+        "0.05": null
+      },
+      "files": {
+        "meta_json": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w8_h1_L2_attn_ds4_s0/meta.json",
+        "meta_sha256": "350a9e8f6d6ba0f5ad94d2a970d8195b6e0268327f2a14f7d6e8d7798a81ec76",
+        "test_preds_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w8_h1_L2_attn_ds4_s0/test_preds.npz",
+        "test_preds_sha256": "27a41d1acf3649c9d9f01356be0105f0b6e10cc41dff01b6a2904c3d550253eb",
+        "testset_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/testset_ds4.npz",
+        "testset_sha256": "b5f24569272b46209c32a0091da0a0990bcfe3ad0ec252fc08a88ca47716fe86"
+      }
+    },
+    {
+      "config": "w8_h1_L2_attn_ds4",
+      "seed": 1,
+      "family": "micro",
+      "identity_dimension": 4,
+      "n_episodes": 16000,
+      "model_mean_nll": 0.47501897229773826,
+      "exact_query_only_mean_nll": 0.4855487169676055,
+      "exact_bayes_mean_nll": 0.30056682544626245,
+      "model_minus_exact_query_only_nll": {
+        "mean": -0.010529744669867242,
+        "sample_se": 0.002821758079659953,
+        "normal95": [
+          -0.016060288879085654,
+          -0.0049992004606488295
+        ],
+        "z": -3.7316255939049783,
+        "mean_negative": true,
+        "normal95_entirely_negative": true
+      },
+      "plateau": {
+        "entry_step": 9000,
+        "confirmation_step": 18000,
+        "stretches": [
+          [
+            9000,
+            50000
+          ]
+        ]
+      },
+      "historical_weak_escape": null,
+      "sustained_escape": {
+        "0.1": null,
+        "0.12": null,
+        "0.05": null
+      },
+      "files": {
+        "meta_json": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w8_h1_L2_attn_ds4_s1/meta.json",
+        "meta_sha256": "97066678c6cb7e6487d3fd39b4ce7bd0c99922dc8c6916edf2cd6562e8fec3e2",
+        "test_preds_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w8_h1_L2_attn_ds4_s1/test_preds.npz",
+        "test_preds_sha256": "d99da9c2320668aba3af5573e37bf13b03597c47162cbad638e3f34e9b987c54",
+        "testset_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/testset_ds4.npz",
+        "testset_sha256": "b5f24569272b46209c32a0091da0a0990bcfe3ad0ec252fc08a88ca47716fe86"
+      }
+    },
+    {
+      "config": "w8_h1_L2_attn_ds4",
+      "seed": 2,
+      "family": "micro",
+      "identity_dimension": 4,
+      "n_episodes": 16000,
+      "model_mean_nll": 0.47984992260352427,
+      "exact_query_only_mean_nll": 0.4855487169676055,
+      "exact_bayes_mean_nll": 0.30056682544626245,
+      "model_minus_exact_query_only_nll": {
+        "mean": -0.005698794364081238,
+        "sample_se": 0.002864728700452134,
+        "normal95": [
+          -0.011313559442445654,
+          -8.402928571682282e-05
+        ],
+        "z": -1.989296355770726,
+        "mean_negative": true,
+        "normal95_entirely_negative": true
+      },
+      "plateau": {
+        "entry_step": 18000,
+        "confirmation_step": 27000,
+        "stretches": [
+          [
+            18000,
+            31000
+          ],
+          [
+            33000,
+            50000
+          ]
+        ]
+      },
+      "historical_weak_escape": null,
+      "sustained_escape": {
+        "0.1": null,
+        "0.12": null,
+        "0.05": null
+      },
+      "files": {
+        "meta_json": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w8_h1_L2_attn_ds4_s2/meta.json",
+        "meta_sha256": "94c8dae0c457612dc664671d1cd69f7b8bbdfd5debe12886bb267eed42dc757d",
+        "test_preds_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w8_h1_L2_attn_ds4_s2/test_preds.npz",
+        "test_preds_sha256": "22b7671d7f2c0aaf530e4bc134e3340df8bbe566eada751fff96cebf108c8083",
+        "testset_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/testset_ds4.npz",
+        "testset_sha256": "b5f24569272b46209c32a0091da0a0990bcfe3ad0ec252fc08a88ca47716fe86"
+      }
+    },
+    {
+      "config": "w8_h1_L2_attn_ds4",
+      "seed": 3,
+      "family": "micro",
+      "identity_dimension": 4,
+      "n_episodes": 16000,
+      "model_mean_nll": 0.47764415951949557,
+      "exact_query_only_mean_nll": 0.4855487169676055,
+      "exact_bayes_mean_nll": 0.30056682544626245,
+      "model_minus_exact_query_only_nll": {
+        "mean": -0.007904557448109896,
+        "sample_se": 0.002745693501584047,
+        "normal95": [
+          -0.013286017823800298,
+          -0.002523097072419494
+        ],
+        "z": -2.8788928711633672,
+        "mean_negative": true,
+        "normal95_entirely_negative": true
+      },
+      "plateau": {
+        "entry_step": 27000,
+        "confirmation_step": 36000,
+        "stretches": [
+          [
+            27000,
+            50000
+          ]
+        ]
+      },
+      "historical_weak_escape": null,
+      "sustained_escape": {
+        "0.1": null,
+        "0.12": null,
+        "0.05": null
+      },
+      "files": {
+        "meta_json": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w8_h1_L2_attn_ds4_s3/meta.json",
+        "meta_sha256": "c1aae9bba006fb553bbde7e87558900dba21d8fc36113cc40212aa3d58776f3f",
+        "test_preds_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w8_h1_L2_attn_ds4_s3/test_preds.npz",
+        "test_preds_sha256": "e338ce94977c2acc36a5716cb4eb896c429148dd60e954cd09cf2a3c25529184",
+        "testset_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/testset_ds4.npz",
+        "testset_sha256": "b5f24569272b46209c32a0091da0a0990bcfe3ad0ec252fc08a88ca47716fe86"
+      }
+    },
+    {
+      "config": "w8_h1_L2_attn_ds4",
+      "seed": 4,
+      "family": "micro",
+      "identity_dimension": 4,
+      "n_episodes": 16000,
+      "model_mean_nll": 0.47966438366586345,
+      "exact_query_only_mean_nll": 0.4855487169676055,
+      "exact_bayes_mean_nll": 0.30056682544626245,
+      "model_minus_exact_query_only_nll": {
+        "mean": -0.005884333301742074,
+        "sample_se": 0.0028817777709370064,
+        "normal95": [
+          -0.011532513944226726,
+          -0.00023615265925742372
+        ],
+        "z": -2.041910851380046,
+        "mean_negative": true,
+        "normal95_entirely_negative": true
+      },
+      "plateau": {
+        "entry_step": 40000,
+        "confirmation_step": 49000,
+        "stretches": [
+          [
+            40000,
+            64000
+          ],
+          [
+            66000,
+            90000
+          ]
+        ]
+      },
+      "historical_weak_escape": null,
+      "sustained_escape": {
+        "0.1": null,
+        "0.12": null,
+        "0.05": null
+      },
+      "files": {
+        "meta_json": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w8_h1_L2_attn_ds4_s4/meta.json",
+        "meta_sha256": "d34a4eb8afee01cb4a19ee8ba59e8e753dc3857493f5875d2a4271f85cd6a61a",
+        "test_preds_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w8_h1_L2_attn_ds4_s4/test_preds.npz",
+        "test_preds_sha256": "cc99f979c00c06478ee25bf37b8213eeafb71da6c165384161729e6bae6179e8",
+        "testset_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/testset_ds4.npz",
+        "testset_sha256": "b5f24569272b46209c32a0091da0a0990bcfe3ad0ec252fc08a88ca47716fe86"
+      }
+    },
+    {
+      "config": "w8_h1_L2_ds4",
+      "seed": 0,
+      "family": "micro",
+      "identity_dimension": 4,
+      "n_episodes": 16000,
+      "model_mean_nll": 0.4698118364820681,
+      "exact_query_only_mean_nll": 0.4855487169676055,
+      "exact_bayes_mean_nll": 0.30056682544626245,
+      "model_minus_exact_query_only_nll": {
+        "mean": -0.015736880485537407,
+        "sample_se": 0.0027410100609027576,
+        "normal95": [
+          -0.021109161486168752,
+          -0.010364599484906062
+        ],
+        "z": -5.7412706031273855,
+        "mean_negative": true,
+        "normal95_entirely_negative": true
+      },
+      "plateau": {
+        "entry_step": 18000,
+        "confirmation_step": 27000,
+        "stretches": [
+          [
+            18000,
+            50000
+          ]
+        ]
+      },
+      "historical_weak_escape": null,
+      "sustained_escape": {
+        "0.1": null,
+        "0.12": null,
+        "0.05": null
+      },
+      "files": {
+        "meta_json": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w8_h1_L2_ds4_s0/meta.json",
+        "meta_sha256": "7467da145b5bdca3dc70e025fd2ca70aa77785cd803b4a12363ed02d9219d83b",
+        "test_preds_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w8_h1_L2_ds4_s0/test_preds.npz",
+        "test_preds_sha256": "5960d94440e2cac5ad4560d97bee0961109a7dffee723186b24b7500611827fd",
+        "testset_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/testset_ds4.npz",
+        "testset_sha256": "b5f24569272b46209c32a0091da0a0990bcfe3ad0ec252fc08a88ca47716fe86"
+      }
+    },
+    {
+      "config": "w8_h1_L2_ds4",
+      "seed": 1,
+      "family": "micro",
+      "identity_dimension": 4,
+      "n_episodes": 16000,
+      "model_mean_nll": 0.4687880006820972,
+      "exact_query_only_mean_nll": 0.4855487169676055,
+      "exact_bayes_mean_nll": 0.30056682544626245,
+      "model_minus_exact_query_only_nll": {
+        "mean": -0.016760716285508296,
+        "sample_se": 0.002789847399477371,
+        "normal95": [
+          -0.022228716710846672,
+          -0.01129271586016992
+        ],
+        "z": -6.007753789202995,
+        "mean_negative": true,
+        "normal95_entirely_negative": true
+      },
+      "plateau": {
+        "entry_step": 4000,
+        "confirmation_step": 13000,
+        "stretches": [
+          [
+            4000,
+            50000
+          ]
+        ]
+      },
+      "historical_weak_escape": null,
+      "sustained_escape": {
+        "0.1": null,
+        "0.12": null,
+        "0.05": null
+      },
+      "files": {
+        "meta_json": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w8_h1_L2_ds4_s1/meta.json",
+        "meta_sha256": "fe027198af387ac0452a14b538693d182a3474046bcbf675e688d01eec1c3cf6",
+        "test_preds_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w8_h1_L2_ds4_s1/test_preds.npz",
+        "test_preds_sha256": "322abefd467a616ae6124ab6357c98c9f94f8a1d7a951373896293feeef65467",
+        "testset_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/testset_ds4.npz",
+        "testset_sha256": "b5f24569272b46209c32a0091da0a0990bcfe3ad0ec252fc08a88ca47716fe86"
+      }
+    },
+    {
+      "config": "w8_h1_L2_ds4",
+      "seed": 2,
+      "family": "micro",
+      "identity_dimension": 4,
+      "n_episodes": 16000,
+      "model_mean_nll": 0.4667467948434148,
+      "exact_query_only_mean_nll": 0.4855487169676055,
+      "exact_bayes_mean_nll": 0.30056682544626245,
+      "model_minus_exact_query_only_nll": {
+        "mean": -0.018801922124190663,
+        "sample_se": 0.0028299326466234747,
+        "normal95": [
+          -0.02434848819024679,
+          -0.013255356058134538
+        ],
+        "z": -6.6439468609347,
+        "mean_negative": true,
+        "normal95_entirely_negative": true
+      },
+      "plateau": {
+        "entry_step": 5000,
+        "confirmation_step": 14000,
+        "stretches": [
+          [
+            5000,
+            50000
+          ]
+        ]
+      },
+      "historical_weak_escape": null,
+      "sustained_escape": {
+        "0.1": null,
+        "0.12": null,
+        "0.05": null
+      },
+      "files": {
+        "meta_json": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w8_h1_L2_ds4_s2/meta.json",
+        "meta_sha256": "31bf663d4d77e7fce287b27b2b4c3647aa12371e83a8572710f60d46a4f1ce9c",
+        "test_preds_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w8_h1_L2_ds4_s2/test_preds.npz",
+        "test_preds_sha256": "b5bc2c6b2913ced1cf10fb664748c79a565ec3bf008ece0d4b4f6c02e2dda4a4",
+        "testset_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/testset_ds4.npz",
+        "testset_sha256": "b5f24569272b46209c32a0091da0a0990bcfe3ad0ec252fc08a88ca47716fe86"
+      }
+    },
+    {
+      "config": "w8_h1_L2_ds4",
+      "seed": 3,
+      "family": "micro",
+      "identity_dimension": 4,
+      "n_episodes": 16000,
+      "model_mean_nll": 0.46580149958278194,
+      "exact_query_only_mean_nll": 0.4855487169676055,
+      "exact_bayes_mean_nll": 0.30056682544626245,
+      "model_minus_exact_query_only_nll": {
+        "mean": -0.019747217384823573,
+        "sample_se": 0.00290423308494533,
+        "normal95": [
+          -0.025439409634026074,
+          -0.014055025135621072
+        ],
+        "z": -6.799460238638284,
+        "mean_negative": true,
+        "normal95_entirely_negative": true
+      },
+      "plateau": {
+        "entry_step": 14000,
+        "confirmation_step": 23000,
+        "stretches": [
+          [
+            14000,
+            90000
+          ]
+        ]
+      },
+      "historical_weak_escape": null,
+      "sustained_escape": {
+        "0.1": null,
+        "0.12": null,
+        "0.05": null
+      },
+      "files": {
+        "meta_json": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w8_h1_L2_ds4_s3/meta.json",
+        "meta_sha256": "e0581585083193178c35e9110f8fa54ad0b733b3da58ee251362bd7754dcae7c",
+        "test_preds_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w8_h1_L2_ds4_s3/test_preds.npz",
+        "test_preds_sha256": "1d7e2db92da05d4ebfc8ce784ee0f841a89ae38e3e81a776679733edd10523ea",
+        "testset_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/testset_ds4.npz",
+        "testset_sha256": "b5f24569272b46209c32a0091da0a0990bcfe3ad0ec252fc08a88ca47716fe86"
+      }
+    },
+    {
+      "config": "w8_h1_L2_ds4",
+      "seed": 4,
+      "family": "micro",
+      "identity_dimension": 4,
+      "n_episodes": 16000,
+      "model_mean_nll": 0.46309142007600135,
+      "exact_query_only_mean_nll": 0.4855487169676055,
+      "exact_bayes_mean_nll": 0.30056682544626245,
+      "model_minus_exact_query_only_nll": {
+        "mean": -0.02245729689160418,
+        "sample_se": 0.002804256210906043,
+        "normal95": [
+          -0.027953538068402783,
+          -0.01696105571480558
+        ],
+        "z": -8.008289971602961,
+        "mean_negative": true,
+        "normal95_entirely_negative": true
+      },
+      "plateau": {
+        "entry_step": 6000,
+        "confirmation_step": 15000,
+        "stretches": [
+          [
+            6000,
+            90000
+          ]
+        ]
+      },
+      "historical_weak_escape": null,
+      "sustained_escape": {
+        "0.1": null,
+        "0.12": null,
+        "0.05": null
+      },
+      "files": {
+        "meta_json": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w8_h1_L2_ds4_s4/meta.json",
+        "meta_sha256": "1815357d77f647e6d810a18873672c92b30592fa5247179e8135d75ec4f74ab5",
+        "test_preds_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/w8_h1_L2_ds4_s4/test_preds.npz",
+        "test_preds_sha256": "d2a1519a89340b7e1a1bed3e85d1deec315f7b1e25baba5f4971f964bf41005a",
+        "testset_npz": "/home/agent/workspaces/mats/work/tiny-pfn/runs/testset_ds4.npz",
+        "testset_sha256": "b5f24569272b46209c32a0091da0a0990bcfe3ad0ec252fc08a88ca47716fe86"
+      }
+    }
+  ]
+}

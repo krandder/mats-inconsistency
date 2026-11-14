@@ -1,0 +1,124 @@
+creating soup-gpu-sc-runa2-1029163954-27422 (g2-standard-8 + nvidia-l4, STANDARD) in us-central1-a ...
+WARNING: Some requests generated warnings:
+ - Disk size: '100 GB' is larger than image size: '50 GB'. You might need to resize the root repartition manually if the operating system does not support automatic resizing. See https://cloud.google.com/compute/docs/disks/add-persistent-disk#resize_pd for details.
+
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-8 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-central1-a zone. Alternatively, you can try your request
+      again with a different VM hardware configuration or at a later time. For more
+      information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-8
+      zone: us-central1-a
+      zonesAvailable: ''
+    reason: resource_availability
+message: The zone 'projects/GCP_PROJECT/zones/us-central1-a' does not have enough
+  resources available to fulfill the request.  'NULL:0/NULL:0/NULL:0 (state:STOCKOUT,
+  sub-state:STOCKOUT, resource type:compute)'.
+
+creating soup-gpu-sc-runa2-1029163954-27422 (g2-standard-8 + nvidia-l4, STANDARD) in us-central1-b ...
+NAME                                ZONE           MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP    STATUS
+soup-gpu-sc-runa2-1029163954-27422  us-central1-b  g2-standard-8               [ip-removed]   [ip-removed]  RUNNING
+waiting for soup-gpu-sc-runa2-1029163954-27422 ([ip-removed]) startup script (up to 25 min) ...
+gpu=NVIDIA L4, 580.178.04
+nvcc=Build cuda_12.9.r12.9/compiler.35813241_0
+clang=Ubuntu clang version 18.1.3 (1ubuntu1)
+bun=1.3.14
+bend=v2.0.29@c8691aa
+READY: soup-gpu-sc-runa2-1029163954-27422 us-central1-b [ip-removed]
+rsync /tmp/l4runs/sc-runa2 -> soup-gpu-sc-runa2-1029163954-27422:/root/soup
+W: https://us-apt.pkg.dev/projects/gce-ai-infra/dists/gpudirect-gib-apt/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
+W: http://packages.cloud.google.com/apt/dists/apt-transport-artifact-registry-stable/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
+
+Running kernel seems to be up-to-date.
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
++ RID=sc-runa2
++ PY=/root/venv/bin/python
++ O=/root/runs/sc-runa2
++ nvidia-smi -L
+GPU 0: NVIDIA L4 (UUID: GPU-7d6d85d4-3256-2110-9359-2120a51b62d0)
++ for n in 64 128 256
++ /root/venv/bin/python gpu/run_main.py /root/runs/sc-runa2 arc 64 0.01 65 --e3 4,8,16,24 --save-sae 8,16,24 --long-control 8,24
+== arc_n64_s0.01_seed65 dev=cuda layers=[1, 2, 4, 8, 16, 24, 31] fmults=[1, 2, 4, 8, 16] KS=[4, 8, 16, 32] KD=[1, 2, 4, 8, 16, 32] e3=[4, 8, 16, 24] s=[0.010005, 0.009821, 0.010077, 0.012228, 0.019091, 0.013328, 0.011913]
+sampled train/test 262144+32768 and E2 262144 in 0s
+L1 F=64 (13s): k4 nu=3.1e+03 rf=3.05e+03 dead=0.00 | k8 nu=1.79e+03 rf=1.74e+03 dead=0.03 | k16 nu=581 rf=568 dead=0.02 | k32 nu=13.7 rf=13.3 dead=0.00
+L1 F=128 (12s): k4 nu=3.09e+03 rf=3e+03 dead=0.00 | k8 nu=1.75e+03 rf=1.7e+03 dead=0.24 | k16 nu=536 rf=521 dead=0.30 | k32 nu=36 rf=33.4 dead=0.09
+L1 F=256 (12s): k4 nu=3.04e+03 rf=2.94e+03 dead=0.00 | k8 nu=1.77e+03 rf=1.71e+03 dead=0.39 | k16 nu=536 rf=521 dead=0.35 | k32 nu=28.7 rf=26.6 dead=0.11
+L1 F=512 (12s): k4 nu=2.88e+03 rf=2.79e+03 dead=0.00 | k8 nu=2.04e+03 rf=1.88e+03 dead=0.00 | k16 nu=544 rf=526 dead=0.36 | k32 nu=55.3 rf=49.8 dead=0.22
+L1 F=1024 (18s): k4 nu=2.74e+03 rf=2.64e+03 dead=0.00 | k8 nu=1.96e+03 rf=1.8e+03 dead=0.00 | k16 nu=576 rf=556 dead=0.28 | k32 nu=107 rf=94.9 dead=0.21
+E2 L1: z' median |g3|=0.107 median g4=0.15; TRUE_indep:4.60e-06 G:1.04e-04 EW3_oracle:1.04e-05 EW4_oracle:2.74e-07
+E2 L1 done (73s): TRUE_indep:c3=1.00,c4=0.99,m=4.6e-06 G:c3=0.00,c4=0.00,m=1.0e-04 EW3_oracle:c3=1.00,c4=0.00,m=1.0e-05 EW4_oracle:c3=1.00,c4=1.00,m=2.7e-07 DENSE1:c3=0.07,c4=0.02,m=1.0e-04 DENSEQ1:c3=0.11,c4=0.05,m=1.0e-04 DENSE2:c3=0.10,c4=0.07,m=9.6e-05 DENSEQ2:c3=0.27,c4=0.21,m=8.1e-05 DENSE4:c3=0.23,c4=0.15,m=9.3e-05 DENSEQ4:c3=0.50,c4=0.51,m=6.0e-05 DENSE8:c3=0.37,c4=0.33,m=7.6e-05 DENSEQ8:c3=0.72,c4=0.81,m=3.5e-05 DENSE16:c3=0.57,c4=0.60,m=5.5e-05 DENSEQ16:c3=0.95,c4=0.89,m=6.6e-06 DENSE32:c3=0.77,c4=0.83,m=2.5e-05 SPARSE_F64_k4:c3=0.92,c4=0.85,m=1.3e-05 SPARSE_F64_k8:c3=0.91,c4=0.93,m=1.2e-05 SPARSE_F64_k16:c3=0.99,c4=0.98,m=1.3e-06 SPARSE_F64_k32:c3=1.00,c4=1.00,m=3.8e-08 SPARSE_F128_k4:c3=0.92,c4=0.84,m=1.3e-05 SPARSE_F128_k8:c3=0.97,c4=0.96,m=5.1e-06 SPARSE_F128_k16:c3=0.99,c4=0.99,m=1.6e-06 SPARSE_F128_k32:c3=1.00,c4=1.00,m=6.1e-08 SPARSE_F256_k4:c3=0.90,c4=0.88,m=1.5e-05 SPARSE_F256_k8:c3=0.97,c4=0.96,m=4.7e-06 SPARSE_F256_k16:c3=0.99,c4=0.99,m=1.0e-06 SPARSE_F256_k32:c3=1.00,c4=1.00,m=5.8e-08 SPARSE_F512_k4:c3=0.90,c4=0.87,m=1.5e-05 SPARSE_F512_k8:c3=0.95,c4=0.96,m=8.4e-06 SPARSE_F512_k16:c3=0.99,c4=0.99,m=1.6e-06 SPARSE_F512_k32:c3=1.00,c4=1.00,m=1.5e-07 SPARSE_F1024_k4:c3=0.91,c4=0.92,m=1.2e-05 SPARSE_F1024_k8:c3=0.95,c4=0.97,m=7.4e-06 SPARSE_F1024_k16:c3=0.95,c4=0.95,m=5.2e-06 SPARSE_F1024_k32:c3=1.00,c4=0.99,m=5.2e-07
+L2 F=64 (9s): k4 nu=2.15e+03 rf=2.09e+03 dead=0.00 | k8 nu=1.32e+03 rf=1.26e+03 dead=0.00 | k16 nu=497 rf=471 dead=0.00 | k32 nu=57.9 rf=51.3 dead=0.00
+L2 F=128 (11s): k4 nu=2e+03 rf=1.92e+03 dead=0.00 | k8 nu=1.25e+03 rf=1.16e+03 dead=0.00 | k16 nu=457 rf=425 dead=0.10 | k32 nu=36.9 rf=32.9 dead=0.02
+L2 F=256 (11s): k4 nu=1.87e+03 rf=1.79e+03 dead=0.00 | k8 nu=1.21e+03 rf=1.1e+03 dead=0.00 | k16 nu=453 rf=411 dead=0.13 | k32 nu=45 rf=40.3 dead=0.04
+L2 F=512 (12s): k4 nu=1.75e+03 rf=1.67e+03 dead=0.00 | k8 nu=1.18e+03 rf=1.05e+03 dead=0.00 | k16 nu=505 rf=435 dead=0.02 | k32 nu=54.5 rf=48.7 dead=0.11
+L2 F=1024 (18s): k4 nu=1.66e+03 rf=1.58e+03 dead=0.00 | k8 nu=1.14e+03 rf=1.01e+03 dead=0.00 | k16 nu=609 rf=476 dead=0.00 | k32 nu=58.9 rf=51.6 dead=0.20
+E2 L2: z' median |g3|=0.18 median g4=0.297; TRUE_indep:7.92e-06 G:2.23e-04 EW3_oracle:2.43e-05 EW4_oracle:1.70e-06
+E2 L2 done (139s): TRUE_indep:c3=1.00,c4=1.00,m=7.9e-06 G:c3=0.00,c4=0.00,m=2.2e-04 EW3_oracle:c3=1.00,c4=0.00,m=2.4e-05 EW4_oracle:c3=1.00,c4=1.00,m=1.7e-06 DENSE1:c3=0.20,c4=0.04,m=1.9e-04 DENSEQ1:c3=0.27,c4=0.13,m=1.9e-04 DENSE2:c3=0.49,c4=0.23,m=1.4e-04 DENSEQ2:c3=0.49,c4=0.27,m=1.4e-04 DENSE4:c3=0.62,c4=0.39,m=1.2e-04 DENSEQ4:c3=0.75,c4=0.59,m=9.3e-05 DENSE8:c3=0.71,c4=0.50,m=8.5e-05 DENSEQ8:c3=0.85,c4=0.79,m=5.0e-05 DENSE16:c3=0.86,c4=0.75,m=4.2e-05 DENSEQ16:c3=0.98,c4=0.96,m=8.5e-06 DENSE32:c3=0.97,c4=0.93,m=9.4e-06 SPARSE_F64_k4:c3=0.95,c4=0.92,m=1.7e-05 SPARSE_F64_k8:c3=0.97,c4=0.97,m=1.1e-05 SPARSE_F64_k16:c3=0.99,c4=0.99,m=3.4e-06 SPARSE_F64_k32:c3=1.00,c4=1.00,m=3.0e-07 SPARSE_F128_k4:c3=0.95,c4=0.94,m=1.5e-05 SPARSE_F128_k8:c3=0.98,c4=0.98,m=8.2e-06 SPARSE_F128_k16:c3=0.99,c4=0.99,m=3.0e-06 SPARSE_F128_k32:c3=1.00,c4=1.00,m=4.9e-08 SPARSE_F256_k4:c3=0.96,c4=0.94,m=1.4e-05 SPARSE_F256_k8:c3=0.99,c4=0.96,m=7.7e-06 SPARSE_F256_k16:c3=0.99,c4=0.99,m=2.2e-06 SPARSE_F256_k32:c3=1.00,c4=1.00,m=9.1e-08 SPARSE_F512_k4:c3=0.96,c4=0.93,m=1.3e-05 SPARSE_F512_k8:c3=0.98,c4=0.97,m=6.4e-06 SPARSE_F512_k16:c3=0.99,c4=0.98,m=3.5e-06 SPARSE_F512_k32:c3=1.00,c4=1.00,m=1.8e-07 SPARSE_F1024_k4:c3=0.96,c4=0.96,m=1.3e-05 SPARSE_F1024_k8:c3=0.98,c4=0.98,m=7.9e-06 SPARSE_F1024_k16:c3=0.99,c4=0.96,m=3.6e-06 SPARSE_F1024_k32:c3=1.00,c4=1.00,m=5.9e-07
+L4 F=64 (10s): k4 nu=861 rf=814 dead=0.00 | k8 nu=467 rf=440 dead=0.00 | k16 nu=157 rf=149 dead=0.02 | k32 nu=24 rf=22.4 dead=0.00
+L4 F=128 (11s): k4 nu=789 rf=731 dead=0.00 | k8 nu=438 rf=393 dead=0.00 | k16 nu=139 rf=130 dead=0.06 | k32 nu=13 rf=11.8 dead=0.00
+L4 F=256 (13s): k4 nu=724 rf=665 dead=0.01 | k8 nu=420 rf=367 dead=0.00 | k16 nu=139 rf=124 dead=0.07 | k32 nu=10.6 rf=9.44 dead=0.07
+L4 F=512 (14s): k4 nu=668 rf=615 dead=0.02 | k8 nu=410 rf=347 dead=0.00 | k16 nu=156 rf=130 dead=0.03 | k32 nu=11.7 rf=10.3 dead=0.15
+L4 F=1024 (22s): k4 nu=629 rf=578 dead=0.15 | k8 nu=401 rf=331 dead=0.01 | k16 nu=191 rf=140 dead=0.04 | k32 nu=14.9 rf=12.9 dead=0.45
+E2 L4: z' median |g3|=0.307 median g4=0.411; TRUE_indep:8.60e-06 G:2.07e-04 EW3_oracle:2.21e-05 EW4_oracle:2.31e-06
+E2 L4 done (214s): TRUE_indep:c3=1.00,c4=1.00,m=8.6e-06 G:c3=0.00,c4=0.00,m=2.1e-04 EW3_oracle:c3=1.00,c4=0.00,m=2.2e-05 EW4_oracle:c3=1.00,c4=1.00,m=2.3e-06 DENSE1:c3=0.23,c4=0.10,m=1.6e-04 DENSEQ1:c3=0.24,c4=0.14,m=1.8e-04 DENSE2:c3=0.48,c4=0.28,m=1.4e-04 DENSEQ2:c3=0.57,c4=0.44,m=1.2e-04 DENSE4:c3=0.80,c4=0.60,m=8.0e-05 DENSEQ4:c3=0.89,c4=0.83,m=6.0e-05 DENSE8:c3=0.89,c4=0.71,m=4.4e-05 DENSEQ8:c3=0.97,c4=0.93,m=1.8e-05 DENSE16:c3=0.98,c4=0.93,m=1.4e-05 DENSEQ16:c3=1.00,c4=0.99,m=2.2e-06 DENSE32:c3=0.99,c4=0.99,m=3.3e-06 SPARSE_F64_k4:c3=0.99,c4=0.93,m=1.2e-05 SPARSE_F64_k8:c3=0.98,c4=0.97,m=7.6e-06 SPARSE_F64_k16:c3=1.00,c4=0.99,m=1.8e-06 SPARSE_F64_k32:c3=1.00,c4=1.00,m=2.2e-07 SPARSE_F128_k4:c3=0.99,c4=0.97,m=6.8e-06 SPARSE_F128_k8:c3=0.99,c4=0.98,m=5.0e-06 SPARSE_F128_k16:c3=1.00,c4=0.99,m=1.8e-06 SPARSE_F128_k32:c3=1.00,c4=1.00,m=4.8e-08 SPARSE_F256_k4:c3=0.99,c4=0.98,m=6.4e-06 SPARSE_F256_k8:c3=0.99,c4=0.95,m=4.6e-06 SPARSE_F256_k16:c3=1.00,c4=0.99,m=1.2e-06 SPARSE_F256_k32:c3=1.00,c4=1.00,m=3.3e-08 SPARSE_F512_k4:c3=0.99,c4=0.97,m=5.7e-06 SPARSE_F512_k8:c3=1.00,c4=0.93,m=4.4e-06 SPARSE_F512_k16:c3=1.00,c4=0.99,m=1.2e-06 SPARSE_F512_k32:c3=1.00,c4=1.00,m=2.5e-08 SPARSE_F1024_k4:c3=0.99,c4=0.96,m=5.6e-06 SPARSE_F1024_k8:c3=1.00,c4=0.95,m=3.9e-06 SPARSE_F1024_k16:c3=1.00,c4=0.99,m=1.8e-06 SPARSE_F1024_k32:c3=1.00,c4=1.00,m=3.7e-08
+L8 F=64 (10s): k4 nu=167 rf=158 dead=0.00 | k8 nu=76.9 rf=72.2 dead=0.03 | k16 nu=22.2 rf=21.1 dead=0.00 | k32 nu=4.15 rf=3.79 dead=0.05
+L8 F=128 (13s): k4 nu=170 rf=154 dead=0.02 | k8 nu=76.6 rf=64.5 dead=0.03 | k16 nu=17.9 rf=16.9 dead=0.02 | k32 nu=1.5 rf=1.22 dead=0.05
+L8 F=256 (13s): k4 nu=143 rf=129 dead=0.10 | k8 nu=70.5 rf=56.4 dead=0.04 | k16 nu=17 rf=15.9 dead=0.10 | k32 nu=1.73 rf=1.4 dead=0.48
+L8 F=256 2x epochs (26s): k4 nu=140 rf=127 | k8 nu=68.7 rf=54.9 | k16 nu=16.4 rf=15.2 | k32 nu=0.877 rf=0.777
+L8 F=512 (14s): k4 nu=142 rf=127 dead=0.47 | k8 nu=67.8 rf=52.9 dead=0.12 | k16 nu=19.4 rf=16.7 dead=0.11 | k32 nu=1.93 rf=1.55 dead=0.65
+L8 F=1024 (23s): k4 nu=147 rf=127 dead=0.63 | k8 nu=67.8 rf=52.4 dead=0.49 | k16 nu=22.3 rf=17.6 dead=0.21 | k32 nu=2.09 rf=1.71 dead=0.67
+E2 L8: z' median |g3|=0.581 median g4=0.645; TRUE_indep:1.17e-05 G:1.10e-04 EW3_oracle:2.63e-05 EW4_oracle:2.08e-06
+E2 L8 done (319s): TRUE_indep:c3=1.00,c4=1.00,m=1.2e-05 G:c3=0.00,c4=0.00,m=1.1e-04 EW3_oracle:c3=1.00,c4=0.00,m=2.6e-05 EW4_oracle:c3=1.00,c4=1.00,m=2.1e-06 DENSE1:c3=0.89,c4=0.75,m=8.7e-05 DENSEQ1:c3=0.90,c4=0.86,m=8.5e-05 DENSE2:c3=0.92,c4=0.79,m=7.2e-05 DENSEQ2:c3=0.95,c4=0.92,m=7.0e-05 DENSE4:c3=0.97,c4=0.94,m=3.4e-05 DENSEQ4:c3=0.99,c4=0.99,m=1.6e-05 DENSE8:c3=0.99,c4=0.97,m=1.8e-05 DENSEQ8:c3=1.00,c4=0.99,m=4.6e-06 DENSE16:c3=1.00,c4=0.99,m=4.1e-06 DENSEQ16:c3=1.00,c4=1.00,m=4.0e-07 DENSE32:c3=1.00,c4=1.00,m=7.1e-07 SPARSE_F64_k4:c3=1.00,c4=0.99,m=4.7e-06 SPARSE_F64_k8:c3=1.00,c4=1.00,m=3.4e-06 SPARSE_F64_k16:c3=1.00,c4=1.00,m=3.5e-07 SPARSE_F64_k32:c3=1.00,c4=1.00,m=4.3e-08 SPARSE_F128_k4:c3=1.00,c4=0.96,m=5.7e-06 SPARSE_F128_k8:c3=1.00,c4=1.00,m=1.9e-06 SPARSE_F128_k16:c3=1.00,c4=1.00,m=3.8e-07 SPARSE_F128_k32:c3=1.00,c4=1.00,m=8.3e-09 SPARSE_F256_k4:c3=1.00,c4=1.00,m=3.6e-06 SPARSE_F256_k8:c3=1.00,c4=1.00,m=1.3e-06 SPARSE_F256_k16:c3=1.00,c4=1.00,m=1.9e-07 SPARSE_F256_k32:c3=1.00,c4=1.00,m=1.5e-08 SPARSE_F512_k4:c3=1.00,c4=1.00,m=3.5e-06 SPARSE_F512_k8:c3=1.00,c4=1.00,m=1.2e-06 SPARSE_F512_k16:c3=1.00,c4=1.00,m=2.4e-07 SPARSE_F512_k32:c3=1.00,c4=1.00,m=1.3e-08 SPARSE_F1024_k4:c3=1.00,c4=0.94,m=3.9e-06 SPARSE_F1024_k8:c3=1.00,c4=1.00,m=1.0e-06 SPARSE_F1024_k16:c3=1.00,c4=1.00,m=3.8e-07 SPARSE_F1024_k32:c3=1.00,c4=1.00,m=1.2e-08
+L16 F=64 (12s): k4 nu=28.5 rf=26 dead=0.03 | k8 nu=11.5 rf=10.7 dead=0.06 | k16 nu=3.57 rf=3.26 dead=0.00 | k32 nu=0.996 rf=0.631 dead=0.02
+L16 F=128 (13s): k4 nu=25.3 rf=23 dead=0.19 | k8 nu=12.1 rf=9.57 dead=0.02 | k16 nu=2.62 rf=2.39 dead=0.06 | k32 nu=0.613 rf=0.426 dead=0.02
+L16 F=256 (13s): k4 nu=24.6 rf=22 dead=0.57 | k8 nu=10.7 rf=8.27 dead=0.14 | k16 nu=2.61 rf=2.25 dead=0.11 | k32 nu=0.623 rf=0.408 dead=0.20
+L16 F=512 (15s): k4 nu=24.8 rf=21.8 dead=0.78 | k8 nu=10.3 rf=7.57 dead=0.26 | k16 nu=3.19 rf=2.59 dead=0.18 | k32 nu=0.497 rf=0.351 dead=0.79
+L16 F=1024 (23s): k4 nu=24.8 rf=21.8 dead=0.88 | k8 nu=11.1 rf=8.18 dead=0.74 | k16 nu=4.76 rf=2.93 dead=0.34 | k32 nu=1.17 rf=0.752 dead=0.60
+E2 L16: z' median |g3|=0.633 median g4=0.728; TRUE_indep:4.55e-06 G:9.04e-05 EW3_oracle:1.63e-05 EW4_oracle:2.42e-06
+E2 L16 done (400s): TRUE_indep:c3=1.00,c4=1.00,m=4.6e-06 G:c3=0.00,c4=0.00,m=9.0e-05 EW3_oracle:c3=1.00,c4=0.00,m=1.6e-05 EW4_oracle:c3=1.00,c4=1.00,m=2.4e-06 DENSE1:c3=0.95,c4=0.91,m=7.9e-05 DENSEQ1:c3=0.95,c4=0.91,m=7.7e-05 DENSE2:c3=0.98,c4=0.97,m=4.1e-05 DENSEQ2:c3=0.99,c4=0.98,m=2.4e-05 DENSE4:c3=1.00,c4=0.99,m=1.8e-05 DENSEQ4:c3=1.00,c4=1.00,m=6.3e-06 DENSE8:c3=1.00,c4=1.00,m=8.5e-06 DENSEQ8:c3=1.00,c4=1.00,m=9.9e-07 DENSE16:c3=1.00,c4=1.00,m=7.4e-07 DENSEQ16:c3=1.00,c4=1.00,m=5.6e-08 DENSE32:c3=1.00,c4=1.00,m=2.5e-08 SPARSE_F64_k4:c3=1.00,c4=1.00,m=1.2e-06 SPARSE_F64_k8:c3=1.00,c4=1.00,m=6.8e-07 SPARSE_F64_k16:c3=1.00,c4=1.00,m=1.4e-07 SPARSE_F64_k32:c3=1.00,c4=1.00,m=3.8e-08 SPARSE_F128_k4:c3=1.00,c4=1.00,m=1.3e-06 SPARSE_F128_k8:c3=1.00,c4=1.00,m=5.4e-07 SPARSE_F128_k16:c3=1.00,c4=1.00,m=6.6e-08 SPARSE_F128_k32:c3=1.00,c4=1.00,m=1.0e-08 SPARSE_F256_k4:c3=1.00,c4=1.00,m=9.9e-07 SPARSE_F256_k8:c3=1.00,c4=1.00,m=2.8e-07 SPARSE_F256_k16:c3=1.00,c4=1.00,m=8.9e-08 SPARSE_F256_k32:c3=1.00,c4=1.00,m=1.1e-08 SPARSE_F512_k4:c3=1.00,c4=1.00,m=8.5e-07 SPARSE_F512_k8:c3=1.00,c4=1.00,m=3.1e-07 SPARSE_F512_k16:c3=1.00,c4=1.00,m=7.3e-08 SPARSE_F512_k32:c3=1.00,c4=1.00,m=5.0e-09 SPARSE_F1024_k4:c3=1.00,c4=1.00,m=1.2e-06 SPARSE_F1024_k8:c3=1.00,c4=1.00,m=3.6e-07 SPARSE_F1024_k16:c3=1.00,c4=1.00,m=5.0e-08 SPARSE_F1024_k32:c3=1.00,c4=1.00,m=8.9e-09
+L24 F=64 (13s): k4 nu=14.2 rf=12.8 dead=0.14 | k8 nu=6.1 rf=5.28 dead=0.02 | k16 nu=2.18 rf=1.98 dead=0.00 | k32 nu=0.734 rf=0.443 dead=0.00
+L24 F=128 (13s): k4 nu=12.8 rf=11.1 dead=0.22 | k8 nu=5.83 rf=4.58 dead=0.09 | k16 nu=1.84 rf=1.66 dead=0.06 | k32 nu=0.482 rf=0.33 dead=0.10
+L24 F=256 (13s): k4 nu=12.9 rf=11.3 dead=0.52 | k8 nu=5.39 rf=4.24 dead=0.11 | k16 nu=1.81 rf=1.53 dead=0.17 | k32 nu=0.531 rf=0.348 dead=0.19
+L24 F=256 2x epochs (26s): k4 nu=12.4 rf=10.9 | k8 nu=4.22 rf=3.55 | k16 nu=1.12 rf=0.992 | k32 nu=0.173 rf=0.116
+L24 F=512 (14s): k4 nu=13.2 rf=11.3 dead=0.84 | k8 nu=5.49 rf=4.15 dead=0.18 | k16 nu=2.16 rf=1.72 dead=0.20 | k32 nu=0.718 rf=0.483 dead=0.53
+L24 F=1024 (23s): k4 nu=13.3 rf=11.4 dead=0.92 | k8 nu=5.49 rf=4.12 dead=0.57 | k16 nu=2.66 rf=2 dead=0.31 | k32 nu=0.921 rf=0.569 dead=0.65
+E2 L24: z' median |g3|=0.604 median g4=0.636; TRUE_indep:9.00e-07 G:3.01e-05 EW3_oracle:6.27e-06 EW4_oracle:1.28e-06
+E2 L24 done (507s): TRUE_indep:c3=1.00,c4=0.99,m=9.0e-07 G:c3=0.00,c4=0.00,m=3.0e-05 EW3_oracle:c3=1.00,c4=0.00,m=6.3e-06 EW4_oracle:c3=1.00,c4=1.00,m=1.3e-06 DENSE1:c3=0.99,c4=0.99,m=2.5e-05 DENSEQ1:c3=0.99,c4=0.99,m=2.4e-05 DENSE2:c3=1.00,c4=0.99,m=1.7e-05 DENSEQ2:c3=1.00,c4=1.00,m=1.3e-05 DENSE4:c3=1.00,c4=1.00,m=1.1e-05 DENSEQ4:c3=1.00,c4=1.00,m=3.7e-06 DENSE8:c3=1.00,c4=1.00,m=2.9e-06 DENSEQ8:c3=1.00,c4=1.00,m=1.1e-07 DENSE16:c3=1.00,c4=1.00,m=1.9e-07 DENSEQ16:c3=1.00,c4=1.00,m=1.2e-08 DENSE32:c3=1.00,c4=1.00,m=6.3e-09 SPARSE_F64_k4:c3=1.00,c4=1.00,m=5.7e-07 SPARSE_F64_k8:c3=1.00,c4=1.00,m=2.2e-07 SPARSE_F64_k16:c3=1.00,c4=1.00,m=3.6e-08 SPARSE_F64_k32:c3=1.00,c4=1.00,m=3.9e-09 SPARSE_F128_k4:c3=1.00,c4=1.00,m=4.2e-07 SPARSE_F128_k8:c3=1.00,c4=1.00,m=1.1e-07 SPARSE_F128_k16:c3=1.00,c4=1.00,m=1.4e-08 SPARSE_F128_k32:c3=1.00,c4=1.00,m=3.0e-09 SPARSE_F256_k4:c3=1.00,c4=1.00,m=3.8e-07 SPARSE_F256_k8:c3=1.00,c4=1.00,m=1.5e-07 SPARSE_F256_k16:c3=1.00,c4=1.00,m=2.0e-08 SPARSE_F256_k32:c3=1.00,c4=1.00,m=2.3e-09 SPARSE_F512_k4:c3=1.00,c4=1.00,m=4.2e-07 SPARSE_F512_k8:c3=1.00,c4=1.00,m=1.4e-07 SPARSE_F512_k16:c3=1.00,c4=1.00,m=2.0e-08 SPARSE_F512_k32:c3=1.00,c4=1.00,m=3.2e-09 SPARSE_F1024_k4:c3=1.00,c4=1.00,m=4.7e-07 SPARSE_F1024_k8:c3=1.00,c4=1.00,m=9.4e-08 SPARSE_F1024_k16:c3=1.00,c4=1.00,m=1.9e-08 SPARSE_F1024_k32:c3=1.00,c4=1.00,m=5.3e-09
+L31 F=64 (12s): k4 nu=10.2 rf=9.14 dead=0.12 | k8 nu=4.32 rf=4.16 dead=0.03 | k16 nu=1.69 rf=1.48 dead=0.00 | k32 nu=0.51 rf=0.256 dead=0.02
+L31 F=128 (13s): k4 nu=9.67 rf=8.51 dead=0.15 | k8 nu=4.48 rf=4.08 dead=0.07 | k16 nu=1.62 rf=1.35 dead=0.06 | k32 nu=0.363 rf=0.205 dead=0.10
+L31 F=256 (13s): k4 nu=9.42 rf=8.18 dead=0.20 | k8 nu=4.29 rf=3.61 dead=0.07 | k16 nu=1.49 rf=1.25 dead=0.21 | k32 nu=0.464 rf=0.295 dead=0.26
+L31 F=512 (14s): k4 nu=10.7 rf=8.99 dead=0.82 | k8 nu=4.48 rf=3.62 dead=0.12 | k16 nu=2.05 rf=1.63 dead=0.20 | k32 nu=0.712 rf=0.43 dead=0.48
+L31 F=1024 (23s): k4 nu=11.5 rf=9.63 dead=0.91 | k8 nu=5.03 rf=3.92 dead=0.36 | k16 nu=1.91 rf=1.43 dead=0.38 | k32 nu=0.667 rf=0.375 dead=0.73
+E2 L31: z' median |g3|=0.615 median g4=0.604; TRUE_indep:2.14e-06 G:4.19e-05 EW3_oracle:9.24e-06 EW4_oracle:2.00e-06
+E2 L31 done (589s): TRUE_indep:c3=1.00,c4=1.00,m=2.1e-06 G:c3=0.00,c4=0.00,m=4.2e-05 EW3_oracle:c3=1.00,c4=0.00,m=9.2e-06 EW4_oracle:c3=1.00,c4=1.00,m=2.0e-06 DENSE1:c3=0.99,c4=0.98,m=3.3e-05 DENSEQ1:c3=1.00,c4=0.98,m=2.8e-05 DENSE2:c3=0.99,c4=0.97,m=1.2e-05 DENSEQ2:c3=1.00,c4=0.99,m=2.2e-06 DENSE4:c3=1.00,c4=1.00,m=2.1e-06 DENSEQ4:c3=1.00,c4=1.00,m=3.2e-07 DENSE8:c3=1.00,c4=1.00,m=8.5e-07 DENSEQ8:c3=1.00,c4=1.00,m=3.5e-08 DENSE16:c3=1.00,c4=1.00,m=5.5e-08 DENSEQ16:c3=1.00,c4=1.00,m=6.6e-09 DENSE32:c3=1.00,c4=1.00,m=1.1e-11 SPARSE_F64_k4:c3=1.00,c4=1.00,m=1.8e-07 SPARSE_F64_k8:c3=1.00,c4=1.00,m=7.6e-08 SPARSE_F64_k16:c3=1.00,c4=1.00,m=1.9e-08 SPARSE_F64_k32:c3=1.00,c4=1.00,m=4.3e-09 SPARSE_F128_k4:c3=1.00,c4=1.00,m=1.1e-07 SPARSE_F128_k8:c3=1.00,c4=1.00,m=1.9e-08 SPARSE_F128_k16:c3=1.00,c4=1.00,m=1.5e-08 SPARSE_F128_k32:c3=1.00,c4=1.00,m=1.3e-09 SPARSE_F256_k4:c3=1.00,c4=1.00,m=1.2e-07 SPARSE_F256_k8:c3=1.00,c4=1.00,m=4.8e-08 SPARSE_F256_k16:c3=1.00,c4=1.00,m=4.6e-09 SPARSE_F256_k32:c3=1.00,c4=1.00,m=5.3e-10 SPARSE_F512_k4:c3=1.00,c4=1.00,m=9.4e-08 SPARSE_F512_k8:c3=1.00,c4=1.00,m=2.0e-08 SPARSE_F512_k16:c3=1.00,c4=1.00,m=1.4e-08 SPARSE_F512_k32:c3=1.00,c4=1.00,m=1.4e-09 SPARSE_F1024_k4:c3=1.00,c4=1.00,m=1.6e-07 SPARSE_F1024_k8:c3=1.00,c4=1.00,m=7.7e-08 SPARSE_F1024_k16:c3=1.00,c4=1.00,m=1.0e-08 SPARSE_F1024_k32:c3=1.00,c4=1.00,m=1.7e-09
+truth 16777216 paths in 7s
+E3 cut 4 (4s): TRUE@8:-8.39e-08 G@8:6.18e-04 DENSE1@8:5.12e-04 DENSE2@8:3.61e-04 DENSE4@8:2.00e-04 DENSE8@8:1.22e-04 DENSE16@8:6.59e-05 DENSE32@8:1.76e-05 DENSEQ1@8:4.63e-04 DENSEQ2@8:3.16e-04 DENSEQ4@8:1.37e-04 DENSEQ8@8:7.80e-05 DENSEQ16@8:4.61e-06 SPARSE_F64_k4@8:3.50e-05 SPARSE_F64_k8@8:3.07e-05 SPARSE_F64_k16@8:5.88e-06 SPARSE_F64_k32@8:1.40e-06 SPARSE_F128_k4@8:2.43e-05 SPARSE_F128_k8@8:2.97e-05 SPARSE_F128_k16@8:7.13e-06 SPARSE_F128_k32@8:5.19e-07 SPARSE_F256_k4@8:1.90e-05 SPARSE_F256_k8@8:1.87e-05 SPARSE_F256_k16@8:3.93e-06 SPARSE_F256_k32@8:9.28e-08 SPARSE_F512_k4@8:2.54e-05 SPARSE_F512_k8@8:2.08e-05 SPARSE_F512_k16@8:4.38e-06 SPARSE_F512_k32@8:3.08e-07 SPARSE_F1024_k4@8:1.84e-05 SPARSE_F1024_k8@8:1.25e-05 SPARSE_F1024_k16@8:6.24e-06 SPARSE_F1024_k32@8:1.51e-07
+E3 cut 8 (8s): TRUE@16:-6.36e-07 TRUE@32:-8.45e-07 G@16:4.26e-04 G@32:1.34e-04 DENSE1@16:2.88e-04 DENSE1@32:5.39e-05 DENSE2@16:2.87e-04 DENSE2@32:2.51e-05 DENSE4@16:1.82e-04 DENSE4@32:2.18e-05 DENSE8@16:1.41e-04 DENSE8@32:2.97e-05 DENSE16@16:4.04e-05 DENSE16@32:1.80e-05 DENSE32@16:2.15e-06 DENSE32@32:3.27e-06 DENSEQ1@16:2.72e-04 DENSEQ1@32:5.09e-05 DENSEQ2@16:3.07e-04 DENSEQ2@32:3.67e-05 DENSEQ4@16:8.51e-05 DENSEQ4@32:2.03e-05 DENSEQ8@16:3.76e-05 DENSEQ8@32:9.95e-06 DENSEQ16@16:6.33e-06 DENSEQ16@32:4.80e-06 SPARSE_F64_k4@16:1.59e-05 SPARSE_F64_k4@32:7.07e-06 SPARSE_F64_k8@16:8.75e-06 SPARSE_F64_k8@32:6.76e-06 SPARSE_F64_k16@16:1.72e-06 SPARSE_F64_k16@32:6.93e-06 SPARSE_F64_k32@16:-3.41e-07 SPARSE_F64_k32@32:-5.82e-07 SPARSE_F128_k4@16:2.06e-05 SPARSE_F128_k4@32:9.85e-07 SPARSE_F128_k8@16:7.98e-06 SPARSE_F128_k8@32:7.07e-06 SPARSE_F128_k16@16:1.93e-06 SPARSE_F128_k16@32:1.46e-06 SPARSE_F128_k32@16:-5.83e-07 SPARSE_F128_k32@32:-8.85e-07 SPARSE_F256_k4@16:9.55e-06 SPARSE_F256_k4@32:2.83e-06 SPARSE_F256_k8@16:4.69e-06 SPARSE_F256_k8@32:2.60e-06 SPARSE_F256_k16@16:1.07e-06 SPARSE_F256_k16@32:1.45e-06 SPARSE_F256_k32@16:-5.58e-07 SPARSE_F256_k32@32:-8.64e-07 SPARSE_F512_k4@16:9.65e-06 SPARSE_F512_k4@32:4.98e-07 SPARSE_F512_k8@16:5.82e-06 SPARSE_F512_k8@32:8.28e-07 SPARSE_F512_k16@16:6.33e-07 SPARSE_F512_k16@32:3.23e-08 SPARSE_F512_k32@16:-5.35e-07 SPARSE_F512_k32@32:-9.30e-07 SPARSE_F1024_k4@16:1.73e-05 SPARSE_F1024_k4@32:-1.32e-07 SPARSE_F1024_k8@16:3.95e-06 SPARSE_F1024_k8@32:1.56e-06 SPARSE_F1024_k16@16:1.22e-06 SPARSE_F1024_k16@32:3.70e-08 SPARSE_F1024_k32@16:-5.58e-07 SPARSE_F1024_k32@32:-9.02e-07
+E3 cut 16 (6s): TRUE@32:9.31e-07 G@32:3.60e-04 DENSE1@32:2.06e-04 DENSE2@32:1.92e-04 DENSE4@32:8.98e-05 DENSE8@32:3.90e-05 DENSE16@32:2.15e-06 DENSE32@32:1.29e-06 DENSEQ1@32:1.85e-04 DENSEQ2@32:1.22e-04 DENSEQ4@32:2.19e-05 DENSEQ8@32:8.19e-06 DENSEQ16@32:2.12e-06 SPARSE_F64_k4@32:7.70e-06 SPARSE_F64_k8@32:9.05e-06 SPARSE_F64_k16@32:9.57e-07 SPARSE_F64_k32@32:7.70e-07 SPARSE_F128_k4@32:5.04e-06 SPARSE_F128_k8@32:5.03e-06 SPARSE_F128_k16@32:9.44e-07 SPARSE_F128_k32@32:3.81e-07 SPARSE_F256_k4@32:4.62e-06 SPARSE_F256_k8@32:6.37e-07 SPARSE_F256_k16@32:7.18e-07 SPARSE_F256_k32@32:1.31e-06 SPARSE_F512_k4@32:8.81e-06 SPARSE_F512_k8@32:1.14e-06 SPARSE_F512_k16@32:6.54e-07 SPARSE_F512_k32@32:8.75e-07 SPARSE_F1024_k4@32:1.54e-06 SPARSE_F1024_k8@32:2.28e-06 SPARSE_F1024_k16@32:-1.05e-07 SPARSE_F1024_k32@32:8.32e-07
+E3 cut 24 (5s): TRUE@32:-9.41e-07 G@32:2.55e-04 DENSE1@32:2.19e-04 DENSE2@32:2.22e-04 DENSE4@32:1.02e-04 DENSE8@32:1.77e-05 DENSE16@32:6.62e-07 DENSE32@32:-9.53e-07 DENSEQ1@32:2.03e-04 DENSEQ2@32:1.63e-04 DENSEQ4@32:3.30e-05 DENSEQ8@32:3.62e-08 DENSEQ16@32:-8.38e-07 SPARSE_F64_k4@32:7.33e-06 SPARSE_F64_k8@32:3.71e-07 SPARSE_F64_k16@32:-2.82e-07 SPARSE_F64_k32@32:-9.32e-07 SPARSE_F128_k4@32:4.64e-06 SPARSE_F128_k8@32:-1.63e-07 SPARSE_F128_k16@32:-7.57e-07 SPARSE_F128_k32@32:-9.63e-07 SPARSE_F256_k4@32:2.30e-06 SPARSE_F256_k8@32:-4.53e-07 SPARSE_F256_k16@32:-7.10e-07 SPARSE_F256_k32@32:-9.73e-07 SPARSE_F512_k4@32:4.51e-06 SPARSE_F512_k8@32:-5.06e-07 SPARSE_F512_k16@32:-8.72e-07 SPARSE_F512_k32@32:-9.41e-07 SPARSE_F1024_k4@32:4.15e-06 SPARSE_F1024_k8@32:-3.15e-07 SPARSE_F1024_k16@32:-7.22e-07 SPARSE_F1024_k32@32:-9.21e-07
+ALL DONE 619s
++ for n in 64 128 256
++ /root/venv/bin/python gpu/run_main.py /root/runs/sc-runa2 arc 128 0.01 65 --e3 4,8,16,24 --save-sae 8,16,24 --long-control 8,24
+== arc_n128_s0.01_seed65 dev=cuda layers=[1, 2, 4, 8, 16, 24, 31] fmults=[1, 2, 4, 8, 16] KS=[8, 16, 32, 64] KD=[1, 2, 4, 8, 16, 32, 64] e3=[4, 8, 16, 24] s=[0.009969, 0.009688, 0.011116, 0.01207, 0.016007, 0.016737, 0.017236]
+sampled train/test 262144+32768 and E2 262144 in 0s
+rsync soup-gpu-sc-runa2-1029163954-27422:/root/runs -> /tmp/l4runs/sc-runa2/runs

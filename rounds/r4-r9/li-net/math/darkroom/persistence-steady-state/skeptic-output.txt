@@ -1,0 +1,75 @@
+==============================================================================
+1. Check: gap b = 0 reproduces check.py's fuel 1 - h_mu
+==============================================================================
+   D: fuel(k=1, b=0) = 1.000   check.py 1 - h_mu = 1.000
+   N: fuel(k=1, b=0) = 0.000   check.py 1 - h_mu = 0.000
+   S: fuel(k=1, b=0) = 0.714   check.py 1 - h_mu = 0.714
+   A: fuel(k=1, b=0) = 1.000   check.py 1 - h_mu = 1.000
+
+==============================================================================
+2. Mean fuel per symbol (bits of kT ln2, best model order) as the gap b varies
+==============================================================================
+    b=gap/kT       D       N       S       A       B   fuel ranking (D,N,S only)
+       0.000   1.000   0.000   0.714   1.000   1.000   D > S > N
+       0.200   0.863   0.007   0.721   1.007   1.151   D > S > N
+       0.396   0.742   0.028   0.742   1.028   1.314   D > S > N
+       0.600   0.631   0.064   0.778   1.064   1.497   S > D > N
+       1.000   0.452   0.173   0.887   1.173   1.895   S > D > N
+       1.386   0.322   0.322   1.035   1.322   2.322   S > D > N
+       2.000   0.183   0.626   1.339   1.626   3.069   S > N > D
+       5.000   0.010   2.616   3.330   3.616   7.223   S > N > D
+      20.000   0.000  13.427  14.141  14.427  28.854   S > N > D
+      80.000  -0.000  56.708  57.421  57.708 115.416   S > N > D
+   closed form: fuel(S)-fuel(N) = 1 - h_S = 0.714 for every b  (parameter-free part)
+                fuel(S)-fuel(D) = -h_S + b*log2(e)/2  > 0  iff b > 2 h_S ln2 = 0.397
+                fuel(N)-fuel(D) = -1   + b*log2(e)/2  > 0  iff b > 2 ln2     = 1.386
+                fuel(B)-fuel(N) = 1 for every b: at equal brightness, lower entropy rate always wins
+   b -> infinity: constant dark 000... is the equilibrium tape (fuel -> 0), the same as 'no input'.
+   Visible photons at body temperature: b = h nu / kT ~ 2.3 eV / 0.027 eV ~ 85.
+
+==============================================================================
+3. R3 survival choice (same rule as check.py: max survival, then margin), eps = 0.05
+   c set to half of S's fuel at each b so that rooms are viable; T=1000, E0=10, Emax=20
+==============================================================================
+   b=  0.0 c=  0.36  winner D    | D:k=0,surv=1.00,net=+0.64  N:k=0,surv=0.00,net=-0.36  S:k=1,surv=0.97,net=+0.31
+   b=  1.0 c=  0.44  winner D    | D:k=0,surv=1.00,net=+0.01  N:k=0,surv=0.00,net=-0.27  S:k=1,surv=0.98,net=+0.39
+   b=  5.0 c=  1.67  winner S    | D:k=0,surv=0.00,net=-1.66  N:k=1,surv=0.00,net=+0.90  S:k=0,surv=1.00,net=+0.95
+   b= 20.0 c=  7.07  winner S    | D:k=0,surv=0.00,net=-7.07  N:k=0,surv=0.00,net=+6.36  S:k=0,surv=0.30,net=+6.36
+
+   3b. Same, with a per-step cost on the structured room (the brief: 'each with a cost'):
+   b=  0.0 c=  0.36 cost_S=0.8  winner D    | D:surv=1.00,net=+0.64  N:surv=0.00,net=-0.36  S:surv=0.00,net=-0.49
+   b=  5.0 c=  1.67 cost_S=0.8  winner S    | D:surv=0.00,net=-1.66  N:surv=0.00,net=+0.95  S:surv=0.92,net=+0.15
+   b= 20.0 c=  7.07 cost_S=0.8  winner S    | D:surv=0.00,net=-7.07  N:surv=0.00,net=+6.36  S:surv=0.29,net=+5.56
+   b= 20.0 c=  7.07 cost_S=0.5  winner S    | D:surv=0.00,net=-7.07  N:surv=0.00,net=+6.36  S:surv=0.30,net=+5.86
+
+   3c. Researcher's C1 setting (c=0.5) with only the gap changed:
+   b= 0.0  winner D   D:surv=1.00,net=+0.50  N:surv=0.00,net=-0.50  S:surv=0.82,net=+0.16
+   b= 0.5  winner D   D:surv=1.00,net=+0.18  N:surv=0.00,net=-0.46  S:surv=0.90,net=+0.21
+   b= 1.0  winner S   D:surv=0.00,net=-0.05  N:surv=0.00,net=-0.33  S:surv=0.97,net=+0.34
+   b= 2.0  winner S   D:surv=0.00,net=-0.32  N:surv=0.18,net=+0.13  S:surv=1.00,net=+0.13
+
+==============================================================================
+4. Second hidden parameter: the energy buffer (E0, Emax) against the fluctuation scale b
+   b = 5, c = half of S's fuel, cost_S = 0.8 per step (S's info surplus is 0.714)
+==============================================================================
+   E0=  10 Emax=  20  winner S    | D:surv=0.00,net=-1.66  N:surv=0.00,net=+0.95  S:surv=0.93,net=+0.15
+   E0=  30 Emax=  60  winner S    | D:surv=0.00,net=-1.66  N:surv=0.98,net=+0.95  S:surv=1.00,net=+0.82
+   E0= 100 Emax= 200  winner N    | D:surv=0.00,net=-1.66  N:surv=1.00,net=+0.95  S:surv=1.00,net=+0.82
+   E0= 300 Emax= 600  winner N    | D:surv=0.00,net=-1.66  N:surv=1.00,net=+0.95  S:surv=1.00,net=+0.82
+   b = 1.0, c = half of S's fuel, no room cost (D vs S):
+   E0=   2 Emax=   4  winner D    | D:surv=1.00,net=+0.01  N:surv=0.00,net=-0.27  S:surv=0.00,net=+0.39
+   E0=  10 Emax=  20  winner D    | D:surv=1.00,net=+0.01  N:surv=0.00,net=-0.27  S:surv=0.98,net=+0.39
+   E0=  30 Emax=  60  winner S    | D:surv=1.00,net=+0.01  N:surv=0.00,net=-0.27  S:surv=1.00,net=+0.39
+
+Summary
+  The fuel ranking of D, N, S is decided by one dimensionless physical number, the sensor's
+  energy gap b = (E1-E0)/kT, which check.py fixes at 0 by copying BMC's 'E0 = E1 = 0'.
+    b < 0.396 : D > S > N   (dark room preferred; researcher's verdict)
+    0.396 < b < 1.386 : S > D > N   (dark avoided, noise avoided)
+    b > 1.386 : S > N > D   (dark avoided; noise preferred to darkness; with a cost on S above
+                1 - h_S and a buffer large enough for the noise room's fluctuations, N wins)
+  Survival (not mean fuel) adds a second decisive knob: the buffer (E0, Emax) against the
+  fluctuation scale b decides D vs S at b = 1 and S vs N at b = 5.
+  Only the comparative statement is parameter-free: at equal mean sensory energy, fuel falls by
+  exactly the entropy-rate difference (S beats N by 1 - h_S, B beats N by 1 bit, for every b).
+

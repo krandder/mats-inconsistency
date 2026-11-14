@@ -1,0 +1,114 @@
+{
+  "all_2926_seed_derivations_verified": true,
+  "bound_files": {
+    "catalog.jsonl": "ef52053cd35037b1e4fb1f733ad5e69ad25e5c3aadf8e8626a430c569819fc58",
+    "initial-weights-manifest.json": "a0cfc439ec30edc7c464e77cad38651cfbee27962bf7d09b41f5bdd01b871ece",
+    "inputs/checkpoint_manifest.json": "c4bfae6b8be4d893e7395bbaaaa6874b2583e818a56db100488795856af2bbf3",
+    "inputs/heldout.jsonl": "d5b9b660f9fb8c39f7313892897644350247b4c0173bb22871912cdc9fc0674e",
+    "inputs/initial_runtime_identity.json": "32c0a090c50f23eff12517ef9d390a6b06c333702ce47cb8a67952f8bb1ab6cc",
+    "inputs/tokenizer_manifest.json": "a8ae42266e839691e203711bfcf5280b3b28eba120c4f1a19bfc88e836564ef8",
+    "inputs/train.jsonl": "71ccc77578c201dc7f51bf06cb9f48f1fecfc1850e3f0472aa349a777924fd2e",
+    "inputs/valid.jsonl": "d45342c7d00ceb4fd9642e97647a695c3760d7a958ceb5461173008bd5bc4150",
+    "spec.json": "5afa578df2f430d5add27f7e00c823b1bab722cdb1ef12086b7cabc5bf16491c"
+  },
+  "candidate_weights_loaded": false,
+  "catalog_matches_v2_except_derived_seeds": true,
+  "categorical_sampler": {
+    "algorithm": "softmax-at-least-fp32-fp64-cdf-uniform-right-v1",
+    "source_sha256": "24d0e0132a5aa219f74c3146ad5516bbad6d81e0c6ecfe7bf37d7424c68475ba"
+  },
+  "checkpoint_check": "Existing verified path and manifest pins reused; file sizes checked here. Actual loader must verify bytes before inference.",
+  "code_checkout": "/home/agent/workspaces/consistency-ft-qwen-collection-run-20260913-v3",
+  "code_commit": "0af9ec3b6fe41b9b76996d318087a52e172f8035",
+  "config_sha256": "14e77a4381f557c9ade5fe46501e40c1e61d03a4aeef7fe38dae18805119455c",
+  "coverage": {
+    "attempted": 0,
+    "complete_valid_coverage": false,
+    "plan_sha256": "a0d07bda3b81d880199e62b310caa43e8051f50b5e5da30f912d457f3439a5ce",
+    "status": "preflight-verified-no-inference",
+    "target_episodes": 1619,
+    "target_propositions": 2926,
+    "training_identity_sha256": "50b74934a46d2e8640f3f69a3bc3709fdf5bfd11230558adab5275ee90086967",
+    "unattempted": 2926,
+    "valid_probabilities": 0
+  },
+  "execution_sha256": "0d2a9d55452046a8d0f71ae3495cc4ac2845c353f200781ed36b6bad71244d71",
+  "first_two": [
+    {
+      "id": "00378ee8bd196abc8a83ad6fd27d65a27f76ae40af5b10b1b957128f5e51c292",
+      "index": 0,
+      "seed": 6678723356247500948,
+      "seed_derivation_sha256": "5caf9781d23ca89413eba539ef6a9d1ea7e3f8b6eaebd181587ea203d056349e"
+    },
+    {
+      "id": "0041c4392b30880f8e9b9804eab765b363d2d856d760a5b1f05e91c0ea805828",
+      "index": 1,
+      "seed": 7057277058622107250,
+      "seed_derivation_sha256": "61f07c1800af2e72b231d83ae23e0c6ae3724fd4778fc6c6d451207ebffe7a75"
+    }
+  ],
+  "inference_performed": false,
+  "initial_policy_sha256": "ffd73988534e4871d94a92ae6f170d0f80d50cb12d5a4d6dadfecc8051e0fe10",
+  "input_pins": {
+    "checkpoint_manifest": {
+      "path": "/home/agent/workspaces/consistency-ft-qwen-collection-run-20260913-v3/data/research/qwen-checkpoint-artifacts-20260913.json",
+      "sha256": "c4bfae6b8be4d893e7395bbaaaa6874b2583e818a56db100488795856af2bbf3"
+    },
+    "heldout": {
+      "path": "/home/agent/workspaces/consistency-ft-qwen-collection-run-20260913-v3/data/episodes/heldout.jsonl",
+      "sha256": "d5b9b660f9fb8c39f7313892897644350247b4c0173bb22871912cdc9fc0674e"
+    },
+    "initial_runtime_identity": {
+      "path": "/home/agent/workspaces/consistency-ft-qwen-collection-run-20260913-v3/data/research/qwen-numerical-backward-20260913/identity-before.json",
+      "sha256": "32c0a090c50f23eff12517ef9d390a6b06c333702ce47cb8a67952f8bb1ab6cc"
+    },
+    "tokenizer_manifest": {
+      "path": "/home/agent/workspaces/consistency-ft-qwen-collection-run-20260913-v3/data/research/qwen-tokenizer-artifacts-20260913.json",
+      "sha256": "a8ae42266e839691e203711bfcf5280b3b28eba120c4f1a19bfc88e836564ef8"
+    },
+    "train": {
+      "path": "/home/agent/workspaces/consistency-ft-qwen-collection-run-20260913-v3/data/episodes/train.jsonl",
+      "sha256": "71ccc77578c201dc7f51bf06cb9f48f1fecfc1850e3f0472aa349a777924fd2e"
+    },
+    "valid": {
+      "path": "/home/agent/workspaces/consistency-ft-qwen-collection-run-20260913-v3/data/episodes/valid.jsonl",
+      "sha256": "d45342c7d00ceb4fd9642e97647a695c3760d7a958ceb5461173008bd5bc4150"
+    }
+  },
+  "launch_command": [
+    "python3",
+    "-B",
+    "/home/agent/workspaces/consistency-ft-followups-20260913/runs/qwen-own-base-20260913-v3/supervise.py",
+    "/home/agent/workspaces/consistency-ft-followups-20260913/runs/qwen-own-base-20260913-v3/tranche-01-config.json"
+  ],
+  "launch_requires_root_authorization": true,
+  "plan_sha256": "a0d07bda3b81d880199e62b310caa43e8051f50b5e5da30f912d457f3439a5ce",
+  "preparation_results": {
+    "plan-result.json": "2df1d43acee835ce9c62be406c9349e9ac2e0cce4b09cefbc2f97cc70b0ed18f",
+    "preflight-result.json": "60b486520b6716244524dbfda8b7ee7b0e8e936d8b56c7d22da9a3206e6f804b"
+  },
+  "preserved_v2_attempt_directories": 22,
+  "schema_version": 1,
+  "sources": {
+    "anchors.py": "bf7574ce67e61a05bdb3fe073aee9d424c2b763d914a3bd2fbcefafc74753e4c",
+    "common.py": "49557553a26230da615c4c353adfabd23eaa6f998a360c5c1e9b6f6c822189cf",
+    "harness/run_native_checks.py": "7644a3500a95e05c5af5ce9cef68f061772e3a821b5035d7795b194f9c3353a4",
+    "harness/scope.py": "afbe37cc040cf5c32acad5808430a175aa225889b23adfaf43d6cf2fc16bd8a4",
+    "metrics.py": "cbd748c575f40056d9ae2cb5d5ff27a3322cc02fa424b5fbb41e3e861be652dd",
+    "scripts/build_episodes.py": "13637c714c8e8f2bc08203c7a1e72a9396f1c5abd6c14e1594a7297cfe1ea651",
+    "scripts/collect_qwen_base.py": "66f5bd38b7f5160b550ecf075fca19412c5949c9c7fe048358dfd452feadb613",
+    "training/categorical.py": "24d0e0132a5aa219f74c3146ad5516bbad6d81e0c6ecfe7bf37d7424c68475ba",
+    "training/episode_adapter.py": "14273082ee99a94fb4bd6f3b213b1d37ce92bb2925a1c9df5ec27250549c8015",
+    "training/qwen_base_collection.py": "826a800818ada1bbdc460a32a455881260080157a8e43e0676def1095f368116",
+    "training/qwen_checkpoint.py": "974a203e90e189afcf1f3328c6f5128fe2c1ea68a3c518792a49cefd75aa84ba",
+    "training/qwen_lora_runtime.py": "5e2b7a54024af661dc3d89279a2d52a718c5e38609121de12cdb7cb5df24103b",
+    "training/qwen_tokenizer.py": "817dd0e704c1e97bd225f59e9f9476031eb6ea9ea60085bb5dc7fbd16dd212f0",
+    "training/torch_loop.py": "575320079d6c8e6fba798a48a2c710ea1e7b55a68177bf9b7293bef32c80fd94"
+  },
+  "spec_sha256": "5afa578df2f430d5add27f7e00c823b1bab722cdb1ef12086b7cabc5bf16491c",
+  "status": "prepared-not-launched",
+  "supervisor_sha256": "d3c90127008d3448cc48e9e0eb13942bed18a16b285a01dcb4a0a10f8c48204f",
+  "tokenizer_artifacts_sha256_verified": true,
+  "training_identity_sha256": "50b74934a46d2e8640f3f69a3bc3709fdf5bfd11230558adab5275ee90086967",
+  "training_performed": false
+}

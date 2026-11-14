@@ -1,0 +1,282 @@
+2026-09-29T21:05:19Z start design_tune: ev design --split tune --n_per 21
+2026-09-29T21:05:27Z ok design_tune
+2026-09-29T21:05:27Z start design_pilot: ev design --split pilot --n_per 42
+2026-09-29T21:05:40Z ok design_pilot
+2026-09-29T21:05:40Z start pilot_L: ev run --split pilot --arm L
+2026-09-29T21:05:40Z start tune_C4_a1_r.25: ev run --split tune --arm C4 --params {"alpha": 1, "rho": .25, "tag": "a1_r.25"}
+2026-09-29T21:05:40Z start pilot_E1: ev run --split pilot --arm E1 --params {"per": 8}
+2026-09-29T21:05:43Z FAIL tune_C4_a1_r.25
+2026-09-29T21:05:43Z start tune_C4_a1_r.5: ev run --split tune --arm C4 --params {"alpha": 1, "rho": .5, "tag": "a1_r.5"}
+2026-09-29T21:05:46Z FAIL tune_C4_a1_r.5
+2026-09-29T21:05:46Z start tune_C4_a2_r.25: ev run --split tune --arm C4 --params {"alpha": 2, "rho": .25, "tag": "a2_r.25"}
+2026-09-29T21:05:50Z FAIL tune_C4_a2_r.25
+2026-09-29T21:05:50Z start tune_C4_a2_r.5: ev run --split tune --arm C4 --params {"alpha": 2, "rho": .5, "tag": "a2_r.5"}
+2026-09-29T21:05:53Z FAIL tune_C4_a2_r.5
+2026-09-29T21:05:53Z start tune_C4_a4_r.25: ev run --split tune --arm C4 --params {"alpha": 4, "rho": .25, "tag": "a4_r.25"}
+2026-09-29T21:05:56Z FAIL tune_C4_a4_r.25
+2026-09-29T21:05:56Z start tune_C4_a4_r.5: ev run --split tune --arm C4 --params {"alpha": 4, "rho": .5, "tag": "a4_r.5"}
+2026-09-29T21:06:00Z FAIL tune_C4_a4_r.5
+2026-09-29T21:06:00Z start tune_C4_a8_r.25: ev run --split tune --arm C4 --params {"alpha": 8, "rho": .25, "tag": "a8_r.25"}
+2026-09-29T21:06:03Z FAIL tune_C4_a8_r.25
+2026-09-29T21:06:03Z start tune_C4_a8_r.5: ev run --split tune --arm C4 --params {"alpha": 8, "rho": .5, "tag": "a8_r.5"}
+2026-09-29T21:06:06Z FAIL tune_C4_a8_r.5
+2026-09-29T21:06:06Z start tune_pick1: python analyze.py tune
+2026-09-29T21:06:08Z ok tune_pick1
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+KeyError: 'C4'
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-09-29T21:06:08Z start tune_C5_s.5: ev run --split tune --arm C5 --params 
+2026-09-29T21:06:11Z FAIL tune_C5_s.5
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-09-29T21:06:11Z start tune_C5_s1: ev run --split tune --arm C5 --params 
+2026-09-29T21:06:14Z FAIL tune_C5_s1
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-09-29T21:06:14Z start tune_C5_s2: ev run --split tune --arm C5 --params 
+2026-09-29T21:06:18Z FAIL tune_C5_s2
+2026-09-29T21:06:18Z start tune_S1_lr1e-3_E10: ev run --split tune --arm S1 --params {"lr": 1e-3, "E_steps": 10, "tag": "lr1e-3_E10"}
+2026-09-29T21:07:34Z ok tune_S1_lr1e-3_E10
+2026-09-29T21:07:34Z start tune_S1_lr1e-3_E20: ev run --split tune --arm S1 --params {"lr": 1e-3, "E_steps": 20, "tag": "lr1e-3_E20"}
+2026-09-29T21:09:50Z start tune_C4_a1_r0.25: ev run --split tune --arm C4 --params {"alpha": 1, "rho": 0.25, "tag": "a1_r0.25"}
+2026-09-29T21:10:00Z ok tune_S1_lr1e-3_E20
+2026-09-29T21:10:00Z start tune_S1_lr3e-3_E10: ev run --split tune --arm S1 --params {"lr": 3e-3, "E_steps": 10, "tag": "lr3e-3_E10"}
+2026-09-29T21:10:16Z ok tune_C4_a1_r0.25
+2026-09-29T21:10:16Z start tune_C4_a1_r0.5: ev run --split tune --arm C4 --params {"alpha": 1, "rho": 0.5, "tag": "a1_r0.5"}
+2026-09-29T21:10:43Z ok tune_C4_a1_r0.5
+2026-09-29T21:10:43Z start tune_C4_a2_r0.25: ev run --split tune --arm C4 --params {"alpha": 2, "rho": 0.25, "tag": "a2_r0.25"}
+2026-09-29T21:11:11Z ok tune_C4_a2_r0.25
+2026-09-29T21:11:11Z start tune_C4_a2_r0.5: ev run --split tune --arm C4 --params {"alpha": 2, "rho": 0.5, "tag": "a2_r0.5"}
+2026-09-29T21:11:17Z ok tune_S1_lr3e-3_E10
+2026-09-29T21:11:17Z start tune_S1_lr3e-3_E20: ev run --split tune --arm S1 --params {"lr": 3e-3, "E_steps": 20, "tag": "lr3e-3_E20"}
+2026-09-29T21:11:38Z ok tune_C4_a2_r0.5
+2026-09-29T21:11:38Z start tune_C4_a4_r0.25: ev run --split tune --arm C4 --params {"alpha": 4, "rho": 0.25, "tag": "a4_r0.25"}
+2026-09-29T21:12:05Z ok tune_C4_a4_r0.25
+2026-09-29T21:12:05Z start tune_C4_a4_r0.5: ev run --split tune --arm C4 --params {"alpha": 4, "rho": 0.5, "tag": "a4_r0.5"}
+2026-09-29T21:12:34Z ok tune_C4_a4_r0.5
+2026-09-29T21:12:34Z start tune_C4_a8_r0.25: ev run --split tune --arm C4 --params {"alpha": 8, "rho": 0.25, "tag": "a8_r0.25"}
+2026-09-29T21:13:02Z ok tune_C4_a8_r0.25
+2026-09-29T21:13:02Z start tune_C4_a8_r0.5: ev run --split tune --arm C4 --params {"alpha": 8, "rho": 0.5, "tag": "a8_r0.5"}
+2026-09-29T21:13:29Z ok tune_C4_a8_r0.5
+2026-09-29T21:13:29Z start tune_pick1: python analyze.py tune
+2026-09-29T21:13:31Z ok tune_pick1
+2026-09-29T21:13:31Z start tune_C5_s0.5: ev run --split tune --arm C5 --params {"alpha": 8, "rho": 0.25, "lam": 1, "scale": 0.5, "tag": "s0.5"}
+2026-09-29T21:13:37Z ok tune_S1_lr3e-3_E20
+2026-09-29T21:13:37Z start tune_S1_lr1e-2_E10: ev run --split tune --arm S1 --params {"lr": 1e-2, "E_steps": 10, "tag": "lr1e-2_E10"}
+2026-09-29T21:13:44Z ok tune_C5_s0.5
+2026-09-29T21:13:44Z start tune_C5_s1: ev run --split tune --arm C5 --params {"alpha": 8, "rho": 0.25, "lam": 1, "scale": 1, "tag": "s1"}
+2026-09-29T21:13:57Z ok tune_C5_s1
+2026-09-29T21:13:57Z start tune_C5_s2: ev run --split tune --arm C5 --params {"alpha": 8, "rho": 0.25, "lam": 1, "scale": 2, "tag": "s2"}
+2026-09-29T21:14:11Z ok tune_C5_s2
+2026-09-29T21:14:11Z start pilot_C4: ev run --split pilot --arm C4 --params {"alpha": 8, "rho": 0.25, "lam": 1}
+2026-09-29T21:14:54Z ok tune_S1_lr1e-2_E10
+2026-09-29T21:14:54Z start tune_S1_lr1e-2_E20: ev run --split tune --arm S1 --params {"lr": 1e-2, "E_steps": 20, "tag": "lr1e-2_E20"}
+2026-09-29T21:15:01Z ok pilot_C4
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+KeyError: 'C5'
+2026-09-29T21:15:01Z start pilot_C5: ev run --split pilot --arm C5 --params 
+2026-09-29T21:15:04Z FAIL pilot_C5
+2026-09-29T21:17:21Z ok tune_S1_lr1e-2_E20
+2026-09-29T21:17:21Z start tune_S2_lr1e-3_E10: ev run --split tune --arm S2 --params {"lr": 1e-3, "E_steps": 10, "tag": "lr1e-3_E10"}
+2026-09-29T21:18:39Z ok tune_S2_lr1e-3_E10
+2026-09-29T21:18:39Z start tune_S2_lr1e-3_E20: ev run --split tune --arm S2 --params {"lr": 1e-3, "E_steps": 20, "tag": "lr1e-3_E20"}
+2026-09-29T21:20:40Z ok tune_S2_lr1e-3_E20
+2026-09-29T21:20:40Z start tune_S2_lr3e-3_E10: ev run --split tune --arm S2 --params {"lr": 3e-3, "E_steps": 10, "tag": "lr3e-3_E10"}
+2026-09-29T21:21:50Z ok tune_S2_lr3e-3_E10
+2026-09-29T21:21:50Z start tune_S2_lr3e-3_E20: ev run --split tune --arm S2 --params {"lr": 3e-3, "E_steps": 20, "tag": "lr3e-3_E20"}
+2026-09-29T21:23:36Z ok tune_S2_lr3e-3_E20
+2026-09-29T21:23:36Z start tune_S2_lr1e-2_E10: ev run --split tune --arm S2 --params {"lr": 1e-2, "E_steps": 10, "tag": "lr1e-2_E10"}
+2026-09-29T21:24:43Z ok tune_S2_lr1e-2_E10
+2026-09-29T21:24:43Z start tune_S2_lr1e-2_E20: ev run --split tune --arm S2 --params {"lr": 1e-2, "E_steps": 20, "tag": "lr1e-2_E20"}
+2026-09-29T21:26:52Z ok tune_S2_lr1e-2_E20
+2026-09-29T21:26:52Z start tune_pick2: python analyze.py tune
+2026-09-29T21:26:54Z ok tune_pick2
+skip pilot_C4
+2026-09-29T21:26:54Z start pilot_C5: ev run --split pilot --arm C5 --params {"alpha": 8, "rho": 0.25, "lam": 1, "scale": 2}
+2026-09-29T21:27:19Z ok pilot_C5
+skip design_tune
+skip design_pilot
+skip tune_C4_a1_r0.25
+skip tune_C4_a1_r0.5
+skip tune_C4_a2_r0.25
+skip tune_C4_a2_r0.5
+skip tune_C4_a4_r0.25
+skip tune_C4_a4_r0.5
+skip tune_C4_a8_r0.25
+skip tune_C4_a8_r0.5
+skip tune_pick1
+2026-09-29T22:23:49Z start pilot_L_HP1: ev run --split pilot --arm L --params {"types": ["HP1"], "tag": "HP1"}
+2026-09-29T22:23:49Z start pilot_E1_HP1: ev run --split pilot --arm E1 --params {"types": ["HP1"], "per": 8, "tag": "HP1"}
+2026-09-29T22:23:49Z start pilot_L_HP3a: ev run --split pilot --arm L --params {"types": ["HP3a"], "tag": "HP3a"}
+2026-09-29T22:23:49Z start pilot_E1_HP3a: ev run --split pilot --arm E1 --params {"types": ["HP3a"], "per": 8, "tag": "HP3a"}
+skip tune_C5_s0.5
+skip tune_C5_s1
+skip tune_C5_s2
+skip tune_S1_lr1e-3_E10
+skip tune_S1_lr1e-3_E20
+skip tune_S1_lr3e-3_E10
+skip tune_S1_lr3e-3_E20
+skip tune_S1_lr1e-2_E10
+skip tune_S1_lr1e-2_E20
+skip tune_S2_lr1e-3_E10
+skip tune_S2_lr1e-3_E20
+skip tune_S2_lr3e-3_E10
+skip tune_S2_lr3e-3_E20
+skip tune_S2_lr1e-2_E10
+skip tune_S2_lr1e-2_E20
+skip tune_pick2
+skip pilot_C4
+skip pilot_C5
+2026-09-29T22:31:53Z ok pilot_L_HP1
+2026-09-29T22:31:53Z start pilot_L_HN1: ev run --split pilot --arm L --params {"types": ["HN1"], "tag": "HN1"}
+2026-09-29T22:32:43Z ok pilot_L_HP3a
+2026-09-29T22:32:43Z start pilot_L_HN3: ev run --split pilot --arm L --params {"types": ["HN3"], "tag": "HN3"}
+2026-09-29T22:40:18Z ok pilot_L_HN1
+2026-09-29T22:40:18Z start pilot_L_HP2: ev run --split pilot --arm L --params {"types": ["HP2"], "tag": "HP2"}
+2026-09-29T22:40:30Z ok pilot_E1_HP3a
+2026-09-29T22:40:30Z start pilot_E1_HN3: ev run --split pilot --arm E1 --params {"types": ["HN3"], "per": 8, "tag": "HN3"}
+2026-09-29T22:40:37Z ok pilot_E1_HP1
+2026-09-29T22:40:37Z start pilot_E1_HN1: ev run --split pilot --arm E1 --params {"types": ["HN1"], "per": 8, "tag": "HN1"}
+2026-09-29T22:41:06Z ok pilot_L_HN3
+2026-09-29T22:41:06Z start pilot_L_HP3b: ev run --split pilot --arm L --params {"types": ["HP3b"], "tag": "HP3b"}
+2026-09-29T22:48:23Z ok pilot_L_HP2
+2026-09-29T22:48:23Z start pilot_L_HN2: ev run --split pilot --arm L --params {"types": ["HN2"], "tag": "HN2"}
+2026-09-29T22:49:54Z ok pilot_L_HP3b
+2026-09-29T22:49:54Z start pilot_L_HN4: ev run --split pilot --arm L --params {"types": ["HN4"], "tag": "HN4"}
+2026-09-29T22:55:58Z ok pilot_E1_HN3
+2026-09-29T22:55:58Z start pilot_E1_HP3b: ev run --split pilot --arm E1 --params {"types": ["HP3b"], "per": 8, "tag": "HP3b"}
+2026-09-29T22:56:12Z ok pilot_E1_HN1
+2026-09-29T22:56:12Z start pilot_E1_HP2: ev run --split pilot --arm E1 --params {"types": ["HP2"], "per": 8, "tag": "HP2"}
+2026-09-29T22:56:44Z ok pilot_L_HN2
+2026-09-29T22:58:01Z ok pilot_L_HN4
+2026-09-29T23:04:47Z ok pilot_E1_HP3b
+2026-09-29T23:04:47Z start pilot_E1_HN4: ev run --split pilot --arm E1 --params {"types": ["HN4"], "per": 8, "tag": "HN4"}
+2026-09-29T23:04:53Z ok pilot_E1_HP2
+2026-09-29T23:04:53Z start pilot_E1_HN2: ev run --split pilot --arm E1 --params {"types": ["HN2"], "per": 8, "tag": "HN2"}
+2026-09-29T23:12:47Z ok pilot_E1_HN4
+2026-09-29T23:12:49Z ok pilot_E1_HN2
+2026-09-29T23:17:50Z start gate: python analyze.py gate
+2026-09-29T23:17:51Z ok gate
+2026-09-29T23:17:51Z plan prep done
+2026-09-29T23:21:03Z start design_test: ev design --split test --n_per 100
+2026-09-29T23:22:02Z ok design_test
+2026-09-29T23:22:02Z start test_E1_HP3a: ev run --split test --arm E1 --params {"types": ["HP3a"], "per": 12, "tag": "HP3a"}
+2026-09-29T23:22:02Z start test_E1_HP1: ev run --split test --arm E1 --params {"types": ["HP1"], "per": 12, "tag": "HP1"}
+2026-09-29T23:22:02Z start train_FR_s0: python train.py --arm FR --seed 0 --fmeta 1e16 --out /root/out/runs
+2026-09-29T23:43:37Z ok test_E1_HP1
+2026-09-29T23:43:37Z start test_E1_HN1: ev run --split test --arm E1 --params {"types": ["HN1"], "per": 12, "tag": "HN1"}
+2026-09-29T23:43:48Z ok test_E1_HP3a
+2026-09-29T23:43:48Z start test_E1_HN3: ev run --split test --arm E1 --params {"types": ["HN3"], "per": 12, "tag": "HN3"}
+2026-09-30T00:05:35Z ok test_E1_HN1
+2026-09-30T00:05:35Z start test_E1_HP2: ev run --split test --arm E1 --params {"types": ["HP2"], "per": 12, "tag": "HP2"}
+2026-09-30T00:05:44Z ok test_E1_HN3
+2026-09-30T00:05:44Z start test_E1_HP3b: ev run --split test --arm E1 --params {"types": ["HP3b"], "per": 12, "tag": "HP3b"}
+2026-09-30T00:09:34Z ok train_FR_s0
+2026-09-30T00:09:34Z start test_FR_s0: ev run --split test --arm FR --run FR_s0
+2026-09-30T00:15:42Z ok test_FR_s0
+2026-09-30T00:15:42Z start tune_FR_s0: ev run --split tune --arm FR --run FR_s0
+2026-09-30T00:16:16Z ok tune_FR_s0
+2026-09-30T00:16:16Z start adv: python adv.py --run FR_s0
+2026-09-30T00:18:22Z ok adv
+2026-09-30T00:18:22Z start train_FR_s1: python train.py --arm FR --seed 1 --fmeta 1e16 --out /root/out/runs
+2026-09-30T00:26:31Z ok test_E1_HP3b
+2026-09-30T00:26:31Z start test_E1_HN4: ev run --split test --arm E1 --params {"types": ["HN4"], "per": 12, "tag": "HN4"}
+2026-09-30T00:26:33Z ok test_E1_HP2
+2026-09-30T00:26:33Z start test_E1_HN2: ev run --split test --arm E1 --params {"types": ["HN2"], "per": 12, "tag": "HN2"}
+2026-09-30T00:47:53Z ok test_E1_HN2
+2026-09-30T00:47:53Z start test_E1_T0: ev run --split test --arm E1 --params {"types": ["T0"], "per": 5, "tag": "T0"}
+2026-09-30T00:47:59Z ok test_E1_HN4
+2026-09-30T00:47:59Z start test_E1_T3a: ev run --split test --arm E1 --params {"types": ["T3a"], "per": 5, "tag": "T3a"}
+2026-09-30T00:56:53Z ok test_E1_T0
+2026-09-30T00:56:53Z start test_E1_T1: ev run --split test --arm E1 --params {"types": ["T1"], "per": 5, "tag": "T1"}
+2026-09-30T00:57:13Z ok test_E1_T3a
+2026-09-30T00:57:13Z start test_E1_T3b: ev run --split test --arm E1 --params {"types": ["T3b"], "per": 5, "tag": "T3b"}
+2026-09-30T01:05:54Z ok test_E1_T1
+2026-09-30T01:05:54Z start test_E1_T2: ev run --split test --arm E1 --params {"types": ["T2"], "per": 5, "tag": "T2"}
+2026-09-30T01:05:57Z ok train_FR_s1
+2026-09-30T01:05:57Z start test_FR_s1: ev run --split test --arm FR --run FR_s1
+2026-09-30T01:06:11Z ok test_E1_T3b
+2026-09-30T01:06:11Z start test_E1_T4: ev run --split test --arm E1 --params {"types": ["T4"], "per": 5, "tag": "T4"}
+2026-09-30T01:12:02Z ok test_FR_s1
+2026-09-30T01:12:02Z start tune_FR_s1: ev run --split tune --arm FR --run FR_s1
+2026-09-30T01:12:35Z ok tune_FR_s1
+2026-09-30T01:12:35Z start train_FR_s2: python train.py --arm FR --seed 2 --fmeta 1e16 --out /root/out/runs
+2026-09-30T01:14:48Z ok test_E1_T2
+2026-09-30T01:15:01Z ok test_E1_T4
+2026-09-30T01:15:01Z start test_E1_T5: ev run --split test --arm E1 --params {"types": ["T5"], "per": 5, "tag": "T5"}
+2026-09-30T01:22:44Z ok test_E1_T5
+2026-09-30T01:22:44Z start test_E1_T6: ev run --split test --arm E1 --params {"types": ["T6"], "per": 5, "tag": "T6"}
+2026-09-30T01:30:14Z ok test_E1_T6
+skip design_test
+skip test_L_HP1
+skip test_L_HN1
+skip test_L_HP3a
+skip test_L_HN3
+2026-09-30T01:37:12Z start train_FR-direct_s0: python train.py --arm FR-direct --seed 0 --fmeta 1e16 --out /root/out/runs
+2026-09-30T01:37:12Z start test_L_HP3b: ev run --split test --arm L --params {"types": ["HP3b"], "tag": "HP3b"}
+2026-09-30T01:37:12Z start test_L_HP2: ev run --split test --arm L --params {"types": ["HP2"], "tag": "HP2"}
+2026-09-30T01:44:50Z ok train_FR-direct_s0
+2026-09-30T01:44:50Z start test_FR-direct_s0: ev run --split test --arm FR-direct --run FR-direct_s0
+2026-09-30T01:46:25Z ok test_FR-direct_s0
+2026-09-30T01:46:25Z start tune_FR-direct_s0: ev run --split tune --arm FR-direct --run FR-direct_s0
+2026-09-30T01:46:35Z ok tune_FR-direct_s0
+2026-09-30T01:46:35Z start train_FR-direct_s1: python train.py --arm FR-direct --seed 1 --fmeta 1e16 --out /root/out/runs
+2026-09-30T02:09:58Z ok test_L_HP2
+2026-09-30T02:09:58Z start test_L_HN2: ev run --split test --arm L --params {"types": ["HN2"], "tag": "HN2"}
+skip design_test
+skip test_L_HP1
+skip train_FR-direct_s0
+skip test_L_HN1
+skip test_FR-direct_s0
+skip test_L_HP2
+skip tune_FR-direct_s0
+skip test_L_HP3a
+skip test_L_HN3
+2026-09-30T02:37:48Z start test_L_HN2: ev run --split test --arm L --params {"types": ["HN2"], "tag": "HN2"}
+2026-09-30T02:37:48Z start train_FR-direct_s1: python train.py --arm FR-direct --seed 1 --fmeta 1e16 --out /root/out/runs
+2026-09-30T02:37:48Z start test_L_HP3b: ev run --split test --arm L --params {"types": ["HP3b"], "tag": "HP3b"}
+2026-09-30T03:09:57Z ok test_L_HN2
+2026-09-30T03:13:56Z ok test_L_HP3b
+2026-09-30T03:13:56Z start test_L_HN4: ev run --split test --arm L --params {"types": ["HN4"], "tag": "HN4"}
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+2026-09-30T03:37:15Z start x_train_FR4e16_s0: python train.py --arm FR --seed 0 --fmeta 4e16 --out /root/out/x/runs
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+2026-09-30T05:44:28Z start x_train_FR4e16_s0: python train.py --arm FR --seed 0 --fmeta 4e16 --out /root/out/x/runs
+2026-09-30T06:12:07Z ok x_train_FR4e16_s0
+2026-09-30T06:12:07Z start x_test_FR4e16_s0: env P16_OUT=/root/out/x python eval.py run --split test --arm FR --run FR_s0
+2026-09-30T06:17:17Z ok x_test_FR4e16_s0
+2026-09-30T06:17:17Z start x_tune_FR4e16_s0: env P16_OUT=/root/out/x python eval.py run --split tune --arm FR --run FR_s0
+2026-09-30T06:17:45Z ok x_tune_FR4e16_s0
+2026-09-30T06:17:45Z plan trainX done

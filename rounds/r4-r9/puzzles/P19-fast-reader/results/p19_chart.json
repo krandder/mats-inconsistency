@@ -1,0 +1,188 @@
+{
+ "title": "P19: Kendall tau-b vs deployed gain over base (44 maze items, mean over seeds) against compute per item",
+ "rules": {
+  "FR": {
+   "tau": 0.5763,
+   "ci95": 0.0505,
+   "compute_item": 4760034048.0,
+   "compute_ratio_vs_R7b_1rep": 0.0396
+  },
+  "FO": {
+   "tau": 0.5303,
+   "ci95": 0.04,
+   "compute_item": 2935195648.0,
+   "compute_ratio_vs_R7b_1rep": 0.0244
+  },
+  "R4": {
+   "tau": 0.2926,
+   "ci95": 0.036,
+   "compute_item": 127105419729.4545,
+   "compute_ratio_vs_R7b_1rep": 1.0574
+  },
+  "R1": {
+   "tau": 0.6736,
+   "ci95": 0.0329,
+   "compute_item": 127105419729.4545,
+   "compute_ratio_vs_R7b_1rep": 1.0574
+  },
+  "R7b": {
+   "tau": 0.8655,
+   "ci95": 0.0367,
+   "compute_item": 480801232114.0363,
+   "compute_ratio_vs_R7b_1rep": 4.0
+  }
+ },
+ "curve": {
+  "R1": [
+   0.6956,
+   0.6736
+  ],
+  "R4": [
+   0.293,
+   0.2926
+  ],
+  "R7b": [
+   0.8355,
+   0.8448,
+   0.8486,
+   0.8655
+  ],
+  "FR": [
+   0.5729,
+   0.5763
+  ],
+  "FR_allK": [
+   0.5729,
+   0.5763,
+   0.5687,
+   0.5772
+  ]
+ },
+ "per_seed": {
+  "R1": [
+   0.649,
+   0.6998,
+   0.6512,
+   0.6638,
+   0.704
+  ],
+  "R4": [
+   0.315,
+   0.3235,
+   0.2875,
+   0.2875,
+   0.2495
+  ],
+  "R7b": [
+   0.8837,
+   0.8161,
+   0.8668,
+   0.8922,
+   0.8689
+  ],
+  "FR": [
+   0.5497,
+   0.5751,
+   0.5581,
+   0.5518,
+   0.6469
+  ],
+  "FR_allK": [
+   0.5624,
+   0.5624,
+   0.5581,
+   0.5687,
+   0.6342
+  ],
+  "FO": [
+   0.5214,
+   0.5574,
+   0.5256,
+   0.4833,
+   0.5637
+  ],
+  "FO1": [
+   0.4897,
+   0.4622,
+   0.5172,
+   0.4453,
+   0.551
+  ],
+  "FR_T16_allK": [
+   0.4715,
+   0.4884,
+   0.5095,
+   0.5011,
+   0.5539
+  ],
+  "FR_T32_allK": [
+   0.5011,
+   0.5433,
+   0.537,
+   0.5328,
+   0.63
+  ],
+  "FR_T64_allK": [
+   0.5624,
+   0.5624,
+   0.5581,
+   0.5687,
+   0.6342
+  ],
+  "FR_1rep": [
+   0.5518,
+   0.5793,
+   0.5581,
+   0.5603,
+   0.6152
+  ],
+  "R7b_1rep": [
+   0.8351,
+   0.8161,
+   0.8372,
+   0.8668,
+   0.8224
+  ],
+  "R1_1rep": [
+   0.6638,
+   0.6786,
+   0.7146,
+   0.6934,
+   0.7273
+  ],
+  "R4_1rep": [
+   0.3171,
+   0.3023,
+   0.2918,
+   0.2939,
+   0.26
+  ]
+ },
+ "kill": {
+  "tau": 0.7,
+  "compute_ratio": 0.05,
+  "fr_minus_fo": 0.05
+ },
+ "fr_budget_points": [
+  {
+   "T": 16,
+   "orders": 4,
+   "tau": 0.5049,
+   "compute_ratio_vs_R7b_1rep": 0.029
+  },
+  {
+   "T": 32,
+   "orders": 4,
+   "tau": 0.5488,
+   "compute_ratio_vs_R7b_1rep": 0.0397
+  },
+  {
+   "T": 64,
+   "orders": 4,
+   "tau": 0.5772,
+   "compute_ratio_vs_R7b_1rep": 0.0611
+  }
+ ],
+ "verdict": "Killed (K1 and K2)",
+ "note": "compute_item = forward MACs per ranked item (P8 convention). R1 and R4 share one pricerep cost. R1/R4 compute and the compute ratios were added after the run from p19_summary.json."
+}

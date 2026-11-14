@@ -1,0 +1,34 @@
+{
+ "note": "seconds per training step on one L4 shared by 6 runs (smallnet-smoke, 2026-10-10, runs/smoke/time-*.json); steps per N are expected early-stopping lengths (refined from conv/cal runs); steps per N refit 16:40Z from conv/cal runs with patience 25 (best_step + 25 evals)",
+ "par": 6,
+ "per_arm": {
+  "k0": 0.03,
+  "refpost": 0.024,
+  "td": 0.03,
+  "mart": 0.031,
+  "chain": 0.035,
+  "perm": 0.047,
+  "allprefix": 0.058,
+  "k1": 0.054,
+  "k1marg": 0.06,
+  "masked": 0.074,
+  "rbtd": 0.132,
+  "k2": 0.216,
+  "k2fixed": 0.216,
+  "k2marg": 0.206,
+  "k0cell": 0.25
+ },
+ "steps": {
+  "100": 500,
+  "300": 1000,
+  "1000": 3000,
+  "3000": 7000,
+  "10000": 13000
+ },
+ "eval_overhead": {
+  "k2": 300,
+  "k2fixed": 300,
+  "k1": 60,
+  "k0cell": 120
+ }
+}

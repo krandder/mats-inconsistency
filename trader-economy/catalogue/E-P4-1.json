@@ -1,0 +1,17 @@
+{
+ "id": "E-P4-1",
+ "question": "On nets with known circuits, does Aumann-Shapley pay (AS/IG) rank latents like the net's exact Shapley?",
+ "setup": "41 SIIT-trained nets on 30 circuits (all accepted, IIA>=0.99, strict IIA>=0.997; pilot 5/5); 123 net-levels, circuit-clustered bootstrap (32 clusters). AS-SOFTFLIP and AS-PAY midpoint rule (m=5-50, cost 3m) vs the net's exact flip-Shapley; baselines sampled FLIP-SHAP at matched cost (K=16), FLIP-LOO, GRADxACT, MI-1BIT, VINFO, RANDOM. S1 = rho>=0.85 (lo>=0.80), top-1>=80%, TOST equivalence to matched Shapley (margin 0.05), H1 p first.",
+ "result": "Partly. AS-SOFT-m50 rho 0.924 [0.908, 0.938], top-1 95%; AS-PAY 0.923, 94%. But sampled FLIP-SHAP at matched cost gets 0.981 [0.976, 0.986], top-1 100%, and even one order (cost ~11) gets 0.964; AS is 0.058 [0.045, 0.071] below, so the TOST clause fails and S1 fails. AS plateaus by m=5-10 (it converges to the diagonal value, not Shapley). FLIP-LOO 0.929 (top-1 89%), GRADxACT 0.37, MI-1BIT 0.13, RANDOM 0.21. H1: p ranks first under AS, exact Shapley and the joint intervention in 3/3 seeds; FLIP-LOO misses it in 2/3. Completeness at m=50: soft 0.03%, pay 0.6%. Falsifier 1 not triggered.",
+ "status": "Informative",
+ "files": [
+  "puzzles/P4/nets.py",
+  "puzzles/P4/crit.py",
+  "puzzles/P4/run.py",
+  "puzzles/P4/results/rows_r1.json",
+  "puzzles/P4/charts/p4_r1_rho.json",
+  "puzzles/P4/RESULTS.md",
+  "puzzles/P4/analyze.py",
+  "puzzles/P4/results/summary.json"
+ ]
+}

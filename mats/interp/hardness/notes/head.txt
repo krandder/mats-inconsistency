@@ -1,0 +1,110 @@
+# Can mean estimates on deep, wide networks provably beat random sampling? Hardness results (29 October 2026)
+
+Answer to Kelvin's ask of 29 October: "Can we get a subagent do a deep math/TCS attempt at proving some hardness bounds
+on making mean estimates on outputs on the limit (as deep/wide as needed) better than random sampling?" (bead
+pool-z0ra9m). Work directory `work/hardness/`: proofs (`draft.md`), numerical checks (`numerics/`, logs in
+`numerics/logs/`), verified sources (`notes/sources.md`, paper texts in `papers/`), adversarial reviews (`review/`:
+Gemini 4 Argon on Sections 1-6, two GPT-6 audits at xhigh effort, one GPT-6 re-check of the fixes). Labels: PROVEN (proof
+below), PROVEN UNDER X (X a named hypothesis), MEASURED, HEURISTIC, CONJECTURE.
+
+## Summary for Kelvin
+
+**Short answer.**
+- If an algorithm may only run the network on inputs it chooses, sampling is optimal up to a constant factor of about 4
+  (proven), even for networks with a handful of units.
+- If it may read the weights, then in the worst case a *deterministic* method that matches sampling on every network
+  does not exist under a standard fine-grained hypothesis (#NSETH): it must lose a factor of about the network size.
+  And proving that even a slow (subexponential) deterministic method exists would prove a major open circuit lower
+  bound. Both follow from a reduction I prove: any Boolean circuit becomes a Gaussian-input ReLU network of the same
+  size whose mean is the circuit's acceptance probability (with or without biases, with small noise).
+- For random He-ReLU networks with depth proportional to width (our M1 setting), no general lower bound is possible
+  with current tools: on average over random weights, a hard-coded set of inputs is already a deterministic estimator
+  that matches sampling, so an impossibility needs a formal definition of "mechanistic". What I proved instead are
+  exact facts and restricted-class results that say what any layer-by-layer description must get right.
+- New measurement: ARC's cheapest closure (K = 2) stays within a factor of about 3 of plain Monte Carlo, either way, at
+  its own budget, along depth = width/8, /4 and /2 up to width 1024, but its advantage shrinks slowly with width (from
+  2-8 at widths 32-128 to about 0.7-1.1 at width 1024). The next closure in ARC's hierarchy (factorized K = 3, 14-251 times the cost) falls behind plain Monte Carlo as width grows: gain 2.16 at width 32, 0.80 at width 64, 0.38 at width 128, 0.08 at width 256 (3 seeds) at depth = width/8, and a loss of 27-247x at depth = width/4.
+- None of this refutes ARC's matching sampling principle (MSP). It shows where its content lies: in the informal word
+  "mechanistic" and in the average case.
+
+**Proven (unconditional).**
+- Black box. On explicit ReLU families no query algorithm beats Monte Carlo by more than a factor about 4 (Theorem 2.1,
+  Corollary 2.2), and a deterministic query algorithm loses by a factor of order the number of queries (Theorem 2.3).
+- No coarse hardness. Sampling is polynomial-time at every inverse-polynomial precision, so every barrier must be
+  fine-grained or about a restricted class of estimators (3.1). Pseudorandom functions have predictable means, and
+  undetectable planting cannot change the distribution of the mean (3.2, 3.3). Beating the know-nothing estimate needs
+  correlation across inputs (3.4).
+- Determinism is free on average over random weights, nonuniformly (3.5): for each size some hard-coded input set
+  matches sampling on average over the weights. (Whether explicit designs do is not settled here.)
+- Circuits reduce to Gaussian means of ReLU networks of the same size, with or without biases, and with small absolute
+  noise on every unit (4.1; checked numerically).
+- Random-oracle networks: at a prescribed budget nothing beats sampling by more than 4x; over a budget window of size
+  B the best possible advantage is Theta(log^2 B) for an explicit family, and every multiscale oracle family leaves some
+  budget with advantage at least about log B / 4 (5.1). For advice to help, it must come from computation on the oracle
+  that someone paid for (5.2).
+- Random He-ReLU nets (each result is about a specific observable or estimator class; none transfers automatically to
+  ARC's per-neuron means):
+  - one input's output scale is a product of independent per-layer factors (log-variance about 5L/n), and the scale is
+    shared across inputs (6.1-6.4, asymptotic);
+  - an estimator that ignores the first half of the layers (knowing the rest exactly) is worth at most a constant
+    number of Monte Carlo samples for the mean squared output norm (6.5; estimated upper bound 1.3-3 samples at widths
+    64-128; ignoring the last half measured at 2-4);
+  - the output error of any layer-by-layer description is exactly the signed sum of its local errors tested against
+    the true backward functions (6.6); scale errors never shrink in bias-free ReLU nets (6.7); a mean error orthogonal
+    to the state's span survives one layer with factor 1 - E[angle]/pi (6.8);
+  - per-layer surrogates of fixed accuracy, and fixed-order expansions in the gain factors, lose a constant fraction of
+    one input's output scale at depth proportional to width (6.10, 7.2); independent-neuron closures misjudge the next
+    layer's variance by O(1) once the state has collapsed (6.11);
+  - if backward functions contract, layer-local errors are depth-free (6.12); one noisy layer need not contract much
+    when the states' images are far apart (6.13).
+- The low-degree method cannot give hardness evidence for this problem (7.1), and "random nets are pseudorandom" cannot
+  be the mechanism of any hardness (Section 7): pseudorandomness makes means easy.
+
+**Proven under a named hypothesis.**
+- Subexponential deterministic estimation for all ReLU networks would give NEXP not in P/poly
+  (Impagliazzo-Kabanets-Wigderson 2002); 4.2.
+- Under #NSETH, no deterministic estimator runs in time O(E^{2-eps}) on all ReLU networks with E edges at constant
+  precision, while sampling is near-linear (adapting Chen and Tell, STOC 2021); 4.3.
+- Explicit ReLU networks obey the random-oracle bounds under a stated joint summation-hardness assumption (Section 5);
+  that assumption is not standard.
+
+**Measured and heuristic (not proofs).**
+- K = 2 against plain Monte Carlo along depth proportional to width (6.3). K = 2's gain over plain Monte Carlo at equal cost, for depth/width 1/8 to 1/2, falls from 2-8 at widths 32-128 to about 0.7-1.1 at width 1024 (fitted slopes -0.4 to -0.8 against Monte Carlo's -1); its error grows like depth^2 at shallow depth and much more slowly beyond depth 64 (tables in 6.3). Factorized K = 3 falls behind with width (above).
+- Mean errors at criticality probably survive with weight about (layer/depth)^3, so constant local errors would add up
+  linearly in depth; the angle asymptotics behind this are proven (6.9), the transport model is not (6.9').
+
+**Changed after review.** Gemini found six fixable gaps (noise constants in 4.1c, a factor 2 in 3.2, variance-zero
+cases); GPT-6 broke more: a claimed parameter-count ceiling on black-box hardness (false: a 4-unit family suffices),
+"advice independent of the context carries no information" (false: it can tabulate all contexts), a per-scale
+summation assumption used for a multiscale sum, a missing independence condition in 6.5, the accumulation corollary
+stated as proven, a missing initial-error term in 6.12, and two overstated noise claims. All are fixed, narrowed or
+retracted below (Section 10 lists them).
+
+**Open.** Whether any polynomial-time estimator beats sampling by a factor that grows with width at depth
+proportional to width. My conjecture (6.B): no layer-local description of polynomial size does. ARC's optimistic
+alternative (a mechanistic estimator that *matches* sampling at all budgets) is not refuted and is consistent with it.
+
+**What it means for M1** (sample-free estimator matching sampling on deep random MLPs, depth growing with width).
+- No impossibility proof is possible without first formalizing "sample-free"; the worst-case barriers do not apply to
+  random nets.
+- For layer-local families the theorems say what must be got right, each under stated conditions: use the early
+  layers (and, by measurement, the late ones); keep output-scale errors small at every layer, since they never shrink
+  (about eps^2/L per layer if they are independent); keep the couplings once the state collapses; and keep the signed
+  sum of local errors, tested against the true backward functions, below the sampling error at equal cost.
+  Fixed-order expansions in the gain factors are not enough at L proportional to n. These are necessary conditions for
+  specific observables, not an impossibility proof.
+- Empirically the cheapest closure roughly matches plain Monte Carlo at its own low budget along L proportional to n
+  (within about 3x either way up to width 1024), while losing ground slowly as width grows. But the next closure (factorized K = 3) falls further behind sampling as width grows, so matching sampling over a range of budgets, which is what M1 and ARC's MSP ask for, is not achieved by the cumulant hierarchy at depth proportional to width. So the M1 bar should be stated over a budget window (e.g. 1e9-3e11 FLOPs at 256 x 32, as in our
+  arc-noisy runs), and against the best sampler, not one budget point against plain Monte Carlo.
+
+**What it means for interpretable architectures.**
+- Worst case: any architecture that can embed Boolean circuits as ReLU networks of near-linear size (with or without
+  biases, with small absolute noise) inherits the barriers; "interpretable by design" helps only if it blocks such
+  embeddings (e.g. bounded treewidth, probabilistic circuits with exact moments).
+- Average case: if an architecture's layers make the backward functions contract, layer-local errors are depth-free
+  (6.12); our measurements suggest this happens in the chaotic phase and with large noise, but it is not proven there.
+  At criticality with homogeneous activations (ARC's family) the scale provably never contracts (6.7). A design target
+  follows: layers that provably contract the statistics a description tracks. The tension (a reading, not a theorem):
+  trainable deep plain nets sit near criticality, and residual streams preserve information by design, so the depth
+  problem is likely generic for practical architectures unless descriptions are non-local.
+

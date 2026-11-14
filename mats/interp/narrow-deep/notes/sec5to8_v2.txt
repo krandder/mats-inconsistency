@@ -1,0 +1,134 @@
+## 5. What this means for M1 and M3
+
+- **Narrow width moves the M1 difficulty without removing it, for every method we tried.**
+  - **Plain nets.** The difficulty sits in the first ~n ln(1/tolerance) layers, the synchronisation length. After
+    that, depth is cheap: a deterministic deep part per radius bin is enough on healthy nets.
+    - Before it, the state is a net of depth proportional to width on Gaussian input. That is exactly M1's regime,
+      now at width 8-16.
+    - No sample-free method we tried works there. K2 is off by nMSE 0.016-27, and naive cell enumeration faces
+      >= 1e5-1e6 gate histories.
+  - **Residual nets.** Nothing synchronises, but a sample-free Gaussian closure is depth-stable: the median error at
+    L = 1024 is 1.1-1.2x that at L = 64.
+    - It beats the samplers tried below about 100-1,000 paths and loses above.
+    - This is the closest this program has come to M1's "matches sampling at depths that grow", though only at small
+      budgets and only at random initialisation.
+  - **Trained nets.** The closure fails (4.3).
+- **What would move it.**
+  1. A closure whose bias vanishes on the residual family: cumulants beyond K = 2, or Gaussian mixtures split along
+     the few directions where the map is not quadratic. The floor is a bias, not variance, so this is a
+     well-defined next step.
+  2. For plain nets, a deductive method for the shallow block alone. That block's depth is ~n ln(1/tol), about 16-30
+     layers at n = 8, and earlier lanes found no method in that regime either.
+- **M3, certified tails: not reached.**
+  - The closure gets the tails wrong by 3x to 60,000x.
+  - The useful structure for tails is positive homogeneity: integrating the radius exactly makes tails 2-90x cheaper
+    to sample. That gives a better estimate, not a certificate.
+
+## 6. Pre-registered predictions: scorecard
+
+gap_1 below uses the conditioning corrected after review (m >= 2): 0.250 at n = 8 and 0.0868 at n = 16.
+
+| prediction | outcome |
+|---|---|
+| P1: per path, N_surv(0.01) <= 2 at L' >= 32 (n = 8) and L' >= 64 (n = 16) | hit (n = 8: 1.0; n = 16: 1.32 at L' = 64, 1.0 from L' = 192) |
+| P1: slope of s2/s1 within 25% of -gap_1 at L' >= 64 | hit (n = 16: -0.089 to -0.098 vs -0.087; n = 8: -0.26 vs -0.25 at L' = 64; at L' >= 128 every n = 8 path is numerically rank one) |
+| P1: rank-1 fraction near the binomial at L' = 64 (n = 8) | weak test: 0.92 vs 0.87 for paths conditioned to survive. The measure is s2/s1 < 1e-12, and the events are shared within a net |
+| P2: angle < 0.05 rad by depth 64 (n = 8) and 128 (n = 16), sigma = 0 | hit (mean 1.8e-5 and 2.1e-3) |
+| P2: log-slope within 30% of -gap_1 | hit (n = 16: -0.0867 vs -0.0868, between-net SE 0.005; n = 8: -0.26 vs -0.25 over layers 8-40, not the registered 32-128, where most n = 8 angles are exactly 0) |
+| P2: noise floor of 1e-3 to 1e-2 rad at sigma = 1e-3 | mostly hit (0.008-0.013; the top of the range exceeds 1e-2) |
+| P2: gate disagreement < 1% by depth 64 (n = 8) and 128 (n = 16) | hit (0 and 0.08%) |
+| P2: dead fraction within 0.1 of 1 - (1 - 2^-n)^L, bimodal per net | hit (0.19 / 0.41 / 0.63 vs 0.22 / 0.39 / 0.63; 20 / 5 / 39 nets below 5% / between / above 95%) |
+| P3: k*_F(M; 1e-2) <= 3 after synchronisation and >= n/2 at cut 4; k*_F(S; 1e-2) <= 2 | partial. After synchronisation the mean k*_F(M) is 2.5-4.0 (n = 16) and 2.8-3.5 (n = 8), above 3 at 5 of 9 cut-width pairs, and single nets reach 8. The >= n/2 at cut 4 holds, and k*_F(S) <= 1.3 holds |
+| P4: residual nets do not collapse, gates differ > 10% | hit (angles 1.3-1.6 rad, gate disagreement 41-50%) |
+| P4: residual N_surv(e^-1) >= n/2 at every L' | miss: it falls to ~0.35 n at L' >= 192 (N_surv(0.01) = n throughout) |
+| P5: gate-free candidates capture <= 2k/n + 0.1 of tr S | miss as worded: wherever the state is one-dimensional every candidate captures nearly all of tr S (Amendment 1). On the sensitivity share (tr M), lin and rand capture 0.04-0.28, a hit (<= 0.225 at n = 16, <= 0.35 at n = 8) |
+| P5: worst case over masks, PR >= n/2 and sampled sup-gain ratio >= 10 | hit after the review fix that drops zero products (PR 12.8-13.0 of 16, 6.9-7.0 of 8; the largest sampled gain is e^5 to e^14 above the actual median) |
+| P5: avg and att capture >= 0.9 of tr S | hit, trivially as above. On tr M, avg is within 0.11 of the optimum at n = 16 after synchronisation but 0.2 below it at n = 8; att ranges from 0.07 to 1.0 by net |
+| P6: deep part from the law at l0 reaches 1e-4 for l0 >= 48 (n = 8) and l0 >= 96 (n = 16) | hit on the 5 nets whose input explains >= 96% of the output variance (paired oracle), miss on the 3 near-dead nets. The sigma = 0 arm was not run |
+| P7: hybrid >= 0.5 L/l0 better than MC at L = 256 | hit at 256-4,096 paths (5.6-11.6x); miss at 16,384 (1.6x). Against the best simple sampler, only 1.6-4x; one net |
+| P8: K2 from the input misses by nMSE >= 1e-2 on plain nets; no sample-free method matches sampling at L = 64, n = 16 (plain) | hit (0.016-27); hit for the methods tried |
+| P9: trained nets do not collapse; gates differ >= 10%; K2 loses to MC | residual sorter: hit / hit / hit. RNNs: no collapse (hit), gates settle to 3-7% (miss), K2 loses (hit) |
+| P10 (Amendment 5): residual K2 nMSE ratio L = 1024 / L = 64 within 3x | hit (median 1.21 at n = 16, 1.11 at n = 8; 2 nets at L = 1024) |
+| Trainability: T = 32 >= 50% | miss (38-40%) |
+| Trainability: T = 64 above 5x chance but below T = 32 | first half hit; second half miss (best 44% vs 40%) |
+| Trainability: residual sorter nMSE <= 0.05 at L = 64; plain fails at 64 and does better at 16 | hit; hit; hit |
+
+Deviations (Amendments 1-7):
+- Plain n = 8 analyses are conditioned on survival.
+- The P5 score was supplemented with the sensitivity share.
+- The main truths used 2^20-2^22 paths, not 2^24.
+- Samplers were trimmed to 16 replicates, and only one plain-net seed ran the sampler comparison.
+- The noiseless arm of P6 was not run.
+- The MLP at L = 128 was stopped to free the GPU.
+- Added after the first residual results: K2's depth scaling, the linearity shares, the Gaussianity check and the
+  Imhof tail.
+- The review led to two code fixes, now rerun, and a corrected gap_1 (Amendment 7):
+  - sensitivity M over all paths with a nonzero Jacobian;
+  - random-mask PR without zero products.
+
+## 7. What is proven, measured, heuristic
+
+- **PROVEN** (noiseless, from Theorem C of the lyapunov lane):
+  - while a path's state is nonzero, its next active count is Bin(n, 1/2) whatever its past;
+  - a path survives L layers with probability (1 - 2^-n)^L;
+  - rank(J_x) <= min_l m_l;
+  - inputs whose states lie exactly on one positive ray share every later gate, so they die together;
+  - for two infinitesimally separated inputs, the log angle drifts at -gap_1 per layer, with both exponents
+    conditioned on the chain keeping at least 2 active units;
+  - a layer with one active unit synchronises two inputs on that unit exactly.
+- **MEASURED**: everything else in sections 2-4. Sample sizes are stated where they appear:
+  - 64 nets for the census, 4 for most per-net analyses, 2 for several diagnostics and the L >= 256 depth points;
+  - 1 net for the plain sampler comparison, and the best seed per configuration for the trained-net estimates.
+  - The synchronisation rate is a consistency check against an exponent proven for infinitesimal separations, not
+    a precision test.
+- **HEURISTIC**:
+  - why K2's error need not grow with depth in 1/sqrt(L) residual nets. The martingale identity
+    E|e_L|^2 = L^(-1) sum E|b_l|^2 is exact; bounding the per-layer discrepancies b_l is not done;
+  - that the near-quadratic, near-Gaussian structure of those nets is what lets K2 work there.
+
+## 8. Review
+
+One GPT-6 review (Codex, high effort), on the near-final draft: `review/review_gpt6.md`, raw transcript in
+`review/review_gpt6.raw`. Its verdict was "major revision". It reproduced 15 headline numbers (table at the end of
+the review) and checked the Jacobian chains against autodiff (agreement to 4e-16). It also checked the residual Stein
+cross-covariance against a one-step MC and the closure updates, and found no algebraic error. What it found and what
+changed:
+1. M excluded paths that had once died, though noise revives them (83-99% of the sensitivity on two n = 8 nets). The
+   script is fixed and every plain run was redone. At n = 8, k*_F(M) rose to 2.8-3.5 and the avg / att captures fell
+   (sections 2.3-2.4).
+2. Euler's identity does not identify the top input direction. Rewritten: the surviving direction is the radial row
+   of Theorem C.
+3. "No gate-free bound exists" overstated what was tested. Narrowed to the constructions tested.
+4. gap_1 used inconsistent conditioning. Recomputed with m >= 2 for both exponents: 0.0868 (n = 16), 0.250 (n = 8).
+   The n = 8 "excess" rate disappeared.
+5. The random-mask PR counted zero products. Fixed: n = 8 PR is 6.9-7.0, not 2.2-3.8.
+6. The worst-case gain evidence used an upper bound as if it were a lower bound. Now the largest sampled gain (e^5
+   to e^14 above the actual median) is the evidence.
+7. "One trajectory's gates" overstated what was shown: avg uses 1,024 trajectories, and att fails on one net.
+   Narrowed.
+8. The death statements needed qualifiers: "while the state is nonzero", "exactly synchronised", "sampled inputs".
+   The noisy census had counted ever-dead paths as dead. Fixed.
+9. The angle fit is a consistency check: between-net SE 0.005, acos resolution, selected population. Reworded.
+10. The rank-one comparison needs survival conditioning (0.87). Corrected.
+11. The paired oracle reuses the truth's paths. Stated.
+12. The FLOP model is approximate, several items are not charged, and the noise-scale pilot is excluded for every
+    estimator. All stated.
+13. The own-budget comparison omits ANT and rounds RQMC down. Stated, and the 16-250x is called conditional.
+14. The truth error is not resolved below ~1e-6. Stated.
+15. The depth heuristic now has the martingale form, and the L = 1024 weight streams are described.
+16. The mechanism diagnostics only show consistency, and the cell census is not a lower bound for every method.
+    Reworded.
+17. The RB check had claimed 2% agreement, but the noiseless 1e-4 point is 12.6% apart (1.7 SE). Corrected. The
+    Imhof validation at 1e-9 now cites the reviewer's independent inversion.
+18. Prereg scoring: P3 is now partial, the P2 floor mostly hit, P5 restated, P6's noiseless arm and the truth-budget
+    change listed as deviations.
+19. Literature: the settings (L^p on R^n, uniform, compact L^p) are separated; Nguyen et al.'s assumptions are
+    stated; Kidger-Lyons is a sufficient width; bias-free nets cannot be universal; Hanin 2018 concerns the
+    fluctuations of squared Jacobian entries; Hanin-Nica is asymptotic; Du-Hu is a sufficient condition;
+    Li-Nica-Roy is a joint limit.
+20. Two table values were transcribed wrongly and are corrected. "0.4% of paths die at n = 16" was the prediction,
+    not the measurement. "Capacity-limited" and "sorting needs" are softened.
+
+Not changed: the residual K2 result. The reviewer judged it "a promising exploratory mean-estimation result" that
+largely reproduces, and agreed that M1/M3 have not been reached.
+

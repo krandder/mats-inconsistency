@@ -1,0 +1,102 @@
+{
+ "model": "Claude Fable 5.2 (claude-fable-5-2[1m])",
+ "plain_words": "I built Sudoku the way you described it: M is a small masked transformer trained only on solved grids (no puzzles, no consistency loss), the graph is Bengio's partial fillings, the order policy is learned from real grids, T is that route with M's atoms, and several search policies are corrected against the same T. CPU only, 4x4 and 6x6.\nM does carry the rules. When it says a placement is impossible it was right every time I could check, and with one cell of context nothing fooled it. What it does not know is whether a half-filled board still has a completion: mid-board it sees 10-57% of dead ends.\nAt 4x4, exactly: there is a route through the trained network whose law is 0.005 nats from reality (M's own confidence 0.12, uniform mixture over orders 0.10). The trust MDP finds it, and no invalid board among all 4^16 passes T. That route makes its free choices early, where M is calibrated, then only fills forced cells.\nTwo things failed as specified. First: trust fitted on the grids M trained on rewards memorisation. The exact optimum replays the training set and gives the unseen orbit a ninth of its share. Trust needs real data M has not seen.\nSecond: at 6x6, \"T > 0\" read from the long route is not a rule check. T puts 3.3% of its mass on invalid boards. 2% of hard puzzles got a wrong accepted answer with the good search policy and 10% with the deliberately bad one, so the answer depended on the search.\nWhat fixed it (after the fact, not pre-registered): take the zero from M's one-cell contexts and keep the route as the soft law. Then 0 of 16,566 wrong candidates passed, and four search policies gave identical answers at up to 4.5 times different compute.\nWith that, search over the grids-only model, which never saw a puzzle, solved 299 of 300 hard held-out puzzles, all correct. One pass of the same model gets 75%. One pass of a network trained on 12,000 puzzle-solution pairs gets 68-71%, and extra unchecked passes do not help it.\nThat puzzle-trained network is also the worse search policy: when it is wrong it is 99% sure, so its draws repeat the mistake. The grids-only model is almost never confidently wrong on real boards.\nLearned trust against M's own confidence as the definition of T: 0.19 against 0.25 nats on held-out grids, interval touching zero, so a null by my pre-registered rule (clear in distribution: 0.21 against 0.31). A plain row-by-row order beat both (0.08), and a learned mixture of six routes was best (0.06). My trust learner is weak; what worked best is the aggregate over routes you asked for.\nI don't know: whether a better learner finds a near-exact route at 6x6; what replaces one-cell contexts when rules are not pairwise; anything at 9x9 or an unseen size (not run, the GPU queue said 11 days); the multi-solution weights had not converged at my budget. One network per role, one seed.",
+ "note_path": "/home/agent/workspaces/mats/work/deep-study/wf7/sudoku/NOTE.md",
+ "claims": [
+  {
+   "claim": "Chain rule: for a deterministic order policy, expected route surprise on real boards = entropy of reality + KL(reality || T).",
+   "status": "PROVEN",
+   "evidence": "Telescoping argument (standard). Checked exactly at 4x4: V*(empty) - ln 288 = 0.004597 and the walked route gives 0.004597 (out/e_4x4_mA4.out)."
+  },
+  {
+   "claim": "At 4x4 the exact optimum of the trust MDP on the trained network gives KL(reality || T) = 0.0046 nats; own-confidence orders 0.12-0.20; uniform mixture over 256 orders 0.096; best of 256 fixed orders 0.047.",
+   "status": "CHECKED",
+   "evidence": "Exact enumeration and DP over all reachable states (run on symmetry classes; equivariance error 7e-06). out/e_4x4_mA4.out, out/e_4x4_mA4_nodp.out."
+  },
+  {
+   "claim": "The optimal 4x4 route makes its free choices early at calibrated contexts (0.0024 nats of excess there in total) and then fills forced cells; it takes a locally forced cell 76% of the time when one exists, against 92% for M's entropy order.",
+   "status": "CHECKED",
+   "evidence": "out/e_4x4_mA4_order.out section [2c], all 288 grids scored with exact conditionals."
+  },
+  {
+   "claim": "At 4x4 the test log T >= tau (tau from real grids only) accepts none of the 4^16 - 288 invalid boards and rejects none of the 288 valid grids, including the 96 from the orbit the network never saw.",
+   "status": "CHECKED",
+   "evidence": "Exhaustive walk of T's tree, pruned mass below 2e-05. out/e_4x4_mA4.out section [4b]."
+  },
+  {
+   "claim": "Trust solved exactly on M's own training grids reproduces the training set: -0.353 nats relative to uniform on the training orbit, +2.217 on the held-out orbit (a ninth of its share).",
+   "status": "CHECKED",
+   "evidence": "Tabular DP with the 192 training grids as reality, out/e_4x4_mA4.out. That fitting trust on data M has not seen removes this is a CONJECTURE, not tested directly."
+  },
+  {
+   "claim": "The 6x6 grids-only model encodes the direct rule sharply (1.7e-04 mass per atom on rule-breaking values; every placement it rules out is truly impossible on scored states), but rules out only 10-57% of dead-end placements with 3-12 cells revealed.",
+   "status": "CHECKED",
+   "evidence": "out/e_trust6_analyse.out [d] (pre-registered reading: sharp); out/e_stiff.out (post hoc; 150 exactly scored states per context size)."
+  },
+  {
+   "claim": "Learned trust beats M's own confidence as the definition of T on held-out 6x6 grids.",
+   "status": "UNKNOWN",
+   "evidence": "Pre-registered bin: null. 0.194 against 0.248 nats, paired difference +0.054 [-0.001, +0.114] (out/e_trust6_analyse.out [c]). In distribution +0.103 [+0.022, +0.185] (post hoc column). A raster order (0.081) and a learned mixture of six routes (0.062, post hoc) are both closer to reality than the learned trust route."
+  },
+  {
+   "claim": "T := pi_trust with M's atoms gives (near) zero probability to invalid complete 6x6 boards at the pre-set threshold.",
+   "status": "REFUTED",
+   "evidence": "T puts 3.3% of its mass on invalid boards; 51 of 67 invalid draws from T pass the threshold; 33 of 33,524 wrong search candidates accepted. Pre-registered bin: fail. out/e_trust6_analyse.out [f], out/e_report6.out."
+  },
+  {
+   "claim": "Search corrected against the route-density T returns the same answers whatever the search policy (6x6, hard puzzles).",
+   "status": "REFUTED",
+   "evidence": "18 of 691 accepted answers wrong; 530 of 565 pairs agree; wrong accepted answers on 2% of puzzles for S1 and 10% for the deliberately bad S2. out/e_report6.out."
+  },
+  {
+   "claim": "For an M exact on real contexts, T of an invalid board is at most M's probability of one impossible value at an on-support context, and the one-cell-context pair check scores a constant on valid boards and a leak on invalid ones.",
+   "status": "PROVEN",
+   "evidence": "NOTE.md section 2.4; these are G1.1 and G1.3 (pairwise case) of theory/G1-general-reasoner/note.md, which I read and credit."
+  },
+  {
+   "claim": "For the trained model the pair check separates valid from invalid by at least 5.9 nats: 0 of 16,566 wrong candidates accepted, 0 of 1,118 solution candidates rejected, and all 67 invalid draws from T and all 20 boards the route test wrongly accepted are rejected.",
+   "status": "CHECKED",
+   "evidence": "Post hoc (addendum A8). out/e_posthoc.out, out/e_posthoc2.out, out/e_report6.out."
+  },
+  {
+   "claim": "With the pair check added (T2), four search policies return identical answers (292 of 292 pairs), all correct (455 of 455), at up to 4.5 times different mean compute.",
+   "status": "CHECKED",
+   "evidence": "Post hoc; S1 on 300 hard puzzles, S2/S3/S4 on 60. out/e_report6.out."
+  },
+  {
+   "claim": "Search over the grids-only model, with no puzzle ever seen in training, solves 299 of 300 hard held-out 6x6 puzzles under T2, all correct; one pass of the same model gets 75.3%, one pass of the puzzle-trained model 68.3-70.7%, its best-of-32 by own score 68.3%. Pre-registered equal-compute headline: major (86.7% against 75.3% at 6.0e9 FLOPs).",
+   "status": "CHECKED",
+   "evidence": "out/search_S1_HARD_T2.out, out/search_S1_HARD.out, out/base_HARD.out, out/e_report6.out, fig/fig3_accuracy_vs_flops.png."
+  },
+  {
+   "claim": "The puzzle-trained model is confidently wrong on hard puzzles (0.988 on the wrong value at its first error; its own density accepts 74 wrong answers of 297) and is a worse search proposal than the grids-only model (83% against 99.7% solved within 256 candidates). The grids-only model has 1 confidently wrong atom in 71,778 on real contexts.",
+   "status": "CHECKED",
+   "evidence": "out/base_HARD.out, out/search_S3_HARD.out, out/search_S4_HARD.out, out/e_trust6_analyse.out [g]. The explanation (single-valued training targets) is a CONJECTURE."
+  },
+  {
+   "claim": "One pass in the trust order beats one pass in M's own-confidence order for the puzzle-trained model on hard puzzles.",
+   "status": "UNKNOWN",
+   "evidence": "Pre-registered bin: null. 74.3% against 70.7% for the pre-registered rule, exact sign test p = 0.18 (out/e_posthoc2.out). Against the other two rules p = 0.10 and 0.036."
+  },
+  {
+   "claim": "The right form of T is the trusted route times vetoes from the stiffest atoms, and the stiff set can be learned from reality-only statistics.",
+   "status": "CONJECTURE",
+   "evidence": "Works here with one-cell contexts chosen after seeing the failure. A learner that picks the veto contexts is untested; one-cell contexts suffice only because Sudoku's rules are pairwise."
+  },
+  {
+   "claim": "Importance-weighted estimates on multi-solution puzzles agree across search policies; behaviour at 9x9 or at an unseen grid size.",
+   "status": "UNKNOWN",
+   "evidence": "Multi-solution: pre-registered rule failed at 64 draws (median distances 0.50-0.62), not converged (out/e_multi.out). 9x9 and size transfer: scripts written (train_gen.py, e_size9.py), not run."
+  }
+ ],
+ "open_questions": [
+  "Does the trust MDP have a near-exact route at 6x6 as it does at 4x4 (0.005 nats)? My learner reaches 0.19, raster 0.08, a six-route mixture 0.06; the per-step minimum suggests about 0.02 is available, and DP is out of reach there.",
+  "Is fitting trust on real data M has not seen enough to stop it rewarding memorisation, or does subtler memorisation survive? Only the failure case is shown (4x4, exact).",
+  "What plays the role of one-cell contexts when rules are not pairwise or are global, and can a learner pick the veto contexts from reality-only statistics (context sizes where M never rules out a real value)?",
+  "The next aggregation object: weights over routes that depend on the board and on the sampled trajectories, scored on real data. I only did fixed routes with scalar weights.",
+  "Does any of this hold at 9x9, where hard puzzles need long deduction chains and proposals may rarely hit the solution within a cap? Does the rule transfer to an unseen grid size?",
+  "Do the importance-weighted estimates for multi-solution puzzles converge across policies with more draws? T's conditional over solutions is 0.19 TV from uniform, so the target itself is uneven.",
+  "Everything rests on one trained network per role and one seed, with samples cut for compute (addenda A1-A9); the borderline results (E2 held-out, trust order for the puzzle model) need replication."
+ ],
+ "compute_used": "CPU only, about 3 h 10 min wall clock (01:30-04:40Z), three one-thread processes at nice 19 / ionice -c3 on a shared host at load 60-80 (about 40% of a core each), under 2 GB RAM. No GPU job submitted: Slurm dry runs (sbatch --test-only --gres=gpu:1; ids 57288, 57289 at 01:39Z and 57316 at 02:31Z) all estimated a start on 2026-11-21, far over the 30-minute limit, so no 9x9. No paid API, no messages, nothing pushed. Pre-registration: /home/agent/workspaces/mats/work/deep-study/wf7/sudoku/PREREG.md plus nine dated addenda in PREREG-ADDENDA.md; figures in fig/ (3 PNG); all outputs in out/."
+}

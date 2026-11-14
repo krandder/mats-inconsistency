@@ -1,0 +1,685 @@
+{
+ "pass": true,
+ "rows": [
+  {
+   "task": "prefix",
+   "D": 16,
+   "arm": "Bl",
+   "analytic": 248927744,
+   "counted": 235190984,
+   "rel_err": 0.05840683076524744,
+   "top_ops": [
+    [
+     "bmm",
+     187301888
+    ],
+    [
+     "add",
+     16133825
+    ],
+    [
+     "relu_",
+     11796480
+    ],
+    [
+     "_log_softmax",
+     6459392
+    ],
+    [
+     "logsumexp",
+     5898240
+    ],
+    [
+     "sub",
+     3012608
+    ]
+   ]
+  },
+  {
+   "task": "prefix",
+   "D": 16,
+   "arm": "Bl-ac",
+   "analytic": 248927744,
+   "counted": 235649736,
+   "rel_err": 0.0563463733309677,
+   "top_ops": [
+    [
+     "bmm",
+     187301888
+    ],
+    [
+     "add",
+     16199361
+    ],
+    [
+     "relu_",
+     11796480
+    ],
+    [
+     "_log_softmax",
+     6459392
+    ],
+    [
+     "logsumexp",
+     5898240
+    ],
+    [
+     "sub",
+     3012608
+    ]
+   ]
+  },
+  {
+   "task": "prefix",
+   "D": 16,
+   "arm": "Bl-local",
+   "analytic": 101164544,
+   "counted": 99761864,
+   "rel_err": 0.01406028259455927,
+   "top_ops": [
+    [
+     "bmm",
+     93421568
+    ],
+    [
+     "add",
+     1526465
+    ],
+    [
+     "_log_softmax",
+     1052672
+    ],
+    [
+     "relu",
+     1048576
+    ],
+    [
+     "sum",
+     706562
+    ],
+    [
+     "threshold_backward",
+     524288
+    ]
+   ]
+  },
+  {
+   "task": "prefix",
+   "D": 16,
+   "arm": "O",
+   "analytic": 99657216,
+   "counted": 97677000,
+   "rel_err": 0.020273104210817294,
+   "top_ops": [
+    [
+     "bmm",
+     92897280
+    ],
+    [
+     "add",
+     1313473
+    ],
+    [
+     "relu",
+     1048576
+    ],
+    [
+     "sum",
+     641026
+    ],
+    [
+     "threshold_backward",
+     524288
+    ],
+    [
+     "_log_softmax",
+     266240
+    ]
+   ]
+  },
+  {
+   "task": "prefix",
+   "D": 16,
+   "arm": "C",
+   "analytic": 31368704,
+   "counted": 31340548,
+   "rel_err": 0.0008983888858611344,
+   "top_ops": [
+    [
+     "bmm",
+     29589504
+    ],
+    [
+     "add",
+     689152
+    ],
+    [
+     "relu",
+     524288
+    ],
+    [
+     "neg",
+     132096
+    ],
+    [
+     "log",
+     131072
+    ],
+    [
+     "mul",
+     66560
+    ]
+   ]
+  },
+  {
+   "task": "prefix",
+   "D": 16,
+   "arm": "A",
+   "analytic": 92546560,
+   "counted": 90698620,
+   "rel_err": 0.02037451065958895,
+   "top_ops": [
+    [
+     "bmm",
+     86949888
+    ],
+    [
+     "add",
+     1277816
+    ],
+    [
+     "relu",
+     524288
+    ],
+    [
+     "threshold_backward",
+     524288
+    ],
+    [
+     "_softmax",
+     262144
+    ],
+    [
+     "_softmax_backward_data",
+     262144
+    ]
+   ]
+  },
+  {
+   "task": "prefix",
+   "D": 16,
+   "arm": "A-prog",
+   "analytic": 55625216,
+   "counted": 54658366,
+   "rel_err": 0.017688966406350204,
+   "top_ops": [
+    [
+     "bmm",
+     52084736
+    ],
+    [
+     "add",
+     864568
+    ],
+    [
+     "relu",
+     425984
+    ],
+    [
+     "threshold_backward",
+     262144
+    ],
+    [
+     "_softmax",
+     212992
+    ],
+    [
+     "_softmax_backward_data",
+     131072
+    ]
+   ]
+  },
+  {
+   "task": "prefix",
+   "D": 16,
+   "arm": "A-ds",
+   "analytic": 93675520,
+   "counted": 91712728,
+   "rel_err": 0.021401522371027992,
+   "top_ops": [
+    [
+     "bmm",
+     87687168
+    ],
+    [
+     "add",
+     1354902
+    ],
+    [
+     "relu",
+     524288
+    ],
+    [
+     "threshold_backward",
+     524288
+    ],
+    [
+     "_softmax",
+     262144
+    ],
+    [
+     "_softmax_backward_data",
+     262144
+    ]
+   ]
+  },
+  {
+   "task": "prefix",
+   "D": 16,
+   "arm": "A-1step",
+   "analytic": 34424320,
+   "counted": 34205380,
+   "rel_err": 0.0064007474847525,
+   "top_ops": [
+    [
+     "bmm",
+     31899648
+    ],
+    [
+     "add",
+     756416
+    ],
+    [
+     "relu",
+     524288
+    ],
+    [
+     "_softmax",
+     262144
+    ],
+    [
+     "neg",
+     132096
+    ],
+    [
+     "log",
+     131072
+    ]
+   ]
+  },
+  {
+   "task": "prefix",
+   "D": 16,
+   "arm": "A-soft-prog",
+   "analytic": 54908416,
+   "counted": 54039870,
+   "rel_err": 0.016072318456724632,
+   "top_ops": [
+    [
+     "bmm",
+     52084736
+    ],
+    [
+     "add",
+     758072
+    ],
+    [
+     "relu",
+     425984
+    ],
+    [
+     "threshold_backward",
+     262144
+    ],
+    [
+     "_softmax",
+     212992
+    ],
+    [
+     "_softmax_backward_data",
+     131072
+    ]
+   ]
+  },
+  {
+   "task": "maze",
+   "D": 8,
+   "arm": "Bl",
+   "analytic": 344102400,
+   "counted": 326284168,
+   "rel_err": 0.054609551266980194,
+   "top_ops": [
+    [
+     "bmm",
+     264437760
+    ],
+    [
+     "add",
+     21383041
+    ],
+    [
+     "relu_",
+     16515072
+    ],
+    [
+     "_log_softmax",
+     8556544
+    ],
+    [
+     "logsumexp",
+     8257536
+    ],
+    [
+     "sub",
+     4159488
+    ]
+   ]
+  },
+  {
+   "task": "maze",
+   "D": 8,
+   "arm": "Bl-ac",
+   "analytic": 344102400,
+   "counted": 326513544,
+   "rel_err": 0.05386868729708816,
+   "top_ops": [
+    [
+     "bmm",
+     264437760
+    ],
+    [
+     "add",
+     21415809
+    ],
+    [
+     "relu_",
+     16515072
+    ],
+    [
+     "_log_softmax",
+     8556544
+    ],
+    [
+     "logsumexp",
+     8257536
+    ],
+    [
+     "sub",
+     4159488
+    ]
+   ]
+  },
+  {
+   "task": "maze",
+   "D": 8,
+   "arm": "Bl-local",
+   "analytic": 136488448,
+   "counted": 135780232,
+   "rel_err": 0.005215899174483729,
+   "top_ops": [
+    [
+     "bmm",
+     132546560
+    ],
+    [
+     "add",
+     803713
+    ],
+    [
+     "_log_softmax",
+     528384
+    ],
+    [
+     "relu",
+     524288
+    ],
+    [
+     "sum",
+     370690
+    ],
+    [
+     "threshold_backward",
+     262144
+    ]
+   ]
+  },
+  {
+   "task": "maze",
+   "D": 8,
+   "arm": "O",
+   "analytic": 135734784,
+   "counted": 134735752,
+   "rel_err": 0.007414750614966659,
+   "top_ops": [
+    [
+     "bmm",
+     132284416
+    ],
+    [
+     "add",
+     697217
+    ],
+    [
+     "relu",
+     524288
+    ],
+    [
+     "sum",
+     337922
+    ],
+    [
+     "threshold_backward",
+     262144
+    ],
+    [
+     "_log_softmax",
+     135168
+    ]
+   ]
+  },
+  {
+   "task": "maze",
+   "D": 8,
+   "arm": "C",
+   "analytic": 44344832,
+   "counted": 44316676,
+   "rel_err": 0.0006353364588986832,
+   "top_ops": [
+    [
+     "bmm",
+     43417600
+    ],
+    [
+     "add",
+     361472
+    ],
+    [
+     "relu",
+     262144
+    ],
+    [
+     "neg",
+     66560
+    ],
+    [
+     "log",
+     65536
+    ],
+    [
+     "mul",
+     33792
+    ]
+   ]
+  },
+  {
+   "task": "maze",
+   "D": 8,
+   "arm": "A",
+   "analytic": 124790272,
+   "counted": 123894588,
+   "rel_err": 0.0072294037573295,
+   "top_ops": [
+    [
+     "bmm",
+     121946112
+    ],
+    [
+     "add",
+     689976
+    ],
+    [
+     "relu",
+     262144
+    ],
+    [
+     "threshold_backward",
+     262144
+    ],
+    [
+     "_softmax",
+     131072
+    ],
+    [
+     "_softmax_backward_data",
+     131072
+    ]
+   ]
+  },
+  {
+   "task": "maze",
+   "D": 8,
+   "arm": "A-prog",
+   "analytic": 191532032,
+   "counted": 190190967,
+   "rel_err": 0.007051149805658241,
+   "top_ops": [
+    [
+     "bmm",
+     187006976
+    ],
+    [
+     "add",
+     1125739
+    ],
+    [
+     "relu",
+     458752
+    ],
+    [
+     "threshold_backward",
+     393216
+    ],
+    [
+     "_softmax",
+     229376
+    ],
+    [
+     "_softmax_backward_data",
+     196608
+    ]
+   ]
+  },
+  {
+   "task": "maze",
+   "D": 8,
+   "arm": "A-ds",
+   "analytic": 125317120,
+   "counted": 124367840,
+   "rel_err": 0.007632841416237435,
+   "top_ops": [
+    [
+     "bmm",
+     122290176
+    ],
+    [
+     "add",
+     725950
+    ],
+    [
+     "relu",
+     262144
+    ],
+    [
+     "threshold_backward",
+     262144
+    ],
+    [
+     "_softmax",
+     131072
+    ],
+    [
+     "_softmax_backward_data",
+     131072
+    ]
+   ]
+  },
+  {
+   "task": "maze",
+   "D": 8,
+   "arm": "A-1step",
+   "analytic": 53626368,
+   "counted": 53446532,
+   "rel_err": 0.0033647833314984776,
+   "top_ops": [
+    [
+     "bmm",
+     52215808
+    ],
+    [
+     "add",
+     402304
+    ],
+    [
+     "relu",
+     262144
+    ],
+    [
+     "_softmax",
+     131072
+    ],
+    [
+     "neg",
+     66560
+    ],
+    [
+     "log",
+     65536
+    ]
+   ]
+  },
+  {
+   "task": "maze",
+   "D": 8,
+   "arm": "A-soft-prog",
+   "analytic": 190704640,
+   "counted": 189511031,
+   "rel_err": 0.006298361597747881,
+   "top_ops": [
+    [
+     "bmm",
+     187006976
+    ],
+    [
+     "add",
+     1011051
+    ],
+    [
+     "relu",
+     458752
+    ],
+    [
+     "threshold_backward",
+     393216
+    ],
+    [
+     "_softmax",
+     229376
+    ],
+    [
+     "_softmax_backward_data",
+     196608
+    ]
+   ]
+  }
+ ]
+}

@@ -1,0 +1,15 @@
+{
+ "id": "E-MR-6",
+ "question": "In the trader economy, does halting when the VOC market's price falls below the compute cost beat random and fixed-depth halting at matched compute, and does training with the cost help?",
+ "status": "Informative",
+ "setup": "E-MR-5 economy; halting test on mixed lengths 4 to 64 (written as L64 before the 2026-09-29 audit), 500 examples, cap 96 steps; halt when VOC <= c for c = 0.001, 0.003, 0.01. Cost-0 run (3 seeds) halted post hoc at c, and runs trained with cost c and halting at c, epsilon-settled (2 seeds each). Random halting with the same step histogram and fixed depth at the same mean. No PonderNet/ACT arm: both need backprop across depth.",
+ "result": "Informative (audit 2026-09-29): confidence halting works; no market-specific value shown. Cost-0 run at c = 0.001 / 0.003 / 0.01: 9.6 / 7.6 / 6.6 steps, accuracy 0.994 / 0.980 / 0.859, against random halting 0.836 / 0.743 / 0.634 and fixed depth 0.985 / 0.876 +- 0.169 / 0.753 +- 0.129 (within noise). The test set was mixed lengths 4 to 64, not L64. By construction VOC = sigmoid(v0) x belief entropy / 5, and a plain entropy threshold on the belief, with no market, matches VOC within 0.02 at every cost (audit CPU check). Trained at c: 14.0 / 8.1 / 6.9 steps, 0.994 / 0.975 / 0.859, so training with the cost adds nothing, as in phase 1. VOC prices are calibrated (corr 0.82). Rerun at L64 only against an entropy threshold: RESULTS.md section 17.",
+ "files": [
+  "market-resnet/RESULTS.md",
+  "market-resnet/econ2.py",
+  "market-resnet/run_p2b_vm6.sh",
+  "market-resnet/charts/p2_priced_halting.json",
+  "market-resnet/results/summary.json",
+  "market-resnet-AUDIT.md"
+ ]
+}

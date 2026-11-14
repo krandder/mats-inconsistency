@@ -1,0 +1,45 @@
+== mA4: 85444 parameters; trained on 192 grids; held-out orbit has 96 grids
+
+[1] order policies that need no learning (exact, all 288 grids)
+   M's inconsistency: std over 256 random orders of log q_sigma(x): mean over grids 0.3842 nats (train orbit 0.3889, held-out orbit 0.3749)
+
+[3] trust policy learned by paired routes on the training grids only
+  trust iter 0: base route surprise 3.8616 (n=1536); deviations better than base 0.260; mean delta +0.0282; fit loss 0.0726; 10752 tuples (107s)
+  trust iter 1: base route surprise 3.8041 (n=1536); deviations better than base 0.238; mean delta +0.0226; fit loss 0.0275; 10752 tuples (128s)
+  trust iter 2: base route surprise 3.8602 (n=1536); deviations better than base 0.272; mean delta +0.0144; fit loss 0.0281; 10752 tuples (126s)
+  trust iter 3: base route surprise 3.8720 (n=1536); deviations better than base 0.254; mean delta +0.0072; fit loss 0.0273; 10752 tuples (121s)
+   route surprise of each iterate on the training grids: [5.6306, 5.6488, 5.6496, 5.6462] -> pi_trust = iterate 1
+
+[4] every order policy as a definition of T (exact). excess = mean_x[-log T(x)] - ln 288, in nats
+   order policy                                                                     all 288  held-out     train  mass on valid
+   own confidence: lowest entropy                                                    0.1220    0.2513    0.0574       0.994046
+   own confidence: top probability                                                   0.2026    0.0067    0.3006       0.953662
+   own confidence: top-1 minus top-2                                                 0.1636    0.1545    0.1682       0.954314
+   least confident first                                                             0.4005    0.5136    0.3439       0.715730
+   raster order                                                                      0.1018    0.3341   -0.0144       0.992555
+   one random fixed order (mean over 256 orders)                                     0.1666    0.3461    0.0768       0.916665
+   uniform mixture over 256 random orders                                            0.0956    0.2796    0.0036       0.916665
+   best of 256 random fixed orders (picked on all 288: oracle pick)                  0.0472    0.1306    0.0055       0.990727
+   pi_trust (learned, paired routes)                                                 0.0935    0.3453   -0.0323       0.992163
+
+[4b] exhaustive walk of T's tree (all complete boards with T >= 1e-9)
+   acceptance rule: log T >= tau = -8.442 (minimum over the training grids minus 2.0)
+   pi_trust (learned, paired routes): boards with T >= 1e-9: 25725 (288 valid); mass on valid 0.992163; on enumerated invalid 0.007822; pruned 1.54e-05
+      smallest T on a valid grid 1.499e-03; largest T on an invalid board 1.106e-04; tau -8.442: invalid boards accepted 0 of 4^16-288; valid grids rejected 0 of 288 (held-out orbit: 0 of 96)
+   own confidence: lowest entropy: boards with T >= 1e-9: 17125 (288 valid); mass on valid 0.994046; on enumerated invalid 0.005944; pruned 1.03e-05
+      smallest T on a valid grid 1.049e-03; largest T on an invalid board 7.638e-05; tau -8.860: invalid boards accepted 0 of 4^16-288; valid grids rejected 0 of 288 (held-out orbit: 0 of 96)
+
+[5] search on minimal puzzles, corrected against T (pi_trust, tau as above)
+   held-out orbit: 192 puzzles, clues [61, 128, 3] for 4,5,6; one pass of M, own confidence, no check: accuracy 1.0000
+      S1 own confidence (margin)             accepted 1.0000; accepted answers correct 1.0000; candidates to accept: mean 1.00, max 1; FLOPs mean 1.264e+08 median 1.255e+08
+      S2 least confident first, 5% floor     accepted 1.0000; accepted answers correct 1.0000; candidates to accept: mean 1.55, max 7; FLOPs mean 1.701e+08 median 1.283e+08
+      S5 trust order                         accepted 1.0000; accepted answers correct 1.0000; candidates to accept: mean 1.00, max 1; FLOPs mean 1.629e+08 median 1.611e+08
+      identical accepted answers across pairs of policies: [1.0, 1.0, 1.0]
+   training orbit: 384 puzzles, clues [304, 80] for 4,5,6; one pass of M, own confidence, no check: accuracy 1.0000
+      S1 own confidence (margin)             accepted 1.0000; accepted answers correct 1.0000; candidates to accept: mean 1.00, max 1; FLOPs mean 1.277e+08 median 1.283e+08
+      S2 least confident first, 5% floor     accepted 1.0000; accepted answers correct 1.0000; candidates to accept: mean 2.87, max 20; FLOPs mean 2.733e+08 median 2.148e+08
+      S5 trust order                         accepted 1.0000; accepted answers correct 1.0000; candidates to accept: mean 1.01, max 4; FLOPs mean 1.668e+08 median 1.670e+08
+      identical accepted answers across pairs of policies: [1.0, 1.0, 1.0]
+
+calls of M in this script: 1833178; total time 1272s
+exit 0

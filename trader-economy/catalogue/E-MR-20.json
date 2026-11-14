@@ -1,0 +1,13 @@
+{
+ "id": "E-MR-20",
+ "question": "At a fixed length of 32, how does training-step memory grow with depth for full, truncated and checkpointed BPTT and for the batched and online economy?",
+ "status": "Informative",
+ "setup": "memdepth4.py: one training step, L = 32, batch 16, one L4 alone, depths 24, 240, 2,400 and 24,000; peak GPU memory and time. Modes: full BPTT, checkpointed BPTT, BPTT(1) with one backward at the end, BPTT(1) streaming (a backward at every step), the batched economy (the 0.93 configuration) and the online economy.",
+ "result": "Flat memory belongs to any streaming one-step update, not to markets: BPTT(1) streaming 0.007 GB and the online economy 0.006 GB at every depth (the online economy scores 0.88 +- 0.20 at 100x). Full BPTT, BPTT(1) with one backward and the batched economy grow linearly (6.7, 6.7 and 3.0 GB at 2,400 steps) and run out of memory at 24,000 (about 21-22 GB). Checkpointed BPTT: 1.0 GB at 24,000 steps, 1.5 times full BPTT's time at 2,400 (26.9 s against 17.9 s).",
+ "files": [
+  "market-resnet/RESULTS.md",
+  "market-resnet/memdepth4.py",
+  "market-resnet/results/p3_summary.json",
+  "market-resnet-AUDIT.md"
+ ]
+}

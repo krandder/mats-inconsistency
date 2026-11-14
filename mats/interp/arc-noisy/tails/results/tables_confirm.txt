@@ -1,0 +1,78 @@
+
+######## L = 4, sigma = 0.001: 20 nets; provisional events 2/800 (by k: [2, 0, 0, 0, 0]); flags: rse 0, halves 0, MC 2, MC missing 0, xcheck 0
+   median truth log10 p by k: -4.01 -6.01 -8.01 -9.98 -11.96
+  -- [all events] per event: median B50 [95% CI] | fraction reached | median rel err (or rel RMSE)
+                     C-MC: 2.2e+10 [2.1e+10,2.3e+10] 1.00 0.50 | 2.2e+12 [2.1e+12,2.3e+12] 1.00 0.50 | 2.2e+14 [2.1e+14,2.3e+14] 1.00 0.50 | 2.1e+16 [2e+16,2.3e+16] 1.00 0.50 | 2e+18 [1.9e+18,2.1e+18] 1.00 0.50
+                     C-GS: 5.4e+09 [5.2e+09,5.6e+09] 1.00 0.15 | 1e+10 [9.9e+09,1.1e+10] 1.00 0.19 | 1.7e+10 [1.6e+10,1.8e+10] 1.00 0.24 | 2.6e+10 [2.5e+10,2.7e+10] 1.00 0.27 | 3.8e+10 [3.5e+10,3.9e+10] 1.00 0.31
+                    C-K3f: 3.4e+09 [3.4e+09,3.4e+09] 0.97 0.14 | 3.4e+09 [3.4e+09,inf] 0.56 0.42 | inf [inf,inf] 0.31 0.71 | inf [inf,inf] 0.15 0.91 | inf [inf,inf] 0.09 0.98
+            U2 (post hoc): 7.9e+09 [7.9e+09,7.9e+09] 0.99 0.11 | 7.9e+09 [7.9e+09,7.9e+09] 0.81 0.26 | 7.9e+09 [7.9e+09,7.9e+09] 0.56 0.47 | inf [inf,inf] 0.36 0.66 | inf [inf,inf] 0.29 0.80
+           U2r (post hoc): 7.9e+09 [7.9e+09,7.9e+09] 0.98 0.11 | 7.9e+09 [7.9e+09,7.9e+09] 0.77 0.25 | 7.9e+09 [7.9e+09,inf] 0.53 0.46 | inf [inf,inf] 0.39 0.67 | inf [inf,inf] 0.31 1.00
+  -- [all events] amortised over the 256 outputs: median B50 [95% CI] | fraction reached | median rel err (or rel RMSE)
+                     C-MC: 8.6e+07 [8.3e+07,8.9e+07] 1.00 0.50 | 4.3e+09 [4.1e+09,4.5e+09] 1.00 0.50 | 2.9e+11 [2.7e+11,3e+11] 1.00 0.50 | 2e+13 [1.9e+13,2.2e+13] 1.00 0.50 | 1.5e+15 [1.5e+15,1.6e+15] 1.00 0.50
+                     C-GS: 5.4e+09 [5.2e+09,5.6e+09] 1.00 0.15 | 1e+10 [9.9e+09,1.1e+10] 1.00 0.19 | 1.7e+10 [1.6e+10,1.8e+10] 1.00 0.24 | 2.6e+10 [2.5e+10,2.7e+10] 1.00 0.27 | 3.8e+10 [3.5e+10,3.9e+10] 1.00 0.31
+                    C-K3f: 7.3e+06 [7.3e+06,7.3e+06] 0.97 0.14 | 7.3e+06 [7.3e+06,inf] 0.56 0.42 | inf [inf,inf] 0.31 0.71 | inf [inf,inf] 0.15 0.91 | inf [inf,inf] 0.09 0.98
+            U2 (post hoc): 6.2e+06 [6.2e+06,6.2e+06] 0.99 0.11 | 6.2e+06 [6.2e+06,6.2e+06] 0.81 0.26 | 6.2e+06 [6.2e+06,6.2e+06] 0.56 0.47 | inf [inf,inf] 0.36 0.66 | inf [inf,inf] 0.29 0.80
+           U2r (post hoc): 6.3e+06 [6.3e+06,6.3e+06] 0.98 0.11 | 6.3e+06 [6.3e+06,6.3e+06] 0.77 0.25 | 6.3e+06 [6.3e+06,inf] 0.53 0.46 | inf [inf,inf] 0.39 0.67 | inf [inf,inf] 0.31 1.00
+  -- [all events] better than zero (median rel err or rel RMSE <= 0.9, CI upper < 1), k = 4..12: C-K3f YYYnn; U2 (post hoc) YYYYY; U2r (post hoc) YYYYn
+  -- [all events] better than zero at 3.45e+09 FLOPs per event: C-MC nnnnn; C-GS nnnnn
+  -- [all events] better than zero at 3e+11 FLOPs per event: C-MC Ynnnn; C-GS YYYYY
+  -- [all events] POST HOC (killed; no claim) U2 - C-K3f: per-net fraction within 50%, mean difference [CI] (cost ratio per event 2.29, amortised 0.84): +0.01 [+0.00,+0.04] | +0.25 [+0.17,+0.33] | +0.24 [+0.16,+0.33] | +0.21 [+0.14,+0.29] | +0.19 [+0.10,+0.29]
+  -- [all events] POST HOC (killed; no claim) U2r - C-K3f: per-net fraction within 50%, mean difference [CI] (cost ratio per event 2.29, amortised 0.86): +0.01 [-0.02,+0.04] | +0.21 [+0.14,+0.28] | +0.22 [+0.10,+0.34] | +0.24 [+0.16,+0.33] | +0.22 [+0.13,+0.30]
+  -- [all events] U2 saddlepoint fallbacks (fraction of events not using order 4), k = 4..12: 0.00 0.00 0.00 0.00 0.00
+  -- [validated events only] per event: median B50 [95% CI] | fraction reached | median rel err (or rel RMSE)
+                     C-MC: 2.2e+10 [2.1e+10,2.3e+10] 1.00 0.50 | 2.2e+12 [2.1e+12,2.3e+12] 1.00 0.50 | 2.2e+14 [2.1e+14,2.3e+14] 1.00 0.50 | 2.1e+16 [2e+16,2.3e+16] 1.00 0.50 | 2e+18 [1.9e+18,2.1e+18] 1.00 0.50
+                     C-GS: 5.4e+09 [5.3e+09,5.6e+09] 1.00 0.15 | 1e+10 [9.9e+09,1.1e+10] 1.00 0.19 | 1.7e+10 [1.6e+10,1.8e+10] 1.00 0.24 | 2.6e+10 [2.5e+10,2.7e+10] 1.00 0.27 | 3.8e+10 [3.5e+10,3.9e+10] 1.00 0.31
+                    C-K3f: 3.4e+09 [3.4e+09,3.4e+09] 0.97 0.14 | 3.4e+09 [3.4e+09,inf] 0.56 0.42 | inf [inf,inf] 0.31 0.71 | inf [inf,inf] 0.15 0.91 | inf [inf,inf] 0.09 0.98
+            U2 (post hoc): 7.9e+09 [7.9e+09,7.9e+09] 0.99 0.11 | 7.9e+09 [7.9e+09,7.9e+09] 0.81 0.26 | 7.9e+09 [7.9e+09,7.9e+09] 0.56 0.47 | inf [inf,inf] 0.36 0.66 | inf [inf,inf] 0.29 0.80
+           U2r (post hoc): 7.9e+09 [7.9e+09,7.9e+09] 0.98 0.11 | 7.9e+09 [7.9e+09,7.9e+09] 0.77 0.25 | 7.9e+09 [7.9e+09,inf] 0.53 0.46 | inf [inf,inf] 0.39 0.67 | inf [inf,inf] 0.31 1.00
+  -- [validated events only] amortised over the 256 outputs: median B50 [95% CI] | fraction reached | median rel err (or rel RMSE)
+                     C-MC: 8.6e+07 [8.3e+07,8.9e+07] 1.00 0.50 | 4.3e+09 [4.1e+09,4.5e+09] 1.00 0.50 | 2.9e+11 [2.7e+11,3e+11] 1.00 0.50 | 2e+13 [1.9e+13,2.2e+13] 1.00 0.50 | 1.5e+15 [1.5e+15,1.6e+15] 1.00 0.50
+                     C-GS: 5.4e+09 [5.2e+09,5.6e+09] 1.00 0.15 | 1e+10 [9.9e+09,1.1e+10] 1.00 0.19 | 1.7e+10 [1.6e+10,1.8e+10] 1.00 0.24 | 2.6e+10 [2.5e+10,2.7e+10] 1.00 0.27 | 3.8e+10 [3.5e+10,3.9e+10] 1.00 0.31
+                    C-K3f: 7.3e+06 [7.3e+06,7.3e+06] 0.97 0.14 | 7.3e+06 [7.3e+06,inf] 0.56 0.42 | inf [inf,inf] 0.31 0.71 | inf [inf,inf] 0.15 0.91 | inf [inf,inf] 0.09 0.98
+            U2 (post hoc): 6.2e+06 [6.2e+06,6.2e+06] 0.99 0.11 | 6.2e+06 [6.2e+06,6.2e+06] 0.81 0.26 | 6.2e+06 [6.2e+06,6.2e+06] 0.56 0.47 | inf [inf,inf] 0.36 0.66 | inf [inf,inf] 0.29 0.80
+           U2r (post hoc): 6.3e+06 [6.3e+06,6.3e+06] 0.98 0.11 | 6.3e+06 [6.3e+06,6.3e+06] 0.77 0.25 | 6.3e+06 [6.3e+06,inf] 0.53 0.46 | inf [inf,inf] 0.39 0.67 | inf [inf,inf] 0.31 1.00
+  -- [validated events only] better than zero (median rel err or rel RMSE <= 0.9, CI upper < 1), k = 4..12: C-K3f YYYnn; U2 (post hoc) YYYYY; U2r (post hoc) YYYYn
+  -- [validated events only] better than zero at 3.45e+09 FLOPs per event: C-MC nnnnn; C-GS nnnnn
+  -- [validated events only] better than zero at 3e+11 FLOPs per event: C-MC Ynnnn; C-GS YYYYY
+  -- [validated events only] POST HOC (killed; no claim) U2 - C-K3f: per-net fraction within 50%, mean difference [CI] (cost ratio per event 2.29, amortised 0.84): +0.01 [+0.00,+0.04] | +0.25 [+0.17,+0.33] | +0.24 [+0.16,+0.33] | +0.21 [+0.14,+0.29] | +0.19 [+0.10,+0.29]
+  -- [validated events only] POST HOC (killed; no claim) U2r - C-K3f: per-net fraction within 50%, mean difference [CI] (cost ratio per event 2.29, amortised 0.86): +0.01 [-0.02,+0.04] | +0.21 [+0.14,+0.28] | +0.22 [+0.10,+0.34] | +0.24 [+0.16,+0.33] | +0.22 [+0.13,+0.30]
+  -- [validated events only] U2 saddlepoint fallbacks (fraction of events not using order 4), k = 4..12: 0.00 0.00 0.00 0.00 0.00
+
+######## L = 8, sigma = 0.001: 20 nets; provisional events 8/800 (by k: [2, 0, 0, 1, 5]); flags: rse 2, halves 4, MC 1, MC missing 0, xcheck 1
+   median truth log10 p by k: -3.99 -5.98 -7.98 -9.95 -11.93
+  -- [all events] per event: median B50 [95% CI] | fraction reached | median rel err (or rel RMSE)
+                     C-MC: 4.3e+10 [4.2e+10,4.4e+10] 1.00 0.50 | 4.1e+12 [4e+12,4.3e+12] 1.00 0.50 | 4.1e+14 [3.8e+14,4.3e+14] 1.00 0.50 | 3.9e+16 [3.6e+16,4.1e+16] 1.00 0.50 | 3.6e+18 [3.2e+18,4e+18] 1.00 0.50
+                     C-GS: 1.3e+10 [1.2e+10,1.3e+10] 1.00 0.16 | 2.6e+10 [2.6e+10,2.8e+10] 1.00 0.22 | 5.3e+10 [5.2e+10,5.5e+10] 1.00 0.31 | 9.7e+10 [9.4e+10,9.9e+10] 1.00 0.39 | 1.6e+11 [1.6e+11,1.8e+11] 1.00 0.49
+                    C-K3f: 1.3e+10 [1.3e+10,inf] 0.54 0.47 | inf [inf,inf] 0.23 0.92 | inf [inf,inf] 0.13 0.99 | inf [inf,inf] 0.07 1.00 | inf [inf,inf] 0.04 1.00
+            U2 (post hoc): 2.3e+10 [2.3e+10,2.3e+10] 0.75 0.27 | inf [inf,inf] 0.42 0.57 | inf [inf,inf] 0.28 0.81 | inf [inf,inf] 0.20 0.91 | inf [inf,inf] 0.16 0.97
+           U2r (post hoc): 2.3e+10 [2.3e+10,2.3e+10] 0.75 0.25 | inf [2.3e+10,inf] 0.46 0.56 | inf [inf,inf] 0.29 0.77 | inf [inf,inf] 0.22 0.89 | inf [inf,inf] 0.16 0.96
+  -- [all events] amortised over the 256 outputs: median B50 [95% CI] | fraction reached | median rel err (or rel RMSE)
+                     C-MC: 1.7e+08 [1.6e+08,1.7e+08] 1.00 0.50 | 8.1e+09 [7.8e+09,8.4e+09] 1.00 0.50 | 5.4e+11 [5e+11,5.7e+11] 1.00 0.50 | 3.8e+13 [3.5e+13,4e+13] 1.00 0.50 | 2.8e+15 [2.5e+15,3.2e+15] 1.00 0.50
+                     C-GS: 1.3e+10 [1.2e+10,1.3e+10] 1.00 0.16 | 2.6e+10 [2.6e+10,2.8e+10] 1.00 0.22 | 5.3e+10 [5.2e+10,5.5e+10] 1.00 0.31 | 9.7e+10 [9.4e+10,9.9e+10] 1.00 0.39 | 1.6e+11 [1.6e+11,1.8e+11] 1.00 0.49
+                    C-K3f: 2e+07 [2e+07,inf] 0.54 0.47 | inf [inf,inf] 0.23 0.92 | inf [inf,inf] 0.13 0.99 | inf [inf,inf] 0.07 1.00 | inf [inf,inf] 0.04 1.00
+            U2 (post hoc): 1.8e+07 [1.8e+07,1.8e+07] 0.75 0.27 | inf [inf,inf] 0.42 0.57 | inf [inf,inf] 0.28 0.81 | inf [inf,inf] 0.20 0.91 | inf [inf,inf] 0.16 0.97
+           U2r (post hoc): 1.8e+07 [1.8e+07,1.8e+07] 0.75 0.25 | inf [1.8e+07,inf] 0.46 0.56 | inf [inf,inf] 0.29 0.77 | inf [inf,inf] 0.22 0.89 | inf [inf,inf] 0.16 0.96
+  -- [all events] better than zero (median rel err or rel RMSE <= 0.9, CI upper < 1), k = 4..12: C-K3f Ynnnn; U2 (post hoc) YYYnn; U2r (post hoc) YYYYn
+  -- [all events] better than zero at 1.34e+10 FLOPs per event: C-MC Ynnnn; C-GS Ynnnn
+  -- [all events] better than zero at 3e+11 FLOPs per event: C-MC Ynnnn; C-GS YYYYY
+  -- [all events] POST HOC (killed; no claim) U2 - C-K3f: per-net fraction within 50%, mean difference [CI] (cost ratio per event 1.69, amortised 0.88): +0.21 [+0.14,+0.28] | +0.19 [+0.12,+0.26] | +0.14 [+0.07,+0.21] | +0.12 [+0.04,+0.21] | +0.11 [+0.06,+0.16]
+  -- [all events] POST HOC (killed; no claim) U2r - C-K3f: per-net fraction within 50%, mean difference [CI] (cost ratio per event 1.69, amortised 0.88): +0.21 [+0.14,+0.27] | +0.23 [+0.16,+0.30] | +0.16 [+0.09,+0.23] | +0.14 [+0.07,+0.22] | +0.11 [+0.05,+0.17]
+  -- [all events] U2 saddlepoint fallbacks (fraction of events not using order 4), k = 4..12: 0.00 0.00 0.00 0.00 0.00
+  -- [validated events only] per event: median B50 [95% CI] | fraction reached | median rel err (or rel RMSE)
+                     C-MC: 4.3e+10 [4.2e+10,4.4e+10] 1.00 0.50 | 4.1e+12 [4e+12,4.3e+12] 1.00 0.50 | 4.1e+14 [3.8e+14,4.3e+14] 1.00 0.50 | 3.9e+16 [3.6e+16,4.1e+16] 1.00 0.50 | 3.6e+18 [3.2e+18,4e+18] 1.00 0.50
+                     C-GS: 1.3e+10 [1.2e+10,1.3e+10] 1.00 0.16 | 2.6e+10 [2.6e+10,2.8e+10] 1.00 0.22 | 5.3e+10 [5.2e+10,5.5e+10] 1.00 0.31 | 9.7e+10 [9.4e+10,9.9e+10] 1.00 0.39 | 1.6e+11 [1.6e+11,1.7e+11] 1.00 0.49
+                    C-K3f: 1.3e+10 [1.3e+10,inf] 0.54 0.47 | inf [inf,inf] 0.23 0.92 | inf [inf,inf] 0.13 0.99 | inf [inf,inf] 0.08 1.00 | inf [inf,inf] 0.05 1.00
+            U2 (post hoc): 2.3e+10 [2.3e+10,2.3e+10] 0.75 0.27 | inf [inf,inf] 0.42 0.57 | inf [inf,inf] 0.28 0.81 | inf [inf,inf] 0.20 0.91 | inf [inf,inf] 0.16 0.97
+           U2r (post hoc): 2.3e+10 [2.3e+10,2.3e+10] 0.75 0.25 | inf [2.3e+10,inf] 0.46 0.56 | inf [inf,inf] 0.29 0.77 | inf [inf,inf] 0.22 0.89 | inf [inf,inf] 0.16 0.95
+  -- [validated events only] amortised over the 256 outputs: median B50 [95% CI] | fraction reached | median rel err (or rel RMSE)
+                     C-MC: 1.7e+08 [1.6e+08,1.7e+08] 1.00 0.50 | 8.1e+09 [7.8e+09,8.4e+09] 1.00 0.50 | 5.4e+11 [5e+11,5.7e+11] 1.00 0.50 | 3.8e+13 [3.5e+13,4e+13] 1.00 0.50 | 2.8e+15 [2.5e+15,3.1e+15] 1.00 0.50
+                     C-GS: 1.3e+10 [1.2e+10,1.3e+10] 1.00 0.16 | 2.6e+10 [2.6e+10,2.8e+10] 1.00 0.22 | 5.3e+10 [5.2e+10,5.5e+10] 1.00 0.31 | 9.7e+10 [9.4e+10,9.9e+10] 1.00 0.39 | 1.6e+11 [1.6e+11,1.7e+11] 1.00 0.49
+                    C-K3f: 2e+07 [2e+07,inf] 0.54 0.47 | inf [inf,inf] 0.23 0.92 | inf [inf,inf] 0.13 0.99 | inf [inf,inf] 0.08 1.00 | inf [inf,inf] 0.05 1.00
+            U2 (post hoc): 1.8e+07 [1.8e+07,1.8e+07] 0.75 0.27 | inf [inf,inf] 0.42 0.57 | inf [inf,inf] 0.28 0.81 | inf [inf,inf] 0.20 0.91 | inf [inf,inf] 0.16 0.97
+           U2r (post hoc): 1.8e+07 [1.8e+07,1.8e+07] 0.75 0.25 | inf [1.8e+07,inf] 0.46 0.56 | inf [inf,inf] 0.29 0.77 | inf [inf,inf] 0.22 0.89 | inf [inf,inf] 0.16 0.95
+  -- [validated events only] better than zero (median rel err or rel RMSE <= 0.9, CI upper < 1), k = 4..12: C-K3f Ynnnn; U2 (post hoc) YYYnn; U2r (post hoc) YYYYn
+  -- [validated events only] better than zero at 1.34e+10 FLOPs per event: C-MC Ynnnn; C-GS Ynnnn
+  -- [validated events only] better than zero at 3e+11 FLOPs per event: C-MC Ynnnn; C-GS YYYYY
+  -- [validated events only] POST HOC (killed; no claim) U2 - C-K3f: per-net fraction within 50%, mean difference [CI] (cost ratio per event 1.69, amortised 0.88): +0.21 [+0.14,+0.28] | +0.19 [+0.12,+0.26] | +0.14 [+0.07,+0.21] | +0.12 [+0.05,+0.21] | +0.12 [+0.06,+0.17]
+  -- [validated events only] POST HOC (killed; no claim) U2r - C-K3f: per-net fraction within 50%, mean difference [CI] (cost ratio per event 1.69, amortised 0.88): +0.21 [+0.14,+0.28] | +0.23 [+0.16,+0.30] | +0.16 [+0.09,+0.23] | +0.14 [+0.07,+0.22] | +0.12 [+0.06,+0.18]
+  -- [validated events only] U2 saddlepoint fallbacks (fraction of events not using order 4), k = 4..12: 0.00 0.00 0.00 0.00 0.00

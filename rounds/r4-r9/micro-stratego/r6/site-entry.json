@@ -1,0 +1,48 @@
+{
+ "date": "17 Oct",
+ "name": "Round 6 E-MS-MARGINAL: 6x6 Stratego marginal window rollouts, centred+salience keys and trust-weighted pooling",
+ "status": "informative",
+ "oneline": "Gate passed, two rules failed. Scoring each hidden piece against the real last 4 moves, without conditioning on sampled neighbours, removes round 5's damage: 16 rollouts cut KL to the exact posterior by 48% against a 4-move-old belief (0.185 -> 0.096). But the net's own current belief is closer still (0.047). Centred+salience keys no longer collapse (gap 0.228, bar 0.25, round 5: 0.004). Attention pooling made beliefs 10x less sensitive to which flank search preferred and more accurate than the baselines. Trust again ranks rollout errors well (Spearman +0.25 vs -0.42 for entropy), but weighting rollouts by trust raised action-value MSE by 27% instead of cutting it by 20%. 3 seeds, reused checkpoints, audited; $0.26.",
+ "led_to": [],
+ "page": {
+  "why": "Round 5's 6x6 Stratego search made beliefs ten times worse. Its post hoc diagnosis was mechanical: each rollout judged a hidden piece given the other pieces it had sampled, so the one-of-each pieces (Flag, Miner, General, Marshal) got exact zeros, and log pooling kept them. Gemini's round-6 spec asked three things. Does scoring each piece on its own (a 'marginal' window check against the real last 4 moves) fix the beliefs? Do keys built from a centred attention fingerprint plus which pieces a rollout updated stop collapsing? Does weighting rollouts by the self-trust head beat weighting by confidence when estimating move values? It reused round 5's trained networks, so nothing was retrained.",
+  "what": "The three round-5 world models (1.0M parameters each) and their trust heads, unchanged and hash-checked. The anchor is the network's belief from 4 moves earlier; each rollout covers the 3 hidden pieces nearest its first move and scores each of them, one at a time, by how well the network's own move predictor explains the opponent's last moves. Pooling rules (scaled mixing, Ataraxos-style, key deduplication, a 3-layer attention pool) were fitted on a separate calibration split against the network's own large-sample answer, never against the exact posterior. Search was steered 85/15 toward the left or the right flank on top of a shared 4-rollout cover. Move values: 16 rollouts per legal move on 240 test positions, pooled uniformly, by confidence or by trust. Pre-registered before launch (PREREG-R6-E3.md), 3 seeds, one L4, independent audit.",
+  "result": "Gate passed: battle accuracy 0.9999, 7-known NLL 0.0001, anchor KL 0.185, and 16 marginal rollouts cut it by 48.2% [46.9, 49.5] (bar 40%). The keys rule failed narrowly: cosine 0.870 within flanks vs 0.643 across, a gap of 0.228 [0.211, 0.244] (bar 0.25). All five policy-independence and accuracy comparisons passed: attention pooling's belief divergence between left- and right-preferring search was 9.7x below Ataraxos-style pooling and 10.5x below scaled mixing, and its KL to the exact posterior was lower than every baseline's; it had been trained to imitate the exact per-piece deduplication, which the shared cover makes policy-independent. The trust-pooling rule failed: trust ranked rollout errors (Spearman +0.247 vs -0.417 for entropy; the gap was still +0.20 within entropy strata), but trust-weighted move values had 27% higher MSE than confidence weighting (0.0171 vs 0.0134), and the fitted confidence weighting was simply uniform. No pooling ever chose a delusional move, so that comparison was at floor.",
+  "sowhat": "The round-5 failure was the estimator, not the information: scored marginally, the opponent's recent moves do carry evidence about hidden pieces, and with a shared cover of the evidence, attention pooling makes the merged belief nearly independent of the search preference (it almost matches exact per-piece deduplication). But it is evidence the network already uses: its one-pass belief at the current move is still better than the window-updated stale belief. Self-trust is a good ranking signal and a bad pooling weight here: the rollouts' error is mostly shared bias against the true values, which reweighting cannot remove, and concentrating weight adds noise.",
+  "decided": "Recorded the gate as passed and D1 and D2 as failed, as pre-registered; post hoc diagnostics are labelled and change no verdict. Not run or chosen: using trust to choose which rollouts to run rather than to weight them; checking the window against the current belief instead of the stale one; keys from the salience alone.",
+  "chart": {
+   "bars": [
+    {
+     "label": "belief 4 moves old (anchor)",
+     "value": 0.1852,
+     "text": "0.185"
+    },
+    {
+     "label": "anchor + 16 marginal rollouts",
+     "value": 0.0959,
+     "text": "0.096"
+    },
+    {
+     "label": "anchor + every hidden piece scored",
+     "value": 0.0775,
+     "text": "0.078"
+    },
+    {
+     "label": "one pass at the current move",
+     "value": 0.0467,
+     "text": "0.047"
+    }
+   ],
+   "caption": "KL to the exact Bayes posterior per hidden opponent piece (nats), 1,000 calibration positions, 3-seed means. The marginal window check halves the error of a stale belief, but the network's current one-pass belief is better than any search-updated version.",
+   "aria": "Bars fall from 0.185 for the stale anchor to 0.096 with rollouts and 0.078 with every piece scored, while the current one-pass belief is lowest at 0.047"
+  },
+  "details": {
+   "methods": [
+    "Pre-registered in r6/PREREG-R6-E3.md (sha256 5b45ec96...) at 06:34:20Z, before the only launch at 06:35:51Z; rules copied verbatim from the spec. A pre-hash CPU crash smoke on small subsets is disclosed there. No amendment arrived; one operational event (a launch command that did not start the run, fixed by hand at 06:44Z) is logged.",
+    "Reused the round-5 checkpoints and data unchanged (parameter hashes checked before and after). Oracle for scoring only: exact posterior over 10,080 setups; Q* from 64 simulator playouts per legal move.",
+    "Gate on 1,000 calibration positions; D1 on 500 two-flank test positions (4 shared cover rollouts + 20 rollouts skewed 85/15); D2 on 240 test positions x every legal move x 16 rollouts (37,776 per seed).",
+    "3 seeds, 95% t-intervals across seeds; 66 numbers re-derived from per-item CSVs (2.6e-6). Independent audit (AUDIT-R6-E3.md): supported with corrections, all 18 verdict rows reproduced, CPU recomputation from the checkpoints within 8.6e-4 per position; wording corrections applied. GPU $0.26 at the list-price ceiling (one on-demand L4, 0.30 h); no VM or disk left."
+   ]
+  }
+ }
+}

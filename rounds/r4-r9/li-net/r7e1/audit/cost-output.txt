@@ -1,0 +1,11 @@
+run at 2026-10-17T11:08:55Z
+== (a) GPU-LOG minute stamps
+soup-gpu-r7e1-main-1017093922-28650: CREATE 2026-10-17T09:40Z -> preemption 10:32:07Z: 0.869 h x $0.87 = $0.756; logged $[0.76]
+soup-gpu-r7e1-main2-1017103537-1091: no CREATE line (['CREATE-FAILED', 'PENDING-CREATE']); logged [] -> $0
+soup-gpu-r7e1-main2-1017103729-163: CREATE 2026-10-17T10:38Z -> DELETE: 0.267 h x $0.87 = $0.232; logged $[0.22]
+total (a) $0.988; logged total $0.98
+== (b) GCE operations (successful insert end -> preemption end / delete end)
+soup-gpu-r7e1-main-1017093922-28650: insert done 09:40:04Z -> compute.instances.preempted done 10:32:19Z: 0.871 h x $0.87 = $0.758
+soup-gpu-r7e1-main2-1017103537-1091: 3 insert attempts, no delete/preemption -> never existed (create failed in every zone) -> $0
+soup-gpu-r7e1-main2-1017103729-163: insert done 10:38:15Z -> delete done 10:54:00Z: 0.262 h x $0.87 = $0.228
+total (b) $0.986 of the $2.50 ceiling: WITHIN

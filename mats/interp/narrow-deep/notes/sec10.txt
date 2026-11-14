@@ -1,0 +1,298 @@
+
+## 10. Follow-up: why K2 fails on trained narrow nets, and whether the failure is concentrated
+
+The coordinator's question (30 October, ~01:05Z), CPU only: why does K2 fail on the trained nets, and is the failure
+concentrated (a few neurons or layers, which would allow a scalable fix) or spread out (a blocker for
+Gaussian-plus-corrections families)?
+- Nets: the four trained nets of section 4. Residual sorters: width 16, depth 64, sigma = 0 and 0.01. RNNs: width 16,
+  T = 64, sigma = 0 and 0.01.
+- Pre-registered as `PREREG.md` Part 2 (hash at 01:14:09Z), before any trained-net result of these analyses. The first
+  result file was written at 01:14:47Z, and the code had been smoke-tested only on the barely trained pilot models.
+  The Part 2 header says "written ~01:20Z". That time was written ahead; the hash time is authoritative.
+- Code: `lib/k2mix.py` and `scratch/p5_*.py`. Results are in `runs/p5/` and logs in `logs/p5_*.log`. Runs from
+  01:14Z to 02:20Z.
+- Added after the pre-registered runs and not pre-registered:
+  - `p5_rbvar.py`, which re-measures the tail estimators' errors with less noise (10.3);
+  - `p5_splitcheck.py` and `p5_oracle.py`, prompted by the review (10.2).
+- One GPT-6 review (10.6) found no bug in the split closure, layer indexing or weights. It narrowed several claims,
+  and the text below is the revised version.
+
+**Answer in brief.**
+- The failure is spread out in the sorters. In the RNNs the gate error is concentrated, but removing the early errors
+  helps little.
+  - Sorters: the gate-probability error is spread over most (layer, unit) pairs. Restarting K2 from the exact
+    moments at later and later layers lowers the output error gradually, over layers ~8-48.
+  - RNNs: the gate error sits in a few units at the first steps. Restarting K2 from the exact moments after step 8
+    leaves the noiseless RNN's output error unchanged and lowers the noisy RNN's by 1.6x. In the noiseless RNN, the
+    last 8 steps of closure alone regenerate the full error.
+- Splitting the Gaussian at the k worst-gate units (k <= 8) gains at most 1.13x over the same closure without splits,
+  under any selection rule. The coordinator's criterion was 3x, so the fix is refuted, as pre-registered.
+  - The tested closure re-Gaussianises each piece before the next split.
+  - An oracle with exactly conditioned pieces fixes that. It still gains at most 1.13x on the RNNs, at any layer,
+    over a single Gaussian with the same exact moments. On the sorters it stays at or below 1.6x over K2 when placed
+    in layers 2-8.
+- K2 also gets the tails wrong by 40-900x on three of the four nets, and the splits do not change that.
+- Exact radius integration (positive homogeneity) applies to all four nets. For the task-relevant tail events the gain
+  is modest: 2.9-3.8x in variance for large sorting errors, and 1.5-1.8x for the RNNs' confident wrong answers.
+
+### 10.1 Locating the error (step 1, `runs/p5/locate_*.json`, 2^20 sampled paths per net)
+
+For every (layer or step, unit) pair, K2's predicted pre-activation mean, variance and gate-on probability were
+compared with sampled truth in two ways:
+- accumulated: K2 run from the input;
+- one-step: K2 applied to the exact moments of the previous state. Its gate error is then the non-Gaussianity of that
+  pre-activation alone.
+- The suffix error E_out(l0) is the output nMSE of K2 started from the exact Gaussian moment-match of the state after
+  l0 layers or steps, and run to the output. The state moments and the output truth come from the same paths.
+- "State error" below is the error of the state's mean, relative to the state's total variance. It does not measure
+  covariance or shape errors.
+
+| net | K2 output nMSE | share of summed accumulated gate error, worst 8 / 64 of 1,024 pairs | worst 4 of 16 units (uniform: 25%) | worst layer or step (uniform: 1.6%) | E_out(l0) at l0 = 0 / 8 / 16 / 32 / 48 / 56 |
+|---|---|---|---|---|---|
+| sorter, sigma = 0 | 0.024 | 4.9% / 29% | 29% | 4.3% | 0.024 / 0.022 / 0.012 / 0.0077 / 0.0017 / 7.6e-5 |
+| sorter, sigma = 0.01 | 0.045 | 4.8% / 28% | 30% | 4.3% | 0.045 / 0.034 / 0.031 / 0.0046 / 4.5e-4 / 4.9e-5 |
+| RNN, sigma = 0 | 0.039 | 4.9% / 24% | 50% | 3.8% | 0.039 / 0.041 / 0.041 / 0.041 / 0.028 / 0.057 |
+| RNN, sigma = 0.01 | 0.22 | 8.3% / 37% | 47% | 8.5% | 0.22 / 0.14 / 0.14 / 0.072 / 0.0057 / 2.6e-4 |
+
+**Sorters: spread (MEASURED).**
+- Through layer 4, K2's accumulated state error is about 1e-6 of the state variance. After that it grows:
+  - 7e-5 to 4e-4 by layer 8;
+  - 0.005 by layer 16;
+  - 0.02-0.1 by layer 32.
+- The largest one-step errors, 1e-3 to 1.5e-2 at the worst six layers (mostly layers 12-33), stand out against a
+  median of 6e-5 to 9e-5.
+- Each of the 16 units carries 4-8% of the accumulated gate error (uniform: 6.25%). The worst layer carries 4.3%.
+- Starting K2 from the exact state at a later layer lowers the output error step by step:
+  - to about half at l0 = 16-24;
+  - 3-10x lower at l0 = 32;
+  - 14-100x lower at l0 = 48.
+  - On a log scale, the largest single drop between grid points (48 to 56) is 43% (sigma = 0) and 26%
+    (sigma = 0.01) of the total drop.
+  - These are restarts, not an additive split of the error into layers: a restart changes both the starting moments
+    and the later approximations.
+- The closure gets the output's total variance right: closure/truth is 1.01 at sigma = 0 and 1.26 at sigma = 0.01.
+- It gets the mean wrong (nMSE 0.024-0.045) and the tails very wrong. Its P(|output| > t) is too small:
+  - 40-160x at the 1e-3 quantile (Imhof). Sampling the closure's own output law (`tailcheck_*.json`, 2^22 samples)
+    agrees within its sampling error, with 26 and 100 exceedances.
+  - 120-560x at 1e-4 (Imhof). The sampled law has 0 and 2 exceedances there, which confirms only "more than ~50x".
+- Interpretation (HEURISTIC): a sorter's state becomes more ordered layer by layer, and no single unit or layer
+  carries that structure.
+
+**RNNs: concentrated gate errors, but the output error is not made where they are (MEASURED).**
+- The one-step gate error is concentrated in a few units and in the early steps.
+  - One unit carries 38-46% of it: unit 8 at sigma = 0, unit 0 at sigma = 0.01.
+  - The first 9 of 64 steps carry 36% (sigma = 0) and 57% (sigma = 0.01) of it (uniform: 14%).
+- The reason: x_1 is a scalar, so without noise the first state h_1 = ReLU(W_hi x_1) lies on one of two rays, far
+  from Gaussian (with noise, close to them). K2's one-step state error is 0.06-0.07 of the state variance at step 2
+  and falls to 1e-4 to 1e-3 by step 16.
+- Removing these early errors helps little.
+  - Noiseless RNN: restarting K2 from the exact moments after step 8, 16 or 32 leaves the output error unchanged
+    (0.041 against 0.039).
+  - Restarting after step 56 still gives 0.057. So eight steps of closure at the end regenerate the full error,
+    even though the one-step state error there is only 3.5e-4 to 3.8e-4 of the state variance per step. Restarting
+    after step 60 gives 0.012, and after step 62 0.0016.
+  - This resembles the algzoo-noisy lane's finding on ARC's T = 10 RNN, whose errors are decided at the last steps.
+  - The noiseless closure also overestimates the output variance 3.7x, so its tails come out 230-900x too large.
+  - Noisy RNN: restarting after step 8 lowers the output error 1.6x (0.224 to 0.136), after step 32 3.1x, and after
+    step 48 39x. Here the error is made over the whole run, early steps included.
+  - Its closure variance is 1.12x the truth's. Its tails are 36% too high at q = 1e-3 and 31% too low at 1e-4.
+- So the RNN gate errors are concentrated, but correcting them does not remove most of the output error. We did not
+  test why small late-step errors matter so much for the output.
+
+### 10.2 The gate-aligned fix: splitting at the worst-gate units (step 2, `runs/p5/split_*.json`)
+
+**The fix.**
+- At each selected (layer, unit) pair, every mixture component is split into its on and off pieces, and the gate is
+  fixed in each piece. Pieces are never merged, so k splits give up to 2^k components.
+- Each piece is replaced by the Gaussian with the first two moments of its half-space truncation.
+  - A later split truncates that Gaussian replacement, not the truncated law, and the other units' ReLU moments are
+    those of the replacement.
+  - So with several splits at one layer, later pieces can contradict earlier gate signs. In the noisy RNN at S1,
+    k = 8 (five splits at step 3), 26 of 32 components, with 15% of the weight, have a mean of the wrong sign on an
+    earlier forced gate (review finding 1).
+  - With one split per layer the issue does not arise within a layer. That is the case for the sorters' S1 sets,
+    whose 8 pairs sit at 8 different layers.
+- Selection rules:
+  - S1: the worst k pairs by accumulated gate error (primary);
+  - S2: the worst k by one-step error;
+  - S0: k random pairs (control).
+  - S1 and S2 use the 2^20-path truth pass of 10.1 to pick the units. That is an oracle step, not counted in the
+    cost.
+- k = 1, 2, 4 and 8. Exact ReLU moments for all three rules; the cheaper Stein-linearised moments for S1.
+- Scoring:
+  - E[output] nMSE against an independent 2^21-path truth;
+  - against MC and RQMC at the closure's FLOPs. RQMC gets the largest power of 2 of paths within that budget,
+    over R = 16 replicates.
+  - The budgets count the propagation only. They leave out gate selection, the readout and mixing, and tail
+    integration. At k = 0 the RNN mixture code counts about 8% more FLOPs than `k2.rnn_prop`, through an extra CDF
+    vector. These are approximate propagation budgets.
+- Checks (`scratch/p5_splitcheck.py`; the review repeated them independently):
+  - with no splits the mixture code reproduces K2 to 1e-10 on all four nets;
+  - one split at layer 0 of the noiseless sorter matches 2^20-path MC of the next layer within 2 standard errors,
+    for the whole mixture and for each piece against MC conditioned on the gate.
+
+| net | K2 nMSE, exact moments (cost in MC paths) | best gain from splitting at k <= 8 over the same closure without splits, by rule S1 / S2 / S0 (Stein S1) | exact-moment closures, k = 0-8: nMSE over RQMC's at equal FLOPs | Stein closures, k = 0 / 1-2 / 4-8: the same ratio |
+|---|---|---|---|---|
+| sorter, sigma = 0 | 0.024 (670) | 1.02x / 1.00x / 1.06x (1.05x) | 93-86,000x | 3.0x / 7-8x / 37-190x |
+| sorter, sigma = 0.01 | 0.045 (523) | 1.05x / 1.05x / 1.04x (1.13x) | 190-33,000x | 4.1x / 5x / 9-110x |
+| RNN, sigma = 0 | 0.039 (1,094) | 1.01x / 1.00x / 1.02x (1.00x) | 118-29,000x | 1.8x / 4-8x / 35-660x |
+| RNN, sigma = 0.01 | 0.22 (755) | 0.97x / 1.00x / 1.08x (0.96x) | 540x or more | 6.9x / 32-51x / 580-6,000x |
+
+- **Refuted (MEASURED): no k <= 8 gives even 1.2x over the same closure without splits, on any net, under any
+  rule.**
+  - Random splits do as well as targeted ones (0.92-1.08x).
+  - No k <= 8 reaches 10x on any net, as pre-registered, so the k needed for 10x is beyond 8.
+  - Against exact K2, the best closure of all is the Stein closure on the noiseless RNN: 1.85x better without
+    splits, 1.86x with them. No closure tested reaches 3x over K2.
+- At equal FLOPs every closure loses to RQMC.
+  - With exact moments the loss is at least 93x. At k = 8 it is 6,000x or more, because the cost grows up to 2^k
+    (9,000-250,000 paths at k = 8).
+  - At k = 8, RQMC's error approaches the resolution of the 2^21-path truth (about 5e-7), and one corrected RQMC
+    estimate is negative. The largest ratios are therefore unresolved, not lower bounds.
+  - The Stein-linearised closures are 15-30x cheaper and on all four nets no less accurate: nMSE 0.021, 0.030, 0.021
+    and 0.215, against 0.024, 0.045, 0.039 and 0.224.
+  - They come closest to RQMC: 1.8-6.9x behind at k = 0, and 4-8x at k = 1-2 (32-51x on the noisy RNN).
+- The splits leave the closure's tails as wrong as K2's.
+  - Sorters: Imhof's tail probabilities change by under 3% between k = 0 and S1 at k = 8.
+  - RNNs: sampled from the closure's law, they change by about 1% (noiseless) and by +11-16% (noisy).
+  - Only k = 0 and S1 at k = 8 were sampled. For the noisy RNN the Imhof values at q = 1e-4 failed numerically, so
+    its other configurations' tails are not validated.
+
+**Oracle: exactly conditioned splits (`scratch/p5_oracle.py`, `runs/p5/oracle_*.json`; added after the review).**
+- The oracle removes the re-Gaussianisation:
+  - after l0 layers or steps, the sampled paths are grouped by the joint on/off pattern of the k units of that layer
+    with the largest one-step gate error (k = 1, 2, 4, 8);
+  - each pattern gets its exact conditional mean and covariance of the state, and K2 runs from each component to the
+    output;
+  - the components are mixed with the exact pattern probabilities. Patterns with fewer than 64 of the 2^20 paths
+    are pooled into one component.
+- It is compared, on the same paths, with a single Gaussian with the same exact moments (E_out(l0)), and with K2 from
+  the input.
+
+| net | best gain over the single exact Gaussian, max over k <= 8, at l0 = 2 / 4 / 8 / 16 / 32 / 48 / 56 | best gain over K2 from the input at l0 = 2-8 |
+|---|---|---|
+| sorter, sigma = 0 | 1.62x / 1.46x / 1.17x / 1.04x / 2.18x / 10.5x / 1.60x | 1.62x |
+| sorter, sigma = 0.01 | 1.35x / 1.52x / 1.03x / 1.35x / 1.38x / 2.54x / 1.59x | 1.58x |
+| RNN, sigma = 0 | 1.00x / 1.00x / 1.00x / 1.00x / 1.01x / 1.00x / 1.06x | 0.99x |
+| RNN, sigma = 0.01 | 1.01x / 1.00x / 1.00x / 1.10x / 1.03x / 1.02x / 1.13x | 1.64x (from the exact restart; splits add nothing) |
+
+- RNNs: even exactly conditioned splits at any single layer gain at most 1.13x over a single Gaussian with the same
+  moments. The refutation extends to accurately conditioned gate mixtures of k <= 8 units at one layer, with K2
+  afterwards.
+- Sorters, layers 2-8, the only layers where the exact restart is not itself much better than K2: oracle splits gain
+  at most 1.6x over K2, short of 3x.
+- Sorters, later layers: exactly conditioned splits help more. At layer 48 of the noiseless sorter they gain 6x with
+  one unit and 10.5x with eight over the single exact Gaussian. This holds only on top of exact moments up to that
+  layer, which no closure here provides.
+- So for the sorters the reviewer's point stands in part. Accurate gate mixtures carry useful structure late in the
+  net, but reaching those layers accurately is the unsolved part.
+
+**Why the fix fails (interpretation of the 10.1 numbers and the oracle, HEURISTIC).**
+- In the sorters the gate error is spread over hundreds of pairs, so fixing 8 of 1,024 leaves the rest. The useful
+  late splits sit behind 40-50 layers of accumulated error.
+- In the RNNs the worst-gate units sit at the first steps, and correcting the early steps does not remove most of the
+  output error. That holds even with exact moments and exact conditioning.
+
+### 10.3 Tails with the radius integrated exactly (step 3, `runs/p5/rb_*.json` and `rbvar_*.json`; 2^22-path truth)
+
+- All four nets are positively homogeneous in their input when noiseless. The residual MLP has no biases, and the RNN
+  has no biases, h_0 = 0 and a linear readout.
+- So are three events:
+  - |output| > t;
+  - for the sorters, max_i |out_i - sort(x)_i| > t, a large sorting error;
+  - for the RNNs, the wrong-answer margin max_{j != y} logit_j - logit_y > t, where y is the position of the 2nd
+    largest input (scale-invariant). This is a confident wrong answer.
+- RB draws a direction u, computes the statistic G(u) on the unit-norm input, and integrates the radius exactly:
+  P = E_u[Q_chi_n(t / G(u))], with n = 16 for the sorters and n = 64 for the RNNs (the input is the sequence). The
+  thresholds are positive, and directions with G(u) <= 0 contribute 0.
+  - Without noise it is unbiased.
+  - With sigma = 0.01 the noise does not scale with the input. RB then uses the noise of a typical radius, which is an
+    approximation, and it is biased.
+
+The table gives the error at the FLOPs of 16,384 paths, at q = 1e-4 (q = 1e-3 in brackets).
+- MC: the exact relative variance of the indicator, (1 - p)/(N p).
+- RQMC: the relative MSE measured over R = 16 replicates, so noisy.
+- RB: its relative variance, estimated from 2^20 directions. For the noiseless nets this is its MSE. For the noisy
+  nets add the squared bias, discussed below.
+- The last column compares RB's 2^20-direction mean with the truth (+- one standard error).
+
+| net | event | MC | RQMC | RB (variance) | RB's variance gain over MC | RB mean vs truth |
+|---|---|---|---|---|---|---|
+| sorter, sigma = 0 | \|output\| | 0.61 (0.063) | 0.45 (0.10) | 1.6e-6 (9.7e-7) | 390,000x (65,000x) | +1% +- 5% (-1% +- 2%) |
+| sorter, sigma = 0 | sorting error | 0.56 (0.063) | 0.66 (0.080) | 0.15 (0.018) | 3.8x (3.4x) | -12% +- 7% (-3% +- 2%) |
+| sorter, sigma = 0.01 | \|output\| | 0.64 (0.060) | 1.46 (0.033) | 2.1e-6 (1.3e-6) | 310,000x (47,000x) | +3% +- 5% (+0.3% +- 1.5%) |
+| sorter, sigma = 0.01 | sorting error | 0.61 (0.060) | 0.59 (0.039) | 0.17 (0.021) | 3.6x (2.9x) | +11% +- 7% (+7% +- 2%) |
+| RNN, sigma = 0 | \|logits\| | 0.71 (0.063) | 0.62 (0.053) | 0.12 (0.013) | 5.9x (4.9x) | -1% +- 7% (+0.5% +- 2%) |
+| RNN, sigma = 0 | wrong-answer margin | 0.58 (0.059) | 0.59 (0.059) | 0.33 (0.041) | 1.8x (1.5x) | +3% +- 9% (+1% +- 3%) |
+| RNN, sigma = 0.01 | \|logits\| | 0.56 (0.058) | 0.38 (0.059) | 0.052 (0.0096) | 11x (6.0x) | +2% +- 6% (-0.1% +- 2%) |
+| RNN, sigma = 0.01 | wrong-answer margin | 0.67 (0.061) | 0.96 (0.040) | 0.37 (0.037) | 1.8x (1.7x) | +4% +- 9% (-2% +- 3%) |
+
+- The sorters' |output| gain is trivial. A sorter nearly preserves the norm (|sort(x)| = |x|), so the radius is
+  almost the whole event.
+- On the task-relevant events the gain is modest: 2.9-3.8x in variance for large sorting errors, and 1.5-1.8x for
+  confident wrong answers. These events depend mostly on the input's direction, which RB still samples.
+- The pre-registered measurement (R = 16 replicates of each estimator, `rb_*.json`) gave the same verdicts with
+  noisier gains. For example, it gave 19x instead of 3.8x for the sorting error at q = 1e-4: 16 replicates miss RB's
+  rare large contributions, and MC's measured error there was 2.4x its exact value.
+- With noise, RB is biased by a few percent, so its MSE gain is below its variance gain.
+  - The noisy sorter's sorting error has the clearest bias: two independent checks at q = 1e-3 gave +3%
+    (2^19 directions) and +7% +- 2% (2^20).
+  - With the point estimates of the bias added, its gains become 2.3x (q = 1e-3) and 3.4x (q = 1e-4). The noisy
+    RNN's gains change by under 2%.
+  - For the noisy sorter's |output| the variance gain (310,000x) is far beyond what the bias checks can resolve. A
+    bias of 3% would cap the MSE gain near 700x.
+- This is a better estimator, not a certified bound (M3).
+
+### 10.4 Pre-registered predictions (Part 2)
+
+| prediction | outcome |
+|---|---|
+| P11: sorters spread (worst 8 pairs < 20% of the gate error; no layer > 20%; no single gap > 50% of the suffix-error drop) | hit: 4.8-4.9%; 4.3%; 43% and 26% |
+| P12: RNNs, worst 4 units > 50% of the gate error, worst 8 pairs < 20% | split. Accumulated error: worst 4 units 50.3% at sigma = 0 (borderline hit) and 46.8% at sigma = 0.01 (miss); worst 8 pairs 4.9% and 8.3% (hit). The one-step error, a separate reading, gives 65-70% and 10-13% |
+| P13: refuted unless some k <= 8 gives 3x over K2. Predicted: refuted, and 10x needs k > 8 | hit for the tested closure and rules: refuted on all four nets (best 1.13x over the same closure without splits). The oracle (not pre-registered) extends this to exactly conditioned single-layer splits on the RNNs and at the sorters' layers 2-8 |
+| P14: every split closure loses to RQMC by >= 30x at equal FLOPs | partial. Hit for exact moments (>= 108x for the splits; K2 itself 93x; the largest ratios unresolved). Miss for the Stein closures at k = 1-2 on three nets (4-8x) and at k = 4 on one sorter (9x) |
+| P15: the closure's tail is wrong by > 2x at q = 1e-4 for every k on every net | partial. Hit on the sorters and the noiseless RNN (120-900x). Miss on the noisy RNN (24-31% low at k = 0 and S1 k = 8, the two configurations sampled; Imhof fails there at 1e-4). The registered test, relative squared error > 0.25, is not the same as "2x" for overestimates; no outcome changes |
+| control: random splits <= 1.5x over K2 | hit (0.92-1.08x) |
+| P16: RB >= 3x over MC at q = 1e-4 on the noiseless nets; on the noisy ones within 10% of the truth at q = 1e-3 and >= 3x | partial. Hit for \|output\| and the sorting error on the noiseless nets. On the noisy nets: the bias point estimates are within 10% (+3% in the pre-registered 2^19 check, +7% +- 2% later, whose 95% interval reaches 12%); the sorting error passes 3x at q = 1e-4 (3.4-3.6x) but not at 1e-3 (2.3-2.9x). Miss for the RNN margin on both RNNs (1.8x; 2.0x and 2.5x in the R = 16 measurement) |
+
+### 10.5 What this means for M1 and M3
+
+- On these trained nets, K2's failure is not a few-unit defect that a gate-aligned correction patches.
+  - Sorters: the gate error is spread over the sorting layers. Exactly conditioned splits help only late in the net,
+    and only on top of exact moments up to there.
+  - RNNs: the visible gate errors are early, and correcting them leaves most of the output error. This holds even
+    with exact moments and exact conditioning. The output error comes from the last steps (noiseless) or from the
+    whole run (noisy).
+- This is evidence against Gaussian-plus-few-splits closures on these nets: sequential splits, and exactly
+  conditioned splits at one layer. It is not a proof against all closures. What remains are descriptions built on
+  the algorithm's own variables, or on the steps that decide the output. The algzoo-noisy lane's algorithm-indexed
+  descriptions are one example, though they are fitted rather than derived.
+- For tails, positive homogeneity is cheap and exact without noise. But it helps the task-relevant events only
+  1.5-4x, because they depend mostly on the input's direction.
+
+### 10.6 Review
+
+One GPT-6 review (`review/review_gpt6_r2.raw`, prompt `review/prompt_gpt6_r2.md`). Verdict: "revise before
+finalizing". It found no layer-index, weight or normalisation bug. It reproduced k = 0 = K2 on all four nets and the
+layer-0 split check. Its findings and what changed:
+1. Repeated splits re-Gaussianise, so the result refutes this implementation, not accurately conditioned gate
+   mixtures. We disclosed this in 10.2 and added the exactly conditioned oracle.
+   - The oracle extends the refutation for the RNNs and for the sorters' early layers.
+   - It shows that late sorter layers carry useful gate structure.
+2. The restart (suffix) results are not an additive split, and "early errors do not matter" was too strong. We
+   reworded: the restarts show how much removing early errors helps (1.0x noiseless RNN, 1.6x noisy RNN). We
+   labelled state errors as mean errors.
+3. For the noisy nets RB's column was variance, not MSE. We relabelled it, added the bias-inclusive gains, and noted
+   that the noisy |output| gain is unresolved.
+4. The noisy RNN's Imhof values at q = 1e-4 are numerical failures. Its sampled tails are trusted; the review's
+   independent rescaled integral gives 5.9e-5, against 6.2e-5 sampled. We noted the configurations that are not
+   validated.
+5. The sorter tail checks rest on 26, 100, 0 and 2 exceedances. We reported the counts and dropped the precision
+   claims.
+6. The largest RQMC ratios are unresolved, not lower bounds. We reworded.
+7. The budgets count propagation only, and gate selection uses a sampled oracle. We stated both.
+8. The 1.13x is the gain over the same closure without splits; the Stein closure alone is 1.85x better than exact K2
+   on the noiseless RNN. The radial law is chi_64 for the RNNs, and the code was right. Both are fixed in the text.
+9. Scoring: P13 is qualified by findings 1 and 8, P15's registered test is asymmetric, and P16's noisy bias bound is
+   a point estimate. All three are noted in 10.4. The Part 2 header time ("~01:20Z") is inconsistent with the hash
+   (01:14:09Z), and the hash is authoritative.

@@ -1,0 +1,472 @@
+14:43:04Z START /home/agent/.venvs/aggext/bin/python train_uni.py --variant unif --f0 ctrl --f1 ctrl --seed 0 --ckpt sparse --out runs/e53/e53_unif_s0 > runs/e53/e53_unif_s0.log 2>&1
+14:43:05Z START /home/agent/.venvs/aggext/bin/python train_uni.py --variant uni --f0 ctrl --f1 ctrl --seed 0 --ckpt sparse --out runs/e53/e53_uni_s0 > runs/e53/e53_uni_s0.log 2>&1
+14:43:06Z START /home/agent/.venvs/aggext/bin/python train_uni.py --variant unif_noln --f0 mag --f1 mag --seed 0 --ckpt sparse --out runs/e53/e53_unifnoln_mag_s0 > runs/e53/e53_unifnoln_mag_s0.log 2>&1
+14:43:07Z START /home/agent/.venvs/aggext/bin/python train_uni.py --variant unif_noln --f0 sq --f1 sq --seed 0 --ckpt sparse --out runs/e53/e53_unifnoln_sq_s0 > runs/e53/e53_unifnoln_sq_s0.log 2>&1
+14:54:11Z cpuq.sh loop stopped after 4 starts; the remaining 36 lines of e53_q.txt (5-40, same order) moved to the priority queue dynq.sh /tmp/s6q (MAXP 4, counting the 4 running trainings)
+15:13:53Z START 10_e54_run: /home/agent/.venvs/aggext/bin/python e54_run.py results/e54_pairs_d1.npz results/e54_pairs_d2.npz results/e54 0 120 > results/e54_run.log 2>&1 && /home/agent/.venvs/aggext/bin/python e54_summ.py > results/e54_summ.out 2>&1 && touch /tmp/s6q/e54.done
+15:13:55Z START 50_05_e53_unif_s1: /home/agent/.venvs/aggext/bin/python train_uni.py --variant unif --f0 ctrl --f1 ctrl --seed 1 --ckpt sparse --out runs/e53/e53_unif_s1 > runs/e53/e53_unif_s1.log 2>&1
+15:14:17Z START 50_06_e53_uni_s1: /home/agent/.venvs/aggext/bin/python train_uni.py --variant uni --f0 ctrl --f1 ctrl --seed 1 --ckpt sparse --out runs/e53/e53_uni_s1 > runs/e53/e53_uni_s1.log 2>&1
+15:14:19Z START 50_07_e53_unifnoln_mag_s1: /home/agent/.venvs/aggext/bin/python train_uni.py --variant unif_noln --f0 mag --f1 mag --seed 1 --ckpt sparse --out runs/e53/e53_unifnoln_mag_s1 > runs/e53/e53_unifnoln_mag_s1.log 2>&1
+15:29:53Z END 10_e54_run rc=0
+15:30:02Z START 20_eval_e53_uni_s0: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_uni_s0 results/e53 0 1 >> results/e53_eval.log 2>&1
+15:30:34Z END 20_eval_e53_uni_s0 rc=0
+15:30:44Z START 20_eval_e53_unif_s0: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_unif_s0 results/e53 0 1 >> results/e53_eval.log 2>&1
+15:31:12Z END 20_eval_e53_unif_s0 rc=0
+15:31:16Z START 20_eval_e53_unifnoln_mag_s0: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_unifnoln_mag_s0 results/e53 0 1 >> results/e53_eval.log 2>&1
+15:31:19Z END 20_eval_e53_unifnoln_mag_s0 rc=0
+15:31:28Z START 20_eval_e53_unifnoln_sq_s0: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_unifnoln_sq_s0 results/e53 0 1 >> results/e53_eval.log 2>&1
+15:31:31Z END 20_eval_e53_unifnoln_sq_s0 rc=0
+15:31:40Z START 50_08_e53_unifnoln_sq_s1: /home/agent/.venvs/aggext/bin/python train_uni.py --variant unif_noln --f0 sq --f1 sq --seed 1 --ckpt sparse --out runs/e53/e53_unifnoln_sq_s1 > runs/e53/e53_unifnoln_sq_s1.log 2>&1
+15:41:45Z END 50_07_e53_unifnoln_mag_s1 rc=0
+15:41:52Z START 05_e55_cbtable: cd /home/agent/workspaces/mats/work/cm-interp-B && /home/agent/.venvs/aggext/bin/python e55_cbtable.py > results/e55_cbtable.log 2>&1 && touch /tmp/s6q/e55table.done
+15:42:01Z END 05_e55_cbtable rc=0
+15:42:04Z START 50_09_e53_unif_s2: /home/agent/.venvs/aggext/bin/python train_uni.py --variant unif --f0 ctrl --f1 ctrl --seed 2 --ckpt sparse --out runs/e53/e53_unif_s2 > runs/e53/e53_unif_s2.log 2>&1
+15:42:15Z END 50_05_e53_unif_s1 rc=0
+15:42:16Z START 50_10_e53_uni_s2: /home/agent/.venvs/aggext/bin/python train_uni.py --variant uni --f0 ctrl --f1 ctrl --seed 2 --ckpt sparse --out runs/e53/e53_uni_s2 > runs/e53/e53_uni_s2.log 2>&1
+15:42:19Z END 50_06_e53_uni_s1 rc=0
+15:42:28Z START 50_11_e53_unifnoln_mag_s2: /home/agent/.venvs/aggext/bin/python train_uni.py --variant unif_noln --f0 mag --f1 mag --seed 2 --ckpt sparse --out runs/e53/e53_unifnoln_mag_s2 > runs/e53/e53_unifnoln_mag_s2.log 2>&1
+16:00:01Z END 50_08_e53_unifnoln_sq_s1 rc=0
+16:00:02Z START 06_e55_run: cd /home/agent/workspaces/mats/work/cm-interp-B && /home/agent/.venvs/aggext/bin/python e55_run.py > results/e55_run.log 2>&1 && /home/agent/.venvs/aggext/bin/python e55_summ.py > results/e55_summ.out 2>&1; touch /tmp/s6q/e55a.done
+16:00:14Z END 06_e55_run rc=0
+16:00:14Z START 07_e55_cbkl: cd /home/agent/workspaces/mats/work/cm-interp-B && /home/agent/.venvs/aggext/bin/python e55_cbkl.py 4000 1.0 1.4 2.0 3.0 4.0 5.0 > results/e55_cbkl.log 2>&1
+16:05:39Z END 07_e55_cbkl rc=0
+16:05:46Z START 20_eval_e53_uni_s1: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_uni_s1 results/e53 0 1 >> results/e53_eval.log 2>&1
+16:06:28Z END 20_eval_e53_uni_s1 rc=0
+16:06:29Z START 20_eval_e53_unif_s1: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_unif_s1 results/e53 0 1 >> results/e53_eval.log 2>&1
+16:07:16Z END 20_eval_e53_unif_s1 rc=0
+16:07:21Z START 20_eval_e53_unifnoln_mag_s1: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_unifnoln_mag_s1 results/e53 0 1 >> results/e53_eval.log 2>&1
+16:07:26Z END 20_eval_e53_unifnoln_mag_s1 rc=0
+16:07:33Z START 20_eval_e53_unifnoln_sq_s1: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_unifnoln_sq_s1 results/e53 0 1 >> results/e53_eval.log 2>&1
+16:07:38Z END 20_eval_e53_unifnoln_sq_s1 rc=0
+16:07:45Z START 50_12_e53_unifnoln_sq_s2: /home/agent/.venvs/aggext/bin/python train_uni.py --variant unif_noln --f0 sq --f1 sq --seed 2 --ckpt sparse --out runs/e53/e53_unifnoln_sq_s2 > runs/e53/e53_unifnoln_sq_s2.log 2>&1
+16:14:42Z END 50_11_e53_unifnoln_mag_s2 rc=0
+16:14:48Z START 08_e56_smoke: bash /tmp/s6/e56_smoke.sh
+16:15:03Z END 50_09_e53_unif_s2 rc=0
+16:15:10Z START 50_13_e53_unif_s3: /home/agent/.venvs/aggext/bin/python train_uni.py --variant unif --f0 ctrl --f1 ctrl --seed 3 --ckpt sparse --out runs/e53/e53_unif_s3 > runs/e53/e53_unif_s3.log 2>&1
+16:15:18Z END 50_10_e53_uni_s2 rc=0
+16:15:22Z START 50_14_e53_uni_s3: /home/agent/.venvs/aggext/bin/python train_uni.py --variant uni --f0 ctrl --f1 ctrl --seed 3 --ckpt sparse --out runs/e53/e53_uni_s3 > runs/e53/e53_uni_s3.log 2>&1
+16:18:39Z END 08_e56_smoke rc=0
+16:18:45Z START 50_15_e53_unifnoln_mag_s3: /home/agent/.venvs/aggext/bin/python train_uni.py --variant unif_noln --f0 mag --f1 mag --seed 3 --ckpt sparse --out runs/e53/e53_unifnoln_mag_s3 > runs/e53/e53_unifnoln_mag_s3.log 2>&1
+16:40:29Z END 50_12_e53_unifnoln_sq_s2 rc=0
+16:40:39Z START 07_e57: cd /home/agent/workspaces/mats/work/cm-interp-B && /home/agent/.venvs/aggext/bin/python e57_run.py > results/e57_run.log 2>&1 && /home/agent/.venvs/aggext/bin/python e57_summ.py > results/e57_summ.out 2>&1; touch /tmp/s6q/e57.done
+16:41:08Z END 07_e57 rc=0
+16:41:11Z START 20_eval_e53_uni_s2: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_uni_s2 results/e53 0 1 >> results/e53_eval.log 2>&1
+16:41:48Z END 20_eval_e53_uni_s2 rc=0
+16:41:53Z START 20_eval_e53_unif_s2: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_unif_s2 results/e53 0 1 >> results/e53_eval.log 2>&1
+16:42:27Z END 20_eval_e53_unif_s2 rc=0
+16:42:35Z START 20_eval_e53_unifnoln_mag_s2: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_unifnoln_mag_s2 results/e53 0 1 >> results/e53_eval.log 2>&1
+16:42:39Z END 20_eval_e53_unifnoln_mag_s2 rc=0
+16:42:47Z START 50_16_e53_unifnoln_sq_s3: /home/agent/.venvs/aggext/bin/python train_uni.py --variant unif_noln --f0 sq --f1 sq --seed 3 --ckpt sparse --out runs/e53/e53_unifnoln_sq_s3 > runs/e53/e53_unifnoln_sq_s3.log 2>&1
+16:48:19Z END 50_13_e53_unif_s3 rc=0
+16:48:19Z START 20_eval_e53_unifnoln_sq_s2: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_unifnoln_sq_s2 results/e53 0 1 >> results/e53_eval.log 2>&1
+16:48:24Z END 20_eval_e53_unifnoln_sq_s2 rc=0
+16:48:29Z END 50_14_e53_uni_s3 rc=0
+16:48:31Z START 50_17_e53_unif_s4: /home/agent/.venvs/aggext/bin/python train_uni.py --variant unif --f0 ctrl --f1 ctrl --seed 4 --ckpt sparse --out runs/e53/e53_unif_s4 > runs/e53/e53_unif_s4.log 2>&1
+16:48:33Z START 50_18_e53_uni_s4: /home/agent/.venvs/aggext/bin/python train_uni.py --variant uni --f0 ctrl --f1 ctrl --seed 4 --ckpt sparse --out runs/e53/e53_uni_s4 > runs/e53/e53_uni_s4.log 2>&1
+16:50:38Z END 50_15_e53_unifnoln_mag_s3 rc=0
+16:50:46Z START 20_eval_e53_uni_s3: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_uni_s3 results/e53 0 1 >> results/e53_eval.log 2>&1
+16:51:24Z END 20_eval_e53_uni_s3 rc=0
+16:51:28Z START 20_eval_e53_unif_s3: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_unif_s3 results/e53 0 1 >> results/e53_eval.log 2>&1
+16:52:03Z END 20_eval_e53_unif_s3 rc=0
+16:52:10Z START 50_19_e53_unifnoln_mag_s4: /home/agent/.venvs/aggext/bin/python train_uni.py --variant unif_noln --f0 mag --f1 mag --seed 4 --ckpt sparse --out runs/e53/e53_unifnoln_mag_s4 > runs/e53/e53_unifnoln_mag_s4.log 2>&1
+17:13:23Z END 50_16_e53_unifnoln_sq_s3 rc=0
+17:13:23Z START 20_eval_e53_unifnoln_mag_s3: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_unifnoln_mag_s3 results/e53 0 1 >> results/e53_eval.log 2>&1
+17:13:28Z END 20_eval_e53_unifnoln_mag_s3 rc=0
+17:13:35Z START 50_20_e53_unifnoln_sq_s4: /home/agent/.venvs/aggext/bin/python train_uni.py --variant unif_noln --f0 sq --f1 sq --seed 4 --ckpt sparse --out runs/e53/e53_unifnoln_sq_s4 > runs/e53/e53_unifnoln_sq_s4.log 2>&1
+17:19:04Z END 50_17_e53_unif_s4 rc=0
+17:19:08Z START 20_eval_e53_unifnoln_sq_s3: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_unifnoln_sq_s3 results/e53 0 1 >> results/e53_eval.log 2>&1
+17:19:12Z END 20_eval_e53_unifnoln_sq_s3 rc=0
+17:19:13Z END 50_18_e53_uni_s4 rc=0
+17:19:20Z START 20_eval_e53_unif_s4: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_unif_s4 results/e53 0 1 >> results/e53_eval.log 2>&1
+17:19:22Z START 50_21_e53_unif_s5: /home/agent/.venvs/aggext/bin/python train_uni.py --variant unif --f0 ctrl --f1 ctrl --seed 5 --ckpt sparse --out runs/e53/e53_unif_s5 > runs/e53/e53_unif_s5.log 2>&1
+17:19:54Z END 20_eval_e53_unif_s4 rc=0
+17:20:04Z START 50_22_e53_uni_s5: /home/agent/.venvs/aggext/bin/python train_uni.py --variant uni --f0 ctrl --f1 ctrl --seed 5 --ckpt sparse --out runs/e53/e53_uni_s5 > runs/e53/e53_uni_s5.log 2>&1
+17:21:32Z END 50_19_e53_unifnoln_mag_s4 rc=0
+17:21:36Z START 50_23_e53_unifnoln_mag_s5: /home/agent/.venvs/aggext/bin/python train_uni.py --variant unif_noln --f0 mag --f1 mag --seed 5 --ckpt sparse --out runs/e53/e53_unifnoln_mag_s5 > runs/e53/e53_unifnoln_mag_s5.log 2>&1
+17:43:09Z END 50_20_e53_unifnoln_sq_s4 rc=0
+17:43:10Z START 20_eval_e53_uni_s4: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_uni_s4 results/e53 0 1 >> results/e53_eval.log 2>&1
+17:43:37Z END 20_eval_e53_uni_s4 rc=0
+17:43:42Z START 20_eval_e53_unifnoln_mag_s4: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_unifnoln_mag_s4 results/e53 0 1 >> results/e53_eval.log 2>&1
+17:43:46Z END 20_eval_e53_unifnoln_mag_s4 rc=0
+17:43:54Z START 50_24_e53_unifnoln_sq_s5: /home/agent/.venvs/aggext/bin/python train_uni.py --variant unif_noln --f0 sq --f1 sq --seed 5 --ckpt sparse --out runs/e53/e53_unifnoln_sq_s5 > runs/e53/e53_unifnoln_sq_s5.log 2>&1
+17:49:10Z END 50_21_e53_unif_s5 rc=0
+17:49:16Z START 20_eval_e53_unif_s5: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_unif_s5 results/e53 0 1 >> results/e53_eval.log 2>&1
+17:49:49Z END 20_eval_e53_unif_s5 rc=0
+17:49:58Z START 20_eval_e53_unifnoln_sq_s4: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_unifnoln_sq_s4 results/e53 0 1 >> results/e53_eval.log 2>&1
+17:50:02Z END 20_eval_e53_unifnoln_sq_s4 rc=0
+17:50:08Z END 50_22_e53_uni_s5 rc=0
+17:50:10Z START 50_25_e53_unif_s6: /home/agent/.venvs/aggext/bin/python train_uni.py --variant unif --f0 ctrl --f1 ctrl --seed 6 --ckpt sparse --out runs/e53/e53_unif_s6 > runs/e53/e53_unif_s6.log 2>&1
+17:50:12Z START 50_26_e53_uni_s6: /home/agent/.venvs/aggext/bin/python train_uni.py --variant uni --f0 ctrl --f1 ctrl --seed 6 --ckpt sparse --out runs/e53/e53_uni_s6 > runs/e53/e53_uni_s6.log 2>&1
+17:50:40Z END 50_23_e53_unifnoln_mag_s5 rc=0
+17:50:44Z START 50_27_e53_unifnoln_mag_s6: /home/agent/.venvs/aggext/bin/python train_uni.py --variant unif_noln --f0 mag --f1 mag --seed 6 --ckpt sparse --out runs/e53/e53_unifnoln_mag_s6 > runs/e53/e53_unifnoln_mag_s6.log 2>&1
+18:10:09Z END 50_24_e53_unifnoln_sq_s5 rc=0
+18:10:17Z START 20_eval_e53_uni_s5: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_uni_s5 results/e53 0 1 >> results/e53_eval.log 2>&1
+18:10:46Z END 20_eval_e53_uni_s5 rc=0
+18:10:49Z START 20_eval_e53_unifnoln_mag_s5: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_unifnoln_mag_s5 results/e53 0 1 >> results/e53_eval.log 2>&1
+18:10:53Z END 20_eval_e53_unifnoln_mag_s5 rc=0
+18:11:01Z START 50_28_e53_unifnoln_sq_s6: /home/agent/.venvs/aggext/bin/python train_uni.py --variant unif_noln --f0 sq --f1 sq --seed 6 --ckpt sparse --out runs/e53/e53_unifnoln_sq_s6 > runs/e53/e53_unifnoln_sq_s6.log 2>&1
+18:16:33Z END 50_27_e53_unifnoln_mag_s6 rc=0
+18:16:33Z END 50_25_e53_unif_s6 rc=0
+18:16:34Z START 20_eval_e53_unifnoln_sq_s5: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_unifnoln_sq_s5 results/e53 0 1 >> results/e53_eval.log 2>&1
+18:16:36Z START 50_29_e53_unif_s7: /home/agent/.venvs/aggext/bin/python train_uni.py --variant unif --f0 ctrl --f1 ctrl --seed 7 --ckpt sparse --out runs/e53/e53_unif_s7 > runs/e53/e53_unif_s7.log 2>&1
+18:16:37Z END 20_eval_e53_unifnoln_sq_s5 rc=0
+18:16:38Z START 50_30_e53_uni_s7: /home/agent/.venvs/aggext/bin/python train_uni.py --variant uni --f0 ctrl --f1 ctrl --seed 7 --ckpt sparse --out runs/e53/e53_uni_s7 > runs/e53/e53_uni_s7.log 2>&1
+18:17:19Z END 50_26_e53_uni_s6 rc=0
+18:17:20Z START 50_31_e53_unifnoln_mag_s7: /home/agent/.venvs/aggext/bin/python train_uni.py --variant unif_noln --f0 mag --f1 mag --seed 7 --ckpt sparse --out runs/e53/e53_unifnoln_mag_s7 > runs/e53/e53_unifnoln_mag_s7.log 2>&1
+18:36:56Z END 50_28_e53_unifnoln_sq_s6 rc=0
+18:37:03Z START 20_eval_e53_uni_s6: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_uni_s6 results/e53 0 1 >> results/e53_eval.log 2>&1
+18:37:41Z END 20_eval_e53_uni_s6 rc=0
+18:37:45Z START 20_eval_e53_unif_s6: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_unif_s6 results/e53 0 1 >> results/e53_eval.log 2>&1
+18:38:22Z END 20_eval_e53_unif_s6 rc=0
+18:38:27Z START 20_eval_e53_unifnoln_mag_s6: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_unifnoln_mag_s6 results/e53 0 1 >> results/e53_eval.log 2>&1
+18:38:31Z END 20_eval_e53_unifnoln_mag_s6 rc=0
+18:38:39Z START 50_32_e53_unifnoln_sq_s7: /home/agent/.venvs/aggext/bin/python train_uni.py --variant unif_noln --f0 sq --f1 sq --seed 7 --ckpt sparse --out runs/e53/e53_unifnoln_sq_s7 > runs/e53/e53_unifnoln_sq_s7.log 2>&1
+18:43:26Z END 50_29_e53_unif_s7 rc=0
+18:43:31Z START 20_eval_e53_unifnoln_sq_s6: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_unifnoln_sq_s6 results/e53 0 1 >> results/e53_eval.log 2>&1
+18:43:36Z END 20_eval_e53_unifnoln_sq_s6 rc=0
+18:43:43Z START 50_33_e53_unif_s8: /home/agent/.venvs/aggext/bin/python train_uni.py --variant unif --f0 ctrl --f1 ctrl --seed 8 --ckpt sparse --out runs/e53/e53_unif_s8 > runs/e53/e53_unif_s8.log 2>&1
+18:43:46Z END 50_30_e53_uni_s7 rc=0
+18:43:55Z START 50_34_e53_uni_s8: /home/agent/.venvs/aggext/bin/python train_uni.py --variant uni --f0 ctrl --f1 ctrl --seed 8 --ckpt sparse --out runs/e53/e53_uni_s8 > runs/e53/e53_uni_s8.log 2>&1
+18:44:00Z END 50_31_e53_unifnoln_mag_s7 rc=0
+18:44:07Z START 50_35_e53_unif_s9: /home/agent/.venvs/aggext/bin/python train_uni.py --variant unif --f0 ctrl --f1 ctrl --seed 9 --ckpt sparse --out runs/e53/e53_unif_s9 > runs/e53/e53_unif_s9.log 2>&1
+19:05:53Z END 50_32_e53_unifnoln_sq_s7 rc=0
+19:06:00Z START 20_eval_e53_uni_s7: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_uni_s7 results/e53 0 1 >> results/e53_eval.log 2>&1
+19:06:34Z END 20_eval_e53_uni_s7 rc=0
+19:06:42Z START 20_eval_e53_unif_s7: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_unif_s7 results/e53 0 1 >> results/e53_eval.log 2>&1
+19:07:25Z END 20_eval_e53_unif_s7 rc=0
+19:07:34Z START 20_eval_e53_unifnoln_mag_s7: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_unifnoln_mag_s7 results/e53 0 1 >> results/e53_eval.log 2>&1
+19:07:39Z END 20_eval_e53_unifnoln_mag_s7 rc=0
+19:07:46Z START 22_eval_e58_lrn_c1_s0: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e58_lrn_c1_s0 results/e58 0 1 >> results/e58_eval.log 2>&1
+19:08:17Z END 22_eval_e58_lrn_c1_s0 rc=0
+19:08:18Z START 22_eval_e58_lrn_c1_s1: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e58_lrn_c1_s1 results/e58 0 1 >> results/e58_eval.log 2>&1
+19:08:54Z END 22_eval_e58_lrn_c1_s1 rc=0
+19:09:00Z START 22_eval_e58_lrn_c1_s2: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e58_lrn_c1_s2 results/e58 0 1 >> results/e58_eval.log 2>&1
+19:09:41Z END 22_eval_e58_lrn_c1_s2 rc=0
+19:09:42Z START 20_eval_e53_unifnoln_sq_s7: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_unifnoln_sq_s7 results/e53 0 1 >> results/e53_eval.log 2>&1
+19:09:46Z END 20_eval_e53_unifnoln_sq_s7 rc=0
+19:09:54Z START 22_eval_e58_lrn_c1_s3: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e58_lrn_c1_s3 results/e58 0 1 >> results/e58_eval.log 2>&1
+19:10:30Z END 22_eval_e58_lrn_c1_s3 rc=0
+19:10:36Z START 22_eval_e58_lrn_c1_s4: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e58_lrn_c1_s4 results/e58 0 1 >> results/e58_eval.log 2>&1
+19:11:07Z END 22_eval_e58_lrn_c1_s4 rc=0
+19:11:08Z START 22_eval_e58_lrn_c1_s5: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e58_lrn_c1_s5 results/e58 0 1 >> results/e58_eval.log 2>&1
+19:11:20Z END 50_34_e53_uni_s8 rc=0
+19:11:21Z START 22_eval_e58_lrn_c4_s0: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e58_lrn_c4_s0 results/e58 0 1 >> results/e58_eval.log 2>&1
+19:11:36Z END 50_33_e53_unif_s8 rc=0
+19:11:40Z END 22_eval_e58_lrn_c1_s5 rc=0
+19:11:43Z START 22_eval_e58_lrn_c4_s1: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e58_lrn_c4_s1 results/e58 0 1 >> results/e58_eval.log 2>&1
+19:11:45Z START 22_eval_e58_lrn_c4_s2: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e58_lrn_c4_s2 results/e58 0 1 >> results/e58_eval.log 2>&1
+19:11:50Z END 22_eval_e58_lrn_c4_s0 rc=0
+19:11:55Z END 50_35_e53_unif_s9 rc=0
+19:11:57Z START 22_eval_e58_lrn_c4_s3: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e58_lrn_c4_s3 results/e58 0 1 >> results/e58_eval.log 2>&1
+19:11:59Z START 22_eval_e58_lrn_c4_s4: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e58_lrn_c4_s4 results/e58 0 1 >> results/e58_eval.log 2>&1
+19:12:18Z END 22_eval_e58_lrn_c4_s1 rc=0
+19:12:21Z START 22_eval_e58_lrn_c4_s5: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e58_lrn_c4_s5 results/e58 0 1 >> results/e58_eval.log 2>&1
+19:12:25Z END 22_eval_e58_lrn_c4_s2 rc=0
+19:12:33Z START 22_eval_e58_unif_c1_s0: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e58_unif_c1_s0 results/e58 0 1 >> results/e58_eval.log 2>&1
+19:12:33Z END 22_eval_e58_lrn_c4_s3 rc=0
+19:12:35Z END 22_eval_e58_lrn_c4_s4 rc=0
+19:12:35Z START 22_eval_e58_unif_c1_s1: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e58_unif_c1_s1 results/e58 0 1 >> results/e58_eval.log 2>&1
+19:12:37Z START 22_eval_e58_unif_c1_s2: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e58_unif_c1_s2 results/e58 0 1 >> results/e58_eval.log 2>&1
+19:12:56Z END 22_eval_e58_lrn_c4_s5 rc=0
+19:12:59Z START 22_eval_e58_unif_c1_s3: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e58_unif_c1_s3 results/e58 0 1 >> results/e58_eval.log 2>&1
+19:13:07Z END 22_eval_e58_unif_c1_s0 rc=0
+19:13:09Z END 22_eval_e58_unif_c1_s2 rc=0
+19:13:09Z END 22_eval_e58_unif_c1_s1 rc=0
+19:13:11Z START 22_eval_e58_unif_c1_s4: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e58_unif_c1_s4 results/e58 0 1 >> results/e58_eval.log 2>&1
+19:13:13Z START 22_eval_e58_unif_c1_s5: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e58_unif_c1_s5 results/e58 0 1 >> results/e58_eval.log 2>&1
+19:13:15Z START 22_eval_e58_unif_c2_s0: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e58_unif_c2_s0 results/e58 0 1 >> results/e58_eval.log 2>&1
+19:13:33Z END 22_eval_e58_unif_c1_s3 rc=0
+19:13:37Z START 22_eval_e58_unif_c2_s1: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e58_unif_c2_s1 results/e58 0 1 >> results/e58_eval.log 2>&1
+19:13:44Z END 22_eval_e58_unif_c1_s4 rc=0
+19:13:47Z END 22_eval_e58_unif_c1_s5 rc=0
+19:13:49Z START 22_eval_e58_unif_c2_s2: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e58_unif_c2_s2 results/e58 0 1 >> results/e58_eval.log 2>&1
+19:13:50Z END 22_eval_e58_unif_c2_s0 rc=0
+19:13:51Z START 22_eval_e58_unif_c2_s3: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e58_unif_c2_s3 results/e58 0 1 >> results/e58_eval.log 2>&1
+19:13:53Z START 22_eval_e58_unif_c2_s4: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e58_unif_c2_s4 results/e58 0 1 >> results/e58_eval.log 2>&1
+19:14:11Z END 22_eval_e58_unif_c2_s1 rc=0
+19:14:15Z START 20_eval_e53_uni_s8: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_uni_s8 results/e53 0 1 >> results/e53_eval.log 2>&1
+19:14:24Z END 22_eval_e58_unif_c2_s2 rc=0
+19:14:27Z START 20_eval_e53_unif_s8: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_unif_s8 results/e53 0 1 >> results/e53_eval.log 2>&1
+19:14:28Z END 22_eval_e58_unif_c2_s3 rc=0
+19:14:29Z START 20_eval_e53_unif_s9: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_unif_s9 results/e53 0 1 >> results/e53_eval.log 2>&1
+19:14:33Z END 22_eval_e58_unif_c2_s4 rc=0
+19:14:41Z START 22_eval_e58_unif_c2_s5: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e58_unif_c2_s5 results/e58 0 1 >> results/e58_eval.log 2>&1
+19:14:50Z END 20_eval_e53_uni_s8 rc=0
+19:14:53Z START 22_eval_e58_unif_c4_s0: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e58_unif_c4_s0 results/e58 0 1 >> results/e58_eval.log 2>&1
+19:15:01Z END 20_eval_e53_unif_s8 rc=0
+19:15:05Z START 22_eval_e58_unif_c4_s1: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e58_unif_c4_s1 results/e58 0 1 >> results/e58_eval.log 2>&1
+19:15:10Z END 20_eval_e53_unif_s9 rc=0
+19:15:14Z END 22_eval_e58_unif_c2_s5 rc=0
+19:15:17Z START 22_eval_e58_unif_c4_s2: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e58_unif_c4_s2 results/e58 0 1 >> results/e58_eval.log 2>&1
+19:15:19Z START 22_eval_e58_unif_c4_s3: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e58_unif_c4_s3 results/e58 0 1 >> results/e58_eval.log 2>&1
+19:15:25Z END 22_eval_e58_unif_c4_s0 rc=0
+19:15:31Z START 22_eval_e58_unif_c4_s4: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e58_unif_c4_s4 results/e58 0 1 >> results/e58_eval.log 2>&1
+19:15:38Z END 22_eval_e58_unif_c4_s1 rc=0
+19:15:43Z START 22_eval_e58_unif_c4_s5: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e58_unif_c4_s5 results/e58 0 1 >> results/e58_eval.log 2>&1
+19:15:50Z END 22_eval_e58_unif_c4_s3 rc=0
+19:15:50Z END 22_eval_e58_unif_c4_s2 rc=0
+19:15:55Z START 50_36_e53_uni_s9: /home/agent/.venvs/aggext/bin/python train_uni.py --variant uni --f0 ctrl --f1 ctrl --seed 9 --ckpt sparse --out runs/e53/e53_uni_s9 > runs/e53/e53_uni_s9.log 2>&1
+19:15:57Z START 50_37_e53_unif_s10: /home/agent/.venvs/aggext/bin/python train_uni.py --variant unif --f0 ctrl --f1 ctrl --seed 10 --ckpt sparse --out runs/e53/e53_unif_s10 > runs/e53/e53_unif_s10.log 2>&1
+19:16:03Z END 22_eval_e58_unif_c4_s4 rc=0
+19:16:09Z START 50_38_e53_uni_s10: /home/agent/.venvs/aggext/bin/python train_uni.py --variant uni --f0 ctrl --f1 ctrl --seed 10 --ckpt sparse --out runs/e53/e53_uni_s10 > runs/e53/e53_uni_s10.log 2>&1
+19:16:13Z END 22_eval_e58_unif_c4_s5 rc=0
+19:16:21Z START 50_39_e53_unif_s11: /home/agent/.venvs/aggext/bin/python train_uni.py --variant unif --f0 ctrl --f1 ctrl --seed 11 --ckpt sparse --out runs/e53/e53_unif_s11 > runs/e53/e53_unif_s11.log 2>&1
+19:42:43Z END 50_37_e53_unif_s10 rc=0
+19:42:45Z START 50_40_e53_uni_s11: /home/agent/.venvs/aggext/bin/python train_uni.py --variant uni --f0 ctrl --f1 ctrl --seed 11 --ckpt sparse --out runs/e53/e53_uni_s11 > runs/e53/e53_uni_s11.log 2>&1
+19:42:54Z END 50_36_e53_uni_s9 rc=0
+19:42:55Z END 50_38_e53_uni_s10 rc=0
+19:42:57Z START 60_00_e56_sep_s0: /home/agent/.venvs/aggext/bin/python train_e56.py --f0 sep --f1 sep --seed 0 --pair_init --ckpt sparse --out runs/e56/e56_sep_s0 > runs/e56/e56_sep_s0.log 2>&1
+19:42:59Z START 60_01_e56_unifsep_s0: /home/agent/.venvs/aggext/bin/python train_e56.py --variant unif --f0 sep --f1 sep --seed 0 --pair_init --ckpt sparse --out runs/e56/e56_unifsep_s0 > runs/e56/e56_unifsep_s0.log 2>&1
+19:43:09Z END 50_39_e53_unif_s11 rc=0
+19:43:11Z START 60_02_e56_sep_s1: /home/agent/.venvs/aggext/bin/python train_e56.py --f0 sep --f1 sep --seed 1 --pair_init --ckpt sparse --out runs/e56/e56_sep_s1 > runs/e56/e56_sep_s1.log 2>&1
+20:13:11Z END 60_00_e56_sep_s0 rc=0
+20:13:15Z START 20_eval_e53_uni_s10: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_uni_s10 results/e53 0 1 >> results/e53_eval.log 2>&1
+20:13:43Z END 60_02_e56_sep_s1 rc=0
+20:13:47Z START 20_eval_e53_uni_s9: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_uni_s9 results/e53 0 1 >> results/e53_eval.log 2>&1
+20:13:52Z END 50_40_e53_uni_s11 rc=0
+20:13:54Z END 60_01_e56_unifsep_s0 rc=0
+20:13:55Z END 20_eval_e53_uni_s10 rc=0
+20:13:59Z START 20_eval_e53_unif_s10: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_unif_s10 results/e53 0 1 >> results/e53_eval.log 2>&1
+20:14:01Z START 20_eval_e53_unif_s11: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_unif_s11 results/e53 0 1 >> results/e53_eval.log 2>&1
+20:14:03Z START 60_03_e56_unifsep_s1: /home/agent/.venvs/aggext/bin/python train_e56.py --variant unif --f0 sep --f1 sep --seed 1 --pair_init --ckpt sparse --out runs/e56/e56_unifsep_s1 > runs/e56/e56_unifsep_s1.log 2>&1
+20:14:24Z END 20_eval_e53_uni_s9 rc=0
+20:14:25Z START 20_eval_e53_uni_s11: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e53_uni_s11 results/e53 0 1 >> results/e53_eval.log 2>&1
+20:14:40Z END 20_eval_e53_unif_s11 rc=0
+20:14:45Z END 20_eval_e53_unif_s10 rc=0
+20:14:47Z START 60_04_e56_sep_s2: /home/agent/.venvs/aggext/bin/python train_e56.py --f0 sep --f1 sep --seed 2 --pair_init --ckpt sparse --out runs/e56/e56_sep_s2 > runs/e56/e56_sep_s2.log 2>&1
+20:14:49Z START 60_05_e56_unifsep_s2: /home/agent/.venvs/aggext/bin/python train_e56.py --variant unif --f0 sep --f1 sep --seed 2 --pair_init --ckpt sparse --out runs/e56/e56_unifsep_s2 > runs/e56/e56_unifsep_s2.log 2>&1
+20:15:03Z END 20_eval_e53_uni_s11 rc=0
+20:15:11Z START 60_06_e56_sep_s3: /home/agent/.venvs/aggext/bin/python train_e56.py --f0 sep --f1 sep --seed 3 --pair_init --ckpt sparse --out runs/e56/e56_sep_s3 > runs/e56/e56_sep_s3.log 2>&1
+20:46:17Z END 60_04_e56_sep_s2 rc=0
+20:46:25Z START 21_eval_e56_sep_s0: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e56_sep_s0 results/e56 0 1 >> results/e56_eval.log 2>&1
+20:46:45Z END 60_03_e56_unifsep_s1 rc=0
+20:46:46Z END 60_06_e56_sep_s3 rc=0
+20:46:47Z START 21_eval_e56_sep_s1: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e56_sep_s1 results/e56 0 1 >> results/e56_eval.log 2>&1
+20:46:50Z START 21_eval_e56_unifsep_s0: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e56_unifsep_s0 results/e56 0 1 >> results/e56_eval.log 2>&1
+20:46:52Z END 21_eval_e56_sep_s0 rc=0
+20:47:02Z START 25_e59_ctrl: /home/agent/.venvs/aggext/bin/python e59_run.py ctrl > results/e59_run_ctrl.log 2>&1
+20:47:06Z END 60_05_e56_unifsep_s2 rc=0
+20:47:14Z START 25_e59_uni: /home/agent/.venvs/aggext/bin/python e59_run.py uni > results/e59_run_uni.log 2>&1
+20:47:24Z END 21_eval_e56_unifsep_s0 rc=0
+20:47:26Z END 21_eval_e56_sep_s1 rc=0
+20:47:26Z START 25_e59_unif: /home/agent/.venvs/aggext/bin/python e59_run.py unif > results/e59_run_unif.log 2>&1
+20:47:28Z START 25_e59_unifnoln_mag: /home/agent/.venvs/aggext/bin/python e59_run.py unifnoln_mag > results/e59_run_unifnoln_mag.log 2>&1
+20:53:50Z END 25_e59_unifnoln_mag rc=0
+20:54:00Z START 21_eval_e56_sep_s2: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e56_sep_s2 results/e56 0 1 >> results/e56_eval.log 2>&1
+20:54:35Z END 21_eval_e56_sep_s2 rc=0
+20:54:42Z START 21_eval_e56_sep_s3: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e56_sep_s3 results/e56 0 1 >> results/e56_eval.log 2>&1
+20:55:16Z END 21_eval_e56_sep_s3 rc=0
+20:55:24Z START 21_eval_e56_unifsep_s1: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e56_unifsep_s1 results/e56 0 1 >> results/e56_eval.log 2>&1
+20:56:02Z END 21_eval_e56_unifsep_s1 rc=0
+20:56:06Z START 21_eval_e56_unifsep_s2: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e56_unifsep_s2 results/e56 0 1 >> results/e56_eval.log 2>&1
+20:56:15Z END 25_e59_ctrl rc=0
+20:56:18Z START 25_e59_unifnoln_sq: /home/agent/.venvs/aggext/bin/python e59_run.py unifnoln_sq > results/e59_run_unifnoln_sq.log 2>&1
+20:56:42Z END 21_eval_e56_unifsep_s2 rc=0
+20:56:50Z START 60_07_e56_unifsep_s3: /home/agent/.venvs/aggext/bin/python train_e56.py --variant unif --f0 sep --f1 sep --seed 3 --pair_init --ckpt sparse --out runs/e56/e56_unifsep_s3 > runs/e56/e56_unifsep_s3.log 2>&1
+20:56:55Z END 25_e59_unif rc=0
+20:56:57Z END 25_e59_uni rc=0
+20:57:02Z START 60_08_e56_sep_s4: /home/agent/.venvs/aggext/bin/python train_e56.py --f0 sep --f1 sep --seed 4 --pair_init --ckpt sparse --out runs/e56/e56_sep_s4 > runs/e56/e56_sep_s4.log 2>&1
+20:57:04Z START 60_09_e56_unifsep_s4: /home/agent/.venvs/aggext/bin/python train_e56.py --variant unif --f0 sep --f1 sep --seed 4 --pair_init --ckpt sparse --out runs/e56/e56_unifsep_s4 > runs/e56/e56_unifsep_s4.log 2>&1
+21:01:48Z END 25_e59_unifnoln_sq rc=0
+21:01:57Z START 60_10_e56_sep_s5: /home/agent/.venvs/aggext/bin/python train_e56.py --f0 sep --f1 sep --seed 5 --pair_init --ckpt sparse --out runs/e56/e56_sep_s5 > runs/e56/e56_sep_s5.log 2>&1
+21:27:08Z END 60_08_e56_sep_s4 rc=0
+21:27:10Z START 60_11_e56_unifsep_s5: /home/agent/.venvs/aggext/bin/python train_e56.py --variant unif --f0 sep --f1 sep --seed 5 --pair_init --ckpt sparse --out runs/e56/e56_unifsep_s5 > runs/e56/e56_unifsep_s5.log 2>&1
+21:27:51Z END 60_07_e56_unifsep_s3 rc=0
+21:27:52Z START 60_12_e56_sep_s6: /home/agent/.venvs/aggext/bin/python train_e56.py --f0 sep --f1 sep --seed 6 --pair_init --ckpt sparse --out runs/e56/e56_sep_s6 > runs/e56/e56_sep_s6.log 2>&1
+21:27:52Z END 60_09_e56_unifsep_s4 rc=0
+21:27:54Z START 60_13_e56_unifsep_s6: /home/agent/.venvs/aggext/bin/python train_e56.py --variant unif --f0 sep --f1 sep --seed 6 --pair_init --ckpt sparse --out runs/e56/e56_unifsep_s6 > runs/e56/e56_unifsep_s6.log 2>&1
+21:31:49Z END 60_10_e56_sep_s5 rc=0
+21:31:56Z START 21_eval_e56_sep_s4: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e56_sep_s4 results/e56 0 1 >> results/e56_eval.log 2>&1
+21:32:36Z END 21_eval_e56_sep_s4 rc=0
+21:32:38Z START 21_eval_e56_unifsep_s3: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e56_unifsep_s3 results/e56 0 1 >> results/e56_eval.log 2>&1
+21:33:16Z END 21_eval_e56_unifsep_s3 rc=0
+21:33:20Z START 21_eval_e56_unifsep_s4: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e56_unifsep_s4 results/e56 0 1 >> results/e56_eval.log 2>&1
+21:34:02Z END 21_eval_e56_unifsep_s4 rc=0
+21:34:02Z START 60_14_e56_sep_s7: /home/agent/.venvs/aggext/bin/python train_e56.py --f0 sep --f1 sep --seed 7 --pair_init --ckpt sparse --out runs/e56/e56_sep_s7 > runs/e56/e56_sep_s7.log 2>&1
+21:55:51Z END 60_12_e56_sep_s6 rc=0
+21:55:56Z START 21_eval_e56_sep_s5: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e56_sep_s5 results/e56 0 1 >> results/e56_eval.log 2>&1
+21:56:09Z END 60_11_e56_unifsep_s5 rc=0
+21:56:18Z START 21_eval_e56_sep_s6: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e56_sep_s6 results/e56 0 1 >> results/e56_eval.log 2>&1
+21:56:34Z END 60_13_e56_unifsep_s6 rc=0
+21:56:40Z START 60_15_e56_unifsep_s7: /home/agent/.venvs/aggext/bin/python train_e56.py --variant unif --f0 sep --f1 sep --seed 7 --pair_init --ckpt sparse --out runs/e56/e56_unifsep_s7 > runs/e56/e56_unifsep_s7.log 2>&1
+21:56:41Z END 21_eval_e56_sep_s5 rc=0
+21:56:42Z START 60_16_e56_sep_s8: /home/agent/.venvs/aggext/bin/python train_e56.py --f0 sep --f1 sep --seed 8 --pair_init --ckpt sparse --out runs/e56/e56_sep_s8 > runs/e56/e56_sep_s8.log 2>&1
+21:56:51Z END 21_eval_e56_sep_s6 rc=0
+21:56:54Z START 60_17_e56_unifsep_s8: /home/agent/.venvs/aggext/bin/python train_e56.py --variant unif --f0 sep --f1 sep --seed 8 --pair_init --ckpt sparse --out runs/e56/e56_unifsep_s8 > runs/e56/e56_unifsep_s8.log 2>&1
+22:01:48Z END 60_14_e56_sep_s7 rc=0
+22:01:56Z START 21_eval_e56_unifsep_s5: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e56_unifsep_s5 results/e56 0 1 >> results/e56_eval.log 2>&1
+22:02:30Z END 21_eval_e56_unifsep_s5 rc=0
+22:02:38Z START 21_eval_e56_unifsep_s6: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e56_unifsep_s6 results/e56 0 1 >> results/e56_eval.log 2>&1
+22:03:08Z END 21_eval_e56_unifsep_s6 rc=0
+22:03:10Z START 60_18_e56_sep_s9: /home/agent/.venvs/aggext/bin/python train_e56.py --f0 sep --f1 sep --seed 9 --pair_init --ckpt sparse --out runs/e56/e56_sep_s9 > runs/e56/e56_sep_s9.log 2>&1
+22:23:37Z END 60_16_e56_sep_s8 rc=0
+22:23:43Z START 21_eval_e56_sep_s7: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e56_sep_s7 results/e56 0 1 >> results/e56_eval.log 2>&1
+22:24:00Z END 60_17_e56_unifsep_s8 rc=0
+22:24:03Z END 60_15_e56_unifsep_s7 rc=0
+22:24:05Z START 60_19_e56_unifsep_s9: /home/agent/.venvs/aggext/bin/python train_e56.py --variant unif --f0 sep --f1 sep --seed 9 --pair_init --ckpt sparse --out runs/e56/e56_unifsep_s9 > runs/e56/e56_unifsep_s9.log 2>&1
+22:24:07Z START 60_20_e56_sep_s10: /home/agent/.venvs/aggext/bin/python train_e56.py --f0 sep --f1 sep --seed 10 --pair_init --ckpt sparse --out runs/e56/e56_sep_s10 > runs/e56/e56_sep_s10.log 2>&1
+22:24:19Z END 21_eval_e56_sep_s7 rc=0
+22:24:19Z START 60_21_e56_unifsep_s10: /home/agent/.venvs/aggext/bin/python train_e56.py --variant unif --f0 sep --f1 sep --seed 10 --pair_init --ckpt sparse --out runs/e56/e56_unifsep_s10 > runs/e56/e56_unifsep_s10.log 2>&1
+22:30:05Z END 60_18_e56_sep_s9 rc=0
+22:30:12Z START 21_eval_e56_sep_s8: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e56_sep_s8 results/e56 0 1 >> results/e56_eval.log 2>&1
+22:30:54Z END 21_eval_e56_sep_s8 rc=0
+22:31:04Z START 21_eval_e56_unifsep_s7: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e56_unifsep_s7 results/e56 0 1 >> results/e56_eval.log 2>&1
+22:31:47Z END 21_eval_e56_unifsep_s7 rc=0
+22:31:56Z START 21_eval_e56_sep_s9: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e56_sep_s9 results/e56 0 1 >> results/e56_eval.log 2>&1
+22:32:33Z END 21_eval_e56_sep_s9 rc=0
+22:32:38Z START 21_eval_e56_unifsep_s8: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e56_unifsep_s8 results/e56 0 1 >> results/e56_eval.log 2>&1
+22:33:09Z END 21_eval_e56_unifsep_s8 rc=0
+22:33:10Z START 60_22_e56_sep_s11: /home/agent/.venvs/aggext/bin/python train_e56.py --f0 sep --f1 sep --seed 11 --pair_init --ckpt sparse --out runs/e56/e56_sep_s11 > runs/e56/e56_sep_s11.log 2>&1
+22:54:27Z END 60_20_e56_sep_s10 rc=0
+22:54:34Z START 24_eval_e61_unifd3_s0: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e61_unifd3_s0 results/e61 0 1 >> results/e61_eval.log 2>&1
+22:55:12Z END 24_eval_e61_unifd3_s0 rc=0
+22:55:16Z START 24_eval_e61_unifd3_s1: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e61_unifd3_s1 results/e61 0 1 >> results/e61_eval.log 2>&1
+22:55:18Z END 60_19_e56_unifsep_s9 rc=0
+22:55:28Z START 24_eval_e61_unifd3_s2: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e61_unifd3_s2 results/e61 0 1 >> results/e61_eval.log 2>&1
+22:55:50Z END 60_21_e56_unifsep_s10 rc=0
+22:55:50Z START 24_eval_e61_unifd3_s3: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e61_unifd3_s3 results/e61 0 1 >> results/e61_eval.log 2>&1
+22:55:52Z END 24_eval_e61_unifd3_s1 rc=0
+22:55:52Z START 24_eval_e61_unifd3_s4: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e61_unifd3_s4 results/e61 0 1 >> results/e61_eval.log 2>&1
+22:56:09Z END 24_eval_e61_unifd3_s2 rc=0
+22:56:14Z START 21_eval_e56_sep_s10: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e56_sep_s10 results/e56 0 1 >> results/e56_eval.log 2>&1
+22:56:28Z END 24_eval_e61_unifd3_s3 rc=0
+22:56:34Z END 24_eval_e61_unifd3_s4 rc=0
+22:56:36Z START 21_eval_e56_unifsep_s10: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e56_unifsep_s10 results/e56 0 1 >> results/e56_eval.log 2>&1
+22:56:38Z START 21_eval_e56_unifsep_s9: /home/agent/.venvs/aggext/bin/python e56_eval.py /tmp/s6q/one/e56_unifsep_s9 results/e56 0 1 >> results/e56_eval.log 2>&1
+22:56:51Z END 21_eval_e56_sep_s10 rc=0
+22:57:00Z START 24_eval_e61_unifd3_s5: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e61_unifd3_s5 results/e61 0 1 >> results/e61_eval.log 2>&1
+22:57:21Z END 21_eval_e56_unifsep_s9 rc=0
+22:57:23Z START 24_eval_e61_unifd3_s6: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e61_unifd3_s6 results/e61 0 1 >> results/e61_eval.log 2>&1
+22:57:26Z END 21_eval_e56_unifsep_s10 rc=0
+22:57:35Z START 24_eval_e61_unifd3_s7: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e61_unifd3_s7 results/e61 0 1 >> results/e61_eval.log 2>&1
+22:57:48Z END 24_eval_e61_unifd3_s5 rc=0
+22:57:57Z START 24_eval_e61_unifd3_s8: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e61_unifd3_s8 results/e61 0 1 >> results/e61_eval.log 2>&1
+22:58:07Z END 24_eval_e61_unifd3_s6 rc=0
+22:58:09Z START 24_eval_e61_unifd3_s9: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e61_unifd3_s9 results/e61 0 1 >> results/e61_eval.log 2>&1
+22:58:17Z END 24_eval_e61_unifd3_s7 rc=0
+22:58:21Z START 24_eval_e61_unifw128_s0: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e61_unifw128_s0 results/e61 0 1 >> results/e61_eval.log 2>&1
+22:58:38Z END 24_eval_e61_unifd3_s8 rc=0
+22:58:43Z START 24_eval_e61_unifw128_s1: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e61_unifw128_s1 results/e61 0 1 >> results/e61_eval.log 2>&1
+22:58:49Z END 24_eval_e61_unifd3_s9 rc=0
+22:58:55Z START 24_eval_e61_unifw128_s2: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e61_unifw128_s2 results/e61 0 1 >> results/e61_eval.log 2>&1
+22:59:17Z END 24_eval_e61_unifw128_s0 rc=0
+22:59:17Z START 24_eval_e61_unifw128_s3: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e61_unifw128_s3 results/e61 0 1 >> results/e61_eval.log 2>&1
+22:59:36Z END 24_eval_e61_unifw128_s1 rc=0
+22:59:39Z START 24_eval_e61_unifw128_s4: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e61_unifw128_s4 results/e61 0 1 >> results/e61_eval.log 2>&1
+22:59:45Z END 24_eval_e61_unifw128_s2 rc=0
+22:59:51Z START 24_eval_e61_unifw128_s5: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e61_unifw128_s5 results/e61 0 1 >> results/e61_eval.log 2>&1
+23:00:17Z END 24_eval_e61_unifw128_s3 rc=0
+23:00:23Z START 24_eval_e61_unifw128_s6: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e61_unifw128_s6 results/e61 0 1 >> results/e61_eval.log 2>&1
+23:00:41Z END 24_eval_e61_unifw128_s4 rc=0
+23:00:45Z START 24_eval_e61_unifw128_s7: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e61_unifw128_s7 results/e61 0 1 >> results/e61_eval.log 2>&1
+23:00:50Z END 24_eval_e61_unifw128_s5 rc=0
+23:00:57Z START 24_eval_e61_unifw128_s8: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e61_unifw128_s8 results/e61 0 1 >> results/e61_eval.log 2>&1
+23:01:27Z END 24_eval_e61_unifw128_s6 rc=0
+23:01:30Z START 24_eval_e61_unifw128_s9: /home/agent/.venvs/aggext/bin/python e53_eval.py /tmp/s6q/one/e61_unifw128_s9 results/e61 0 1 >> results/e61_eval.log 2>&1
+23:01:52Z END 24_eval_e61_unifw128_s7 rc=0
+23:02:00Z END 24_eval_e61_unifw128_s8 rc=0
+23:02:02Z START 60_23_e56_unifsep_s11: /home/agent/.venvs/aggext/bin/python train_e56.py --variant unif --f0 sep --f1 sep --seed 11 --pair_init --ckpt sparse --out runs/e56/e56_unifsep_s11 > runs/e56/e56_unifsep_s11.log 2>&1
+23:02:04Z START 65_00_e60_own_s0: /home/agent/.venvs/aggext/bin/python train_own.py --variant own --f0 ctrl --f1 ctrl --seed 0 --ckpt sparse --out runs/e60/e60_own_s0 > runs/e60/e60_own_s0.log 2>&1
+23:02:25Z END 24_eval_e61_unifw128_s9 rc=0
+23:02:26Z START 65_01_e60_own_s1: /home/agent/.venvs/aggext/bin/python train_own.py --variant own --f0 ctrl --f1 ctrl --seed 1 --ckpt sparse --out runs/e60/e60_own_s1 > runs/e60/e60_own_s1.log 2>&1
+23:05:41Z END 60_22_e56_sep_s11 rc=0
+23:05:48Z START 34_e61_summ: /home/agent/.venvs/aggext/bin/python e61_summ.py > results/e61_summ.out 2>&1 && touch /tmp/s6q/e61.done
+23:05:51Z END 34_e61_summ rc=0
+23:06:00Z START 65_02_e60_own_s2: /home/agent/.venvs/aggext/bin/python train_own.py --variant own --f0 ctrl --f1 ctrl --seed 2 --ckpt sparse --out runs/e60/e60_own_s2 > runs/e60/e60_own_s2.log 2>&1
+23:40:42Z END 65_00_e60_own_s0 rc=0
+23:40:49Z START 65_03_e60_own_s3: /home/agent/.venvs/aggext/bin/python train_own.py --variant own --f0 ctrl --f1 ctrl --seed 3 --ckpt sparse --out runs/e60/e60_own_s3 > runs/e60/e60_own_s3.log 2>&1
+23:40:59Z END 65_01_e60_own_s1 rc=0
+23:41:01Z START 65_04_e60_own_s4: /home/agent/.venvs/aggext/bin/python train_own.py --variant own --f0 ctrl --f1 ctrl --seed 4 --ckpt sparse --out runs/e60/e60_own_s4 > runs/e60/e60_own_s4.log 2>&1
+23:41:36Z END 60_23_e56_unifsep_s11 rc=0
+23:41:44Z START 65_05_e60_own_s5: /home/agent/.venvs/aggext/bin/python train_own.py --variant own --f0 ctrl --f1 ctrl --seed 5 --ckpt sparse --out runs/e60/e60_own_s5 > runs/e60/e60_own_s5.log 2>&1
+23:45:57Z END 65_02_e60_own_s2 rc=0
+23:46:07Z START 23_eval_e60_own_s0: /home/agent/.venvs/aggext/bin/python e60_eval.py /tmp/s6q/one/e60_own_s0 results/e60 0 1 >> results/e60_eval.log 2>&1
+23:47:14Z END 23_eval_e60_own_s0 rc=0
+23:47:19Z START 23_eval_e60_own_s1: /home/agent/.venvs/aggext/bin/python e60_eval.py /tmp/s6q/one/e60_own_s1 results/e60 0 1 >> results/e60_eval.log 2>&1
+23:48:25Z END 23_eval_e60_own_s1 rc=0
+23:48:32Z START 23_eval_e60_own_s2: /home/agent/.venvs/aggext/bin/python e60_eval.py /tmp/s6q/one/e60_own_s2 results/e60 0 1 >> results/e60_eval.log 2>&1
+23:49:38Z END 23_eval_e60_own_s2 rc=0
+23:49:44Z START 31_e56_summ: /home/agent/.venvs/aggext/bin/python e56_summ.py > results/e56_summ.out 2>&1 && touch /tmp/s6q/e56.done
+23:49:50Z END 31_e56_summ rc=0
+23:49:56Z START 65_06_e60_own_s6: /home/agent/.venvs/aggext/bin/python train_own.py --variant own --f0 ctrl --f1 ctrl --seed 6 --ckpt sparse --out runs/e60/e60_own_s6 > runs/e60/e60_own_s6.log 2>&1
+00:29:48Z END 65_04_e60_own_s4 rc=0
+00:29:49Z START 65_07_e60_own_s7: /home/agent/.venvs/aggext/bin/python train_own.py --variant own --f0 ctrl --f1 ctrl --seed 7 --ckpt sparse --out runs/e60/e60_own_s7 > runs/e60/e60_own_s7.log 2>&1
+00:30:02Z END 65_03_e60_own_s3 rc=0
+00:30:11Z START 65_08_e60_own_s8: /home/agent/.venvs/aggext/bin/python train_own.py --variant own --f0 ctrl --f1 ctrl --seed 8 --ckpt sparse --out runs/e60/e60_own_s8 > runs/e60/e60_own_s8.log 2>&1
+00:31:26Z END 65_05_e60_own_s5 rc=0
+00:31:34Z START 65_09_e60_own_s9: /home/agent/.venvs/aggext/bin/python train_own.py --variant own --f0 ctrl --f1 ctrl --seed 9 --ckpt sparse --out runs/e60/e60_own_s9 > runs/e60/e60_own_s9.log 2>&1
+00:38:32Z END 65_06_e60_own_s6 rc=0
+00:38:38Z START 23_eval_e60_own_s3: /home/agent/.venvs/aggext/bin/python e60_eval.py /tmp/s6q/one/e60_own_s3 results/e60 0 1 >> results/e60_eval.log 2>&1
+00:39:38Z END 23_eval_e60_own_s3 rc=0
+00:39:40Z START 23_eval_e60_own_s4: /home/agent/.venvs/aggext/bin/python e60_eval.py /tmp/s6q/one/e60_own_s4 results/e60 0 1 >> results/e60_eval.log 2>&1
+00:40:35Z END 23_eval_e60_own_s4 rc=0
+00:40:42Z START 23_eval_e60_own_s5: /home/agent/.venvs/aggext/bin/python e60_eval.py /tmp/s6q/one/e60_own_s5 results/e60 0 1 >> results/e60_eval.log 2>&1
+00:41:34Z END 23_eval_e60_own_s5 rc=0
+00:41:35Z START 65_10_e60_own_s10: /home/agent/.venvs/aggext/bin/python train_own.py --variant own --f0 ctrl --f1 ctrl --seed 10 --ckpt sparse --out runs/e60/e60_own_s10 > runs/e60/e60_own_s10.log 2>&1
+01:07:21Z END 65_07_e60_own_s7 rc=0
+01:07:31Z START 23_eval_e60_own_s6: /home/agent/.venvs/aggext/bin/python e60_eval.py /tmp/s6q/one/e60_own_s6 results/e60 0 1 >> results/e60_eval.log 2>&1
+01:07:38Z END 65_08_e60_own_s8 rc=0
+01:07:43Z START 65_11_e60_own_s11: /home/agent/.venvs/aggext/bin/python train_own.py --variant own --f0 ctrl --f1 ctrl --seed 11 --ckpt sparse --out runs/e60/e60_own_s11 > runs/e60/e60_own_s11.log 2>&1
+01:08:06Z END 23_eval_e60_own_s6 rc=0
+01:08:15Z START 65_12_e60_ctrlcpu_s0: /home/agent/.venvs/aggext/bin/python train_own.py --f0 ctrl --f1 ctrl --seed 0 --ckpt sparse --out runs/e60/e60_ctrlcpu_s0 > runs/e60/e60_ctrlcpu_s0.log 2>&1
+01:08:50Z END 65_09_e60_own_s9 rc=0
+01:08:57Z START 65_13_e60_ctrlcpu_s1: /home/agent/.venvs/aggext/bin/python train_own.py --f0 ctrl --f1 ctrl --seed 1 --ckpt sparse --out runs/e60/e60_ctrlcpu_s1 > runs/e60/e60_ctrlcpu_s1.log 2>&1
+01:15:52Z END 65_10_e60_own_s10 rc=0
+01:16:00Z START 23_eval_e60_own_s7: /home/agent/.venvs/aggext/bin/python e60_eval.py /tmp/s6q/one/e60_own_s7 results/e60 0 1 >> results/e60_eval.log 2>&1
+01:16:24Z END 23_eval_e60_own_s7 rc=0
+01:16:32Z START 23_eval_e60_own_s8: /home/agent/.venvs/aggext/bin/python e60_eval.py /tmp/s6q/one/e60_own_s8 results/e60 0 1 >> results/e60_eval.log 2>&1
+01:16:56Z END 23_eval_e60_own_s8 rc=0
+01:17:04Z START 23_eval_e60_own_s10: /home/agent/.venvs/aggext/bin/python e60_eval.py /tmp/s6q/one/e60_own_s10 results/e60 0 1 >> results/e60_eval.log 2>&1
+01:17:27Z END 23_eval_e60_own_s10 rc=0
+01:17:36Z START 23_eval_e60_own_s9: /home/agent/.venvs/aggext/bin/python e60_eval.py /tmp/s6q/one/e60_own_s9 results/e60 0 1 >> results/e60_eval.log 2>&1
+01:18:00Z END 23_eval_e60_own_s9 rc=0
+01:18:08Z START 65_14_e60_ctrlcpu_s4: /home/agent/.venvs/aggext/bin/python train_own.py --f0 ctrl --f1 ctrl --seed 4 --ckpt sparse --out runs/e60/e60_ctrlcpu_s4 > runs/e60/e60_ctrlcpu_s4.log 2>&1
+01:54:25Z END 65_12_e60_ctrlcpu_s0 rc=0
+01:54:28Z START 65_15_e60_ctrlcpu_s7: /home/agent/.venvs/aggext/bin/python train_own.py --f0 ctrl --f1 ctrl --seed 7 --ckpt sparse --out runs/e60/e60_ctrlcpu_s7 > runs/e60/e60_ctrlcpu_s7.log 2>&1
+01:54:38Z END 65_11_e60_own_s11 rc=0
+01:54:40Z START 65_16_e60_ownf_s0: /home/agent/.venvs/aggext/bin/python train_own.py --variant ownf --f0 ctrl --f1 ctrl --seed 0 --ckpt sparse --out runs/e60/e60_ownf_s0 > runs/e60/e60_ownf_s0.log 2>&1
+01:56:07Z END 65_13_e60_ctrlcpu_s1 rc=0
+01:56:13Z START 65_17_e60_ownf_s1: /home/agent/.venvs/aggext/bin/python train_own.py --variant ownf --f0 ctrl --f1 ctrl --seed 1 --ckpt sparse --out runs/e60/e60_ownf_s1 > runs/e60/e60_ownf_s1.log 2>&1
+02:06:16Z END 65_14_e60_ctrlcpu_s4 rc=0
+02:06:26Z START 23_eval_e60_ctrlcpu_s0: /home/agent/.venvs/aggext/bin/python e60_eval.py /tmp/s6q/one/e60_ctrlcpu_s0 results/e60 0 1 >> results/e60_eval.log 2>&1
+02:07:02Z END 23_eval_e60_ctrlcpu_s0 rc=0
+02:07:08Z START 23_eval_e60_ctrlcpu_s1: /home/agent/.venvs/aggext/bin/python e60_eval.py /tmp/s6q/one/e60_ctrlcpu_s1 results/e60 0 1 >> results/e60_eval.log 2>&1
+02:07:46Z END 23_eval_e60_ctrlcpu_s1 rc=0
+02:07:50Z START 23_eval_e60_ctrlcpu_s4: /home/agent/.venvs/aggext/bin/python e60_eval.py /tmp/s6q/one/e60_ctrlcpu_s4 results/e60 0 1 >> results/e60_eval.log 2>&1
+02:08:24Z END 23_eval_e60_ctrlcpu_s4 rc=0
+02:08:32Z START 23_eval_e60_own_s11: /home/agent/.venvs/aggext/bin/python e60_eval.py /tmp/s6q/one/e60_own_s11 results/e60 0 1 >> results/e60_eval.log 2>&1
+02:09:06Z END 23_eval_e60_own_s11 rc=0
+02:09:14Z START 65_18_e60_ownf_s2: /home/agent/.venvs/aggext/bin/python train_own.py --variant ownf --f0 ctrl --f1 ctrl --seed 2 --ckpt sparse --out runs/e60/e60_ownf_s2 > runs/e60/e60_ownf_s2.log 2>&1
+02:25:51Z END 65_16_e60_ownf_s0 rc=0
+02:25:57Z START 65_19_e60_ownf_s3: /home/agent/.venvs/aggext/bin/python train_own.py --variant ownf --f0 ctrl --f1 ctrl --seed 3 --ckpt sparse --out runs/e60/e60_ownf_s3 > runs/e60/e60_ownf_s3.log 2>&1
+02:26:18Z END 65_15_e60_ctrlcpu_s7 rc=0
+02:26:19Z START 65_20_e60_ownf_s4: /home/agent/.venvs/aggext/bin/python train_own.py --variant ownf --f0 ctrl --f1 ctrl --seed 4 --ckpt sparse --out runs/e60/e60_ownf_s4 > runs/e60/e60_ownf_s4.log 2>&1
+02:27:27Z END 65_17_e60_ownf_s1 rc=0
+02:27:31Z START 23_eval_e60_ctrlcpu_s7: /home/agent/.venvs/aggext/bin/python e60_eval.py /tmp/s6q/one/e60_ctrlcpu_s7 results/e60 0 1 >> results/e60_eval.log 2>&1
+02:28:09Z END 23_eval_e60_ctrlcpu_s7 rc=0
+02:28:13Z START 23_eval_e60_ownf_s0: /home/agent/.venvs/aggext/bin/python e60_eval.py /tmp/s6q/one/e60_ownf_s0 results/e60 0 1 >> results/e60_eval.log 2>&1
+02:28:51Z END 23_eval_e60_ownf_s0 rc=0
+02:28:55Z START 65_21_e60_ownf_s5: /home/agent/.venvs/aggext/bin/python train_own.py --variant ownf --f0 ctrl --f1 ctrl --seed 5 --ckpt sparse --out runs/e60/e60_ownf_s5 > runs/e60/e60_ownf_s5.log 2>&1
+02:40:17Z END 65_18_e60_ownf_s2 rc=0
+02:40:18Z START 23_eval_e60_ownf_s1: /home/agent/.venvs/aggext/bin/python e60_eval.py /tmp/s6q/one/e60_ownf_s1 results/e60 0 1 >> results/e60_eval.log 2>&1
+02:40:51Z END 23_eval_e60_ownf_s1 rc=0
+02:41:01Z START 65_22_e60_ownf_s6: /home/agent/.venvs/aggext/bin/python train_own.py --variant ownf --f0 ctrl --f1 ctrl --seed 6 --ckpt sparse --out runs/e60/e60_ownf_s6 > runs/e60/e60_ownf_s6.log 2>&1
+02:58:34Z END 65_19_e60_ownf_s3 rc=0
+02:58:35Z START 23_eval_e60_ownf_s2: /home/agent/.venvs/aggext/bin/python e60_eval.py /tmp/s6q/one/e60_ownf_s2 results/e60 0 1 >> results/e60_eval.log 2>&1
+02:59:18Z END 23_eval_e60_ownf_s2 rc=0
+02:59:23Z END 65_20_e60_ownf_s4 rc=0
+02:59:27Z START 65_23_e60_ownf_s7: /home/agent/.venvs/aggext/bin/python train_own.py --variant ownf --f0 ctrl --f1 ctrl --seed 7 --ckpt sparse --out runs/e60/e60_ownf_s7 > runs/e60/e60_ownf_s7.log 2>&1
+03:02:06Z END 65_21_e60_ownf_s5 rc=0
+03:02:09Z START 23_eval_e60_ownf_s3: /home/agent/.venvs/aggext/bin/python e60_eval.py /tmp/s6q/one/e60_ownf_s3 results/e60 0 1 >> results/e60_eval.log 2>&1
+03:02:11Z START 23_eval_e60_ownf_s4: /home/agent/.venvs/aggext/bin/python e60_eval.py /tmp/s6q/one/e60_ownf_s4 results/e60 0 1 >> results/e60_eval.log 2>&1
+03:02:59Z END 23_eval_e60_ownf_s3 rc=0
+03:03:05Z END 23_eval_e60_ownf_s4 rc=0
+03:07:03Z START 23_eval_e60_ownf_s5: /home/agent/.venvs/aggext/bin/python e60_eval.py /tmp/s6q/one/e60_ownf_s5 results/e60 0 1 >> results/e60_eval.log 2>&1
+03:07:46Z END 23_eval_e60_ownf_s5 rc=0
+03:14:02Z END 65_22_e60_ownf_s6 rc=0
+03:17:06Z START 23_eval_e60_ownf_s6: /home/agent/.venvs/aggext/bin/python e60_eval.py /tmp/s6q/one/e60_ownf_s6 results/e60 0 1 >> results/e60_eval.log 2>&1
+03:17:39Z END 23_eval_e60_ownf_s6 rc=0
+03:31:02Z END 65_23_e60_ownf_s7 rc=0
+03:32:09Z START 23_eval_e60_ownf_s7: /home/agent/.venvs/aggext/bin/python e60_eval.py /tmp/s6q/one/e60_ownf_s7 results/e60 0 1 >> results/e60_eval.log 2>&1
+03:32:46Z END 23_eval_e60_ownf_s7 rc=0
+03:36:11Z QUEUE-EXIT

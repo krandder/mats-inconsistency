@@ -1,0 +1,175 @@
+{
+  "methods": {
+    "full_context_transformer": {
+      "logloss": {
+        "mean": 2.2797701962834487,
+        "ci_low": 2.2140760250801277,
+        "ci_high": 2.3500150478005932,
+        "n": 2000
+      },
+      "brier": {
+        "mean": 1.029236337770436,
+        "ci_low": 0.988075812895009,
+        "ci_high": 1.070191666152712,
+        "n": 2000
+      },
+      "kl": {
+        "mean": 1.0894986511405111,
+        "ci_low": 1.0581026511092968,
+        "ci_high": 1.1235194694632964,
+        "n": 2000
+      },
+      "regret": {
+        "mean": 1.0868157873303788,
+        "ci_low": 1.029431109309442,
+        "ci_high": 1.1433811498668183,
+        "n": 2000
+      }
+    },
+    "full_context_transformer:untrained_init": {
+      "logloss": {
+        "mean": 7.85150924447991,
+        "ci_low": 7.702606428222687,
+        "ci_high": 7.989024190122342,
+        "n": 2000
+      },
+      "brier": {
+        "mean": 4.83047847410142,
+        "ci_low": 4.67571946714519,
+        "ci_high": 4.970517737747213,
+        "n": 2000
+      },
+      "kl": {
+        "mean": 6.666924645117144,
+        "ci_low": 6.534449687123353,
+        "ci_high": 6.800851537058215,
+        "n": 2000
+      },
+      "regret": {
+        "mean": 6.658554835526841,
+        "ci_low": 6.503522430155248,
+        "ci_high": 6.809075513396206,
+        "n": 2000
+      }
+    },
+    "full_context_transformer:random_network": {
+      "logloss": {
+        "mean": 9.000863491566957,
+        "ci_low": 8.76578551608332,
+        "ci_high": 9.22965802100744,
+        "n": 2000
+      },
+      "brier": {
+        "mean": 5.354047212951456,
+        "ci_low": 5.198239027443344,
+        "ci_high": 5.521181930472112,
+        "n": 2000
+      },
+      "kl": {
+        "mean": 7.867293190644788,
+        "ci_low": 7.650209544989228,
+        "ci_high": 8.07443971310244,
+        "n": 2000
+      },
+      "regret": {
+        "mean": 7.807909082613886,
+        "ci_low": 7.565678353455649,
+        "ci_high": 8.050343586460107,
+        "n": 2000
+      }
+    },
+    "bayes": {
+      "logloss": {
+        "mean": 1.19295440895307,
+        "ci_low": 1.1169035776460405,
+        "ci_high": 1.269639742216152,
+        "n": 2000
+      },
+      "brier": {
+        "mean": 0.7208011118053405,
+        "ci_low": 0.6861416058592088,
+        "ci_high": 0.7542257195144823,
+        "n": 2000
+      },
+      "kl": {
+        "mean": -1.2212453270876722e-17,
+        "ci_low": -2.1094237467877975e-17,
+        "ci_high": -3.1086244689504384e-18,
+        "n": 2000
+      },
+      "regret": {
+        "mean": 0.0,
+        "ci_low": 0.0,
+        "ci_high": 0.0,
+        "n": 2000
+      }
+    }
+  },
+  "learned_arms": [
+    "full_context_transformer"
+  ],
+  "controls": {
+    "full_context_transformer": {
+      "random_network": "full_context_transformer:random_network",
+      "untrained_init": "full_context_transformer:untrained_init"
+    }
+  },
+  "splits": {
+    "train": {
+      "split": "train",
+      "first_seed": 0,
+      "n": 1536000
+    },
+    "eval": {
+      "split": "dev",
+      "first_seed": 10000000,
+      "n": 2000
+    }
+  },
+  "config": {
+    "visibility": "none",
+    "alignment": "unaligned",
+    "regime": "fresh",
+    "n_train": 1536000,
+    "seed": 0,
+    "device": "cpu",
+    "width": 64,
+    "layers": 3,
+    "heads": 4,
+    "steps": 3000,
+    "batch": 512,
+    "lr": 0.001,
+    "val_frac": 0.1,
+    "eval_every": 100,
+    "patience": 1000,
+    "dropout": 0.1,
+    "weight_decay": 0.01
+  },
+  "log": [
+    {
+      "step": 500,
+      "loss_ema": -0.6208667474442264
+    },
+    {
+      "step": 1000,
+      "loss_ema": -0.9259746009237516
+    },
+    {
+      "step": 1500,
+      "loss_ema": -1.057020992880692
+    },
+    {
+      "step": 2000,
+      "loss_ema": -1.121838555452843
+    },
+    {
+      "step": 2500,
+      "loss_ema": -1.1677424385835173
+    },
+    {
+      "step": 3000,
+      "loss_ema": -1.1790566936629092
+    }
+  ],
+  "wall_seconds": 299.83410716056824
+}

@@ -1,0 +1,35 @@
+{
+ "slug": "r8-e1-einfo-anytime",
+ "title": "Round 8 E1: anytime safety with an anchor token, a precision-aware Jacobi ridge and the PUCT attribution (6x6 ShipHunt)",
+ "date": "17 Oct",
+ "status": "informative",
+ "oneline": "1 of 3 pre-registered rules passes (2 of 5 sub-rules). With the root as an anchor token, the weight-tied attention pool never ended worse than its root in mean test KL: its KL fell at every step, from the 2-anchor root (0.280 to 0.030 after 32 reads) and from 6-, 12- and 18-anchor roots. Pools without the anchor token turn back up after 16 to 24 reads. But 18 anchor readings leave the root at KL 0.144, not the strong root (<= 0.05) the rule needed, so naive pools did not degrade it. A precision-aware ridge fixes the Jacobi pool's clean deduplication (1.16, bar 1.25), with KL 0.041 vs a 0.040 bar. Raw vs salience keys and the R6 vs R7 PUCT score each add coverage (0.920 to 0.988). No world-model training; 3 seeds; $0.62.",
+ "led_to": [],
+ "page": {
+  "why": "Kelvin asked whether search can ever make a belief worse than where it started as more reads arrive. Round 7 also left three loose ends: a Jacobi pool that did not deduplicate identical clean reads, an econ_kc pool fitted on the wrong bags, and a PUCT coverage gain that changed keys and score together.",
+  "what": "Round 7's saved world model, loaded unchanged in each seed. The root belief enters the attention pools as an anchor token with zero shift and a precision that grows with the root's anchor readings, and crowding is weighted by precision. Pools are trained on the model's own reference over roots of 2, 6, 12 and 18 anchor readings and 0 to 32 reads. Tests: an anytime curve from the standard root on an interleaved 32-read stream; curves from 6-, 12- and 18-anchor roots with 90/10 skewed noisy reads; controlled same-patch bags at three noise levels; a 2x2 PUCT factorial. 3 seeds, pre-registered, exact Bayes for scoring only.",
+  "result": "The weight-tied attention pool's KL fell at every step in every seed, from 0.280 to 0.030 after 32 reads on the standard root, and below every stronger root at every K (by at least 0.023 from the 18-anchor root with tau 0.3/1.5 reads), in mean test KL over 500 boards. ataraxos_mmd, scaled_mix and R6's 4-step linear pool turn back up after 16 to 24 reads. The 18-anchor root sits at KL 0.144, and mmd still improves it at K = 16, so the rule's premise of a root that naive pools degrade did not hold. jacobi_lin_T4 with a precision-aware ridge deduplicates clean reads (W(16)/W(1) 1.16) and adds support for noisy ones (2.82), with KL 0.041 against a 0.040 bar. econ_kc fitted on mixed-tier probes still over-weights clean duplicates (1.42). PUCT coverage: 0.920 (raw keys, R6 score), 0.958 (raw keys, R7 score), 0.965 (salience keys, R6 score), 0.988 (salience keys, R7 score).",
+  "sowhat": "In this testbed, attention pools that see the root as an anchor token were anytime-safe in mean test KL: on the five tested curves, more reads never left the belief worse than the root. Pools without the anchor token were not. Testing the degradation premise needs a much stronger root than 18 of 36 readings.",
+  "decided": "Recorded E1-D0 and E1-D1.1 as passed, and E1-D1.2 (root KL 0.144 vs <= 0.050; mmd improves it), E1-D2.1 (KL 0.0414 vs 0.040) and E1-D2.2 (econ clean W(16)/W(1) 1.42 vs 1.25) as failed. Not run, for gemini's next round: a genuinely strong root (30-34 anchor readings); econ_kc with a tier-dependent lambda; jacobi_lin_T4_prec with a clean-read bag term.",
+  "chart": {
+   "bars": [
+    {"label": "root, 2 anchor readings (K = 0)", "value": 0.2797, "text": "0.280"},
+    {"label": "ataraxos_mmd, K = 32", "value": 0.1661, "text": "0.166"},
+    {"label": "scaled_mix, K = 32", "value": 0.1260, "text": "0.126"},
+    {"label": "jacobi_lin_T4_prec, K = 32", "value": 0.0410, "text": "0.041"},
+    {"label": "attn_L3-K3 with anchor, K = 32", "value": 0.0331, "text": "0.033", "good": true},
+    {"label": "looped_attn_T3 with anchor, K = 32", "value": 0.0303, "text": "0.030", "good": true}
+   ],
+   "caption": "KL to exact Bayes after 32 reads on the interleaved P-FullSupport stream from the standard root (lower is better), 3-seed means. mmd was lower at K = 16 (0.108) and scaled_mix at K = 24 (0.104); both rose after.",
+   "aria": "With 32 reads the anchor-aware attention pools reach KL 0.03, while pools without the anchor token stay far higher"
+  },
+  "details": {
+   "methods": [
+    "Pre-registered in PREREG-R8-E1.md and PREREG-R8-E1-AMENDMENTS.md (16:07Z, before the first launch), with gemini's pre-spend amendments to readings 3, 6 and 7 folded in.",
+    "No world-model training: each seed loads R7-E1's theta_real_v2.npz after a sha256 check. Exact Bayes over 49,504 ship patterns used only for scoring and the gate.",
+    "7 logged deviations, among them a crashed first run (a torch Triton kernel needed Python.h on the VM at the first 1-read bag), a small backend fix before the rerun and, after the audit, a correction of the first run's record.",
+    "Tests on the same 500 held-out boards as rounds 5-7; 3 seeds, seed-t 95% intervals; independent audit in AUDIT-R8-E1.md (PASS with requested changes, all applied; no verdict changed); $0.62 of GPU at the list-price ceiling."
+   ]
+  }
+ }
+}

@@ -1,0 +1,21 @@
+S0P4|cd /tmp/traders-net/X1w3/clean/study/S0/w1 && python3 run_w1.py P4 4
+S0P16|cd /tmp/traders-net/X1w3/clean/study/S0/w1 && python3 run_w1.py P16 4
+M6w1_ME_A|cd /tmp/traders-net/X1w3/clean/study/M6/w1 && python3 run_w1.py ME A 4
+M5probeP4|until [ -f /tmp/traders-net/X1w3/bulk/S0w1/P4-s4.npz ]; do sleep 20; done; sleep 5; cd /tmp/traders-net/X1w3/clean/study/M5/w4 && python3 probes.py --source preq --ckpt P4 --seed 4
+M5probeP16|until [ -f /tmp/traders-net/X1w3/bulk/S0w1/P16-s4.npz ]; do sleep 20; done; sleep 5; cd /tmp/traders-net/X1w3/clean/study/M5/w4 && python3 probes.py --source preq --ckpt P16 --seed 4
+M6w1_ME_B|cd /tmp/traders-net/X1w3/clean/study/M6/w1 && python3 run_w1.py ME B 4
+M6w1_ME_BOOST|cd /tmp/traders-net/X1w3/clean/study/M6/w1 && python3 run_w1.py ME BOOST 4
+M7dsfwE8|cd /tmp/traders-net/X1w3/clean/study/M7/w2 && python3 moe_w2.py --arm dsfw --E 8 --seed 4 --T 24000 --B 8 --out /tmp/traders-net/X1w3/out/M7w2
+M7ds3E8|cd /tmp/traders-net/X1w3/clean/study/M7/w2 && python3 moe_w2.py --arm ds3 --E 8 --seed 4 --T 24000 --B 8 --out /tmp/traders-net/X1w3/out/M7w2
+M7dsfwE64|cd /tmp/traders-net/X1w3/clean/study/M7/w2 && python3 moe_w2.py --arm dsfw --E 64 --seed 4 --T 24000 --B 8 --out /tmp/traders-net/X1w3/out/M7w2
+M7ds3E64|cd /tmp/traders-net/X1w3/clean/study/M7/w2 && python3 moe_w2.py --arm ds3 --E 64 --seed 4 --T 24000 --B 8 --out /tmp/traders-net/X1w3/out/M7w2
+M6w2_cg|cd /tmp/traders-net/X1w3/clean/study/M6/w2 && python3 pool.py --arm cg --seed 4 --T 60000 --out /tmp/traders-net/X1w3/out/M6w2
+M6lead_boost|cd /tmp/traders-net/X1w3/clean/study/M6/lead && python3 pool_kc.py --arm boost --seed 4 --T 60000 --out /tmp/traders-net/X1w3/out/M6w2
+M6w4_fp|cd /tmp/traders-net/X1w3/clean/study/M6/w4 && OUT=/tmp/traders-net/X1w3/out/M6w4 python3 fp_layer.py base fp 4
+M6w4_pass2|cd /tmp/traders-net/X1w3/clean/study/M6/w4 && OUT=/tmp/traders-net/X1w3/out/M6w4 python3 fp_layer.py base pass2 4
+M6w5_Cm|cd /tmp/traders-net/X1w3/clean/study/M6/w5 && python3 commit.py --arm Cm --seed 4 --out /tmp/traders-net/X1w3/out/M6w5
+M6w5_U|cd /tmp/traders-net/X1w3/clean/study/M6/w5 && python3 commit.py --arm U --seed 4 --out /tmp/traders-net/X1w3/out/M6w5
+M6w1_P_A|cd /tmp/traders-net/X1w3/clean/study/M6/w1 && python3 run_w1.py P A 4
+M6w1_P_B|cd /tmp/traders-net/X1w3/clean/study/M6/w1 && python3 run_w1.py P B 4
+M6w4_li_fp|cd /tmp/traders-net/X1w3/clean/study/M6/w4 && OUT=/tmp/traders-net/X1w3/out/M6w4 python3 fp_layer.py li fp 4
+M6w4_li_pass2|cd /tmp/traders-net/X1w3/clean/study/M6/w4 && OUT=/tmp/traders-net/X1w3/out/M6w4 python3 fp_layer.py li pass2 4

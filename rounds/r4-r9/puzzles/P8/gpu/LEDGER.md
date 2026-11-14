@@ -1,0 +1,37 @@
+- 2026-09-29T13:14:37Z CREATE vm=trader-cat-p8-1 zone=us-central1-a epoch=1790687677 type=g2-standard-8+L4 spot max_run=6h rate_ceiling=0.90 spend_before=0
+- 2026-09-29T13:18:06Z READY vm=trader-cat-p8-1 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T13:21:02Z START vm=trader-cat-p8-1 plan=smoke 
+- 2026-09-29T13:22:18Z SYNC vm=trader-cat-p8-1 verified_files=36 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P8/vm_out
+- 2026-09-29T13:25:15Z SYNC vm=trader-cat-p8-1 verified_files=45 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P8/vm_out
+- 2026-09-29T13:30:55Z SYNC vm=trader-cat-p8-1 verified_files=59 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P8/vm_out
+- 2026-09-29T13:31:38Z START vm=trader-cat-p8-1 plan=all 
+- 2026-09-29T13:32:55Z START vm=trader-cat-p8-1 plan=all 
+- 2026-09-29T13:41:53Z SYNC vm=trader-cat-p8-1 verified_files=89 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P8/vm_out
+- 2026-09-29T13:46:52Z SYNC vm=trader-cat-p8-1 verified_files=93 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P8/vm_out
+- 2026-09-29T13:52:33Z SYNC vm=trader-cat-p8-1 verified_files=93 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P8/vm_out
+- 2026-09-29T13:57:56Z SYNC vm=trader-cat-p8-1 verified_files=93 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P8/vm_out
+- 2026-09-29T14:03:27Z SYNC vm=trader-cat-p8-1 verified_files=93 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P8/vm_out
+- 2026-09-29T14:08:55Z SYNC vm=trader-cat-p8-1 verified_files=93 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P8/vm_out
+- 2026-09-29T14:14:18Z SYNC vm=trader-cat-p8-1 verified_files=93 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P8/vm_out
+- 2026-09-29T14:19:46Z SYNC vm=trader-cat-p8-1 verified_files=93 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P8/vm_out
+- 2026-09-29T14:25:03Z SYNC vm=trader-cat-p8-1 verified_files=93 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P8/vm_out
+- 2026-09-29T14:30:21Z SYNC vm=trader-cat-p8-1 verified_files=93 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P8/vm_out
+- 2026-09-29T14:31:55Z SYNC vm=trader-cat-p8-1 verified_files=95 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P8/vm_out
+- 2026-09-29T14:33:11Z SYNC-PARTIAL vm=trader-cat-p8-1 (files changing during tar skipped)
+- 2026-09-29T14:33:12Z SYNC vm=trader-cat-p8-1 verified_files=96 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P8/vm_out
+- 2026-09-29T14:36:00Z SYNC vm=trader-cat-p8-1 verified_files=98 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P8/vm_out
+- 2026-09-29T14:41:04Z SYNC vm=trader-cat-p8-1 verified_files=102 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P8/vm_out
+- 2026-09-29T14:41:44Z SYNC vm=trader-cat-p8-1 verified_files=102 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P8/vm_out
+- 2026-09-29T14:42:01Z SYNC vm=trader-cat-p8-1 verified_files=102 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P8/vm_out
+- 2026-09-29T14:44:46Z SYNC vm=trader-cat-p8-1 verified_files=104 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P8/vm_out
+- 2026-09-29T14:47:00Z SYNC vm=trader-cat-p8-1 verified_files=104 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P8/vm_out
+- 2026-09-29T14:52:31Z SYNC vm=trader-cat-p8-1 verified_files=104 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P8/vm_out
+- 2026-09-29T14:58:01Z SYNC vm=trader-cat-p8-1 verified_files=104 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P8/vm_out
+- 2026-09-29T15:03:24Z SYNC vm=trader-cat-p8-1 verified_files=104 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P8/vm_out
+- 2026-09-29T15:07:55Z SYNC vm=trader-cat-p8-1 verified_files=116 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P8/vm_out
+- 2026-09-29T15:09:00Z SYNC vm=trader-cat-p8-1 verified_files=117 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P8/vm_out
+- 2026-09-29T15:13:47Z SYNC vm=trader-cat-p8-1 verified_files=148 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P8/vm_out
+- 2026-09-29T15:14:49Z SYNC vm=trader-cat-p8-1 verified_files=148 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P8/vm_out
+- 2026-09-29T15:27:00Z SYNC vm=trader-cat-p8-1 verified_files=151 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P8/vm_out
+- 2026-09-29T15:27:20Z SYNC vm=trader-cat-p8-1 verified_files=151 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P8/vm_out
+- 2026-09-29T15:28:29Z DELETE vm=trader-cat-p8-1 epoch=1790695709 reason="P8 queue finished (52/57, C2 seeds 1-4 skipped by F3 gate)" leftover_disks="none" spend_now=2.01

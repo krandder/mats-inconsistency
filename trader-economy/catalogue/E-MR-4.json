@@ -1,0 +1,13 @@
+{
+ "id": "E-MR-4",
+ "question": "Does Aumann-Shapley credit split each step's pay sensibly across the x, b and h streams?",
+ "status": "Problem",
+ "setup": "Integrated-gradients (Aumann-Shapley) credit of each stream's writes to later per-step payments, 64 integration points, phase-1 arms A, B and C, 3 seeds; completeness error = |sum of credits - payment| at the worst step.",
+ "result": "No. The h stream gets 2-4% of the credit and a step's own b write 2.7 to 3.1 times the total, so other parts carry large negative credit. Completeness fails for the market arms: 0.46 +- 1.25 (C) and 0.75 +- 0.82 (B) nats at the worst step against 0.05 for A, so the path integral is not accurate enough to use these credits.",
+ "files": [
+  "market-resnet/RESULTS.md",
+  "market-resnet/evaluate.py",
+  "market-resnet/charts/p1_credit_by_lag.json",
+  "market-resnet/results/summary.json"
+ ]
+}

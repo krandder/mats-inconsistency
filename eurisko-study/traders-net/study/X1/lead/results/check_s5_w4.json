@@ -1,0 +1,285 @@
+{
+ "checked_at": "2026-09-28T13:49:38Z",
+ "criterion": "|x4-m|<=2s (s floored at 1e-3 when s<1e-4, reported separately)",
+ "n_quantities": 81,
+ "n_with_seed4": 26,
+ "n_within_2sd": 21,
+ "outside_2sd": [
+  {
+   "ws": "M8",
+   "quantity": "w1 prequential_bce none",
+   "mean": 0.3553665466388379,
+   "sd": 0.007128724082014543,
+   "seed4": 0.3717419427746289,
+   "z": 2.297100567702632,
+   "within_2sd_floor": null
+  },
+  {
+   "ws": "M9",
+   "quantity": "A-FT K64-K1 learn_bce_ex_lfsr",
+   "mean": 0.0067819747195159985,
+   "sd": 0.00016880340132292265,
+   "seed4": 0.007615020039072412,
+   "z": 4.9350031636079965,
+   "within_2sd_floor": null
+  },
+  {
+   "ws": "K1",
+   "quantity": "w2 S-on10k recovery_steps",
+   "mean": 833.3333333333334,
+   "sd": 57.735026918962575,
+   "seed4": 500.0,
+   "z": -5.773502691896258,
+   "within_2sd_floor": null
+  },
+  {
+   "ws": "K1",
+   "quantity": "w2 S-on10k newborn_share_trk_end",
+   "mean": 0.979103674645523,
+   "sd": 0.003947232042622939,
+   "seed4": 0.8820664976194384,
+   "z": -24.58360085707128,
+   "within_2sd_floor": null
+  },
+  {
+   "ws": "M8",
+   "quantity": "w2 random births_survived",
+   "mean": 190.66666666666666,
+   "sd": 4.163331998932266,
+   "seed4": 181.0,
+   "z": -2.3218582301737607,
+   "within_2sd_floor": null
+  }
+ ],
+ "filechecks": [
+  {
+   "check": "M8 w2 absag bce_all_nolfsr (M8.md table)",
+   "kind": "number",
+   "ok": true,
+   "got": [
+    0.31059,
+    0.01825
+   ],
+   "want": [
+    0.3106,
+    0.0183
+   ],
+   "source": "M8/w2/results/summary.csv"
+  },
+  {
+   "check": "M8 w2 random bce_all_nolfsr (M8.md table)",
+   "kind": "number",
+   "ok": true,
+   "got": [
+    0.30887,
+    0.01948
+   ],
+   "want": [
+    0.3089,
+    0.0195
+   ],
+   "source": "M8/w2/results/summary.csv"
+  },
+  {
+   "check": "M8 check.py random_nl check is live code (skeptic: it sits after a # on the absag_nl line)",
+   "kind": "skeptic",
+   "ok": false,
+   "got": [
+    "eq(\"absag_nl\", ms(S2, \"absag\", \"bce_all_nolfsr\", 5), (0.31059, 0.01825))  # quoted 0.3106 +- 0.0183 (half-up); eq(\"random_nl\", ms(S2, \"random\", \"bce_all_nolfsr\"), (0.3089, 0.0195))"
+   ],
+   "want": "a live eq(...) call",
+   "source": "M8/check.py"
+  },
+  {
+   "check": "M8 seed4 census rule3 (top10 neg share < all)",
+   "kind": "number",
+   "ok": true,
+   "got": [
+    0.3269230769230769,
+    0.513671875
+   ],
+   "want": "top10 < all",
+   "source": "/tmp/traders-net/X1lead/w4/study/M8/w1/results/run-none-s5.json"
+  },
+  {
+   "check": "M8 exploratory: absag vs random lfsr16 learnt, seeds 1-4, one-sided Fisher p",
+   "kind": "exploratory",
+   "ok": true,
+   "got": {
+    "absag": "2/4",
+    "random": "0/4",
+    "p": 0.214
+   },
+   "want": "seeds 1-3: absag 2/3, random 0/3, p=0.20",
+   "source": "/tmp/traders-net/X1lead/w4/study/M8/w2/results/family_s5.csv"
+  },
+  {
+   "check": "M8 seed4 lfsr16_learnt absag/random (exploratory)",
+   "kind": "exploratory",
+   "ok": true,
+   "got": [
+    "0",
+    "0"
+   ],
+   "want": "-",
+   "source": "/tmp/traders-net/X1lead/w4/study/M8/w2/results/family_s5.csv"
+  },
+  {
+   "check": "M9 VERDICT trend=false x4, law_present false",
+   "kind": "number",
+   "ok": true,
+   "got": {
+    "B-FS": false,
+    "B-FT": false,
+    "A-FS": false,
+    "A-FT": false
+   },
+   "want": "all false",
+   "source": "M9/w3/results/VERDICT.json"
+  },
+  {
+   "check": "M9 rerun byte-identical w1/lottery_fit.csv",
+   "kind": "number",
+   "ok": true,
+   "got": "3716c06812d9",
+   "want": "3716c06812d9",
+   "source": "M9/w1/lottery_fit.csv"
+  },
+  {
+   "check": "M9 rerun byte-identical w1/lottery_fit.json",
+   "kind": "number",
+   "ok": true,
+   "got": "44c4ac5bd587",
+   "want": "44c4ac5bd587",
+   "source": "M9/w1/lottery_fit.json"
+  },
+  {
+   "check": "M9 rerun byte-identical w1/predictions.csv",
+   "kind": "number",
+   "ok": true,
+   "got": "ccefc28c4745",
+   "want": "ccefc28c4745",
+   "source": "M9/w1/predictions.csv"
+  },
+  {
+   "check": "M9 rerun byte-identical w1/soup_runs.csv",
+   "kind": "number",
+   "ok": true,
+   "got": "b726f7f25975",
+   "want": "b726f7f25975",
+   "source": "M9/w1/soup_runs.csv"
+  },
+  {
+   "check": "M9 rerun byte-identical b/final_brier_summary.csv",
+   "kind": "number",
+   "ok": true,
+   "got": "7dbf64754e35",
+   "want": "7dbf64754e35",
+   "source": "M9/b/final_brier_summary.csv"
+  },
+  {
+   "check": "M9 rerun byte-identical b/final_brier_raw.csv",
+   "kind": "number",
+   "ok": true,
+   "got": "6a4db8dd2ec2",
+   "want": "6a4db8dd2ec2",
+   "source": "M9/b/final_brier_raw.csv"
+  },
+  {
+   "check": "M9 rerun byte-identical b/compute_to_brier_raw.csv",
+   "kind": "number",
+   "ok": true,
+   "got": "4423ea1f5fe3",
+   "want": "4423ea1f5fe3",
+   "source": "M9/b/compute_to_brier_raw.csv"
+  },
+  {
+   "check": "M9 rerun byte-identical b/compute_to_brier_summary.csv",
+   "kind": "number",
+   "ok": true,
+   "got": "24fefcceb435",
+   "want": "24fefcceb435",
+   "source": "M9/b/compute_to_brier_summary.csv"
+  },
+  {
+   "check": "M9(a) shuffled-null p<=0.001 with fresh RNG seed 4 (fit_lottery default_rng(4))",
+   "kind": "number",
+   "ok": true,
+   "got": {
+    "periodic": [
+     "0.000999",
+     "0.15274"
+    ],
+    "prime": [
+     "0.000999",
+     "0.14795"
+    ],
+    "and": [
+     "0.000999",
+     "0.15894"
+    ],
+    "or": [
+     "0.000999",
+     "0.17138"
+    ]
+   },
+   "want": {
+    "periodic": [
+     "0.000999",
+     "0.15912"
+    ],
+    "prime": [
+     "0.000999",
+     "0.16075"
+    ],
+    "and": [
+     "0.000999",
+     "0.17213"
+    ],
+    "or": [
+     "0.000999",
+     "0.17432"
+    ]
+   },
+   "source": "/tmp/traders-net/X1w4/m9null/lottery_fit.csv (copy: X1/w4/m9a_null_seed4.csv)"
+  },
+  {
+   "check": "K1 w3 crp-within premium mean re-derived from run metrics",
+   "kind": "number",
+   "ok": true,
+   "got": -6.17587,
+   "want": -6.17587,
+   "source": "K1/w3/out/summary_N10000.csv"
+  },
+  {
+   "check": "K1 w3 bh-within premium mean re-derived from run metrics",
+   "kind": "number",
+   "ok": true,
+   "got": 0.0462,
+   "want": 0.0462,
+   "source": "K1/w3/out/summary_N10000.csv"
+  },
+  {
+   "check": "K1 seed-4 runs conserve money (max |ledger/settle residual| < 1e-9)",
+   "kind": "number",
+   "ok": true,
+   "got": 5.187757778912783e-13,
+   "want": "< 1e-9 (K1.md: 4.1e-12)",
+   "source": "/tmp/traders-net/X1lead/w4/study/K1/runs"
+  },
+  {
+   "check": "K1 seed-4 runs: no clade monoculture in the rerun arms",
+   "kind": "number",
+   "ok": true,
+   "got": {
+    "w2-S-on10k-s5": false
+   },
+   "want": "all False",
+   "source": "/tmp/traders-net/X1lead/w4/study/K1/runs"
+  }
+ ],
+ "filechecks_ok": true,
+ "skeptic_flags": [
+  "M8 check.py random_nl check is live code (skeptic: it sits after a # on the absag_nl line)"
+ ]
+}

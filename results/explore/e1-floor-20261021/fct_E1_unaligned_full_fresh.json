@@ -1,0 +1,175 @@
+{
+  "methods": {
+    "full_context_transformer": {
+      "logloss": {
+        "mean": 2.28270679453428,
+        "ci_low": 2.2184521884501827,
+        "ci_high": 2.352400454395577,
+        "n": 2000
+      },
+      "brier": {
+        "mean": 1.032496453756425,
+        "ci_low": 0.990821995170438,
+        "ci_high": 1.0739475436983112,
+        "n": 2000
+      },
+      "kl": {
+        "mean": 1.097960137698906,
+        "ci_low": 1.064896431155744,
+        "ci_high": 1.1330390316677088,
+        "n": 2000
+      },
+      "regret": {
+        "mean": 1.0897523855812097,
+        "ci_low": 1.0306175486869467,
+        "ci_high": 1.1469617440930138,
+        "n": 2000
+      }
+    },
+    "full_context_transformer:untrained_init": {
+      "logloss": {
+        "mean": 8.724286670261558,
+        "ci_low": 8.532832986289057,
+        "ci_high": 8.91747806662681,
+        "n": 2000
+      },
+      "brier": {
+        "mean": 5.948202299924013,
+        "ci_low": 5.77256699376763,
+        "ci_high": 6.125170690836054,
+        "n": 2000
+      },
+      "kl": {
+        "mean": 7.582849603106275,
+        "ci_low": 7.410536429273649,
+        "ci_high": 7.758606294238238,
+        "n": 2000
+      },
+      "regret": {
+        "mean": 7.531332261308488,
+        "ci_low": 7.337365256582947,
+        "ci_high": 7.730329027014628,
+        "n": 2000
+      }
+    },
+    "full_context_transformer:random_network": {
+      "logloss": {
+        "mean": 8.820963439130864,
+        "ci_low": 8.590404891629317,
+        "ci_high": 9.064312940503067,
+        "n": 2000
+      },
+      "brier": {
+        "mean": 6.1019241400709285,
+        "ci_low": 5.924631588576745,
+        "ci_high": 6.281738830513161,
+        "n": 2000
+      },
+      "kl": {
+        "mean": 7.692905342676755,
+        "ci_low": 7.485806573827471,
+        "ci_high": 7.9097915754710035,
+        "n": 2000
+      },
+      "regret": {
+        "mean": 7.628009030177795,
+        "ci_low": 7.400560081616095,
+        "ci_high": 7.873052010099732,
+        "n": 2000
+      }
+    },
+    "bayes": {
+      "logloss": {
+        "mean": 1.19295440895307,
+        "ci_low": 1.1169035776460405,
+        "ci_high": 1.269639742216152,
+        "n": 2000
+      },
+      "brier": {
+        "mean": 0.7208011118053405,
+        "ci_low": 0.6861416058592088,
+        "ci_high": 0.7542257195144823,
+        "n": 2000
+      },
+      "kl": {
+        "mean": -1.2212453270876722e-17,
+        "ci_low": -2.1094237467877975e-17,
+        "ci_high": -3.1086244689504384e-18,
+        "n": 2000
+      },
+      "regret": {
+        "mean": 0.0,
+        "ci_low": 0.0,
+        "ci_high": 0.0,
+        "n": 2000
+      }
+    }
+  },
+  "learned_arms": [
+    "full_context_transformer"
+  ],
+  "controls": {
+    "full_context_transformer": {
+      "random_network": "full_context_transformer:random_network",
+      "untrained_init": "full_context_transformer:untrained_init"
+    }
+  },
+  "splits": {
+    "train": {
+      "split": "train",
+      "first_seed": 0,
+      "n": 1536000
+    },
+    "eval": {
+      "split": "dev",
+      "first_seed": 10000000,
+      "n": 2000
+    }
+  },
+  "config": {
+    "visibility": "full",
+    "alignment": "unaligned",
+    "regime": "fresh",
+    "n_train": 1536000,
+    "seed": 0,
+    "device": "cpu",
+    "width": 64,
+    "layers": 3,
+    "heads": 4,
+    "steps": 3000,
+    "batch": 512,
+    "lr": 0.001,
+    "val_frac": 0.1,
+    "eval_every": 100,
+    "patience": 1000,
+    "dropout": 0.1,
+    "weight_decay": 0.01
+  },
+  "log": [
+    {
+      "step": 500,
+      "loss_ema": -0.5618909996936434
+    },
+    {
+      "step": 1000,
+      "loss_ema": -0.9091533452808995
+    },
+    {
+      "step": 1500,
+      "loss_ema": -1.0449140681555984
+    },
+    {
+      "step": 2000,
+      "loss_ema": -1.110464550370885
+    },
+    {
+      "step": 2500,
+      "loss_ema": -1.1597927317384513
+    },
+    {
+      "step": 3000,
+      "loss_ema": -1.1749755373915114
+    }
+  ],
+  "wall_seconds": 313.8071210384369
+}

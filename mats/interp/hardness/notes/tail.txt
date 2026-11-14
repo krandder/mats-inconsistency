@@ -1,0 +1,53 @@
+## 10. Reviews and what changed
+
+Three independent audits of the proofs, each asked to break every numbered statement (files in `review/`):
+- Gemini 4 Argon (agy, Sections 1-6, no tools): no fatal error; six fixable gaps. Fixed: noise constant in 4.1(c)
+  (a restored wire carries 2 tau, so tau = 1/24 and exp(-1/(1152 sigma^2))); the Levy distance in 3.2 (2 delta, not
+  delta); the label of the accumulation corollary; a zero-variance member in 2.3 (now psi is added); variance padding in
+  4.3; missing hypotheses in 5.1(c) (nonnegative weights, uniform cells); 5.2 counting the trainer's own oracle calls.
+- GPT-6 (codex, xhigh) on Sections 1-5. Retracted or narrowed: the claim that black-box lower bounds must stop near
+  the parameter count (false: a one-trapezoid, 4-unit family keeps the factor-4 bound for every N; precision, not
+  parameter count, is what grows); "advice independent of the context carries no information" (false: unbounded advice
+  can tabulate every context; now stated for oracle-independent or charged advice); the per-scale summation assumption
+  (a direct sum does not follow; replaced by a joint assumption JSH); the rotation hypothesis in 3.5 (must be joint);
+  "deterministic is free" now separates nonuniform existence from explicit designs; the relative-RMS noise extension of
+  4.1(c) (removed); the 3/16 variance claim in 4.3 (new 3-bit padding, variance >= 1/5 after smoothing); the
+  #NSETH counting reduction and fast multipoint evaluation are now written out; the interpretation of Section 5 is
+  limited to the families proven. Constants confirmed: 4(1 - 1/(2N)), 5.9/(1 - 3.3 w'), R(Q), 4 J^2, J(J-1)/4, J/4.
+- GPT-6 (codex, xhigh) on Section 6. Fixed: Theorem 6.5 needed A independent of the pair (B, xi) (counterexample with
+  xi alone independent); its "1-3 samples" is now a measured upper bound, the proven ceiling is a crude constant, and S
+  is identified as a quadratic observable; Lemma 6.4's remainder (exact M_4(n), sharp exponent) and indexing; the
+  extinction convention for cosines; Lemma 6.6's "iff" (errors can cancel); Proposition 6.7's O(sigma^2) noise claim
+  (false: O(sigma) near kinks) and its variance formula; Proposition 6.8's hypotheses (Q({0}) = 0, translation of every
+  state, population versus empirical support); Corollary 6.9 split into a proven angle result and an unproven
+  transport heuristic; Theorem 6.12's missing initial-error term (counterexample T(h) = eta relu(h)); Proposition 6.13's
+  "never" (finite image diameter does give contraction, only exponentially weak). Confirmed: Lemmas 6.1-6.3, the
+  covariance-growth mechanism, Lemma 6.10 (with a shorter proof), Proposition 6.11, the r_D values.
+- GPT-6 (codex, high) re-check of the fixes: confirmed most repairs and found four remaining problems, all fixed: an explicit-design claim in 3.5 (a fixed design need not match Monte Carlo; only nonuniform existence and rotation equivalence remain), a degree bound in 4.3 (now O(nd)), overstatements in Sections 7-9 (each restricted-class result is now tied to its observable), and an unproven extension of 6.5 to estimators that also see cheap statistics of the early layers (removed).
+
+## 11. Sources (verified)
+
+Read in the paper text (local copies in `papers/`): Impagliazzo, Kabanets, Wigderson, "In search of an easy witness",
+JCSS 65(4) 2002, Section 5.1 (Theorem 32, Remark 33, Corollary 34); Chen, Tell, "Simple and fast derandomization from
+very hard functions", STOC 2021 / ECCC TR20-148, Sections 1.2 and 6 (Theorem 6.4, Assumption 6.1, Lemma 6.3); Wu,
+Lecomte, Winer, Robinson, Hilton, Christiano, arXiv 2605.05179v2, Sections 5, 7.3 and Appendix D. ARC's "Competing
+with sampling" (Neyman et al., 18 Nov 2025) read through a fetch tool. Abstracts or records checked via the arXiv API:
+Hanin 2018 (arXiv 1801.03744); Hanin and Nica (arXiv 1812.05994); Goldwasser, Kim, Vaikuntanathan, Zamir
+(arXiv 2204.06974); Dunbar and Aaronson (arXiv 2510.06527); He and O'Donnell (arXiv 2404.14648); Kunisky, Wein, Bandeira
+(arXiv 1907.11636); Christiano, Neyman, Xu (arXiv 2211.06738); Rolnick and Kording (arXiv 1910.00744); Carlini,
+Jagielski, Mironov (arXiv 2003.04884); Montanaro (arXiv 1504.06987); Poole et al. (arXiv 1606.05340); Schoenholz et al.
+(arXiv 1611.01232); Polyanskiy and Wu (arXiv 1508.06025); Daniely and Vardi (arXiv 2006.03177); Chen, Gollakota,
+Klivans, Meka (arXiv 2202.05258); Bartlett, Harvey, Liaw, Mehrabian (arXiv 1703.02930). Naor and Reingold, J. ACM 51(2)
+2004 (PRFs in TC^0) via the publisher record. Not used because not verified: Williams 2010/2013 on CAPP speedups.
+Related in-house notes: `outbox/arc-deep-networks-2026-10-29.md` (ARC's depth results), `random-net-phases-2026-10-29.md`
+(phase measurements used in Section 6), `lit-tangledness-architectures-2026-10-29.md` (the parallel literature study:
+worst-case NP/#P results, backdoors, by-design architectures; not repeated here).
+
+## 12. Reproduction
+
+All CPU, `nice -n 19`, Python at `/home/agent/.venvs/arc-noisy/bin/python`, from `work/hardness/numerics/`:
+- `lemma_checks.py J | norm | backward n L m R | survival n depth | hermite n L D | fwdtrunc n L k` (logs in `logs/`).
+- `capp_check.py 6` (reduction check, `logs/check_capp.txt`).
+- `run_k2s.sh`, `run_k2s_b.sh` (K = 2 sweep; `results/k2s_*.json`), `analyze_k2s.py` (tables in 6.3).
+- `run_k3f.sh` (factorized K = 3; `results/k3f_*.json`), `analyze_k3f.py`.
+ARC's code is imported read-only from `work/arc-noisy/ext/mlp_cumulant_propagation` via `work/arc-noisy/kprop_noisy.py`.

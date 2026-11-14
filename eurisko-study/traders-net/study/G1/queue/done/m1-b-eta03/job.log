@@ -1,0 +1,62 @@
+2026-09-28T00:25:45Z job m1-b-eta03 ws=M1 hours=1.25 vm=tn-gpu-m1-b-eta03-09280025-30843 results_to=/home/agent/workspaces/eurisko-study/traders-net/study/M1/w2/gpu-eta03
+creating tn-gpu-m1-b-eta03-09280025-30843 (g2-standard-8 + nvidia-l4, SPOT, max 95m) in us-central1-c ...
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-8 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-central1-c zone. Consider trying your request in another
+      zone which has capacity to accommodate your request. Alternatively, you can
+      try your request again with a different VM hardware configuration or at a later
+      time. For more information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-8
+      zone: us-central1-c
+      zonesAvailable: ''
+    reason: stockout
+message: The zone 'projects/GCP_PROJECT/zones/us-central1-c' does not have enough
+  resources available to fulfill the request.  '(resource type:compute)'.
+
+creating tn-gpu-m1-b-eta03-09280025-30843 (g2-standard-8 + nvidia-l4, SPOT, max 95m) in us-central1-b ...
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-8 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-central1-b zone. Consider trying your request in another
+      zone which has capacity to accommodate your request. Alternatively, you can
+      try your request again with a different VM hardware configuration or at a later
+      time. For more information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-8
+      zone: us-central1-b
+      zonesAvailable: ''
+    reason: stockout
+message: The zone 'projects/GCP_PROJECT/zones/us-central1-b' does not have enough
+  resources available to fulfill the request.  '(resource type:compute)'.
+
+creating tn-gpu-m1-b-eta03-09280025-30843 (g2-standard-8 + nvidia-l4, SPOT, max 95m) in us-central1-a ...
+NAME                              ZONE           MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP     STATUS
+tn-gpu-m1-b-eta03-09280025-30843  us-central1-a  g2-standard-8  true         [ip-removed]  [ip-removed]  RUNNING
+waiting for tn-gpu-m1-b-eta03-09280025-30843 ([ip-removed]) startup (up to 25 min) ...
+2026-09-28T00:29:59Z VM ready tn-gpu-m1-b-eta03-09280025-30843 us-central1-a [ip-removed]
+Deleted [https://www.googleapis.com/compute/v1/projects/GCP_PROJECT/zones/us-central1-a/instances/tn-gpu-m1-b-eta03-09280025-30843].
+2026-09-28T01:02:17Z job m1-b-eta03 -> done (run.sh rc=0)

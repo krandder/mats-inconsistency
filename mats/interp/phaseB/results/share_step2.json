@@ -1,0 +1,127 @@
+{
+ "rows": [
+  {
+   "features": "named",
+   "mean": {
+    "R2": 0.19030297102398352,
+    "explained_over_shared": 0.23534991334740588,
+    "model": "MLP (val R2 0.226; best HGB 0.176)"
+   },
+   "logsd": {
+    "R2": 0.7326976043065532,
+    "explained_over_shared": 0.8374535852088428,
+    "model": "HGB lr=0.03 leaves=63 l2=1.0 (val R2 0.747; MLP 0.745)"
+   },
+   "kl": {
+    "R2": 0.49343568631898616,
+    "explained_over_shared": 0.6141855339572536,
+    "model": "MLP (val R2 0.527; best HGB 0.506)"
+   }
+  },
+  {
+   "features": "named + token-level",
+   "mean": {
+    "R2": 0.39762775447011856,
+    "explained_over_shared": 0.4917509014994414,
+    "model": "HGB lr=0.1 leaves=63 l2=1.0 (val R2 0.415; MLP 0.195)"
+   },
+   "logsd": {
+    "R2": 0.7370013107724751,
+    "explained_over_shared": 0.8423726055364499,
+    "model": "HGB lr=0.1 leaves=63 l2=1.0 (val R2 0.756; MLP 0.700)"
+   },
+   "kl": {
+    "R2": 0.3353013461663783,
+    "explained_over_shared": 0.41735375458566426,
+    "model": "HGB lr=0.1 leaves=63 l2=1.0 (val R2 0.495; MLP 0.410)"
+   }
+  }
+ ],
+ "descriptions": {
+  "L2_s0.05 DAG D1": {
+   "mean": {
+    "R2_vs_seed_average": 0.27723513918222487,
+    "R2_vs_own": 0.768470142183217
+   },
+   "logsd": {
+    "R2_vs_seed_average": 0.5269271864297067,
+    "R2_vs_own": 0.8171906889394949
+   },
+   "kl": {
+    "R2_vs_seed_average": 0.2384791466472268,
+    "R2_vs_own": 0.6439030095385978
+   }
+  },
+  "L2_s0.05 network itself (replicate 2)": {
+   "mean": {
+    "R2_vs_seed_average": 0.30760952866474556,
+    "R2_vs_own": 0.9604585626227133
+   },
+   "logsd": {
+    "R2_vs_seed_average": 0.546352875640526,
+    "R2_vs_own": 0.9870733407611666
+   },
+   "kl": {
+    "R2_vs_seed_average": 0.20037319344366133,
+    "R2_vs_own": 0.978961058435988
+   }
+  },
+  "L2_s0.05 E2 all-MLP-rank-8 (step 4, 12,896 parameters)": {
+   "mean": {
+    "R2_vs_seed_average": 0.24779509981425585,
+    "R2_vs_own": 0.924309091715541
+   },
+   "logsd": {
+    "R2_vs_seed_average": 0.5037356766367227,
+    "R2_vs_own": 0.9617090264246954
+   },
+   "kl": {
+    "R2_vs_seed_average": 0.15697680161960914,
+    "R2_vs_own": 0.8935782361306221
+   }
+  },
+  "L2seed1_s0.05 DAG D1": {
+   "mean": {
+    "R2_vs_seed_average": 0.31271019134768374,
+    "R2_vs_own": 0.6109750221616241
+   },
+   "logsd": {
+    "R2_vs_seed_average": 0.5151055673294567,
+    "R2_vs_own": 0.6636504121746174
+   },
+   "kl": {
+    "R2_vs_seed_average": 0.2317196452119935,
+    "R2_vs_own": 0.35781943482946243
+   }
+  },
+  "L2seed1_s0.05 network itself (replicate 2)": {
+   "mean": {
+    "R2_vs_seed_average": 0.2442291534779285,
+    "R2_vs_own": 0.9646972285764085
+   },
+   "logsd": {
+    "R2_vs_seed_average": 0.48360293717038627,
+    "R2_vs_own": 0.9870739286934783
+   },
+   "kl": {
+    "R2_vs_seed_average": -0.11845044567883467,
+    "R2_vs_own": 0.9877492975600143
+   }
+  },
+  "L2seed1_s0.05 E2 all-MLP-rank-8 (step 8, 12,896 parameters)": {
+   "mean": {
+    "R2_vs_seed_average": 0.21578024270886365,
+    "R2_vs_own": 0.9174647615917397
+   },
+   "logsd": {
+    "R2_vs_seed_average": 0.4129458005864486,
+    "R2_vs_own": 0.9518851176258654
+   },
+   "kl": {
+    "R2_vs_seed_average": -0.24439039654614603,
+    "R2_vs_own": 0.9295453373075067
+   }
+  }
+ },
+ "seconds": 1485.6010706424713
+}

@@ -1,0 +1,12 @@
+{
+ "id": "E-RS-1",
+ "question": "Is counterfactual pay unchanged when one unit is rescaled without changing the function?",
+ "setup": "ReLU network, 16 units, backprop-trained. Each unit is split into an in-agent (incoming weights) and an out-agent (outgoing weight). Multiply the incoming weights by c and divide the outgoing weight by c, c in {0.1, 10}; top 6 units, 5 seeds.",
+ "result": "Yes. The function is identical (largest logit change 2e-15) and Shapley, mean-ablation Shapley and LOO pay are unchanged (ratio 1.000).",
+ "status": "Informative",
+ "files": [
+  "exp_rescale.py",
+  "results/rescale_summary.json",
+  "charts/mlp_rescale_ratio.json"
+ ]
+}

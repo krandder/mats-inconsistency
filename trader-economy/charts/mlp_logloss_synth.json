@@ -1,0 +1,52 @@
+{
+ "id": "mlp_logloss_synth",
+ "kind": "bar",
+ "title": "MLP agents (synth, 32 tanh units): test log loss (lower is better)",
+ "unit": "nats",
+ "source": "trader-economy/results/mlp_summary.json",
+ "note": "compute cost 0.0005 per connection per round; 5 seeds, 95% t-intervals",
+ "bars": [
+  {
+   "label": "Backprop",
+   "value": 0.43484,
+   "ci": 0.00447,
+   "highlight": false
+  },
+  {
+   "label": "LOO pay + ledger",
+   "value": 0.4354,
+   "ci": 0.00442,
+   "highlight": false
+  },
+  {
+   "label": "MSR one order + ledger",
+   "value": 0.43868,
+   "ci": 0.005,
+   "highlight": false
+  },
+  {
+   "label": "Shapley-16 pay + ledger",
+   "value": 0.60894,
+   "ci": 0.01239,
+   "highlight": true
+  },
+  {
+   "label": "Shapley-16, output rescaled (diagnostic)",
+   "value": 0.43487,
+   "ci": 0.00447,
+   "highlight": false
+  },
+  {
+   "label": "Logistic regression",
+   "value": 0.43312,
+   "ci": 0.00442,
+   "highlight": false
+  },
+  {
+   "label": "True probability",
+   "value": 0.43282,
+   "ci": 0.0043,
+   "highlight": false
+  }
+ ]
+}

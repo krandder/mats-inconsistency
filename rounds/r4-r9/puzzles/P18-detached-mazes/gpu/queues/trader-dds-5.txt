@@ -1,0 +1,3 @@
+p0_s1 train18.py --mode prog --alpha 0 --width 128 --T 30 --warmup_frac 0.2 --ckpt_sec 300 --steps 17672 --seed 1 --name p0_s1 --out out
+ev_p0_s1@p0_s1 eval18.py --ckpt out/p0_s1.pt --sets v9,m13,m59,e19,e33,e59 --out out/ev_p0_s1
+END

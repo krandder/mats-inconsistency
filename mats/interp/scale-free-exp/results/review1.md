@@ -1,0 +1,29 @@
+Checked against the supplied files and regenerated tables on 2026-10-29; `summ.py`’s output-file write was intercepted to preserve read-only access. TBD sections excluded.
+
+1. **High — Two rounds are not isolated as the cause.** Report Summary 2 / E1; `sfmodels.py:52`, `sftrain.py:232`. Two-pass trees add roughly twice the parameters, auxiliary pilot supervision, and an explicitly standardized query feature. Better capacity or optimization remains an explanation; these results do not rule it out. W0 tree/set inputs and episode budgets match, but parameters and compute do not. **Fix:** say “the tested two-pass architecture performs better”; defer “only with two rounds” and “rounds are the lever” until matched controls finish. One-pass trees already satisfy preregistered P1’s matching tolerance.
+
+2. **High — Numerical mismatches, principally stale E3 results.** Report Summary/E1/E3; regenerated seed means:
+   - E3 B, N=3: **0.0091**, not 0.0096.
+   - E3 N=12: B **0.0168**, C **0.0128**, B′ **0.0128**, D **0.1952**, versus 0.016/0.011/0.012/0.196. Correct Summary’s C/D values too.
+   - E1 tree m=1 spans **0.223–0.355**, not 0.34–0.36.
+   - E1 N=6,m=2: **0.033388**, not 0.034; N=12,m=16: **0.015450**, not 0.016. W1 N=4,hier-attention m2=16: **0.022472**, not 0.023.
+   - Setup’s W2 coupling-blind upper bound is **0.366**, not 0.35.
+   - Scorecard P1’s N=6 best-tree value is **0.0113**, not 0.0106; N=12 is **0.0140**, not 0.0139.
+   
+   **Fix:** generate tables and repeated headline numbers from one frozen result snapshot.
+
+3. **High — “History-blind” is a valid reference, not an identified mechanism.** `blind_ref.py:25` correctly sets QL=0, retains the query column, and restores QL; `sfworld.py` then removes labelled likelihood terms. However, it reports an empirical **NLL gap**, with SE≈0.009, alongside model **quadrature KL**. Similar averages do not establish identical predictions or prove no history use. Unbound history can still inform aggregate reliability. **Fix:** call the plateau “near the query-only Bayes reference”; compare predictions directly and ablate history.
+
+4. **High — Token failure is demonstrably budget-dependent, not a capacity result.** Summary 1 / E1. N=12 seeds are still improving near termination; two escape while one remains near the plateau. The report describes growing plateau lengths, but “routing is where … fails” and the blanket N≥12 binding-failure claim obscure this. Longer optimization remains a strong alternative, unexcluded by current data. **Fix:** qualify every headline with “within 10.24M episodes”; report censored escape times and require longer runs before claiming a limit.
+
+5. **High — W2 does not establish that tangling is necessary or pays its compute cost.** Summary 3 / E1 W2. A nonlinear readout of summed learned features can implement comparisons; poor optimization or inadequate learned features remain alternatives even at m=128. No matched-compute frontier establishes “earns its cost.” **Fix:** restrict the conclusion to dense attention outperforming these trained sum-pooled architectures under this recipe.
+
+6. **Medium — Mechanistic interpretation exceeds the measurements.** Summary 4 / mechanism discussion; `m1prof.py:104`, `tokan.py:163`. M1’s ratio is not the fraction of total error variance, so 0.6–0.8 does not establish “most of its error.” M5’s 0.61/0.72 concern **net variance**; Bayes-variance values are **0.58/0.70**. Precision correlations include a **0.50** head omitted from the headline. Small first-layer sensitivity and output additivity permit multiple internal computations. **Fix:** say “consistent with approximately source-local first-layer processing”; distinguish correlations from causal decomposition.
+
+7. **Medium — M3 differs from its registered intervention.** `tokan.py:65–83`; PREREG:205–207. Class substitution averages logits correctly, but the batch-average arm averages **softmax probabilities**, not logits; these interventions differ. Permutation handling and held-out label regression look sound, although the regression uses selected indicators rather than saturated pair-class one-hots. **Fix:** disclose these specifications, rerun the registered averaging intervention, and avoid treating class means as a pure content-weighting ablation.
+
+8. **Medium — Scorecard changes prediction scope.** P16 omits the registered “equal-time Monte Carlo sees no event”: extrapolation predicts roughly **2–3 events** at L=16/20, so “held” is unjustified. P17’s N=3 tolerance was explicitly **0.01**, which the improvement satisfies. Theory-6.5 P1 requires matched size; its verdict is pending. Theory P4 concerns both architectures’ learned routing, whereas learned-routing trees were omitted. **Fix:** score original wording clause by clause.
+
+9. **Medium — E5’s numerical table matches, but validation is weaker than “exact” suggests.** `est5.py:46,122`; E5. FFT convolution is exact for a discretized, quadrature-approximated message law. Only 17 reference events support L=12; one supports L=16/20. Equal-time accuracy is extrapolated, not measured in replicated matched-time runs; deduction timing excludes quadrature setup. The post-hoc fix is clearly flagged. **Fix:** label numerical approximation and uncertainty; distinguish original-rule P15 from corrected-rule results, whose m=2 tail error reverses direction.
+
+10. **Low — Preregistration chronology is plausible but incompletely authenticated.** Hash-log entries precede affected result timestamps, and the final hash matches. Amendment headings nevertheless disagree with hash times, sometimes substantially; historical snapshots are unavailable here. E5 local nets also used **256×40,000**, unlike the headline **1024×10,000** recipe. **Fix:** publish versioned snapshots and exact cohort recipes; distinguish recorded chronology from independently verified chronology.

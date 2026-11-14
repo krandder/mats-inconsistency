@@ -1,0 +1,13 @@
+Model: GPT-6 (Codex)
+
+Read-only review, checked 2026-10-30; no Python, training, or numerical reruns. References to draft mean `/tmp/qwrev/update58_draft.md`.
+
+1. **High — mechanism asserted beyond identification.** Draft:7,84–87 turns format effects into “the cost of computing even information” and locates residual error downstream. Supplying products changes scaling, input width and optimisation; LayerNorm still transforms the supplied statistics before pooling. Equal endpoint errors cannot locate a bottleneck. Fix: describe an association under this recipe; label the cross-world explanation and LayerNorm capping as hypotheses. Delete “therefore … lies downstream” and the plain-words “What remains … lies elsewhere.” P193/P195 failing rejects the registered quantitative account, not every role for per-token computation.
+
+2. **High — survivor conditioning and initialisation attribution.** Draft:84,87 uses post hoc acquired A-type subsets to support “helps as much”; `results/e48_post2.json` selects only 7/8 signed nets. The seed table also shows sgp seed 1 stalls while sgnsq acquires, and seed 3 changes B→A. Initialisation and episode stream co-vary across seeds (`train_sw.py:93`), so shared failures cannot isolate initialisation. Fix: retain the conditional results, foreground all-run stalls/types, and say failures overlap under paired weights **and streams**. P197 holds by its registered point rule, but its upper CI is 1.261, above 1.25.
+
+3. **Medium — equality and sign-use language.** Draft:3–7,84–85 says “exactly” equal and signs “no longer cost anything.” `results/e48.json:w2.2.ratios` permits roughly 10% differences; D=1 sgnprod/canon is 0.82 [0.73,0.91]. Sign share measures finite geometric-ensemble improvement, not a fraction of computation using signs. Fix: “similar mean KL” and “small measured sign-flip reduction”; explicitly scope to 12 seeds and one recipe.
+
+4. **Low — transcription errors.** Draft:59 gives sgnprod/ctrl [0.42,0.57]; JSON `w2.2.ratios.sgnprod/ctrl` gives [0.41,0.57]. Draft:31 swaps a/c GPU duration/cost: `GPU-LOG.md:160,176` assigns c=1.21h/$1.05, a=1.35h/$1.17. Fix both.
+
+**Survive:** inspected format/query logic, prod flip invariance, pairing/streams, evaluator routing, acquisition rules, multiplicity-preserving bootstrap, and P193–P197 scoring; post hoc comparisons use identical base episodes and the same estimator algorithm (world-2 grids adapt separately). Metadata records 72 completed schedules; binary checkpoints/NPZ values were not independently recomputed. **Reword:** equality, sign-use, survivor comparisons, cross-world and capping explanations. **Fail:** demonstrated downstream localisation or initialisation-only causation.

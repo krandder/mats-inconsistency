@@ -1,0 +1,29 @@
+## 8. Handoff
+
+**Reusable multilevel shared-trajectory sampler** (for the stationary-regime lane and others): `lib/mlmc.py` in
+`work/unrestricted/`. Its module docstring names the inputs (weights W of a bias-free ReLU net, a reference
+direction or an rng, the prefix depths `levels`, the sample counts per level), the cost model (setup 1 pass; a level
+sample costs r_j / L passes, the last level 1 pass; optimal allocation N_j ~ sqrt(V_j / C_j)), the proven rate and the
+measured gains. Functions: `ReferencePath`, `level_samples`, `pilot_level_stats`, `allocate`, `mlmc_estimate`. Tests:
+`python3 tests/test_mlmc.py` (telescoping identity exact; unbiased against an RQMC truth, max |z| = 2.5 over 16
+outputs). The variance-times-cost measurements are `scratch/mlmc_check.py` (`logs/mlmc_check.log`).
+
+**Other code.** `lib/bnb.py` (certified branch-and-bound) with `scratch/run_bnb.py`; `lib/nets.py` (nets, samplers,
+FLOP conventions); `scratch/truth_baselines.py` (truth, RQMC, deterministic Sobol); `scratch/noise_stability.py`,
+`scratch/harmonic_profile.py`, `scratch/kernel_even.py`, `scratch/spin_glass*.py`, `scratch/regions.py`,
+`scratch/noise_effect*.py`; scoring in `scratch/analyze_eval.py` and `scratch/analyze_theory.py`. Tests:
+`python3 tests/test_bnb.py`, `python3 tests/test_mlmc.py`. Queue: `scratch/run_queue.sh` with `scratch/jobs_eval2.txt`.
+
+**Next steps, if wanted.**
+1. An asymptotic-rate improvement to the multilevel sampler (HEURISTIC). With prefix levels, the first level costs
+   1/L of a pass per sample and carries the Theta(1) amplitude variance of the first layers, so this family's gain over
+   RB-MC is at most of order L. That variance is a smooth function of the input direction: |h_1(U)|^2 is a quadratic-type
+   function whose angular variance sits mostly in harmonic degrees 1-3. Integrating the first level with a spherical
+   2-design, or using the exactly computable mean of |h_1(U)|^2 as a control variate, would remove that floor; the gain
+   would then be limited by the angular-mismatch terms. Test: the level-1 variance after the control, against L.
+2. Several reference trajectories (or per-cluster references) to shrink the final direction-mismatch term n / L^2,
+   which is what keeps the gain near 1 at L <= n/4, ARC's regime.
+3. RQMC within each level (a constant factor, likely 2-10x at small width), and the noisy case sigma = 1e-3 with the
+   noise shared between the two terms of a level.
+4. A fully charged run of the sampler (pilot and allocation included) on the registered nets against RQMC.
+5. For the theory: the finite-width 2/3 window (C1) at larger depth, and the M-design kernel test (C3) at width 256.

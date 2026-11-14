@@ -1,0 +1,33 @@
+=== S1: purely LOCAL Frechet traders (each connective vs its immediate subformulas) + axiom ===
+ local Frechet + negation + axiom (no IE, no hand-picked facet A<=B): incoherent fixed points 43/60
+ ... plus inclusion-exclusion: incoherent 0/60
+=== S2: Thm 4 gap: zero of convex F_k on the boundary need not have grad 0 ===
+ F(p)=p on [0,1]: zero at p=0, T(0)=-1.0 != 0, yet clip(0+T(0))=0.0 (still a fixed point)
+=== S3: finite-weight relu^2 relation traders do NOT give argmin over K_Gamma ===
+ relation weight    1.0: fixed point [0.6059 0.4103 0.5456 0.4853 0.4471], L1 dist to K_Gamma 0.2632
+ relation weight   10.0: fixed point [0.533  0.5023 0.5304 0.5044 0.47  ], L1 dist to K_Gamma 0.0566
+ relation weight  100.0: fixed point [0.5214 0.5181 0.5214 0.5179 0.4788], L1 dist to K_Gamma 0.0068
+ exact argmin over K_Gamma: [0.52 0.52 0.52 0.52 0.48]
+=== S4: KL direction. PDG Inc (Richardson 2022 eq.1, Prop 9) = sum beta D(mu||claim) = KL(p||q) ===
+ argmin_K sum KL(q||p) [file's trader]: [0.57 0.57 0.57 0.57 0.43]
+ argmin_K sum KL(p||q) [PDG Inc]     : [0.6051 0.6051 0.6051 0.6051 0.3949]
+ difference L1 = 0.1754
+ check d/dp KL(q||p) = (p-q)/(p(1-p)): numeric -2.38095 vs formula -2.38095
+ check d/dp KL(p||q) = logit p - logit q: numeric -2.23359 vs formula -2.23359
+=== S5: Thm 7 relies on no block-index input: a trader using (t, p_t) exploits the a/b oscillation ===
+ min value over time/worlds -0.500, final value [1.2 1.2 1.2] (grows by 0.3 per a->b cycle; unbounded as cycles -> inf)
+=== S6: Theorem 3 tightness: (1+|x|inf) vs max(1,|x|inf) ===
+ max(gain - max(1,|x|inf)|r|1) = 0.00e+00  (the sharper constant also holds)
+ eta=1: residual of clip(p+eta x)-p = 0.4000, gain of x = 0.200; bound with eta-residual needs factor max(1,|x|)/eta
+ eta=0.1: residual of clip(p+eta x)-p = 0.0400, gain of x = 0.200; bound with eta-residual needs factor max(1,|x|)/eta
+ eta=0.01: residual of clip(p+eta x)-p = 0.0040, gain of x = 0.200; bound with eta-residual needs factor max(1,|x|)/eta
+=== S7: minimax explanation. LP dual of Check 2 = the certificate; minimax HOLDS ===
+ max_lambda min_p = 0.1000 with lambda = [0.4993 0.     0.     0.5007]; min_pi max_(k,W) = 0.1000  (equal: von Neumann minimax holds)
+=== S8: Thm 4 + Idea: convex but not strictly convex F -> fixed points not unique ===
+ distinct fixed points: [[0.6688 0.9661]
+ [0.4543 0.6215]
+ [0.0994 0.2527]
+ [0.2473 0.4283]
+ [0.7187 0.7187]]
+=== S9: Theorem 6(a) needs sentences whose truth does not depend on prices ===
+ paradox chi <-> (p_chi < 0.5) at constant p=0.5: truth=0, seller of 1 share gains 0.5 per day: constant market at an 'interior' point exploited

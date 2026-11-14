@@ -1,0 +1,14 @@
+cumulative expected information gain (bits) at t=T=8192; rate = per-step gain x t over the last 512 steps
+crossover = horizon where S overtakes N, extrapolating cum(t) = cum(T) + rate*log2(t/T)*ln2 (inf if never)
+  prior=uniform   D= 2  cum D   4.95  N   10.33  S  20.43   rate D 0.54 N 0.91 S 2.98   S beats N: already S>N
+  prior=uniform   D= 4  cum D   4.95  N   14.56  S  22.58   rate D 0.54 N 0.91 S 2.98   S beats N: already S>N
+  prior=uniform   D= 8  cum D   4.95  N   43.97  S  23.97   rate D 0.54 N 0.91 S 2.98   S beats N: t ~ 2^26.9
+  prior=uniform   D=12  cum D   4.95  N  189.29  S  24.63   rate D 0.54 N 0.91 S 2.98   S beats N: t ~ 2^127.6
+  prior=2^-(k+1)  D= 2  cum D   4.95  N    9.06  S  20.25   rate D 0.54 N 0.85 S 2.98   S beats N: already S>N
+  prior=2^-(k+1)  D= 4  cum D   4.95  N   10.35  S  21.30   rate D 0.54 N 0.85 S 2.98   S beats N: already S>N
+  prior=2^-(k+1)  D= 8  cum D   4.95  N   11.79  S  21.49   rate D 0.54 N 0.85 S 2.98   S beats N: already S>N
+  prior=2^-(k+1)  D=12  cum D   4.95  N   16.11  S  21.50   rate D 0.54 N 0.85 S 2.98   S beats N: already S>N
+  prior=2^-(2^k)  D= 2  cum D   4.95  N    8.77  S  20.18   rate D 0.54 N 0.85 S 2.98   S beats N: already S>N
+  prior=2^-(2^k)  D= 4  cum D   4.95  N    8.88  S  20.29   rate D 0.54 N 0.85 S 2.98   S beats N: already S>N
+  prior=2^-(2^k)  D= 8  cum D   4.95  N    8.88  S  20.29   rate D 0.54 N 0.85 S 2.98   S beats N: already S>N
+  prior=2^-(2^k)  D=12  cum D   4.95  N    8.88  S  20.29   rate D 0.54 N 0.85 S 2.98   S beats N: already S>N

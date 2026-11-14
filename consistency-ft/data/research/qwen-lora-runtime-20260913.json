@@ -1,0 +1,373 @@
+{
+  "adapter_parameters": 34240,
+  "all_gradients_finite": true,
+  "architecture": {
+    "_name_or_path": "",
+    "architectures": null,
+    "attention_bias": false,
+    "attention_dropout": 0.0,
+    "bos_token_id": null,
+    "chunk_size_feed_forward": 0,
+    "dtype": null,
+    "eos_token_id": 255,
+    "head_dim": 16,
+    "hidden_act": "silu",
+    "hidden_size": 32,
+    "id2label": {
+      "0": "LABEL_0",
+      "1": "LABEL_1"
+    },
+    "initializer_range": 0.02,
+    "intermediate_size": 64,
+    "is_encoder_decoder": false,
+    "label2id": {
+      "LABEL_0": 0,
+      "LABEL_1": 1
+    },
+    "layer_types": [
+      "linear_attention",
+      "linear_attention",
+      "linear_attention",
+      "full_attention"
+    ],
+    "linear_conv_kernel_dim": 4,
+    "linear_key_head_dim": 8,
+    "linear_num_key_heads": 2,
+    "linear_num_value_heads": 2,
+    "linear_value_head_dim": 8,
+    "max_position_embeddings": 1024,
+    "model_type": "qwen3_5_text",
+    "num_attention_heads": 2,
+    "num_hidden_layers": 4,
+    "num_key_value_heads": 1,
+    "output_attentions": false,
+    "output_hidden_states": false,
+    "pad_token_id": 0,
+    "partial_rotary_factor": 0.25,
+    "problem_type": null,
+    "return_dict": true,
+    "rms_norm_eps": 1e-06,
+    "rope_parameters": {
+      "mrope_section": [
+        2,
+        2,
+        4
+      ],
+      "partial_rotary_factor": 1.0,
+      "rope_theta": 10000.0,
+      "rope_type": "default"
+    },
+    "tie_word_embeddings": false,
+    "transformers_version": "5.17.0",
+    "use_cache": false,
+    "vocab_size": 256
+  },
+  "base_count_includes_nonpersistent_buffers": true,
+  "base_parameters": 54068,
+  "frozen_base_unchanged": true,
+  "gradient_l2": 1.7172394721404722,
+  "parameter_delta_l2": 0.017172394351294414,
+  "pretrained_weights_loaded": false,
+  "provider_requests": 0,
+  "raw_artifact_sha256": {
+    "reduced-bf16-final-logprob-diagnostic.json": "8ff0c1bdd7cf066563a964076a20ee3177a0a25e3d6fb3e8fac6c8b96d195b0b",
+    "reduced-qwen-final-initial.pt": "97cd5a10f0bcb5d07a01132b00876ba85ff27b0b420b934c029de6eb7f660d95",
+    "reduced-qwen-final-update.pt": "3783913737acac0942a70f63ec534015977e0a55133d1b6f91207fe71e3ed049"
+  },
+  "recorded_date_utc": "2026-09-13",
+  "reduced_bf16_logprob_diagnostic": {
+    "actual_pretrained_weights": false,
+    "atol": 2e-06,
+    "eos_token_id": 255,
+    "evaluated_logprobs": [
+      -5.309527397155762,
+      -5.706303119659424,
+      -5.665009498596191
+    ],
+    "existing_tolerance_passed": true,
+    "finish_reason": "length",
+    "max_absolute_error": 0.0,
+    "max_new_tokens": 3,
+    "prompt_token_ids": [
+      2,
+      3,
+      4
+    ],
+    "rtol": 2e-06,
+    "runtime_source_sha256": "c357b98e5fd9be1e0e3817270f6c9d50da45c978ee8b91dc32663ab72aa11022",
+    "sampled_logprobs": [
+      -5.309527397155762,
+      -5.706303119659424,
+      -5.665009498596191
+    ],
+    "sampling_seed": 12,
+    "synthetic_reduced_qwen_only": true,
+    "tokens": [
+      231,
+      14,
+      207
+    ]
+  },
+  "resolved_dependency_versions": {
+    "Jinja2": "3.1.6",
+    "huggingface-hub": "1.31.0",
+    "numpy": "2.5.3",
+    "tokenizers": "0.23.2",
+    "torch": "2.6.0+cpu",
+    "transformers": "5.17.0"
+  },
+  "runtime_execution": {
+    "adapter_dtype": "torch.float32",
+    "attention_backend": "eager",
+    "base_dtypes": [
+      "torch.float32"
+    ],
+    "checkpoint_decoder": true,
+    "checkpoint_use_reentrant": false,
+    "cpu_threads": 1,
+    "cuda_matmul_allow_tf32": false,
+    "cudnn_allow_tf32": true,
+    "deterministic_algorithms": false,
+    "device": "cpu",
+    "dropout": 0,
+    "effective_use_cache": false,
+    "float32_matmul_precision": "highest",
+    "kernel_entrypoints": {
+      "causal_conv1d_fn": {
+        "entrypoint": "transformers.models.qwen3_5.modeling_qwen3_5.causal_conv1d_fn",
+        "selected_implementation": "transformers.models.qwen3_5.modeling_qwen3_5.causal_conv1d_fn",
+        "torch_reference_selected": true
+      },
+      "torch_chunk_gated_delta_rule": {
+        "entrypoint": "transformers.models.qwen3_5.modeling_qwen3_5.torch_chunk_gated_delta_rule",
+        "selected_implementation": "transformers.models.qwen3_5.modeling_qwen3_5.torch_chunk_gated_delta_rule",
+        "torch_reference_selected": true
+      }
+    },
+    "lora_alpha": 32,
+    "lora_rank": 16,
+    "lora_seed": 13,
+    "model_class": "Qwen3_5ForCausalLM",
+    "model_config": {
+      "_name_or_path": "",
+      "architectures": null,
+      "attention_bias": false,
+      "attention_dropout": 0.0,
+      "bos_token_id": null,
+      "chunk_size_feed_forward": 0,
+      "dtype": null,
+      "eos_token_id": 255,
+      "head_dim": 16,
+      "hidden_act": "silu",
+      "hidden_size": 32,
+      "id2label": {
+        "0": "LABEL_0",
+        "1": "LABEL_1"
+      },
+      "initializer_range": 0.02,
+      "intermediate_size": 64,
+      "is_encoder_decoder": false,
+      "label2id": {
+        "LABEL_0": 0,
+        "LABEL_1": 1
+      },
+      "layer_types": [
+        "linear_attention",
+        "linear_attention",
+        "linear_attention",
+        "full_attention"
+      ],
+      "linear_conv_kernel_dim": 4,
+      "linear_key_head_dim": 8,
+      "linear_num_key_heads": 2,
+      "linear_num_value_heads": 2,
+      "linear_value_head_dim": 8,
+      "max_position_embeddings": 1024,
+      "model_type": "qwen3_5_text",
+      "num_attention_heads": 2,
+      "num_hidden_layers": 4,
+      "num_key_value_heads": 1,
+      "output_attentions": false,
+      "output_hidden_states": false,
+      "pad_token_id": 0,
+      "partial_rotary_factor": 0.25,
+      "problem_type": null,
+      "return_dict": true,
+      "rms_norm_eps": 1e-06,
+      "rope_parameters": {
+        "mrope_section": [
+          2,
+          2,
+          4
+        ],
+        "partial_rotary_factor": 1.0,
+        "rope_theta": 10000.0,
+        "rope_type": "default"
+      },
+      "tie_word_embeddings": false,
+      "transformers_version": "5.17.0",
+      "use_cache": false,
+      "vocab_size": 256
+    },
+    "model_mode": "eval",
+    "normalization_dtype": "torch.float32",
+    "qwen_source_sha256": "762feb6c7426a7f15b5bf830df54c07438bf9e7c27b8cdb23179045920412c3b",
+    "runtime_source_sha256": "c357b98e5fd9be1e0e3817270f6c9d50da45c978ee8b91dc32663ab72aa11022",
+    "targets": {
+      "model.layers.0.linear_attn.in_proj_a": [
+        2,
+        32
+      ],
+      "model.layers.0.linear_attn.in_proj_b": [
+        2,
+        32
+      ],
+      "model.layers.0.linear_attn.in_proj_qkv": [
+        48,
+        32
+      ],
+      "model.layers.0.linear_attn.in_proj_z": [
+        16,
+        32
+      ],
+      "model.layers.0.linear_attn.out_proj": [
+        32,
+        16
+      ],
+      "model.layers.0.mlp.down_proj": [
+        32,
+        64
+      ],
+      "model.layers.0.mlp.gate_proj": [
+        64,
+        32
+      ],
+      "model.layers.0.mlp.up_proj": [
+        64,
+        32
+      ],
+      "model.layers.1.linear_attn.in_proj_a": [
+        2,
+        32
+      ],
+      "model.layers.1.linear_attn.in_proj_b": [
+        2,
+        32
+      ],
+      "model.layers.1.linear_attn.in_proj_qkv": [
+        48,
+        32
+      ],
+      "model.layers.1.linear_attn.in_proj_z": [
+        16,
+        32
+      ],
+      "model.layers.1.linear_attn.out_proj": [
+        32,
+        16
+      ],
+      "model.layers.1.mlp.down_proj": [
+        32,
+        64
+      ],
+      "model.layers.1.mlp.gate_proj": [
+        64,
+        32
+      ],
+      "model.layers.1.mlp.up_proj": [
+        64,
+        32
+      ],
+      "model.layers.2.linear_attn.in_proj_a": [
+        2,
+        32
+      ],
+      "model.layers.2.linear_attn.in_proj_b": [
+        2,
+        32
+      ],
+      "model.layers.2.linear_attn.in_proj_qkv": [
+        48,
+        32
+      ],
+      "model.layers.2.linear_attn.in_proj_z": [
+        16,
+        32
+      ],
+      "model.layers.2.linear_attn.out_proj": [
+        32,
+        16
+      ],
+      "model.layers.2.mlp.down_proj": [
+        32,
+        64
+      ],
+      "model.layers.2.mlp.gate_proj": [
+        64,
+        32
+      ],
+      "model.layers.2.mlp.up_proj": [
+        64,
+        32
+      ],
+      "model.layers.3.mlp.down_proj": [
+        32,
+        64
+      ],
+      "model.layers.3.mlp.gate_proj": [
+        64,
+        32
+      ],
+      "model.layers.3.mlp.up_proj": [
+        64,
+        32
+      ],
+      "model.layers.3.self_attn.k_proj": [
+        16,
+        32
+      ],
+      "model.layers.3.self_attn.o_proj": [
+        32,
+        32
+      ],
+      "model.layers.3.self_attn.q_proj": [
+        64,
+        32
+      ],
+      "model.layers.3.self_attn.v_proj": [
+        16,
+        32
+      ]
+    },
+    "torch": "2.6.0+cpu",
+    "transformers": "5.17.0"
+  },
+  "schema_version": 1,
+  "scientific_treatment_selected": false,
+  "scope": "Reduced random actual-Qwen architecture mechanics only; training readouts are explicitly hand-built synthetic adapter fixtures. No pretrained candidate result.",
+  "source_base_commit": "8305da193b0dfbb6063568e6d43c45140aa9d88b",
+  "source_sha256": {
+    "test_qwen_lora_runtime.py": "63c8a62b122f0a893ade2c459b2614f7a81b92f8507c7c5764c5c6baa02bc766",
+    "training/episode_adapter.py": "14273082ee99a94fb4bd6f3b213b1d37ce92bb2925a1c9df5ec27250549c8015",
+    "training/qwen_lora_runtime.py": "c357b98e5fd9be1e0e3817270f6c9d50da45c978ee8b91dc32663ab72aa11022",
+    "training/torch_loop.py": "fa6fc19200eef2d7646f10ca7dd21cd4f90ccaac830e0dfc021802d167525412"
+  },
+  "synthetic_step": {
+    "base_sha256": "3e8766176f764c1f4a347c765c21b12e35418506abee49467c3a4bf448c70aa5",
+    "joint_samples": 4,
+    "loss": -16.120981454849243,
+    "max_behavior_logprob_error": 0.0,
+    "policy_after_sha256": "73d32ba9177a264977fd5054d4dc587a54fd52cd11dcea58d7ac275a5344f446",
+    "policy_before_sha256": "8a6c2d184aaf683cce19af24b1bef9c73cf3ffa5d08701b6acbae31b2783026d",
+    "trajectories": 10
+  },
+  "targets": 31,
+  "tests": {
+    "independent_review_tests": 14,
+    "independent_review_wall_seconds_unittest": 5.954,
+    "passed": true,
+    "system_python_without_dependencies": "14 tests skip cleanly",
+    "tests": 14,
+    "wall_seconds_unittest": 5.687
+  }
+}

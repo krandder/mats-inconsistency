@@ -1,0 +1,12 @@
+{
+ "id": "E-SPLIT-1",
+ "question": "Does Shapley pay an input and a processor by scarcity or by effort?",
+ "setup": "Logit = a\u00b7x times input gates times processor gates. (a) 1 input read by k duplicate processors, (b) 1 processor reading k duplicate inputs, (c) one of each. Duplicates either substitute (any one suffices) or add up (each carries 1/k). Exact Shapley and IG (m = 20, 50); 5 seeds.",
+ "result": "By scarcity. In (a) the input's Shapley share is 0.50, 0.667 and 0.833 for k = 1, 2, 5 when any one processor suffices, and 0.50, 0.607\u00b10.003, 0.672\u00b10.005 when they add up; (b) is the mirror image (input 0.333 and 0.167 at k = 2, 5). (c) splits 0.50/0.50, which is the symmetry axiom. IG agrees in the substitute case (0.59 and 0.78) but gives exactly 0.50 in every additive case: the logit grows as t squared along the straight path, so IG cannot see replaceability there.",
+ "status": "Informative",
+ "files": [
+  "exp_split.py",
+  "results/split_summary.json",
+  "charts/split_scarcity.json"
+ ]
+}

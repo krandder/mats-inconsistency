@@ -1,0 +1,243 @@
+{
+ "verdicts": [
+  {
+   "rule": "E1-D0",
+   "criterion": "1-step battle accuracy (ply 0, Z materialised)",
+   "per_seed": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "mean": 1.0,
+   "lo": 1.0,
+   "hi": 1.0,
+   "threshold": ">= 0.97",
+   "pass": true
+  },
+  {
+   "rule": "E1-D0",
+   "criterion": "5-known-slot NLL (nats)",
+   "per_seed": [
+    0.00016,
+    8e-05,
+    7e-05
+   ],
+   "mean": 0.000104970094980672,
+   "lo": -1.6294074554425842e-05,
+   "hi": 0.00022623426451576985,
+   "threshold": "<= 0.03",
+   "pass": true
+  },
+  {
+   "rule": "E1-D0",
+   "criterion": "0-step belief KL to P*_full per hidden slot (nats)",
+   "per_seed": [
+    0.02306,
+    0.02536,
+    0.02325
+   ],
+   "mean": 0.023890125650861432,
+   "lo": 0.0207177702498219,
+   "hi": 0.027062481051900966,
+   "threshold": ">= 0.12",
+   "pass": false
+  },
+  {
+   "rule": "E1-D2 (exploratory)",
+   "criterion": "JSD reduction kc_dedup vs mix",
+   "per_seed": [
+    0.89552,
+    0.84123,
+    0.93446
+   ],
+   "mean": 0.8904023496386716,
+   "lo": 0.7740888504343597,
+   "hi": 1.0067158488429835,
+   "threshold": ">= 0.5",
+   "pass": "n/a: exploratory, bar met"
+  },
+  {
+   "rule": "E1-D2 (exploratory)",
+   "criterion": "value-MSE reduction kc_dedup vs mix",
+   "per_seed": [
+    -0.66969,
+    -0.4158,
+    -0.49687
+   ],
+   "mean": -0.5274535735534758,
+   "lo": -0.8495900353735075,
+   "hi": -0.20531711173344402,
+   "threshold": ">= 0.25",
+   "pass": "n/a: exploratory, bar not met"
+  },
+  {
+   "rule": "E1-D2 (exploratory)",
+   "criterion": "JSD reduction kc_dedup vs ataraxos_mmd",
+   "per_seed": [
+    0.60913,
+    0.42465,
+    0.58933
+   ],
+   "mean": 0.5410369451340878,
+   "lo": 0.2894388094061612,
+   "hi": 0.7926350808620145,
+   "threshold": ">= 0.5",
+   "pass": "n/a: exploratory, bar met"
+  },
+  {
+   "rule": "E1-D2 (exploratory)",
+   "criterion": "value-MSE reduction kc_dedup vs ataraxos_mmd",
+   "per_seed": [
+    0.11494,
+    0.14605,
+    0.15073
+   ],
+   "mean": 0.13724082216447178,
+   "lo": 0.08892121977747491,
+   "hi": 0.18556042455146865,
+   "threshold": ">= 0.25",
+   "pass": "n/a: exploratory, bar not met"
+  },
+  {
+   "rule": "E1-D2 (exploratory)",
+   "criterion": "JSD reduction attn_L3 vs mix",
+   "per_seed": [
+    0.67133,
+    0.77344,
+    0.72633
+   ],
+   "mean": 0.723700278202429,
+   "lo": 0.5967514260370942,
+   "hi": 0.8506491303677638,
+   "threshold": ">= 0.5",
+   "pass": "n/a: exploratory, bar met"
+  },
+  {
+   "rule": "E1-D2 (exploratory)",
+   "criterion": "value-MSE reduction attn_L3 vs mix",
+   "per_seed": [
+    -0.00469,
+    0.21524,
+    0.14461
+   ],
+   "mean": 0.11838512163524743,
+   "lo": -0.16054846370818343,
+   "hi": 0.3973187069786783,
+   "threshold": ">= 0.25",
+   "pass": "n/a: exploratory, bar not met"
+  },
+  {
+   "rule": "E1-D2 (exploratory)",
+   "criterion": "JSD reduction attn_L3 vs ataraxos_mmd",
+   "per_seed": [
+    -0.22957,
+    0.17897,
+    -0.71467
+   ],
+   "mean": -0.25509074288348477,
+   "lo": -1.3664079577954376,
+   "hi": 0.856226472028468,
+   "threshold": ">= 0.5",
+   "pass": "n/a: exploratory, bar not met"
+  },
+  {
+   "rule": "E1-D2 (exploratory)",
+   "criterion": "value-MSE reduction attn_L3 vs ataraxos_mmd",
+   "per_seed": [
+    0.46744,
+    0.52666,
+    0.51468
+   ],
+   "mean": 0.5029292439320736,
+   "lo": 0.4251455197109999,
+   "hi": 0.5807129681531473,
+   "threshold": ">= 0.25",
+   "pass": "n/a: exploratory, bar met"
+  },
+  {
+   "rule": "E1-D3 (exploratory)",
+   "criterion": "Spearman(trust) - Spearman(stiff), overall",
+   "per_seed": [
+    0.82787,
+    0.88723,
+    0.82818
+   ],
+   "mean": 0.8477589756750251,
+   "lo": 0.7628444490054569,
+   "hi": 0.9326735023445933,
+   "threshold": ">= 0.1",
+   "pass": "n/a: exploratory, bar met"
+  },
+  {
+   "rule": "E1-D3 (exploratory)",
+   "criterion": "same, mean within 10 entropy strata",
+   "per_seed": [
+    0.27871,
+    0.36512,
+    0.29743
+   ],
+   "mean": 0.3137550110978326,
+   "lo": 0.20082041411374058,
+   "hi": 0.42668960808192463,
+   "threshold": ">= 0.15",
+   "pass": "n/a: exploratory, bar met"
+  },
+  {
+   "rule": "E1-D3 (exploratory)",
+   "criterion": "delusional-rate cut trust vs stiff",
+   "per_seed": [
+    0.5,
+    0.5,
+    0.33333
+   ],
+   "mean": 0.4444444444444444,
+   "lo": 0.20540818167159572,
+   "hi": 0.6834807072172931,
+   "threshold": ">= 0.4",
+   "pass": "n/a: exploratory, bar met"
+  },
+  {
+   "rule": "E1-D5 (exploratory)",
+   "criterion": "Unified-LIR effective win vs P0",
+   "per_seed": [
+    0.46625,
+    0.455,
+    0.5275
+   ],
+   "mean": 0.48291666666666666,
+   "lo": 0.3859908517116445,
+   "hi": 0.5798424816216888,
+   "threshold": ">= 0.55",
+   "pass": "n/a: exploratory, bar not met"
+  },
+  {
+   "rule": "E1-D5 (exploratory)",
+   "criterion": "Unified-LIR effective win vs Ataraxos-1Step",
+   "per_seed": [
+    0.45625,
+    0.485,
+    0.53875
+   ],
+   "mean": 0.49333333333333335,
+   "lo": 0.38930620456716747,
+   "hi": 0.5973604620994992,
+   "threshold": ">= 0.55",
+   "pass": "n/a: exploratory, bar not met"
+  },
+  {
+   "rule": "E1-D5 (exploratory)",
+   "criterion": "Unified-LIR effective win vs Tabular-MCTS",
+   "per_seed": [
+    0.49875,
+    0.47375,
+    0.54125
+   ],
+   "mean": 0.5045833333333333,
+   "lo": 0.4198096695301532,
+   "hi": 0.5893569971365133,
+   "threshold": ">= 0.55",
+   "pass": "n/a: exploratory, bar not met"
+  }
+ ],
+ "gate": false
+}

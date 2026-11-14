@@ -1,0 +1,15 @@
+data_n512_d0_r1 {"arm": "data", "lam": 0.0, "n": 512, "d": 0, "r": 1, "labmin": 0, "best_val": 0.6401195923487345, "best_step": 300, "n_train_ctx": 768, "secs": 33.0}
+Traceback (most recent call last):
+  File "/home/agent/workspaces/mats/work/deep-study/wf13/consistency/check/tr.py", line 188, in <module>
+    out, meta = run(arm, float(lam), n, d, r, labmin)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/agent/workspaces/mats/work/deep-study/wf13/consistency/check/tr.py", line 157, in run
+    c = dict(i=lambda: loss_pairs(model, g), iio=lambda: loss_orders(model, g, False), iis=lambda: loss_orders(model, g, True),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/agent/workspaces/mats/work/deep-study/wf13/consistency/check/tr.py", line 158, in <lambda>
+    synth=lambda: loss_synth(model, g), p1=lambda: loss_p1(model, g)).get(arm, lambda: None)()
+                                                   ^^^^^^^^^^^^^^^^^
+  File "/home/agent/workspaces/mats/work/deep-study/wf13/consistency/check/tr.py", line 102, in loss_p1
+    K = LEV[int(torch.randint(0, len([k for k in LEV if k <= C1.K]), (1,), generator=g))]
+                                                             ^^^^
+AttributeError: 'NoneType' object has no attribute 'K'

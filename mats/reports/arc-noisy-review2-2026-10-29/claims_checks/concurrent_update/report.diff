@@ -1,0 +1,275 @@
+--- claims_snapshot/report.md	2026-10-29 09:27:22.340051283 +0000
++++ claims_checks/concurrent_update/report.md	2026-10-29 09:49:13.593799564 +0000
+@@ -340,39 +340,44 @@
+ 
+ ## Summary (Part 2)
+ 
+-**One pre-registered win, and it is a readout, not a sampler: Monte Carlo moments read out with a saddlepoint. Amortised
+-over the 256 outputs it beats every sampler at ARC's depth 4 from 1e-8 to 1e-12 (37-83x cheaper than splitting per event)
+-and Monte Carlo at depth 8 at 1e-6 (9.4x), while staying within 50% for 53-93% of the events. None of the program's
+-backward-function samplers works at sigma <= 0.01, and at depth 32 nothing of ours wins: splitting without psi is the
+-only accurate method there.** This holds unchanged at sigma = 0.001 and 0.003, the primary levels; at the secondary sigma = 0.01 the same
+-holds except that the depth-4 win at 1e-12 loses significance (P2.4).
++**One pre-registered win, and it is a readout, not a sampler: Monte Carlo moments read out with a saddlepoint. With its
++cost shared over the 256 outputs and the five thresholds per output, it is cheaper than every sampler at ARC's depth 4
++at 1e-8 and 1e-10 (37-38x and 55-58x cheaper than splitting per event) and than Monte Carlo at depth 8 at 1e-6
++(9.4x), at every noise level tested; within 50% for 70-84% of those events. None of the tested backward-function candidates gives a
++qualifying win, and at depth 32 nothing of ours wins.** A depth-4 win at 1e-12 (83x) holds only under the median
++convention the scorer uses (the lower of the two middle values); with the usual midpoint median it is 19x [0, 80], not
++a win (P2.3).
+ 
+ The numbers (sigma = 0.001, 20 evaluation nets, outputs 0-7, thresholds set so that p is 1e-4 to 1e-12; FLOPs at part
+-1's flopscope rates, ARC's kprop at its own counter; cells give FLOPs to 50% relative error per event, amortised over the
+-256 outputs where the method serves them all at once, and the fraction of events that get within 50%):
++1's flopscope rates, ARC's kprop at its own counter; cells give FLOPs to 50% relative error per event, amortised where
++one run serves all outputs, and the fraction of events within 50%):
+ 
+ | | depth 4 (ARC's shape) | depth 8 | depth 32 |
+ |---|---|---|---|
+-| ARC's tail method (factorized K = 3, sample-free; 3.4e9 / 1.3e10 / 2.6e11 FLOPs for all outputs at one threshold) | within 50% for 96% / 55% / 28% of events at 1e-4 / 1e-6 / 1e-8, 9% at 1e-12; beats zero to 1e-8 | 56% at 1e-4, 17% at 1e-6; beats zero only at 1e-4 | within 50% for at most 1% of events at every level; never beats zero |
+-| splitting without psi, per event (unbiased) | 5.4e9 (1e-4) to 4.0e10 (1e-12), every event | 1.3e10 to 1.5e11 | 6.4e10 to 4.2e12 |
++| ARC's tail method (factorized K = 3, sample-free; 3.4e9 / 1.3e10 / 2.1e11 FLOPs for all outputs at one threshold) | within 50% for 96% / 55% / 28% of events at 1e-4 / 1e-6 / 1e-8, 9% at 1e-12; beats zero to 1e-8 | 56% at 1e-4, 17% at 1e-6; beats zero only at 1e-4 | within 50% for at most 1% of events at every level; never beats zero |
++| splitting without psi, per event (unbiased; B50 projected from the measured run variance) | 5.4e9 (1e-4) to 4.0e10 (1e-12), finite for every event | 1.3e10 to 1.5e11 | 6.4e10 to 4.2e12 |
+ | Monte Carlo, amortised | 8.2e7 at 1e-4; 4.2e9 at 1e-6 | 1.7e8; 8.6e9 | 6.6e8; 3.2e10 |
+-| **ours: Monte Carlo moments (2^20 paths) + saddlepoint, amortised (biased)** | 4.5e8 at every level; within 50% for 99 / 93 / 84 / 70 / 53% (1e-4 ... 1e-12); wins at 1e-8, 1e-10, 1e-12 | 8.9e8; 89 / 71 / 40 / 23 / 16%; wins at 1e-6 | 56% at 1e-4, under 20% below; no win |
++| **ours: Monte Carlo moments (smallest successful budget, 2^20 or 2^22 paths) + saddlepoint, amortised (biased)** | 4.5e8 at every level; within 50% for 99 / 93 / 84 / 70 / 53% (1e-4 ... 1e-12); wins at 1e-8 and 1e-10 | 8.9e8; 89 / 71 / 40 / 23 / 16%; wins at 1e-6 | 56% at 1e-4, under 20% below; no win |
+ | ours: splitting on the top mode of the last hidden layer (one run for all outputs) | - | - | no win under both pre-registered reach rules |
+ 
+ - The same readout applied to ARC's own description (sample-free, about ARC's cost) failed its pre-registered kill test
+-  at depth 8 (+0.12 more events within 50% than ARC's readout, the bar was +0.20), so it makes no claim. Post hoc, on
++  at depth 8 (+0.12 more events within 50% than ARC's readout; the bar was +0.20), so it makes no claim. Post hoc, on
+   the evaluation nets, it is within 50% more often than ARC's readout at every level from 1e-6 to 1e-12 at depths 4 and
+-  8 (+0.09 to +0.34; P2.5), and it beats zero down to 1e-12 at depth 4 where ARC's readout stops at 1e-8.
++  8 (+0.09 to +0.34; P2.5), and it beats zero down to 1e-12 at depth 4 where ARC's readout stops at 1e-8. A
++  pre-registered confirmatory test on 20 fresh nets is reported in P2.10.
+ - Killed by their pre-registered tests: importance sampling with a Gaussian fitted to the event (the chain's
+-  conditional pulled back to x; relative variance 650-3,700 per sample), layer-wise twisted SMC (the noise carries at
+-  most a factor of about 2: r >= 0.46), and, effectively, mode splitting (it passed its kill test only through
+-  near-zero estimates and has no win on the evaluation nets).
+-- Smallest p at which each method still beats zero (depth 4 / 8 / 32): ARC's tail method 1e-8 / 1e-4 / none; Monte
+-  Carlo at ARC's cost none / 1e-4 / 1e-4; splitting at 3e11 FLOPs per event 1e-12 / 1e-12 / 1e-8; ours 1e-12 / 1e-12 /
+-  1e-6 (table in P2.3).
+-- Caveats: our winner is biased and misses 50% for 16-47% of the events at depth 4, 1e-8 to 1e-12; per event (no sharing
+-  across outputs) it loses to splitting everywhere; at depth 32 a third to a half of the 1e-10 and 1e-12 truths are
+-  provisional (the conclusions hold without them).
++  conditional pulled back to x, tested at depth 4 and 1e-8; relative variance 650-3,700 per sample) and layer-wise
++  twisted SMC (the noise-leverage diagnostic r had per-net medians 0.46-1.1 on two development nets, so typically at
++  most about a 2x gain for estimators that keep prior input draws; single events went as low as r = 0.10). Mode
++  splitting passed its kill test only through near-zero estimates and has no win on the evaluation nets.
++- Smallest p at which each method still beats zero, at the pre-registered budgets (depth 4 / 8 / 32): ARC's tail method
++  (at its own cost) 1e-8 / 1e-4 / none; Monte Carlo at ARC's cost none / 1e-4 / 1e-4; splitting at 3e11 FLOPs per event
++  1e-12 / 1e-12 / 1e-8. Ours at its larger tested budget (5.7e11 / 1.1e12 / 4.6e12 FLOPs per run, before sharing):
++  1e-12 / 1e-12 / 1e-6 (P2.3).
++- Caveats: our winner is biased; it misses 50% for 16%, 30% and 47% of the depth-4 events at 1e-8, 1e-10, 1e-12 (18%,
++  34%, 50% if the budget is fixed at 2^20 paths); its advantage needs the cost shared over 256 outputs and five
++  thresholds, and per event it loses to splitting everywhere; accuracy was measured on 8 outputs per net. At depth 32 a
++  third to a half of the 1e-10 and 1e-12 truths are provisional (the conclusions hold without them).
+ 
+ ## Progress log (Part 2)
+ 
+@@ -418,9 +423,11 @@
+   moves; levels and move scales frozen from an independent pilot, so each run is unbiased; 32 runs of 2,000 particles at
+   L = 32, 16 at L = 4 and 8. Held-out checks: split halves, plain Monte Carlo with 2^23 paths at 1e-4, and a second
+   splitting estimator with other tuning (rho = 0.3, own pilot and seeds) for two outputs per net. An event is provisional
+-  if its relative SE exceeds 0.25 or a check fails. At 1e-4 the truths agree with Monte Carlo at every depth and sigma
+-  (mean log ratio -0.013 to +0.007; z-scores with SD 0.91-1.18; 0-5 of 160 beyond 3 SE); the second splitting
+-  estimator agrees too (z SD 0.98-1.32, 0-6 of 200 beyond 3 SE, the wider ones at L = 32). At L = 32 the deep levels are
++  if its relative SE exceeds 0.25 or a check fails. The aggregate cross-checks are broadly consistent and individual
++  failures are flagged provisional: against Monte Carlo at 1e-4 (the registered check) the mean log ratio is -0.013 to
++  +0.007 at every depth and sigma, z-scores have SD 0.91-1.18 and 0-5 of 160 fall beyond 3 SE; the second splitting
++  estimator gives z SD 0.98-1.32 with 0-6 of 200 beyond 3 SE, the wider ones at L = 32. (An exploratory Monte Carlo
++  comparison at 1e-6 is consistent too, apart from the small-count bias of a log; zero-count cases were dropped.) At L = 32 the deep levels are
+   noisy: at sigma = 0.001, 48 of 160 events at 1e-10 and 82 of 160 at 1e-12 are provisional (sigma = 0.003: 54 and 83;
+   0.01: 29 and 65); L = 4 has at most 2 of 800 and L = 8 at most 10 of 800 per sigma.
+ - **Metric**: FLOPs to 50% relative error (B50). Deterministic methods: their cost if within 50%, else never. Unbiased
+@@ -444,11 +451,15 @@
+ 
+ ## P2.3 Results on the evaluation nets (sigma = 0.001, 20 nets, 160 events per cell)
+ 
+-Each cell: FLOPs to 50% relative error per event / amortised over the 256 outputs (fraction of the 160 events that reach
+-50%). Medians over events; "never" when fewer than half the events reach 50%. Full tables with 95% CIs, the
+-validated-events-only versions and every variant: `work/arc-noisy/tails/results/tables_s0.001.txt` and
+-`report_tables_s0.001.md`. Deductive (no sampling of the network): kprop rows and the post-hoc row. Biased: the
+-moment-based rows. Unbiased: Monte Carlo, Kerdock, splitting, mode splitting.
++Each cell: FLOPs to 50% relative error per event / amortised (shared work divided by the 256 outputs, and by the five
++thresholds where it serves them all) (fraction of the 160 events that reach 50%). Medians over events; "never" when
++fewer than half the events reach 50%. For randomised rows "reach" means relative RMSE <= 0.5 over the replicates; for
++splitting it is projected from the measured variance of the truth's frozen runs. The moment-based rows use, per event,
++the smallest tested budget that reaches 50% (2^20 or 2^22 paths, 4 replicates each; a retrospective selection using the
++truth, as amendment 1 specifies, not a stopping rule). Full tables with 95% CIs for B50, the validated-events-only
++versions and every variant: `work/arc-noisy/tails/results/tables_s0.001.txt` and `report_tables_s0.001.md`; CIs for the
++fractions and the fixed-budget fractions: `results/sensitivity.txt`. Deductive (no sampling of the network): kprop rows
++and the post-hoc row. Biased: the moment-based rows. Unbiased: Monte Carlo, Kerdock, splitting, mode splitting.
+ 
+ **Depth 4 (ARC's shape)**
+ 
+@@ -459,8 +470,8 @@
+ | splitting without psi, per event | 5.4e9 (1.00) | 1.0e10 (1.00) | 1.7e10 (1.00) | 2.6e10 (1.00) | 4.0e10 (1.00) |
+ | ARC's tail method (factorized K = 3) | 3.4e9 / 7.3e6 (0.96) | 3.4e9 / 7.3e6 (0.55) | never (0.28) | never (0.19) | never (0.09) |
+ | factorized K = 3, augmented | 2.9e10 / 6.3e7 (0.97) | 2.9e10 / 6.3e7 (0.55) | never (0.28) | never (0.16) | never (0.08) |
+-| Monte Carlo moments + Edgeworth (ARC's baseline), 2^20 paths | 5.7e11 / 4.5e8 (0.98) | 5.7e11 / 4.5e8 (0.57) | never (0.22) | never (0.14) | never (0.07) |
+-| **ours (U3): Monte Carlo moments + saddlepoint, 2^20 paths** | 5.7e11 / 4.5e8 (0.99) | 5.7e11 / 4.5e8 (0.93) | 5.7e11 / 4.5e8 (0.84) | 5.7e11 / 4.5e8 (0.70) | 5.7e11 / 4.5e8 (0.53) |
++| Monte Carlo moments + Edgeworth (ARC's baseline) | 5.7e11 / 4.5e8 (0.98) | 5.7e11 / 4.5e8 (0.57) | never (0.22) | never (0.14) | never (0.07) |
++| **ours (U3): Monte Carlo moments + saddlepoint** | 5.7e11 / 4.5e8 (0.99) | 5.7e11 / 4.5e8 (0.93) | 5.7e11 / 4.5e8 (0.84) | 5.7e11 / 4.5e8 (0.70) | 5.7e11 / 4.5e8 (0.53) |
+ | post hoc (U2, killed): saddlepoint on ARC's K3f description | 7.9e9 / 6.2e6 (1.00) | 7.9e9 / 6.2e6 (0.87) | 7.9e9 / 6.2e6 (0.62) | never (0.42) | never (0.34) |
+ 
+ **Depth 8**
+@@ -472,7 +483,7 @@
+ | splitting without psi, per event | 1.3e10 (1.00) | 2.6e10 (1.00) | 4.9e10 (1.00) | 9.1e10 (1.00) | 1.5e11 (1.00) |
+ | ARC's tail method (factorized K = 3) | 1.3e10 / 2.0e7 (0.56) | never (0.17) | never (0.04) | never (0.03) | never (0.02) |
+ | factorized K = 3, augmented | 1.2e11 / 1.8e8 (0.68) | never (0.26) | never (0.08) | never (0.04) | never (0.03) |
+-| Monte Carlo moments + Edgeworth, 2^20 paths | 1.1e12 / 8.9e8 (0.84) | never (0.17) | never (0.07) | never (0.04) | never (0.01) |
++| Monte Carlo moments + Edgeworth | 1.1e12 / 8.9e8 (0.84) | never (0.17) | never (0.07) | never (0.04) | never (0.01) |
+ | **ours (U3): Monte Carlo moments + saddlepoint** | 1.1e12 / 8.9e8 (0.89) | 1.1e12 / 8.9e8 (0.71) | never (0.40) | never (0.23) | never (0.16) |
+ | ours, pre-registered variant (U3r): with the chi mixture over \|x\| | 1.1e12 / 8.9e8 (0.92) | 1.1e12 / 8.9e8 (0.82) | 1.1e12 / 8.9e8 (0.61) | never (0.46) | never (0.34) |
+ | post hoc (U2, killed): saddlepoint on ARC's K3f description | 2.3e10 / 1.8e7 (0.82) | 2.3e10 / 1.8e7 (0.51) | never (0.28) | never (0.19) | never (0.11) |
+@@ -491,17 +502,22 @@
+ | ours (U1): same, rule "relative RMSE <= 0.9" | 4.7e12 / 3.7e9 (0.62) | never (0.49) | never (0.38) | never (0.25) | never (0.19) |
+ 
+ Wins (pre-registered rule: median over nets of the per-net ratio competitor B50 / our B50, bootstrap CI above 1; the
+-competitor is the category's best at that cell):
+-- **Sampling/hybrid, amortised over the 256 outputs, U3**: depth 4 at 1e-8, 1e-10 and 1e-12, over splitting:
+-  37x [36, 38], 55x [51, 58], 83x [70, 85]; depth 8 at 1e-6, over Monte Carlo: 9.4x [8.8, 9.7]. No win at depth 4
+-  for 1e-4 (the Kerdock design is 6.7x and Monte Carlo 5.5x cheaper) or 1e-6 (a tie with ARC's Monte Carlo + Edgeworth
+-  baseline, which uses the same moments; U3 reaches 50% for 93% of events against its 57%), and none at depth 32.
+-  The variant U3r also wins at depth 8, 1e-8 (47x [44, 51]); I treat U3 as the primary and do not pick the better of
+-  the two.
+-- These wins are for estimates that are biased and miss 50% for some events: at depth 4, 16%, 30% and 47% of events
+-  at 1e-8, 1e-10 and 1e-12 are not within 50% (with 2^20 paths, the misses at 1e-6 and 1e-8 are mostly overestimates,
+-  median 1.9x; at 1e-10 and 1e-12 they go both ways, 0.3x to 8x between the 10th and 90th percentiles). Per event (no sharing
+-  across outputs) U3 loses to splitting everywhere (0.009-0.065x), because 2^20 paths cost more than one splitting run.
++competitor is the category's best at that cell). The prereg did not say how to take a median of eight events when some
++never reach 50% (infinite B50); the scorer takes the lower of the two middle values. The usual midpoint median makes a
++net infinite as soon as one of its two middle events is, and I report both (`results/sensitivity.txt`):
++- **Sampling/hybrid, amortised, U3**: depth 4 at 1e-8 and 1e-10, over splitting: 37x [36, 38] and 55x [51, 58] (lower
++  median), 38x [37, 39] and 58x [53, 60] (midpoint median); depth 8 at 1e-6, over Monte Carlo: 9.4x [8.8, 9.7], under
++  both. At depth 4, 1e-12 the lower median gives 83x [70, 85] and the midpoint median 19x [0, 80]: not a robust win.
++  No win at depth 4 for 1e-4 (the Kerdock design is 6.7x and Monte Carlo 5.5x cheaper) or 1e-6 (a tie with ARC's Monte
++  Carlo + Edgeworth baseline, which uses the same moments; U3 reaches 50% for 93% of events against its 57%), and none
++  at depth 32. The pre-registered variant U3r also wins at depth 8, 1e-8 (47x [44, 51]; midpoint CI about [11, 52]); I
++  treat U3 as the primary and do not pick the better of the two.
++- These wins are for biased estimates that miss 50% for some events: at depth 4, 16%, 30% and 47% of events at 1e-8,
++  1e-10 and 1e-12 (fractions within 50%: 0.84 [0.78, 0.89], 0.70 [0.63, 0.76], 0.53 [0.45, 0.61]; with the budget fixed
++  at 2^20 paths, 0.82, 0.66, 0.50). With 2^20 paths the misses at 1e-6 and 1e-8 are mostly overestimates, median 1.9x;
++  at 1e-10 and 1e-12 they go both ways, 0.3x to 8x between the 10th and 90th percentiles. Per event (no sharing across
++  outputs and thresholds) U3 loses to splitting everywhere (0.009-0.065x), because 2^20 paths cost more than one
++  splitting run.
+ - **U1 (mode splitting)**: under the rule "relative MSE < 1" it would win at depth 32, 1e-6 over Monte Carlo (5.0x
+   [3.2, 7.6]), and on validated events also at 1e-10 and 1e-12 over splitting, but every one of these rests on B50
+   extrapolated from runs whose estimates were mostly near zero; under the stricter rule none holds, so by amendment 3
+@@ -510,31 +526,37 @@
+   claim.
+ 
+ Smallest p at which each method still beats zero (median relative error or relative RMSE <= 0.9, CI below 1), sigma =
+-0.001:
++0.001. Pre-registered comparisons (deterministic methods at their own cost; randomised methods at ARC's cost for one
++threshold vector, 3.4e9 / 1.3e10 / 2.1e11 FLOPs, and at 3e11 FLOPs):
+ 
+ | method | depth 4 | depth 8 | depth 32 |
+ |---|---|---|---|
+ | ARC's tail method (factorized K = 3) | 1e-8 | 1e-4 | none (not at 1e-4) |
+ | kprop K = 2 | 1e-6 | 1e-4 | none |
+ | factorized K = 3, augmented | 1e-8 | 1e-6 | (not run) |
+-| Monte Carlo moments + Edgeworth (ARC's baseline, 2^20 paths) | 1e-8 | 1e-6 | 1e-4 |
+-| Monte Carlo at ARC's K3f cost (3.4e9 / 1.3e10 / 2.6e11 FLOPs) | none | 1e-4 | 1e-4 |
++| Monte Carlo at ARC's cost | none | 1e-4 | 1e-4 |
+ | Monte Carlo at 3e11 FLOPs | 1e-4 | 1e-4 | 1e-4 |
+ | splitting at 3e11 FLOPs per event | 1e-12 | 1e-12 | 1e-8 |
+-| ours (U3), 2^20 paths | 1e-12 | 1e-12 | 1e-6 |
+-| ours (U1), mode splitting at its tested budget | - | - | 1e-4 |
+-| post hoc (U2): saddlepoint on ARC's K3f description | 1e-12 | 1e-10 | none |
++| post hoc (U2): saddlepoint on ARC's K3f description, at its own cost | 1e-12 | 1e-10 | none |
+ 
+-ARC's own statement for depth 4 ("beats every baseline down to nearly 10,000x below 1/N", about 1.8e-8) matches the
+-1e-8 we find for its method.
++Supplementary, at the moment methods' tested budgets (2^20 paths: 5.7e11 / 1.1e12 / 4.6e12 FLOPs per run before any
++sharing, above both pre-registered budgets; not evaluated at those budgets, since a biased readout's error does not
++scale as 1/budget): Monte Carlo moments + Edgeworth (ARC's baseline) 1e-8 / 1e-6 / 1e-4; ours (U3) 1e-12 / 1e-12 /
++1e-6. Mode splitting at its tested budget (8 runs in each direction): 1e-4 at depth 32. Splitting per event and
++Monte Carlo have finite B50 at every level by construction, so "beats zero" for them depends only on the budget.
++
++Our better-than-zero cutoff for ARC's method at depth 4, 1e-8, is of the same order as ARC's reported range ("beats
++every baseline down to nearly 10,000x below 1/N", about 1.8e-8); the criteria and the events differ.
+ 
+ ## P2.4 Noise levels
+ 
+ The thresholds are fixed, so the noise level changes the events only through their probabilities. At depths 4 and 8
+ the median event probability moves by at most 0.006 decades between sigma = 0.001 and 0.01 (5-95% range at 1e-12
+-within 0.16 decades). At depth 32 sigma = 0.003 raises it by 0.01-0.04 decades and sigma = 0.01 by 0.07-0.14 decades in
+-the median, up to 16x for some events at 1e-12: the noise starts to matter in the deepest tails, as the twisted-SMC
+-leverage test also showed (r = 0.26-0.81 at depth 32, sigma = 0.01, on development nets).
++within 0.16 decades). At depth 32 sigma = 0.003 raises it by 0.01-0.04 decades in the median (at 1e-4, +0.007 [0.004,
++0.012], a small but nonzero shift) and sigma = 0.01 by 0.07-0.14 decades; at 1e-12 the ratio of the sigma = 0.01 and
++0.001 reference probabilities has a 95th percentile of about 16x and a maximum of about 170x (one validated event). The
++noise starts to matter in the deepest tails, as the twisted-SMC leverage diagnostic also suggested (per-net median r of
++0.26-0.81 at depth 32, sigma = 0.01, on development nets).
+ 
+ | result | sigma = 0.001 | sigma = 0.003 | sigma = 0.01 (secondary) |
+ |---|---|---|---|
+@@ -545,8 +567,9 @@
+ | splitting per event at 1e-12 (depth 4 / 8 / 32) | 4.0e10 / 1.5e11 / 4.2e12 | 3.9e10 / 1.5e11 / 4.4e12 | 4.0e10 / 1.5e11 / 2.9e12 |
+ | mode splitting (depth 32) | no win | no win | wins at 1e-6 and 1e-8 under the looser reach rule only, so no win |
+ 
+-Nothing changes beyond noise from sigma = 0.001 to 0.003. The lowest noise level at which something of ours wins is
+-0.001, the lowest tested; the wins come from the input distribution and the network, not from the noise.
++The win verdicts do not change from sigma = 0.001 to 0.003 (deep depth-32 probabilities do move a little). The lowest
++noise level at which something of ours wins is 0.001, the lowest tested; there is no sigma = 0 comparison, but nothing in
++the wins depends on the noise within 0.001-0.01.
+ 
+ ## P2.5 The saddlepoint readout of ARC's own description (post hoc; killed by its pre-registered test)
+ 
+@@ -565,21 +588,25 @@
+ 
+ ## P2.6 What the results say
+ 
+-- **Readout, not sampler.** Every gain of ours comes from reading moments out with a saddlepoint. With accurate moments
+-  (2^20 Monte Carlo paths) the median event stays within 50% to 1e-12 at depth 4 and to 1e-6 at depth 8 (1e-8 with the
+-  chi mixture). What limits it is the four-term cumulant generating function: tails at depth 8, and far more at depth
+-  32 (some outputs reach 1e-12 at 13 SD, others are lighter than Gaussian), depend on higher cumulants that no
+-  four-moment readout has.
+-- **Backward functions have no leverage at low noise.** At sigma <= 0.01 the event is decided by x through a nonlinear
+-  map whose conditional law given the event spreads over many input directions: a Gaussian fitted to it gives 650-3,700
+-  relative variance per importance sample, and the noise can carry at most a factor of about 2 (r >= 0.46), so
+-  importance sampling and layer-wise twisting over the chain both fail. Splitting needs no psi and handles it with about
+-  1e4-1e6 network evaluations per event (1e-4 at depth 4 to 1e-12 at depth 32).
+-- **Depth 32.** The collapse onto the top mode helps only the outputs aligned with it: splitting on that mode serves
+-  all outputs at once, but one of its runs has relative RMSE <= 0.5 for 49% of the events at 1e-4, 13% at 1e-8 and 3%
+-  at 1e-12. Splitting per event is the only
+-  accurate method there (4.2e12 FLOPs per event at 1e-12), and Monte Carlo moments, kprop and every deductive readout
+-  fail beyond 1e-4.
++- **Readout, not sampler.** Every gain of ours comes from reading moments out with a saddlepoint, which tilts a
++  truncated cumulant generating function towards the threshold. It improves the empirical errors in these cells; no
++  relative-error guarantee is established here (a truncated CGF need not be a valid one). With 2^20-2^22 Monte Carlo
++  paths of moments the median event stays within 50% to 1e-12 at depth 4 and to 1e-6 at depth 8 (1e-8 with the chi
++  mixture). The deterioration with depth is consistent with information the four-moment approximation loses (at depth
++  32 some outputs reach 1e-12 at 13 SD, others are lighter than Gaussian); this experiment does not isolate that cause.
++- **The tested backward-function candidates failed.** At sigma <= 0.01 the event is decided mostly by x through a
++  nonlinear map whose conditional law given the event spreads over many input directions: the Gaussian input proposals
++  we tried (depth 4, 1e-8) had 650-3,700 relative variance per importance sample, and the noise-only leverage diagnostic
++  (per-net median r 0.46-1.1 on two development nets) failed its bar, which suggests limited typical gains for any
++  estimator that keeps prior input draws. We did not test every backward function or every layer-wise SMC scheme.
++  Splitting needs no psi and has finite projected cost for every event, about 1e4-1e6 network evaluations per event
++  (1e-4 at depth 4 to 1e-12 at depth 32).
++- **Depth 32.** None of our candidates has a qualifying win. The collapse onto the top mode helps only the outputs
++  aligned with it: splitting on that mode serves all outputs at once, but one of its runs has relative RMSE <= 0.5 for
++  49% of the events at 1e-4, 13% at 1e-8 and 3% at 1e-12. Per-event splitting has a finite projected B50 for every
++  event (4.2e12 FLOPs at 1e-12); Monte Carlo has finite analytic B50 but is far more expensive; the Kerdock design
++  reaches every event at 1e-4; beyond 1e-4 the moment readouts miss 50% for most events (U3 still beats zero at 1e-6 at
++  its tested budget), and kprop and every deductive readout fail.
+ - **ARC's tail method** does what ARC reported at depth 4 (better than zero to about 1e-8) and degrades fast with depth:
+   better than zero only at 1e-4 at depth 8, and never at depth 32, where most of its estimates are negative.
+ 
+@@ -589,10 +616,10 @@
+ |---|---|
+ | C-K3f within 50% for most events at 1e-4 (L = 4, 8), about half at 1e-6 and a quarter at 1e-8 (L = 4), under a fifth beyond 1e-6 at L = 8, wrong at L = 32 | right: 0.96 / 0.56 at 1e-4; 0.55 and 0.28; 0.17 and below; 0.01 |
+ | C-K3f better than zero to about 1e-6 (L = 8) and 1e-8 (L = 4) | half right: 1e-8 at L = 4, only 1e-4 at L = 8 |
+-| U2 passes its kill test; sample-free win at L = 4 and 8 | wrong: failed at L = 8 (+0.12 vs +0.20), so no claim; post hoc +0.16 to +0.34 at k >= 6 |
++| U2 passes its kill test; sample-free win at L = 4 and 8 | wrong: failed at L = 8 (+0.12 vs +0.20), so no claim; post hoc +0.09 to +0.34 at k >= 6 |
+ | U2 within 50% for most events to 1e-6 (L = 4, 8) and to 1e-8 (L = 4); better than zero to 1e-12 | mostly right post hoc: 0.87 / 0.51 at 1e-6, 0.62 at 1e-8; better than zero to 1e-12 (L = 4), 1e-10 (L = 8) |
+-| C-GS reaches 50% for every event; B50 at 1e-12 about 1e10-1e11 (L = 4), 1e11 (L = 8), 1e12 (L = 32) | right, except L = 32 is 4.2e12 |
+-| C-MC (amortised) cheapest sampler at 1e-4 only; C-Kd within 1.5x of it | right (Kerdock 1.2x cheaper) |
++| C-GS reaches 50% for every event; B50 at 1e-12 about 1e10-1e11 (L = 4), 1e11 (L = 8), 1e12 (L = 32) | right (projected from the measured run variance), except L = 32 is 4.2e12 |
++| C-MC (amortised) cheapest sampler at 1e-4 only; C-Kd within 1.5x of it | close: the Kerdock design is cheaper still at 1e-4 (1.2x), within 1.5x as predicted |
+ | U1 fails its kill test | wrong by the written rule (17/32), but it has no win on the evaluation nets under both rules |
+ | U4 and U5 fail their kill tests | right |
+ | U3 passes at L = 4; about half within 50% at 1e-6 at L = 8; fails at L = 32 | right, and better than predicted at L = 8 (0.71) |

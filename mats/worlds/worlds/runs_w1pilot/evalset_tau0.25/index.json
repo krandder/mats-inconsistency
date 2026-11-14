@@ -1,0 +1,1200 @@
+{
+ "world": "junta",
+ "world_cfg": {
+  "B": 16,
+  "sizes": [
+   2
+  ],
+  "tau2": 0.25,
+  "sig2": [
+   0.1,
+   0.5
+  ],
+  "p_copy_zero": 0.3333333333333333,
+  "p_copy_max": 0.6,
+  "ev_dim": 8,
+  "q_obs": 0.5,
+  "train_policies": [
+   "uniform",
+   "zipf",
+   "pattern",
+   "repeat"
+  ],
+  "heldout": [
+   "ucb"
+  ],
+  "zipf_a": [
+   0.8,
+   1.5
+  ],
+  "pattern_p": [
+   0.5,
+   0.95
+  ],
+  "pattern_f": [
+   2,
+   3,
+   4,
+   5,
+   6
+  ],
+  "repeat_p": [
+   0.5,
+   0.95
+  ],
+  "repeat_k": [
+   1,
+   16
+  ],
+  "ucb_eps": 0.2,
+  "ucb_c": 1.0
+ },
+ "fixed": {
+  "r0": [
+   -1.1731070237410515,
+   -28.02612484002227,
+   -0.8698818799618926,
+   0.23587672535651774
+  ],
+  "shortcut": [
+   -0.01048599639058823,
+   0.026973158453540504,
+   -0.002275499149624435,
+   -0.12072538652919179,
+   0.2357820350474362,
+   -0.02428050849795548,
+   0.021873353227335003,
+   -0.02176461734858371
+  ]
+ },
+ "cells": [
+  {
+   "N": 16,
+   "policy": "uniform",
+   "E": 1000,
+   "seed": [
+    0,
+    16,
+    4130109879
+   ],
+   "file": "cell_N16_uniform.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 16,
+   "policy": "zipf",
+   "E": 1000,
+   "seed": [
+    0,
+    16,
+    3912159952
+   ],
+   "file": "cell_N16_zipf.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 16,
+   "policy": "pattern",
+   "E": 1000,
+   "seed": [
+    0,
+    16,
+    2747071630
+   ],
+   "file": "cell_N16_pattern.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 16,
+   "policy": "repeat",
+   "E": 1000,
+   "seed": [
+    0,
+    16,
+    2824319936
+   ],
+   "file": "cell_N16_repeat.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 16,
+   "policy": "ucb",
+   "E": 1000,
+   "seed": [
+    0,
+    16,
+    1075268537
+   ],
+   "file": "cell_N16_ucb.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 32,
+   "policy": "uniform",
+   "E": 1000,
+   "seed": [
+    0,
+    32,
+    4130109879
+   ],
+   "file": "cell_N32_uniform.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 32,
+   "policy": "zipf",
+   "E": 1000,
+   "seed": [
+    0,
+    32,
+    3912159952
+   ],
+   "file": "cell_N32_zipf.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 32,
+   "policy": "pattern",
+   "E": 1000,
+   "seed": [
+    0,
+    32,
+    2747071630
+   ],
+   "file": "cell_N32_pattern.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 32,
+   "policy": "repeat",
+   "E": 1000,
+   "seed": [
+    0,
+    32,
+    2824319936
+   ],
+   "file": "cell_N32_repeat.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 32,
+   "policy": "ucb",
+   "E": 1000,
+   "seed": [
+    0,
+    32,
+    1075268537
+   ],
+   "file": "cell_N32_ucb.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 64,
+   "policy": "uniform",
+   "E": 1000,
+   "seed": [
+    0,
+    64,
+    4130109879
+   ],
+   "file": "cell_N64_uniform.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 64,
+   "policy": "zipf",
+   "E": 1000,
+   "seed": [
+    0,
+    64,
+    3912159952
+   ],
+   "file": "cell_N64_zipf.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 64,
+   "policy": "pattern",
+   "E": 1000,
+   "seed": [
+    0,
+    64,
+    2747071630
+   ],
+   "file": "cell_N64_pattern.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 64,
+   "policy": "repeat",
+   "E": 1000,
+   "seed": [
+    0,
+    64,
+    2824319936
+   ],
+   "file": "cell_N64_repeat.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 64,
+   "policy": "ucb",
+   "E": 1000,
+   "seed": [
+    0,
+    64,
+    1075268537
+   ],
+   "file": "cell_N64_ucb.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 128,
+   "policy": "uniform",
+   "E": 1000,
+   "seed": [
+    0,
+    128,
+    4130109879
+   ],
+   "file": "cell_N128_uniform.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 128,
+   "policy": "zipf",
+   "E": 1000,
+   "seed": [
+    0,
+    128,
+    3912159952
+   ],
+   "file": "cell_N128_zipf.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 128,
+   "policy": "pattern",
+   "E": 1000,
+   "seed": [
+    0,
+    128,
+    2747071630
+   ],
+   "file": "cell_N128_pattern.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 128,
+   "policy": "repeat",
+   "E": 1000,
+   "seed": [
+    0,
+    128,
+    2824319936
+   ],
+   "file": "cell_N128_repeat.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 128,
+   "policy": "ucb",
+   "E": 1000,
+   "seed": [
+    0,
+    128,
+    1075268537
+   ],
+   "file": "cell_N128_ucb.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 256,
+   "policy": "uniform",
+   "E": 1000,
+   "seed": [
+    0,
+    256,
+    4130109879
+   ],
+   "file": "cell_N256_uniform.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 256,
+   "policy": "zipf",
+   "E": 1000,
+   "seed": [
+    0,
+    256,
+    3912159952
+   ],
+   "file": "cell_N256_zipf.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 256,
+   "policy": "pattern",
+   "E": 1000,
+   "seed": [
+    0,
+    256,
+    2747071630
+   ],
+   "file": "cell_N256_pattern.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 256,
+   "policy": "repeat",
+   "E": 1000,
+   "seed": [
+    0,
+    256,
+    2824319936
+   ],
+   "file": "cell_N256_repeat.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 256,
+   "policy": "ucb",
+   "E": 1000,
+   "seed": [
+    0,
+    256,
+    1075268537
+   ],
+   "file": "cell_N256_ucb.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 512,
+   "policy": "uniform",
+   "E": 1000,
+   "seed": [
+    0,
+    512,
+    4130109879
+   ],
+   "file": "cell_N512_uniform.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 512,
+   "policy": "zipf",
+   "E": 1000,
+   "seed": [
+    0,
+    512,
+    3912159952
+   ],
+   "file": "cell_N512_zipf.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 512,
+   "policy": "pattern",
+   "E": 1000,
+   "seed": [
+    0,
+    512,
+    2747071630
+   ],
+   "file": "cell_N512_pattern.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 512,
+   "policy": "repeat",
+   "E": 1000,
+   "seed": [
+    0,
+    512,
+    2824319936
+   ],
+   "file": "cell_N512_repeat.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 512,
+   "policy": "ucb",
+   "E": 1000,
+   "seed": [
+    0,
+    512,
+    1075268537
+   ],
+   "file": "cell_N512_ucb.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 1024,
+   "policy": "uniform",
+   "E": 500,
+   "seed": [
+    0,
+    1024,
+    4130109879
+   ],
+   "file": "cell_N1024_uniform.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 1024,
+   "policy": "zipf",
+   "E": 500,
+   "seed": [
+    0,
+    1024,
+    3912159952
+   ],
+   "file": "cell_N1024_zipf.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 1024,
+   "policy": "pattern",
+   "E": 500,
+   "seed": [
+    0,
+    1024,
+    2747071630
+   ],
+   "file": "cell_N1024_pattern.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 1024,
+   "policy": "repeat",
+   "E": 500,
+   "seed": [
+    0,
+    1024,
+    2824319936
+   ],
+   "file": "cell_N1024_repeat.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 1024,
+   "policy": "ucb",
+   "E": 500,
+   "seed": [
+    0,
+    1024,
+    1075268537
+   ],
+   "file": "cell_N1024_ucb.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 2048,
+   "policy": "uniform",
+   "E": 250,
+   "seed": [
+    0,
+    2048,
+    4130109879
+   ],
+   "file": "cell_N2048_uniform.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 2048,
+   "policy": "zipf",
+   "E": 250,
+   "seed": [
+    0,
+    2048,
+    3912159952
+   ],
+   "file": "cell_N2048_zipf.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 2048,
+   "policy": "pattern",
+   "E": 250,
+   "seed": [
+    0,
+    2048,
+    2747071630
+   ],
+   "file": "cell_N2048_pattern.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 2048,
+   "policy": "repeat",
+   "E": 250,
+   "seed": [
+    0,
+    2048,
+    2824319936
+   ],
+   "file": "cell_N2048_repeat.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 2048,
+   "policy": "ucb",
+   "E": 250,
+   "seed": [
+    0,
+    2048,
+    1075268537
+   ],
+   "file": "cell_N2048_ucb.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 4096,
+   "policy": "uniform",
+   "E": 125,
+   "seed": [
+    0,
+    4096,
+    4130109879
+   ],
+   "file": "cell_N4096_uniform.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 4096,
+   "policy": "zipf",
+   "E": 125,
+   "seed": [
+    0,
+    4096,
+    3912159952
+   ],
+   "file": "cell_N4096_zipf.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 4096,
+   "policy": "pattern",
+   "E": 125,
+   "seed": [
+    0,
+    4096,
+    2747071630
+   ],
+   "file": "cell_N4096_pattern.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 4096,
+   "policy": "repeat",
+   "E": 125,
+   "seed": [
+    0,
+    4096,
+    2824319936
+   ],
+   "file": "cell_N4096_repeat.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  },
+  {
+   "N": 4096,
+   "policy": "ucb",
+   "E": 125,
+   "seed": [
+    0,
+    4096,
+    1075268537
+   ],
+   "file": "cell_N4096_ucb.npz",
+   "refs": [
+    "bayes",
+    "oracle",
+    "count",
+    "item",
+    "prior",
+    "r0",
+    "shortcut"
+   ]
+  }
+ ],
+ "timing": {
+  "16_uniform": {
+   "sample_s": 0.03515768051147461,
+   "refs_s": 2.668627977371216,
+   "per_episode_ms": 2.668627977371216
+  },
+  "16_zipf": {
+   "sample_s": 0.023458480834960938,
+   "refs_s": 2.5429961681365967,
+   "per_episode_ms": 2.5429961681365967
+  },
+  "16_pattern": {
+   "sample_s": 0.03524637222290039,
+   "refs_s": 2.834576368331909,
+   "per_episode_ms": 2.834576368331909
+  },
+  "16_repeat": {
+   "sample_s": 0.03341364860534668,
+   "refs_s": 2.70877742767334,
+   "per_episode_ms": 2.70877742767334
+  },
+  "16_ucb": {
+   "sample_s": 0.033350467681884766,
+   "refs_s": 2.254554510116577,
+   "per_episode_ms": 2.254554510116577
+  },
+  "32_uniform": {
+   "sample_s": 0.04776883125305176,
+   "refs_s": 3.1287119388580322,
+   "per_episode_ms": 3.1287119388580322
+  },
+  "32_zipf": {
+   "sample_s": 0.03321409225463867,
+   "refs_s": 2.878709316253662,
+   "per_episode_ms": 2.878709316253662
+  },
+  "32_pattern": {
+   "sample_s": 0.034935712814331055,
+   "refs_s": 3.150820016860962,
+   "per_episode_ms": 3.150820016860962
+  },
+  "32_repeat": {
+   "sample_s": 0.0291745662689209,
+   "refs_s": 2.540642023086548,
+   "per_episode_ms": 2.540642023086548
+  },
+  "32_ucb": {
+   "sample_s": 0.10446310043334961,
+   "refs_s": 2.8452281951904297,
+   "per_episode_ms": 2.8452281951904297
+  },
+  "64_uniform": {
+   "sample_s": 0.0677800178527832,
+   "refs_s": 4.177152633666992,
+   "per_episode_ms": 4.177152633666992
+  },
+  "64_zipf": {
+   "sample_s": 0.07068395614624023,
+   "refs_s": 3.9717047214508057,
+   "per_episode_ms": 3.9717047214508057
+  },
+  "64_pattern": {
+   "sample_s": 0.05403590202331543,
+   "refs_s": 4.1448280811309814,
+   "per_episode_ms": 4.1448280811309814
+  },
+  "64_repeat": {
+   "sample_s": 0.05161643028259277,
+   "refs_s": 3.0147602558135986,
+   "per_episode_ms": 3.0147602558135986
+  },
+  "64_ucb": {
+   "sample_s": 0.12723040580749512,
+   "refs_s": 2.9930191040039062,
+   "per_episode_ms": 2.9930191040039062
+  },
+  "128_uniform": {
+   "sample_s": 0.10650038719177246,
+   "refs_s": 5.6382246017456055,
+   "per_episode_ms": 5.6382246017456055
+  },
+  "128_zipf": {
+   "sample_s": 0.2264113426208496,
+   "refs_s": 4.52921986579895,
+   "per_episode_ms": 4.52921986579895
+  },
+  "128_pattern": {
+   "sample_s": 0.10843181610107422,
+   "refs_s": 5.38253378868103,
+   "per_episode_ms": 5.38253378868103
+  },
+  "128_repeat": {
+   "sample_s": 0.13727402687072754,
+   "refs_s": 3.4792144298553467,
+   "per_episode_ms": 3.4792144298553467
+  },
+  "128_ucb": {
+   "sample_s": 0.2633953094482422,
+   "refs_s": 3.1877448558807373,
+   "per_episode_ms": 3.1877448558807373
+  },
+  "256_uniform": {
+   "sample_s": 0.2617318630218506,
+   "refs_s": 8.290074586868286,
+   "per_episode_ms": 8.290074586868286
+  },
+  "256_zipf": {
+   "sample_s": 0.33800458908081055,
+   "refs_s": 5.771489381790161,
+   "per_episode_ms": 5.771489381790161
+  },
+  "256_pattern": {
+   "sample_s": 0.23105502128601074,
+   "refs_s": 7.997632741928101,
+   "per_episode_ms": 7.9976327419281
+  },
+  "256_repeat": {
+   "sample_s": 0.2749018669128418,
+   "refs_s": 4.571797609329224,
+   "per_episode_ms": 4.571797609329224
+  },
+  "256_ucb": {
+   "sample_s": 0.8428146839141846,
+   "refs_s": 4.011034965515137,
+   "per_episode_ms": 4.011034965515137
+  },
+  "512_uniform": {
+   "sample_s": 0.43590617179870605,
+   "refs_s": 13.696799755096436,
+   "per_episode_ms": 13.696799755096436
+  },
+  "512_zipf": {
+   "sample_s": 0.5206711292266846,
+   "refs_s": 8.676722526550293,
+   "per_episode_ms": 8.676722526550293
+  },
+  "512_pattern": {
+   "sample_s": 0.8217825889587402,
+   "refs_s": 13.558409929275513,
+   "per_episode_ms": 13.558409929275513
+  },
+  "512_repeat": {
+   "sample_s": 0.41861677169799805,
+   "refs_s": 6.112643480300903,
+   "per_episode_ms": 6.112643480300903
+  },
+  "512_ucb": {
+   "sample_s": 1.7599680423736572,
+   "refs_s": 5.095138072967529,
+   "per_episode_ms": 5.095138072967529
+  },
+  "1024_uniform": {
+   "sample_s": 0.5481932163238525,
+   "refs_s": 12.66295075416565,
+   "per_episode_ms": 25.3259015083313
+  },
+  "1024_zipf": {
+   "sample_s": 0.5491156578063965,
+   "refs_s": 6.796606540679932,
+   "per_episode_ms": 13.593213081359863
+  },
+  "1024_pattern": {
+   "sample_s": 0.4674680233001709,
+   "refs_s": 12.253547668457031,
+   "per_episode_ms": 24.507095336914062
+  },
+  "1024_repeat": {
+   "sample_s": 0.5134289264678955,
+   "refs_s": 4.399693250656128,
+   "per_episode_ms": 8.799386501312256
+  },
+  "1024_ucb": {
+   "sample_s": 2.3659322261810303,
+   "refs_s": 4.053373336791992,
+   "per_episode_ms": 8.106746673583984
+  },
+  "2048_uniform": {
+   "sample_s": 0.4513263702392578,
+   "refs_s": 11.59738302230835,
+   "per_episode_ms": 46.3895320892334
+  },
+  "2048_zipf": {
+   "sample_s": 0.6842870712280273,
+   "refs_s": 5.5808892250061035,
+   "per_episode_ms": 22.323556900024414
+  },
+  "2048_pattern": {
+   "sample_s": 0.5535330772399902,
+   "refs_s": 10.22481656074524,
+   "per_episode_ms": 40.89926624298096
+  },
+  "2048_repeat": {
+   "sample_s": 0.5471937656402588,
+   "refs_s": 4.032900094985962,
+   "per_episode_ms": 16.131600379943848
+  },
+  "2048_ucb": {
+   "sample_s": 4.164881467819214,
+   "refs_s": 2.6763315200805664,
+   "per_episode_ms": 10.705326080322266
+  },
+  "4096_uniform": {
+   "sample_s": 0.5582723617553711,
+   "refs_s": 10.577852964401245,
+   "per_episode_ms": 84.62282371520996
+  },
+  "4096_zipf": {
+   "sample_s": 0.6685225963592529,
+   "refs_s": 4.485493183135986,
+   "per_episode_ms": 35.88394546508789
+  },
+  "4096_pattern": {
+   "sample_s": 0.7513926029205322,
+   "refs_s": 9.218688726425171,
+   "per_episode_ms": 73.74950981140137
+  },
+  "4096_repeat": {
+   "sample_s": 0.5871920585632324,
+   "refs_s": 3.4689383506774902,
+   "per_episode_ms": 27.751506805419922
+  },
+  "4096_ucb": {
+   "sample_s": 6.937589645385742,
+   "refs_s": 2.8563156127929688,
+   "per_episode_ms": 22.85052490234375
+  }
+ },
+ "seed": 0
+}

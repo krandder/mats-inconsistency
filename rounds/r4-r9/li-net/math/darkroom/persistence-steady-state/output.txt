@@ -1,0 +1,101 @@
+==============================================================================
+PART A. R1 is an identity: every stationary system descends its own surprisal
+==============================================================================
+A1 linear NESS, 1000 random stable systems: max |Q+Q^T| = 6.02e-14 -> every one is a 'gradient flow on its own surprisal' (identity, no constraint)
+
+A2 chain over (room, bit). Room surprisal -log2 p*(room) under each policy's own NESS,
+   and whether KL(p_t || p*) is monotone non-increasing from 200 random starts:
+   policy                   D       N       S  argmin  KL-monotone  H(sensory|own model)
+   dark-dweller         0.029   6.644   6.644       D         True  0.181 bits/step
+   noise-dweller        6.644   0.029   6.644       N         True  1.151 bits/step
+   structure-dweller    6.644   6.644   0.029       S         True  0.466 bits/step
+   roamer               1.585   1.585   1.585     tie         True  2.172 bits/step
+   -> every persisting policy is a 'free-energy minimiser' w.r.t. its own p*; the dark-dweller's
+      lowest-surprisal room is D. 'The dark room has high free energy' holds iff the system is not a dark-dweller.
+
+==============================================================================
+PART B. Stream statistics: block-conditional entropies h_k = H(X_t | X_{t-k..t-1})
+==============================================================================
+   D dark (constant)      h_0=0.000  h_1=0.000  h_2=0.000  (h_mu = 0.000)
+   N noise (iid)          h_0=1.000  h_1=1.000  h_2=1.000  (h_mu = 1.000)
+   S structured (q=.95)   h_0=1.000  h_1=0.286  h_2=0.286  (h_mu = 0.286)
+   A alternating (q=1)    h_0=1.000  h_1=0.000  h_2=0.000  (h_mu = 0.000)
+
+R2 (keep sensory entropy low; expected surprisal under the best model = h_mu):
+   ranking, most preferred first: D(0.000) > A(0.000) > S(0.286) > N(1.000)
+   -> prefers D (tied with A only if A's model is free); N always last.
+
+White-noise theorem check (Gibbs): mean work 1 + E[log2 q(X)] for X uniform, over 10^5 random q:
+   max over q = -5.83e-10 (<= 0, = 0 only at q = 1/2). Any model, any memory: noise yields no free energy.
+
+==============================================================================
+PART C. R3 persistence. Fuel = work harvested from the stream by an information ratchet
+  (Boyd-Mandal-Crutchfield: <W> <= kT ln2 (h'_mu - h_mu) <= kT ln2 (1 - h_mu) for binary output).
+  Ideal protocol tuned to the agent's predictive q extracts W(x) = 1 + log2 q(x | past) per symbol.
+  Energy: E <- min(Emax, E + W - c - eps*k); k = model order (memory bits); death at E < 0.
+==============================================================================
+
+C1. Dark room = constant stream (the 'dark/constant' room of the brief). c=0.5, eps=0.05:
+     D dark (constant)      best order k=0  survival(1000 steps)=1.000  mean net gain=+0.500/step
+     N noise (iid)          best order k=0  survival(1000 steps)=0.000  mean net gain=-0.500/step
+     S structured (q=.95)   best order k=1  survival(1000 steps)=0.842  mean net gain=+0.164/step
+     A alternating (q=1)    best order k=1  survival(1000 steps)=1.000  mean net gain=+0.450/step
+   survivors-max: ['D', 'A']; by margin: ['D']
+
+C2. Sweep metabolic cost c and memory cost eps (dark = constant stream):
+       c    eps  max-survival rooms        by-margin
+   -0.20   0.00  ['D', 'N', 'S', 'A']       ['D', 'A']
+   -0.20   0.01  ['D', 'N', 'S', 'A']       ['D']
+   -0.20   0.20  ['D', 'N', 'S', 'A']       ['D']
+    0.20   0.00  ['D', 'A']                 ['D', 'A']
+    0.20   0.01  ['D', 'A']                 ['D']
+    0.20   0.20  ['D', 'A']                 ['D']
+    0.50   0.00  ['D', 'A']                 ['D', 'A']
+    0.50   0.01  ['D', 'A']                 ['D']
+    0.50   0.20  ['D', 'A']                 ['D']
+    0.70   0.00  ['D', 'A']                 ['D', 'A']
+    0.70   0.01  ['D', 'A']                 ['D']
+    0.70   0.20  ['D', 'A']                 ['D']
+    0.90   0.00  ['D', 'A']                 ['D', 'A']
+    0.90   0.01  ['D', 'A']                 ['D']
+    0.90   0.20  ['D']                      ['D']
+    1.10   0.00  ['none survive']           ['none survive']
+    1.10   0.01  ['none survive']           ['none survive']
+    1.10   0.20  ['none survive']           ['none survive']
+
+C3. Dark room = NO stream (darkness = no input, so no fuel). Sweep c, eps=0.05:
+       c  max-survival rooms        by-margin
+   -0.20  ['D', 'N', 'S', 'A']       ['A']
+    0.00  ['D', 'N', 'S', 'A']       ['A']
+    0.20  ['A']                      ['A']
+    0.50  ['A']                      ['A']
+    0.70  ['A']                      ['A']
+    0.90  ['A']                      ['A']
+
+C4. The brief's three rooms only (D = no stream, N, S), eps=0.05. S's break-even c = 1 - h_S - eps = 0.664:
+       c  max-survival rooms        by-margin
+   -0.20  ['D', 'N', 'S']            ['S']
+    0.00  ['D', 'N', 'S']            ['D', 'N', 'S']
+    0.30  ['S']                      ['S']
+    0.60  ['S']                      ['S']
+    0.70  ['S']                      ['S']
+    0.90  ['none survive']           ['none survive']
+   detail at c=0.0 and c=0.7:
+   c=0.0
+     D dark (constant)      best order k=0  survival(1000 steps)=1.000  mean net gain=-0.000/step
+     N noise (iid)          best order k=0  survival(1000 steps)=1.000  mean net gain=+0.000/step
+     S structured (q=.95)   best order k=0  survival(1000 steps)=1.000  mean net gain=+0.000/step
+   c=0.7
+     D dark (constant)      best order k=0  survival(1000 steps)=0.000  mean net gain=-0.700/step
+     N noise (iid)          best order k=0  survival(1000 steps)=0.000  mean net gain=-0.700/step
+     S structured (q=.95)   best order k=1  survival(1000 steps)=0.016  mean net gain=-0.036/step
+   -> S wins exactly when it is the only viable fuel; with food elsewhere (c <= 0) persistence is indifferent.
+
+Summary
+  R1 (self-evidencing): identity; ranks nothing. Every persisting policy, incl. the dark-dweller, passes.
+  R2 (min sensory entropy): picks D among viable rooms; N last for every model (Gibbs).
+  R3 (persistence, fuel from the stream): free energy of a stream is 1 - h_mu, maximal at h_mu = 0.
+     Constant dark stream: best fuel at zero model cost -> D wins whenever eps > 0, ties A at eps = 0,
+       beats S always. N never wins (zero fuel, any model). When c < 0 (food from elsewhere) all survive: tie.
+     Dark as no input: D avoided iff c > 0 -- a fact about the room's physics, not about darkness.
+

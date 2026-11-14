@@ -1,0 +1,5 @@
+m_dtr_s1 dtr_maze.py --width 128 --alpha 0.01 --T 30 --warmup_frac 0.2 --steps 30456 --seed 1 --name m_dtr_s1 --out out
+ev59_m_dtr_s1_none@m_dtr_s1 eval_maze.py --kind dtr --ckpt out/m_dtr_s1.pt --sets v9,v33,m59 --jopt none --mult 12  --out out/ev59_m_dtr_s1_none
+evT_m_dtr_s1@m_dtr_s1 eval_maze.py --kind dtr --ckpt out/m_dtr_s1.pt --sets e19,e33,e59 --jopt none --mult 12  --out out/evT_m_dtr_s1
+ev99_m_dtr_s1@m_dtr_s1 eval_maze.py --kind dtr --ckpt out/m_dtr_s1.pt --sets e99 --jopt none --mult 20.0  --out out/ev99_m_dtr_s1
+END

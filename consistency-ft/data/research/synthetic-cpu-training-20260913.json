@@ -1,0 +1,345 @@
+{
+  "anchor_propositions": 5,
+  "anchor_unchanged": true,
+  "candidate_training_performed": false,
+  "cpu_seconds": 3.0091099999999997,
+  "dependency_check": {
+    "command": "runs/cpu-dev-venv/bin/python -m pip check",
+    "result": "No broken requirements found."
+  },
+  "development_agent_subscription_usage_measured_by_this_receipt": false,
+  "environment": {
+    "anchor_seed": 101,
+    "fixture_hyperparameters_are_not_scientific_selections": true,
+    "lambda_anchor": 2.0,
+    "model_seed": 20260913,
+    "optimizer": {
+      "kind": "SGD",
+      "learning_rate": 0.01
+    },
+    "packages": {
+      "Jinja2": "3.1.5",
+      "MarkupSafe": "3.0.2",
+      "certifi": "2025.1.31",
+      "charset-normalizer": "3.4.1",
+      "filelock": "3.17.0",
+      "fsspec": "2025.2.0",
+      "idna": "3.10",
+      "mpmath": "1.3.0",
+      "networkx": "3.4.2",
+      "numpy": "2.2.3",
+      "pip": "25.0.1",
+      "requests": "2.32.3",
+      "setuptools": "84.0.0",
+      "sympy": "1.13.1",
+      "torch": "2.6.0+cpu",
+      "typing_extensions": "4.12.2",
+      "urllib3": "2.3.0"
+    },
+    "python": "3.12.3",
+    "rollout_seeds": [
+      202,
+      203
+    ],
+    "source_sha256": {
+      "anchors.py": "bf7574ce67e61a05bdb3fe073aee9d424c2b763d914a3bd2fbcefafc74753e4c",
+      "scripts/run_synthetic_cpu_training.py": "f121a22013b2f33a54e352f966bdd8d45a0b9d400742915b40eefa2289abd6b1",
+      "training/episode_adapter.py": "14273082ee99a94fb4bd6f3b213b1d37ce92bb2925a1c9df5ec27250549c8015",
+      "training/requirements-cpu-py312-linux-x86_64.lock": "1016d1f6c394d8e2455bca0fb3252b5cba2c7249ded5bf123abdd5b71d470dbf",
+      "training/synthetic_cpu.py": "45b78990ea6bcc6ac63308d2d0d48e7421ef6e24062688d2d07efb0cea33bd90",
+      "training/torch_loop.py": "fa6fc19200eef2d7646f10ca7dd21cd4f90ccaac830e0dfc021802d167525412"
+    },
+    "synthetic_software_integration_only": true,
+    "torch_cuda_build": null,
+    "torch_interop_threads": 1,
+    "torch_threads": 1
+  },
+  "full_repository_suite": {
+    "command": "runs/cpu-dev-venv/bin/python -m unittest discover -v",
+    "log_sha256": "d6383c85e81816171ff9697dc5895a61c26eb03e649f5fea9ee51deb6302431f",
+    "note": "Root independent run; subsequent changes only document results and make torch test imports skip cleanly when torch is absent.",
+    "passed": true,
+    "skipped_tests": 0,
+    "tests": 221,
+    "wall_seconds_unittest": 23.116
+  },
+  "independent_loss_oracle": {
+    "file": "data/research/synthetic-cpu-loss-oracle-20260913.json",
+    "sha256": "cb82fb94eb72a7ed86ac72af498e8cf2afa692dd8df91cb02da79a3bff82e3ee"
+  },
+  "independent_serialized_checkpoint_audit": {
+    "evidence_sha256": "7e0373217b82a5b7864f17dc64028f8643ccbcf639aaadeec8a5c7b097ce3592",
+    "result": {
+      "anchor_trajectories_replayed": 5,
+      "checkpoint_transitions_verified": 2,
+      "generated_token_logprobs_checked": 50,
+      "maximum_logprob_absolute_error": 0.0,
+      "new_random_generations": 0,
+      "parameter_deltas_exact": true,
+      "scope": "Teacher-forced verification from retained serialized checkpoints and tokenizer; no new sampled answers or candidate-model claim.",
+      "serialized_artifact_hashes_verified": 6,
+      "synthetic_only": true,
+      "training_role_trajectories_replayed": 20
+    },
+    "scope_note": "Separate root-owned smoke at the same declared model/anchor/rollout seeds; inspected retained checkpoints without new sampling."
+  },
+  "model_parameters": 75484,
+  "peak_rss_bytes_linux": 306614272,
+  "recorded_date_utc": "2026-09-13",
+  "run_command": "runs/cpu-dev-venv/bin/python scripts/run_synthetic_cpu_training.py --output runs/synthetic-cpu-cli-20260913",
+  "runtime_artifacts": {
+    "anchor-manifest.json": {
+      "bytes": 1410,
+      "sha256": "1340756569fbe10751c2500d32150dd87ebbef64783e90a0997e3a53b945d610"
+    },
+    "anchor-propositions.jsonl": {
+      "bytes": 601,
+      "sha256": "2f429904487c0ee51f83a073b73d84a7499ede5b773b23e3c3c91f2209c128f1"
+    },
+    "anchor-receipts.jsonl": {
+      "bytes": 7520,
+      "sha256": "2a3341d44ed286257674d04b1ee2dea94f5069b364663e2e5b185e5af6d2b349"
+    },
+    "anchor-rng-after.json": {
+      "bytes": 84,
+      "sha256": "ade5af4bd497c74cd0b473e18320bb62c82013c60cbdd3cc1938e587f34c14eb"
+    },
+    "anchor-rng-before.json": {
+      "bytes": 95,
+      "sha256": "db4b18dbb1795d5f3d77c62084b18366377b9c2019a3982c36230634a311aca3"
+    },
+    "anchor.json": {
+      "bytes": 3954,
+      "sha256": "5a7ed14a7764702df17cfe245f9668ab429698a8e17a2a0fab66ea9d7b99fdee"
+    },
+    "artifact-manifest.json": {
+      "bytes": 520,
+      "sha256": "6fea6f75d0490e1ae980f6f4d4c5ec1df8b0566e330aa30d26b15ab0c19bb973"
+    },
+    "chat-template.txt": {
+      "bytes": 38,
+      "sha256": "8dc3fbebf4abc136483798ea6c438fe15c4935a6bf3435d13a06e31a75695cbe"
+    },
+    "environment.json": {
+      "bytes": 1283,
+      "sha256": "139d524f78e21d63b44d6a6b9faeeccb4e621944f13805cf9a0fd4f68026dfde"
+    },
+    "experiment-binding.json": {
+      "bytes": 1728,
+      "sha256": "1e677a76285898eb643f3d2e64e66137e9c2d54e42537d8f1e37e62bb9be3e40"
+    },
+    "heldout.jsonl": {
+      "bytes": 205,
+      "sha256": "180c5006c426dfe635b72fd8c1681caefe0d8a19babb3aa20e58c518f0434a6a"
+    },
+    "initial-model.pt": {
+      "bytes": 305096,
+      "sha256": "4c4da13c9927150410297f608fc1e4e5fcae302a54e1367eb834efee150aa59c"
+    },
+    "model-config.json": {
+      "bytes": 136,
+      "sha256": "abb872d8e9d6f34dbff9b0d2b94ff96187a9d25f935222c4f022c42dbbd0e258"
+    },
+    "protocol.json": {
+      "bytes": 157,
+      "sha256": "bf9ed98c0c97a71114a9708bb3962b2b5b3f02ccce85c42fe15f2b523738ab6f"
+    },
+    "report.json": {
+      "bytes": 3992,
+      "sha256": "8eb6ebae64d9823645105c5adb1f655d45b6f46a71d016ce3ba2c55877f22eca"
+    },
+    "step-0/credits.json": {
+      "bytes": 19813,
+      "sha256": "73991ac18677bbcc4bbd52fa6ecfced18572859e6e6857ca84096f08049e1e0f"
+    },
+    "step-0/plan.json": {
+      "bytes": 12677,
+      "sha256": "68bb36cf2f0e580bff31aa3e9300be1512fd1e1747cd9fbcf99b51d05dd90246"
+    },
+    "step-0/rng-after.json": {
+      "bytes": 84,
+      "sha256": "55397f3d2325d374b6d95d0a78f8ffd01beac06935e363cf7cb5f731aacb1672"
+    },
+    "step-0/rng-before.json": {
+      "bytes": 95,
+      "sha256": "19bb1b3989a172211acc53fe2bde79bea8b52cd73160f00349ddd54d67b021b1"
+    },
+    "step-0/rollouts.jsonl": {
+      "bytes": 12873,
+      "sha256": "52bd5157ce5e12408353fe5ce25918d055e7964a7ab0d358883af1ae785f16ae"
+    },
+    "step-0/summary.json": {
+      "bytes": 1187,
+      "sha256": "6deed43040ca6e1a0f8f156bda665a62f543915ec2acc78ecee0e1b0129e4126"
+    },
+    "step-0/update-tensors.pt": {
+      "bytes": 913426,
+      "sha256": "5751368bfdf583dad3d886f1f6a906911ff33269e1f12075ae54c9ca7423e0bc"
+    },
+    "step-1/credits.json": {
+      "bytes": 20145,
+      "sha256": "6e965ffb5a8b35334e4c378d9f8c8b8e5d85b6a31b883902554f456bd2c6f9b5"
+    },
+    "step-1/plan.json": {
+      "bytes": 12677,
+      "sha256": "458c8910373355abad111588afad32423dfb1285956e56bbe758d1837ad7ea59"
+    },
+    "step-1/rng-after.json": {
+      "bytes": 84,
+      "sha256": "25e0eb57855ed720ea28eaf2e7792ba658c77e78dcf9243829e7f6f63d79f0ca"
+    },
+    "step-1/rng-before.json": {
+      "bytes": 95,
+      "sha256": "a47b135f696444574dc63e648d9a3e5e4e094ebe95ea11f8c4e40a316d100216"
+    },
+    "step-1/rollouts.jsonl": {
+      "bytes": 12874,
+      "sha256": "6f770181b48f1bbf709b1aa7112e49d63f4cb316084622626d8c56633666f8a9"
+    },
+    "step-1/summary.json": {
+      "bytes": 1189,
+      "sha256": "a2618812e5e3b9f2161cafed4f2c0415d207b0cf4b8f63772d72e43c4a6aabd0"
+    },
+    "step-1/update-tensors.pt": {
+      "bytes": 913426,
+      "sha256": "4ba2805f1f2ca1bfe1aa0ff6f55ecd2dc953d33a164e8a2fc12497459957ece6"
+    },
+    "tokenizer.json": {
+      "bytes": 188,
+      "sha256": "e29fd50fcddef0723e02e3b8a9b673138f13d438c4fc40c40e6abfa27d0a93bf"
+    },
+    "train.jsonl": {
+      "bytes": 454,
+      "sha256": "9208856ab52c5c5623ac54f0df7c6de740e19c11c60d6562f3d87068ab75e6fa"
+    },
+    "valid.jsonl": {
+      "bytes": 196,
+      "sha256": "c59785f4be1b1e26760ccc72465d101e2db4562c8ae8d9a750084faaa3189c58"
+    },
+    "weights-manifest.json": {
+      "bytes": 1296,
+      "sha256": "c99af1e22c974d2011a2dee477aa2652299d13c8ab6edb3da313ecb0e4a72e80"
+    }
+  },
+  "runtime_provider_requests": 0,
+  "schema_version": 1,
+  "scientific_base_selected": false,
+  "scope": "Synthetic CPU software integration only; no candidate model, provider request, scientific base selection, or training-quality claim.",
+  "source_base_commit": "5475b2039e45900b8cea917ea976c5de352d7312",
+  "status": "synthetic-integration-complete",
+  "steps": [
+    {
+      "anchor_sha256": "f506a130bfeaa9a5b6b30dd22ab16b9c27b9bdaa68935bbe3ecd30f38528484c",
+      "gradient_l2": 0.4531884920273652,
+      "joint_samples": 4,
+      "loss": -1.3839311599731445,
+      "max_behavior_logprob_error": 0.0,
+      "parameter_delta_l2": 0.004531880961589674,
+      "per_parameter": {
+        "embedding.weight": {
+          "delta_l2": 5.3418774475528864e-05,
+          "gradient_l2": 0.005341657992313429
+        },
+        "gru.bias_hh_l0": {
+          "delta_l2": 8.073346473012236e-05,
+          "gradient_l2": 0.008073617312178283
+        },
+        "gru.bias_ih_l0": {
+          "delta_l2": 0.00017495220599373428,
+          "gradient_l2": 0.017495613639739276
+        },
+        "gru.weight_hh_l0": {
+          "delta_l2": 4.7951504868321725e-05,
+          "gradient_l2": 0.004794829694909526
+        },
+        "gru.weight_ih_l0": {
+          "delta_l2": 3.484807045233168e-05,
+          "gradient_l2": 0.003484663787291611
+        },
+        "head.bias": {
+          "delta_l2": 0.0030134058527615287,
+          "gradient_l2": 0.3013410994625441
+        },
+        "head.weight": {
+          "delta_l2": 0.001527480923186875,
+          "gradient_l2": 0.15274807403828503
+        },
+        "transition.weight": {
+          "delta_l2": 0.00301340982590361,
+          "gradient_l2": 0.30134105359472996
+        }
+      },
+      "policy_after_sha256": "7f191ab196f75db09a93667a3f7c74d311ca7b8154bfdb11eebed6a01f03c8c2",
+      "policy_before_sha256": "099363cd1d1795b736a888a0cae99fcfdfc8b2290991c36d5c70cbe3e9435de0",
+      "rollout_seed": 202,
+      "synthetic_only": true,
+      "trajectories": 10
+    },
+    {
+      "anchor_sha256": "f506a130bfeaa9a5b6b30dd22ab16b9c27b9bdaa68935bbe3ecd30f38528484c",
+      "gradient_l2": 0.37164158875414666,
+      "joint_samples": 4,
+      "loss": -2.2237164974212646,
+      "max_behavior_logprob_error": 0.0,
+      "parameter_delta_l2": 0.0037164125558688302,
+      "per_parameter": {
+        "embedding.weight": {
+          "delta_l2": 5.37565328289406e-05,
+          "gradient_l2": 0.0053757314351445505
+        },
+        "gru.bias_hh_l0": {
+          "delta_l2": 0.00010612201833406594,
+          "gradient_l2": 0.010611208525387484
+        },
+        "gru.bias_ih_l0": {
+          "delta_l2": 0.00022972459974180897,
+          "gradient_l2": 0.02297218272317589
+        },
+        "gru.weight_hh_l0": {
+          "delta_l2": 6.295587776773999e-05,
+          "gradient_l2": 0.00629603252768012
+        },
+        "gru.weight_ih_l0": {
+          "delta_l2": 4.427546519080963e-05,
+          "gradient_l2": 0.004428204076710266
+        },
+        "head.bias": {
+          "delta_l2": 0.0024672339225457083,
+          "gradient_l2": 0.24672392066199147
+        },
+        "head.weight": {
+          "delta_l2": 0.0012507452430452987,
+          "gradient_l2": 0.1250745721970625
+        },
+        "transition.weight": {
+          "delta_l2": 0.0024672386579274765,
+          "gradient_l2": 0.24672385864315954
+        }
+      },
+      "policy_after_sha256": "8d4ee1aa4e845fd8f3585de4b5b44b8eb4af8e4d7c6c7221d584f227c782de6a",
+      "policy_before_sha256": "7f191ab196f75db09a93667a3f7c74d311ca7b8154bfdb11eebed6a01f03c8c2",
+      "rollout_seed": 203,
+      "synthetic_only": true,
+      "trajectories": 10
+    }
+  ],
+  "synthetic_only": true,
+  "targeted_tests": {
+    "command": "runs/cpu-dev-venv/bin/python -m unittest test_training_torch -q",
+    "passed": true,
+    "source_sha256": "3f3fc06df99532dafb5eacd211f95c40d57d22bcca5d1ac30a9e4e16fbd551c8",
+    "tests": 16,
+    "wall_seconds_unittest": 4.082
+  },
+  "timing_scope": {
+    "cpu_seconds": "Whole process user plus system CPU time including imports.",
+    "peak_rss_bytes_linux": "Whole process peak RSS including imports; Linux ru_maxrss times 1024.",
+    "wall_seconds": "After imports and thread setup; includes synthetic artifact creation, anchor generation and both updates."
+  },
+  "wall_seconds": 1.0981759843416512,
+  "without_torch_check": {
+    "command": "python3 -m unittest test_training_torch -q",
+    "passed": true,
+    "skipped_tests": 16
+  }
+}

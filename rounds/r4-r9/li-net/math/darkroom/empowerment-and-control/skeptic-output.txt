@@ -1,0 +1,35 @@
+S1. Brief's toy: dark / iid noise / passive learnable stream, J = E_3 - lam*cost
+  lam=0: E_3 = [0.0, 0.0, 0.0], winners = ['dark (sensor constant)', 'white noise (iid, action-independent)', 'passive periodic stream']
+  lam=1e-09: E_3 = [0.0, 0.0, 0.0], winners = ['dark (sensor constant)']
+  lam=0.001: E_3 = [0.0, 0.0, 0.0], winners = ['dark (sensor constant)']
+  lam=1: E_3 = [0.0, 0.0, 0.0], winners = ['dark (sensor constant)']
+  -> any lam > 0 sends the agent to the dark room; lam = 0 is a 3-way tie. No value of lam avoids it.
+
+S2. Burda noisy TV (press -> fresh uniform image over C channels; keep -> same image)
+  C=    2: E_1..3 = [0.322, 0.322, 0.322]   (passive learnable stream: 0, dark: 0)
+  C=    4: E_1..3 = [0.558, 0.558, 0.558]   (passive learnable stream: 0, dark: 0)
+  C=   16: E_1..3 = [0.831, 0.831, 0.831]   (passive learnable stream: 0, dark: 0)
+  C=  256: E_1..3 = [0.982, 0.982, 0.982]   (passive learnable stream: 0, dark: 0)
+  C= 4096: E_1..3 = [0.998, 0.998, 0.998]   (passive learnable stream: 0, dark: 0)
+  -> E > 0 for every C >= 2 and INCREASES with the noise entropy log2 C (limit 1 bit).
+     The canonical noisy TV beats darkness and passive learnable structure with no parameter.
+     vs lit+noise eps=0.25 (E_1=0.953): TV wins once C >= 16.
+
+S3. Band remote: 'keep', 'button 1' (fresh noise, lower half of screen), 'button 2' (upper half)
+  C=    4: E_1..3 = [1.17, 1.17, 1.17]   lit ring E_1..3 = [1.585, 2.322, 2.807]
+  C=   16: E_1..3 = [1.406, 1.406, 1.406]   lit ring E_1..3 = [1.585, 2.322, 2.807]
+  C=  256: E_1..3 = [1.563, 1.563, 1.563]   lit ring E_1..3 = [1.585, 2.322, 2.807]
+  C= 4096: E_1..3 = [1.583, 1.583, 1.583]   lit ring E_1..3 = [1.585, 2.322, 2.807]
+  -> at horizon n=1 the pure-noise remote approaches the lit ring (log2 3); the horizon decides
+     whether the structured controllable room is preferred (n>=2) or nearly tied (n=1).
+
+S4. White-noise room vs lit ring with costs (noise 0.5, lit 1.0), no dark room on offer, n=3
+  lam=1.0: winner = lit ring (controllable)
+  lam=5.0: winner = lit ring (controllable)
+  lam=5.5: winner = lit ring (controllable)
+  lam=5.7: winner = white noise (iid, action-independent)
+  lam=8.0: winner = white noise (iid, action-independent)
+  -> switch at lam* = 5.615: the white-noise room is chosen above it, exactly like part B's dark room.
+
+S5. Sensor boundary: white noise + proprioception (sensor = (position, noise symbol))
+  E_1..3 = [1.585, 2.322, 2.807]  (= lit ring; noise room alone = 0)

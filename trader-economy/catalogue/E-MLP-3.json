@@ -1,0 +1,12 @@
+{
+ "id": "E-MLP-3",
+ "question": "Does a hidden unit's pay track its true value?",
+ "setup": "Backprop-trained network. True value = unit Shapley with 200 orders on held-out data (Neuron Shapley style); pay from 16 orders on the training batch.",
+ "result": "Spearman(pay, true value): Shapley-16 0.965\u00b10.027, LOO 0.84\u00b10.10, fixed-order MSR 0.83\u00b10.13 (synthetic); Shapley-16 0.969\u00b10.016 on wdbc. Zero-out and mean-ablation truths agree (1.00 synthetic, 0.96 wdbc). Inside the over-confident Shapley-trained network LOO pay ranks units backwards (-0.85\u00b10.10).",
+ "status": "Gain",
+ "files": [
+  "exp_mlp.py",
+  "results/mlp_summary.json",
+  "charts/mlp_pay_vs_value.json"
+ ]
+}

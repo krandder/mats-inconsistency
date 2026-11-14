@@ -1,0 +1,4054 @@
+{
+ "design": "Experiment A: hidden units as agents.\n\nAn AGENT is a parameter set: hidden unit h = incoming weights + bias +\noutgoing weight (1 hidden layer).  The output sigmoid is the binary LMSR\n(b=1); the unit's trade is its additive logit contribution a_h(x) * v_h.\nThe output bias b0 is fixed at the base-rate log odds (the market maker's\nopening price) and belongs to no one.\n\nPay per round (fresh batch, before learning from it):\n  v(S) = sum over batch of log p_S(y) - log p0(y), units outside S ablated\n  (zero-out: a_h := 0; the mean-ablation check replaces a_h by its mean on a\n  reference batch).  Rules: loo, msr1 (one fixed order), shap (MSR averaged\n  over K=16 random orders).  All three are computed every round for\n  reporting; the ledger uses the arm's own rule (backprop arms: shap).\nTraining arms:\n  backprop      global log-loss gradient (+ the same L1 prox as the others)\n  backprop_alt  same, different init seed (reference for \"same function\")\n  loo           own-pay gradient == backprop, plus ledger/bankruptcy\n  msr1          grad of v(prefix up to and incl. h) in a fixed order\n  shap          grad of v(S+h) for Q=8 random predecessor sets S (dropout)\nLedger: agents + treasury + burned == start + subsidy (asserted).  Compute\ncost per active connection per round (|w| > 1e-3: incoming, bias, outgoing).\nBankruptcy below DEATH*W0 zeroes the unit; respawn = fresh random init paid\nby the treasury.  Planted useless units: slots 0..3 may only connect to pure\nnoise features (a fixed structural mask, kept on respawn).\n\n2-hidden-layer variant (synthetic only): every unit owns its incoming\nweights + bias; last-layer units also own their output weight.  Pay =\nablation Shapley of the WHOLE-network log score with all units of both\nlayers as players (so upstream units are paid their share of the value that\nflows through their readers; the pot is split across both layers).\n",
+ "n_rows": 140,
+ "synth|cost=0.0|backprop": {
+  "seeds": 5,
+  "ll": [
+   0.43527,
+   0.00445
+  ],
+  "ll_temp": [
+   0.43575,
+   0.00437
+  ],
+  "tscale": [
+   0.94859,
+   0.04512
+  ],
+  "ll_lr": [
+   0.43312,
+   0.00442
+  ],
+  "ll_bayes": [
+   0.43282,
+   0.0043
+  ],
+  "sp_zero_vs_mean": [
+   0.99971,
+   0.0002
+  ],
+  "budget_ratio": [
+   1.0,
+   0.0
+  ],
+  "deaths_useless": [
+   0.0,
+   0.0
+  ],
+  "deaths_useful": [
+   0.0,
+   0.0
+  ],
+  "alive_end": [
+   32.0,
+   0.0
+  ],
+  "vabs_useless": [
+   0.03822,
+   0.02656
+  ],
+  "vabs_useful": [
+   0.24857,
+   0.02348
+  ],
+  "truth_useless": [
+   -0.00016,
+   0.00015
+  ],
+  "pay_useless": [
+   -0.0002,
+   0.00011
+  ],
+  "active_conn": [
+   409.4,
+   3.35909
+  ],
+  "burned": [
+   0.0,
+   0.0
+  ],
+  "gain": [
+   0.25787,
+   0.00445
+  ],
+  "sp_loo": [
+   0.81444,
+   0.11947
+  ],
+  "sp_msr1": [
+   0.83123,
+   0.09198
+  ],
+  "sp_shap": [
+   0.96562,
+   0.02391
+  ],
+  "ll_minus_lr": [
+   0.00216,
+   0.00103
+  ],
+  "dup_shap": {
+   "orig_nats": [
+    0.05723,
+    0.02035
+   ],
+   "copyA_over_orig": [
+    0.52001,
+    0.02235
+   ],
+   "copyB_over_orig": [
+    0.50777,
+    0.03486
+   ],
+   "sum_over_orig": [
+    1.02778,
+    0.05375
+   ]
+  },
+  "dup_loo": {
+   "orig_nats": [
+    0.01357,
+    0.00949
+   ],
+   "copyA_over_orig": [
+    0.22998,
+    0.1406
+   ],
+   "copyB_over_orig": [
+    0.22998,
+    0.1406
+   ],
+   "sum_over_orig": [
+    0.45997,
+    0.2812
+   ]
+  },
+  "dup_msr1": {
+   "orig_nats": [
+    0.10015,
+    0.0444
+   ],
+   "copyA_over_orig": [
+    0.57439,
+    0.04777
+   ],
+   "copyB_over_orig": [
+    0.42561,
+    0.04777
+   ],
+   "sum_over_orig": [
+    1.0,
+    0.0
+   ]
+  },
+  "gain_per_100_conn": [
+   0.06299,
+   0.00132
+  ]
+ },
+ "synth|cost=0.0|backprop_alt": {
+  "seeds": 5,
+  "ll": [
+   0.43525,
+   0.00447
+  ],
+  "ll_temp": [
+   0.43551,
+   0.0042
+  ],
+  "tscale": [
+   0.96185,
+   0.04512
+  ],
+  "ll_lr": [
+   0.43312,
+   0.00442
+  ],
+  "ll_bayes": [
+   0.43282,
+   0.0043
+  ],
+  "sp_zero_vs_mean": [
+   0.99971,
+   0.00038
+  ],
+  "budget_ratio": [
+   1.0,
+   0.0
+  ],
+  "deaths_useless": [
+   0.0,
+   0.0
+  ],
+  "deaths_useful": [
+   0.0,
+   0.0
+  ],
+  "alive_end": [
+   32.0,
+   0.0
+  ],
+  "vabs_useless": [
+   0.06406,
+   0.01887
+  ],
+  "vabs_useful": [
+   0.23874,
+   0.01798
+  ],
+  "truth_useless": [
+   -0.00054,
+   0.00089
+  ],
+  "pay_useless": [
+   -0.00046,
+   0.00025
+  ],
+  "active_conn": [
+   410.6,
+   3.35909
+  ],
+  "burned": [
+   0.0,
+   0.0
+  ],
+  "gain": [
+   0.25789,
+   0.00447
+  ],
+  "sp_loo": [
+   0.83534,
+   0.05657
+  ],
+  "sp_msr1": [
+   0.86862,
+   0.03953
+  ],
+  "sp_shap": [
+   0.97896,
+   0.0149
+  ],
+  "ll_minus_lr": [
+   0.00214,
+   0.00085
+  ],
+  "ll_minus_backprop": [
+   -2e-05,
+   0.00064
+  ],
+  "mean_abs_logit_diff_vs_backprop": [
+   0.12765,
+   0.01365
+  ],
+  "mean_abs_logit_diff_vs_backprop_after_scale": [
+   0.14861,
+   0.03199
+  ],
+  "mean_abs_logit_backprop": [
+   1.72165,
+   0.07498
+  ],
+  "dup_shap": {
+   "orig_nats": [
+    0.05076,
+    0.00727
+   ],
+   "copyA_over_orig": [
+    0.5201,
+    0.03485
+   ],
+   "copyB_over_orig": [
+    0.48699,
+    0.02594
+   ],
+   "sum_over_orig": [
+    1.00709,
+    0.05291
+   ]
+  },
+  "dup_loo": {
+   "orig_nats": [
+    0.01139,
+    0.0029
+   ],
+   "copyA_over_orig": [
+    0.2855,
+    0.04077
+   ],
+   "copyB_over_orig": [
+    0.2855,
+    0.04077
+   ],
+   "sum_over_orig": [
+    0.57099,
+    0.08154
+   ]
+  },
+  "dup_msr1": {
+   "orig_nats": [
+    0.04602,
+    0.03991
+   ],
+   "copyA_over_orig": [
+    0.61576,
+    0.08563
+   ],
+   "copyB_over_orig": [
+    0.38424,
+    0.08563
+   ],
+   "sum_over_orig": [
+    1.0,
+    0.0
+   ]
+  },
+  "gain_per_100_conn": [
+   0.06281,
+   0.00089
+  ]
+ },
+ "synth|cost=0.0|loo": {
+  "seeds": 5,
+  "ll": [
+   0.43527,
+   0.00445
+  ],
+  "ll_temp": [
+   0.43575,
+   0.00437
+  ],
+  "tscale": [
+   0.94859,
+   0.04512
+  ],
+  "ll_lr": [
+   0.43312,
+   0.00442
+  ],
+  "ll_bayes": [
+   0.43282,
+   0.0043
+  ],
+  "sp_zero_vs_mean": [
+   0.99971,
+   0.0002
+  ],
+  "budget_ratio": [
+   0.20728,
+   0.01924
+  ],
+  "deaths_useless": [
+   0.0,
+   0.0
+  ],
+  "deaths_useful": [
+   0.0,
+   0.0
+  ],
+  "alive_end": [
+   32.0,
+   0.0
+  ],
+  "vabs_useless": [
+   0.03822,
+   0.02656
+  ],
+  "vabs_useful": [
+   0.24857,
+   0.02348
+  ],
+  "truth_useless": [
+   -0.00016,
+   0.00015
+  ],
+  "pay_useless": [
+   0.00013,
+   0.00029
+  ],
+  "active_conn": [
+   409.4,
+   3.35909
+  ],
+  "burned": [
+   0.0,
+   0.0
+  ],
+  "gain": [
+   0.25787,
+   0.00445
+  ],
+  "sp_loo": [
+   0.81444,
+   0.11947
+  ],
+  "sp_msr1": [
+   0.83123,
+   0.09198
+  ],
+  "sp_shap": [
+   0.96562,
+   0.02391
+  ],
+  "ll_minus_lr": [
+   0.00216,
+   0.00103
+  ],
+  "ll_minus_backprop": [
+   0.0,
+   0.0
+  ],
+  "mean_abs_logit_diff_vs_backprop": [
+   0.0,
+   0.0
+  ],
+  "mean_abs_logit_diff_vs_backprop_after_scale": [
+   0.08975,
+   0.07982
+  ],
+  "mean_abs_logit_backprop": [
+   1.72165,
+   0.07498
+  ],
+  "dup_shap": {
+   "orig_nats": [
+    0.05723,
+    0.02035
+   ],
+   "copyA_over_orig": [
+    0.52001,
+    0.02235
+   ],
+   "copyB_over_orig": [
+    0.50777,
+    0.03486
+   ],
+   "sum_over_orig": [
+    1.02778,
+    0.05375
+   ]
+  },
+  "dup_loo": {
+   "orig_nats": [
+    0.01357,
+    0.00949
+   ],
+   "copyA_over_orig": [
+    0.22998,
+    0.1406
+   ],
+   "copyB_over_orig": [
+    0.22998,
+    0.1406
+   ],
+   "sum_over_orig": [
+    0.45997,
+    0.2812
+   ]
+  },
+  "dup_msr1": {
+   "orig_nats": [
+    0.10015,
+    0.0444
+   ],
+   "copyA_over_orig": [
+    0.57439,
+    0.04777
+   ],
+   "copyB_over_orig": [
+    0.42561,
+    0.04777
+   ],
+   "sum_over_orig": [
+    1.0,
+    0.0
+   ]
+  },
+  "gain_per_100_conn": [
+   0.06299,
+   0.00132
+  ]
+ },
+ "synth|cost=0.0|msr1": {
+  "seeds": 5,
+  "ll": [
+   0.43943,
+   0.00499
+  ],
+  "ll_temp": [
+   0.43939,
+   0.00518
+  ],
+  "tscale": [
+   0.94859,
+   0.04512
+  ],
+  "ll_lr": [
+   0.43312,
+   0.00442
+  ],
+  "ll_bayes": [
+   0.43282,
+   0.0043
+  ],
+  "sp_zero_vs_mean": [
+   0.99619,
+   0.00886
+  ],
+  "budget_ratio": [
+   1.0,
+   0.0
+  ],
+  "deaths_useless": [
+   0.0,
+   0.0
+  ],
+  "deaths_useful": [
+   0.0,
+   0.0
+  ],
+  "alive_end": [
+   32.0,
+   0.0
+  ],
+  "vabs_useless": [
+   0.01591,
+   0.00671
+  ],
+  "vabs_useful": [
+   0.14545,
+   0.0154
+  ],
+  "truth_useless": [
+   -2e-05,
+   7e-05
+  ],
+  "pay_useless": [
+   -0.00013,
+   8e-05
+  ],
+  "active_conn": [
+   404.4,
+   6.72967
+  ],
+  "burned": [
+   0.0,
+   0.0
+  ],
+  "gain": [
+   0.25372,
+   0.00499
+  ],
+  "sp_loo": [
+   0.25887,
+   0.24418
+  ],
+  "sp_msr1": [
+   0.17845,
+   0.30112
+  ],
+  "sp_shap": [
+   0.81239,
+   0.12798
+  ],
+  "ll_minus_lr": [
+   0.00631,
+   0.00235
+  ],
+  "ll_minus_backprop": [
+   0.00416,
+   0.00152
+  ],
+  "mean_abs_logit_diff_vs_backprop": [
+   0.23511,
+   0.03527
+  ],
+  "mean_abs_logit_diff_vs_backprop_after_scale": [
+   0.25187,
+   0.03222
+  ],
+  "mean_abs_logit_backprop": [
+   1.72165,
+   0.07498
+  ],
+  "dup_shap": {
+   "orig_nats": [
+    0.24093,
+    0.00552
+   ],
+   "copyA_over_orig": [
+    0.51744,
+    0.01431
+   ],
+   "copyB_over_orig": [
+    0.4927,
+    0.01158
+   ],
+   "sum_over_orig": [
+    1.01013,
+    0.00581
+   ]
+  },
+  "dup_loo": {
+   "orig_nats": [
+    0.22181,
+    0.00804
+   ],
+   "copyA_over_orig": [
+    0.18877,
+    0.01257
+   ],
+   "copyB_over_orig": [
+    0.18877,
+    0.01257
+   ],
+   "sum_over_orig": [
+    0.37754,
+    0.02514
+   ]
+  },
+  "dup_msr1": {
+   "orig_nats": [
+    0.24558,
+    0.02502
+   ],
+   "copyA_over_orig": [
+    0.79621,
+    0.02187
+   ],
+   "copyB_over_orig": [
+    0.20379,
+    0.02187
+   ],
+   "sum_over_orig": [
+    1.0,
+    0.0
+   ]
+  },
+  "gain_per_100_conn": [
+   0.06275,
+   0.00208
+  ]
+ },
+ "synth|cost=0.0|shap": {
+  "seeds": 5,
+  "ll": [
+   0.61929,
+   0.01413
+  ],
+  "ll_temp": [
+   0.43467,
+   0.00446
+  ],
+  "tscale": [
+   0.3594,
+   0.02889
+  ],
+  "ll_lr": [
+   0.43312,
+   0.00442
+  ],
+  "ll_bayes": [
+   0.43282,
+   0.0043
+  ],
+  "sp_zero_vs_mean": [
+   0.99567,
+   0.01028
+  ],
+  "budget_ratio": [
+   1.0,
+   0.0
+  ],
+  "deaths_useless": [
+   0.0,
+   0.0
+  ],
+  "deaths_useful": [
+   0.0,
+   0.0
+  ],
+  "alive_end": [
+   32.0,
+   0.0
+  ],
+  "vabs_useless": [
+   0.0153,
+   0.00999
+  ],
+  "vabs_useful": [
+   0.49008,
+   0.02135
+  ],
+  "truth_useless": [
+   -8e-05,
+   0.00012
+  ],
+  "pay_useless": [
+   -0.00014,
+   4e-05
+  ],
+  "active_conn": [
+   406.2,
+   4.06679
+  ],
+  "burned": [
+   0.0,
+   0.0
+  ],
+  "gain": [
+   0.07385,
+   0.01413
+  ],
+  "sp_loo": [
+   -0.69274,
+   0.16193
+  ],
+  "sp_msr1": [
+   -0.24076,
+   0.05993
+  ],
+  "sp_shap": [
+   0.68541,
+   0.15065
+  ],
+  "ll_minus_lr": [
+   0.18617,
+   0.01752
+  ],
+  "ll_minus_backprop": [
+   0.18402,
+   0.0179
+  ],
+  "mean_abs_logit_diff_vs_backprop": [
+   2.9326,
+   0.19928
+  ],
+  "mean_abs_logit_diff_vs_backprop_after_scale": [
+   0.13741,
+   0.01904
+  ],
+  "mean_abs_logit_backprop": [
+   1.72165,
+   0.07498
+  ],
+  "dup_shap": {
+   "orig_nats": [
+    0.00781,
+    0.00155
+   ],
+   "copyA_over_orig": [
+    0.47055,
+    0.25763
+   ],
+   "copyB_over_orig": [
+    0.23526,
+    0.04815
+   ],
+   "sum_over_orig": [
+    0.7058,
+    0.2838
+   ]
+  },
+  "dup_loo": {
+   "orig_nats": [
+    -0.02668,
+    0.0029
+   ],
+   "copyA_over_orig": [
+    0.50604,
+    0.00246
+   ],
+   "copyB_over_orig": [
+    0.50604,
+    0.00246
+   ],
+   "sum_over_orig": [
+    1.01209,
+    0.00493
+   ]
+  },
+  "dup_msr1": {
+   "orig_nats": [
+    -0.00665,
+    0.01459
+   ],
+   "copyA_over_orig": [
+    -7.22289,
+    25.75409
+   ],
+   "copyB_over_orig": [
+    8.22289,
+    25.75409
+   ],
+   "sum_over_orig": [
+    1.0,
+    0.0
+   ]
+  },
+  "gain_per_100_conn": [
+   0.01817,
+   0.00331
+  ]
+ },
+ "synth|cost=0.0005|backprop": {
+  "seeds": 5,
+  "ll": [
+   0.43484,
+   0.00447
+  ],
+  "ll_temp": [
+   0.43506,
+   0.00439
+  ],
+  "tscale": [
+   0.9893,
+   0.06037
+  ],
+  "ll_lr": [
+   0.43312,
+   0.00442
+  ],
+  "ll_bayes": [
+   0.43282,
+   0.0043
+  ],
+  "sp_zero_vs_mean": [
+   0.99978,
+   0.00041
+  ],
+  "budget_ratio": [
+   1.0,
+   0.0
+  ],
+  "deaths_useless": [
+   0.0,
+   0.0
+  ],
+  "deaths_useful": [
+   0.0,
+   0.0
+  ],
+  "alive_end": [
+   32.0,
+   0.0
+  ],
+  "vabs_useless": [
+   0.01615,
+   0.01549
+  ],
+  "vabs_useful": [
+   0.24322,
+   0.02582
+  ],
+  "truth_useless": [
+   -5e-05,
+   5e-05
+  ],
+  "pay_useless": [
+   -0.00012,
+   6e-05
+  ],
+  "active_conn": [
+   385.8,
+   8.26553
+  ],
+  "burned": [
+   164.30077,
+   22.27533
+  ],
+  "gain": [
+   0.25831,
+   0.00447
+  ],
+  "sp_loo": [
+   0.83768,
+   0.10252
+  ],
+  "sp_msr1": [
+   0.82815,
+   0.13156
+  ],
+  "sp_shap": [
+   0.96503,
+   0.02706
+  ],
+  "ll_minus_lr": [
+   0.00172,
+   0.00094
+  ],
+  "dup_shap": {
+   "orig_nats": [
+    0.05852,
+    0.02175
+   ],
+   "copyA_over_orig": [
+    0.5257,
+    0.03303
+   ],
+   "copyB_over_orig": [
+    0.50848,
+    0.03757
+   ],
+   "sum_over_orig": [
+    1.03418,
+    0.06734
+   ]
+  },
+  "dup_loo": {
+   "orig_nats": [
+    0.01447,
+    0.00938
+   ],
+   "copyA_over_orig": [
+    0.27003,
+    0.0589
+   ],
+   "copyB_over_orig": [
+    0.27003,
+    0.0589
+   ],
+   "sum_over_orig": [
+    0.54005,
+    0.1178
+   ]
+  },
+  "dup_msr1": {
+   "orig_nats": [
+    0.09586,
+    0.04846
+   ],
+   "copyA_over_orig": [
+    0.57635,
+    0.04619
+   ],
+   "copyB_over_orig": [
+    0.42365,
+    0.04619
+   ],
+   "sum_over_orig": [
+    1.0,
+    0.0
+   ]
+  },
+  "gain_per_100_conn": [
+   0.06697,
+   0.00165
+  ]
+ },
+ "synth|cost=0.0005|backprop_alt": {
+  "seeds": 5,
+  "ll": [
+   0.43488,
+   0.00443
+  ],
+  "ll_temp": [
+   0.4351,
+   0.00437
+  ],
+  "tscale": [
+   0.9893,
+   0.06037
+  ],
+  "ll_lr": [
+   0.43312,
+   0.00442
+  ],
+  "ll_bayes": [
+   0.43282,
+   0.0043
+  ],
+  "sp_zero_vs_mean": [
+   0.99985,
+   0.00025
+  ],
+  "budget_ratio": [
+   1.0,
+   0.0
+  ],
+  "deaths_useless": [
+   0.0,
+   0.0
+  ],
+  "deaths_useful": [
+   0.0,
+   0.0
+  ],
+  "alive_end": [
+   32.0,
+   0.0
+  ],
+  "vabs_useless": [
+   0.03596,
+   0.01229
+  ],
+  "vabs_useful": [
+   0.2351,
+   0.01851
+  ],
+  "truth_useless": [
+   -0.00028,
+   0.00054
+  ],
+  "pay_useless": [
+   -0.00026,
+   0.00016
+  ],
+  "active_conn": [
+   383.4,
+   6.0012
+  ],
+  "burned": [
+   169.97701,
+   23.1678
+  ],
+  "gain": [
+   0.25826,
+   0.00443
+  ],
+  "sp_loo": [
+   0.87258,
+   0.04684
+  ],
+  "sp_msr1": [
+   0.89018,
+   0.02512
+  ],
+  "sp_shap": [
+   0.97133,
+   0.02326
+  ],
+  "ll_minus_lr": [
+   0.00177,
+   0.00084
+  ],
+  "ll_minus_backprop": [
+   4e-05,
+   0.00054
+  ],
+  "mean_abs_logit_diff_vs_backprop": [
+   0.10232,
+   0.01338
+  ],
+  "mean_abs_logit_diff_vs_backprop_after_scale": [
+   0.12502,
+   0.02994
+  ],
+  "mean_abs_logit_backprop": [
+   1.71068,
+   0.0744
+  ],
+  "dup_shap": {
+   "orig_nats": [
+    0.05161,
+    0.00811
+   ],
+   "copyA_over_orig": [
+    0.52398,
+    0.03398
+   ],
+   "copyB_over_orig": [
+    0.48742,
+    0.02703
+   ],
+   "sum_over_orig": [
+    1.0114,
+    0.05134
+   ]
+  },
+  "dup_loo": {
+   "orig_nats": [
+    0.01098,
+    0.00357
+   ],
+   "copyA_over_orig": [
+    0.29284,
+    0.03419
+   ],
+   "copyB_over_orig": [
+    0.29284,
+    0.03419
+   ],
+   "sum_over_orig": [
+    0.58567,
+    0.06838
+   ]
+  },
+  "dup_msr1": {
+   "orig_nats": [
+    0.0404,
+    0.04828
+   ],
+   "copyA_over_orig": [
+    0.62985,
+    0.07385
+   ],
+   "copyB_over_orig": [
+    0.37015,
+    0.07385
+   ],
+   "sum_over_orig": [
+    1.0,
+    0.0
+   ]
+  },
+  "gain_per_100_conn": [
+   0.06736,
+   0.00071
+  ]
+ },
+ "synth|cost=0.0005|loo": {
+  "seeds": 5,
+  "ll": [
+   0.4354,
+   0.00442
+  ],
+  "ll_temp": [
+   0.43576,
+   0.00423
+  ],
+  "tscale": [
+   0.94859,
+   0.04512
+  ],
+  "ll_lr": [
+   0.43312,
+   0.00442
+  ],
+  "ll_bayes": [
+   0.43282,
+   0.0043
+  ],
+  "sp_zero_vs_mean": [
+   0.99971,
+   0.0005
+  ],
+  "budget_ratio": [
+   0.21061,
+   0.01919
+  ],
+  "deaths_useless": [
+   11.6,
+   0.68096
+  ],
+  "deaths_useful": [
+   141.8,
+   23.7751
+  ],
+  "alive_end": [
+   32.0,
+   0.0
+  ],
+  "vabs_useless": [
+   0.04438,
+   0.02252
+  ],
+  "vabs_useful": [
+   0.23641,
+   0.0187
+  ],
+  "truth_useless": [
+   1e-05,
+   0.00061
+  ],
+  "pay_useless": [
+   0.00063,
+   0.00042
+  ],
+  "active_conn": [
+   397.4,
+   5.46183
+  ],
+  "burned": [
+   238.7598,
+   0.80484
+  ],
+  "gain": [
+   0.25775,
+   0.00442
+  ],
+  "sp_loo": [
+   0.62192,
+   0.14799
+  ],
+  "sp_msr1": [
+   0.65359,
+   0.12974
+  ],
+  "sp_shap": [
+   0.77801,
+   0.11726
+  ],
+  "ll_minus_lr": [
+   0.00228,
+   0.00148
+  ],
+  "ll_minus_backprop": [
+   0.00056,
+   0.0006
+  ],
+  "mean_abs_logit_diff_vs_backprop": [
+   0.08356,
+   0.01675
+  ],
+  "mean_abs_logit_diff_vs_backprop_after_scale": [
+   0.11821,
+   0.0496
+  ],
+  "mean_abs_logit_backprop": [
+   1.71068,
+   0.0744
+  ],
+  "dup_shap": {
+   "orig_nats": [
+    0.06392,
+    0.02224
+   ],
+   "copyA_over_orig": [
+    0.50507,
+    0.03871
+   ],
+   "copyB_over_orig": [
+    0.49202,
+    0.03727
+   ],
+   "sum_over_orig": [
+    0.99708,
+    0.07159
+   ]
+  },
+  "dup_loo": {
+   "orig_nats": [
+    0.01626,
+    0.01024
+   ],
+   "copyA_over_orig": [
+    0.26965,
+    0.04179
+   ],
+   "copyB_over_orig": [
+    0.26965,
+    0.04179
+   ],
+   "sum_over_orig": [
+    0.53931,
+    0.08359
+   ]
+  },
+  "dup_msr1": {
+   "orig_nats": [
+    0.08996,
+    0.07096
+   ],
+   "copyA_over_orig": [
+    0.61044,
+    0.08248
+   ],
+   "copyB_over_orig": [
+    0.38956,
+    0.08248
+   ],
+   "sum_over_orig": [
+    1.0,
+    0.0
+   ]
+  },
+  "gain_per_100_conn": [
+   0.06487,
+   0.00165
+  ]
+ },
+ "synth|cost=0.0005|msr1": {
+  "seeds": 5,
+  "ll": [
+   0.43868,
+   0.005
+  ],
+  "ll_temp": [
+   0.43871,
+   0.00502
+  ],
+  "tscale": [
+   0.94859,
+   0.04512
+  ],
+  "ll_lr": [
+   0.43312,
+   0.00442
+  ],
+  "ll_bayes": [
+   0.43282,
+   0.0043
+  ],
+  "sp_zero_vs_mean": [
+   0.44004,
+   0.04847
+  ],
+  "budget_ratio": [
+   1.0,
+   0.0
+  ],
+  "deaths_useless": [
+   5.0,
+   0.0
+  ],
+  "deaths_useful": [
+   32.8,
+   0.556
+  ],
+  "alive_end": [
+   2.2,
+   0.556
+  ],
+  "vabs_useless": [
+   0.0,
+   0.0
+  ],
+  "vabs_useful": [
+   0.13092,
+   0.01773
+  ],
+  "truth_useless": [
+   0.0,
+   0.0
+  ],
+  "pay_useless": [
+   0.0,
+   0.0
+  ],
+  "active_conn": [
+   29.0,
+   5.62907
+  ],
+  "burned": [
+   64.0385,
+   2.55799
+  ],
+  "gain": [
+   0.25447,
+   0.005
+  ],
+  "sp_loo": [
+   0.64775,
+   0.53239
+  ],
+  "sp_msr1": [
+   0.64775,
+   0.53239
+  ],
+  "sp_shap": [
+   0.96594,
+   0.09469
+  ],
+  "ll_minus_lr": [
+   0.00556,
+   0.00194
+  ],
+  "ll_minus_backprop": [
+   0.00384,
+   0.00122
+  ],
+  "mean_abs_logit_diff_vs_backprop": [
+   0.21712,
+   0.03058
+  ],
+  "mean_abs_logit_diff_vs_backprop_after_scale": [
+   0.23056,
+   0.03869
+  ],
+  "mean_abs_logit_backprop": [
+   1.71068,
+   0.0744
+  ],
+  "dup_shap": {
+   "orig_nats": [
+    0.242,
+    0.00621
+   ],
+   "copyA_over_orig": [
+    0.5163,
+    0.01293
+   ],
+   "copyB_over_orig": [
+    0.49157,
+    0.01142
+   ],
+   "sum_over_orig": [
+    1.00788,
+    0.00369
+   ]
+  },
+  "dup_loo": {
+   "orig_nats": [
+    0.22382,
+    0.01135
+   ],
+   "copyA_over_orig": [
+    0.19109,
+    0.0113
+   ],
+   "copyB_over_orig": [
+    0.19109,
+    0.0113
+   ],
+   "sum_over_orig": [
+    0.38217,
+    0.02261
+   ]
+  },
+  "dup_msr1": {
+   "orig_nats": [
+    0.25049,
+    0.02612
+   ],
+   "copyA_over_orig": [
+    0.7924,
+    0.02119
+   ],
+   "copyB_over_orig": [
+    0.2076,
+    0.02119
+   ],
+   "sum_over_orig": [
+    1.0,
+    0.0
+   ]
+  },
+  "gain_per_100_conn": [
+   0.89153,
+   0.14143
+  ]
+ },
+ "synth|cost=0.0005|shap": {
+  "seeds": 5,
+  "ll": [
+   0.60894,
+   0.01239
+  ],
+  "ll_temp": [
+   0.43487,
+   0.00447
+  ],
+  "tscale": [
+   0.36442,
+   0.02877
+  ],
+  "ll_lr": [
+   0.43312,
+   0.00442
+  ],
+  "ll_bayes": [
+   0.43282,
+   0.0043
+  ],
+  "sp_zero_vs_mean": [
+   0.94773,
+   0.01259
+  ],
+  "budget_ratio": [
+   1.0,
+   0.0
+  ],
+  "deaths_useless": [
+   4.8,
+   0.556
+  ],
+  "deaths_useful": [
+   16.6,
+   1.88549
+  ],
+  "alive_end": [
+   17.0,
+   1.24325
+  ],
+  "vabs_useless": [
+   0.0,
+   0.0
+  ],
+  "vabs_useful": [
+   0.4695,
+   0.0205
+  ],
+  "truth_useless": [
+   0.0,
+   0.0
+  ],
+  "pay_useless": [
+   0.0,
+   0.0
+  ],
+  "active_conn": [
+   231.0,
+   16.42319
+  ],
+  "burned": [
+   165.1125,
+   12.06628
+  ],
+  "gain": [
+   0.08421,
+   0.01239
+  ],
+  "sp_loo": [
+   -0.85222,
+   0.10132
+  ],
+  "sp_msr1": [
+   -0.26172,
+   0.077
+  ],
+  "sp_shap": [
+   0.84518,
+   0.08451
+  ],
+  "ll_minus_lr": [
+   0.17582,
+   0.01597
+  ],
+  "ll_minus_backprop": [
+   0.1741,
+   0.01628
+  ],
+  "mean_abs_logit_diff_vs_backprop": [
+   2.82092,
+   0.18966
+  ],
+  "mean_abs_logit_diff_vs_backprop_after_scale": [
+   0.13213,
+   0.03753
+  ],
+  "mean_abs_logit_backprop": [
+   1.71068,
+   0.0744
+  ],
+  "dup_shap": {
+   "orig_nats": [
+    0.00978,
+    0.00157
+   ],
+   "copyA_over_orig": [
+    0.42157,
+    0.09803
+   ],
+   "copyB_over_orig": [
+    0.21804,
+    0.04985
+   ],
+   "sum_over_orig": [
+    0.63961,
+    0.12233
+   ]
+  },
+  "dup_loo": {
+   "orig_nats": [
+    -0.02663,
+    0.00655
+   ],
+   "copyA_over_orig": [
+    0.50614,
+    0.00147
+   ],
+   "copyB_over_orig": [
+    0.50614,
+    0.00147
+   ],
+   "sum_over_orig": [
+    1.01228,
+    0.00295
+   ]
+  },
+  "dup_msr1": {
+   "orig_nats": [
+    0.00199,
+    0.0259
+   ],
+   "copyA_over_orig": [
+    0.61684,
+    0.24513
+   ],
+   "copyB_over_orig": [
+    0.38316,
+    0.24513
+   ],
+   "sum_over_orig": [
+    1.0,
+    0.0
+   ]
+  },
+  "gain_per_100_conn": [
+   0.03663,
+   0.00688
+  ]
+ },
+ "synth|cost=0.002|backprop": {
+  "seeds": 5,
+  "ll": [
+   0.43459,
+   0.00455
+  ],
+  "ll_temp": [
+   0.43446,
+   0.00444
+  ],
+  "tscale": [
+   1.01676,
+   0.04836
+  ],
+  "ll_lr": [
+   0.43312,
+   0.00442
+  ],
+  "ll_bayes": [
+   0.43282,
+   0.0043
+  ],
+  "sp_zero_vs_mean": [
+   0.99699,
+   0.00712
+  ],
+  "budget_ratio": [
+   1.0,
+   0.0
+  ],
+  "deaths_useless": [
+   0.0,
+   0.0
+  ],
+  "deaths_useful": [
+   0.0,
+   0.0
+  ],
+  "alive_end": [
+   32.0,
+   0.0
+  ],
+  "vabs_useless": [
+   0.0017,
+   0.00132
+  ],
+  "vabs_useful": [
+   0.23407,
+   0.03269
+  ],
+  "truth_useless": [
+   -0.0,
+   1e-05
+  ],
+  "pay_useless": [
+   -6e-05,
+   3e-05
+  ],
+  "active_conn": [
+   291.8,
+   25.10326
+  ],
+  "burned": [
+   385.69813,
+   64.23066
+  ],
+  "gain": [
+   0.25856,
+   0.00455
+  ],
+  "sp_loo": [
+   0.84025,
+   0.11603
+  ],
+  "sp_msr1": [
+   0.85557,
+   0.0771
+  ],
+  "sp_shap": [
+   0.9129,
+   0.08574
+  ],
+  "ll_minus_lr": [
+   0.00147,
+   0.00076
+  ],
+  "dup_shap": {
+   "orig_nats": [
+    0.06797,
+    0.02872
+   ],
+   "copyA_over_orig": [
+    0.52555,
+    0.03386
+   ],
+   "copyB_over_orig": [
+    0.50806,
+    0.03808
+   ],
+   "sum_over_orig": [
+    1.03361,
+    0.06927
+   ]
+  },
+  "dup_loo": {
+   "orig_nats": [
+    0.01896,
+    0.01451
+   ],
+   "copyA_over_orig": [
+    0.27608,
+    0.04857
+   ],
+   "copyB_over_orig": [
+    0.27608,
+    0.04857
+   ],
+   "sum_over_orig": [
+    0.55217,
+    0.09714
+   ]
+  },
+  "dup_msr1": {
+   "orig_nats": [
+    0.10732,
+    0.04766
+   ],
+   "copyA_over_orig": [
+    0.58261,
+    0.05356
+   ],
+   "copyB_over_orig": [
+    0.41739,
+    0.05356
+   ],
+   "sum_over_orig": [
+    1.0,
+    0.0
+   ]
+  },
+  "gain_per_100_conn": [
+   0.08892,
+   0.00729
+  ]
+ },
+ "synth|cost=0.002|backprop_alt": {
+  "seeds": 5,
+  "ll": [
+   0.43467,
+   0.00449
+  ],
+  "ll_temp": [
+   0.43459,
+   0.00439
+  ],
+  "tscale": [
+   1.01676,
+   0.04836
+  ],
+  "ll_lr": [
+   0.43312,
+   0.00442
+  ],
+  "ll_bayes": [
+   0.43282,
+   0.0043
+  ],
+  "sp_zero_vs_mean": [
+   0.99443,
+   0.01125
+  ],
+  "budget_ratio": [
+   1.0,
+   0.0
+  ],
+  "deaths_useless": [
+   0.0,
+   0.0
+  ],
+  "deaths_useful": [
+   0.0,
+   0.0
+  ],
+  "alive_end": [
+   32.0,
+   0.0
+  ],
+  "vabs_useless": [
+   0.00396,
+   0.00342
+  ],
+  "vabs_useful": [
+   0.23092,
+   0.02448
+  ],
+  "truth_useless": [
+   -4e-05,
+   0.0001
+  ],
+  "pay_useless": [
+   -9e-05,
+   5e-05
+  ],
+  "active_conn": [
+   290.0,
+   8.79113
+  ],
+  "burned": [
+   419.37924,
+   70.94134
+  ],
+  "gain": [
+   0.25848,
+   0.00449
+  ],
+  "sp_loo": [
+   0.90898,
+   0.05613
+  ],
+  "sp_msr1": [
+   0.89149,
+   0.05271
+  ],
+  "sp_shap": [
+   0.94318,
+   0.06061
+  ],
+  "ll_minus_lr": [
+   0.00155,
+   0.001
+  ],
+  "ll_minus_backprop": [
+   8e-05,
+   0.0003
+  ],
+  "mean_abs_logit_diff_vs_backprop": [
+   0.05738,
+   0.01616
+  ],
+  "mean_abs_logit_diff_vs_backprop_after_scale": [
+   0.08044,
+   0.03386
+  ],
+  "mean_abs_logit_backprop": [
+   1.66897,
+   0.07094
+  ],
+  "dup_shap": {
+   "orig_nats": [
+    0.06092,
+    0.00991
+   ],
+   "copyA_over_orig": [
+    0.52439,
+    0.03323
+   ],
+   "copyB_over_orig": [
+    0.48837,
+    0.02886
+   ],
+   "sum_over_orig": [
+    1.01275,
+    0.05308
+   ]
+  },
+  "dup_loo": {
+   "orig_nats": [
+    0.01443,
+    0.00535
+   ],
+   "copyA_over_orig": [
+    0.31708,
+    0.0312
+   ],
+   "copyB_over_orig": [
+    0.31708,
+    0.0312
+   ],
+   "sum_over_orig": [
+    0.63415,
+    0.0624
+   ]
+  },
+  "dup_msr1": {
+   "orig_nats": [
+    0.05128,
+    0.06154
+   ],
+   "copyA_over_orig": [
+    0.61803,
+    0.05667
+   ],
+   "copyB_over_orig": [
+    0.38197,
+    0.05667
+   ],
+   "sum_over_orig": [
+    1.0,
+    0.0
+   ]
+  },
+  "gain_per_100_conn": [
+   0.08918,
+   0.00334
+  ]
+ },
+ "synth|cost=0.002|loo": {
+  "seeds": 5,
+  "ll": [
+   0.43629,
+   0.00462
+  ],
+  "ll_temp": [
+   0.4364,
+   0.00464
+  ],
+  "tscale": [
+   0.98835,
+   0.0
+  ],
+  "ll_lr": [
+   0.43312,
+   0.00442
+  ],
+  "ll_bayes": [
+   0.43282,
+   0.0043
+  ],
+  "sp_zero_vs_mean": [
+   0.96376,
+   0.05086
+  ],
+  "budget_ratio": [
+   0.33709,
+   0.13887
+  ],
+  "deaths_useless": [
+   51.4,
+   1.112
+  ],
+  "deaths_useful": [
+   490.8,
+   76.12024
+  ],
+  "alive_end": [
+   21.0,
+   3.51645
+  ],
+  "vabs_useless": [
+   0.077,
+   0.02344
+  ],
+  "vabs_useful": [
+   0.17795,
+   0.03023
+  ],
+  "truth_useless": [
+   -0.00048,
+   0.00044
+  ],
+  "pay_useless": [
+   0.0009,
+   0.00089
+  ],
+  "active_conn": [
+   246.4,
+   49.04632
+  ],
+  "burned": [
+   628.456,
+   114.55043
+  ],
+  "gain": [
+   0.25686,
+   0.00462
+  ],
+  "sp_loo": [
+   0.16624,
+   0.13904
+  ],
+  "sp_msr1": [
+   0.34044,
+   0.20961
+  ],
+  "sp_shap": [
+   0.3868,
+   0.30969
+  ],
+  "ll_minus_lr": [
+   0.00317,
+   0.00043
+  ],
+  "ll_minus_backprop": [
+   0.0017,
+   0.00106
+  ],
+  "mean_abs_logit_diff_vs_backprop": [
+   0.13351,
+   0.02403
+  ],
+  "mean_abs_logit_diff_vs_backprop_after_scale": [
+   0.13642,
+   0.02877
+  ],
+  "mean_abs_logit_backprop": [
+   1.66897,
+   0.07094
+  ],
+  "dup_shap": {
+   "orig_nats": [
+    0.11286,
+    0.0555
+   ],
+   "copyA_over_orig": [
+    0.50676,
+    0.02707
+   ],
+   "copyB_over_orig": [
+    0.5016,
+    0.03867
+   ],
+   "sum_over_orig": [
+    1.00836,
+    0.06286
+   ]
+  },
+  "dup_loo": {
+   "orig_nats": [
+    0.04813,
+    0.04395
+   ],
+   "copyA_over_orig": [
+    0.2408,
+    0.02972
+   ],
+   "copyB_over_orig": [
+    0.2408,
+    0.02972
+   ],
+   "sum_over_orig": [
+    0.48161,
+    0.05944
+   ]
+  },
+  "dup_msr1": {
+   "orig_nats": [
+    0.15424,
+    0.06076
+   ],
+   "copyA_over_orig": [
+    0.63099,
+    0.09504
+   ],
+   "copyB_over_orig": [
+    0.36901,
+    0.09504
+   ],
+   "sum_over_orig": [
+    1.0,
+    0.0
+   ]
+  },
+  "gain_per_100_conn": [
+   0.10642,
+   0.02129
+  ]
+ },
+ "synth|cost=0.002|msr1": {
+  "seeds": 5,
+  "ll": [
+   0.43904,
+   0.00528
+  ],
+  "ll_temp": [
+   0.43894,
+   0.00503
+  ],
+  "tscale": [
+   1.01676,
+   0.04836
+  ],
+  "ll_lr": [
+   0.43312,
+   0.00442
+  ],
+  "ll_bayes": [
+   0.43282,
+   0.0043
+  ],
+  "sp_zero_vs_mean": [
+   0.30387,
+   0.0004
+  ],
+  "budget_ratio": [
+   1.0,
+   0.0
+  ],
+  "deaths_useless": [
+   5.0,
+   0.0
+  ],
+  "deaths_useful": [
+   34.0,
+   0.0
+  ],
+  "alive_end": [
+   1.0,
+   0.0
+  ],
+  "vabs_useless": [
+   0.0,
+   0.0
+  ],
+  "vabs_useful": [
+   0.1127,
+   0.00031
+  ],
+  "truth_useless": [
+   0.0,
+   0.0
+  ],
+  "pay_useless": [
+   0.0,
+   0.0
+  ],
+  "active_conn": [
+   14.0,
+   0.0
+  ],
+  "burned": [
+   94.342,
+   13.61199
+  ],
+  "gain": [
+   0.25411,
+   0.00528
+  ],
+  "sp_loo": [
+   1.0,
+   0.0
+  ],
+  "sp_msr1": [
+   1.0,
+   0.0
+  ],
+  "sp_shap": [
+   1.0,
+   0.0
+  ],
+  "ll_minus_lr": [
+   0.00592,
+   0.00238
+  ],
+  "ll_minus_backprop": [
+   0.00445,
+   0.00178
+  ],
+  "mean_abs_logit_diff_vs_backprop": [
+   0.19901,
+   0.03618
+  ],
+  "mean_abs_logit_diff_vs_backprop_after_scale": [
+   0.19995,
+   0.03403
+  ],
+  "mean_abs_logit_backprop": [
+   1.66897,
+   0.07094
+  ],
+  "dup_shap": {
+   "orig_nats": [
+    0.26078,
+    0.00803
+   ],
+   "copyA_over_orig": [
+    0.51129,
+    0.01219
+   ],
+   "copyB_over_orig": [
+    0.48871,
+    0.01219
+   ],
+   "sum_over_orig": [
+    1.0,
+    0.0
+   ]
+  },
+  "dup_loo": {
+   "orig_nats": [
+    0.26078,
+    0.00803
+   ],
+   "copyA_over_orig": [
+    0.21625,
+    0.00593
+   ],
+   "copyB_over_orig": [
+    0.21625,
+    0.00593
+   ],
+   "sum_over_orig": [
+    0.4325,
+    0.01186
+   ]
+  },
+  "dup_msr1": {
+   "orig_nats": [
+    0.26078,
+    0.00803
+   ],
+   "copyA_over_orig": [
+    0.78375,
+    0.00593
+   ],
+   "copyB_over_orig": [
+    0.21625,
+    0.00593
+   ],
+   "sum_over_orig": [
+    1.0,
+    0.0
+   ]
+  },
+  "gain_per_100_conn": [
+   1.81505,
+   0.03773
+  ]
+ },
+ "synth|cost=0.002|shap": {
+  "seeds": 5,
+  "ll": [
+   0.55527,
+   0.00957
+  ],
+  "ll_temp": [
+   0.43548,
+   0.00481
+  ],
+  "tscale": [
+   0.4302,
+   0.02625
+  ],
+  "ll_lr": [
+   0.43312,
+   0.00442
+  ],
+  "ll_bayes": [
+   0.43282,
+   0.0043
+  ],
+  "sp_zero_vs_mean": [
+   0.76239,
+   0.03035
+  ],
+  "budget_ratio": [
+   1.0,
+   0.0
+  ],
+  "deaths_useless": [
+   4.8,
+   0.556
+  ],
+  "deaths_useful": [
+   26.2,
+   1.04018
+  ],
+  "alive_end": [
+   8.0,
+   0.87911
+  ],
+  "vabs_useless": [
+   0.0,
+   0.0
+  ],
+  "vabs_useful": [
+   0.38373,
+   0.01892
+  ],
+  "truth_useless": [
+   0.0,
+   0.0
+  ],
+  "pay_useless": [
+   0.0,
+   0.0
+  ],
+  "active_conn": [
+   107.0,
+   14.14799
+  ],
+  "burned": [
+   298.2484,
+   25.31782
+  ],
+  "gain": [
+   0.13787,
+   0.00957
+  ],
+  "sp_loo": [
+   -0.96969,
+   0.02227
+  ],
+  "sp_msr1": [
+   -0.1455,
+   0.09589
+  ],
+  "sp_shap": [
+   0.97201,
+   0.01961
+  ],
+  "ll_minus_lr": [
+   0.12216,
+   0.01234
+  ],
+  "ll_minus_backprop": [
+   0.12069,
+   0.01277
+  ],
+  "mean_abs_logit_diff_vs_backprop": [
+   2.21093,
+   0.15048
+  ],
+  "mean_abs_logit_diff_vs_backprop_after_scale": [
+   0.09362,
+   0.03429
+  ],
+  "mean_abs_logit_backprop": [
+   1.66897,
+   0.07094
+  ],
+  "dup_shap": {
+   "orig_nats": [
+    0.02542,
+    0.00297
+   ],
+   "copyA_over_orig": [
+    0.48747,
+    0.06837
+   ],
+   "copyB_over_orig": [
+    0.32914,
+    0.06996
+   ],
+   "sum_over_orig": [
+    0.81661,
+    0.11569
+   ]
+  },
+  "dup_loo": {
+   "orig_nats": [
+    -0.04027,
+    0.00581
+   ],
+   "copyA_over_orig": [
+    0.51459,
+    0.00384
+   ],
+   "copyB_over_orig": [
+    0.51459,
+    0.00384
+   ],
+   "sum_over_orig": [
+    1.02919,
+    0.00768
+   ]
+  },
+  "dup_msr1": {
+   "orig_nats": [
+    -0.00479,
+    0.04046
+   ],
+   "copyA_over_orig": [
+    0.53807,
+    0.20576
+   ],
+   "copyB_over_orig": [
+    0.46193,
+    0.20576
+   ],
+   "sum_over_orig": [
+    1.0,
+    0.0
+   ]
+  },
+  "gain_per_100_conn": [
+   0.13047,
+   0.02406
+  ]
+ },
+ "synth2|cost=0.0005|backprop": {
+  "seeds": 5,
+  "ll": [
+   0.4368,
+   0.00414
+  ],
+  "ll_temp": [
+   0.43699,
+   0.0043
+  ],
+  "tscale": [
+   0.9893,
+   0.06037
+  ],
+  "ll_bayes": [
+   0.43282,
+   0.0043
+  ],
+  "deaths_useless": [
+   0.0,
+   0.0
+  ],
+  "deaths_useful": [
+   0.0,
+   0.0
+  ],
+  "deaths_l1": [
+   0.0,
+   0.0
+  ],
+  "deaths_l2": [
+   0.0,
+   0.0
+  ],
+  "active_conn": [
+   442.8,
+   9.02537
+  ],
+  "burned": [
+   132.82953,
+   15.7093
+  ],
+  "sp_shap": [
+   0.97324,
+   0.03314
+  ],
+  "sp_loo": [
+   0.88365,
+   0.10494
+  ],
+  "upstream_share_pay": [
+   0.52114,
+   0.01396
+  ],
+  "upstream_share_truth": [
+   0.53557,
+   0.01999
+  ]
+ },
+ "synth2|cost=0.0005|loo": {
+  "seeds": 5,
+  "ll": [
+   0.43829,
+   0.0044
+  ],
+  "ll_temp": [
+   0.43845,
+   0.00458
+  ],
+  "tscale": [
+   0.9893,
+   0.06037
+  ],
+  "ll_bayes": [
+   0.43282,
+   0.0043
+  ],
+  "deaths_useless": [
+   4.4,
+   1.88549
+  ],
+  "deaths_useful": [
+   77.4,
+   15.26724
+  ],
+  "deaths_l1": [
+   21.4,
+   14.4078
+  ],
+  "deaths_l2": [
+   60.4,
+   8.18095
+  ],
+  "active_conn": [
+   450.6,
+   5.73786
+  ],
+  "burned": [
+   179.8989,
+   0.98483
+  ],
+  "sp_shap": [
+   0.88974,
+   0.10995
+  ],
+  "sp_loo": [
+   0.83116,
+   0.12708
+  ],
+  "upstream_share_pay": [
+   0.50445,
+   0.01708
+  ],
+  "upstream_share_truth": [
+   0.52666,
+   0.02591
+  ],
+  "ll_minus_backprop": [
+   0.00149,
+   0.00089
+  ],
+  "mean_abs_logit_diff_vs_backprop": [
+   0.10628,
+   0.02713
+  ],
+  "mean_abs_logit_diff_vs_backprop_after_scale": [
+   0.12194,
+   0.05762
+  ],
+  "mean_abs_logit_backprop": [
+   1.66584,
+   0.05158
+  ]
+ },
+ "synth2|cost=0.0005|shap": {
+  "seeds": 5,
+  "ll": [
+   0.59275,
+   0.01461
+  ],
+  "ll_temp": [
+   0.44929,
+   0.00409
+  ],
+  "tscale": [
+   0.4302,
+   0.02625
+  ],
+  "ll_bayes": [
+   0.43282,
+   0.0043
+  ],
+  "deaths_useless": [
+   6.2,
+   1.621
+  ],
+  "deaths_useful": [
+   18.4,
+   2.08036
+  ],
+  "deaths_l1": [
+   12.8,
+   3.97063
+  ],
+  "deaths_l2": [
+   11.8,
+   2.83505
+  ],
+  "active_conn": [
+   303.8,
+   14.04932
+  ],
+  "burned": [
+   124.4446,
+   7.14323
+  ],
+  "sp_shap": [
+   0.90928,
+   0.03839
+  ],
+  "sp_loo": [
+   -0.87493,
+   0.06233
+  ],
+  "upstream_share_pay": [
+   0.53964,
+   0.03636
+  ],
+  "upstream_share_truth": [
+   0.524,
+   0.07189
+  ],
+  "ll_minus_backprop": [
+   0.15594,
+   0.01536
+  ],
+  "mean_abs_logit_diff_vs_backprop": [
+   1.8871,
+   0.12863
+  ],
+  "mean_abs_logit_diff_vs_backprop_after_scale": [
+   0.36714,
+   0.01906
+  ],
+  "mean_abs_logit_backprop": [
+   1.66584,
+   0.05158
+  ]
+ },
+ "wdbc|cost=0.0|backprop": {
+  "seeds": 5,
+  "ll": [
+   0.10752,
+   0.04654
+  ],
+  "ll_temp": [
+   0.18976,
+   0.10161
+  ],
+  "tscale": [
+   2.24918,
+   0.59502
+  ],
+  "ll_lr": [
+   0.09662,
+   0.03975
+  ],
+  "sp_zero_vs_mean": [
+   0.9621,
+   0.04016
+  ],
+  "budget_ratio": [
+   1.0,
+   0.0
+  ],
+  "deaths_useless": [
+   0.0,
+   0.0
+  ],
+  "deaths_useful": [
+   0.0,
+   0.0
+  ],
+  "alive_end": [
+   32.0,
+   0.0
+  ],
+  "vabs_useless": [
+   0.11104,
+   0.0663
+  ],
+  "vabs_useful": [
+   0.4812,
+   0.03905
+  ],
+  "truth_useless": [
+   -0.00289,
+   0.00265
+  ],
+  "pay_useless": [
+   0.00014,
+   0.00032
+  ],
+  "active_conn": [
+   1026.2,
+   2.39145
+  ],
+  "burned": [
+   0.0,
+   0.0
+  ],
+  "gain": [
+   0.55783,
+   0.04084
+  ],
+  "sp_loo": [
+   0.85161,
+   0.0794
+  ],
+  "sp_msr1": [
+   0.66224,
+   0.1131
+  ],
+  "sp_shap": [
+   0.9706,
+   0.01566
+  ],
+  "ll_minus_lr": [
+   0.01091,
+   0.01325
+  ],
+  "dup_shap": {
+   "orig_nats": [
+    0.05787,
+    0.00869
+   ],
+   "copyA_over_orig": [
+    0.5208,
+    0.05985
+   ],
+   "copyB_over_orig": [
+    0.48489,
+    0.064
+   ],
+   "sum_over_orig": [
+    1.00569,
+    0.09026
+   ]
+  },
+  "dup_loo": {
+   "orig_nats": [
+    -0.00277,
+    0.00772
+   ],
+   "copyA_over_orig": [
+    0.54917,
+    0.12395
+   ],
+   "copyB_over_orig": [
+    0.54917,
+    0.12395
+   ],
+   "sum_over_orig": [
+    1.09835,
+    0.24791
+   ]
+  },
+  "dup_msr1": {
+   "orig_nats": [
+    0.06555,
+    0.15409
+   ],
+   "copyA_over_orig": [
+    0.58381,
+    0.107
+   ],
+   "copyB_over_orig": [
+    0.41619,
+    0.107
+   ],
+   "sum_over_orig": [
+    1.0,
+    0.0
+   ]
+  },
+  "gain_per_100_conn": [
+   0.05436,
+   0.00403
+  ]
+ },
+ "wdbc|cost=0.0|backprop_alt": {
+  "seeds": 5,
+  "ll": [
+   0.1068,
+   0.04592
+  ],
+  "ll_temp": [
+   0.1719,
+   0.09972
+  ],
+  "tscale": [
+   1.97925,
+   0.48334
+  ],
+  "ll_lr": [
+   0.09662,
+   0.03975
+  ],
+  "sp_zero_vs_mean": [
+   0.96041,
+   0.0157
+  ],
+  "budget_ratio": [
+   1.0,
+   0.0
+  ],
+  "deaths_useless": [
+   0.0,
+   0.0
+  ],
+  "deaths_useful": [
+   0.0,
+   0.0
+  ],
+  "alive_end": [
+   32.0,
+   0.0
+  ],
+  "vabs_useless": [
+   0.11365,
+   0.07095
+  ],
+  "vabs_useful": [
+   0.46263,
+   0.03879
+  ],
+  "truth_useless": [
+   -0.00215,
+   0.00214
+  ],
+  "pay_useless": [
+   -0.00047,
+   0.00212
+  ],
+  "active_conn": [
+   1024.8,
+   4.25258
+  ],
+  "burned": [
+   0.0,
+   0.0
+  ],
+  "gain": [
+   0.55856,
+   0.04106
+  ],
+  "sp_loo": [
+   0.84179,
+   0.0661
+  ],
+  "sp_msr1": [
+   0.73548,
+   0.1001
+  ],
+  "sp_shap": [
+   0.96782,
+   0.00828
+  ],
+  "ll_minus_lr": [
+   0.01018,
+   0.01299
+  ],
+  "ll_minus_backprop": [
+   -0.00073,
+   0.00717
+  ],
+  "mean_abs_logit_diff_vs_backprop": [
+   0.60124,
+   0.17307
+  ],
+  "dup_shap": {
+   "orig_nats": [
+    0.06182,
+    0.01525
+   ],
+   "copyA_over_orig": [
+    0.51666,
+    0.05655
+   ],
+   "copyB_over_orig": [
+    0.4622,
+    0.02597
+   ],
+   "sum_over_orig": [
+    0.97886,
+    0.05994
+   ]
+  },
+  "dup_loo": {
+   "orig_nats": [
+    -0.00228,
+    0.0082
+   ],
+   "copyA_over_orig": [
+    0.49833,
+    0.30225
+   ],
+   "copyB_over_orig": [
+    0.49833,
+    0.30225
+   ],
+   "sum_over_orig": [
+    0.99665,
+    0.6045
+   ]
+  },
+  "dup_msr1": {
+   "orig_nats": [
+    0.01972,
+    0.03037
+   ],
+   "copyA_over_orig": [
+    0.44611,
+    0.33016
+   ],
+   "copyB_over_orig": [
+    0.55389,
+    0.33016
+   ],
+   "sum_over_orig": [
+    1.0,
+    0.0
+   ]
+  },
+  "gain_per_100_conn": [
+   0.05451,
+   0.00412
+  ]
+ },
+ "wdbc|cost=0.0|loo": {
+  "seeds": 5,
+  "ll": [
+   0.10752,
+   0.04654
+  ],
+  "ll_temp": [
+   0.18976,
+   0.10161
+  ],
+  "tscale": [
+   2.24918,
+   0.59502
+  ],
+  "ll_lr": [
+   0.09662,
+   0.03975
+  ],
+  "sp_zero_vs_mean": [
+   0.9621,
+   0.04016
+  ],
+  "budget_ratio": [
+   0.05643,
+   0.01601
+  ],
+  "deaths_useless": [
+   0.0,
+   0.0
+  ],
+  "deaths_useful": [
+   0.0,
+   0.0
+  ],
+  "alive_end": [
+   32.0,
+   0.0
+  ],
+  "vabs_useless": [
+   0.11104,
+   0.0663
+  ],
+  "vabs_useful": [
+   0.4812,
+   0.03905
+  ],
+  "truth_useless": [
+   -0.00289,
+   0.00265
+  ],
+  "pay_useless": [
+   0.00012,
+   0.00014
+  ],
+  "active_conn": [
+   1026.2,
+   2.39145
+  ],
+  "burned": [
+   0.0,
+   0.0
+  ],
+  "gain": [
+   0.55783,
+   0.04084
+  ],
+  "sp_loo": [
+   0.85161,
+   0.0794
+  ],
+  "sp_msr1": [
+   0.66224,
+   0.1131
+  ],
+  "sp_shap": [
+   0.9706,
+   0.01566
+  ],
+  "ll_minus_lr": [
+   0.01091,
+   0.01325
+  ],
+  "ll_minus_backprop": [
+   0.0,
+   0.0
+  ],
+  "mean_abs_logit_diff_vs_backprop": [
+   0.0,
+   0.0
+  ],
+  "dup_shap": {
+   "orig_nats": [
+    0.05787,
+    0.00869
+   ],
+   "copyA_over_orig": [
+    0.5208,
+    0.05985
+   ],
+   "copyB_over_orig": [
+    0.48489,
+    0.064
+   ],
+   "sum_over_orig": [
+    1.00569,
+    0.09026
+   ]
+  },
+  "dup_loo": {
+   "orig_nats": [
+    -0.00277,
+    0.00772
+   ],
+   "copyA_over_orig": [
+    0.54917,
+    0.12395
+   ],
+   "copyB_over_orig": [
+    0.54917,
+    0.12395
+   ],
+   "sum_over_orig": [
+    1.09835,
+    0.24791
+   ]
+  },
+  "dup_msr1": {
+   "orig_nats": [
+    0.06555,
+    0.15409
+   ],
+   "copyA_over_orig": [
+    0.58381,
+    0.107
+   ],
+   "copyB_over_orig": [
+    0.41619,
+    0.107
+   ],
+   "sum_over_orig": [
+    1.0,
+    0.0
+   ]
+  },
+  "gain_per_100_conn": [
+   0.05436,
+   0.00403
+  ]
+ },
+ "wdbc|cost=0.0|msr1": {
+  "seeds": 5,
+  "ll": [
+   0.16401,
+   0.05661
+  ],
+  "ll_temp": [
+   0.37734,
+   0.22063
+  ],
+  "tscale": [
+   2.39461,
+   0.72856
+  ],
+  "ll_lr": [
+   0.09662,
+   0.03975
+  ],
+  "sp_zero_vs_mean": [
+   0.89897,
+   0.06009
+  ],
+  "budget_ratio": [
+   1.0,
+   0.0
+  ],
+  "deaths_useless": [
+   0.0,
+   0.0
+  ],
+  "deaths_useful": [
+   0.0,
+   0.0
+  ],
+  "alive_end": [
+   32.0,
+   0.0
+  ],
+  "vabs_useless": [
+   0.09263,
+   0.05311
+  ],
+  "vabs_useful": [
+   0.5135,
+   0.04167
+  ],
+  "truth_useless": [
+   -0.00242,
+   0.00476
+  ],
+  "pay_useless": [
+   0.00118,
+   0.0033
+  ],
+  "active_conn": [
+   1026.4,
+   3.58178
+  ],
+  "burned": [
+   0.0,
+   0.0
+  ],
+  "gain": [
+   0.50134,
+   0.04639
+  ],
+  "sp_loo": [
+   0.57669,
+   0.39575
+  ],
+  "sp_msr1": [
+   0.60132,
+   0.24139
+  ],
+  "sp_shap": [
+   0.96422,
+   0.0282
+  ],
+  "ll_minus_lr": [
+   0.06739,
+   0.02423
+  ],
+  "ll_minus_backprop": [
+   0.05649,
+   0.02592
+  ],
+  "mean_abs_logit_diff_vs_backprop": [
+   1.2368,
+   0.10567
+  ],
+  "dup_shap": {
+   "orig_nats": [
+    0.12839,
+    0.03894
+   ],
+   "copyA_over_orig": [
+    0.69701,
+    0.18702
+   ],
+   "copyB_over_orig": [
+    0.58127,
+    0.14721
+   ],
+   "sum_over_orig": [
+    1.27828,
+    0.31752
+   ]
+  },
+  "dup_loo": {
+   "orig_nats": [
+    -0.01524,
+    0.05587
+   ],
+   "copyA_over_orig": [
+    0.20939,
+    0.64383
+   ],
+   "copyB_over_orig": [
+    0.20939,
+    0.64383
+   ],
+   "sum_over_orig": [
+    0.41877,
+    1.28765
+   ]
+  },
+  "dup_msr1": {
+   "orig_nats": [
+    0.13621,
+    0.30693
+   ],
+   "copyA_over_orig": [
+    0.60179,
+    0.41257
+   ],
+   "copyB_over_orig": [
+    0.39821,
+    0.41257
+   ],
+   "sum_over_orig": [
+    1.0,
+    0.0
+   ]
+  },
+  "gain_per_100_conn": [
+   0.04885,
+   0.00463
+  ]
+ },
+ "wdbc|cost=0.0|shap": {
+  "seeds": 5,
+  "ll": [
+   0.58151,
+   0.31648
+  ],
+  "ll_temp": [
+   0.34015,
+   0.42041
+  ],
+  "tscale": [
+   0.50319,
+   0.56476
+  ],
+  "ll_lr": [
+   0.09662,
+   0.03975
+  ],
+  "sp_zero_vs_mean": [
+   -0.39267,
+   0.44933
+  ],
+  "budget_ratio": [
+   1.0,
+   0.0
+  ],
+  "deaths_useless": [
+   0.0,
+   0.0
+  ],
+  "deaths_useful": [
+   0.0,
+   0.0
+  ],
+  "alive_end": [
+   32.0,
+   0.0
+  ],
+  "vabs_useless": [
+   0.11254,
+   0.08974
+  ],
+  "vabs_useful": [
+   1.79613,
+   0.0678
+  ],
+  "truth_useless": [
+   -0.00217,
+   0.00359
+  ],
+  "pay_useless": [
+   0.00023,
+   0.00031
+  ],
+  "active_conn": [
+   1029.6,
+   2.25848
+  ],
+  "burned": [
+   0.0,
+   0.0
+  ],
+  "gain": [
+   0.08385,
+   0.31275
+  ],
+  "sp_loo": [
+   -0.44934,
+   0.28235
+  ],
+  "sp_msr1": [
+   -0.29773,
+   0.28748
+  ],
+  "sp_shap": [
+   -0.18607,
+   0.26
+  ],
+  "ll_minus_lr": [
+   0.48489,
+   0.28233
+  ],
+  "ll_minus_backprop": [
+   0.47399,
+   0.27336
+  ],
+  "mean_abs_logit_diff_vs_backprop": [
+   34.42163,
+   1.6841
+  ],
+  "dup_shap": {
+   "orig_nats": [
+    0.02287,
+    0.01168
+   ],
+   "copyA_over_orig": [
+    0.40897,
+    0.22512
+   ],
+   "copyB_over_orig": [
+    0.41987,
+    0.09003
+   ],
+   "sum_over_orig": [
+    0.82884,
+    0.23295
+   ]
+  },
+  "dup_loo": {
+   "orig_nats": [
+    -0.00333,
+    0.01353
+   ],
+   "copyA_over_orig": [
+    0.49296,
+    0.02665
+   ],
+   "copyB_over_orig": [
+    0.49296,
+    0.02665
+   ],
+   "sum_over_orig": [
+    0.98593,
+    0.05331
+   ]
+  },
+  "dup_msr1": {
+   "orig_nats": [
+    -0.00216,
+    0.01542
+   ],
+   "copyA_over_orig": [
+    0.49711,
+    0.04406
+   ],
+   "copyB_over_orig": [
+    0.50289,
+    0.04406
+   ],
+   "sum_over_orig": [
+    1.0,
+    0.0
+   ]
+  },
+  "gain_per_100_conn": [
+   0.00815,
+   0.03042
+  ]
+ },
+ "wdbc|cost=0.0002|backprop": {
+  "seeds": 5,
+  "ll": [
+   0.10391,
+   0.04266
+  ],
+  "ll_temp": [
+   0.1723,
+   0.0944
+  ],
+  "tscale": [
+   2.13327,
+   0.63006
+  ],
+  "ll_lr": [
+   0.09662,
+   0.03975
+  ],
+  "sp_zero_vs_mean": [
+   0.96386,
+   0.03944
+  ],
+  "budget_ratio": [
+   1.0,
+   0.0
+  ],
+  "deaths_useless": [
+   0.0,
+   0.0
+  ],
+  "deaths_useful": [
+   0.0,
+   0.0
+  ],
+  "alive_end": [
+   32.0,
+   0.0
+  ],
+  "vabs_useless": [
+   0.08199,
+   0.06216
+  ],
+  "vabs_useful": [
+   0.45684,
+   0.03518
+  ],
+  "truth_useless": [
+   -0.00207,
+   0.00174
+  ],
+  "pay_useless": [
+   0.00019,
+   0.00024
+  ],
+  "active_conn": [
+   888.2,
+   10.22949
+  ],
+  "burned": [
+   227.58041,
+   15.46401
+  ],
+  "gain": [
+   0.56145,
+   0.03649
+  ],
+  "sp_loo": [
+   0.88908,
+   0.05361
+  ],
+  "sp_msr1": [
+   0.70176,
+   0.10687
+  ],
+  "sp_shap": [
+   0.96877,
+   0.01596
+  ],
+  "ll_minus_lr": [
+   0.00729,
+   0.00962
+  ],
+  "dup_shap": {
+   "orig_nats": [
+    0.05987,
+    0.01107
+   ],
+   "copyA_over_orig": [
+    0.52306,
+    0.05728
+   ],
+   "copyB_over_orig": [
+    0.48618,
+    0.06301
+   ],
+   "sum_over_orig": [
+    1.00924,
+    0.08891
+   ]
+  },
+  "dup_loo": {
+   "orig_nats": [
+    -0.00241,
+    0.00958
+   ],
+   "copyA_over_orig": [
+    0.56827,
+    0.16879
+   ],
+   "copyB_over_orig": [
+    0.56827,
+    0.16879
+   ],
+   "sum_over_orig": [
+    1.13655,
+    0.33758
+   ]
+  },
+  "dup_msr1": {
+   "orig_nats": [
+    0.06659,
+    0.1506
+   ],
+   "copyA_over_orig": [
+    0.57177,
+    0.0911
+   ],
+   "copyB_over_orig": [
+    0.42823,
+    0.0911
+   ],
+   "sum_over_orig": [
+    1.0,
+    0.0
+   ]
+  },
+  "gain_per_100_conn": [
+   0.06321,
+   0.00398
+  ]
+ },
+ "wdbc|cost=0.0002|backprop_alt": {
+  "seeds": 5,
+  "ll": [
+   0.10306,
+   0.04441
+  ],
+  "ll_temp": [
+   0.15556,
+   0.09384
+  ],
+  "tscale": [
+   1.88157,
+   0.54091
+  ],
+  "ll_lr": [
+   0.09662,
+   0.03975
+  ],
+  "sp_zero_vs_mean": [
+   0.9665,
+   0.01068
+  ],
+  "budget_ratio": [
+   1.0,
+   0.0
+  ],
+  "deaths_useless": [
+   0.0,
+   0.0
+  ],
+  "deaths_useful": [
+   0.0,
+   0.0
+  ],
+  "alive_end": [
+   32.0,
+   0.0
+  ],
+  "vabs_useless": [
+   0.08133,
+   0.06593
+  ],
+  "vabs_useful": [
+   0.43947,
+   0.03909
+  ],
+  "truth_useless": [
+   -0.00115,
+   0.00182
+  ],
+  "pay_useless": [
+   -0.00027,
+   0.00175
+  ],
+  "active_conn": [
+   878.2,
+   16.59639
+  ],
+  "burned": [
+   228.06778,
+   22.39634
+  ],
+  "gain": [
+   0.5623,
+   0.03895
+  ],
+  "sp_loo": [
+   0.88761,
+   0.05664
+  ],
+  "sp_msr1": [
+   0.76943,
+   0.06032
+  ],
+  "sp_shap": [
+   0.97375,
+   0.01221
+  ],
+  "ll_minus_lr": [
+   0.00644,
+   0.01127
+  ],
+  "ll_minus_backprop": [
+   -0.00085,
+   0.00554
+  ],
+  "mean_abs_logit_diff_vs_backprop": [
+   0.48251,
+   0.18105
+  ],
+  "dup_shap": {
+   "orig_nats": [
+    0.06436,
+    0.0149
+   ],
+   "copyA_over_orig": [
+    0.51927,
+    0.05722
+   ],
+   "copyB_over_orig": [
+    0.46569,
+    0.02517
+   ],
+   "sum_over_orig": [
+    0.98496,
+    0.06324
+   ]
+  },
+  "dup_loo": {
+   "orig_nats": [
+    -0.00199,
+    0.00755
+   ],
+   "copyA_over_orig": [
+    0.46882,
+    0.25892
+   ],
+   "copyB_over_orig": [
+    0.46882,
+    0.25892
+   ],
+   "sum_over_orig": [
+    0.93764,
+    0.51784
+   ]
+  },
+  "dup_msr1": {
+   "orig_nats": [
+    0.02196,
+    0.03181
+   ],
+   "copyA_over_orig": [
+    0.02983,
+    1.41991
+   ],
+   "copyB_over_orig": [
+    0.97017,
+    1.41991
+   ],
+   "sum_over_orig": [
+    1.0,
+    0.0
+   ]
+  },
+  "gain_per_100_conn": [
+   0.06402,
+   0.00406
+  ]
+ },
+ "wdbc|cost=0.0002|loo": {
+  "seeds": 5,
+  "ll": [
+   0.09988,
+   0.04185
+  ],
+  "ll_temp": [
+   0.1503,
+   0.07835
+  ],
+  "tscale": [
+   1.91427,
+   0.37078
+  ],
+  "ll_lr": [
+   0.09662,
+   0.03975
+  ],
+  "sp_zero_vs_mean": [
+   0.78937,
+   0.04894
+  ],
+  "budget_ratio": [
+   0.1056,
+   0.01755
+  ],
+  "deaths_useless": [
+   4.2,
+   0.556
+  ],
+  "deaths_useful": [
+   244.6,
+   5.24529
+  ],
+  "alive_end": [
+   31.6,
+   0.68096
+  ],
+  "vabs_useless": [
+   0.05549,
+   0.01552
+  ],
+  "vabs_useful": [
+   0.29844,
+   0.01716
+  ],
+  "truth_useless": [
+   4e-05,
+   0.0014
+  ],
+  "pay_useless": [
+   3e-05,
+   5e-05
+  ],
+  "active_conn": [
+   982.8,
+   21.66617
+  ],
+  "burned": [
+   300.31868,
+   0.97071
+  ],
+  "gain": [
+   0.56548,
+   0.03443
+  ],
+  "sp_loo": [
+   0.52845,
+   0.17587
+  ],
+  "sp_msr1": [
+   0.56158,
+   0.16914
+  ],
+  "sp_shap": [
+   0.52705,
+   0.11011
+  ],
+  "ll_minus_lr": [
+   0.00326,
+   0.00891
+  ],
+  "ll_minus_backprop": [
+   -0.00403,
+   0.00345
+  ],
+  "mean_abs_logit_diff_vs_backprop": [
+   2.16723,
+   0.47348
+  ],
+  "dup_shap": {
+   "orig_nats": [
+    0.14772,
+    0.01155
+   ],
+   "copyA_over_orig": [
+    0.51796,
+    0.05854
+   ],
+   "copyB_over_orig": [
+    0.48575,
+    0.05104
+   ],
+   "sum_over_orig": [
+    1.00371,
+    0.08927
+   ]
+  },
+  "dup_loo": {
+   "orig_nats": [
+    0.00375,
+    0.01658
+   ],
+   "copyA_over_orig": [
+    0.69153,
+    0.44036
+   ],
+   "copyB_over_orig": [
+    0.69153,
+    0.44036
+   ],
+   "sum_over_orig": [
+    1.38306,
+    0.88073
+   ]
+  },
+  "dup_msr1": {
+   "orig_nats": [
+    0.12736,
+    0.1753
+   ],
+   "copyA_over_orig": [
+    0.59046,
+    0.16215
+   ],
+   "copyB_over_orig": [
+    0.40954,
+    0.16215
+   ],
+   "sum_over_orig": [
+    1.0,
+    0.0
+   ]
+  },
+  "gain_per_100_conn": [
+   0.05758,
+   0.00439
+  ]
+ },
+ "wdbc|cost=0.0002|msr1": {
+  "seeds": 5,
+  "ll": [
+   0.13039,
+   0.05217
+  ],
+  "ll_temp": [
+   0.23145,
+   0.16047
+  ],
+  "tscale": [
+   1.84693,
+   0.90586
+  ],
+  "ll_lr": [
+   0.09662,
+   0.03975
+  ],
+  "sp_zero_vs_mean": [
+   0.45633,
+   0.05722
+  ],
+  "budget_ratio": [
+   1.0,
+   0.0
+  ],
+  "deaths_useless": [
+   3.8,
+   0.556
+  ],
+  "deaths_useful": [
+   33.4,
+   1.112
+  ],
+  "alive_end": [
+   2.8,
+   1.36192
+  ],
+  "vabs_useless": [
+   0.02951,
+   0.07589
+  ],
+  "vabs_useful": [
+   0.24578,
+   0.01854
+  ],
+  "truth_useless": [
+   -0.00148,
+   0.00432
+  ],
+  "pay_useless": [
+   0.00123,
+   0.00341
+  ],
+  "active_conn": [
+   88.0,
+   28.95741
+  ],
+  "burned": [
+   75.37176,
+   8.84375
+  ],
+  "gain": [
+   0.53496,
+   0.04026
+  ],
+  "sp_loo": [
+   0.88503,
+   0.24325
+  ],
+  "sp_msr1": [
+   0.87549,
+   0.27812
+  ],
+  "sp_shap": [
+   0.80978,
+   0.32458
+  ],
+  "ll_minus_lr": [
+   0.03377,
+   0.02127
+  ],
+  "ll_minus_backprop": [
+   0.02648,
+   0.02267
+  ],
+  "mean_abs_logit_diff_vs_backprop": [
+   2.1518,
+   0.49138
+  ],
+  "dup_shap": {
+   "orig_nats": [
+    0.30503,
+    0.01038
+   ],
+   "copyA_over_orig": [
+    0.64193,
+    0.04915
+   ],
+   "copyB_over_orig": [
+    0.55801,
+    0.03376
+   ],
+   "sum_over_orig": [
+    1.19994,
+    0.06638
+   ]
+  },
+  "dup_loo": {
+   "orig_nats": [
+    0.09457,
+    0.03017
+   ],
+   "copyA_over_orig": [
+    -0.24114,
+    0.28059
+   ],
+   "copyB_over_orig": [
+    -0.24114,
+    0.28059
+   ],
+   "sum_over_orig": [
+    -0.48228,
+    0.56119
+   ]
+  },
+  "dup_msr1": {
+   "orig_nats": [
+    0.45568,
+    0.27092
+   ],
+   "copyA_over_orig": [
+    1.04723,
+    0.36738
+   ],
+   "copyB_over_orig": [
+    -0.04723,
+    0.36738
+   ],
+   "sum_over_orig": [
+    1.0,
+    0.0
+   ]
+  },
+  "gain_per_100_conn": [
+   0.63388,
+   0.15367
+  ]
+ },
+ "wdbc|cost=0.0002|shap": {
+  "seeds": 5,
+  "ll": [
+   0.54504,
+   0.31162
+  ],
+  "ll_temp": [
+   0.31719,
+   0.36976
+  ],
+  "tscale": [
+   0.49809,
+   0.50892
+  ],
+  "ll_lr": [
+   0.09662,
+   0.03975
+  ],
+  "sp_zero_vs_mean": [
+   -0.24492,
+   0.70333
+  ],
+  "budget_ratio": [
+   1.0,
+   0.0
+  ],
+  "deaths_useless": [
+   4.0,
+   0.0
+  ],
+  "deaths_useful": [
+   7.4,
+   2.08036
+  ],
+  "alive_end": [
+   26.2,
+   1.621
+  ],
+  "vabs_useless": [
+   0.00652,
+   0.00868
+  ],
+  "vabs_useful": [
+   1.69336,
+   0.14104
+  ],
+  "truth_useless": [
+   -0.00011,
+   0.00035
+  ],
+  "pay_useless": [
+   5e-05,
+   0.00011
+  ],
+  "active_conn": [
+   912.8,
+   73.88422
+  ],
+  "burned": [
+   284.299,
+   19.68118
+  ],
+  "gain": [
+   0.12032,
+   0.30756
+  ],
+  "sp_loo": [
+   -0.43079,
+   0.33884
+  ],
+  "sp_msr1": [
+   -0.26092,
+   0.24921
+  ],
+  "sp_shap": [
+   -0.05126,
+   0.41889
+  ],
+  "ll_minus_lr": [
+   0.44842,
+   0.27725
+  ],
+  "ll_minus_backprop": [
+   0.44113,
+   0.27244
+  ],
+  "mean_abs_logit_diff_vs_backprop": [
+   32.02573,
+   3.22145
+  ],
+  "dup_shap": {
+   "orig_nats": [
+    0.02193,
+    0.01332
+   ],
+   "copyA_over_orig": [
+    0.36078,
+    0.24155
+   ],
+   "copyB_over_orig": [
+    0.43124,
+    0.07077
+   ],
+   "sum_over_orig": [
+    0.79202,
+    0.22076
+   ]
+  },
+  "dup_loo": {
+   "orig_nats": [
+    -0.01111,
+    0.00986
+   ],
+   "copyA_over_orig": [
+    0.51434,
+    0.02126
+   ],
+   "copyB_over_orig": [
+    0.51434,
+    0.02126
+   ],
+   "sum_over_orig": [
+    1.02868,
+    0.04252
+   ]
+  },
+  "dup_msr1": {
+   "orig_nats": [
+    -0.00941,
+    0.00908
+   ],
+   "copyA_over_orig": [
+    0.45768,
+    0.06598
+   ],
+   "copyB_over_orig": [
+    0.54232,
+    0.06598
+   ],
+   "sum_over_orig": [
+    1.0,
+    0.0
+   ]
+  },
+  "gain_per_100_conn": [
+   0.01466,
+   0.03615
+  ]
+ }
+}

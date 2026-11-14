@@ -1,0 +1,21 @@
+/tmp/arcn_review/check.py:24: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  print('kprop',k,kind,'noise covariance exact; upstream max diff',float((ours-ref).abs().max()),flush=True)
+kprop 1 simple noise covariance exact; upstream max diff 0.0
+kprop 2 simple noise covariance exact; upstream max diff 0.0
+kprop 2 augment noise covariance exact; upstream max diff 0.0
+kprop 3 simple noise covariance exact; upstream max diff 0.0
+kprop 3 augment noise covariance exact; upstream max diff 0.0
+checkpoints maxdiff 0.0
+MUB all pairs (np.float64(0.0), 0.0)
+MUB budget 8 982 1017408 missing rotation setup 101711872 ratio 0.101711872
+MUB budget 32 232 4273728 missing rotation setup 101711872 ratio 0.101711872
+small width cost 2 47038
+small width cost 4 155028
+small width cost 8 543040
+small width cost 12 1160428
+small width cost 16 2007192
+small width cost 24 4388848
+small width cost 32 7688008
+stored width256 cost 8 12624186712
+stored width256 cost 32 205928459872

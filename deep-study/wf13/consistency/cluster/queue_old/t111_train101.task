@@ -1,0 +1,25 @@
+# world 101: exact references (evaluation only), the K_ref = 256 score reference, all registered arms, the report.
+export CUDA_VISIBLE_DEVICES=""
+export PY=/cluster/home/user/grpo-pilot/venv/bin/python
+export PROBWORLD=/cluster/home/user/wave7/probworld
+export LEVELS=1,4,16 SMALL=1 NTHREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1
+cd /cluster/home/user/wave13/consistency/code
+CK=$PROBWORLD/ckpt/M_w101_S.pt
+D=../data/w101; O=../out/w101; mkdir -p $O
+date -u
+sha256sum *.py ../PREREG.md
+$PY -c "import torch; print('cuda visible:', torch.cuda.is_available())"
+pids=""
+for f in c2_0 c2_1 t3; do $PY -B cref.py 101 $CK S $D/$f.pt 256 > ../logs/ref_w101_$f.log 2>&1 & pids="$pids $!"; done
+$PY -B cdirect.py $D $O 64 256 1024 4096 20480 > ../logs/direct_w101.log 2>&1 &
+wait $pids
+cat ../logs/ref_w101_*.log
+date -u
+NTHREADS=2 OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 $PY -B cexact.py 101 $CK S $D $O/exact.npz > ../logs/exact_w101.log 2>&1 &
+$PY -B mkjobs.py > $O/jobs.txt
+for s in 0 1 2 3 4 5 6 7 8 9; do $PY -B ctrain.py $D $O $O/jobs.txt $s 10 700 > ../logs/train_w101_$s.log 2>&1 & done
+wait
+date -u
+$PY -B creport.py $O > ../logs/report_w101.log 2>&1
+tail -5 ../logs/report_w101.log | cut -c1-300
+date -u

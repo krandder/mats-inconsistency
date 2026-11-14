@@ -1,0 +1,37 @@
+{
+ "slug": "r9-e1-einfo-strong-root",
+ "title": "Round 9 E1: anytime safety from a genuinely strong root, and a precision-aware 1-step crowding pool (6x6 ShipHunt)",
+ "date": "17 Oct",
+ "status": "informative",
+ "oneline": "2 of 3 pre-registered rules pass (4 of 5 sub-rules). From a root that sees 32 of 36 readings (KL 0.032), bounded local reads left every pool without the anchor token above the root by 24 reads, the learned precision-aware pools included (+0.042 to +0.18 at 16 reads); the anchor-aware attention pools stayed just below it (-0.003). That pass rests on the approved strong-root reading: at 34 readings, the root the spec's literal selection order picks, it fails. With cumulative-context reads nearly every pool improved. jacobi_lin_T4_prec passes its whole weight law (clean 1.11, noisy 2.52, KL 0.035); the 1-step econ_prec_K3 dedups clean reads to 1.267 against a 1.25 bar. No world-model training; 3 seeds; $0.31.",
+ "led_to": [],
+ "page": {
+  "why": "Round 8 could not test Kelvin's question from a strong root: its 18-anchor root sat at KL 0.144 and even the naive pools improved it. Round 9 builds a root from 30-34 of the 36 readings and asks whether adding reads can leave the belief worse than that root, and whether a 1-step crowding pool with a precision-dependent ridge gets the three-regime weight law.",
+  "what": "Round 7's saved world model, loaded unchanged in each seed. The strong root (32 of 36 readings, chosen on calibration boards) gets 24 reads in two ways: cumulative-context reads on the root's evidence, as in round 8, and bounded reads on just the 2 standard anchors plus a patch, whose shifts are added to the strong root. The anchor-aware attention pools are trained on both kinds of bags over 7 root strengths. econ_prec_K3 gives the 1-step pool a ridge softplus(a - b beta); jacobi_lin_T4_prec gets a three-term loss. 3 seeds, pre-registered, exact Bayes for scoring only.",
+  "result": "With bounded reads, every pool without the anchor token ended above the strong root by 24 reads: mix at once (+0.21), the learned pools jacobi_lin_T4_prec, econ_prec_K3 and kc_dedup from the first read, and ataraxos_mmd, scaled_mix and the 4-step looped_lin_T4 from 4 reads on. The anchor-aware pools stayed just below the root (-0.003 at 16 reads, 3-seed mean). With cumulative-context reads every pool except kc_K1 stayed below the root, and the anchor pools gained 0.017. jacobi_lin_T4_prec dedups clean reads (1.11), adds support for noisy ones (2.52) and reaches KL 0.035; econ_prec_K3 reaches 1.267 on clean reads against a 1.25 bar.",
+  "sowhat": "In this testbed, adding bounded reads to a strong root made the belief worse for every pool that lacks the anchor token. Pools that see the root as an anchor token avoided this here, but they gained little, and they were trained on such bags. At the strongest root (34 readings) they hovered within 0.0007 of it, and the safety rule would fail there; the PASS rests on the reading that selected 32, which gemini approved before launch.",
+  "decided": "Recorded E1-D0, E1-D1.1, E1-D1.2 (on approved reading 1) and E1-D2.2 as passed and E1-D2.1 as failed (econ_prec_K3 clean W(16)/W(1) 1.267 vs 1.25; its D3 MSE not distinguishable from econ_kc_K3's). Not run, for gemini's next round: the anchor pools trained on cumulative-context bags only (an ablation of the training bags); the anchor token's crowding term added to the 1-step and Jacobi pools.",
+  "chart": {
+   "bars": [
+    {"label": "strong root, 32 readings (K = 0)", "value": 0.0322, "text": "0.032"},
+    {"label": "mix, K = 16 bounded reads", "value": 0.2083, "text": "0.208"},
+    {"label": "kc_dedup K3, K = 16", "value": 0.0852, "text": "0.085"},
+    {"label": "ataraxos_mmd, K = 16", "value": 0.0791, "text": "0.079"},
+    {"label": "econ_prec_K3, K = 16", "value": 0.0779, "text": "0.078"},
+    {"label": "jacobi_lin_T4_prec, K = 16", "value": 0.0759, "text": "0.076"},
+    {"label": "attn_L3-K3 with anchor, K = 16", "value": 0.0292, "text": "0.029", "good": true},
+    {"label": "looped_attn_T3 with anchor, K = 16", "value": 0.0292, "text": "0.029", "good": true}
+   ],
+   "caption": "KL to exact Bayes after 16 bounded local reads added to the strong root (lower is better), 3-seed means. Only the anchor-aware pools stay below the root's 0.032.",
+   "aria": "After 16 bounded reads every pool without the anchor token is above the strong root's KL of 0.032, while the two anchor-aware pools are just below it"
+  },
+  "details": {
+   "methods": [
+    "Pre-registered in PREREG-R9-E1.md and PREREG-R9-E1-AMENDMENTS.md (19:16Z, before any launch), with gemini's pre-spend amendments to readings 5 and 6 folded in.",
+    "No world-model training: each seed loads R7-E1's theta_real_v2.npz after a sha256 check. The strong root (32 readings) was chosen per seed on calibration boards only, with the model's own all-readings belief as reference. Exact Bayes over 49,504 ship patterns used only for scoring and the gate.",
+    "1 logged deviation (file modes of the launch scripts, before any VM existed).",
+    "Tests on the same 500 held-out boards as rounds 5-8; 3 seeds, seed-t 95% intervals; independent audit in AUDIT-R9-E1.md (verdicts confirmed; 8 wording and disclosure fixes applied); $0.31 of GPU at the list-price ceiling."
+   ]
+  }
+ }
+}

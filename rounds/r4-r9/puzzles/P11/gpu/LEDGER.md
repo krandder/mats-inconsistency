@@ -1,0 +1,479 @@
+- 2026-09-29T13:02:08Z CREATE vm=trader-cat-p11-1 zone=us-central1-a epoch=1790686928 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=0
+- 2026-09-29T13:07:26Z READY vm=trader-cat-p11-1 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T13:21:14Z START vm=trader-cat-p11-1 plan=all (queue started 13:11:47Z; start command's ssh hung and was stopped, line added by hand)
+- 2026-09-29T13:22:59Z SYNC vm=trader-cat-p11-1 verified_files=22 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T13:33:39Z DELETE vm=trader-cat-p11-1 epoch=1790688819 reason="spot preempted at 13:31:53Z (GCE operation compute.instances.preempted); termination action deleted VM + disk" leftover_disks="none" spend_now=0.37
+- 2026-09-29T13:36:20Z KEEP shard=0 creating trader-cat-p11-s0-1336 (creation 1)
+- 2026-09-29T13:36:37Z CREATE vm=trader-cat-p11-s0-1336 zone=us-central1-b epoch=1790688997 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=0.37
+- 2026-09-29T13:36:40Z KEEP shard=1 creating trader-cat-p11-s1-1336 (creation 1)
+- 2026-09-29T13:37:01Z CREATE vm=trader-cat-p11-s1-1336 zone=us-central1-c epoch=1790689021 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=0.37
+- 2026-09-29T13:40:45Z READY vm=trader-cat-p11-s0-1336 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T13:41:12Z READY vm=trader-cat-p11-s1-1336 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T13:41:49Z START vm=trader-cat-p11-s0-1336 plan=all shard=0/2 workers=4 mps=0
+- 2026-09-29T13:41:56Z START vm=trader-cat-p11-s1-1336 plan=all shard=1/2 workers=4 mps=0
+- 2026-09-29T13:43:22Z SYNC vm=trader-cat-p11-s0-1336 verified_files=18 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T13:43:57Z SYNC vm=trader-cat-p11-s0-1336 verified_files=21 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T13:45:49Z SYNC vm=trader-cat-p11-s0-1336 verified_files=21 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T13:48:22Z SYNC vm=trader-cat-p11-s0-1336 verified_files=22 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T13:48:39Z SYNC vm=trader-cat-p11-s1-1336 verified_files=26 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T13:48:49Z SYNC vm=trader-cat-p11-s0-1336 verified_files=22 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T13:49:11Z SYNC vm=trader-cat-p11-s1-1336 verified_files=26 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T13:51:24Z SYNC-PARTIAL vm=trader-cat-p11-s0-1336 (files changing during tar skipped)
+- 2026-09-29T13:51:25Z SYNC vm=trader-cat-p11-s0-1336 verified_files=24 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T13:51:47Z SYNC vm=trader-cat-p11-s1-1336 verified_files=26 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T13:54:29Z SYNC vm=trader-cat-p11-s0-1336 verified_files=29 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T13:54:38Z SYNC vm=trader-cat-p11-s0-1336 verified_files=29 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T13:54:43Z SYNC vm=trader-cat-p11-s1-1336 verified_files=26 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T13:54:59Z SYNC vm=trader-cat-p11-s1-1336 verified_files=26 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T13:57:15Z SYNC vm=trader-cat-p11-s0-1336 verified_files=29 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T13:57:32Z SYNC vm=trader-cat-p11-s1-1336 verified_files=28 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:00:05Z SYNC vm=trader-cat-p11-s0-1336 verified_files=29 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:00:20Z SYNC vm=trader-cat-p11-s1-1336 verified_files=28 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:00:30Z SYNC vm=trader-cat-p11-s0-1336 verified_files=29 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:01:01Z SYNC vm=trader-cat-p11-s1-1336 verified_files=28 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:02:52Z SYNC vm=trader-cat-p11-s0-1336 verified_files=31 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:03:06Z SYNC vm=trader-cat-p11-s1-1336 verified_files=28 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:05:46Z SYNC vm=trader-cat-p11-s0-1336 verified_files=32 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:06:01Z SYNC vm=trader-cat-p11-s1-1336 verified_files=29 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:06:32Z SYNC vm=trader-cat-p11-s0-1336 verified_files=32 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:06:53Z SYNC vm=trader-cat-p11-s1-1336 verified_files=30 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:08:44Z SYNC vm=trader-cat-p11-s0-1336 verified_files=32 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:09:01Z SYNC vm=trader-cat-p11-s1-1336 verified_files=30 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:11:31Z SYNC vm=trader-cat-p11-s0-1336 verified_files=32 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:11:43Z SYNC vm=trader-cat-p11-s1-1336 verified_files=30 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:12:18Z SYNC vm=trader-cat-p11-s0-1336 verified_files=32 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:12:37Z SYNC vm=trader-cat-p11-s1-1336 verified_files=30 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:14:15Z SYNC vm=trader-cat-p11-s0-1336 verified_files=38 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:14:27Z SYNC vm=trader-cat-p11-s1-1336 verified_files=30 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:16:55Z SYNC vm=trader-cat-p11-s0-1336 verified_files=41 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:17:08Z SYNC vm=trader-cat-p11-s1-1336 verified_files=48 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:17:57Z SYNC vm=trader-cat-p11-s0-1336 verified_files=49 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:18:14Z SYNC vm=trader-cat-p11-s1-1336 verified_files=48 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:19:41Z SYNC vm=trader-cat-p11-s0-1336 verified_files=49 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:20:00Z SYNC vm=trader-cat-p11-s1-1336 verified_files=48 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:22:36Z SYNC vm=trader-cat-p11-s0-1336 verified_files=49 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:22:52Z SYNC vm=trader-cat-p11-s1-1336 verified_files=56 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:23:41Z SYNC vm=trader-cat-p11-s0-1336 verified_files=61 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:24:04Z SYNC vm=trader-cat-p11-s1-1336 verified_files=60 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:25:21Z SYNC vm=trader-cat-p11-s0-1336 verified_files=64 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:25:34Z SYNC vm=trader-cat-p11-s1-1336 verified_files=60 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:28:02Z SYNC vm=trader-cat-p11-s0-1336 verified_files=68 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:28:12Z SYNC vm=trader-cat-p11-s1-1336 verified_files=67 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:29:24Z SYNC vm=trader-cat-p11-s0-1336 verified_files=68 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:29:45Z SYNC vm=trader-cat-p11-s1-1336 verified_files=67 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:30:37Z SYNC vm=trader-cat-p11-s0-1336 verified_files=68 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:30:52Z SYNC vm=trader-cat-p11-s1-1336 verified_files=67 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:33:24Z SYNC vm=trader-cat-p11-s0-1336 verified_files=70 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:33:35Z SYNC vm=trader-cat-p11-s1-1336 verified_files=67 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:35:13Z SYNC-PARTIAL vm=trader-cat-p11-s0-1336 (files changing during tar skipped)
+- 2026-09-29T14:35:14Z SYNC vm=trader-cat-p11-s0-1336 verified_files=70 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:35:43Z SYNC vm=trader-cat-p11-s1-1336 verified_files=69 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:36:12Z SYNC vm=trader-cat-p11-s0-1336 verified_files=73 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:36:33Z SYNC vm=trader-cat-p11-s1-1336 verified_files=69 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:39:06Z SYNC vm=trader-cat-p11-s0-1336 verified_files=74 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:39:29Z SYNC vm=trader-cat-p11-s1-1336 verified_files=70 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:41:30Z SYNC vm=trader-cat-p11-s0-1336 verified_files=74 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:42:18Z SYNC vm=trader-cat-p11-s1-1336 verified_files=71 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:42:24Z SYNC vm=trader-cat-p11-s0-1336 verified_files=74 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:42:53Z SYNC vm=trader-cat-p11-s1-1336 verified_files=71 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:45:27Z SYNC vm=trader-cat-p11-s0-1336 verified_files=74 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:45:38Z SYNC vm=trader-cat-p11-s1-1336 verified_files=71 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:47:37Z SYNC vm=trader-cat-p11-s0-1336 verified_files=76 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:48:00Z SYNC vm=trader-cat-p11-s0-1336 verified_files=76 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:48:39Z KEEP shard=1 creating trader-cat-p11-s1-1448 (creation 1)
+- 2026-09-29T14:49:07Z CREATE vm=trader-cat-p11-s1-1448 zone=us-central1-a epoch=1790693347 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=2.07
+- 2026-09-29T14:50:23Z SYNC vm=trader-cat-p11-s0-1336 verified_files=77 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:52:56Z SYNC vm=trader-cat-p11-s0-1336 verified_files=79 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:53:26Z SYNC vm=trader-cat-p11-s0-1336 verified_files=81 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:54:20Z READY vm=trader-cat-p11-s1-1448 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T14:55:06Z START vm=trader-cat-p11-s1-1448 plan=all shard=1/2 workers=4 mps=0
+- 2026-09-29T14:55:28Z SYNC vm=trader-cat-p11-s1-1448 verified_files=69 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:55:49Z SYNC vm=trader-cat-p11-s0-1336 verified_files=84 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:58:24Z SYNC vm=trader-cat-p11-s1-1448 verified_files=70 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:58:46Z SYNC vm=trader-cat-p11-s0-1336 verified_files=88 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T14:59:11Z SYNC vm=trader-cat-p11-s0-1336 verified_files=88 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:01:13Z SYNC vm=trader-cat-p11-s1-1448 verified_files=72 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:01:29Z SYNC vm=trader-cat-p11-s0-1336 verified_files=89 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:02:42Z KEEP shard=1 creating trader-cat-p11-s1-1502 (creation 2)
+- 2026-09-29T15:04:05Z CREATE vm=trader-cat-p11-s1-1502 zone=us-west1-a epoch=1790694245 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=2.57
+- 2026-09-29T15:04:19Z SYNC vm=trader-cat-p11-s0-1336 verified_files=91 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:04:44Z SYNC vm=trader-cat-p11-s0-1336 verified_files=91 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:06:51Z SYNC vm=trader-cat-p11-s0-1336 verified_files=94 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:07:04Z READY vm=trader-cat-p11-s1-1502 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T15:07:50Z START vm=trader-cat-p11-s1-1502 plan=all shard=1/2 workers=4 mps=0
+- 2026-09-29T15:09:25Z SYNC vm=trader-cat-p11-s0-1336 verified_files=95 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:09:43Z SYNC vm=trader-cat-p11-s1-1502 verified_files=77 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:10:16Z SYNC vm=trader-cat-p11-s0-1336 verified_files=95 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:10:42Z SYNC vm=trader-cat-p11-s1-1502 verified_files=77 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:10:59Z DELETE vm=trader-cat-p11-s1-1336 epoch=1790693248 reason="spot preempted at 14:47:28Z (GCE operation compute.instances.preempted); gone from the instance list; termination action deleted VM + disk" leftover_disks="none" spend_now=2.94
+- 2026-09-29T15:11:26Z DELETE vm=trader-cat-p11-s1-1448 epoch=1790694103 reason="spot preempted at 15:01:43Z (GCE operation compute.instances.preempted); gone from the instance list; termination action deleted VM + disk" leftover_disks="none" spend_now=2.68
+- 2026-09-29T15:12:35Z SYNC vm=trader-cat-p11-s0-1336 verified_files=95 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:13:04Z SYNC vm=trader-cat-p11-s1-1502 verified_files=77 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:13:49Z SYNC vm=trader-cat-p11-s0-1336 verified_files=95 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:14:31Z SYNC vm=trader-cat-p11-s1-1502 verified_files=77 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:15:57Z SYNC vm=trader-cat-p11-s0-1336 verified_files=95 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:16:17Z SYNC vm=trader-cat-p11-s1-1502 verified_files=77 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:19:12Z SYNC vm=trader-cat-p11-s0-1336 verified_files=96 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:19:39Z SYNC vm=trader-cat-p11-s1-1502 verified_files=77 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:20:37Z SYNC vm=trader-cat-p11-s0-1336 verified_files=96 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:21:04Z SYNC vm=trader-cat-p11-s1-1502 verified_files=78 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:22:19Z SYNC vm=trader-cat-p11-s0-1336 verified_files=96 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:22:29Z SYNC vm=trader-cat-p11-s1-1502 verified_files=78 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:25:04Z SYNC vm=trader-cat-p11-s0-1336 verified_files=98 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:25:19Z SYNC vm=trader-cat-p11-s1-1502 verified_files=78 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:26:47Z SYNC vm=trader-cat-p11-s0-1336 verified_files=101 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:27:08Z SYNC vm=trader-cat-p11-s1-1502 verified_files=80 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:27:43Z SYNC vm=trader-cat-p11-s0-1336 verified_files=102 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:27:52Z SYNC vm=trader-cat-p11-s1-1502 verified_files=80 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:30:14Z SYNC vm=trader-cat-p11-s0-1336 verified_files=106 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:30:26Z SYNC vm=trader-cat-p11-s1-1502 verified_files=83 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:32:42Z SYNC vm=trader-cat-p11-s0-1336 verified_files=108 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:32:51Z SYNC vm=trader-cat-p11-s0-1336 verified_files=108 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:33:00Z SYNC vm=trader-cat-p11-s1-1502 verified_files=86 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:33:06Z SYNC vm=trader-cat-p11-s1-1502 verified_files=86 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:35:42Z SYNC vm=trader-cat-p11-s0-1336 verified_files=108 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:35:51Z SYNC vm=trader-cat-p11-s1-1502 verified_files=95 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:38:36Z SYNC vm=trader-cat-p11-s0-1336 verified_files=116 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:38:57Z SYNC vm=trader-cat-p11-s1-1502 verified_files=99 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:39:09Z SYNC vm=trader-cat-p11-s0-1336 verified_files=116 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:39:39Z SYNC vm=trader-cat-p11-s1-1502 verified_files=100 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:41:47Z SYNC vm=trader-cat-p11-s0-1336 verified_files=116 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:42:00Z SYNC vm=trader-cat-p11-s1-1502 verified_files=109 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:44:46Z SYNC vm=trader-cat-p11-s0-1336 verified_files=123 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:45:04Z SYNC vm=trader-cat-p11-s1-1502 verified_files=109 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:45:27Z SYNC vm=trader-cat-p11-s0-1336 verified_files=123 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:45:57Z SYNC-PARTIAL vm=trader-cat-p11-s1-1502 (files changing during tar skipped)
+- 2026-09-29T15:45:57Z SYNC vm=trader-cat-p11-s1-1502 verified_files=108 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:47:46Z SYNC vm=trader-cat-p11-s0-1336 verified_files=123 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:47:58Z SYNC vm=trader-cat-p11-s1-1502 verified_files=109 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:50:24Z SYNC vm=trader-cat-p11-s0-1336 verified_files=123 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:50:37Z SYNC vm=trader-cat-p11-s1-1502 verified_files=109 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:51:34Z SYNC vm=trader-cat-p11-s0-1336 verified_files=123 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:51:50Z SYNC vm=trader-cat-p11-s1-1502 verified_files=109 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:53:03Z SYNC vm=trader-cat-p11-s0-1336 verified_files=123 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:53:16Z SYNC vm=trader-cat-p11-s1-1502 verified_files=109 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:55:48Z SYNC vm=trader-cat-p11-s0-1336 verified_files=123 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:55:59Z SYNC-PARTIAL vm=trader-cat-p11-s1-1502 (files changing during tar skipped)
+- 2026-09-29T15:56:00Z SYNC vm=trader-cat-p11-s1-1502 verified_files=108 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:56:28Z KEEP shard=2 creating trader-cat-p11-s2-1556 (creation 1)
+- 2026-09-29T15:56:44Z CREATE vm=trader-cat-p11-s2-1556 zone=us-central1-a epoch=1790697404 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=3.63
+- 2026-09-29T15:57:24Z SYNC vm=trader-cat-p11-s0-1336 verified_files=123 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:57:41Z SYNC vm=trader-cat-p11-s1-1502 verified_files=109 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:58:26Z SYNC vm=trader-cat-p11-s0-1336 verified_files=123 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T15:58:40Z SYNC vm=trader-cat-p11-s1-1502 verified_files=109 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:00:56Z READY vm=trader-cat-p11-s2-1556 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T16:01:07Z SYNC vm=trader-cat-p11-s0-1336 verified_files=123 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:01:17Z SYNC vm=trader-cat-p11-s1-1502 verified_files=109 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:01:22Z START vm=trader-cat-p11-s2-1556 plan=all shard=2/2 workers=4 mps=0
+- 2026-09-29T16:03:17Z SYNC vm=trader-cat-p11-s2-1556 verified_files=98 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:03:39Z SYNC vm=trader-cat-p11-s0-1336 verified_files=123 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:03:41Z SYNC vm=trader-cat-p11-s2-1556 verified_files=98 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:03:51Z SYNC vm=trader-cat-p11-s0-1336 verified_files=123 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:03:52Z SYNC vm=trader-cat-p11-s1-1502 verified_files=115 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:04:02Z SYNC vm=trader-cat-p11-s1-1502 verified_files=115 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:06:43Z SYNC vm=trader-cat-p11-s2-1556 verified_files=104 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:07:01Z SYNC vm=trader-cat-p11-s0-1336 verified_files=129 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:07:15Z SYNC vm=trader-cat-p11-s1-1502 verified_files=121 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:09:55Z SYNC vm=trader-cat-p11-s2-1556 verified_files=107 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:10:26Z SYNC vm=trader-cat-p11-s2-1556 verified_files=107 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:10:28Z SYNC vm=trader-cat-p11-s0-1336 verified_files=142 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:10:43Z SYNC vm=trader-cat-p11-s0-1336 verified_files=142 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:10:46Z SYNC vm=trader-cat-p11-s1-1502 verified_files=121 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:10:57Z SYNC vm=trader-cat-p11-s1-1502 verified_files=121 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:13:41Z SYNC-PARTIAL vm=trader-cat-p11-s2-1556 (files changing during tar skipped)
+- 2026-09-29T16:13:41Z SYNC vm=trader-cat-p11-s2-1556 verified_files=119 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:13:57Z SYNC vm=trader-cat-p11-s0-1336 verified_files=142 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:14:17Z SYNC vm=trader-cat-p11-s1-1502 verified_files=134 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:16:16Z SYNC vm=trader-cat-p11-s2-1556 verified_files=124 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:16:37Z SYNC vm=trader-cat-p11-s0-1336 verified_files=150 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:16:51Z SYNC vm=trader-cat-p11-s1-1502 verified_files=138 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:16:51Z SYNC vm=trader-cat-p11-s2-1556 verified_files=124 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:17:04Z SYNC vm=trader-cat-p11-s0-1336 verified_files=150 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:17:16Z SYNC vm=trader-cat-p11-s1-1502 verified_files=138 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:20:01Z SYNC vm=trader-cat-p11-s2-1556 verified_files=124 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:20:21Z SYNC vm=trader-cat-p11-s0-1336 verified_files=150 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:20:34Z SYNC vm=trader-cat-p11-s1-1502 verified_files=138 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:22:36Z SYNC-PARTIAL vm=trader-cat-p11-s2-1556 (files changing during tar skipped)
+- 2026-09-29T16:22:37Z SYNC vm=trader-cat-p11-s2-1556 verified_files=123 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:23:10Z SYNC vm=trader-cat-p11-s0-1336 verified_files=150 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:23:26Z SYNC vm=trader-cat-p11-s2-1556 verified_files=124 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:23:39Z SYNC vm=trader-cat-p11-s1-1502 verified_files=138 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:23:48Z SYNC vm=trader-cat-p11-s0-1336 verified_files=150 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:24:05Z SYNC vm=trader-cat-p11-s1-1502 verified_files=138 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:26:44Z SYNC vm=trader-cat-p11-s2-1556 verified_files=124 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:27:00Z SYNC vm=trader-cat-p11-s0-1336 verified_files=150 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:27:18Z SYNC vm=trader-cat-p11-s1-1502 verified_files=138 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:29:28Z SYNC-PARTIAL vm=trader-cat-p11-s2-1556 (files changing during tar skipped)
+- 2026-09-29T16:29:28Z SYNC vm=trader-cat-p11-s2-1556 verified_files=123 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:30:03Z SYNC vm=trader-cat-p11-s0-1336 verified_files=150 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:30:07Z SYNC vm=trader-cat-p11-s2-1556 verified_files=124 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:30:28Z SYNC vm=trader-cat-p11-s0-1336 verified_files=150 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:30:37Z SYNC vm=trader-cat-p11-s1-1502 verified_files=138 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:30:46Z SYNC vm=trader-cat-p11-s1-1502 verified_files=138 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:33:20Z DELETE vm=trader-cat-p11-s0-1336 epoch=1790699536 reason="spot preempted at 16:32:16Z (GCE operation compute.instances.preempted); gone from the instance list; termination action deleted VM + disk" leftover_disks="none" spend_now=4.94
+- 2026-09-29T16:33:38Z KEEP shard=0 creating trader-cat-p11-s0-1633 (creation 1)
+- 2026-09-29T16:33:45Z SYNC vm=trader-cat-p11-s2-1556 verified_files=124 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:34:04Z SYNC vm=trader-cat-p11-s1-1502 verified_files=138 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:34:20Z CREATE vm=trader-cat-p11-s0-1633 zone=us-central1-c epoch=1790699660 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=4.93
+- 2026-09-29T16:36:06Z SYNC vm=trader-cat-p11-s2-1556 verified_files=124 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:36:19Z SYNC vm=trader-cat-p11-s1-1502 verified_files=138 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:36:37Z SYNC-PARTIAL vm=trader-cat-p11-s2-1556 (files changing during tar skipped)
+- 2026-09-29T16:36:37Z SYNC vm=trader-cat-p11-s2-1556 verified_files=123 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:37:07Z SYNC vm=trader-cat-p11-s1-1502 verified_files=138 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:37:47Z READY vm=trader-cat-p11-s0-1633 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T16:38:47Z START vm=trader-cat-p11-s0-1633 plan=all shard=0/2 workers=4 mps=0
+- 2026-09-29T16:39:10Z SYNC vm=trader-cat-p11-s2-1556 verified_files=124 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:39:35Z SYNC vm=trader-cat-p11-s0-1633 verified_files=124 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:40:00Z SYNC vm=trader-cat-p11-s1-1502 verified_files=138 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:43:01Z SYNC vm=trader-cat-p11-s2-1556 verified_files=130 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:43:08Z SYNC vm=trader-cat-p11-s2-1556 verified_files=130 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:43:16Z SYNC vm=trader-cat-p11-s0-1633 verified_files=124 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:43:30Z SYNC vm=trader-cat-p11-s1-1502 verified_files=144 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:43:32Z SYNC vm=trader-cat-p11-s0-1633 verified_files=124 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:43:46Z SYNC vm=trader-cat-p11-s1-1502 verified_files=144 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:46:09Z SYNC vm=trader-cat-p11-s2-1556 verified_files=141 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:46:22Z SYNC vm=trader-cat-p11-s0-1633 verified_files=136 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:46:39Z SYNC vm=trader-cat-p11-s1-1502 verified_files=155 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:49:20Z SYNC vm=trader-cat-p11-s2-1556 verified_files=144 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:49:25Z SYNC vm=trader-cat-p11-s2-1556 verified_files=144 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:49:34Z SYNC vm=trader-cat-p11-s0-1633 verified_files=140 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:49:47Z SYNC vm=trader-cat-p11-s1-1502 verified_files=158 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:49:47Z SYNC vm=trader-cat-p11-s0-1633 verified_files=140 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:50:00Z SYNC vm=trader-cat-p11-s1-1502 verified_files=158 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:52:13Z SYNC-PARTIAL vm=trader-cat-p11-s2-1556 (files changing during tar skipped)
+- 2026-09-29T16:52:13Z SYNC vm=trader-cat-p11-s2-1556 verified_files=143 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:52:25Z SYNC vm=trader-cat-p11-s0-1633 verified_files=140 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:52:37Z SYNC vm=trader-cat-p11-s1-1502 verified_files=158 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:55:06Z SYNC vm=trader-cat-p11-s2-1556 verified_files=144 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:55:20Z SYNC vm=trader-cat-p11-s0-1633 verified_files=140 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:55:34Z SYNC vm=trader-cat-p11-s1-1502 verified_files=158 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:55:36Z SYNC vm=trader-cat-p11-s2-1556 verified_files=144 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:55:56Z SYNC vm=trader-cat-p11-s0-1633 verified_files=140 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:56:09Z SYNC vm=trader-cat-p11-s1-1502 verified_files=158 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:58:08Z SYNC vm=trader-cat-p11-s2-1556 verified_files=144 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:58:22Z SYNC vm=trader-cat-p11-s0-1633 verified_files=140 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T16:58:34Z SYNC vm=trader-cat-p11-s1-1502 verified_files=158 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:01:09Z SYNC vm=trader-cat-p11-s2-1556 verified_files=144 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:01:29Z SYNC vm=trader-cat-p11-s0-1633 verified_files=140 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:02:04Z SYNC-PARTIAL vm=trader-cat-p11-s2-1556 (files changing during tar skipped)
+- 2026-09-29T17:02:05Z SYNC vm=trader-cat-p11-s2-1556 verified_files=143 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:02:07Z DELETE vm=trader-cat-p11-s1-1502 epoch=1790701281 reason="spot preempted at 17:01:21Z (GCE operation compute.instances.preempted); gone from the instance list; termination action deleted VM + disk" leftover_disks="none" spend_now=5.93
+- 2026-09-29T17:02:17Z KEEP shard=1 creating trader-cat-p11-s1-1702 (creation 1)
+- 2026-09-29T17:02:29Z SYNC vm=trader-cat-p11-s0-1633 verified_files=140 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:02:55Z CREATE vm=trader-cat-p11-s1-1702 zone=us-central1-a epoch=1790701375 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=5.93
+- 2026-09-29T17:04:12Z SYNC vm=trader-cat-p11-s2-1556 verified_files=144 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:04:24Z SYNC vm=trader-cat-p11-s0-1633 verified_files=140 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:06:47Z SYNC-PARTIAL vm=trader-cat-p11-s2-1556 (files changing during tar skipped)
+- 2026-09-29T17:06:48Z SYNC vm=trader-cat-p11-s2-1556 verified_files=145 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:06:59Z SYNC vm=trader-cat-p11-s0-1633 verified_files=144 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:07:59Z SYNC vm=trader-cat-p11-s2-1556 verified_files=151 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:08:16Z SYNC vm=trader-cat-p11-s0-1633 verified_files=151 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:08:20Z READY vm=trader-cat-p11-s1-1702 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T17:08:45Z START vm=trader-cat-p11-s1-1702 plan=all shard=1/2 workers=4 mps=0
+- 2026-09-29T17:09:26Z SYNC vm=trader-cat-p11-s1-1702 verified_files=150 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:09:39Z SYNC vm=trader-cat-p11-s2-1556 verified_files=151 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:09:54Z SYNC vm=trader-cat-p11-s0-1633 verified_files=151 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:12:30Z SYNC vm=trader-cat-p11-s1-1702 verified_files=150 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:12:47Z SYNC vm=trader-cat-p11-s2-1556 verified_files=158 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:13:08Z SYNC vm=trader-cat-p11-s0-1633 verified_files=154 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:13:56Z SYNC vm=trader-cat-p11-s1-1702 verified_files=152 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:14:16Z SYNC vm=trader-cat-p11-s2-1556 verified_files=158 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:14:35Z SYNC vm=trader-cat-p11-s0-1633 verified_files=156 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:15:50Z SYNC vm=trader-cat-p11-s1-1702 verified_files=152 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:16:06Z SYNC vm=trader-cat-p11-s2-1556 verified_files=158 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:16:22Z SYNC vm=trader-cat-p11-s0-1633 verified_files=156 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:18:58Z SYNC vm=trader-cat-p11-s1-1702 verified_files=152 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:19:13Z SYNC-PARTIAL vm=trader-cat-p11-s2-1556 (files changing during tar skipped)
+- 2026-09-29T17:19:14Z SYNC vm=trader-cat-p11-s2-1556 verified_files=159 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:19:29Z SYNC vm=trader-cat-p11-s0-1633 verified_files=156 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:20:18Z SYNC vm=trader-cat-p11-s1-1702 verified_files=153 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:20:42Z SYNC vm=trader-cat-p11-s2-1556 verified_files=161 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:21:04Z SYNC vm=trader-cat-p11-s0-1633 verified_files=157 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:22:06Z SYNC vm=trader-cat-p11-s1-1702 verified_files=153 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:22:21Z SYNC vm=trader-cat-p11-s2-1556 verified_files=161 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:22:35Z SYNC vm=trader-cat-p11-s0-1633 verified_files=157 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:25:18Z SYNC vm=trader-cat-p11-s1-1702 verified_files=154 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:25:35Z SYNC vm=trader-cat-p11-s2-1556 verified_files=163 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:25:55Z SYNC vm=trader-cat-p11-s0-1633 verified_files=158 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:26:47Z SYNC vm=trader-cat-p11-s1-1702 verified_files=155 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:27:06Z SYNC vm=trader-cat-p11-s2-1556 verified_files=164 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:27:26Z SYNC vm=trader-cat-p11-s0-1633 verified_files=159 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:28:34Z SYNC vm=trader-cat-p11-s1-1702 verified_files=155 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:28:49Z SYNC-PARTIAL vm=trader-cat-p11-s2-1556 (files changing during tar skipped)
+- 2026-09-29T17:28:49Z SYNC vm=trader-cat-p11-s2-1556 verified_files=163 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:29:06Z SYNC vm=trader-cat-p11-s0-1633 verified_files=161 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:32:06Z SYNC vm=trader-cat-p11-s2-1556 verified_files=165 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:32:22Z SYNC vm=trader-cat-p11-s0-1633 verified_files=163 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:32:46Z DELETE vm=trader-cat-p11-s1-1702 epoch=1790703093 reason="spot preempted at 17:31:33Z (GCE operation compute.instances.preempted); gone from the instance list; termination action deleted VM + disk" leftover_disks="none" spend_now=7.00
+- 2026-09-29T17:32:53Z DELETE vm=trader-cat-p11-s1-1702 epoch=1790703093 reason="spot preempted at 17:31:33Z (GCE operation compute.instances.preempted); gone from the instance list; termination action deleted VM + disk" leftover_disks="none" spend_now=6.99
+- 2026-09-29T17:32:59Z KEEP shard=1 creating trader-cat-p11-s1-1732 (creation 2)
+- 2026-09-29T17:33:23Z SYNC vm=trader-cat-p11-s2-1556 verified_files=166 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:33:53Z SYNC vm=trader-cat-p11-s0-1633 verified_files=163 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:34:32Z CREATE vm=trader-cat-p11-s1-1732 zone=us-west1-a epoch=1790703272 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=6.99
+- 2026-09-29T17:35:06Z SYNC-PARTIAL vm=trader-cat-p11-s2-1556 (files changing during tar skipped)
+- 2026-09-29T17:35:07Z SYNC vm=trader-cat-p11-s2-1556 verified_files=165 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:35:34Z SYNC vm=trader-cat-p11-s0-1633 verified_files=163 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:37:56Z READY vm=trader-cat-p11-s1-1732 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T17:38:23Z SYNC vm=trader-cat-p11-s2-1556 verified_files=169 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:38:40Z START vm=trader-cat-p11-s1-1732 plan=all shard=1/2 workers=4 mps=0
+- 2026-09-29T17:38:47Z SYNC vm=trader-cat-p11-s0-1633 verified_files=163 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:39:06Z SYNC vm=trader-cat-p11-s1-1732 verified_files=160 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:39:35Z SYNC-PARTIAL vm=trader-cat-p11-s2-1556 (files changing during tar skipped)
+- 2026-09-29T17:39:35Z SYNC vm=trader-cat-p11-s2-1556 verified_files=168 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:39:58Z SYNC vm=trader-cat-p11-s0-1633 verified_files=165 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:40:25Z SYNC vm=trader-cat-p11-s1-1732 verified_files=160 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:41:51Z SYNC vm=trader-cat-p11-s2-1556 verified_files=171 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:42:20Z SYNC vm=trader-cat-p11-s0-1633 verified_files=165 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:42:40Z SYNC vm=trader-cat-p11-s1-1732 verified_files=160 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:45:25Z SYNC-PARTIAL vm=trader-cat-p11-s2-1556 (files changing during tar skipped)
+- 2026-09-29T17:45:25Z SYNC vm=trader-cat-p11-s2-1556 verified_files=171 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:45:50Z SYNC vm=trader-cat-p11-s0-1633 verified_files=167 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:46:02Z SYNC vm=trader-cat-p11-s1-1732 verified_files=162 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:46:06Z SYNC vm=trader-cat-p11-s2-1556 verified_files=172 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:46:37Z SYNC vm=trader-cat-p11-s0-1633 verified_files=167 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:46:58Z SYNC vm=trader-cat-p11-s1-1732 verified_files=162 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:48:46Z SYNC vm=trader-cat-p11-s2-1556 verified_files=172 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:49:05Z SYNC vm=trader-cat-p11-s0-1633 verified_files=173 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:49:24Z SYNC vm=trader-cat-p11-s1-1732 verified_files=162 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:52:09Z SYNC-PARTIAL vm=trader-cat-p11-s2-1556 (files changing during tar skipped)
+- 2026-09-29T17:52:10Z SYNC vm=trader-cat-p11-s2-1556 verified_files=177 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:52:27Z SYNC vm=trader-cat-p11-s0-1633 verified_files=176 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:52:39Z SYNC vm=trader-cat-p11-s2-1556 verified_files=178 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:52:43Z SYNC vm=trader-cat-p11-s1-1732 verified_files=165 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:53:10Z SYNC vm=trader-cat-p11-s0-1633 verified_files=178 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:53:29Z SYNC vm=trader-cat-p11-s1-1732 verified_files=170 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:55:15Z SYNC vm=trader-cat-p11-s2-1556 verified_files=181 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:55:29Z SYNC vm=trader-cat-p11-s0-1633 verified_files=178 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:55:41Z SYNC vm=trader-cat-p11-s1-1732 verified_files=170 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:58:22Z SYNC-PARTIAL vm=trader-cat-p11-s2-1556 (files changing during tar skipped)
+- 2026-09-29T17:58:23Z SYNC vm=trader-cat-p11-s2-1556 verified_files=183 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:58:44Z SYNC vm=trader-cat-p11-s0-1633 verified_files=178 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:59:05Z SYNC vm=trader-cat-p11-s1-1732 verified_files=170 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T17:59:32Z SYNC-PARTIAL vm=trader-cat-p11-s2-1556 (files changing during tar skipped)
+- 2026-09-29T17:59:32Z SYNC vm=trader-cat-p11-s2-1556 verified_files=184 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:00:10Z SYNC vm=trader-cat-p11-s0-1633 verified_files=184 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:00:39Z SYNC vm=trader-cat-p11-s1-1732 verified_files=173 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:02:16Z SYNC vm=trader-cat-p11-s0-1633 verified_files=184 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:02:38Z SYNC vm=trader-cat-p11-s1-1732 verified_files=175 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:03:24Z DELETE vm=trader-cat-p11-s2-1556 epoch=1790704894 reason="spot preempted at 18:01:34Z (GCE operation compute.instances.preempted); gone from the instance list; termination action deleted VM + disk" leftover_disks="none" spend_now=8.06
+- 2026-09-29T18:03:27Z KEEP shard=2 creating trader-cat-p11-s2-1803 (creation 2)
+- 2026-09-29T18:03:27Z KEEP shard=2 up/start of trader-cat-p11-s2-1803 failed
+- 2026-09-29T18:05:23Z SYNC vm=trader-cat-p11-s0-1633 verified_files=185 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:05:40Z SYNC vm=trader-cat-p11-s1-1732 verified_files=180 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:06:12Z KEEP shard=2 creating trader-cat-p11-s2-1806 (creation 1)
+- 2026-09-29T18:06:27Z SYNC vm=trader-cat-p11-s0-1633 verified_files=187 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:06:45Z CREATE vm=trader-cat-p11-s2-1806 zone=us-central1-b epoch=1790705205 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=5.13
+- 2026-09-29T18:06:46Z SYNC vm=trader-cat-p11-s1-1732 verified_files=180 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:08:24Z SYNC vm=trader-cat-p11-s0-1633 verified_files=187 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:08:41Z SYNC vm=trader-cat-p11-s1-1732 verified_files=181 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:10:51Z READY vm=trader-cat-p11-s2-1806 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T18:11:25Z SYNC vm=trader-cat-p11-s0-1633 verified_files=188 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:11:36Z START vm=trader-cat-p11-s2-1806 plan=all shard=2/2 workers=4 mps=0
+- 2026-09-29T18:11:47Z SYNC vm=trader-cat-p11-s1-1732 verified_files=181 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:12:35Z SYNC-PARTIAL vm=trader-cat-p11-s2-1806 (files changing during tar skipped)
+- 2026-09-29T18:12:36Z SYNC vm=trader-cat-p11-s2-1806 verified_files=177 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:13:05Z SYNC vm=trader-cat-p11-s0-1633 verified_files=188 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:13:23Z SYNC vm=trader-cat-p11-s1-1732 verified_files=181 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:14:32Z SYNC vm=trader-cat-p11-s2-1806 verified_files=178 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:14:50Z SYNC vm=trader-cat-p11-s0-1633 verified_files=188 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:15:04Z SYNC vm=trader-cat-p11-s1-1732 verified_files=181 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:17:44Z SYNC vm=trader-cat-p11-s2-1806 verified_files=178 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:17:59Z SYNC vm=trader-cat-p11-s0-1633 verified_files=190 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:18:11Z SYNC vm=trader-cat-p11-s1-1732 verified_files=181 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:18:55Z SYNC vm=trader-cat-p11-s2-1806 verified_files=180 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:19:21Z SYNC vm=trader-cat-p11-s0-1633 verified_files=194 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:19:38Z SYNC vm=trader-cat-p11-s1-1732 verified_files=187 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:20:44Z SYNC-PARTIAL vm=trader-cat-p11-s2-1806 (files changing during tar skipped)
+- 2026-09-29T18:20:45Z SYNC vm=trader-cat-p11-s2-1806 verified_files=179 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:20:59Z SYNC vm=trader-cat-p11-s0-1633 verified_files=194 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:21:12Z SYNC vm=trader-cat-p11-s1-1732 verified_files=188 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:23:43Z SYNC vm=trader-cat-p11-s2-1806 verified_files=185 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:23:58Z SYNC vm=trader-cat-p11-s0-1633 verified_files=204 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:24:10Z SYNC vm=trader-cat-p11-s1-1732 verified_files=191 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:25:13Z SYNC vm=trader-cat-p11-s2-1806 verified_files=192 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:25:37Z SYNC vm=trader-cat-p11-s0-1633 verified_files=206 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:25:56Z SYNC vm=trader-cat-p11-s1-1732 verified_files=196 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:26:50Z SYNC-PARTIAL vm=trader-cat-p11-s2-1806 (files changing during tar skipped)
+- 2026-09-29T18:26:50Z SYNC vm=trader-cat-p11-s2-1806 verified_files=192 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:27:08Z SYNC vm=trader-cat-p11-s0-1633 verified_files=206 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:27:23Z SYNC-PARTIAL vm=trader-cat-p11-s1-1732 (files changing during tar skipped)
+- 2026-09-29T18:27:24Z SYNC vm=trader-cat-p11-s1-1732 verified_files=195 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:29:56Z SYNC vm=trader-cat-p11-s2-1806 verified_files=193 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:30:11Z SYNC vm=trader-cat-p11-s0-1633 verified_files=207 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:30:24Z SYNC vm=trader-cat-p11-s1-1732 verified_files=197 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:31:28Z SYNC vm=trader-cat-p11-s2-1806 verified_files=195 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:31:47Z SYNC vm=trader-cat-p11-s0-1633 verified_files=207 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:32:06Z SYNC vm=trader-cat-p11-s1-1732 verified_files=199 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:32:57Z SYNC vm=trader-cat-p11-s2-1806 verified_files=196 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:33:11Z SYNC vm=trader-cat-p11-s0-1633 verified_files=207 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:33:23Z SYNC vm=trader-cat-p11-s1-1732 verified_files=199 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:35:53Z SYNC vm=trader-cat-p11-s2-1806 verified_files=200 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:36:09Z SYNC vm=trader-cat-p11-s0-1633 verified_files=211 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:36:20Z SYNC vm=trader-cat-p11-s1-1732 verified_files=204 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:37:44Z SYNC vm=trader-cat-p11-s2-1806 verified_files=203 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:38:04Z SYNC vm=trader-cat-p11-s0-1633 verified_files=214 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:38:25Z SYNC vm=trader-cat-p11-s1-1732 verified_files=206 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:38:51Z SYNC vm=trader-cat-p11-s2-1806 verified_files=203 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:39:05Z SYNC vm=trader-cat-p11-s0-1633 verified_files=214 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:39:16Z SYNC vm=trader-cat-p11-s1-1732 verified_files=206 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:41:47Z SYNC vm=trader-cat-p11-s2-1806 verified_files=203 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:42:02Z SYNC vm=trader-cat-p11-s0-1633 verified_files=218 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:42:14Z SYNC vm=trader-cat-p11-s1-1732 verified_files=207 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:44:03Z SYNC vm=trader-cat-p11-s2-1806 verified_files=205 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:44:22Z SYNC vm=trader-cat-p11-s0-1633 verified_files=218 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:44:41Z SYNC vm=trader-cat-p11-s1-1732 verified_files=209 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:44:48Z SYNC vm=trader-cat-p11-s2-1806 verified_files=205 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:45:05Z SYNC vm=trader-cat-p11-s0-1633 verified_files=218 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:45:19Z SYNC vm=trader-cat-p11-s1-1732 verified_files=209 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:47:58Z SYNC vm=trader-cat-p11-s2-1806 verified_files=205 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:48:16Z SYNC vm=trader-cat-p11-s0-1633 verified_files=220 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:48:32Z SYNC vm=trader-cat-p11-s1-1732 verified_files=209 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:50:29Z SYNC vm=trader-cat-p11-s2-1806 verified_files=207 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:50:57Z SYNC vm=trader-cat-p11-s0-1633 verified_files=221 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:51:17Z SYNC vm=trader-cat-p11-s2-1806 verified_files=207 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:51:18Z SYNC vm=trader-cat-p11-s2-1806 verified_files=207 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:51:19Z SYNC vm=trader-cat-p11-s1-1732 verified_files=212 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:51:34Z SYNC vm=trader-cat-p11-s0-1633 verified_files=221 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:51:46Z SYNC vm=trader-cat-p11-s1-1732 verified_files=212 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:52:22Z DELETE vm=trader-cat-p11-s2-1806 epoch=1790707942 reason="S3 arm M-clip (shard 2) dropped from the bottom for budget; shard 2 core complete" leftover_disks="trader-cat-p11-s0-1633	us-central1-c
+trader-cat-p11-s1-1732	us-west1-a" spend_now=9.73
+- 2026-09-29T18:54:27Z SYNC vm=trader-cat-p11-s0-1633 verified_files=226 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:54:52Z SYNC vm=trader-cat-p11-s1-1732 verified_files=217 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:57:14Z SYNC vm=trader-cat-p11-s0-1633 verified_files=229 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:57:37Z SYNC vm=trader-cat-p11-s0-1633 verified_files=229 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:57:43Z SYNC vm=trader-cat-p11-s1-1732 verified_files=220 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T18:57:57Z SYNC vm=trader-cat-p11-s1-1732 verified_files=220 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:00:56Z SYNC vm=trader-cat-p11-s0-1633 verified_files=232 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:01:36Z SYNC vm=trader-cat-p11-s1-1732 verified_files=223 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:03:50Z SYNC vm=trader-cat-p11-s0-1633 verified_files=236 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:04:24Z SYNC vm=trader-cat-p11-s1-1732 verified_files=225 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:04:39Z SYNC vm=trader-cat-p11-s0-1633 verified_files=236 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:05:29Z SYNC vm=trader-cat-p11-s1-1732 verified_files=225 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:08:46Z SYNC vm=trader-cat-p11-s0-1633 verified_files=237 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:09:18Z SYNC vm=trader-cat-p11-s1-1732 verified_files=230 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:10:35Z SYNC vm=trader-cat-p11-s0-1633 verified_files=241 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:11:11Z SYNC vm=trader-cat-p11-s1-1732 verified_files=230 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:12:17Z SYNC vm=trader-cat-p11-s0-1633 verified_files=241 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:12:34Z SYNC vm=trader-cat-p11-s1-1732 verified_files=232 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:15:22Z SYNC vm=trader-cat-p11-s0-1633 verified_files=243 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:15:55Z SYNC vm=trader-cat-p11-s1-1732 verified_files=238 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:17:16Z SYNC vm=trader-cat-p11-s0-1633 verified_files=247 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:17:48Z SYNC vm=trader-cat-p11-s1-1732 verified_files=238 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:19:00Z SYNC vm=trader-cat-p11-s0-1633 verified_files=247 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:19:33Z SYNC vm=trader-cat-p11-s1-1732 verified_files=239 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:21:07Z SYNC vm=trader-cat-p11-s1-1732 verified_files=240 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:23:09Z DELETE vm=trader-cat-p11-s1-1732 epoch=1790709789 reason="S3 arm M-cap (shard 1) dropped from the bottom for budget; shard 1 core complete" leftover_disks="trader-cat-p11-s0-1633	us-central1-c" spend_now=10.46
+- 2026-09-29T19:23:18Z SYNC vm=trader-cat-p11-s0-1633 verified_files=250 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:23:38Z DELETE vm=trader-cat-p11-s1-1732 epoch=1790709807 reason="gone from the instance list; termination action deleted VM + disk" leftover_disks="none" spend_now=10.47
+- 2026-09-29T19:25:28Z SYNC vm=trader-cat-p11-s0-1633 verified_files=251 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:26:33Z SYNC vm=trader-cat-p11-s0-1633 verified_files=251 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:29:36Z SYNC vm=trader-cat-p11-s0-1633 verified_files=251 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:32:06Z SYNC vm=trader-cat-p11-s0-1633 verified_files=251 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:32:57Z SYNC vm=trader-cat-p11-s0-1633 verified_files=251 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:36:01Z SYNC vm=trader-cat-p11-s0-1633 verified_files=251 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:37:53Z SYNC vm=trader-cat-p11-s0-1633 verified_files=252 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:38:42Z SYNC vm=trader-cat-p11-s0-1633 verified_files=252 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:41:29Z SYNC vm=trader-cat-p11-s0-1633 verified_files=253 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:44:10Z SYNC vm=trader-cat-p11-s0-1633 verified_files=255 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:45:17Z SYNC vm=trader-cat-p11-s0-1633 verified_files=255 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P11/results/vm
+- 2026-09-29T19:46:29Z DELETE vm=trader-cat-p11-s0-1633 epoch=1790711188 reason="shard 0 finished (DONE-s0.json queue_state-s0.json )" leftover_disks="none" spend_now=10.74

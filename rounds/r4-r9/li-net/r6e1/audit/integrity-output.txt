@@ -1,0 +1,68 @@
+== run at 2026-10-17T08:19:14Z
+== 1a registration record
+8f0a3ec5a05d1d07f90b5e7418c83e1ce707d04733aa524219a1d138dc53b65c  PREREG-R6-E1.md  registered 2026-10-17T06:27:53Z
+/home/agent/workspaces/eurisko-study/li-net/r6e1/PREREG-R6-E1.sha256 mtime 2026-10-17 06:27:53.804951985 +0000
+/home/agent/workspaces/eurisko-study/li-net/r6e1/results/PREREG-R6-E1-as-registered.md mtime 2026-10-17 06:27:53.804755645 +0000
+/home/agent/workspaces/eurisko-study/li-net/r6e1/PREREG-R6-E1.md mtime 2026-10-17 06:51:19.409844810 +0000
+8f0a3ec5a05d1d07f90b5e7418c83e1ce707d04733aa524219a1d138dc53b65c  /home/agent/workspaces/eurisko-study/li-net/r6e1/results/PREREG-R6-E1-as-registered.md
+bd12fa67c518969464de0751393b52f7d8ce8d428234dfa755cf5eb7680a93ad  /home/agent/workspaces/eurisko-study/li-net/r6e1/PREREG-R6-E1.md
+== 1b first soup-gpu-r6e1- GPU-LOG line, launch log, VM-name timestamp
+2064:- 2026-10-17T06:28Z PENDING-CREATE vm=soup-gpu-r6e1-main-1017062806-8653 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=2.11 group=r6 run=r6e1-main by=gpu-up.sh
+2026-10-17T06:28:06Z LAUNCH r6e1-main try 1 tag=main seeds=101 102 103 remote=100m timeout=110m prov=SPOT args=
+== 1c PREREG vs registered copy (only section 5 may differ)
+146c146,157
+< (none yet)
+---
+diff lines: 13
+== 1d staged manifests: every block vs the registered block (06:27:03Z)
+2026-10-17T06:27:03Z: 14/14 registered files identical; differing []; extra (unregistered) []
+2026-10-17T06:28:06Z: 14/14 registered files identical; differing []; extra (unregistered) []
+2026-10-17T06:51:25Z: 14/14 registered files identical; differing []; extra (unregistered) ['render_page6.py', 'site_patch6.py']
+== 1e current files vs registered hashes
+e1v3.py SAME
+analyze6.py CHANGED (now fd65675d, registered 2f76562b, mtime 2026-10-17 07:48:57.035982571 +0000)
+test_r6e1.py SAME
+ledger6.py SAME
+stage6.sh SAME
+remote6.sh SAME
+driver6.sh SAME
+launch6.sh SAME
+r5e1/env6.py SAME
+r5e1/wm.py SAME
+r5e1/rollouts.py SAME
+r5e1/run.py SAME
+r5e1/partA2.py SAME
+smallnet/netdef.py SAME
+registered analyze6.py copy: 2f76562bbf80c065 (/tmp/r6e1/src/analyze6.py)
+== 1f amendments and spec
+ls: cannot access '/home/agent/workspaces/mats/outbox/experiments-round-6-amendments*.md': No such file or directory
+8be631f1cccafb6ab8e6faeb14faa6ffe4cd3f174b372ec07cd9cace02bf170c  /home/agent/workspaces/mats/outbox/experiments-round-6-spec.md
+== 6a GPU-LOG r6e1 lines
+2064:- 2026-10-17T06:28Z PENDING-CREATE vm=soup-gpu-r6e1-main-1017062806-8653 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=2.11 group=r6 run=r6e1-main by=gpu-up.sh
+2065:- 2026-10-17T06:28Z CREATE vm=soup-gpu-r6e1-main-1017062806-8653 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run=6h rate_usd_h=0.87 (UNVERIFIED ceiling: on-demand list price, Billing API disabled; spot is lower) reserve_usd=2.11 spent_before_usd=309.58 group=r6 run=r6e1-main by=gpu-up.sh
+2066:- 2026-10-17T06:29Z READY vm=soup-gpu-r6e1-main-1017062806-8653 ip=[ip-removed] gpu=NVIDIA L4, 580.178.04 startup=minimal 
+2067:- 2026-10-17T06:29Z RUN vm=soup-gpu-r6e1-main-1017062806-8653 timeout=110m cmd="main 101\ 102\ 103 100 "
+2068:- 2026-10-17T06:30Z WATCHDOG vm=soup-gpu-r6e1-main-1017062806-8653 age_h=0.03 status=RUNNING action=posted
+2074:- 2026-10-17T06:49Z RUN-END vm=soup-gpu-r6e1-main-1017062806-8653 rc=0
+2075:- 2026-10-17T06:51Z COST-AUDIT vm=soup-gpu-r6e1-main-1017062806-8653 zone=us-central1-a type=g2-standard-8 age_h=0.32 cost_usd=0.28 (rate ceiling x age; spot preempted by GCE at 06:47:12Z, compute.instances.preempted, auto-deleted; gcloud lists no such instance at 06:51Z) by=r6e1-agent
+2076:- 2026-10-17T06:51Z PENDING-CREATE vm=soup-gpu-r6e1-main2-1017065125-1754 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=1.97 group=r6 run=r6e1-main2 by=gpu-up.sh
+2077:- 2026-10-17T06:51Z CREATE vm=soup-gpu-r6e1-main2-1017065125-1754 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=STANDARD max_run=6h rate_usd_h=0.87 (UNVERIFIED ceiling: on-demand list price, Billing API disabled; spot is lower) reserve_usd=1.97 spent_before_usd=311.47 group=r6 run=r6e1-main2 by=gpu-up.sh
+2078:- 2026-10-17T06:52Z READY vm=soup-gpu-r6e1-main2-1017065125-1754 ip=[ip-removed] gpu=NVIDIA L4, 580.178.04 startup=minimal 
+2079:- 2026-10-17T06:52Z RUN vm=soup-gpu-r6e1-main2-1017065125-1754 timeout=100m cmd="main 101\ 102\ 103 90 "
+2082:- 2026-10-17T07:00Z WATCHDOG vm=soup-gpu-r6e1-main2-1017065125-1754 age_h=0.14 status=RUNNING action=posted
+2087:- 2026-10-17T07:47Z RUN-END vm=soup-gpu-r6e1-main2-1017065125-1754 rc=0
+2088:- 2026-10-17T07:48Z DELETE vm=soup-gpu-r6e1-main2-1017065125-1754 zone=us-central1-a type=g2-standard-8 age_h=0.94 cost_usd=0.82 (rate ceiling x age) sync=skipped reason="gpu-run.sh finished rc=0: main 101\ 102\ 103 90 "
+== 6b ledger6.py (R6-E1's own ledger, read-only)
+soup-gpu-r6e1-main-1017062806-8653	us-central1-a	SPOT	2026-10-17T06:28Z	2026-10-17T06:51Z	0.28	DELETE/COST-AUDIT line
+soup-gpu-r6e1-main2-1017065125-1754	us-central1-a	STANDARD	2026-10-17T06:51Z	2026-10-17T07:48Z	0.82	DELETE/COST-AUDIT line
+TOTAL	1.10	ceiling	2.50
+== 6c live r6e1 VMs (gcloud, read-only) and a control listing
+r6e1 list rc=0
+soup-gpu-r6e2-main-1017072822-15483	RUNNING
+control list rc=0
+== 6d GCE operations on r6e1 VMs (insert / preempt / delete times, UTC-7 as printed)
+insert	DONE	2026-10-16T23:28:17.336-07:00	soup-gpu-r6e1-main-1017062806-8653
+insert	DONE	2026-10-16T23:51:32.255-07:00	soup-gpu-r6e1-main2-1017065125-1754
+delete	DONE	2026-10-17T00:47:41.429-07:00	soup-gpu-r6e1-main2-1017065125-1754
+compute.instances.preempted	DONE	2026-10-16T23:47:12.391-07:00	soup-gpu-r6e1-main-1017062806-8653
+== done 2026-10-17T08:19:21Z

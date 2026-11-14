@@ -1,0 +1,10 @@
+[n128_s402_L32] c=8 k=14 chance=0.223 | Gb_raw: O=0.460 CS=0.593 Gb_proj: O=0.523 CS=0.666 GM_raw: O=0.489 CS=0.645 GM_proj: O=0.555 CS=0.720 rand_proj: O=0.223 CS=0.222 | nearest R: 1:CS=0.559,O=0.449,ang=0.559 4:CS=0.544,O=0.451,ang=0.525 16:CS=0.556,O=0.459,ang=0.469 64:CS=0.583,O=0.474,ang=0.428 256:CS=0.601,O=0.487,ang=0.390 1024:CS=0.623,O=0.501,ang=0.356 4096:CS=0.639,O=0.512,ang=0.329 8192:CS=0.646,O=0.518,ang=0.317
+[n128_s402_L32] c=16 k=20 chance=0.295 | Gb_raw: O=0.634 CS=0.794 Gb_proj: O=0.673 CS=0.831 GM_raw: O=0.626 CS=0.837 GM_proj: O=0.668 CS=0.874 rand_proj: O=0.295 CS=0.294 | nearest R: 1:CS=0.745,O=0.602,ang=0.281 4:CS=0.757,O=0.613,ang=0.263 16:CS=0.797,O=0.649,ang=0.217 64:CS=0.812,O=0.665,ang=0.192 256:CS=0.829,O=0.681,ang=0.168 1024:CS=0.844,O=0.697,ang=0.151 4096:CS=0.858,O=0.711,ang=0.136 8192:CS=0.865,O=0.719,ang=0.129
+Traceback (most recent call last):
+  File "/root/runs/kstar2/scratch/r2b_analyze.py", line 75, in <module>
+    CSm, Om = cover.pair_scores(VB.float(), sB.float(), DB.float(), VA.float(), k)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/runs/kstar2/lib/cover.py", line 28, in pair_scores
+    ev, U = torch.linalg.eigh(Gram)                                          # Gram may be singular:
+            ^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 10.02 GiB. GPU 0 has a total capacity of 22.03 GiB of which 9.95 GiB is free. Process 5151 has 342.00 MiB memory in use. Including non-PyTorch memory, this process has 11.17 GiB memory in use. Process 5169 has 574.00 MiB memory in use. Of the allocated memory 1.19 GiB is allocated by PyTorch, and 9.74 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)

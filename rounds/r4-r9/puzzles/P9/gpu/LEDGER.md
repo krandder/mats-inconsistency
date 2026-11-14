@@ -1,0 +1,35 @@
+- 2026-09-29T12:50:32Z CREATE-FAILED vm=trader-cat-p9-1 err="WARNING: Some requests generated warnings:  - Disk size: '60 GB' is larger than image size: '50 GB'. You might need to resize the root repartition manually if the operating system does not support aut"
+- 2026-09-29T12:56:27Z CREATE vm=trader-cat-p9-1 zone=us-central1-a epoch=1790686587 type=g2-standard-4+L4 spot max_run=4h rate_ceiling=0.86 spend_before=0.00
+- 2026-09-29T13:00:22Z READY vm=trader-cat-p9-1 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T13:16:16Z START vm=trader-cat-p9-1 plan=s0 (logged by hand; the start call hung after launching the queue)
+- 2026-09-29T13:17:29Z SYNC vm=trader-cat-p9-1 verified_files=50 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P9/results
+- 2026-09-29T13:21:42Z START vm=trader-cat-p9-1 plan=retune
+- 2026-09-29T13:22:33Z SYNC vm=trader-cat-p9-1 verified_files=73 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P9/results
+- 2026-09-29T13:29:47Z START vm=trader-cat-p9-1 plan=g2
+- 2026-09-29T13:37:06Z SYNC-PARTIAL vm=trader-cat-p9-1 (files changing during tar skipped)
+- 2026-09-29T13:37:06Z SYNC vm=trader-cat-p9-1 verified_files=119 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P9/results
+- 2026-09-29T13:53:21Z SYNC vm=trader-cat-p9-1 verified_files=166 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P9/results
+- 2026-09-29T14:06:16Z SYNC vm=trader-cat-p9-1 verified_files=196 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P9/results
+- 2026-09-29T14:06:54Z SYNC vm=trader-cat-p9-1 verified_files=197 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P9/results
+- 2026-09-29T14:24:01Z WATCHDOG vm=trader-cat-p9-1 action=delete why="queue idle for > 60 min"
+- 2026-09-29T14:24:18Z SYNC vm=trader-cat-p9-1 verified_files=215 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P9/results
+- 2026-09-29T14:25:26Z DELETE vm=trader-cat-p9-1 epoch=1790691926 reason="watchdog: queue idle for > 60 min" leftover_disks="none" spend_now=1.28
+- 2026-09-29T14:30:36Z CREATE vm=trader-cat-p9-2 zone=us-east1-c epoch=1790692236 type=g2-standard-4+L4 spot max_run=4h rate_ceiling=0.86 spend_before=1.28
+- 2026-09-29T14:33:43Z READY vm=trader-cat-p9-2 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T14:34:25Z START vm=trader-cat-p9-2 plan=g2b
+- 2026-09-29T14:39:58Z SYNC vm=trader-cat-p9-2 verified_files=244 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P9/results
+- 2026-09-29T14:48:58Z SYNC-PARTIAL vm=trader-cat-p9-2 (files changing during tar skipped)
+- 2026-09-29T14:48:59Z SYNC vm=trader-cat-p9-2 verified_files=278 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P9/results
+- 2026-09-29T14:54:19Z SYNC vm=trader-cat-p9-2 verified_files=351 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P9/results
+- 2026-09-29T14:59:50Z SYNC vm=trader-cat-p9-2 verified_files=351 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P9/results
+- 2026-09-29T15:04:45Z SYNC vm=trader-cat-p9-2 verified_files=363 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P9/results
+- 2026-09-29T15:05:27Z SYNC-PARTIAL vm=trader-cat-p9-2 (files changing during tar skipped)
+- 2026-09-29T15:05:29Z SYNC vm=trader-cat-p9-2 verified_files=362 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P9/results
+- 2026-09-29T15:11:06Z SYNC vm=trader-cat-p9-2 verified_files=385 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P9/results
+- 2026-09-29T15:11:56Z SYNC vm=trader-cat-p9-2 verified_files=389 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P9/results
+- 2026-09-29T15:17:03Z START vm=trader-cat-p9-2 plan=aa3
+- 2026-09-29T15:22:00Z SYNC vm=trader-cat-p9-2 verified_files=415 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P9/results
+- 2026-09-29T15:27:27Z SYNC vm=trader-cat-p9-2 verified_files=415 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P9/results
+- 2026-09-29T15:30:25Z SYNC vm=trader-cat-p9-2 verified_files=435 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P9/results
+- 2026-09-29T15:33:09Z SYNC vm=trader-cat-p9-2 verified_files=435 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P9/results
+- 2026-09-29T15:34:31Z DELETE vm=trader-cat-p9-2 epoch=1790696071 reason="P9 complete" leftover_disks="none" spend_now=2.19

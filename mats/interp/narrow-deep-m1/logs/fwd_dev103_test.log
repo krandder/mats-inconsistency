@@ -1,0 +1,10 @@
+poly fits done (170s)
+/home/agent/workspaces/mats/work/narrow-deep-m1/scratch/fwd_study.py:70: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  return float((m_a - torch.tensor(lay[c]['mean_a'], dtype=DT)).pow(2).sum() / lay[c]['trvar_a'])
+KP2: err_a(c=1..8)=['8.5e-07', '0.0053', '0.023', '0.044', '0.069', '0.11', '0.13', '0.3'] meet_gauss={2: 0.064267, 4: 0.428994, 6: 0.677838, 8: 3.411751} meet_poly={'2_deg2': '0.0377', '4_deg2': '520', '6_deg2': '230', '8_deg2': '2.54e+04'} flops@8=2.65e+04 (463s)
+KP2a: err_a(c=1..8)=['8.5e-07', '0.0016', '0.0073', '0.0084', '2e+02', '8.5e+02', '1.6e+04', '7.6e+04'] meet_gauss={2: 0.080494, 4: 0.517797, 6: 6784.353174, 8: 535431.081548} meet_poly={'2_deg2': '0.0167', '4_deg2': '679', '6_deg2': '2.47e+09', '8_deg2': '1.29e+12'} flops@8=1.41e+05 (733s)
+KP3f: err_a(c=1..8)=['8.5e-07', '0.0005', '0.0087', '0.11', '1.4', '4.2', '53', '2.8e+02'] meet_gauss={2: 0.120278, 4: 1.078497, 6: 1.531801, 8: 5340.66554} meet_poly={'2_deg2': '0.00163', '2_deg3': '0.321', '4_deg2': '2.57e+03', '4_deg3': '2.55e+09', '6_deg2': '3.02e+03', '6_deg3': '1.29e+08', '8_deg2': '1.2e+11', '8_deg3': '1.27e+17'} flops@8=1.2e+06 (981s)
+KP3fa: err_a(c=1..8)=['8.5e-07', '0.00039', '0.005', '0.01', '15', '5e+03', '1.1e+04', '1.5e+05'] meet_gauss={2: 0.100395, 4: 0.344153, 6: 58092.779691, 8: 3178560.416426} meet_poly={'2_deg2': '0.00401', '2_deg3': '0.0292', '4_deg2': '3.93e+03', '4_deg3': '7.31e+09', '6_deg2': '2.51e+10', '6_deg3': '6.64e+17', '8_deg2': '1.69e+15', '8_deg3': '4.79e+20'} flops@8=6.23e+06 (1230s)
+KP4f failed mul(): functions with out=... arguments don't support automatic differentiation, but one of the arguments requires grad.
+K2X: err_a=['8.5e-07', '0.0046', '0.022', '0.042', '0.069', '0.11', '0.14', '0.3'] meet={2: 0.071748, 4: 0.382752, 6: 0.70474, 8: 4.459606} flops@8=1.32e+06

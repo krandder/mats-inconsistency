@@ -1,0 +1,93 @@
+== mA6: 201030 parameters. 2,000 held-out test grids, 2,000 validation grids (1s)
+   [a] own confidence: lowest entropy           test excess   0.2477  validation excess (512 grids, from the fit run)   0.3175 (70s)
+   [a] own confidence: top probability          test excess   0.2456  validation excess (512 grids, from the fit run)   0.4069 (150s)
+   [a] own confidence: top-1 minus top-2        test excess   0.2908  validation excess (512 grids, from the fit run)   0.4869 (221s)
+   [a] least confident first                    test excess   1.3852  validation excess (512 grids, from the fit run)      nan (289s)
+   [a] raster order                             test excess   0.0809  validation excess (512 grids, from the fit run)      nan (353s)
+   [a] M's inconsistency: std over 8 random orders of log q_sigma(x), mean over 200 held-out grids: 0.6750 nats; range (max - min over the 8 orders), mean 2.1436
+   [a] one random order: excess 0.6274; uniform mixture over 8 random orders (200 grids): excess 0.4004 (437s)
+
+[c] E2. excess route surprise = mean_x[-log T_pi(x)] - ln 28,200,960, on 1,000 held-out test grids (nats)
+   conf* (own-confidence rule with the lowest validation surprise) = own confidence: lowest entropy
+   order policy                                   excess         95% interval          minus pi_trust (paired)
+   own confidence: lowest entropy                 0.2477 [  0.2018,  0.2932]    +0.0537 [ +0.0002, +0.1060]
+   own confidence: top probability                0.2456 [  0.2009,  0.2926]    +0.0516 [ -0.0039, +0.1105]
+   own confidence: top-1 minus top-2              0.2908 [  0.2431,  0.3427]    +0.0968 [ +0.0343, +0.1628]
+   least confident first                          1.3852 [  1.3486,  1.4244]    +1.1912 [ +1.1382, +1.2450]
+   raster order                                   0.0809 [  0.0452,  0.1142]    -0.1131 [ -0.1632, -0.0623]
+   one random order                               0.5951 [  0.5493,  0.6447]    +0.4011 [ +0.3416, +0.4617]
+   pi_trust (learned on real grids)               0.1940 [  0.1548,  0.2323]    +0.0000 [ +0.0000, +0.0000]
+   uniform mixture over 8 random orders (200)     0.4004
+   HEADLINE E2 (pre-registered bins): excess(pi_trust) = 0.1940, excess(conf*) = 0.2477, conf* - pi_trust = +0.0537 [-0.0010, +0.1137] -> NULL
+   learned mixture over the six order policies (weights fit on 256 real validation grids): lowest entropy 0.234, top probability 0.138, top-1 minus top-2 0.000, least confident first 0.000, raster order 0.164, pi_trust (learned on rea 0.464
+   learned mixture over six routes                0.0622 [  0.0371,  0.0852]    -0.1318 [ -0.1581, -0.1069]
+   same table on 500 fresh grids of the training orbits (in distribution): excess, and paired difference to pi_trust
+   own confidence: lowest entropy                 0.3114 [  0.2432,  0.3760]    +0.1027 [ +0.0219, +0.1853]
+   own confidence: top probability                0.3895 [  0.3217,  0.4555]    +0.1808 [ +0.1000, +0.2612]
+   own confidence: top-1 minus top-2              0.4203 [  0.3483,  0.4935]    +0.2116 [ +0.1286, +0.2939]
+   pi_trust (learned on real grids)               0.2087 [  0.1556,  0.2641]    +0.0000 [ +0.0000, +0.0000]
+
+[d] E1. per-step held-out surprise by context type (exact conditionals; 1,200 states on routes of test grids)
+   atoms scored: 22568
+   context type                 share  surprise  entropy   excess  leak: rule-breaking  leak: no completion
+   (a) locally forced           0.092    0.0001   0.0000   0.0001             6.35e-05             0.00e+00
+   (b) forced, not locally      0.090    0.0257   0.0000   0.0257             1.64e-04             2.16e-02
+   (c) free                     0.818    1.3070   1.2888   0.0160             1.78e-04             2.39e-03
+   mass on directly rule-breaking values per atom: mean 1.66e-04, 99th percentile 1.16e-03, max 3.35e-02
+   pre-registered reading of 'M encodes the rule': SHARP
+   by number of filled cells:     filled   atoms  surprise  entropy   excess  leak rule  leak dead  share forced-not-local
+                                  0-5      6640    1.6014   1.5999   0.0017   8.39e-05   1.84e-04                   0.001
+                                  6-11     5486    1.2543   1.2373   0.0176   1.66e-04   4.26e-03                   0.029
+                                 12-17     5098    0.8449   0.8124   0.0270   2.25e-04   8.67e-03                   0.174
+                                 18-23     2864    0.5971   0.5665   0.0271   2.71e-04   4.54e-03                   0.180
+                                 24-29     1760    0.3166   0.2995   0.0131   1.65e-04   3.54e-03                   0.208
+                                 30-35      720    0.1279   0.1271   0.0008   9.13e-05   6.07e-07                   0.135
+   calibration on free atoms (M's top probability vs exact probability of the same value):
+      M says 0.00-0.30: n   7686  mean M 0.232  exact 0.226
+      M says 0.30-0.50: n   6733  mean M 0.373  exact 0.368
+      M says 0.50-0.70: n   3609  mean M 0.562  exact 0.528
+      M says 0.70-0.90: n    415  mean M 0.765  exact 0.683
+      M says 0.90-0.99: n     17  mean M 0.929  exact 0.758
+      M says 0.99-1.00: n      1  mean M 0.995  exact 0.800
+
+[e] the order each policy takes on 100 held-out grids (exact quantities of the chosen cell)
+   pi_trust
+      steps by type of the chosen cell: locally forced 0.358, forced-not-locally 0.161, free 0.480
+      when a locally forced cell exists (0.453 of states) it is chosen 0.791 of the time
+      exact excess summed along the route: chosen cells 0.2139; if every step had the mean available cell 0.5115; the per-step minimum 0.0156
+      exact excess per step at free choices 0.0116; at forced-not-locally cells 0.0021; mean position of free choices in the route 11.6 of 36
+   conf*: own confidence: lowest entropy
+      steps by type of the chosen cell: locally forced 0.393, forced-not-locally 0.110, free 0.497
+      when a locally forced cell exists (0.451 of states) it is chosen 0.871 of the time
+      exact excess summed along the route: chosen cells 0.2899; if every step had the mean available cell 0.3996; the per-step minimum 0.0171
+      exact excess per step at free choices 0.0154; at forced-not-locally cells 0.0034; mean position of free choices in the route 11.8 of 36
+   random order
+      steps by type of the chosen cell: locally forced 0.414, forced-not-locally 0.206, free 0.380
+      when a locally forced cell exists (0.705 of states) it is chosen 0.587 of the time
+      exact excess summed along the route: chosen cells 0.7511; if every step had the mean available cell 0.7158; the per-step minimum 0.0058
+      exact excess per step at free choices 0.0338; at forced-not-locally cells 0.0388; mean position of free choices in the route 6.9 of 36
+
+[f] E3. T on complete boards
+   T with order pi_trust: tau = -24.281 (validation minimum -22.281 minus 2.0; validation mean -17.405)
+      held-out valid grids: false rejects 0.0000 (minimum log T -19.397)
+      near-miss invalid boards: one cell changed: accepted 0.0010, max log T -23.74, median -33.91; two cells of a row swapped: accepted 0.0010, max -22.54, median -38.07
+      mass on valid grids (2000 draws from T): 0.9665 [0.9577, 0.9735]; invalid draws 67, of which accepted by tau: 51 (largest log T among invalid draws -16.18)
+   T with order conf*: tau = -21.720 (validation minimum -19.720 minus 2.0; validation mean -17.470)
+      held-out valid grids: false rejects 0.0000 (minimum log T -20.336)
+      near-miss invalid boards: one cell changed: accepted 0.0000, max log T -24.10, median -33.91; two cells of a row swapped: accepted 0.0000, max -23.91, median -38.50
+      mass on valid grids (1000 draws from T): 0.9870 [0.9779, 0.9924]; invalid draws 13, of which accepted by tau: 6 (largest log T among invalid draws -16.31)
+   E3 bins so far (the search candidates of E4 are added in e_search6.py): FAIL
+
+[g] E5 (constructed). 10,000 states on real test grids, screened for confidently wrong atoms of M
+   states screened 20,000; states where some empty cell has top probability >= 0.9: 7881
+   confident atoms (top probability >= 0.9): 71778; of these confidently wrong (exact probability of that value <= 0.1): 1 (1.39e-05); exact probability exactly 0: 1
+   mean exact probability of the top value among confident atoms: 0.99900 (M's mean top probability 0.99766)
+   states containing a confidently wrong atom: 1
+      pi_trust                             picks a confidently wrong cell 0.000 of the time; mean exact excess of the picked cell 0.0003
+      own confidence: top probability      picks a confidently wrong cell 0.000 of the time; mean exact excess of the picked cell 0.0000
+      own confidence: top-1 minus top-2    picks a confidently wrong cell 0.000 of the time; mean exact excess of the picked cell 0.0000
+      own confidence: lowest entropy       picks a confidently wrong cell 0.000 of the time; mean exact excess of the picked cell 0.0000
+      random order                         picks a confidently wrong cell 0.000 of the time; mean exact excess of the picked cell 0.0075
+
+calls of M: 718096; total time 1585s
+exit 0

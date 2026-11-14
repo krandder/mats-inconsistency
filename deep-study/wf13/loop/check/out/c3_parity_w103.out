@@ -1,0 +1,26 @@
+world 103: 40 fresh instances (none in M training, loop training or the author test set)
+A round5          rho=0.5 eps=0.02 | intervals 3200 outside 0 (strict 0) | Z bounds 160 outside 0 | not nested 0 | audit misses 0 | w_aud@256 0.187 @1024 0.005 | w_cert@256 0.652 | err_aud@256 0.0107 | found@256 0.63 | 29s
+A round0          rho=0.5 eps=0.02 | intervals 3200 outside 0 (strict 0) | Z bounds 160 outside 0 | not nested 0 | audit misses 0 | w_aud@256 0.191 @1024 0.006 | w_cert@256 0.789 | err_aud@256 0.0086 | found@256 0.21 | 32s
+A round1          rho=0.5 eps=0.02 | intervals 3200 outside 0 (strict 0) | Z bounds 160 outside 0 | not nested 0 | audit misses 0 | w_aud@256 0.189 @1024 0.005 | w_cert@256 0.665 | err_aud@256 0.0102 | found@256 0.57 | 15s
+A oneshot         rho=0.5 eps=0.02 | intervals 3200 outside 0 (strict 0) | Z bounds 160 outside 0 | not nested 0 | audit misses 0 | w_aud@256 0.184 @1024 0.005 | w_cert@256 0.653 | err_aud@256 0.0085 | found@256 0.67 | 12s
+A spec_alone      rho=1.0 eps=0.02 | intervals 3200 outside 0 (strict 0) | Z bounds 160 outside 0 | not nested 0 | audit misses 0 | w_aud@256 0.153 @1024 0.003 | w_cert@256 0.631 | err_aud@256 0.0056 | found@256 0.43 | 9s
+A random          rho=0.5 eps=0.02 | intervals 3200 outside 0 (strict 0) | Z bounds 160 outside 0 | not nested 0 | audit misses 0 | w_aud@256 0.850 @1024 0.344 | w_cert@256 1.000 | err_aud@256 0.0426 | found@256 0.00 | 2s
+A flip            rho=0.5 eps=0.02 | intervals 3200 outside 0 (strict 0) | Z bounds 160 outside 0 | not nested 0 | audit misses 0 | w_aud@256 0.224 @1024 0.011 | w_cert@256 0.832 | err_aud@256 0.0090 | found@256 0.21 | 15s
+A avoid_noguard   rho=0.0 eps=0.00 | intervals 3200 outside 0 (strict 0) | Z bounds 160 outside 0 | not nested 0 | audit misses 0 | w_aud@256 0.884 @1024 0.850 | w_cert@256 1.000 | err_aud@256 0.0893 | found@256 0.23 | 14s
+A net5_conforder  rho=0.5 eps=0.02 | intervals 3200 outside 0 (strict 0) | Z bounds 160 outside 0 | not nested 0 | audit misses 0 | w_aud@256 0.866 @1024 0.259 | w_cert@256 0.999 | err_aud@256 0.0885 | found@256 0.00 | 6s
+A anti_noguard    rho=0.0 eps=0.00 | intervals 3200 outside 0 (strict 0) | Z bounds 160 outside 0 | not nested 0 | audit misses 0 | w_aud@256 1.000 @1024 1.000 | w_cert@256 1.000 | err_aud@256 0.1333 | found@256 0.00 | 2s
+A anti_share      rho=0.5 eps=0.00 | intervals 3200 outside 0 (strict 0) | Z bounds 160 outside 0 | not nested 0 | audit misses 0 | w_aud@256 0.921 @1024 0.504 | w_cert@256 1.000 | err_aud@256 0.0581 | found@256 0.00 | 2s
+B avoid, no guard, importance form, 256 rollouts: error against T 0.313 | against T(. | the five avoided = 0) 0.012 | distance between those two laws (fixed before any rollout) 0.316 | T-mass of the part it can reach 0.061 | ESS 160.6 | 8s
+C importance form, 64 rollouts, round 0      : error 0.4513 (s.e. 0.0166)
+C importance form, 64 rollouts, round 1      : error 0.0597 (s.e. 0.0183)
+C importance form, 64 rollouts, round 2      : error 0.0507 (s.e. 0.0177)
+C importance form, 64 rollouts, round 3      : error 0.0449 (s.e. 0.0176)
+C importance form, 64 rollouts, round 4      : error 0.0212 (s.e. 0.0069)
+C importance form, 64 rollouts, round 5      : error 0.0599 (s.e. 0.0177)
+C importance form, 64 rollouts, round oneshot: error 0.0445 (s.e. 0.0146)
+C importance form, 64 rollouts, hand (books numbers, confident first): error 0.0527
+C one pass of the rollout policy, round 0: error 0.4551
+C one pass of the rollout policy, round 5: error 0.2542
+C one pass of M on the fresh instances: error 0.2105
+C the score prior numbers: error 0.3603
+done

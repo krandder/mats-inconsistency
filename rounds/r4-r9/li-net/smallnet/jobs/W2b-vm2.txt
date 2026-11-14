@@ -1,0 +1,16 @@
+# wave W2b vm 2: 15 jobs, est 231 process-minutes, ~39 wall-minutes at par 6
+--arm rbtd --n 10000 --seed 2 --tag E29-rbtdR3 --set rbtd_R=3 --out /root/runs/smallnet/W2b/E29-rbtdR3/E29-rbtdR3-n10000-s2.json
+--arm rbtd --n 10000 --seed 2 --tag E26-rbtd-teacher --set teacher=1 --out /root/runs/smallnet/W2b/E26-rbtd-teacher/E26-rbtd-teacher-n10000-s2.json
+--arm rbtd --n 10000 --seed 2 --tag E31-rbtd-drop3 --set drop=0.3 --out /root/runs/smallnet/W2b/E31-rbtd-drop3/E31-rbtd-drop3-n10000-s2.json
+--arm rbtd --n 1000 --seed 2 --tag E29-rbtdR3 --set rbtd_R=3 --out /root/runs/smallnet/W2b/E29-rbtdR3/E29-rbtdR3-n1000-s2.json
+--arm rbtd --n 3000 --seed 2 --tag E26-rbtd-teacher --set teacher=1 --out /root/runs/smallnet/W2b/E26-rbtd-teacher/E26-rbtd-teacher-n3000-s2.json
+--arm rbtd --n 3000 --seed 2 --tag E31-rbtd-drop3 --set drop=0.3 --out /root/runs/smallnet/W2b/E31-rbtd-drop3/E31-rbtd-drop3-n3000-s2.json
+--arm masked --n 3000 --seed 2 --tag E28-masked+td --set td=0.0 --out /root/runs/smallnet/W2b/E28-masked+td/E28-masked+td-n3000-s2.json
+--arm rbtd --n 1000 --seed 2 --tag E30-rbtd+td-teacher --set k0w=1.0 td=0.0 teacher=1 --out /root/runs/smallnet/W2b/E30-rbtd+td-teacher/E30-rbtd+td-teacher-n1000-s2.json
+--arm rbtd --n 300 --seed 2 --tag E27-rbtd+allprefix --set stages=all --out /root/runs/smallnet/W2b/E27-rbtd+allprefix/E27-rbtd+allprefix-n300-s2.json
+--arm masked --n 1000 --seed 2 --tag E28-masked+td --set td=0.0 --out /root/runs/smallnet/W2b/E28-masked+td/E28-masked+td-n1000-s2.json
+--arm rbtd --n 300 --seed 2 --tag E26-rbtd-teacher --set teacher=1 --out /root/runs/smallnet/W2b/E26-rbtd-teacher/E26-rbtd-teacher-n300-s2.json
+--arm rbtd --n 300 --seed 2 --tag E31-rbtd-drop3 --set drop=0.3 --out /root/runs/smallnet/W2b/E31-rbtd-drop3/E31-rbtd-drop3-n300-s2.json
+--arm masked --n 300 --seed 2 --tag E28-masked+td --set td=0.0 --out /root/runs/smallnet/W2b/E28-masked+td/E28-masked+td-n300-s2.json
+--arm rbtd --n 100 --seed 2 --tag E30-rbtd+td-teacher --set k0w=1.0 td=0.0 teacher=1 --out /root/runs/smallnet/W2b/E30-rbtd+td-teacher/E30-rbtd+td-teacher-n100-s2.json
+--arm masked --n 100 --seed 2 --tag E28-masked+td --set td=0.0 --out /root/runs/smallnet/W2b/E28-masked+td/E28-masked+td-n100-s2.json

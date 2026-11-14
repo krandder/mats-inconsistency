@@ -1,0 +1,468 @@
+{
+  "exported_at": "2026-09-13T14:49:33.953231+00:00",
+  "epic": "hub-t8k9c",
+  "source": "Canonical Hub Beads, read-only export",
+  "live_plan": "https://consistency.futarchy.ai/plan.html",
+  "issues": [
+    {
+      "id": "hub-t8k9c",
+      "title": "RLEF × Forecasting — consistency-ft research program",
+      "description": "Train forecasters against Dutch-book exploitability (RLE) on Paleka consistency tuples; 3 reward arms incl. KL-to-base-beliefs. Gate 0 APPROVED by Jessica 2026-08-19 with amendment: knowledge-cutoff contamination audit required. Proposal: https://consistency.futarchy.ai/proposal.html · Repo: futarchy-fi/consistency-ft · Dashboard: consistency.futarchy.ai",
+      "status": "open",
+      "priority": 1,
+      "issue_type": "epic",
+      "labels": [
+        "consistency-ft"
+      ],
+      "created_at": "2026-08-20T03:03:22Z",
+      "updated_at": "2026-08-20T03:03:22Z",
+      "dependencies": []
+    },
+    {
+      "id": "hub-t8k9c.1",
+      "title": "Fireworks account unblock + backfill (minimax-m2p7, inkling, muse retry, reasoning probe)",
+      "description": "Latest read-only recheck at 2026-09-13T14:19:35Z: one additional account-status GET through the original General -> deploy-host -> Mac route returned HTTP 412 / PRECONDITION_FAILED for [removed], request ID 6fcc0f1c-4826-40f3-8b8f-f174b76cc6c1. Suspension cause remains unknown and correct-account access remains unresolved. No retries, credential copies/changes, account switch, provider inference or billing actions occurred. Evidence: data/research/fireworks-account-status-20260913-141935.json and docs/fireworks-backfill.md in consistency-ft. This does not refresh the separate browser account billing figures from the morning inspection.\n\nRecover authenticated Fireworks project access and backfill approved missing model cohorts. Four fresh September 13 read-only requests through the recovered Mac route returned HTTP 412/PRECONDITION_FAILED for the existing key account [removed]. The available browser exposes only Futarchy/[removed], a separate account; its balance/cap cannot diagnose project suspension. Access [removed] billing to establish the cause. Restored offline runner: scripts/backfill_fireworks.py. MiniMax M2.7 needs a verified serving route and price separately. No inference or billing action is authorized by these findings. Evidence: docs/fireworks-backfill.md and docs/fireworks-evidence-20260913.json in consistency-ft.",
+      "status": "open",
+      "priority": 1,
+      "issue_type": "task",
+      "labels": [
+        "consistency-ft",
+        "kelvin-gated",
+        "necessita-modificacao"
+      ],
+      "created_at": "2026-08-20T03:03:28Z",
+      "updated_at": "2026-09-13T14:48:19Z",
+      "dependencies": [
+        {
+          "depends_on_id": "hub-t8k9c",
+          "type": "parent-child"
+        }
+      ]
+    },
+    {
+      "id": "hub-t8k9c.2",
+      "title": "Cutoff audit: collect advertised knowledge cutoffs for all benchmarked models",
+      "description": "From model cards/docs for all 17 benchmark models. Jessica's Gate-0 amendment.",
+      "status": "closed",
+      "priority": 1,
+      "issue_type": "task",
+      "labels": [
+        "consistency-ft"
+      ],
+      "created_at": "2026-08-20T03:03:36Z",
+      "updated_at": "2026-08-24T07:45:35Z",
+      "closed_at": "2026-08-20T03:56:36Z",
+      "close_reason": "cutoffs collected → consistency-ft data/cutoffs.json; 6 models explicitly testable",
+      "dependencies": [
+        {
+          "depends_on_id": "hub-t8k9c",
+          "type": "parent-child"
+        }
+      ]
+    },
+    {
+      "id": "hub-t8k9c.3",
+      "title": "Dashboard: cutoff-verification section",
+      "description": "Advertised vs verified cutoff per model + contamination flags.",
+      "status": "open",
+      "priority": 2,
+      "issue_type": "task",
+      "labels": [
+        "consistency-ft",
+        "necessita-modificacao"
+      ],
+      "created_at": "2026-08-20T03:03:44Z",
+      "updated_at": "2026-08-20T00:16:22Z",
+      "dependencies": [
+        {
+          "depends_on_id": "hub-t8k9c.9",
+          "type": "blocks"
+        },
+        {
+          "depends_on_id": "hub-t8k9c",
+          "type": "parent-child"
+        }
+      ]
+    },
+    {
+      "id": "hub-t8k9c.4",
+      "title": "Define temporally-clean Brier windows from verified cutoffs",
+      "description": "Resolved-question eval windows strictly after each model's VERIFIED cutoff (Paleka follow-up's temporal-leakage warning).",
+      "status": "open",
+      "priority": 1,
+      "issue_type": "task",
+      "labels": [
+        "consistency-ft",
+        "necessita-modificacao"
+      ],
+      "created_at": "2026-08-20T03:03:50Z",
+      "updated_at": "2026-08-20T00:16:28Z",
+      "dependencies": [
+        {
+          "depends_on_id": "hub-t8k9c",
+          "type": "parent-child"
+        },
+        {
+          "depends_on_id": "hub-t8k9c.9",
+          "type": "blocks"
+        }
+      ]
+    },
+    {
+      "id": "hub-t8k9c.5",
+      "title": "Implement Exploit(c,S) arbitrage LP metric + tests",
+      "description": "Adversary stakes LP from RLE; closed forms for Negation/Paraphrase/Cond; replaces basic violation magnitudes; offline tests.",
+      "status": "closed",
+      "priority": 1,
+      "issue_type": "task",
+      "labels": [
+        "consistency-ft"
+      ],
+      "created_at": "2026-08-20T03:04:01Z",
+      "updated_at": "2026-08-24T07:45:28Z",
+      "closed_at": "2026-08-20T03:56:42Z",
+      "close_reason": "metrics.py LP + tests, --exploit flag; linear-stake exploit == violation for single-constraint checks",
+      "dependencies": [
+        {
+          "depends_on_id": "hub-t8k9c",
+          "type": "parent-child"
+        }
+      ]
+    },
+    {
+      "id": "hub-t8k9c.6",
+      "title": "Episode builder: tuples → training episodes with constraint set S",
+      "description": "Group 2-8 logically related questions per episode; train/held-out check-type split.",
+      "status": "closed",
+      "priority": 1,
+      "issue_type": "task",
+      "labels": [
+        "consistency-ft"
+      ],
+      "created_at": "2026-08-20T03:04:12Z",
+      "updated_at": "2026-08-24T07:45:26Z",
+      "closed_at": "2026-08-20T03:56:46Z",
+      "close_reason": "scripts/build_episodes.py; frozen 6/4 split; 1619/181/1371 episodes",
+      "dependencies": [
+        {
+          "depends_on_id": "hub-t8k9c",
+          "type": "parent-child"
+        }
+      ]
+    },
+    {
+      "id": "hub-t8k9c.7",
+      "title": "GATE 2: write up or extend (2028 benchmark, larger models)",
+      "description": "Workshop-length even on null result.",
+      "status": "open",
+      "priority": 2,
+      "issue_type": "task",
+      "labels": [
+        "consistency-ft"
+      ],
+      "created_at": "2026-08-20T03:04:22Z",
+      "updated_at": "2026-08-20T00:18:06Z",
+      "dependencies": [
+        {
+          "depends_on_id": "hub-t8k9c",
+          "type": "parent-child"
+        },
+        {
+          "depends_on_id": "hub-t8k9c.17",
+          "type": "blocks"
+        }
+      ]
+    },
+    {
+      "id": "hub-t8k9c.8",
+      "title": "Cutoff audit: build high-salience post-cutoff probe set",
+      "description": "Elections, sports finals, notable deaths, major events per quarter 2024-2026; questions a contaminated model would answer correctly. ~10 per quarter. Jessica Gate-0 amendment.",
+      "status": "closed",
+      "priority": 1,
+      "issue_type": "task",
+      "labels": [
+        "consistency-ft"
+      ],
+      "created_at": "2026-08-20T03:05:39Z",
+      "updated_at": "2026-08-24T07:45:24Z",
+      "closed_at": "2026-08-20T19:24:36Z",
+      "close_reason": "90-probe set committed (consistency-ft b0c2387): 9 quarters 2024Q3-2026Q3, fact-checked, schema-validated. Unblocks .9 runner.",
+      "dependencies": [
+        {
+          "depends_on_id": "hub-t8k9c.2",
+          "type": "blocks"
+        },
+        {
+          "depends_on_id": "hub-t8k9c",
+          "type": "parent-child"
+        }
+      ]
+    },
+    {
+      "id": "hub-t8k9c.9",
+      "title": "Cutoff audit: contamination runner + verified-cutoff table",
+      "description": "Collect auditable factual-recall observations for the entire 129-question catalog. Native Astra low, Grok low, GLM-5.3 native-default and six Luna efforts are complete: 1,161 terminal observations, zero infrastructure failures. Source evidence covers all 129 core answers with 35 flagged probes and 12 unapplied corrections. Agent response adjudication now covers 208 distinct question/response pairs: 51 exact UNKNOWN pairs mechanically abstained, 157 pairs independently reviewed twice with no verdict disagreements. One later Google source supports a documented override retaining both original unresolved reviews. Final observations: 836 supported core, 5 contradicted, 1 incomplete, 319 abstained. Original-key grades are unchanged. Historical-provider measurements remain; no certified accuracy, verified cutoff or uncontaminated window is established. See docs/native-probe-adjudication-20260913.md and docs/native-probe-usage-20260913.md.\n",
+      "status": "in_progress",
+      "priority": 1,
+      "issue_type": "task",
+      "labels": [
+        "consistency-ft",
+        "necessita-modificacao"
+      ],
+      "created_at": "2026-08-20T03:05:46Z",
+      "updated_at": "2026-09-13T09:07:07Z",
+      "dependencies": [
+        {
+          "depends_on_id": "hub-t8k9c.8",
+          "type": "blocks"
+        },
+        {
+          "depends_on_id": "hub-t8k9c",
+          "type": "parent-child"
+        },
+        {
+          "depends_on_id": "hub-t8k9c.1",
+          "type": "blocks"
+        }
+      ]
+    },
+    {
+      "id": "hub-t8k9c.10",
+      "title": "Reasoning-mode sensitivity sweep (none/low vs medium/high)",
+      "description": "Compare explicitly recorded reasoning modes on identical cohorts within each model/protocol. Existing six-effort Luna consistency runs remain analyzed separately for original and corrected campaigns in docs/reasoning-sensitivity.md. New full-catalog factual-recall campaign includes 129 questions at each of Luna none, low, medium, high, xhigh, max, alongside Astra, Grok and GLM. These factual outcomes are separate from consistency ranking and do not replace the historical Fireworks model-wide medium/high sweep. Replicates and matched candidate-base observations remain needed before causal mode conclusions. The factual-response review now retains source-alignment labels alongside original grades for every treatment; see docs/native-probe-adjudication-20260913.md.\n",
+      "status": "in_progress",
+      "priority": 2,
+      "issue_type": "task",
+      "labels": [
+        "consistency-ft"
+      ],
+      "created_at": "2026-08-20T03:05:53Z",
+      "updated_at": "2026-09-13T09:07:13Z",
+      "dependencies": [
+        {
+          "depends_on_id": "hub-t8k9c",
+          "type": "parent-child"
+        },
+        {
+          "depends_on_id": "hub-t8k9c.1",
+          "type": "blocks"
+        }
+      ]
+    },
+    {
+      "id": "hub-t8k9c.11",
+      "title": "Base-belief snapshots + KL anchor implementation (arm A2)",
+      "description": "Corrected Qwen v3 collection through 2026-09-13T14:41:46Z: 34 of 2,926 original propositions have been attempted, all parse-valid and EOS-terminated; 2,892 remain untouched. The five invocations generated 156 tokens, with no invalid/interrupted responses, retries, provider inference calls, optimizer updates or training. The completed 02–05 continuation added 32 readouts and 147 tokens in four successful invocations with unchanged base/adapters: 3,665.618 summed external wall seconds, 6,097.991 internal CPU seconds and 20,979,437,568-byte peak RSS. Including the first tranche, supervised wall totals 3,999.204 seconds and internal CPU totals 6,608.474 seconds. This is a terminal snapshot, not complete anchor coverage or measured population throughput. Evidence: docs/qwen-cdf-collection-progress-20260913.md and data/research/qwen-cdf-collection-progress-20260913.json, referencing the immutable first-v3 archive. A next bounded sequence of up to 64 requests (indices 34–97) is authorized under the same predecessor/status/identity/order/seed/lock/process/limit gates; its results are excluded from this snapshot. The corrected full-vocabulary CDF sampler, original catalog, source pins and initial policy remain unchanged; prior independent software validation passed all 274 unique tests. V3 imports no v1/v2 observations; the stopped v2 archive remains at 22 attempts / 21 parse-valid / 1 invalid. Historical v2 engineering measurements below remain archived evidence. Exact endpoint responses remain unchanged; lambda and endpoint treatment, complete matching anchors, matched baselines, scientific selection and candidate training remain unfinished. Fireworks still reported project-account suspension at 14:19:35Z in a separate read-only recheck. Local candidate inference used zero provider inference subscription quota; agent development/review subscription usage remains separately unmeasured.\n\nInitial collector and first-tranche evidence (September 13, 2026): the reviewed durable Qwen driver pins all 2,926 original training propositions / 1,619 episodes, actual initial base plus seeded A/zero B adapters, fixed ordering and per-ID seeds, and fsynced per-token receipts. Resume admits only untouched IDs; invalid/interrupted attempts remain missing. Complete export still requires all 2,926 valid. The callback preserves the original sampler. Full repository suite: 263 tests, no skips.\n\nThe first actual collection tranche completed exactly 2 valid readouts (0.4 and 0.9), 8 generated tokens including EOS, with unchanged base/adapter weights: 389.590 seconds internal / 391.292 seconds external, 491.442 CPU seconds, peak 20,787,425,280 bytes (19.360 GiB). Coverage remains 2/2,926; 2,924 untouched. A previous initialization failure consumed zero questions/tokens; its live-integer versus JSON-string configuration-key defect was fixed without weakening canonical identity checks, and its raw failure is preserved under a separate original plan. No candidate optimizer or training ran. Local collection used zero provider inference requests/quota; agent-development subscription usage is separate and unmeasured.\n\nEvidence: docs/qwen-base-collection.md, docs/qwen-own-base-collection-20260913.md and data/research/qwen-own-base-collection-20260913.json. Full-catalog conditional CPU scenarios in docs/qwen-anchor-resource-scenarios-20260913.md transfer three engineering prompts and are not measured population throughput. Scientific treatment choice, complete anchors, matched baselines, candidate optimizer/training measurements and Fireworks account recovery remain open. Homepage 23 ranked settings / 264 shared groups, Muse visible/unranked, and separate corrected 148-group page are preserved.\n\nFreeze the selected trainable base probabilities over every training proposition and use -Exploit(c, S)-lambda*mean KL(c||base), with explicit endpoint treatment and immutable provenance. anchors.py supplies exact rewards and snapshots; training/episode_adapter.py binds complete episode/sample/role trajectories to causal-token REINFORCE coefficients and checkpoint/tokenizer/template/protocol/split/sampling identities. The locally initialized 75,484-parameter synthetic CPU fixture generated all five synthetic anchors and completed two nonzero A2 updates; this is verified software integration, not candidate training.\n\nThe actual pinned Qwen 3.5-9B tokenizer covers the entire original corpus and rejects all 243 unmapped output IDs. The verified local loader now loaded all 427 pretrained text tensors at revision c202236235762e1c871ad0ccb60c8ee5ba337b9a. One bounded original film episode generated three numeric EOS-terminated readouts (13 tokens) with every loaded text weight unchanged afterward. This verifies the declared tokenizer EOS 248046 for those three readouts. See docs/qwen-candidate-execution-20260913.md and its source/hash-bound receipts.\n\ntraining/qwen_lora_runtime.py implements rank 16 / alpha 32 FP32 adapters, BF16-safe integrity hashes, adapter-only rollback, selected-position logits, explicit eval checkpointing and original complete-plan validation. Independent review reproduced all 14 reduced actual-Qwen tests; the integrated repository suite passed 248 tests with no skips. A coherently omitted role is rejected before backward. These checks establish reduced whole-batch and optimizer mechanics; the actual numerical backward evidence is below.\n\nStill required: scientific checkpoint/treatment selection (prompt, reasoning, lambda, endpoint convention), full candidate joint-batch and optimizer runtime verification, complete matching own-base anchors for all 2,926 original training propositions, and measured candidate training. Three engineering readouts are not a complete anchor; the adapter still rejects partial anchors. No candidate training or improved-consistency result is claimed. See docs/kl-anchor.md, docs/training-integration.md, docs/synthetic-cpu-training.md, docs/qwen-tokenizer-preflight-20260913.md and docs/qwen-lora-runtime-20260913.md.\n\nActual pretrained numerical backward is now verified on the fixed first P readout: its four sampled log probabilities replayed exactly (maximum error 0.0 at unchanged tolerance 2e-6), then their coefficient-1 sum was differentiated through all 248 rank-16 LoRA targets. All 496 gradient tensors were present and finite; all 248 B tensors had nonzero gradients and A gradients were zero at zero B. Base and adapter weights remained byte-identical. One externally supervised process completed in 236.994 seconds, 211.547 CPU seconds, with 19,121,463,296-byte / 17.808 GiB peak RSS. No optimizer, fabricated anchor or episode credit was constructed. This is one numerical derivative, not candidate A2 training, complete anchor coverage, whole-batch optimizer fit or a GPU measurement. See docs/qwen-candidate-execution-20260913.md, docs/qwen-backward-probe.md and data/research/qwen-numerical-backward-20260913.json.\n",
+      "status": "in_progress",
+      "priority": 1,
+      "issue_type": "task",
+      "labels": [
+        "consistency-ft"
+      ],
+      "created_at": "2026-08-20T03:06:06Z",
+      "updated_at": "2026-09-13T14:48:23Z",
+      "dependencies": [
+        {
+          "depends_on_id": "hub-t8k9c.1",
+          "type": "blocks"
+        },
+        {
+          "depends_on_id": "hub-t8k9c",
+          "type": "parent-child"
+        }
+      ]
+    },
+    {
+      "id": "hub-t8k9c.12",
+      "title": "Brier anchor implementation (arm A1)",
+      "description": "Needs resolved outcomes within temporally-clean windows.",
+      "status": "open",
+      "priority": 2,
+      "issue_type": "task",
+      "labels": [
+        "consistency-ft"
+      ],
+      "created_at": "2026-08-20T03:06:14Z",
+      "updated_at": "2026-08-20T00:16:44Z",
+      "dependencies": [
+        {
+          "depends_on_id": "hub-t8k9c",
+          "type": "parent-child"
+        },
+        {
+          "depends_on_id": "hub-t8k9c.4",
+          "type": "blocks"
+        }
+      ]
+    },
+    {
+      "id": "hub-t8k9c.13",
+      "title": "Training platform decision: managed RFT vs self-host; base model choice",
+      "description": "Corrected Qwen v3 collection through 2026-09-13T14:41:46Z: 34 of 2,926 original propositions have been attempted, all parse-valid and EOS-terminated; 2,892 remain untouched. The five invocations generated 156 tokens, with no invalid/interrupted responses, retries, provider inference calls, optimizer updates or training. The completed 02–05 continuation added 32 readouts and 147 tokens in four successful invocations with unchanged base/adapters: 3,665.618 summed external wall seconds, 6,097.991 internal CPU seconds and 20,979,437,568-byte peak RSS. Including the first tranche, supervised wall totals 3,999.204 seconds and internal CPU totals 6,608.474 seconds. This is a terminal snapshot, not complete anchor coverage or measured population throughput. Evidence: docs/qwen-cdf-collection-progress-20260913.md and data/research/qwen-cdf-collection-progress-20260913.json, referencing the immutable first-v3 archive. A next bounded sequence of up to 64 requests (indices 34–97) is authorized under the same predecessor/status/identity/order/seed/lock/process/limit gates; its results are excluded from this snapshot. The corrected full-vocabulary CDF sampler, original catalog, source pins and initial policy remain unchanged; prior independent software validation passed all 274 unique tests. V3 imports no v1/v2 observations; the stopped v2 archive remains at 22 attempts / 21 parse-valid / 1 invalid. Historical v2 engineering measurements below remain archived evidence. Exact endpoint responses remain unchanged; lambda and endpoint treatment, complete matching anchors, matched baselines, scientific selection and candidate training remain unfinished. Fireworks still reported project-account suspension at 14:19:35Z in a separate read-only recheck. Local candidate inference used zero provider inference subscription quota; agent development/review subscription usage remains separately unmeasured.\n\nInitial collector and first-tranche evidence (September 13, 2026): the reviewed durable Qwen driver pins all 2,926 original training propositions / 1,619 episodes, actual initial base plus seeded A/zero B adapters, fixed ordering and per-ID seeds, and fsynced per-token receipts. Resume admits only untouched IDs; invalid/interrupted attempts remain missing. Complete export still requires all 2,926 valid. The callback preserves the original sampler. Full repository suite: 263 tests, no skips.\n\nThe first actual collection tranche completed exactly 2 valid readouts (0.4 and 0.9), 8 generated tokens including EOS, with unchanged base/adapter weights: 389.590 seconds internal / 391.292 seconds external, 491.442 CPU seconds, peak 20,787,425,280 bytes (19.360 GiB). Coverage remains 2/2,926; 2,924 untouched. A previous initialization failure consumed zero questions/tokens; its live-integer versus JSON-string configuration-key defect was fixed without weakening canonical identity checks, and its raw failure is preserved under a separate original plan. No candidate optimizer or training ran. Local collection used zero provider inference requests/quota; agent-development subscription usage is separate and unmeasured.\n\nEvidence: docs/qwen-base-collection.md, docs/qwen-own-base-collection-20260913.md and data/research/qwen-own-base-collection-20260913.json. Full-catalog conditional CPU scenarios in docs/qwen-anchor-resource-scenarios-20260913.md transfer three engineering prompts and are not measured population throughput. Scientific treatment choice, complete anchors, matched baselines, candidate optimizer/training measurements and Fireworks account recovery remain open. Homepage 23 ranked settings / 264 shared groups, Muse visible/unranked, and separate corrected 148-group page are preserved.\n\nChoose managed RFT versus self-hosted training and a small trainable base using matched baselines, reasoning sensitivity, contamination evidence, objective compatibility and actual resource quotes. Original preference remains Qwen 3.5-9B on Fireworks; gpt-oss-20b is a provisional engineering fallback, not a replacement scientific commitment. See docs/training-platform-decision.md and docs/training-runtime-readiness-20260913.md. General exposes no usable GPU in the retained audit; existing isolated CPU/tokenizer environments are reused read-only.\n\nCandidate engineering now includes the real pinned tokenizer/full-corpus preflight, exact full-size structure, verified public checkpoint download and actual local pretrained generation. The six pinned files total 19,306,393,663 bytes; all upstream hashes matched. All 427 text tensors (8,953,803,264 parameters, 16.678 GiB stored) loaded with exact BF16/F32 values. Three predeclared original film roles generated 13 tokens and all stopped at tokenizer EOS 248046; every text weight stayed unchanged. Measured process time 400.591 seconds (155.839 seconds verified loading), CPU 491.947 seconds, peak RSS 18,758,676,480 bytes / 17.470 GiB. Reference CPU kernels took roughly 14-20s/token for these 191/190/269-token prompts. These are frozen-generation measurements, not training or GPU-fit evidence. See docs/qwen-candidate-execution-20260913.md.\n\nThe separately reviewed candidate LoRA runtime implements 248 decoder Linear targets / 43,278,336 rank-16 adapters, BF16-safe hashing, adapter-only state/recovery, cache-free selected logits, explicit non-reentrant eval checkpointing and complete original rollout-plan checks. All 14 reduced-model tests pass independently; the integrated repository suite passes 248 tests / no skips. Full candidate optimizer/training memory remains unverified; the actual single-response numerical backward measurement is below.\n\nRemaining: matched candidate baselines, immutable scientific checkpoint/treatment choice, full 2,926-proposition own-base anchors, actual candidate training measurements, and a current resource quote/allowance for any paid launch. No platform commitment, paid allocation, provider inference request or billing action was made for the local engineering probe. The original homepage 23 ranked settings / 264 shared groups and separate corrected 148-group page are preserved; Muse stays visible/unranked.\n\nActual pretrained numerical backward is now verified on the fixed first P readout: its four sampled log probabilities replayed exactly (maximum error 0.0 at unchanged tolerance 2e-6), then their coefficient-1 sum was differentiated through all 248 rank-16 LoRA targets. All 496 gradient tensors were present and finite; all 248 B tensors had nonzero gradients and A gradients were zero at zero B. Base and adapter weights remained byte-identical. One externally supervised process completed in 236.994 seconds, 211.547 CPU seconds, with 19,121,463,296-byte / 17.808 GiB peak RSS. No optimizer, fabricated anchor or episode credit was constructed. This is one numerical derivative, not candidate A2 training, complete anchor coverage, whole-batch optimizer fit or a GPU measurement. See docs/qwen-candidate-execution-20260913.md, docs/qwen-backward-probe.md and data/research/qwen-numerical-backward-20260913.json.\n",
+      "status": "in_progress",
+      "priority": 1,
+      "issue_type": "task",
+      "labels": [
+        "consistency-ft"
+      ],
+      "created_at": "2026-08-20T03:06:21Z",
+      "updated_at": "2026-09-13T14:48:28Z",
+      "dependencies": [
+        {
+          "depends_on_id": "hub-t8k9c.1",
+          "type": "blocks"
+        },
+        {
+          "depends_on_id": "hub-t8k9c.10",
+          "type": "blocks"
+        },
+        {
+          "depends_on_id": "hub-t8k9c",
+          "type": "parent-child"
+        }
+      ]
+    },
+    {
+      "id": "hub-t8k9c.14",
+      "title": "Eval battery automation",
+      "description": "Held-out checks + Brier on clean windows + ECE + per-check regression watch + readout agreement, one command.",
+      "status": "open",
+      "priority": 1,
+      "issue_type": "task",
+      "labels": [
+        "consistency-ft"
+      ],
+      "created_at": "2026-08-20T03:06:29Z",
+      "updated_at": "2026-08-20T00:17:02Z",
+      "dependencies": [
+        {
+          "depends_on_id": "hub-t8k9c.4",
+          "type": "blocks"
+        },
+        {
+          "depends_on_id": "hub-t8k9c.5",
+          "type": "blocks"
+        },
+        {
+          "depends_on_id": "hub-t8k9c",
+          "type": "parent-child"
+        }
+      ]
+    },
+    {
+      "id": "hub-t8k9c.15",
+      "title": "Pilot run: control + A2 (KL) arms, ~5k episodes, 1 seed",
+      "description": "Cost ceiling ~$100; sane reward curves; A0 collapse ablation; lambda range.",
+      "status": "open",
+      "priority": 1,
+      "issue_type": "task",
+      "labels": [
+        "consistency-ft",
+        "kelvin-gated"
+      ],
+      "created_at": "2026-08-20T03:15:43Z",
+      "updated_at": "2026-08-20T00:17:15Z",
+      "dependencies": [
+        {
+          "depends_on_id": "hub-t8k9c",
+          "type": "parent-child"
+        },
+        {
+          "depends_on_id": "hub-t8k9c.6",
+          "type": "blocks"
+        },
+        {
+          "depends_on_id": "hub-t8k9c.13",
+          "type": "blocks"
+        },
+        {
+          "depends_on_id": "hub-t8k9c.5",
+          "type": "blocks"
+        },
+        {
+          "depends_on_id": "hub-t8k9c.11",
+          "type": "blocks"
+        }
+      ]
+    },
+    {
+      "id": "hub-t8k9c.16",
+      "title": "GATE 1: pilot review with Jessica",
+      "description": "Go/no-go on full run; approve platform + model + lambda range.",
+      "status": "open",
+      "priority": 1,
+      "issue_type": "task",
+      "labels": [
+        "consistency-ft"
+      ],
+      "created_at": "2026-08-20T03:15:50Z",
+      "updated_at": "2026-08-20T00:17:39Z",
+      "dependencies": [
+        {
+          "depends_on_id": "hub-t8k9c.15",
+          "type": "blocks"
+        },
+        {
+          "depends_on_id": "hub-t8k9c.14",
+          "type": "blocks"
+        },
+        {
+          "depends_on_id": "hub-t8k9c.9",
+          "type": "blocks"
+        },
+        {
+          "depends_on_id": "hub-t8k9c",
+          "type": "parent-child"
+        }
+      ]
+    },
+    {
+      "id": "hub-t8k9c.17",
+      "title": "Full run: all arms, 2-3 seeds",
+      "description": "All four arms incl. Brier anchor; full eval battery.",
+      "status": "open",
+      "priority": 2,
+      "issue_type": "task",
+      "labels": [
+        "consistency-ft"
+      ],
+      "created_at": "2026-08-20T03:15:56Z",
+      "updated_at": "2026-08-20T00:17:53Z",
+      "dependencies": [
+        {
+          "depends_on_id": "hub-t8k9c.12",
+          "type": "blocks"
+        },
+        {
+          "depends_on_id": "hub-t8k9c.16",
+          "type": "blocks"
+        },
+        {
+          "depends_on_id": "hub-t8k9c",
+          "type": "parent-child"
+        }
+      ]
+    },
+    {
+      "id": "hub-t8k9c.18",
+      "title": "Add GLM-5.3, Grok, Astra and all Luna reasoning levels to consistency ranking",
+      "description": "Kelvin requested adding GLM-5.3, the latest available Grok, Astra, and gpt-5.6-luna at every supported reasoning level to the consistency model ranking. Use existing subscriptions and native agents on General, measure subscription-limit consumption, preserve results in the database, and publish the repository and https://consistency.futarchy.ai/.\n\nActive batch: GLM-5.3 via the Z.AI coding plan; Grok latest (native client currently reports grok-4.6-build); Astra; Luna none, low, medium, high, xhigh and max. Record exact requested and served model identities and effective reasoning settings. Nine configurations target the established 300 tuples across 10 consistency checks (591 unique independent propositions per configuration), with fresh contexts and no tools.\n\nPreserve raw responses, token/timing receipts, attempts and infrastructure failures. Record refusals/abstentions as unscored observations with visible coverage; do not retry content refusals to obtain preferred probabilities. Retry only transport/infrastructure failures, retaining their usage evidence and any unreported-token gaps. Keep historical results and each Luna effort distinct in the database and dashboard.\n\nCapture before/after provider quota windows and reset identities. Report attributable experiment usage separately from shared-subscription percentage changes; include pilots/retries and label missing telemetry. Publish the reproducible harness, reviewed results, database/dashboard updates and project Beads snapshot to futarchy-fi/consistency-ft and the live site.\n\nExecution is already underway in subagent /root/consistency_completion with its active runtime goal. Workspace: /home/agent/workspaces/consistency-ft-native-20260912; receipts: runs/native-20260912/. This subscription batch can proceed independently of Fireworks unblock task hub-t8k9c.1. Fable was discussed initially but is outside this first requested batch.",
+      "status": "closed",
+      "priority": 1,
+      "issue_type": "task",
+      "labels": [
+        "consistency-ft"
+      ],
+      "created_at": "2026-09-12T23:21:56Z",
+      "updated_at": "2026-09-13T05:02:15Z",
+      "closed_at": "2026-09-13T05:02:15Z",
+      "close_reason": "Completed and live-verified 2026-09-13 05:01 UTC. Published commit d856c3de3beafdc844b899e4eda201bbf986d91a: https://github.com/futarchy-fi/consistency-ft/commit/d856c3de3beafdc844b899e4eda201bbf986d91a.\nhttps://consistency.futarchy.ai/ is original numeric-v1 benchmark, 264 shared groups, 23 ranked settings and 24 visible, Muse unranked; /details.html has full table. /corrected.html and /corrected-details.html separate reviewed descriptive-v2 results: 157 target groups, 274 questions, 148 shared groups. All six Luna efforts present.\nFinal native campaign: 2466 completed observations, 2450 probabilities, 16 ABSTAIN; 1554 audited imports and 912 fresh receipts/launches. Original 55 run scores/timestamps preserved; final database 64 runs. No new out-of-scope numerical exports. Original 157 missing readouts classified explicit refusals. One recovered imported stream connection recorded; no unresolved final infrastructure/format failures.\nValidation:62 unit tests; independent raw/provenance/publication audit; SQLite integrity/foreign keys; desktop/mobile browser checks; all 10 live URLs 200; downloads exact hashes. Scope SHA bb38d378d4a1164ee0f6e6f224a2430bae21db6d5f98c300aa5e5d22b029cd70; database SHA 4993798e89ee1c423578dee177e029b901204c842157ab87a87ec0ca73fd2ced.\nFinal usage 6,803,718 native tokens; cumulative 61,738,874 native tokens,8,677 receipts, 8,753 launches. Historical 106 launches missing native usage;189,590 proxy-only tokens separate. Rounded shared quota readings cannot establish exact subscription fraction. Full accounting at /subscription-usage.json SHA 05b72ec73a46a24d17c79c7cbaa47261806b110d6999aced5eb412302044dd61.\nLimits remain explicit:317 questions omitted from corrected scope,16 final abstentions,Muse archived partial coverage. Full 591-question corrected rerun not claimed. Exact procedure/omissions docs/political-constraints-and-missing-work-20260913.md and docs/omitted-questions-20260913.md; current guide docs/native-evaluation.md. Research pages preserved; Fireworks task remains separate.",
+      "dependencies": [
+        {
+          "depends_on_id": "hub-t8k9c",
+          "type": "parent-child"
+        }
+      ]
+    }
+  ]
+}

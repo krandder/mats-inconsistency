@@ -1,0 +1,13 @@
+{
+ "id": "E-MR-9",
+ "question": "In the trader economy, do the wealth cap and the entry of new traders change what is learned?",
+ "status": "Informative",
+ "setup": "E-MR-5 economy with the wealth cap (trade worst-case loss <= half of wealth, respawn at 0), without it (nocap), and with a new trader every 500 iterations (grow, 5 entrants); 2 seeds each.",
+ "result": "With house-funded markets all traders end rich and equal (2,770-2,950 from 20; largest share 0.25), so the cap never binds and nocap is the same (L3200 0.92 vs 0.93). Later entrants earn less (2,009 for an original trader down to 79 for the last entrant; largest share 0.18) and accuracy is unchanged (L3200 0.99 +- 0.16). No respawns in any cov run except 2 in one Lindahl-bounty seed.",
+ "files": [
+  "market-resnet/RESULTS.md",
+  "market-resnet/econ2.py",
+  "market-resnet/charts/p2_wealth.json",
+  "market-resnet/results/summary.json"
+ ]
+}

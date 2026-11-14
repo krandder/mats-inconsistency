@@ -1,0 +1,14 @@
+{
+ "id": "E-P1-2",
+ "question": "Multi-horizon anytime-value heads on mazes: does the label-free test-time-refit head (R9) beat the simple-rule envelope, the refit consistency probe and Q-ACT at matched pixel-steps?",
+ "setup": "Bansal et al. DT-Recall checkpoint (w=128; reproduction gate passes: 13x13 1.00, 59x59 1.00 vs paper 99.88% / 97.30%). Pre-registered headroom gate on dev: 1 - oracle/envelope in steps at a* = 0.98 x best fixed-T accuracy must reach 0.30 at 33 or 59.",
+ "result": "No gain (no headroom): Headroom gate failed: 0.059 at 33 (envelope R2:2:1 104.6 steps vs earliest-exact oracle 98.5, N=200) and 0.053 at 59 (280.3 vs 265.4, N=100). DT-Recall solves every dev maze by T_cap and a KL lag-2 threshold is already within 6% of the oracle, so no halting head can win; S1 cannot pass. Maze runs cut to Q3 (59 and 99).",
+ "status": "No gain",
+ "files": [
+  "puzzles/P1/RESULTS.md",
+  "puzzles/P1/PREREG.md",
+  "puzzles/P1/eval.py",
+  "puzzles/P1/results/vm/trader-cat-p1-7/maze/headroom_gate.json",
+  "puzzles/P1/results/vm/trader-cat-p1-7/maze/repro.json"
+ ]
+}

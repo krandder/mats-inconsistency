@@ -1,0 +1,13 @@
+[n128_s401_L16] k*(c): 1:21 2:22 3:23 4:24 5:25 6:27 7:29 8:32 9:34 10:37 11:40 12:44 13:48 14:52 15:54 16:55
+[n128_s401_L16] mean active m_c: 1:64.6 2:67.7 3:65.5 4:68.9 5:60.2 6:57.8 7:59.8 8:65.1 9:67.5 10:55.9 11:66.3 12:57.5 13:56.9 14:60.2 15:57.1 16:55.2
+Traceback (most recent call last):
+  File "/root/runs/kstar2/scratch/r1_layers.py", line 92, in <module>
+    frames[f'dual_{t}'] = kf.dual_forward(net, Ft, D, c - t, c)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/runs/kstar2/scratch/../lib/kf.py", line 212, in dual_forward
+    G = orth(pinvT_apply(B, G) if (B.is_cuda if use_eigh is None else use_eigh)
+             ^^^^^^^^^^^^^^^^^
+  File "/root/runs/kstar2/scratch/../lib/kf.py", line 137, in pinvT_apply
+    ev, U = torch.linalg.eigh(B.transpose(-1, -2) @ B)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 106.00 MiB. GPU 0 has a total capacity of 22.03 GiB of which 95.69 MiB is free. Process 4278 has 1.74 GiB memory in use. Process 4397 has 19.06 GiB memory in use. Process 4399 has 420.00 MiB memory in use. Including non-PyTorch memory, this process has 718.00 MiB memory in use. Of the allocated memory 416.06 MiB is allocated by PyTorch, and 63.94 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)

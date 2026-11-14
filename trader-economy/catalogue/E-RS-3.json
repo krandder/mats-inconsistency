@@ -1,0 +1,12 @@
+{
+ "id": "E-RS-3",
+ "question": "Does normalising activations stop the rescaling game?",
+ "setup": "Standardise each activation to unit standard deviation, with the statistics recomputed after the rescale (and, as a check, frozen before it).",
+ "result": "Mostly. Activation-share pay, per-activation payments and the reader's L2 cost become exactly invariant. Two gaps remain: L2 on the incoming weights still moves 100 times (the in-agent can escape it by shrinking, at no cost to the function), and with statistics frozen before the rescale the game is back (6.19 times).",
+ "status": "Gain",
+ "files": [
+  "exp_rescale.py",
+  "results/rescale_summary.json",
+  "charts/mlp_rescale_ratio.json"
+ ]
+}

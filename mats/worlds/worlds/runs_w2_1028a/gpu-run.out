@@ -1,0 +1,90 @@
+creating soup-gpu-w2market-1028a-1028020433-4778 (g2-standard-8 + nvidia-l4, STANDARD) in us-central1-a ...
+WARNING: Some requests generated warnings:
+ - Disk size: '100 GB' is larger than image size: '50 GB'. You might need to resize the root repartition manually if the operating system does not support automatic resizing. See https://cloud.google.com/compute/docs/disks/add-persistent-disk#resize_pd for details.
+
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-8 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-central1-a zone. Consider trying your request in the us-central1-c
+      zone(s), which currently has capacity to accommodate your request. Alternatively,
+      you can try your request again with a different VM hardware configuration or
+      at a later time. For more information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-8
+      zone: us-central1-a
+      zonesAvailable: us-central1-c
+    reason: resource_availability
+message: The zone 'projects/GCP_PROJECT/zones/us-central1-a' does not have enough
+  resources available to fulfill the request.  'NULL:0/NULL:0/NULL:0 (state:STOCKOUT,
+  sub-state:STOCKOUT, resource type:compute)'.
+
+creating soup-gpu-w2market-1028a-1028020433-4778 (g2-standard-8 + nvidia-l4, STANDARD) in us-central1-b ...
+NAME                                     ZONE           MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP    EXTERNAL_IP   STATUS
+soup-gpu-w2market-1028a-1028020433-4778  us-central1-b  g2-standard-8               [ip-removed]  [ip-removed]  RUNNING
+waiting for soup-gpu-w2market-1028a-1028020433-4778 ([ip-removed]) startup script (up to 25 min) ...
+gpu=NVIDIA L4, 580.178.04
+nvcc=Build cuda_12.9.r12.9/compiler.35813241_0
+clang=Ubuntu clang version 18.1.3 (1ubuntu1)
+bun=1.3.14
+bend=v2.0.29@c8691aa
+READY: soup-gpu-w2market-1028a-1028020433-4778 us-central1-b [ip-removed]
+rsync /tmp/l4runs/w2market-1028a -> soup-gpu-w2market-1028a-1028020433-4778:/root/soup
+W: http://packages.cloud.google.com/apt/dists/apt-transport-artifact-registry-stable/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
+W: https://us-apt.pkg.dev/projects/gce-ai-infra/dists/gpudirect-gib-apt/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
+
+Running kernel seems to be up-to-date.
+
+Restarting services...
+ systemctl restart packagekit.service polkit.service rsyslog.service ssh.service
+
+Service restarts being deferred:
+ systemctl restart networkd-dispatcher.service
+ systemctl restart unattended-upgrades.service
+
+No containers need to be restarted.
+
+User sessions running outdated binaries:
+ soup @ session #11: sshd[3428]
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+GPU 0: NVIDIA L4 (UUID: GPU-c580e442-a6be-133b-2dd4-d0ecf71757c2)
+.......................                                                  [100%]
+23 passed in 16.36s
+[L2w128_s1] step 30000 train 0.7699 val 0.6843 gap 0.2568 best 0.6784@28000 (7146s; data 172.8ms comp 65.2ms per step)
+[L2w128_s0] step 30000 train 0.6793 val 0.6771 gap 0.2497 best 0.6771@30000 (7163s; data 173.3ms comp 65.3ms per step)
+[L4w64_s0] step 30000 train 0.7139 val 0.6845 gap 0.2570 best 0.6845@30000 (7484s; data 171.3ms comp 78.0ms per step)
+[L4w64_s1] step 30000 train 0.6735 val 0.6596 gap 0.2322 best 0.6596@30000 (7504s; data 172.6ms comp 77.3ms per step)
+[L4w128_s0] step 30000 train 0.6080 val 0.6414 gap 0.2140 best 0.6414@30000 (7943s; data 164.0ms comp 100.6ms per step)
+[L4w128_s1] step 30000 train 0.6821 val 0.6296 gap 0.2021 best 0.6296@30000 (7998s; data 166.6ms comp 99.8ms per step)
+/root/runs/w2market-1028a/runs/es_1024_conc.log: evalset N=1024 conc E=200: sample 6.9s refs 54.9s; prior=1.426 freq_only=1.054 bias_naive=1.239 prov_naive=1.053 noise_oracle=1.049 bayes=1.049
+/root/runs/w2market-1028a/runs/es_1024_dir.log: evalset N=1024 dir E=200: sample 6.7s refs 160.6s; prior=1.285 freq_only=0.033 bias_naive=0.318 prov_naive=0.050 noise_oracle=0.035 bayes=0.036
+/root/runs/w2market-1028a/runs/es_1024_relay.log: evalset N=1024 relay E=200: sample 6.2s refs 362.3s; prior=1.461 freq_only=0.257 bias_naive=0.435 prov_naive=0.321 noise_oracle=0.215 bayes=0.216
+/root/runs/w2market-1028a/runs/es_2048_conc.log: evalset N=2048 conc E=100: sample 10.7s refs 88.6s; prior=1.369 freq_only=1.108 bias_naive=1.227 prov_naive=1.100 noise_oracle=1.108 bayes=1.107
+/root/runs/w2market-1028a/runs/es_2048_dir.log: evalset N=2048 dir E=100: sample 9.9s refs 376.5s; prior=1.509 freq_only=0.068 bias_naive=0.277 prov_naive=0.055 noise_oracle=0.056 bayes=0.056
+/root/runs/w2market-1028a/runs/es_2048_relay.log: evalset N=2048 relay E=100: sample 10.3s refs 512.9s; prior=1.437 freq_only=0.174 bias_naive=0.332 prov_naive=0.298 noise_oracle=0.171 bayes=0.171
+/root/runs/w2market-1028a/runs/es_c4_512.log: evalset N=512 c4 E=100: sample 10.1s refs 13.8s; prior=1.451 freq_only=0.812 bias_naive=1.106 prov_naive=3.463 noise_oracle=6.457 bayes=3.463
+/root/runs/w2market-1028a/runs/es_c4_96.log: evalset N=96 c4 E=400: sample 10.0s refs 12.8s; prior=1.382 freq_only=0.793 bias_naive=1.082 prov_naive=2.643 noise_oracle=4.894 bayes=2.643
+/root/runs/w2market-1028a/runs/es_c7_512.log: evalset N=512 c7 E=100: sample 13.1s refs 12.4s; prior=2.082 freq_only=0.133 bias_naive=0.604 prov_naive=0.211 noise_oracle=0.133 bayes=0.133
+/root/runs/w2market-1028a/runs/es_c7_96.log: evalset N=96 c7 E=500: sample 13.0s refs 14.1s; prior=1.381 freq_only=0.206 bias_naive=0.473 prov_naive=0.258 noise_oracle=0.206 bayes=0.206
+/root/runs/w2market-1028a/runs/es_main.log: evalset N=512 relay E=1000: sample 4.8s refs 179.6s; prior=1.429 freq_only=0.300 bias_naive=0.496 prov_naive=0.356 noise_oracle=0.274 bayes=0.275
+DONE /root/runs/w2market-1028a/runs/L4w128_s0
+DONE /root/runs/w2market-1028a/runs/L4w64_s0
+DONE /root/runs/w2market-1028a/runs/L2w128_s0
+DONE /root/runs/w2market-1028a/runs/L2w128_s1
+DONE /root/runs/w2market-1028a/runs/L4w128_s1
+DONE /root/runs/w2market-1028a/runs/L4w64_s1
+ALL-DONE
+rsync soup-gpu-w2market-1028a-1028020433-4778:/root/runs -> /tmp/l4runs/w2market-1028a/runs
+Deleted [https://www.googleapis.com/compute/v1/projects/GCP_PROJECT/zones/us-central1-b/instances/soup-gpu-w2market-1028a-1028020433-4778].
+GPU-RUN EXIT 0

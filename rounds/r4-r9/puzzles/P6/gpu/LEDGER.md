@@ -1,0 +1,35 @@
+- 2026-09-29T12:15:24Z CREATE vm=trader-cat-p6-1 zone=us-central1-a epoch=1790684124 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=0
+- 2026-09-29T12:21:27Z READY vm=trader-cat-p6-1 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T12:23:30Z START vm=trader-cat-p6-1 plan=pilot
+- 2026-09-29T12:28:45Z SYNC vm=trader-cat-p6-1 verified_files=17 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P6/results
+- 2026-09-29T12:35:26Z SYNC vm=trader-cat-p6-1 verified_files=17 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P6/results
+- 2026-09-29T12:41:25Z SYNC vm=trader-cat-p6-1 verified_files=17 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P6/results
+- 2026-09-29T12:47:03Z SYNC vm=trader-cat-p6-1 verified_files=21 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P6/results
+- 2026-09-29T12:58:13Z SYNC vm=trader-cat-p6-1 verified_files=23 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P6/results
+- 2026-09-29T13:03:55Z SYNC vm=trader-cat-p6-1 verified_files=23 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P6/results
+- 2026-09-29T13:09:29Z SYNC vm=trader-cat-p6-1 verified_files=23 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P6/results
+- 2026-09-29T13:14:55Z SYNC vm=trader-cat-p6-1 verified_files=30 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P6/results
+- 2026-09-29T13:20:28Z SYNC vm=trader-cat-p6-1 verified_files=34 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P6/results
+- 2026-09-29T13:26:08Z SYNC vm=trader-cat-p6-1 verified_files=34 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P6/results
+- 2026-09-29T13:32:05Z SYNC vm=trader-cat-p6-1 verified_files=34 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P6/results
+- 2026-09-29T13:34:25Z CREATE vm=trader-cat-p6-2 zone=us-central1-b epoch=1790688865 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=0.93
+- 2026-09-29T13:37:37Z SYNC vm=trader-cat-p6-1 verified_files=34 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P6/results
+- 2026-09-29T13:38:15Z READY vm=trader-cat-p6-2 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T13:38:41Z START vm=trader-cat-p6-2 plan=main-split2 (P6_ONLY F|DTL|R1 + PBT/EMA s4; MPS on)
+- 2026-09-29T13:38:41Z NOTE vm=trader-cat-p6-1 queue restarted as main-split1 (P6_ONLY EC|R0 + PBT/EMA s0-3 + numerics; adopted running EC s0-3)
+- 2026-09-29T13:43:05Z SYNC vm=trader-cat-p6-1 verified_files=34 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P6/results
+- 2026-09-29T13:48:30Z SYNC vm=trader-cat-p6-1 verified_files=34 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P6/results
+- 2026-09-29T13:53:58Z SYNC vm=trader-cat-p6-1 verified_files=40 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P6/results
+- 2026-09-29T13:59:31Z SYNC vm=trader-cat-p6-1 verified_files=51 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P6/results
+- 2026-09-29T14:05:10Z SYNC vm=trader-cat-p6-2 verified_files=13 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P6/results
+- 2026-09-29T14:10:31Z SYNC vm=trader-cat-p6-2 verified_files=13 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P6/results
+- 2026-09-29T14:11:28Z PREEMPTED vm=trader-cat-p6-1 (GCE compute.instances.preempted at 2026-09-29T14:01:54Z; spot termination action DELETE, boot disk auto-deleted)
+- 2026-09-29T14:11:28Z DELETE vm=trader-cat-p6-1 epoch=1790690523 reason="spot preemption (recorded after the fact)" leftover_disks="none"
+- 2026-09-29T14:12:11Z CREATE vm=trader-cat-p6-3 zone=us-central1-a epoch=1790691131 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=1.71
+- 2026-09-29T14:15:48Z SYNC vm=trader-cat-p6-2 verified_files=17 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P6/results
+- 2026-09-29T14:16:20Z READY vm=trader-cat-p6-3 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T14:16:49Z START vm=trader-cat-p6-3 plan=main-split1 (replaces preempted p6-1: EC|R0 + PBT/EMA s0-3 + numerics; resumed from synced ckpts; MPS on)
+- 2026-09-29T14:20:01Z SYNC vm=trader-cat-p6-2 verified_files=25 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P6/results
+- 2026-09-29T14:20:01Z SYNC vm=trader-cat-p6-3 verified_files=25 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P6/results
+- 2026-09-29T14:21:16Z DELETE vm=trader-cat-p6-3 epoch=1790691676 reason="stopped early: harness required final report" leftover_disks="none" spend_now=1.92
+- 2026-09-29T14:21:18Z DELETE vm=trader-cat-p6-2 epoch=1790691678 reason="stopped early: harness required final report" leftover_disks="none" spend_now=1.92

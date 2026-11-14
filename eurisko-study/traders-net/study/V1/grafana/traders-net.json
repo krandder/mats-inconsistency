@@ -1,0 +1,2817 @@
+{
+ "uid": "traders-net",
+ "title": "traders-net",
+ "tags": [
+  "traders-net",
+  "eurisko"
+ ],
+ "description": "Wealth of units inside small networks (eurisko-study/traders-net). Source: study/V1/grafana in that workspace.",
+ "editable": false,
+ "graphTooltip": 1,
+ "refresh": "1m",
+ "schemaVersion": 41,
+ "version": 1,
+ "time": {
+  "from": "now-6h",
+  "to": "now"
+ },
+ "timepicker": {
+  "hidden": true,
+  "refresh_intervals": [
+   "30s",
+   "1m",
+   "5m",
+   "15m"
+  ]
+ },
+ "templating": {
+  "list": [
+   {
+    "name": "run",
+    "label": "Run",
+    "type": "query",
+    "datasource": {
+     "type": "yesoreyeram-infinity-datasource",
+     "uid": "traders-net-runs"
+    },
+    "refresh": 2,
+    "sort": 1,
+    "multi": false,
+    "includeAll": false,
+    "current": {
+     "text": "wealth-net.train-s1",
+     "value": "wealth-net.train-s1"
+    },
+    "definition": "runs.json",
+    "query": {
+     "queryType": "infinity",
+     "query": "",
+     "refId": "variable",
+     "infinityQuery": {
+      "refId": "variable",
+      "type": "json",
+      "source": "url",
+      "parser": "backend",
+      "format": "table",
+      "url": "/runs.json",
+      "url_options": {
+       "method": "GET",
+       "data": ""
+      },
+      "root_selector": "",
+      "filters": [],
+      "columns": [
+       {
+        "selector": "run",
+        "text": "run",
+        "type": "string"
+       }
+      ]
+     }
+    }
+   }
+  ]
+ },
+ "panels": [
+  {
+   "id": 1,
+   "type": "trend",
+   "title": "Wealth by scale (sum over units) and total income R",
+   "description": "Cumulative wealth (booked income a*dR/da) summed over every unit at one granularity. Each complete cut should add up to R, the model\u2019s total income (dashed); the gap at a scale is income paid to biases and LayerNorm/softmax leaks. Heads can sum below zero: the attention softmax is not degree-one homogeneous.",
+   "gridPos": {
+    "x": 0,
+    "y": 0,
+    "w": 16,
+    "h": 9
+   },
+   "options": {
+    "xField": "step",
+    "legend": {
+     "showLegend": true,
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi",
+     "sort": "desc"
+    }
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "none",
+     "custom": {
+      "lineWidth": 2,
+      "showPoints": "never",
+      "spanNulls": true,
+      "fillOpacity": 0,
+      "axisPlacement": "auto"
+     },
+     "color": {
+      "mode": "palette-classic"
+     }
+    },
+    "overrides": [
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "step"
+      },
+      "properties": [
+       {
+        "id": "unit",
+        "value": "none"
+       },
+       {
+        "id": "decimals",
+        "value": 0
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byRegexp",
+       "options": "R \\(model income\\)"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "text"
+        }
+       },
+       {
+        "id": "custom.lineStyle",
+        "value": {
+         "fill": "dash",
+         "dash": [
+          6,
+          4
+         ]
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "transformations": [
+    {
+     "id": "filterFieldsByName",
+     "options": {
+      "include": {
+       "pattern": "^(step|wealth_[a-z0-9]+|R_total)$"
+      }
+     }
+    },
+    {
+     "id": "renameByRegex",
+     "options": {
+      "regex": "^wealth_(.*)$",
+      "renamePattern": "$1"
+     }
+    },
+    {
+     "id": "renameByRegex",
+     "options": {
+      "regex": "^R_total$",
+      "renamePattern": "R (model income)"
+     }
+    }
+   ],
+   "datasource": {
+    "type": "yesoreyeram-infinity-datasource",
+    "uid": "traders-net-runs"
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "yesoreyeram-infinity-datasource",
+      "uid": "traders-net-runs"
+     },
+     "type": "json",
+     "source": "url",
+     "parser": "backend",
+     "format": "table",
+     "url": "/runs/${run}/metrics.json",
+     "url_options": {
+      "method": "GET",
+      "data": ""
+     },
+     "root_selector": "",
+     "filters": [],
+     "columns": []
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "type": "table",
+   "title": "Runs",
+   "datasource": {
+    "type": "yesoreyeram-infinity-datasource",
+    "uid": "traders-net-runs"
+   },
+   "description": "Every run the exporter sees: study/<ws>/runs/<run>/metrics.csv (id <ws>.<run>) and the live wealth-net seeds (id wealth-net.<tag>, derived from its 100-step snapshots). Rows = checkpoints.",
+   "gridPos": {
+    "x": 16,
+    "y": 0,
+    "w": 8,
+    "h": 9
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "yesoreyeram-infinity-datasource",
+      "uid": "traders-net-runs"
+     },
+     "type": "json",
+     "source": "url",
+     "parser": "backend",
+     "format": "table",
+     "url": "/runs.json",
+     "url_options": {
+      "method": "GET",
+      "data": ""
+     },
+     "root_selector": "",
+     "filters": [],
+     "columns": [
+      {
+       "selector": "run",
+       "text": "run",
+       "type": "string"
+      },
+      {
+       "selector": "rows",
+       "text": "rows",
+       "type": "number"
+      },
+      {
+       "selector": "updated",
+       "text": "updated",
+       "type": "timestamp"
+      }
+     ]
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {},
+    "overrides": [
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "updated"
+      },
+      "properties": [
+       {
+        "id": "unit",
+        "value": "dateTimeFromNow"
+       }
+      ]
+     }
+    ]
+   },
+   "options": {
+    "showHeader": true,
+    "cellHeight": "sm"
+   }
+  },
+  {
+   "id": 3,
+   "type": "trend",
+   "title": "Wealth by family: out",
+   "description": "Cumulative wealth of the readout weights (one per question), split by the family of the question that paid it. Negative = on balance these units pushed the loss up on that family (in-sample books).",
+   "gridPos": {
+    "x": 0,
+    "y": 9,
+    "w": 12,
+    "h": 8
+   },
+   "options": {
+    "xField": "step",
+    "legend": {
+     "showLegend": true,
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi",
+     "sort": "desc"
+    }
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "none",
+     "custom": {
+      "lineWidth": 2,
+      "showPoints": "never",
+      "spanNulls": true,
+      "fillOpacity": 0,
+      "axisPlacement": "auto"
+     },
+     "color": {
+      "mode": "palette-classic"
+     }
+    },
+    "overrides": [
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "step"
+      },
+      "properties": [
+       {
+        "id": "unit",
+        "value": "none"
+       },
+       {
+        "id": "decimals",
+        "value": 0
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "periodic"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#3274D9"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "lfsr16"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FF9830"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "lfsr"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FF9830"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "ca30"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#73BF69"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "ca110"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#F2495C"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "prime"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#B877D9"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "pi"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FADE2A"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "prng"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FADE2A"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "and"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#4FC4CA"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "or"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#AB7B53"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "transformations": [
+    {
+     "id": "filterFieldsByName",
+     "options": {
+      "include": {
+       "pattern": "^(step|wf_out_.*)$"
+      }
+     }
+    },
+    {
+     "id": "renameByRegex",
+     "options": {
+      "regex": "^wf_out_(.*)$",
+      "renamePattern": "$1"
+     }
+    }
+   ],
+   "datasource": {
+    "type": "datasource",
+    "uid": "-- Dashboard --"
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "datasource",
+      "uid": "-- Dashboard --"
+     },
+     "panelId": 1,
+     "withTransforms": false
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "type": "trend",
+   "title": "Wealth by family: head",
+   "description": "Cumulative wealth of the attention heads, split by the family of the question that paid it. Negative = on balance these units pushed the loss up on that family (in-sample books).",
+   "gridPos": {
+    "x": 12,
+    "y": 9,
+    "w": 12,
+    "h": 8
+   },
+   "options": {
+    "xField": "step",
+    "legend": {
+     "showLegend": true,
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi",
+     "sort": "desc"
+    }
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "none",
+     "custom": {
+      "lineWidth": 2,
+      "showPoints": "never",
+      "spanNulls": true,
+      "fillOpacity": 0,
+      "axisPlacement": "auto"
+     },
+     "color": {
+      "mode": "palette-classic"
+     }
+    },
+    "overrides": [
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "step"
+      },
+      "properties": [
+       {
+        "id": "unit",
+        "value": "none"
+       },
+       {
+        "id": "decimals",
+        "value": 0
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "periodic"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#3274D9"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "lfsr16"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FF9830"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "lfsr"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FF9830"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "ca30"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#73BF69"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "ca110"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#F2495C"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "prime"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#B877D9"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "pi"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FADE2A"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "prng"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FADE2A"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "and"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#4FC4CA"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "or"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#AB7B53"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "transformations": [
+    {
+     "id": "filterFieldsByName",
+     "options": {
+      "include": {
+       "pattern": "^(step|wf_head_.*)$"
+      }
+     }
+    },
+    {
+     "id": "renameByRegex",
+     "options": {
+      "regex": "^wf_head_(.*)$",
+      "renamePattern": "$1"
+     }
+    }
+   ],
+   "datasource": {
+    "type": "datasource",
+    "uid": "-- Dashboard --"
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "datasource",
+      "uid": "-- Dashboard --"
+     },
+     "panelId": 1,
+     "withTransforms": false
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "type": "trend",
+   "title": "Wealth by family: neuron",
+   "description": "Cumulative wealth of the MLP neurons, split by the family of the question that paid it. Negative = on balance these units pushed the loss up on that family (in-sample books).",
+   "gridPos": {
+    "x": 0,
+    "y": 17,
+    "w": 12,
+    "h": 8
+   },
+   "options": {
+    "xField": "step",
+    "legend": {
+     "showLegend": true,
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi",
+     "sort": "desc"
+    }
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "none",
+     "custom": {
+      "lineWidth": 2,
+      "showPoints": "never",
+      "spanNulls": true,
+      "fillOpacity": 0,
+      "axisPlacement": "auto"
+     },
+     "color": {
+      "mode": "palette-classic"
+     }
+    },
+    "overrides": [
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "step"
+      },
+      "properties": [
+       {
+        "id": "unit",
+        "value": "none"
+       },
+       {
+        "id": "decimals",
+        "value": 0
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "periodic"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#3274D9"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "lfsr16"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FF9830"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "lfsr"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FF9830"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "ca30"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#73BF69"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "ca110"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#F2495C"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "prime"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#B877D9"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "pi"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FADE2A"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "prng"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FADE2A"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "and"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#4FC4CA"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "or"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#AB7B53"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "transformations": [
+    {
+     "id": "filterFieldsByName",
+     "options": {
+      "include": {
+       "pattern": "^(step|wf_neuron_.*)$"
+      }
+     }
+    },
+    {
+     "id": "renameByRegex",
+     "options": {
+      "regex": "^wf_neuron_(.*)$",
+      "renamePattern": "$1"
+     }
+    }
+   ],
+   "datasource": {
+    "type": "datasource",
+    "uid": "-- Dashboard --"
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "datasource",
+      "uid": "-- Dashboard --"
+     },
+     "panelId": 1,
+     "withTransforms": false
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "type": "trend",
+   "title": "Wealth by family: comp",
+   "description": "Cumulative wealth of the components (embeddings, attention/MLP blocks), split by the family of the question that paid it. Negative = on balance these units pushed the loss up on that family (in-sample books).",
+   "gridPos": {
+    "x": 12,
+    "y": 17,
+    "w": 12,
+    "h": 8
+   },
+   "options": {
+    "xField": "step",
+    "legend": {
+     "showLegend": true,
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi",
+     "sort": "desc"
+    }
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "none",
+     "custom": {
+      "lineWidth": 2,
+      "showPoints": "never",
+      "spanNulls": true,
+      "fillOpacity": 0,
+      "axisPlacement": "auto"
+     },
+     "color": {
+      "mode": "palette-classic"
+     }
+    },
+    "overrides": [
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "step"
+      },
+      "properties": [
+       {
+        "id": "unit",
+        "value": "none"
+       },
+       {
+        "id": "decimals",
+        "value": 0
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "periodic"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#3274D9"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "lfsr16"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FF9830"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "lfsr"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FF9830"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "ca30"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#73BF69"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "ca110"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#F2495C"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "prime"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#B877D9"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "pi"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FADE2A"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "prng"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FADE2A"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "and"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#4FC4CA"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "or"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#AB7B53"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "transformations": [
+    {
+     "id": "filterFieldsByName",
+     "options": {
+      "include": {
+       "pattern": "^(step|wf_comp_.*)$"
+      }
+     }
+    },
+    {
+     "id": "renameByRegex",
+     "options": {
+      "regex": "^wf_comp_(.*)$",
+      "renamePattern": "$1"
+     }
+    }
+   ],
+   "datasource": {
+    "type": "datasource",
+    "uid": "-- Dashboard --"
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "datasource",
+      "uid": "-- Dashboard --"
+     },
+     "panelId": 1,
+     "withTransforms": false
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "type": "trend",
+   "title": "Wealth Gini vs shuffled-label null",
+   "description": "Gini of positive wealth per scale (0 = equal, 1 = one unit owns everything). Dashed = same run with shuffled labels (S0 panel.py). No null line = the run did not log one; wealth-net has none.",
+   "gridPos": {
+    "x": 0,
+    "y": 25,
+    "w": 12,
+    "h": 8
+   },
+   "options": {
+    "xField": "step",
+    "legend": {
+     "showLegend": true,
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi",
+     "sort": "desc"
+    }
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "none",
+     "custom": {
+      "lineWidth": 2,
+      "showPoints": "never",
+      "spanNulls": true,
+      "fillOpacity": 0,
+      "axisPlacement": "auto"
+     },
+     "color": {
+      "mode": "palette-classic"
+     },
+     "decimals": 2
+    },
+    "overrides": [
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "step"
+      },
+      "properties": [
+       {
+        "id": "unit",
+        "value": "none"
+       },
+       {
+        "id": "decimals",
+        "value": 0
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byRegexp",
+       "options": ".*\\(null\\)"
+      },
+      "properties": [
+       {
+        "id": "custom.lineStyle",
+        "value": {
+         "fill": "dash",
+         "dash": [
+          6,
+          4
+         ]
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "transformations": [
+    {
+     "id": "filterFieldsByName",
+     "options": {
+      "include": {
+       "pattern": "^(step|gini_[a-z0-9_]+)$"
+      }
+     }
+    },
+    {
+     "id": "renameByRegex",
+     "options": {
+      "regex": "^gini_null_(.*)$",
+      "renamePattern": "$1 (null)"
+     }
+    },
+    {
+     "id": "renameByRegex",
+     "options": {
+      "regex": "^gini_(?!null)(.*)$",
+      "renamePattern": "$1"
+     }
+    }
+   ],
+   "datasource": {
+    "type": "datasource",
+    "uid": "-- Dashboard --"
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "datasource",
+      "uid": "-- Dashboard --"
+     },
+     "panelId": 1,
+     "withTransforms": false
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "type": "trend",
+   "title": "Rank churn: 1 - Spearman(wealth now, 1000 steps ago)",
+   "description": "How much the wealth ranking moved over the last 1000 steps. Cumulative wealth freezes its ranks by construction (the premise says cumulative rank stability is an artefact), so read this with the turnover panel.",
+   "gridPos": {
+    "x": 12,
+    "y": 25,
+    "w": 12,
+    "h": 8
+   },
+   "options": {
+    "xField": "step",
+    "legend": {
+     "showLegend": true,
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi",
+     "sort": "desc"
+    }
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "none",
+     "custom": {
+      "lineWidth": 2,
+      "showPoints": "never",
+      "spanNulls": true,
+      "fillOpacity": 0,
+      "axisPlacement": "auto"
+     },
+     "color": {
+      "mode": "palette-classic"
+     },
+     "decimals": 3
+    },
+    "overrides": [
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "step"
+      },
+      "properties": [
+       {
+        "id": "unit",
+        "value": "none"
+       },
+       {
+        "id": "decimals",
+        "value": 0
+       }
+      ]
+     }
+    ]
+   },
+   "transformations": [
+    {
+     "id": "filterFieldsByName",
+     "options": {
+      "include": {
+       "pattern": "^(step|churn_[a-z0-9]+)$"
+      }
+     }
+    },
+    {
+     "id": "renameByRegex",
+     "options": {
+      "regex": "^churn_(.*)$",
+      "renamePattern": "$1"
+     }
+    }
+   ],
+   "datasource": {
+    "type": "datasource",
+    "uid": "-- Dashboard --"
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "datasource",
+      "uid": "-- Dashboard --"
+     },
+     "panelId": 1,
+     "withTransforms": false
+    }
+   ]
+  },
+  {
+   "id": 9,
+   "type": "trend",
+   "title": "Income turnover: Spearman(income this window, previous window)",
+   "description": "Rank correlation of per-unit income between consecutive 100-step windows. Near 1 = the same units keep earning; near 0 = income is noise at that scale.",
+   "gridPos": {
+    "x": 0,
+    "y": 33,
+    "w": 12,
+    "h": 8
+   },
+   "options": {
+    "xField": "step",
+    "legend": {
+     "showLegend": true,
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi",
+     "sort": "desc"
+    }
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "none",
+     "custom": {
+      "lineWidth": 2,
+      "showPoints": "never",
+      "spanNulls": true,
+      "fillOpacity": 0,
+      "axisPlacement": "auto"
+     },
+     "color": {
+      "mode": "palette-classic"
+     },
+     "decimals": 2
+    },
+    "overrides": [
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "step"
+      },
+      "properties": [
+       {
+        "id": "unit",
+        "value": "none"
+       },
+       {
+        "id": "decimals",
+        "value": 0
+       }
+      ]
+     }
+    ]
+   },
+   "transformations": [
+    {
+     "id": "filterFieldsByName",
+     "options": {
+      "include": {
+       "pattern": "^(step|turnover_[a-z0-9]+)$"
+      }
+     }
+    },
+    {
+     "id": "renameByRegex",
+     "options": {
+      "regex": "^turnover_(.*)$",
+      "renamePattern": "$1"
+     }
+    }
+   ],
+   "datasource": {
+    "type": "datasource",
+    "uid": "-- Dashboard --"
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "datasource",
+      "uid": "-- Dashboard --"
+     },
+     "panelId": 1,
+     "withTransforms": false
+    }
+   ]
+  },
+  {
+   "id": 10,
+   "type": "trend",
+   "title": "Births, bankruptcies, units in the red",
+   "description": "Fraction of units with negative cumulative wealth, per scale. births/bankrupt (right axis, counts) appear only in runs with an economy (K1, M8); wealth-net has neither.",
+   "gridPos": {
+    "x": 12,
+    "y": 33,
+    "w": 12,
+    "h": 8
+   },
+   "options": {
+    "xField": "step",
+    "legend": {
+     "showLegend": true,
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi",
+     "sort": "desc"
+    }
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "percentunit",
+     "custom": {
+      "lineWidth": 2,
+      "showPoints": "never",
+      "spanNulls": true,
+      "fillOpacity": 0,
+      "axisPlacement": "auto"
+     },
+     "color": {
+      "mode": "palette-classic"
+     }
+    },
+    "overrides": [
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "step"
+      },
+      "properties": [
+       {
+        "id": "unit",
+        "value": "none"
+       },
+       {
+        "id": "decimals",
+        "value": 0
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byRegexp",
+       "options": "births|bankrupt"
+      },
+      "properties": [
+       {
+        "id": "unit",
+        "value": "short"
+       },
+       {
+        "id": "custom.axisPlacement",
+        "value": "right"
+       }
+      ]
+     }
+    ]
+   },
+   "transformations": [
+    {
+     "id": "filterFieldsByName",
+     "options": {
+      "include": {
+       "pattern": "^(step|births|bankrupt|dead_frac|neg_[a-z0-9]+)$"
+      }
+     }
+    },
+    {
+     "id": "renameByRegex",
+     "options": {
+      "regex": "^neg_(.*)$",
+      "renamePattern": "$1 in the red"
+     }
+    }
+   ],
+   "datasource": {
+    "type": "datasource",
+    "uid": "-- Dashboard --"
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "datasource",
+      "uid": "-- Dashboard --"
+     },
+     "panelId": 1,
+     "withTransforms": false
+    }
+   ]
+  },
+  {
+   "id": 11,
+   "type": "trend",
+   "title": "Conservation residual (fraction of |income|)",
+   "description": "How far the books leak: |sum of unit revenues at a cut - model income| / |income|, by where the leak enters (total, attention QK, softmax, LayerNorm, other). Near 0 means the wealth of a big trader equals the sum of its parts. Log axis.",
+   "gridPos": {
+    "x": 0,
+    "y": 41,
+    "w": 12,
+    "h": 8
+   },
+   "datasource": {
+    "type": "datasource",
+    "uid": "-- Dashboard --"
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "datasource",
+      "uid": "-- Dashboard --"
+     },
+     "panelId": 1,
+     "withTransforms": false
+    }
+   ],
+   "options": {
+    "xField": "step",
+    "legend": {
+     "showLegend": true,
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi",
+     "sort": "none"
+    }
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "percentunit",
+     "custom": {
+      "lineWidth": 2,
+      "showPoints": "never",
+      "spanNulls": true,
+      "fillOpacity": 0,
+      "axisPlacement": "auto",
+      "scaleDistribution": {
+       "type": "log",
+       "log": 10
+      }
+     },
+     "color": {
+      "mode": "palette-classic"
+     }
+    },
+    "overrides": [
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "step"
+      },
+      "properties": [
+       {
+        "id": "unit",
+        "value": "none"
+       },
+       {
+        "id": "decimals",
+        "value": 0
+       },
+       {
+        "id": "custom.scaleDistribution",
+        "value": {
+         "type": "linear"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "transformations": [
+    {
+     "id": "filterFieldsByName",
+     "options": {
+      "include": {
+       "pattern": "^step$|^(cons_resid_.*|cons_sum_resid_max)$"
+      }
+     }
+    },
+    {
+     "id": "renameByRegex",
+     "options": {
+      "regex": "^cons_resid_(.*)$",
+      "renamePattern": "$1"
+     }
+    },
+    {
+     "id": "renameByRegex",
+     "options": {
+      "regex": "^cons_sum_resid_max$",
+      "renamePattern": "max over cuts"
+     }
+    }
+   ]
+  },
+  {
+   "id": 12,
+   "type": "trend",
+   "title": "Exploitation E_C(t) by trader class",
+   "description": "Best cumulative profit a fixed trader class C makes against the network\u2019s prices (M5 harness). A logical inductor keeps every line sublinear: flat or bending over. A straight rising line means the class exploits the net.",
+   "gridPos": {
+    "x": 12,
+    "y": 41,
+    "w": 12,
+    "h": 8
+   },
+   "datasource": {
+    "type": "datasource",
+    "uid": "-- Dashboard --"
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "datasource",
+      "uid": "-- Dashboard --"
+     },
+     "panelId": 1,
+     "withTransforms": false
+    }
+   ],
+   "options": {
+    "xField": "step",
+    "legend": {
+     "showLegend": true,
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi",
+     "sort": "none"
+    }
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "none",
+     "custom": {
+      "lineWidth": 2,
+      "showPoints": "never",
+      "spanNulls": true,
+      "fillOpacity": 0,
+      "axisPlacement": "auto"
+     },
+     "color": {
+      "mode": "palette-classic"
+     }
+    },
+    "overrides": [
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "step"
+      },
+      "properties": [
+       {
+        "id": "unit",
+        "value": "none"
+       },
+       {
+        "id": "decimals",
+        "value": 0
+       },
+       {
+        "id": "custom.scaleDistribution",
+        "value": {
+         "type": "linear"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "transformations": [
+    {
+     "id": "filterFieldsByName",
+     "options": {
+      "include": {
+       "pattern": "^step$|^ec_.*$"
+      }
+     }
+    },
+    {
+     "id": "renameByRegex",
+     "options": {
+      "regex": "^ec_(.*)$",
+      "renamePattern": "$1"
+     }
+    }
+   ]
+  },
+  {
+   "id": 13,
+   "type": "trend",
+   "title": "Market price per family (mean probability)",
+   "description": "Mean predicted probability (the market price) on the questions of each family. Unlearnable families (PRNG, pi) should sit at their base rate, near 0.5.",
+   "gridPos": {
+    "x": 0,
+    "y": 49,
+    "w": 12,
+    "h": 8
+   },
+   "datasource": {
+    "type": "datasource",
+    "uid": "-- Dashboard --"
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "datasource",
+      "uid": "-- Dashboard --"
+     },
+     "panelId": 1,
+     "withTransforms": false
+    }
+   ],
+   "options": {
+    "xField": "step",
+    "legend": {
+     "showLegend": true,
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi",
+     "sort": "none"
+    }
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "percentunit",
+     "custom": {
+      "lineWidth": 2,
+      "showPoints": "never",
+      "spanNulls": true,
+      "fillOpacity": 0,
+      "axisPlacement": "auto",
+      "axisSoftMin": 0,
+      "axisSoftMax": 1
+     },
+     "color": {
+      "mode": "palette-classic"
+     }
+    },
+    "overrides": [
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "step"
+      },
+      "properties": [
+       {
+        "id": "unit",
+        "value": "none"
+       },
+       {
+        "id": "decimals",
+        "value": 0
+       },
+       {
+        "id": "custom.scaleDistribution",
+        "value": {
+         "type": "linear"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "periodic"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#3274D9"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "lfsr16"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FF9830"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "lfsr"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FF9830"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "ca30"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#73BF69"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "ca110"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#F2495C"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "prime"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#B877D9"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "pi"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FADE2A"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "prng"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FADE2A"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "and"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#4FC4CA"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "or"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#AB7B53"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "heldout"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#8AB8FF"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "d_delay"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#C4162A"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "d_prove"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#1F60C4"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "d_expensive"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FA6400"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "transformations": [
+    {
+     "id": "filterFieldsByName",
+     "options": {
+      "include": {
+       "pattern": "^step$|^price_.*$"
+      }
+     }
+    },
+    {
+     "id": "renameByRegex",
+     "options": {
+      "regex": "^price_(.*)$",
+      "renamePattern": "$1"
+     }
+    }
+   ]
+  },
+  {
+   "id": 14,
+   "type": "trend",
+   "title": "Held-out BCE per family (nats; dashed = logistic baseline)",
+   "description": "Cross-entropy per family on held-out (or prequential) data; red dashed line at ln 2 = always 0.5. Thin dashed lines: a per-question logistic model on the same inputs.",
+   "gridPos": {
+    "x": 12,
+    "y": 49,
+    "w": 12,
+    "h": 8
+   },
+   "datasource": {
+    "type": "datasource",
+    "uid": "-- Dashboard --"
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "datasource",
+      "uid": "-- Dashboard --"
+     },
+     "panelId": 1,
+     "withTransforms": false
+    }
+   ],
+   "options": {
+    "xField": "step",
+    "legend": {
+     "showLegend": true,
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi",
+     "sort": "none"
+    }
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "none",
+     "custom": {
+      "lineWidth": 2,
+      "showPoints": "never",
+      "spanNulls": true,
+      "fillOpacity": 0,
+      "axisPlacement": "auto",
+      "thresholdsStyle": {
+       "mode": "dashed"
+      }
+     },
+     "color": {
+      "mode": "palette-classic"
+     },
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "transparent",
+        "value": null
+       },
+       {
+        "color": "red",
+        "value": 0.6931
+       }
+      ]
+     }
+    },
+    "overrides": [
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "step"
+      },
+      "properties": [
+       {
+        "id": "unit",
+        "value": "none"
+       },
+       {
+        "id": "decimals",
+        "value": 0
+       },
+       {
+        "id": "custom.scaleDistribution",
+        "value": {
+         "type": "linear"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "periodic"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#3274D9"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "lfsr16"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FF9830"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "lfsr"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FF9830"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "ca30"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#73BF69"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "ca110"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#F2495C"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "prime"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#B877D9"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "pi"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FADE2A"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "prng"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FADE2A"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "and"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#4FC4CA"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "or"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#AB7B53"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "heldout"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#8AB8FF"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "d_delay"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#C4162A"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "d_prove"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#1F60C4"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "d_expensive"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FA6400"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byRegexp",
+       "options": ".* \\(logistic\\)$"
+      },
+      "properties": [
+       {
+        "id": "custom.lineStyle",
+        "value": {
+         "fill": "dash",
+         "dash": [
+          6,
+          4
+         ]
+        }
+       },
+       {
+        "id": "custom.lineWidth",
+        "value": 1
+       }
+      ]
+     }
+    ]
+   },
+   "transformations": [
+    {
+     "id": "filterFieldsByName",
+     "options": {
+      "include": {
+       "pattern": "^step$|^bce_.*$"
+      }
+     }
+    },
+    {
+     "id": "renameByRegex",
+     "options": {
+      "regex": "^bce_logistic_(.*)$",
+      "renamePattern": "$1 (logistic)"
+     }
+    },
+    {
+     "id": "renameByRegex",
+     "options": {
+      "regex": "^bce_(.*)$",
+      "renamePattern": "$1"
+     }
+    }
+   ]
+  },
+  {
+   "id": 15,
+   "type": "trend",
+   "title": "Brier score per family (0.25 = always 0.5)",
+   "description": "Mean (p - y)^2 per family on held-out (or prequential) data. Lower is better.",
+   "gridPos": {
+    "x": 0,
+    "y": 57,
+    "w": 24,
+    "h": 8
+   },
+   "datasource": {
+    "type": "datasource",
+    "uid": "-- Dashboard --"
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "datasource": {
+      "type": "datasource",
+      "uid": "-- Dashboard --"
+     },
+     "panelId": 1,
+     "withTransforms": false
+    }
+   ],
+   "options": {
+    "xField": "step",
+    "legend": {
+     "showLegend": true,
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi",
+     "sort": "none"
+    }
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "none",
+     "custom": {
+      "lineWidth": 2,
+      "showPoints": "never",
+      "spanNulls": true,
+      "fillOpacity": 0,
+      "axisPlacement": "auto",
+      "thresholdsStyle": {
+       "mode": "dashed"
+      }
+     },
+     "color": {
+      "mode": "palette-classic"
+     },
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "transparent",
+        "value": null
+       },
+       {
+        "color": "red",
+        "value": 0.25
+       }
+      ]
+     }
+    },
+    "overrides": [
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "step"
+      },
+      "properties": [
+       {
+        "id": "unit",
+        "value": "none"
+       },
+       {
+        "id": "decimals",
+        "value": 0
+       },
+       {
+        "id": "custom.scaleDistribution",
+        "value": {
+         "type": "linear"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "periodic"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#3274D9"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "lfsr16"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FF9830"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "lfsr"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FF9830"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "ca30"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#73BF69"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "ca110"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#F2495C"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "prime"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#B877D9"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "pi"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FADE2A"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "prng"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FADE2A"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "and"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#4FC4CA"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "or"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#AB7B53"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "heldout"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#8AB8FF"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "d_delay"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#C4162A"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "d_prove"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#1F60C4"
+        }
+       }
+      ]
+     },
+     {
+      "matcher": {
+       "id": "byName",
+       "options": "d_expensive"
+      },
+      "properties": [
+       {
+        "id": "color",
+        "value": {
+         "mode": "fixed",
+         "fixedColor": "#FA6400"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "transformations": [
+    {
+     "id": "filterFieldsByName",
+     "options": {
+      "include": {
+       "pattern": "^step$|^brier_.*$"
+      }
+     }
+    },
+    {
+     "id": "renameByRegex",
+     "options": {
+      "regex": "^brier_(.*)$",
+      "renamePattern": "$1"
+     }
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,7 @@
+# P12 clamp-0 BB backward failures on training batches (10 batches x 64 W9 mazes per checkpoint, generator seed 7, drawn in the order below).
+# Rerun 2026-09-29 23:52Z on General (CPU): cd code && python diag_clamp0.py <P12 step-3000 .part> <P12 step-9000 .part>
+# notok = backward solves whose walk-back did not terminate at S (y_lambda garbage); zero_edges = mazes with an open edge at perturbed cost exactly 0.
+# The first run (~22:5xZ, before PREREG freeze) drew batches in a different order and got step 3000: 4/640.
+['trader-cat-p12-2', 'runs', 'CostNet+BB_s0_w32.pt.part'] step 3000 {'calls': 640, 'notok': 3, 'zero_edges': 6}
+['trader-cat-p12-3', 'runs', 'CostNet+BB_s0_w32.pt.part'] step 9000 {'calls': 640, 'notok': 7, 'zero_edges': 9}
+init {'calls': 640, 'notok': 0, 'zero_edges': 0}

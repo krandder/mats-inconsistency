@@ -1,0 +1,183 @@
+### 6.1 Exact facts
+
+*Convention (extinction).* For each input run the auxiliary recursion z_l = W_l u_{l-1}, rho_l = ||relu(z_l)||^2,
+u_l = relu(z_l)/sqrt(rho_l) if rho_l > 0 and u_l = e_1 otherwise, with u_0 = x/||x||, and set c_l = u_l . u'_l for two
+inputs. These coincide with the physical quantities as long as h_l != 0; the physical output is 0 from the first
+rho_l = 0 on (probability at most L 2^{-n}). Every u_l with l >= 1 is a nonnegative unit vector, so c_l >= 0 for l >= 1.
+
+**Lemma 6.1 (single-input norm law). PROVEN (exact; known in this form, cf. Hanin 2018, arXiv 1801.03744; Hanin and
+Nica 2020, arXiv 1812.05994, for the log-normal limit).** For fixed x != 0, G_L(x) = ||h_L(x)||^2/||x||^2 =
+prod_{l=1}^L rho_l with rho_l iid, rho_l ~ (2/n) sum_{j=1}^n relu(g_j)^2, g_j iid N(0,1). E rho = 1, Var rho = 5/n, so
+E G_L = 1 and E G_L^2 = (1 + 5/n)^L -> e^{5 alpha}.
+*Proof.* Given layers < l, u_{l-1} is a past-measurable unit vector and z_l = W_l u_{l-1} has iid N(0, 2/n)
+coordinates whatever it is; so rho_l has the stated law and is independent of the past. Var rho =
+(4/n^2) n (E relu(g)^4 - (E relu(g)^2)^2) = (4/n)(3/2 - 1/4). QED
+
+**Lemma 6.2 (two inputs). PROVEN (exact).** For nonzero x, x' and l >= 1,
+E[rho_l(x) rho_l(x') | layers < l] = 1 + (4/n)(J(c_{l-1}) - 1/4), where for a standard bivariate normal pair with
+correlation c, J(c) = E[relu(g)^2 relu(g')^2] = [3 sin t cos t + (pi - t)(1 + 2 cos^2 t)] / (2 pi), t = arccos c (the
+degree-2 arc-cosine kernel of Cho and Saul, divided by 2). J(0) = 1/4, J(1) = 3/2, J(-1) = 0, and J'(c) = 4 mu(c) > 0
+with mu(c) = E[relu(g) relu(g')].
+*Proof.* (z_j, z'_j) are iid bivariate normal with correlation c_{l-1}; expand (2/n)^2 sum_{j,k} relu(z_j)^2
+relu(z'_k)^2. Checked by Monte Carlo at 8 values of c (numerics/lemma_checks.py J). QED
+
+**Lemma 6.3 (cosines stay positive). PROVEN.** Let c_* = 1/(4 pi). For l >= 2,
+P(c_l < c_* | layers < l) <= exp(-n/(8 pi^2)) + 2 exp(-0.0646 n), and 1/(8 pi^2) = 0.01267.
+*Proof.* Normalize variances to 1. Numerator sum_j X_j, X_j = relu(z_j) relu(z'_j) >= 0, E X_j = mu(c) >= 1/(2 pi)
+for c >= 0, E X_j^2 = J(c). For independent nonnegative summands, P(S <= ES - s) <= exp(-s^2 / (2 sum E X_j^2)) (from
+e^{-tX} <= 1 - tX + t^2 X^2/2 for t, X >= 0). With s = ES - n c_* this gives exp(-n R(c)), R(c) = (mu(c) - c_*)^2 /
+(2 J(c)); R is increasing on [0, 1] (the GPT-6 review gives the analytic argument), so its minimum is R(0) =
+1/(8 pi^2). Denominator: E exp(lambda relu(g)^2) = 1/2 + (1/2)(1 - 2 lambda)^{-1/2}; lambda = 0.215 gives
+P(||relu(z)||^2 >= n) <= exp(-0.0646 n). On the complement of these events, c_l >= n c_*/n. QED
+
+**Lemma 6.4 (the output scale is shared across inputs). PROVEN (asymptotic in n, L = O(n)).** Let
+kappa_* = 4 (J(c_*) - 1/4) = 0.21552 and delta_* = kappa_*/n. For nonzero x, x' and L >= 2,
+Cov_W(G_L(x), G_L(x')) >= (1 - 1/n)(1 + delta_*)^{L-2} - 1 - eps_{n,L},
+eps_{n,L} <= sqrt(3) L (1 + delta_*)^L M_4(n)^{L/2} exp(-n/(16 pi^2)), M_4(n) = E rho^4 = 1 + 30/n + 251/n^2 + 558/n^3
+(exact). eps tends to 0 when L = O(n), and for L = alpha n the bound tends to e^{kappa_* alpha} - 1 > 0. It is an
+asymptotic statement: at n <= 128 the remainder bound exceeds 50 and the inequality says nothing.
+*Proof.* Let Z_l = rho_l(x) rho_l(x') >= 0, m(c) = 1 + (4/n)(J(c) - 1/4), E_l = {c_k >= c_* for 2 <= k <= l},
+Y_l = prod_{k<=l} Z_k 1_{E_l}. Base: E[Z_1] = m(c_0) >= 1 - 1/n (J >= 0) and E[Z_1 Z_2] >= E[Z_1] (c_1 >= 0, so
+m(c_1) >= 1). For 3 <= l <= L: E[Y_{l-1} Z_l] = E[Y_{l-1} m(c_{l-1})] >= (1 + delta_*) E[Y_{l-1}] (on E_{l-1},
+c_{l-1} >= c_*, and J is increasing), and Y_l >= Y_{l-1} Z_l - P_l 1(c_l < c_*) with P_l = prod_{k<=l} Z_k, the
+subtracted term bounded by Cauchy-Schwarz with E[Z_k^2 | past] <= M_4(n) and Lemma 6.3. Iterate up to Y_{L-1} and
+use E[G G'] = E[P_L] >= E[Y_{L-1} Z_L]. QED
+
+**Theorem 6.5 (estimators that ignore the early layers are worth a bounded number of samples). PROVEN (asymptotic) +
+MEASURED (finite n).** Let S(W) = E_x ||h_L(x)||^2 / n, the mean squared output norm (a quadratic observable, not ARC's
+per-neuron means; E_W S = 1). Split W into A = (W_1, ..., W_{L-k}) and B = (W_{L-k+1}, ..., W_L), m = L - k >= 2. Any
+estimator S-hat = F(B, xi) with A independent of the pair (B, xi) (xi may hold coins, the input law, mean-field
+constants; any amount of computation on B) satisfies
+  E (S-hat - S)^2 >= Var(E[S | A]) = Var_A( E_x ||h_m(x)||^2 / n ) >= (1 - 1/n)(1 + kappa_*/n)^{m-2} - 1 - eps_{n,m}.
+Monte Carlo with N forward passes has MSE E_W Var_x(||h_L||^2/n) / N <= [(1 + 2/n)(1 + 5/n)^L - 1] / N. Hence the best
+estimator of this kind is no better than Monte Carlo with N_* = E_W Var_x / Var(E[S|A]) samples, and for L = alpha n,
+m = beta n the proven ceiling N_* <= (e^{5 alpha} - 1)/(e^{kappa_* beta} - 1) + o(1) is a constant (crude: about 91 at
+alpha = 1/4, k = L/2).
+(The independence hypothesis must be on the pair (B, xi): the GPT-6 review gave a counterexample in which xi alone is
+independent of A but B and xi together encode A.)
+*Proof.* For every fixed x, averaging the last k layers preserves ||h_m(x)||^2 (Lemma 6.1), so by Fubini
+E[S | A] = E_x ||h_m(x)||^2 / n. With A independent of (B, xi), S - E[S|B, xi] = (S - E[S|A] - E[S|B,xi] + E S) +
+(E[S|A] - E S), the two parts are orthogonal (the first has conditional mean 0 given A), so
+E(S - F(B, xi))^2 >= Var(E[S|A]). Var(E[S|A]) = E_{x,x'} [(||x||^2/n)(||x'||^2/n) Cov(G_m(x), G_m(x'))] and Lemma 6.4
+bounds the covariance uniformly over input pairs; E ||x||^2/n = 1. Monte Carlo: E_{W,x} f_L^2 = (1 + 2/n)(1 + 5/n)^L and
+E_W Var_x <= E f^2 - (E_W S)^2. QED
+*Numbers* (numerics/lemma_checks.py backward; 300 nets each, inner Monte Carlo variance subtracted; point estimates
+without confidence intervals):
+
+| n, L, m = L - k | Var_W(E[S|A]) measured | mean-field value | E_W Var_x(f_L) | N_* (upper bound on the samples such an estimator is worth) |
+|---|---|---|---|---|
+| 64, 16, 8 | 0.31 | 0.32 | 0.95 | 3.0 |
+| 64, 32, 16 | 2.08 | 1.18 | 4.83 | 2.3 |
+| 128, 32, 16 | 0.47 | 0.48 | 1.08 | 2.3 |
+| 128, 64, 32 | 1.42 | 1.63 | 1.79 | 1.3 |
+
+"Mean-field value" = prod_{l=1}^{m} [1 + (4/n)(J(c-bar_{l-1}) - 1/4)] - 1 with c-bar_0 = 0 and the mean-field cosine
+recursion (Lemma 6.2 along typical cosines); it matches the measurement when 5m/n is small (0.32 vs 0.31, 0.48 vs
+0.47). So the best estimator that knows the second half of the network exactly, plus anything independent of the first
+half, is worth at most about 1.3-3 Monte Carlo samples at these sizes (measured), and at most a constant number
+asymptotically (proven). The same holds if the estimator also sees statistics of A that carry little of E[S|A]; e.g.
+E[rho_l | ||W_l||_F] = ||W_l||_F^2/(2n) has variance 2/n^2, a fraction 0.4/n of Var(rho_l). This is the theorem behind
+our finding that an input-independent backward stand-in fails at the critical point (random-net-phases, section 3),
+and it is specific to homogeneous activations: in the chaotic tanh nets the scale is set by saturation in the last
+layers and a backward stand-in works (k* = 24-40 there, measured). Estimators that ignore the *last* k layers fail in
+the data too (MEASURED, `lemma_checks.py fwdtrunc`, nested sampling over 80 x 16 nets: Var_B(E[S|B]) = 0.47 at n = 64,
+L = 16, k = 8 and 0.25 at n = 128, L = 32, k = 16, i.e. worth at most about 2 and 4 samples); I have no proof of that
+mirror statement (for one layer, Var S_1 = 2/n^2, so the single-input gain variance does not transfer directly).
+
+### 6.2 How errors propagate
+
+**Lemma 6.6 (exact error identity). PROVEN.** Fix W. Let T_l be the true layer map on laws (pushforward through layer
+l, including noise if any), P_0 = D, and G_l(h) = E[readout | h_l = h] the true backward function, so
+G_{l-1} = T_l^* G_l. For any estimator that maintains finite (signed) measures Q_0, ..., Q_L, or linear functionals
+whose domains contain the G_l and satisfy (T_l Q)(g) = Q(T_l^* g), and outputs mu-hat = Q_L(G_L),
+  mu - mu-hat = (P_0 - Q_0)(G_0) + sum_{l=1}^{L} (T_l Q_{l-1} - Q_l)(G_l).
+*Proof.* (T_l Q_{l-1})(G_l) = Q_{l-1}(G_{l-1}); telescope. QED
+Each term is the *local closure error at layer l, tested against the true backward function G_l*. The output error is
+the signed sum of these terms (they can cancel); bounding their absolute values gives a sufficient accuracy condition.
+A cumulant-propagation algorithm fits this form only after a rule that turns its finite cumulants into a functional on
+the (non-polynomial) G_l (for instance the Gaussian or Edgeworth law it implicitly assumes). Forgetting (contraction)
+means that G_l becomes nearly constant on the typical support as L - l grows; criticality means it does not.
+
+**Proposition 6.7 (scale errors never contract). PROVEN (exact, noiseless).** For a bias-free ReLU network (any
+weights) the map from layer l to the output is positively homogeneous of degree 1, so G_l(c h) = c G_l(h) for c > 0. If
+a description makes a relative scale error t > -1 at layer l (Q_l = law of (1 + t) h, h ~ T_l Q_{l-1}), the output
+estimate is off by exactly the factor (1 + t) (for the quadratic observable of 6.5, (1 + t)^2), at every depth.
+Independent centered multiplicative errors t_l with variances v_l give
+Var[prod_l (1 + t_l) - 1] = prod_l (1 + v_l) - 1, which is about sum_l v_l while that sum is small and grows
+exponentially in depth at fixed per-layer v. No distance-to-output discount exists for this mode. With additive
+noise, homogeneity fails (by O(sigma) for units near their kink), and I claim no general rate for that case.
+
+**Proposition 6.8 (one-step survival of mean errors). PROVEN (exact, to first order in delta).** Let Q be a law of the
+state at layer l - 1 with finite first moment and Q({0}) = 0, and delta a nonzero vector orthogonal to every state in
+the support of Q, both fixed before a fresh W with iid N(0, 2/n) entries. Translate every state by delta. The
+first-order change of the next layer's mean is Delta = E_{h~Q}[D_W(h) W delta], D_W(h) = diag(1[W h > 0]), and
+  E_W ||Delta||^2 = ||delta||^2 E_{h, h' ~ Q iid} [1 - theta(h, h')/pi]   (theta = angle between h and h').
+*Proof.* Delta_j = p_j(w_j)(w_j . delta) with p_j(w) = P_{h~Q}(w . h > 0). The projections of a Gaussian row onto
+span(supp Q) and its orthogonal complement are independent, so w_j . delta is independent of {w_j . h}, and
+E Delta_j^2 = (2/n)||delta||^2 E_{h,h'} P(w . h > 0, w . h' > 0) with P(both > 0) = (pi - theta)/(2 pi). Sum over j. QED
+*Scope.* An exactly orthogonal delta exists only if the support spans less than R^n; for the Gaussian-input law the
+support spans R^n, so the formula applies only approximately (to errors nearly orthogonal to the dominant state
+directions). The numerical check (n = 256, an empirical law of 128 states at depths 4, 16, 48: 0.741 +- 0.013 vs
+0.740; 0.909 +- 0.020 vs 0.887; 0.957 +- 0.019 vs 0.964) tests the formula for that empirical law only.
+
+**Proposition 6.9 (the angle recursion). PROVEN (deterministic mean-field map).** For the mean-field cosine map
+kappa(c) = (sin t + (pi - t) cos t)/pi, t = arccos c, and any c_0 < 1, the iterates satisfy
+1 - kappa(c) = (1 - c) - (2 sqrt 2/(3 pi))(1 - c)^{3/2} + O((1 - c)^2), hence 1 - c_l ~ 9 pi^2/(2 l^2) and
+theta_l ~ 3 pi / l. The approach is slow: from c_0 = 0, (1 - c_l)/(9 pi^2/(2 l^2)) = 0.29, 0.68, 0.81, 0.95 at
+l = 10, 50, 100, 500.
+*Proof.* Expand kappa(cos t) = 1 - t^2/2 + t^3/(3 pi) + O(t^4); with u_l = 1 - c_l,
+u_{l+1}^{-1/2} - u_l^{-1/2} -> sqrt 2/(3 pi). QED
+
+**Heuristic 6.9' (accumulation at criticality). NOT PROVEN.** If an injected mean error kept the hypothesis of 6.8 at
+every later layer and propagated contributions stayed uncorrelated, the survival from layer ell to L would be
+prod_{l=ell}^{L} (1 - theta_l/pi), which with theta_l = 3 pi/l equals (ell-3)(ell-2)(ell-1)/(L(L-1)(L-2)) ~ (ell/L)^3
+for large ell, and constant local errors e would accumulate to e^2 (L/4 + 1/2 + 1/(4L)): linear growth in depth. Both
+hypotheses are unproven (after one layer the perturbation D_W(h) W delta depends on the state and is no longer a common
+translation). Contest participants report the product law on ARC's nets within 1-6%, and the contrast with the chaotic
+phase (where the corresponding factor tends to a constant below 1 and K = 2's error saturates) is measured
+(random-net-phases), not derived here.
+
+**Lemma 6.10 (multiplicative accumulation). PROVEN (exact).** Let rho_l and rho-hat_l be F_l-measurable with finite
+second moments, and suppose E[rho_l^2 | F_{l-1}] = a + b, E[rho_l rho-hat_l | F_{l-1}] = a and
+E[rho-hat_l^2 | F_{l-1}] = a for constants a, b. Then E(prod rho_l - prod rho-hat_l)^2 = (a + b)^L - a^L, so the MSE
+divided by E(prod rho_l)^2 is 1 - (a/(a+b))^L.
+*Proof.* Successive conditioning on F_{L-1}, F_{L-2}, ... of the three products prod rho^2, prod rho rho-hat and
+prod rho-hat^2 gives (a + b)^L, a^L and a^L. QED
+*Example (per-layer polynomial surrogates).* Replace each layer's norm ratio rho_l by its degree-D Hermite projection in
+the layer's weights, computed along the true normalized trajectory (a degree-D polynomial activation applied along the
+true path). Rotation invariance makes the conditional moments constant: a = 1 + 5(1 - r_D)/n, b = 5 r_D/n, with
+r_D = the fraction of Var(relu(g)^2) above degree D: r_1 = 1 - 8/(5 pi) = 0.491, r_2 = 3/5 - 8/(5 pi) = 0.091,
+r_3 = r_4 = 0.0058, r_5 = 0.0016. At L = alpha n the normalized MSE tends to 1 - exp(-5 r_D alpha), e.g. 0.107 for D = 2
+at alpha = 1/4, independent of n. Simulation agrees where the moments are resolved (n = 64, L = 16, D = 2:
+0.314 +- 0.017 against 0.334; n = 128, L = 32: 0.332 +- 0.016 against 0.353; D = 1 at n = 256, L = 64: 1.55 +- 0.09
+against 1.56); at 5L/n = 5-10 (n = 32 or 64 with L = 64) the heavy log-normal tails were not resolved by 4e4 runs and
+those checks are uninformative. Limits: the surrogate needs the true trajectory, and this is a single-input statement.
+It shows that local surrogates good to a fixed accuracy per layer lose a constant fraction at depth proportional to
+width, even for a quantity a forward pass computes exactly.
+
+**Proposition 6.11 (product-measure closures misjudge the next layer once the state collapses). PROVEN (exact second
+moments).** Let h have covariance C over inputs (tr C > 0) and let a closure keep only D = diag(C) (independent
+neurons). For a fresh neuron z = w . h, w ~ N(0, (2/n) I) independent of C, the predicted variance w^T D w differs from
+the true w^T C w by w^T (C - D) w, with mean 0 and standard deviation sqrt(2)(2/n)||C - D||_F, against a mean true
+variance (2/n) tr C. For C = lambda u u^T the ratio is sqrt(2 (1 - sum_i u_i^4)) -> sqrt 2 for a spread-out u. This
+concerns the pre-activation variance, not directly the output-mean error. That the He-ReLU covariance is close to rank
+one at depth is a measurement (participation ratio 2-4 at depths 32-64, random-net-phases), not a consequence of the
+angle collapse (nearly aligned states can have isotropic covariance).
+
+**Theorem 6.12 (contraction makes layer-local errors depth-free). PROVEN (generic).** Suppose for a seminorm ||.||_F
+on test functions with dual distance d_F (finite on the measures involved), ||G_l||_F <= C eta^{L-l} with
+0 <= eta < 1 and C uniform in depth, and every local error satisfies d_F(T_l Q_{l-1}, Q_l) <= e. Then
+|mu - mu-hat| <= C eta^L d_F(P_0, Q_0) + C e (1 - eta^L)/(1 - eta).
+*Proof.* Lemma 6.6 and |(P - Q)(G)| <= ||G||_F d_F(P, Q). (The first version omitted the initial term; the GPT-6
+review's counterexample T_l(h) = eta relu(h), P_0 = N(0,1), Q_0 = delta_0 shows it is needed.) QED
+
+**Proposition 6.13 (small noise need not give useful one-step contraction). PROVEN.** For a layer
+h -> relu(W h) + tau xi, xi ~ N(0, I), tau > 0, the Dobrushin (total-variation) coefficient over a set S of states is
+2 Phi(Delta_S/(2 tau)) - 1, Delta_S = sup_{h,h' in S} ||relu(W h) - relu(W h')|| (possibly infinite). It is below 1
+when Delta_S is finite, but 1 - coefficient ~ (4 tau/(Delta_S sqrt(2 pi))) exp(-Delta_S^2/(8 tau^2)) when
+Delta_S >> tau. So if the images of the relevant states are a distance of order sqrt(n) times the activation RMS apart
+while tau = sigma times the RMS, one layer contracts total variation by at most a factor exponentially close to 1 in
+n/sigma^2. This does not rule out contraction in other metrics or over several layers. That noise does give forgetting
+on average, at depth about ln(1/sigma)/|lambda| in the ordered and chaotic phases and not by depth 64 at the critical
+point for sigma <= 0.01, is our measurement (random-net-phases), not a consequence of this proposition.
+

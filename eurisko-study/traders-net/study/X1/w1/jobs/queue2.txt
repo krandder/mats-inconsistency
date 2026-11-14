@@ -1,0 +1,9 @@
+cd /tmp/traders-net/X1w1/S0/w2 && python3 audit.py 4 > /tmp/traders-net/X1w1/log_audit4.txt 2>&1
+cd /tmp/traders-net/X1w1/S0/w1 && python3 run_w1.py P4 5 > /tmp/traders-net/X1w1/log_P45.txt 2>&1
+cd /tmp/traders-net/X1w1/T1s5/w2 && python3 check_delay.py --seeds 5 > /tmp/traders-net/X1w1/log_T1s5_delay.txt 2>&1 && python3 check_delay.py --seeds 5 --eta-scale --out results/delay_stable.json > /tmp/traders-net/X1w1/log_T1s5_delays.txt 2>&1
+cd /tmp/traders-net/X1w1/S0/w1 && python3 run_w1.py P16 5 > /tmp/traders-net/X1w1/log_P165.txt 2>&1
+cd /tmp/traders-net/X1w1/T1s5/w2 && python3 check_li.py --seeds 5 > /tmp/traders-net/X1w1/log_T1s5_li.txt 2>&1
+cd /tmp/traders-net/X1w1/T1s5/w1 && python3 check_L3.py > /tmp/traders-net/X1w1/log_T1s5_L3.txt 2>&1
+cd /tmp/traders-net/X1w1/S0/w3 && python3 baseline.py 5 > /tmp/traders-net/X1w1/log_base5.txt 2>&1
+cd /tmp/traders-net/X1w1/S0/w2 && python3 audit.py 5 > /tmp/traders-net/X1w1/log_audit5.txt 2>&1
+cd /tmp/traders-net/X1w1/S0/w4 && python3 null_calib_s5.py > /tmp/traders-net/X1w1/log_null5.txt 2>&1

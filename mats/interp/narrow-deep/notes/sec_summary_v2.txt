@@ -1,0 +1,76 @@
+## Summary for Kelvin
+
+**In one paragraph.**
+- Plain narrow-deep ReLU nets synchronise: the weights carry every input onto one trajectory. The angle between two
+  inputs falls by about one e-fold every n layers, at a rate consistent with a half-width Lyapunov gap we can
+  compute. After that, depth is cheap for estimation, and every difficulty we found sits in the first
+  ~n ln(1/tolerance) layers.
+- The gate-free constructions we tried (unmasked weight products, random masks) do not tell which directions
+  matter. The gates of the inputs actually in use do, once they have synchronised.
+- Residual narrow-deep nets do not synchronise. There, a sample-free Gaussian closure beats the samplers we tried at
+  small budgets, at every depth from 16 to 1024. It has a bias floor, and it fails on trained nets.
+- Narrow-deep nets can be trained. A width-16 RNN does 2nd argmax at T = 64 at 44% accuracy (28x chance). A width-16
+  residual MLP of depth 64 sorts 16 numbers approximately. Plain nets of that width failed at depth 64 in our
+  recipe, as the literature suggests.
+
+1. **Literature (77 references checked, 4 corrected; section 1).**
+   - What a narrow net can represent depends on the sense of approximation. In L^p on R^n, or uniformly, width at
+     most the input dimension fails and one extra unit suffices. On compact domains in L^p the threshold is lower.
+     Depth can replace width.
+   - The depth/width ratio L/n governs initialisation. Fluctuations grow like exp(c L/n), angles between inputs
+     collapse with an e-fold depth of about n, and nets are "born dead".
+   - With skips or gates, narrow nets train at 100-10,000 layers: thin ResNets of 16-64 channels, 50-unit highway
+     nets. Tiny recurrent states bridge 1,000-step lags.
+   - We found no paper training a plain MLP of width <= 16 and depth >= 64 on a real task, and no learned narrow-deep
+     sorting network.
+2. **Random plain nets synchronise, then die whole (section 2).**
+   - At n = 16 the median angle between two inputs shrinks at 0.0867 per layer over 64 nets (between-net standard
+     error 0.005). The half-width Lyapunov gap predicts 0.0868; that exponent is proven only for infinitesimal
+     separations, so this is a consistency check, not a precision test.
+   - At n = 8: 39 of 64 nets lose every one of 4,096 sampled inputs by depth 256 (sigma = 0). The mean dead
+     fraction, 0.63, matches 1 - (1 - 2^-8)^256.
+   - After synchronisation, one direction per path survives, and one block of 2-4 directions on average (1-8 per
+     net) covers 99% of the sensitivity of all inputs.
+3. **Your hope (a bound from the matrices regardless of the gates): not with the constructions we tested
+   (section 2.4).**
+   - Unmasked weight products and random masks capture about chance (4-28%) of the sensitivity, against 52-93% for
+     the best single direction.
+   - Random-mask products point in directions spread over 7 of 8 and 13 of 16 dimensions.
+   - Even the largest of 1,024 sampled random-mask gains exceeds the real paths' gain by e^5 to e^14.
+   - The obstacle is that a path's masks are tied to its own state.
+   - What works after synchronisation is "weights plus the gates of the inputs in use": marginal gate probabilities,
+     or often a single reference trajectory, but not always (0.07 to 1.0 by net at n = 8).
+   - Residual nets have no small relevant subspace.
+   - In one trained net, the noise-trained RNN, a random-mask average of W_hh does find the single relevant direction.
+4. **Deductive estimation on residual nets, the headline the coordinator asked for (section 3.1).**
+   - Given the weights and the noise scales, the sample-free Gaussian closure (K2, Stein-linearised) gets E[output]
+     to nMSE 2.3e-5 to 4.0e-4 for the counted cost of 18-35 sampled paths.
+   - At that budget its MSE is 16-250x lower (median 43x, 24 nets) than the samplers tried (RQMC, RQMC and MC with a
+     regression control variate), and 140-1,300x lower than plain Monte Carlo.
+   - This holds at L = 16, 64, 256 and 1024: the median error at L = 1024 is 1.1-1.2x that at L = 64.
+   - Its error is a bias: RQMC matches it at about 100-1,000 paths and wins beyond.
+   - It underestimates tail probabilities 3x to 60,000x.
+   - These nets are 82-87% linear and 96-97% quadratic in the input, while the input direction still carries 90-97%
+     of the output variance. That fits "easy because the map is simple, not because the input is forgotten", but it
+     is a diagnostic, not a proof of the mechanism.
+5. **Plain nets: the easy case for depth, not for the input (section 3.2).**
+   - Given the law at layer 16-64, a cheap deterministic deep part (K2 per radius bin) finishes the estimate to nMSE
+     1e-7 to 2e-5 on the five healthy nets. This is a paired oracle that reuses the truth's paths.
+   - The shallow part defeats every sample-free method we tried. K2 is off by nMSE 0.016-27, and naive cell
+     enumeration faces >= 1e5 (n = 8) and ~1e6 (n = 16) gate histories.
+   - Sampling only the shallow part (a hybrid) gains 1.6-4x over the best sampler, and nothing at large budgets.
+   - These nets have not forgotten their input: its direction explains 80-92% of the output variance. The deep map
+     is close to rank one.
+6. **Trained nets (section 4).**
+   - RNN width 16: 29-44% at T = 64 (chance 1.6%) and 33-40% at T = 32.
+   - Sorting MLP: residual at depth 64 reaches nMSE 0.034-0.041. Plain at depth 64 fails (0.81-1.14), and the failed
+     net has synchronised like a random one.
+   - On all six trained nets estimated, K2's error is a floor of nMSE 0.013-0.22. That is about what MC gets at K2's
+     own budget of ~35 paths, and 110-1,800x worse than RQMC at 1,024 paths.
+7. **For M1/M3 (section 5): no major advance.** Narrow width moves the M1 obstacle without removing it:
+   - plain nets: into a shallow block of depth about n ln(1/tol);
+   - residual nets: into a depth-stable closure bias;
+   - trained nets: the closure fails.
+   - The concrete next step is a closure whose bias vanishes on the residual family, with K >= 3 or Gaussian
+     mixtures split along the non-quadratic directions.
+

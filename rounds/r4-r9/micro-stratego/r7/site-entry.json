@@ -1,0 +1,53 @@
+{
+ "date": "17 Oct",
+ "name": "Round 7 E-MS-TRUST-SEARCH: 6x6 Stratego trust gating, low-trust replacement and pure salience keys",
+ "status": "informative",
+ "oneline": "Gate and keys passed, trust pooling failed. Pure salience keys did not separate the flanks (gap 0.234, bar 0.28); bag-centred salience did (0.661), mostly because centring a skewed bag pushes the minority flank's keys away. A trust head trained on real game results ranks rollout errors well (Spearman +0.35 overall, +0.37 within a move, vs -0.40 and -0.55 for confidence), but no trust rule pooled better than the plain mean (MSE 0.0137): gating 0.0139, prune-and-replace 0.0143 (worse). The exploratory rollouts built here to be traps were about as accurate as normal ones. 3 seeds, reused checkpoints, audited; $0.27.",
+ "led_to": [],
+ "page": {
+  "why": "Round 6 left two loose ends on 6x6 Stratego. Keys built partly from a rollout's attention fingerprint fell just short of separating left- from right-flank search (gap 0.228, bar 0.25). And weighting rollouts by the self-trust head made move values worse, although the head ranked rollout errors well. Gemini's round-7 spec asked two things. Do keys built only from which hidden pieces a rollout updated (salience) separate the flanks? And is trust useful when some rollouts are unreliable, if it drops or replaces the least-trusted few instead of reweighting all of them? It reused round 5's trained networks, so nothing was retrained.",
+  "what": "The three round-5 world models (1.0M parameters each), unchanged and hash-checked. Two key heads: K3 from the 8-slot salience alone, K3c from salience plus its bag-centred version, each fitted on calibration data against the model's own large-sample answer. For move values, each legal move got a mixed bag of 8 normal rollouts and 8 exploratory ones (piece types drawn at temperature 2.5 with one swap, moves at temperature 2.0). A new trust head was trained on real calibration game results; it saw how plausible each rollout's draws were under the model, but not which tier the rollout came from. Five pooling rules were scored against exact move values: plain mean, confidence weighting, trust weighting, a bottom-tail trust gate, and pruning the 4 least-trusted of 12 rollouts and replacing them with 4 normal ones. Pre-registered (PREREG-R7-E3.md), 3 seeds, one L4, independent audit.",
+  "result": "Gate passed, reproducing round 6 exactly (16 rollouts cut a 4-move-old belief's KL by 48.2%). Keys: pure salience K3 reached a gap of 0.234 [0.215, 0.254], failing the 0.28 bar; K3c reached 0.661 [0.642, 0.679]. With K3c keys, attention pooling's belief divergence between left- and right-preferring search was 10.8x below scaled mixing and 10.2x below Ataraxos-style pooling, and its KL to the exact posterior was lower than every baseline's, so E3-D1 passed. Trust ranking passed all four bars: Spearman with rollout accuracy +0.347 overall and +0.369 within a move's 16 rollouts, against -0.395 and -0.551 for confidence. Trust pooling failed: every trust rule beat confidence weighting by about 63%, but none beat the plain mean (MSE 0.01366): trust gate 0.01394, trust weighting 0.01412, prune-and-replace 0.01431 (significantly worse).",
+  "sowhat": "Two things the spec assumed did not hold here. The key gap came from centring, not from salience: in a bag that leans 85/15 one way, centring makes the minority flank's keys point away from the majority's, and the pooling rules barely changed between K3 and K3c. And the exploratory rollouts as built here (tempered draws plus one type swap) were not hallucination traps: they were about as accurate as normal ones and less often overconfident, so a trust head trained on real outcomes rightly trusted them about as much. Trust does single out the worst individual rollouts, but most of the pooled error is bias that every rollout shares, which no weighting or pruning can remove; dropping rollouts only adds noise.",
+  "decided": "Recorded the gate and E3-D1 as passed and E3-D2 as failed, as pre-registered; post hoc diagnostics are labelled and change no verdict. Not run or chosen: an exploratory tier that is actually unreliable; using trust to choose which moves to search rather than how to pool; key tests on unskewed bags, where centring cannot create a gap.",
+  "chart": {
+   "bars": [
+    {
+     "label": "plain mean",
+     "value": 0.01366,
+     "text": "0.0137"
+    },
+    {
+     "label": "confidence weighting (gamma 2)",
+     "value": 0.03875,
+     "text": "0.0388"
+    },
+    {
+     "label": "trust weighting",
+     "value": 0.01412,
+     "text": "0.0141"
+    },
+    {
+     "label": "bottom-tail trust gate",
+     "value": 0.01394,
+     "text": "0.0139"
+    },
+    {
+     "label": "prune 4 of 12, add 4 normal",
+     "value": 0.01431,
+     "text": "0.0143"
+    }
+   ],
+   "caption": "Action-value MSE against exact move values on mixed bags (8 normal + 8 exploratory rollouts per move), 240 positions x every legal move, 3-seed means. Every trust rule beats confidence weighting, but none beats the plain mean.",
+   "aria": "Bars: plain mean 0.0137, confidence weighting 0.0388, trust weighting 0.0141, trust gate 0.0139, prune-and-replace 0.0143; the plain mean is lowest"
+  },
+  "details": {
+   "methods": [
+    "Pre-registered in r7/PREREG-R7-E3.md (sha256 f3868522...) at 09:40:03Z, before the only launch at 09:40:26Z; rules copied verbatim from the spec. A first hash 18 s earlier was superseded before launch because its header wrongly said no amendments file existed. A pre-hash CPU smoke on small subsets is disclosed there.",
+    "Reused the round-5 checkpoints and data unchanged (parameter hashes checked before and after). Oracle for scoring only: exact posterior over 10,080 setups; Q* from 64 simulator playouts per legal move. The trust head and every pooling hyperparameter were fitted on calibration data against real game results.",
+    "D1 on 500 two-flank test positions (4 shared cover rollouts + 20 rollouts skewed 85/15); D2 on 240 test positions x every legal move (2,361 pairs), 16 normal + 8 exploratory rollouts each (56,664 per seed).",
+    "3 seeds, 95% t-intervals across seeds; 117 numbers re-derived from per-item CSVs (1.9e-5). Independent audit (AUDIT-R7-E3.md): supported with corrections; every verdict reproduced, and the D0 KLs and both rollout tiers recomputed on CPU from a checkpoint; wording corrections applied. GPU $0.27 at the list-price ceiling (one on-demand L4, 0.31 h); no VM or disk left."
+   ]
+  }
+ }
+}

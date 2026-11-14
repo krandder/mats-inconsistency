@@ -1,0 +1,34 @@
+rule,criterion,per_seed,mean,ci95,threshold,pass,note
+E3-D1 (1),raw_count: KL(16) - KL(0),"0.5890, 0.5976, 0.5861",0.5909,"[0.5759, 0.6058]","> 0.010, CI > 0",True,"KL(0) 0.0490, 0.0489, 0.0486; KL(16) 0.6379, 0.6465, 0.6347"
+E3-D1 (1),ataraxos_mmd (gamma 0.25): KL(16) - KL(0),"4.6622, 4.3518, 5.1703",4.7281,"[3.7016, 5.7545]","> 0.010, CI > 0",True,"KL(0) 0.0490, 0.0489, 0.0486; KL(16) 4.7112, 4.4006, 5.2189"
+E3-D1 (1),both naive baselines degrade the anchor,,,,all,True,
+E3-D1 (2),"attn_L3_K3c: max over K >= 1 of KL(K) - KL(0), every seed","0.5461, 0.6317, 0.5802",0.5860,"[0.4790, 0.6930]",<= 0.0005 in every seed,False,"per K (3-seed means): K1 +0.19848, K2 +0.32126, K4 +0.44802, K8 +0.54054, K16 +0.58602"
+E3-D1 (2),attn_L3_K3c: KL(16) - KL(0),"0.5461, 0.6317, 0.5802",0.5860,"[0.4790, 0.6930]",CI < 0,False,
+E3-D1 (2),K = 16 JSD ratio scaled_mix / attn_L3_K3c,"0.0141, 0.0176, 0.0123",0.0147,"[0.0081, 0.0213]",">= 8, CI(diff) > 0",False,"JSD 0.000274 vs 0.018705; diff -0.018431 [-0.019750, -0.017112]"
+E3-D1 (2),K = 16 JSD ratio ataraxos_mmd / attn_L3_K3c,"3.1670, 3.2698, 3.3112",3.2493,"[3.0649, 3.4338]",">= 8, CI(diff) > 0",False,"JSD 0.060789 vs 0.018705; diff 0.042084 [0.036843, 0.047324]"
+E3-D1 (2),K = 16 KL to P*_full: scaled_mix - attn_L3_K3c,"-0.5485, -0.6342, -0.5829",-0.5885,"[-0.6957, -0.4814]","> 0, CI > 0",False,
+E3-D1 (2),K = 16 KL to P*_full: ataraxos_mmd - attn_L3_K3c,"4.1161, 3.7201, 4.5900",4.1421,"[3.0601, 5.2241]","> 0, CI > 0",True,
+E3-D1 (2),K = 16 KL to P*_full: kc_dedup_K3c - attn_L3_K3c,"-0.5471, -0.6317, -0.5793",-0.5860,"[-0.6921, -0.4800]","> 0, CI > 0",False,
+E3-D1 (2),"looped_attn_T3_K3c: max over K >= 1 of KL(K) - KL(0), every seed","0.5070, 0.5556, 0.5456",0.5361,"[0.4723, 0.5998]",<= 0.0005 in every seed,False,"per K (3-seed means): K1 +0.14041, K2 +0.23148, K4 +0.34627, K8 +0.44953, K16 +0.53608"
+E3-D1 (2),looped_attn_T3_K3c: KL(16) - KL(0),"0.5070, 0.5556, 0.5456",0.5361,"[0.4723, 0.5998]",CI < 0,False,
+E3-D1 (2),"attn_L3-K3c (a)-(d) and looped_attn_T3-K3c (a), (b)",,,,all,False,
+E3-D1,(1) and (2),,,,all,False,
+E3-D2 (1),clean bags: MSE(unif_pool) - MSE(cons_pool),"0.0002, -0.0008, 0.0001",-0.0002,"[-0.0016, 0.0012]","> 0, CI > 0",False,"MSE unif 0.01394, cons 0.01412"
+E3-D2 (1),clean bags: relative MSE cut of cons_pool vs stiff_pool,"0.6313, 0.5855, 0.7156",0.6441,"[0.4802, 0.8080]",">= 0.60, CI(diff) > 0",True,"MSE stiff 0.03982; diff 0.02571 [0.01708, 0.03434]"
+E3-D2 (1),clean bags: MSE(trust_pool) - MSE(cons_pool),"0.0011, -0.0008, 0.0005",0.0003,"[-0.0022, 0.0027]",> 0 (3-seed mean),True,
+E3-D2 (1),clean bags: Bias^2(unif) - Bias^2(cons_pool),"0.0003, 0.0007, 0.0002",0.0004,"[-0.0003, 0.0011]",> 0 (3-seed mean),True,Bias^2 0.01186 vs 0.01146
+E3-D2 (1),clean bags: Bias^2(stiff2) - Bias^2(cons_pool),"0.0220, 0.0207, 0.0258",0.0229,"[0.0163, 0.0294]",> 0 (3-seed mean),True,Bias^2 0.03432 vs 0.01146
+E3-D2 (1),clean bags: Bias^2(trust_pool) - Bias^2(cons_pool),"0.0009, 0.0003, 0.0002",0.0005,"[-0.0004, 0.0013]",> 0 (3-seed mean),True,Bias^2 0.01191 vs 0.01146
+E3-D2 (1),all of the above,,,,all,False,
+E3-D2 (2a),"Spearman(beta, -KL) overall, mixed bags","0.2913, 0.3915, 0.3086",0.3305,"[0.1974, 0.4635]",">= 0.40, CI > 0",False,"-H -0.3966, -0.3880, -0.3624"
+E3-D2 (2a),"same, within (s, a) pairs","0.3346, 0.3688, 0.3594",0.3543,"[0.3104, 0.3982]",">= 0.40, CI > 0",False,"-H within -0.5404, -0.5546, -0.5126"
+E3-D2 (2a),Spearman(beta) - Spearman(-H) overall,"0.6879, 0.7795, 0.6710",0.7128,"[0.5678, 0.8578]",">= 0.60, CI > 0",True,
+E3-D2 (2a),"same, within 10 equal-count entropy strata","0.1777, 0.2921, 0.2118",0.2272,"[0.0814, 0.3730]",">= 0.20, CI > 0",True,
+E3-D2 (2a),all four,,,,all,False,
+E3-D2 (2b),mixed bags: relative MSE cut of trust_gate vs unif_pool,"-0.0596, -0.0285, -0.1235",-0.0705,"[-0.1908, 0.0497]",">= 0.20, CI(diff) > 0",False,"MSE 0.01527 vs unif 0.01432; diff -0.00095 [-0.00230, 0.00039]"
+E3-D2 (2b),mixed bags: relative MSE cut of trust_gate vs stiff_pool,"0.6160, 0.5795, 0.6559",0.6171,"[0.5222, 0.7120]",">= 0.60, CI(diff) > 0",True,"MSE stiff 0.03996; diff 0.02468 [0.01905, 0.03032]"
+E3-D2 (2b),mixed bags: relative MSE cut of cons_trust_pool vs unif_pool,"-0.0974, 0.0068, -0.0293",-0.0400,"[-0.1715, 0.0916]",">= 0.20, CI(diff) > 0",False,"MSE 0.01489 vs unif 0.01432; diff -0.00057 [-0.00258, 0.00143]"
+E3-D2 (2b),mixed bags: relative MSE cut of cons_trust_pool vs stiff_pool,"0.6023, 0.5939, 0.6847",0.6270,"[0.5023, 0.7516]",">= 0.60, CI(diff) > 0",True,"MSE stiff 0.03996; diff 0.02506 [0.01897, 0.03116]"
+E3-D2 (2b),"clean bags: MSE(cons_trust_pool) - MSE(unif_pool), every seed","0.0013, -0.0001, 0.0006",0.0006,"[-0.0011, 0.0023]",<= 0 in every seed,False,
+E3-D2 (2b),all of the above,,,,all,False,
+E3-D2,(1) and (2a) and (2b),,,,all,False,

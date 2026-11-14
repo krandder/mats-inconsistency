@@ -1,0 +1,15 @@
+{
+ "id": "E-P2-2",
+ "question": "On mazes with tied shortest paths, does an exactly priced quadtree latent-parent market (M-tree) find a valid shortest path more often than commitment baselines (canonical labels, hard-EM)?",
+ "setup": "Depth-recurrent conv net (about 107k params, trained on n=9 with the progressive market loss, 5000 steps, 5 paired seeds), tested on n=13-33 at T=300. M-tree: 8x8 leaves, K=4 codes per quadtree node, exact upward-pass joint log score on uniformly sampled tie labels, decoded by exact tree MAP. Baselines: U-canon (canonical move-order labels), U-min (hard-EM Viterbi labels), U (sampled labels), U-any (exact P(some shortest path)); decoders get at most 5 local cleanup sweeps, no global search.",
+ "result": "Tie VSP at T=300 (primary set, 300 mazes, n in [13]): U 33.4 [22.0, 44.9], U-canon 50.0 [44.7, 55.3], U-min 64.4 [61.1, 67.7], U-any 62.1 [45.2, 79.0], M-tree 46.1 [29.9, 62.2], M-tile 43.3 [20.3, 66.4]. M-tree - U-canon: -3.9 [-23.8, 15.9] points (bootstrap [-16.4, 9.1]), DiD -13.9 [-23.3, -4.5]. M-tree - U-min: -18.3 [-34.8, -1.9] points (bootstrap [-28.9, -7.7]), DiD -26.2 [-37.5, -14.9]. p=0 cost (U-canon - M-tree): 1.0 [-0.2, 2.2]. GAIN (a) False, (b) False, (c) False. Falsified: 1_upper_M_minus_maxbase_lt_3, 2_DiD_le_0. Per n, tie VSP M-tree - U-min (all 4 sizes, descriptive): n13 -18.3 [-34.8, -1.9], n19 -11.5 [-31.9, 8.9], n25 0.0 [-10.0, 10.0], n33 1.9 [-6.6, 10.3].",
+ "status": "Problem",
+ "files": [
+  "puzzles/P2/jm.py",
+  "puzzles/P2/train.py",
+  "puzzles/P2/eval.py",
+  "puzzles/P2/report.py",
+  "puzzles/P2/RESULTS.md",
+  "puzzles/P2/results/p2_results.json"
+ ]
+}

@@ -1,0 +1,18 @@
+{
+ "id": "E-P1-1",
+ "question": "Multi-horizon anytime-value heads (T2m mechanism): does halting on heads that predict future belief movement at horizons {1,2,4,8,16,32,64,cap} beat one-step, {1,cap}, myopic+entropy, Q-ACT, probe and simple rules at matched compute when the plateau length varies within a size and half the instances never resolve?",
+ "setup": "Frozen MarketResNet w=64 (recipe v2 curriculum, 8000 it; both backbones pass the validity gate), 2 backbone seeds x 3 head seeds; pools L64 and L128 (500 per backbone seed), L256 descriptive. Cost = mean steps to reach a* = 0.98 x best fixed-T log-score gain. Arms R0/R2x4/R3x3 (envelope), R4 one-step gate, R4c same head {1,cap}, R4e, R5 PonderNet, R11, R12, R13 Q-ACT, R7 multi-H label, R8 multi-H KL. 2000 bootstrap resamples (unit, then examples).",
+ "result": "R7 halts at 14.2 [13.0, 15.5] steps at L64 and 29.1 [26.7, 31.6] at L128, within 1% of the oracle (14.1, 29.0) and 33-35% below the simple-rule envelope (21.3, 44.7); R8 (label-free) matches it (+0.1%). But R4c, the same head using only H=1 and cap, is within 1.1% [0.0, 2.1] and 1.6% [0.0, 2.6]: S2 fails (saving vs best competitor 0.3% and 0.9%) and the F2 non-myopia kill fires. R13 Q-ACT 18.8 / 36.1, one-step R4 46.9 / 101, confidence R3 about 46 / 92. The cap (remaining-value) horizon does the work; intermediate horizons add nothing. Resolvable exact at a*: R7 0.79 vs R4 0.997 (clause fails). Head capacity gate fails as specified (R7 Spearman 0.46-0.63 at H in {4,16}), so formally not a clean falsification; post hoc, blocked instances (pure-noise gain) cap the pooled Spearman, resolvable-only 0.67-0.81.",
+ "status": "No gain",
+ "files": [
+  "puzzles/P1/RESULTS.md",
+  "puzzles/P1/PREREG.md",
+  "puzzles/P1/analyze.py",
+  "puzzles/P1/eval.py",
+  "puzzles/P1/train_heads.py",
+  "puzzles/P1/capdiag.py",
+  "puzzles/P1/results/p1_results.json",
+  "puzzles/P1/results/p1_chart.json",
+  "puzzles/P1/results/capdiag_t2m.json"
+ ]
+}

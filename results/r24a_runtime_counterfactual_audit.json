@@ -1,0 +1,684 @@
+{
+  "round_id": "R24A",
+  "title": "Stage-3 Runtime Name-Agnostic Counterfactual Audit (Rules S11-S14)",
+  "device": "cpu",
+  "elapsed_sec": 12.854,
+  "overall_pass": true,
+  "canary_verification": {
+    "ast_canaries_caught": 7,
+    "ast_canaries_total": 7,
+    "runtime_canaries_caught": 4,
+    "runtime_canaries_total": 4,
+    "combined_canaries_caught": 11,
+    "combined_canaries_total": 11,
+    "all_11_of_11_caught": true,
+    "runtime_canary_details": [
+      {
+        "canary_id": "S11-Canary",
+        "target_name": "S11-Canary (CanonicalSlot+GlobalPool)",
+        "caught": true,
+        "failure_reasons": [
+          "S11-E Permutation Equivariance failed: max_ptr_err=5.253e-01, max_mask_err=1.317e-01 (tol=1.0e-05)",
+          "S11-L 1-Hop Locality failed: delta_t1=1.953e-02 (must be < 1.0e-07), delta_tL=1.953e-02 (must be > 1.0e-05)"
+        ],
+        "metrics": {
+          "max_ptr_equivariance_linf": 0.5252968668937683,
+          "max_mask_equivariance_linf": 0.1316922903060913,
+          "equivariance_tolerance": 1e-05,
+          "passed_s11_equivariance": false,
+          "locality_probe": {
+            "hop_distance_perturbed_edge": 3,
+            "delta_t1_source_linf": 0.01953125,
+            "delta_tL_source_linf": 0.01953125,
+            "eps_t1_threshold": 1e-07,
+            "min_tL_threshold": 1e-05,
+            "passed_s11_locality": false
+          },
+          "per_task_equivariance": {
+            "s11_canary_task": {
+              "ptr_equivariance_linf": 0.5252968668937683,
+              "mask_equivariance_linf": 0.1316922903060913
+            }
+          }
+        }
+      },
+      {
+        "canary_id": "S12-Canary",
+        "target_name": "S12-Canary (InertRollout+AnalyticCurve)",
+        "caught": true,
+        "failure_reasons": [
+          "S12-2 inert search rollout: step t=2 state perturbation had zero/negligible effect on final output (delta_final=0.000e+00 <= 1.0e-05)",
+          "S12-4 analytic curve collapse at B=4: Std_i(L_i(4)/L_i(1)) = 0.000e+00 <= 1.0e-04",
+          "S12-4 analytic curve collapse at B=16: Std_i(L_i(16)/L_i(1)) = 0.000e+00 <= 1.0e-04"
+        ],
+        "metrics": {
+          "delta_t1_linf": 0.0,
+          "delta_downstream_linf": 0.0,
+          "min_downstream_shift_threshold": 1e-05,
+          "passed_s12_2_intervention": false,
+          "ratio_stds_by_budget": {
+            "B=4": 0.0,
+            "B=16": 0.0
+          },
+          "ratio_means_by_budget": {
+            "B=4": 0.5743491774985174,
+            "B=16": 0.32987697769322355
+          },
+          "min_observed_ratio_std": 0.0,
+          "min_ratio_std_threshold": 0.0001,
+          "passed_s12_4_dispersion": false
+        }
+      },
+      {
+        "canary_id": "S13-Canary",
+        "target_name": "S13-Canary (AsymmetricClassicalSolverHelper)",
+        "caught": true,
+        "failure_reasons": [
+          "S13-Track0 helper-only solve rate is 64.58% (31/48), exceeding the 5.00% ceiling (classical solver masquerading as helper)",
+          "S13-Ledger Track A (Pure Neural) has non-zero helper calls: {'Baseline_AR': 0, 'Candidate_Search': 12}",
+          "S13-Ledger asymmetric Track B helper usage across paradigms: call_spread=36 ({'Baseline_AR': 12, 'Candidate_Search': 48}), node_spread=320 ({'Baseline_AR': 0, 'Candidate_Search': 320})"
+        ],
+        "metrics": {
+          "track0_total_solved": 31,
+          "track0_total_instances": 48,
+          "track0_solve_rate_pct": 64.5833,
+          "track0_max_allowed_pct": 5.0,
+          "track0_neural_forward_calls": 0,
+          "track0_per_task_solve_pct": {
+            "Sudoku_Extreme_81": 50.0,
+            "SATLIB_3SAT_n20": 75.0,
+            "Sokoban": 100.0,
+            "Countdown": 33.333333333333336
+          },
+          "passed_s13_track0": false,
+          "track_a_helper_calls": {
+            "Baseline_AR": 0,
+            "Candidate_Search": 12
+          },
+          "track_b_helper_calls": {
+            "Baseline_AR": 12,
+            "Candidate_Search": 48
+          },
+          "track_b_node_expansions": {
+            "Baseline_AR": 0,
+            "Candidate_Search": 320
+          },
+          "track_b_call_spread": 36,
+          "track_b_node_spread": 320,
+          "passed_s13_ledger": false
+        }
+      },
+      {
+        "canary_id": "S14-Canary",
+        "target_name": "S14-Canary (EpiphenomenalPrice+CrossModuleLeak)",
+        "caught": true,
+        "failure_reasons": [
+          "S14-Detach violation: broadcast market price tensor retains live autograd grad_fn",
+          "S14-Detach cross-module leakage: perturbing peer modules at fixed price P_t altered module m gradient by L2=1.837e-01 (> 1.0e-08)",
+          "S14-PriceReplay epiphenomenal price failure: shifting broadcast price by delta=0.20 changed module m gradient by L2=0.000e+00 (<= 1.0e-04)"
+        ],
+        "metrics": {
+          "broadcast_has_grad_fn": true,
+          "peer_perturbation_grad_drift_l2": 0.1837117224931717,
+          "counterfactual_price_delta": 0.2,
+          "counterfactual_price_grad_shift_l2": 0.0,
+          "min_price_grad_shift_threshold": 0.0001,
+          "passed_s14_detach": false,
+          "passed_s14_price_replay": false
+        }
+      }
+    ],
+    "ast_canary_details": {
+      "canaries_tested": 7,
+      "canaries_caught": 7,
+      "caught_S1_exact_marginals": true,
+      "caught_S3_law_in_generator": true,
+      "caught_S4_seed_budget_branch": true,
+      "caught_S7_cfr_ref_table": true,
+      "caught_S8_paradigm_gain_mult": true,
+      "caught_S9_asymmetric_solver_helper": true,
+      "caught_S10_target_in_node_feats": true,
+      "pass": true
+    }
+  },
+  "stage1_ast_audit": {
+    "wave1_r18_r21_total_violations": 73,
+    "wave1_r18_r21_violations_by_file": {
+      "benchmarks/run_r18_openspiel_stratego.py": 39,
+      "benchmarks/run_r19_public_reasoning_benchmarks.py": 5,
+      "benchmarks/run_r20_kyle_lmsr_futarchy.py": 6,
+      "benchmarks/run_r21_clrs_ood_and_scaling.py": 23
+    },
+    "wave1_r18_r21_passed": false,
+    "wave2_r22_r23_r24a_total_violations": 0,
+    "wave2_r22_r23_r24a_audited_files": [
+      "benchmarks/run_r22a_genuine_openspiel_stratego.py",
+      "benchmarks/run_r22b_genuine_public_reasoning_clrs.py",
+      "benchmarks/run_r23_genuine_kyle_lmsr_futarchy.py",
+      "src/eval/runtime_counterfactual_auditor.py",
+      "benchmarks/run_r24a_runtime_counterfactual_audit.py"
+    ],
+    "wave2_r22_r23_r24a_passed": true
+  },
+  "stage3_runtime_counterfactual_audit": {
+    "S11_graph_equivariance_and_locality": {
+      "wave2_r22b_e2": {
+        "passed": true,
+        "max_ptr_equivariance_linf": 1.7881393432617188e-07,
+        "max_mask_equivariance_linf": 5.960464477539063e-08,
+        "max_delta_t1_source_linf": 0.0,
+        "min_delta_tL_source_linf": 0.0002435147762298584,
+        "architectures": {
+          "DeepSets": {
+            "rule_id": "S11",
+            "rule_name": "Graph Permutation Equivariance (S11-E) & 1-Hop Message-Passing Locality (S11-L)",
+            "target_name": "Wave2_R22B_E2_DeepSets",
+            "passed": true,
+            "metrics": {
+              "max_ptr_equivariance_linf": 2.9802322387695312e-08,
+              "max_mask_equivariance_linf": 5.960464477539063e-08,
+              "equivariance_tolerance": 1e-05,
+              "passed_s11_equivariance": true,
+              "locality_probe": {
+                "hop_distance_perturbed_edge": 3,
+                "delta_t1_source_linf": 0.0,
+                "delta_tL_source_linf": 0.0006656646728515625,
+                "eps_t1_threshold": 1e-07,
+                "min_tL_threshold": 1e-05,
+                "passed_s11_locality": true
+              },
+              "per_task_equivariance": {
+                "BFS": {
+                  "ptr_equivariance_linf": 2.9802322387695312e-08,
+                  "mask_equivariance_linf": 5.960464477539063e-08
+                },
+                "DFS": {
+                  "ptr_equivariance_linf": 2.9802322387695312e-08,
+                  "mask_equivariance_linf": 5.960464477539063e-08
+                },
+                "Dijkstra": {
+                  "ptr_equivariance_linf": 2.2351741790771484e-08,
+                  "mask_equivariance_linf": 5.960464477539063e-08
+                },
+                "Bellman_Ford": {
+                  "ptr_equivariance_linf": 2.60770320892334e-08,
+                  "mask_equivariance_linf": 5.960464477539063e-08
+                },
+                "MST_Prim": {
+                  "ptr_equivariance_linf": 2.2351741790771484e-08,
+                  "mask_equivariance_linf": 5.960464477539063e-08
+                },
+                "Articulation_Points": {
+                  "ptr_equivariance_linf": 2.9802322387695312e-08,
+                  "mask_equivariance_linf": 5.960464477539063e-08
+                }
+              }
+            },
+            "failure_reasons": []
+          },
+          "MPNN_Max": {
+            "rule_id": "S11",
+            "rule_name": "Graph Permutation Equivariance (S11-E) & 1-Hop Message-Passing Locality (S11-L)",
+            "target_name": "Wave2_R22B_E2_MPNN_Max",
+            "passed": true,
+            "metrics": {
+              "max_ptr_equivariance_linf": 1.1920928955078125e-07,
+              "max_mask_equivariance_linf": 0.0,
+              "equivariance_tolerance": 1e-05,
+              "passed_s11_equivariance": true,
+              "locality_probe": {
+                "hop_distance_perturbed_edge": 3,
+                "delta_t1_source_linf": 0.0,
+                "delta_tL_source_linf": 0.0004968792200088501,
+                "eps_t1_threshold": 1e-07,
+                "min_tL_threshold": 1e-05,
+                "passed_s11_locality": true
+              },
+              "per_task_equivariance": {
+                "BFS": {
+                  "ptr_equivariance_linf": 5.960464477539063e-08,
+                  "mask_equivariance_linf": 0.0
+                },
+                "DFS": {
+                  "ptr_equivariance_linf": 1.1920928955078125e-07,
+                  "mask_equivariance_linf": 0.0
+                },
+                "Dijkstra": {
+                  "ptr_equivariance_linf": 5.960464477539063e-08,
+                  "mask_equivariance_linf": 0.0
+                },
+                "Bellman_Ford": {
+                  "ptr_equivariance_linf": 1.1920928955078125e-07,
+                  "mask_equivariance_linf": 0.0
+                },
+                "MST_Prim": {
+                  "ptr_equivariance_linf": 5.960464477539063e-08,
+                  "mask_equivariance_linf": 0.0
+                },
+                "Articulation_Points": {
+                  "ptr_equivariance_linf": 5.960464477539063e-08,
+                  "mask_equivariance_linf": 0.0
+                }
+              }
+            },
+            "failure_reasons": []
+          },
+          "RelTransformer": {
+            "rule_id": "S11",
+            "rule_name": "Graph Permutation Equivariance (S11-E) & 1-Hop Message-Passing Locality (S11-L)",
+            "target_name": "Wave2_R22B_E2_RelTransformer",
+            "passed": true,
+            "metrics": {
+              "max_ptr_equivariance_linf": 1.4901161193847656e-07,
+              "max_mask_equivariance_linf": 5.960464477539063e-08,
+              "equivariance_tolerance": 1e-05,
+              "passed_s11_equivariance": true,
+              "locality_probe": {
+                "hop_distance_perturbed_edge": 3,
+                "delta_t1_source_linf": 0.0,
+                "delta_tL_source_linf": 0.0017061233520507812,
+                "eps_t1_threshold": 1e-07,
+                "min_tL_threshold": 1e-05,
+                "passed_s11_locality": true
+              },
+              "per_task_equivariance": {
+                "BFS": {
+                  "ptr_equivariance_linf": 1.4901161193847656e-07,
+                  "mask_equivariance_linf": 5.960464477539063e-08
+                },
+                "DFS": {
+                  "ptr_equivariance_linf": 1.1920928955078125e-07,
+                  "mask_equivariance_linf": 5.960464477539063e-08
+                },
+                "Dijkstra": {
+                  "ptr_equivariance_linf": 1.1920928955078125e-07,
+                  "mask_equivariance_linf": 5.960464477539063e-08
+                },
+                "Bellman_Ford": {
+                  "ptr_equivariance_linf": 1.1920928955078125e-07,
+                  "mask_equivariance_linf": 5.960464477539063e-08
+                },
+                "MST_Prim": {
+                  "ptr_equivariance_linf": 1.1920928955078125e-07,
+                  "mask_equivariance_linf": 5.960464477539063e-08
+                },
+                "Articulation_Points": {
+                  "ptr_equivariance_linf": 1.1920928955078125e-07,
+                  "mask_equivariance_linf": 5.960464477539063e-08
+                }
+              }
+            },
+            "failure_reasons": []
+          },
+          "Triplet_GMPNN": {
+            "rule_id": "S11",
+            "rule_name": "Graph Permutation Equivariance (S11-E) & 1-Hop Message-Passing Locality (S11-L)",
+            "target_name": "Wave2_R22B_E2_Triplet_GMPNN",
+            "passed": true,
+            "metrics": {
+              "max_ptr_equivariance_linf": 1.1920928955078125e-07,
+              "max_mask_equivariance_linf": 5.960464477539063e-08,
+              "equivariance_tolerance": 1e-05,
+              "passed_s11_equivariance": true,
+              "locality_probe": {
+                "hop_distance_perturbed_edge": 3,
+                "delta_t1_source_linf": 0.0,
+                "delta_tL_source_linf": 0.0002435147762298584,
+                "eps_t1_threshold": 1e-07,
+                "min_tL_threshold": 1e-05,
+                "passed_s11_locality": true
+              },
+              "per_task_equivariance": {
+                "BFS": {
+                  "ptr_equivariance_linf": 1.1920928955078125e-07,
+                  "mask_equivariance_linf": 5.960464477539063e-08
+                },
+                "DFS": {
+                  "ptr_equivariance_linf": 1.1920928955078125e-07,
+                  "mask_equivariance_linf": 5.960464477539063e-08
+                },
+                "Dijkstra": {
+                  "ptr_equivariance_linf": 1.1920928955078125e-07,
+                  "mask_equivariance_linf": 5.960464477539063e-08
+                },
+                "Bellman_Ford": {
+                  "ptr_equivariance_linf": 1.1920928955078125e-07,
+                  "mask_equivariance_linf": 5.960464477539063e-08
+                },
+                "MST_Prim": {
+                  "ptr_equivariance_linf": 1.1920928955078125e-07,
+                  "mask_equivariance_linf": 5.960464477539063e-08
+                },
+                "Articulation_Points": {
+                  "ptr_equivariance_linf": 1.1920928955078125e-07,
+                  "mask_equivariance_linf": 5.960464477539063e-08
+                }
+              }
+            },
+            "failure_reasons": []
+          },
+          "GLC_AOM_v2": {
+            "rule_id": "S11",
+            "rule_name": "Graph Permutation Equivariance (S11-E) & 1-Hop Message-Passing Locality (S11-L)",
+            "target_name": "Wave2_R22B_E2_GLC_AOM_v2",
+            "passed": true,
+            "metrics": {
+              "max_ptr_equivariance_linf": 1.7881393432617188e-07,
+              "max_mask_equivariance_linf": 5.960464477539063e-08,
+              "equivariance_tolerance": 1e-05,
+              "passed_s11_equivariance": true,
+              "locality_probe": {
+                "hop_distance_perturbed_edge": 3,
+                "delta_t1_source_linf": 0.0,
+                "delta_tL_source_linf": 0.0002650618553161621,
+                "eps_t1_threshold": 1e-07,
+                "min_tL_threshold": 1e-05,
+                "passed_s11_locality": true
+              },
+              "per_task_equivariance": {
+                "BFS": {
+                  "ptr_equivariance_linf": 1.1920928955078125e-07,
+                  "mask_equivariance_linf": 5.960464477539063e-08
+                },
+                "DFS": {
+                  "ptr_equivariance_linf": 1.1920928955078125e-07,
+                  "mask_equivariance_linf": 5.960464477539063e-08
+                },
+                "Dijkstra": {
+                  "ptr_equivariance_linf": 1.7881393432617188e-07,
+                  "mask_equivariance_linf": 5.960464477539063e-08
+                },
+                "Bellman_Ford": {
+                  "ptr_equivariance_linf": 1.1920928955078125e-07,
+                  "mask_equivariance_linf": 5.960464477539063e-08
+                },
+                "MST_Prim": {
+                  "ptr_equivariance_linf": 1.1920928955078125e-07,
+                  "mask_equivariance_linf": 5.960464477539063e-08
+                },
+                "Articulation_Points": {
+                  "ptr_equivariance_linf": 1.4901161193847656e-07,
+                  "mask_equivariance_linf": 5.960464477539063e-08
+                }
+              }
+            },
+            "failure_reasons": []
+          }
+        }
+      },
+      "wave1_r21_e1": {
+        "rule_id": "S11",
+        "rule_name": "Graph Permutation Equivariance (S11-E) & 1-Hop Message-Passing Locality (S11-L)",
+        "target_name": "Wave1_R21_E1_CLRSNeuralProcessor",
+        "passed": false,
+        "metrics": {
+          "max_ptr_equivariance_linf": 0.004427172243595123,
+          "max_mask_equivariance_linf": 0.011986076831817627,
+          "equivariance_tolerance": 1e-05,
+          "passed_s11_equivariance": false,
+          "locality_probe": {
+            "hop_distance_perturbed_edge": 3,
+            "delta_t1_source_linf": 0.0680970549583435,
+            "delta_tL_source_linf": 0.0680970549583435,
+            "eps_t1_threshold": 1e-07,
+            "min_tL_threshold": 1e-05,
+            "passed_s11_locality": false
+          },
+          "per_task_equivariance": {
+            "BFS": {
+              "ptr_equivariance_linf": 0.004427172243595123,
+              "mask_equivariance_linf": 0.011986076831817627
+            },
+            "DFS": {
+              "ptr_equivariance_linf": 0.0028018802404403687,
+              "mask_equivariance_linf": 0.005682915449142456
+            }
+          }
+        },
+        "failure_reasons": [
+          "S11-E Permutation Equivariance failed: max_ptr_err=4.427e-03, max_mask_err=1.199e-02 (tol=1.0e-05)",
+          "S11-L 1-Hop Locality failed: delta_t1=6.810e-02 (must be < 1.0e-07), delta_tL=6.810e-02 (must be > 1.0e-05)"
+        ]
+      }
+    },
+    "S12_search_intervention_and_dispersion": {
+      "wave2_r22b_e3": {
+        "rule_id": "S12",
+        "rule_name": "Step-Wise Search Intervention (S12-2) & Loss-Ratio Dispersion (S12-4)",
+        "target_name": "Wave2_R22B_E3_ScaledSearchModel_Tiny_0.8M",
+        "passed": true,
+        "metrics": {
+          "delta_t1_linf": 0.0,
+          "delta_downstream_linf": 0.0058806538581848145,
+          "min_downstream_shift_threshold": 1e-05,
+          "passed_s12_2_intervention": true,
+          "ratio_stds_by_budget": {
+            "B=4": 0.1862271680891104,
+            "B=16": 0.18996739789326236
+          },
+          "ratio_means_by_budget": {
+            "B=4": 0.5422046755487744,
+            "B=16": 0.7252311231863036
+          },
+          "min_observed_ratio_std": 0.1862271680891104,
+          "min_ratio_std_threshold": 0.0001,
+          "passed_s12_4_dispersion": true
+        },
+        "failure_reasons": []
+      },
+      "wave1_r21_e2": {
+        "rule_id": "S12",
+        "rule_name": "Step-Wise Search Intervention (S12-2) & Loss-Ratio Dispersion (S12-4)",
+        "target_name": "Wave1_R21_E2_ScalingRunner",
+        "passed": false,
+        "metrics": {
+          "delta_t1_linf": 0.0,
+          "delta_downstream_linf": 0.0,
+          "min_downstream_shift_threshold": 1e-05,
+          "passed_s12_2_intervention": false,
+          "ratio_stds_by_budget": {
+            "B=4": 3.925231146709438e-17,
+            "B=16": 0.0
+          },
+          "ratio_means_by_budget": {
+            "B=4": 0.55864356903611,
+            "B=16": 0.31208263722540297
+          },
+          "min_observed_ratio_std": 0.0,
+          "min_ratio_std_threshold": 0.0001,
+          "passed_s12_4_dispersion": false
+        },
+        "failure_reasons": [
+          "S12-2 inert search rollout: step t=2 state perturbation had zero/negligible effect on final output (delta_final=0.000e+00 <= 1.0e-05)",
+          "S12-4 analytic curve collapse at B=4: Std_i(L_i(4)/L_i(1)) = 3.925e-17 <= 1.0e-04",
+          "S12-4 analytic curve collapse at B=16: Std_i(L_i(16)/L_i(1)) = 0.000e+00 <= 1.0e-04"
+        ]
+      }
+    },
+    "S13_track0_and_symmetric_ledger": {
+      "wave2_r22b_e1": {
+        "rule_id": "S13",
+        "rule_name": "Track-0 Helper-Only Baseline & Symmetric Evaluator Ledger Gate",
+        "target_name": "Wave2_R22B_E1_SymmetricEvaluator",
+        "passed": true,
+        "metrics": {
+          "track0_total_solved": 0,
+          "track0_total_instances": 48,
+          "track0_solve_rate_pct": 0.0,
+          "track0_max_allowed_pct": 5.0,
+          "track0_neural_forward_calls": 0,
+          "track0_per_task_solve_pct": {
+            "Sudoku_Extreme_81": 0.0,
+            "SATLIB_3SAT_n20": 0.0,
+            "Sokoban": 0.0,
+            "Countdown": 0.0
+          },
+          "passed_s13_track0": true,
+          "track_a_helper_calls": {
+            "AR_GRPO": 0,
+            "MDLM": 0,
+            "BoN_Verifier": 0,
+            "TRM_Looped": 0,
+            "Searchformer": 0,
+            "Stream_of_Search": 0,
+            "GLC_AOM_v2": 0
+          },
+          "track_b_helper_calls": {
+            "AR_GRPO": 1,
+            "MDLM": 1,
+            "BoN_Verifier": 1,
+            "TRM_Looped": 1,
+            "Searchformer": 1,
+            "Stream_of_Search": 1,
+            "GLC_AOM_v2": 1
+          },
+          "track_b_node_expansions": {
+            "AR_GRPO": 0,
+            "MDLM": 0,
+            "BoN_Verifier": 0,
+            "TRM_Looped": 0,
+            "Searchformer": 0,
+            "Stream_of_Search": 0,
+            "GLC_AOM_v2": 0
+          },
+          "track_b_call_spread": 0,
+          "track_b_node_spread": 0,
+          "passed_s13_ledger": true
+        },
+        "failure_reasons": []
+      },
+      "wave1_r19": {
+        "rule_id": "S13",
+        "rule_name": "Track-0 Helper-Only Baseline & Symmetric Evaluator Ledger Gate",
+        "target_name": "Wave1_R19_PublicReasoningEvaluator",
+        "passed": false,
+        "metrics": {
+          "track0_total_solved": 31,
+          "track0_total_instances": 48,
+          "track0_solve_rate_pct": 64.5833,
+          "track0_max_allowed_pct": 5.0,
+          "track0_neural_forward_calls": 0,
+          "track0_per_task_solve_pct": {
+            "Sudoku_Extreme_81": 50.0,
+            "SATLIB_3SAT_n20": 75.0,
+            "Sokoban": 100.0,
+            "Countdown": 33.333333333333336
+          },
+          "passed_s13_track0": false,
+          "track_a_helper_calls": {
+            "AR_CoT": 0,
+            "MDLM": 0,
+            "Soft_Thinking": 0,
+            "TRM_Looped": 1,
+            "Searchformer_Distill": 1,
+            "SoS_StreamOfSearch": 1,
+            "GLC_AOM_v2": 3
+          },
+          "track_b_helper_calls": {
+            "AR_CoT": 0,
+            "MDLM": 0,
+            "Soft_Thinking": 0,
+            "TRM_Looped": 1,
+            "Searchformer_Distill": 1,
+            "SoS_StreamOfSearch": 1,
+            "GLC_AOM_v2": 3
+          },
+          "track_b_node_expansions": {
+            "AR_CoT": 0,
+            "MDLM": 0,
+            "Soft_Thinking": 0,
+            "TRM_Looped": 4,
+            "Searchformer_Distill": 18,
+            "SoS_StreamOfSearch": 18,
+            "GLC_AOM_v2": 292
+          },
+          "track_b_call_spread": 3,
+          "track_b_node_spread": 292,
+          "passed_s13_ledger": false
+        },
+        "failure_reasons": [
+          "S13-Track0 helper-only solve rate is 64.58% (31/48), exceeding the 5.00% ceiling (classical solver masquerading as helper)",
+          "S13-Ledger Track A (Pure Neural) has non-zero helper calls: {'AR_CoT': 0, 'MDLM': 0, 'Soft_Thinking': 0, 'TRM_Looped': 1, 'Searchformer_Distill': 1, 'SoS_StreamOfSearch': 1, 'GLC_AOM_v2': 3}",
+          "S13-Ledger asymmetric Track B helper usage across paradigms: call_spread=3 ({'AR_CoT': 0, 'MDLM': 0, 'Soft_Thinking': 0, 'TRM_Looped': 1, 'Searchformer_Distill': 1, 'SoS_StreamOfSearch': 1, 'GLC_AOM_v2': 3}), node_spread=292 ({'AR_CoT': 0, 'MDLM': 0, 'Soft_Thinking': 0, 'TRM_Looped': 4, 'Searchformer_Distill': 18, 'SoS_StreamOfSearch': 18, 'GLC_AOM_v2': 292})"
+        ]
+      }
+    },
+    "S14_counterfactual_price_replay": {
+      "wave2_r23_e2_m4": {
+        "rule_id": "S14",
+        "rule_name": "Paired Counterfactual Broadcast Price Replay Gate",
+        "target_name": "Wave2_R23_E2_M4_Decentralized_Kyle_LMSR_Pinned_LIR",
+        "passed": true,
+        "metrics": {
+          "broadcast_has_grad_fn": false,
+          "peer_perturbation_grad_drift_l2": 0.0,
+          "counterfactual_price_delta": 0.2,
+          "counterfactual_price_grad_shift_l2": 0.216789111495018,
+          "min_price_grad_shift_threshold": 0.0001,
+          "passed_s14_detach": true,
+          "passed_s14_price_replay": true
+        },
+        "failure_reasons": []
+      },
+      "wave2_r23_e2_m5": {
+        "rule_id": "S14",
+        "rule_name": "Paired Counterfactual Broadcast Price Replay Gate",
+        "target_name": "Wave2_R23_E2_M5_Decentralized_Kyle_LMSR_Futarchy_Evolution",
+        "passed": true,
+        "metrics": {
+          "broadcast_has_grad_fn": false,
+          "peer_perturbation_grad_drift_l2": 0.0,
+          "counterfactual_price_delta": 0.2,
+          "counterfactual_price_grad_shift_l2": 0.23614530265331268,
+          "min_price_grad_shift_threshold": 0.0001,
+          "passed_s14_detach": true,
+          "passed_s14_price_replay": true
+        },
+        "failure_reasons": []
+      },
+      "wave1_r20_e2_p1": {
+        "rule_id": "S14",
+        "rule_name": "Paired Counterfactual Broadcast Price Replay Gate",
+        "target_name": "Wave1_R20_E2_P1_Local_Greedy",
+        "passed": false,
+        "metrics": {
+          "broadcast_has_grad_fn": false,
+          "peer_perturbation_grad_drift_l2": 0.0,
+          "counterfactual_price_delta": 0.2,
+          "counterfactual_price_grad_shift_l2": 0.0,
+          "min_price_grad_shift_threshold": 0.0001,
+          "passed_s14_detach": true,
+          "passed_s14_price_replay": false
+        },
+        "failure_reasons": [
+          "S14-PriceReplay epiphenomenal price failure: shifting broadcast price by delta=0.20 changed module m gradient by L2=0.000e+00 (<= 1.0e-04)"
+        ]
+      },
+      "wave1_r20_e2_p5_epoch0": {
+        "rule_id": "S14",
+        "rule_name": "Paired Counterfactual Broadcast Price Replay Gate",
+        "target_name": "Wave1_R20_E2_P5_Epoch0_PeerAnchorLeak",
+        "passed": false,
+        "metrics": {
+          "broadcast_has_grad_fn": true,
+          "peer_perturbation_grad_drift_l2": 1.3775664567947388,
+          "counterfactual_price_delta": 0.2,
+          "counterfactual_price_grad_shift_l2": 0.0,
+          "min_price_grad_shift_threshold": 0.0001,
+          "passed_s14_detach": false,
+          "passed_s14_price_replay": false
+        },
+        "failure_reasons": [
+          "S14-Detach violation: broadcast market price tensor retains live autograd grad_fn",
+          "S14-Detach cross-module leakage: perturbing peer modules at fixed price P_t altered module m gradient by L2=1.378e+00 (> 1.0e-08)",
+          "S14-PriceReplay epiphenomenal price failure: shifting broadcast price by delta=0.20 changed module m gradient by L2=0.000e+00 (<= 1.0e-04)"
+        ]
+      }
+    }
+  },
+  "verdict_matrix": {
+    "wave2_passes_all_S1_to_S14": true,
+    "wave1_caught_by_all_S1_to_S14": true,
+    "canaries_11_of_11_caught": true
+  }
+}

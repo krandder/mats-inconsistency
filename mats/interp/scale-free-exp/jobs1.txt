@@ -1,0 +1,236 @@
+e4_flat_s0 e4fa.py --attn dense:all,dense:all,dense:all,dense:all --seed 0
+e4_flat1_s0 e4fa.py --attn dense:self,dense:all,dense:all,dense:all --seed 0
+e4_told_s0 e4fa.py --attn dense:self,dense:src,dense:all,dense:all --seed 0
+e4_toldu_s0 e4fa.py --attn dense:self,uniform:src,dense:all,dense:all --seed 0
+e4_learned_s0 e4fa.py --attn dense:self,idroute:all,dense:all,dense:all --seed 0
+e4_flat_s1 e4fa.py --attn dense:all,dense:all,dense:all,dense:all --seed 1
+e4_flat1_s1 e4fa.py --attn dense:self,dense:all,dense:all,dense:all --seed 1
+e4_told_s1 e4fa.py --attn dense:self,dense:src,dense:all,dense:all --seed 1
+e4_toldu_s1 e4fa.py --attn dense:self,uniform:src,dense:all,dense:all --seed 1
+e4_learned_s1 e4fa.py --attn dense:self,idroute:all,dense:all,dense:all --seed 1
+e1w0_tok_N24_s0 sftrain.py --arch tok --world indep --N 24 --seed 0
+e1w0_tok_N24_s1 sftrain.py --arch tok --world indep --N 24 --seed 1
+e1w0_tok_N24_s2 sftrain.py --arch tok --world indep --N 24 --seed 2
+e1w0_tok_N12_s0 sftrain.py --arch tok --world indep --N 12 --seed 0
+e1w0_tok_N12_s1 sftrain.py --arch tok --world indep --N 12 --seed 1
+e1w0_tok_N12_s2 sftrain.py --arch tok --world indep --N 12 --seed 2
+e1w0_tok_N6_s0 sftrain.py --arch tok --world indep --N 6 --seed 0
+e1w0_tok_N6_s1 sftrain.py --arch tok --world indep --N 6 --seed 1
+e1w0_tok_N6_s2 sftrain.py --arch tok --world indep --N 6 --seed 2
+e1w0_tok_N3_s0 sftrain.py --arch tok --world indep --N 3 --seed 0
+e1w0_tok_N3_s1 sftrain.py --arch tok --world indep --N 3 --seed 1
+e1w0_tok_N3_s2 sftrain.py --arch tok --world indep --N 3 --seed 2
+e1w1_tokg_N24_s0 sftrain.py --arch tok --gid --world groups --rho 0.5 --gsize 4 --N 24 --seed 0
+e1w1_tokg_N24_s1 sftrain.py --arch tok --gid --world groups --rho 0.5 --gsize 4 --N 24 --seed 1
+e1w1_tokg_N16_s0 sftrain.py --arch tok --gid --world groups --rho 0.5 --gsize 4 --N 16 --seed 0
+e1w1_tokg_N16_s1 sftrain.py --arch tok --gid --world groups --rho 0.5 --gsize 4 --N 16 --seed 1
+e1w1_tokg_N8_s0 sftrain.py --arch tok --gid --world groups --rho 0.5 --gsize 4 --N 8 --seed 0
+e1w1_tokg_N8_s1 sftrain.py --arch tok --gid --world groups --rho 0.5 --gsize 4 --N 8 --seed 1
+e1w1_tokg_N4_s0 sftrain.py --arch tok --gid --world groups --rho 0.5 --gsize 4 --N 4 --seed 0
+e1w1_tokg_N4_s1 sftrain.py --arch tok --gid --world groups --rho 0.5 --gsize 4 --N 4 --seed 1
+e1w2_tok_N8_s0 sftrain.py --arch tok --world pairs --rho 0.9 --N 8 --seed 0
+e1w2_tok_N8_s1 sftrain.py --arch tok --world pairs --rho 0.9 --N 8 --seed 1
+e1w2_tok_N6_s0 sftrain.py --arch tok --world pairs --rho 0.9 --N 6 --seed 0
+e1w2_tok_N6_s1 sftrain.py --arch tok --world pairs --rho 0.9 --N 6 --seed 1
+e1w2_tok_N4_s0 sftrain.py --arch tok --world pairs --rho 0.9 --N 4 --seed 0
+e1w2_tok_N4_s1 sftrain.py --arch tok --world pairs --rho 0.9 --N 4 --seed 1
+e3w0_A_N12_s0 sftrain.py --arch tok --L 3 --attn dense:all,dense:all,dense:all --world indep --N 12 --seed 0
+e3w0_B_N12_s0 sftrain.py --arch tok --L 3 --attn dense:self,uniform:src,uniform:all --world indep --N 12 --seed 0
+e3w0_C_N12_s0 sftrain.py --arch tok --L 3 --attn dense:self,dense:src,dense:all --world indep --N 12 --seed 0
+e3w0_D_N12_s0 sftrain.py --arch tok --L 3 --attn idroute:all,idroute:all,idroute:all --world indep --N 12 --seed 0
+e3w0_Bp_N12_s0 sftrain.py --arch tok --L 3 --attn dense:self,uniform:src,dense:all --world indep --N 12 --seed 0
+e3w0_A_N12_s1 sftrain.py --arch tok --L 3 --attn dense:all,dense:all,dense:all --world indep --N 12 --seed 1
+e3w0_B_N12_s1 sftrain.py --arch tok --L 3 --attn dense:self,uniform:src,uniform:all --world indep --N 12 --seed 1
+e3w0_C_N12_s1 sftrain.py --arch tok --L 3 --attn dense:self,dense:src,dense:all --world indep --N 12 --seed 1
+e3w0_D_N12_s1 sftrain.py --arch tok --L 3 --attn idroute:all,idroute:all,idroute:all --world indep --N 12 --seed 1
+e3w0_Bp_N12_s1 sftrain.py --arch tok --L 3 --attn dense:self,uniform:src,dense:all --world indep --N 12 --seed 1
+e3w0_A_N3_s0 sftrain.py --arch tok --L 3 --attn dense:all,dense:all,dense:all --world indep --N 3 --seed 0
+e3w0_B_N3_s0 sftrain.py --arch tok --L 3 --attn dense:self,uniform:src,uniform:all --world indep --N 3 --seed 0
+e3w0_C_N3_s0 sftrain.py --arch tok --L 3 --attn dense:self,dense:src,dense:all --world indep --N 3 --seed 0
+e3w0_D_N3_s0 sftrain.py --arch tok --L 3 --attn idroute:all,idroute:all,idroute:all --world indep --N 3 --seed 0
+e3w0_Bp_N3_s0 sftrain.py --arch tok --L 3 --attn dense:self,uniform:src,dense:all --world indep --N 3 --seed 0
+e3w0_A_N3_s1 sftrain.py --arch tok --L 3 --attn dense:all,dense:all,dense:all --world indep --N 3 --seed 1
+e3w0_B_N3_s1 sftrain.py --arch tok --L 3 --attn dense:self,uniform:src,uniform:all --world indep --N 3 --seed 1
+e3w0_C_N3_s1 sftrain.py --arch tok --L 3 --attn dense:self,dense:src,dense:all --world indep --N 3 --seed 1
+e3w0_D_N3_s1 sftrain.py --arch tok --L 3 --attn idroute:all,idroute:all,idroute:all --world indep --N 3 --seed 1
+e3w0_Bp_N3_s1 sftrain.py --arch tok --L 3 --attn dense:self,uniform:src,dense:all --world indep --N 3 --seed 1
+e3w1_A4_N16_s0 sftrain.py --arch tok --gid --L 4 --attn dense:all,dense:all,dense:all,dense:all --world groups --rho 0.5 --gsize 4 --N 16 --seed 0
+e3w1_G4_N16_s0 sftrain.py --arch tok --gid --L 4 --attn dense:self,uniform:src,dense:grp,uniform:all --world groups --rho 0.5 --gsize 4 --N 16 --seed 0
+e3w1_G4u_N16_s0 sftrain.py --arch tok --gid --L 4 --attn dense:self,uniform:src,uniform:grp,uniform:all --world groups --rho 0.5 --gsize 4 --N 16 --seed 0
+e3w1_A4_N16_s1 sftrain.py --arch tok --gid --L 4 --attn dense:all,dense:all,dense:all,dense:all --world groups --rho 0.5 --gsize 4 --N 16 --seed 1
+e3w1_G4_N16_s1 sftrain.py --arch tok --gid --L 4 --attn dense:self,uniform:src,dense:grp,uniform:all --world groups --rho 0.5 --gsize 4 --N 16 --seed 1
+e3w1_G4u_N16_s1 sftrain.py --arch tok --gid --L 4 --attn dense:self,uniform:src,uniform:grp,uniform:all --world groups --rho 0.5 --gsize 4 --N 16 --seed 1
+e3w1_A4_N8_s0 sftrain.py --arch tok --gid --L 4 --attn dense:all,dense:all,dense:all,dense:all --world groups --rho 0.5 --gsize 4 --N 8 --seed 0
+e3w1_G4_N8_s0 sftrain.py --arch tok --gid --L 4 --attn dense:self,uniform:src,dense:grp,uniform:all --world groups --rho 0.5 --gsize 4 --N 8 --seed 0
+e3w1_G4u_N8_s0 sftrain.py --arch tok --gid --L 4 --attn dense:self,uniform:src,uniform:grp,uniform:all --world groups --rho 0.5 --gsize 4 --N 8 --seed 0
+e3w1_A4_N8_s1 sftrain.py --arch tok --gid --L 4 --attn dense:all,dense:all,dense:all,dense:all --world groups --rho 0.5 --gsize 4 --N 8 --seed 1
+e3w1_G4_N8_s1 sftrain.py --arch tok --gid --L 4 --attn dense:self,uniform:src,dense:grp,uniform:all --world groups --rho 0.5 --gsize 4 --N 8 --seed 1
+e3w1_G4u_N8_s1 sftrain.py --arch tok --gid --L 4 --attn dense:self,uniform:src,uniform:grp,uniform:all --world groups --rho 0.5 --gsize 4 --N 8 --seed 1
+e1w0_set_N24_s0 sftrain.py --arch set --world indep --N 24 --seed 0
+e1w0_setnc_N24_s0 sftrain.py --arch set --nocross --world indep --N 24 --seed 0
+e1w0_set_N24_s1 sftrain.py --arch set --world indep --N 24 --seed 1
+e1w0_setnc_N24_s1 sftrain.py --arch set --nocross --world indep --N 24 --seed 1
+e1w0_set_N24_s2 sftrain.py --arch set --world indep --N 24 --seed 2
+e1w0_setnc_N24_s2 sftrain.py --arch set --nocross --world indep --N 24 --seed 2
+e1w0_set_N12_s0 sftrain.py --arch set --world indep --N 12 --seed 0
+e1w0_setnc_N12_s0 sftrain.py --arch set --nocross --world indep --N 12 --seed 0
+e1w0_set_N12_s1 sftrain.py --arch set --world indep --N 12 --seed 1
+e1w0_setnc_N12_s1 sftrain.py --arch set --nocross --world indep --N 12 --seed 1
+e1w0_set_N12_s2 sftrain.py --arch set --world indep --N 12 --seed 2
+e1w0_setnc_N12_s2 sftrain.py --arch set --nocross --world indep --N 12 --seed 2
+e1w0_set_N6_s0 sftrain.py --arch set --world indep --N 6 --seed 0
+e1w0_setnc_N6_s0 sftrain.py --arch set --nocross --world indep --N 6 --seed 0
+e1w0_set_N6_s1 sftrain.py --arch set --world indep --N 6 --seed 1
+e1w0_setnc_N6_s1 sftrain.py --arch set --nocross --world indep --N 6 --seed 1
+e1w0_set_N6_s2 sftrain.py --arch set --world indep --N 6 --seed 2
+e1w0_setnc_N6_s2 sftrain.py --arch set --nocross --world indep --N 6 --seed 2
+e1w0_set_N3_s0 sftrain.py --arch set --world indep --N 3 --seed 0
+e1w0_setnc_N3_s0 sftrain.py --arch set --nocross --world indep --N 3 --seed 0
+e1w0_set_N3_s1 sftrain.py --arch set --world indep --N 3 --seed 1
+e1w0_setnc_N3_s1 sftrain.py --arch set --nocross --world indep --N 3 --seed 1
+e1w0_set_N3_s2 sftrain.py --arch set --world indep --N 3 --seed 2
+e1w0_setnc_N3_s2 sftrain.py --arch set --nocross --world indep --N 3 --seed 2
+e1w1_setg_N24_s0 sftrain.py --arch set --gid --world groups --rho 0.5 --gsize 4 --N 24 --seed 0
+e1w1_setg_N24_s1 sftrain.py --arch set --gid --world groups --rho 0.5 --gsize 4 --N 24 --seed 1
+e1w1_setg_N16_s0 sftrain.py --arch set --gid --world groups --rho 0.5 --gsize 4 --N 16 --seed 0
+e1w1_setg_N16_s1 sftrain.py --arch set --gid --world groups --rho 0.5 --gsize 4 --N 16 --seed 1
+e1w1_setg_N8_s0 sftrain.py --arch set --gid --world groups --rho 0.5 --gsize 4 --N 8 --seed 0
+e1w1_setg_N8_s1 sftrain.py --arch set --gid --world groups --rho 0.5 --gsize 4 --N 8 --seed 1
+e1w1_setg_N4_s0 sftrain.py --arch set --gid --world groups --rho 0.5 --gsize 4 --N 4 --seed 0
+e1w1_setg_N4_s1 sftrain.py --arch set --gid --world groups --rho 0.5 --gsize 4 --N 4 --seed 1
+e1w2_set_N8_s0 sftrain.py --arch set --world pairs --rho 0.9 --N 8 --seed 0
+e1w2_set_N8_s1 sftrain.py --arch set --world pairs --rho 0.9 --N 8 --seed 1
+e1w2_set_N6_s0 sftrain.py --arch set --world pairs --rho 0.9 --N 6 --seed 0
+e1w2_set_N6_s1 sftrain.py --arch set --world pairs --rho 0.9 --N 6 --seed 1
+e1w2_set_N4_s0 sftrain.py --arch set --world pairs --rho 0.9 --N 4 --seed 0
+e1w2_set_N4_s1 sftrain.py --arch set --world pairs --rho 0.9 --N 4 --seed 1
+e1w1_tree32_N24_s0 sftrain.py --arch tree --m 32 --world groups --rho 0.5 --gsize 4 --N 24 --seed 0
+e1w1_hiersum_m4_N24_s0 sftrain.py --arch hier --inner sum --m1 32 --m 4 --world groups --rho 0.5 --gsize 4 --N 24 --seed 0
+e1w1_hierattn_m4_N24_s0 sftrain.py --arch hier --inner attn --m1 16 --m 4 --world groups --rho 0.5 --gsize 4 --N 24 --seed 0
+e1w1_hiersum_m16_N24_s0 sftrain.py --arch hier --inner sum --m1 32 --m 16 --world groups --rho 0.5 --gsize 4 --N 24 --seed 0
+e1w1_hierattn_m16_N24_s0 sftrain.py --arch hier --inner attn --m1 16 --m 16 --world groups --rho 0.5 --gsize 4 --N 24 --seed 0
+e1w1_tree32_N24_s1 sftrain.py --arch tree --m 32 --world groups --rho 0.5 --gsize 4 --N 24 --seed 1
+e1w1_hiersum_m4_N24_s1 sftrain.py --arch hier --inner sum --m1 32 --m 4 --world groups --rho 0.5 --gsize 4 --N 24 --seed 1
+e1w1_hierattn_m4_N24_s1 sftrain.py --arch hier --inner attn --m1 16 --m 4 --world groups --rho 0.5 --gsize 4 --N 24 --seed 1
+e1w1_hiersum_m16_N24_s1 sftrain.py --arch hier --inner sum --m1 32 --m 16 --world groups --rho 0.5 --gsize 4 --N 24 --seed 1
+e1w1_hierattn_m16_N24_s1 sftrain.py --arch hier --inner attn --m1 16 --m 16 --world groups --rho 0.5 --gsize 4 --N 24 --seed 1
+e1w1_tree32_N16_s0 sftrain.py --arch tree --m 32 --world groups --rho 0.5 --gsize 4 --N 16 --seed 0
+e1w1_hiersum_m4_N16_s0 sftrain.py --arch hier --inner sum --m1 32 --m 4 --world groups --rho 0.5 --gsize 4 --N 16 --seed 0
+e1w1_hierattn_m4_N16_s0 sftrain.py --arch hier --inner attn --m1 16 --m 4 --world groups --rho 0.5 --gsize 4 --N 16 --seed 0
+e1w1_hiersum_m16_N16_s0 sftrain.py --arch hier --inner sum --m1 32 --m 16 --world groups --rho 0.5 --gsize 4 --N 16 --seed 0
+e1w1_hierattn_m16_N16_s0 sftrain.py --arch hier --inner attn --m1 16 --m 16 --world groups --rho 0.5 --gsize 4 --N 16 --seed 0
+e1w1_tree32_N16_s1 sftrain.py --arch tree --m 32 --world groups --rho 0.5 --gsize 4 --N 16 --seed 1
+e1w1_hiersum_m4_N16_s1 sftrain.py --arch hier --inner sum --m1 32 --m 4 --world groups --rho 0.5 --gsize 4 --N 16 --seed 1
+e1w1_hierattn_m4_N16_s1 sftrain.py --arch hier --inner attn --m1 16 --m 4 --world groups --rho 0.5 --gsize 4 --N 16 --seed 1
+e1w1_hiersum_m16_N16_s1 sftrain.py --arch hier --inner sum --m1 32 --m 16 --world groups --rho 0.5 --gsize 4 --N 16 --seed 1
+e1w1_hierattn_m16_N16_s1 sftrain.py --arch hier --inner attn --m1 16 --m 16 --world groups --rho 0.5 --gsize 4 --N 16 --seed 1
+e1w1_tree32_N8_s0 sftrain.py --arch tree --m 32 --world groups --rho 0.5 --gsize 4 --N 8 --seed 0
+e1w1_hiersum_m4_N8_s0 sftrain.py --arch hier --inner sum --m1 32 --m 4 --world groups --rho 0.5 --gsize 4 --N 8 --seed 0
+e1w1_hierattn_m4_N8_s0 sftrain.py --arch hier --inner attn --m1 16 --m 4 --world groups --rho 0.5 --gsize 4 --N 8 --seed 0
+e1w1_hiersum_m16_N8_s0 sftrain.py --arch hier --inner sum --m1 32 --m 16 --world groups --rho 0.5 --gsize 4 --N 8 --seed 0
+e1w1_hierattn_m16_N8_s0 sftrain.py --arch hier --inner attn --m1 16 --m 16 --world groups --rho 0.5 --gsize 4 --N 8 --seed 0
+e1w1_tree32_N8_s1 sftrain.py --arch tree --m 32 --world groups --rho 0.5 --gsize 4 --N 8 --seed 1
+e1w1_hiersum_m4_N8_s1 sftrain.py --arch hier --inner sum --m1 32 --m 4 --world groups --rho 0.5 --gsize 4 --N 8 --seed 1
+e1w1_hierattn_m4_N8_s1 sftrain.py --arch hier --inner attn --m1 16 --m 4 --world groups --rho 0.5 --gsize 4 --N 8 --seed 1
+e1w1_hiersum_m16_N8_s1 sftrain.py --arch hier --inner sum --m1 32 --m 16 --world groups --rho 0.5 --gsize 4 --N 8 --seed 1
+e1w1_hierattn_m16_N8_s1 sftrain.py --arch hier --inner attn --m1 16 --m 16 --world groups --rho 0.5 --gsize 4 --N 8 --seed 1
+e1w1_tree32_N4_s0 sftrain.py --arch tree --m 32 --world groups --rho 0.5 --gsize 4 --N 4 --seed 0
+e1w1_hiersum_m4_N4_s0 sftrain.py --arch hier --inner sum --m1 32 --m 4 --world groups --rho 0.5 --gsize 4 --N 4 --seed 0
+e1w1_hierattn_m4_N4_s0 sftrain.py --arch hier --inner attn --m1 16 --m 4 --world groups --rho 0.5 --gsize 4 --N 4 --seed 0
+e1w1_hiersum_m16_N4_s0 sftrain.py --arch hier --inner sum --m1 32 --m 16 --world groups --rho 0.5 --gsize 4 --N 4 --seed 0
+e1w1_hierattn_m16_N4_s0 sftrain.py --arch hier --inner attn --m1 16 --m 16 --world groups --rho 0.5 --gsize 4 --N 4 --seed 0
+e1w1_tree32_N4_s1 sftrain.py --arch tree --m 32 --world groups --rho 0.5 --gsize 4 --N 4 --seed 1
+e1w1_hiersum_m4_N4_s1 sftrain.py --arch hier --inner sum --m1 32 --m 4 --world groups --rho 0.5 --gsize 4 --N 4 --seed 1
+e1w1_hierattn_m4_N4_s1 sftrain.py --arch hier --inner attn --m1 16 --m 4 --world groups --rho 0.5 --gsize 4 --N 4 --seed 1
+e1w1_hiersum_m16_N4_s1 sftrain.py --arch hier --inner sum --m1 32 --m 16 --world groups --rho 0.5 --gsize 4 --N 4 --seed 1
+e1w1_hierattn_m16_N4_s1 sftrain.py --arch hier --inner attn --m1 16 --m 16 --world groups --rho 0.5 --gsize 4 --N 4 --seed 1
+e1w2_tree8_N8_s0 sftrain.py --arch tree --m 8 --world pairs --rho 0.9 --N 8 --seed 0
+e1w2_tree32_N8_s0 sftrain.py --arch tree --m 32 --world pairs --rho 0.9 --N 8 --seed 0
+e1w2_tree128_N8_s0 sftrain.py --arch tree --m 128 --world pairs --rho 0.9 --N 8 --seed 0
+e1w2_tree8_N8_s1 sftrain.py --arch tree --m 8 --world pairs --rho 0.9 --N 8 --seed 1
+e1w2_tree32_N8_s1 sftrain.py --arch tree --m 32 --world pairs --rho 0.9 --N 8 --seed 1
+e1w2_tree128_N8_s1 sftrain.py --arch tree --m 128 --world pairs --rho 0.9 --N 8 --seed 1
+e1w2_tree8_N6_s0 sftrain.py --arch tree --m 8 --world pairs --rho 0.9 --N 6 --seed 0
+e1w2_tree32_N6_s0 sftrain.py --arch tree --m 32 --world pairs --rho 0.9 --N 6 --seed 0
+e1w2_tree128_N6_s0 sftrain.py --arch tree --m 128 --world pairs --rho 0.9 --N 6 --seed 0
+e1w2_tree8_N6_s1 sftrain.py --arch tree --m 8 --world pairs --rho 0.9 --N 6 --seed 1
+e1w2_tree32_N6_s1 sftrain.py --arch tree --m 32 --world pairs --rho 0.9 --N 6 --seed 1
+e1w2_tree128_N6_s1 sftrain.py --arch tree --m 128 --world pairs --rho 0.9 --N 6 --seed 1
+e1w2_tree8_N4_s0 sftrain.py --arch tree --m 8 --world pairs --rho 0.9 --N 4 --seed 0
+e1w2_tree32_N4_s0 sftrain.py --arch tree --m 32 --world pairs --rho 0.9 --N 4 --seed 0
+e1w2_tree128_N4_s0 sftrain.py --arch tree --m 128 --world pairs --rho 0.9 --N 4 --seed 0
+e1w2_tree8_N4_s1 sftrain.py --arch tree --m 8 --world pairs --rho 0.9 --N 4 --seed 1
+e1w2_tree32_N4_s1 sftrain.py --arch tree --m 32 --world pairs --rho 0.9 --N 4 --seed 1
+e1w2_tree128_N4_s1 sftrain.py --arch tree --m 128 --world pairs --rho 0.9 --N 4 --seed 1
+e1w0_tree1_N24_s0 sftrain.py --arch tree --m 1 --world indep --N 24 --seed 0
+e1w0_tree2_N24_s0 sftrain.py --arch tree --m 2 --world indep --N 24 --seed 0
+e1w0_tree4_N24_s0 sftrain.py --arch tree --m 4 --world indep --N 24 --seed 0
+e1w0_tree8_N24_s0 sftrain.py --arch tree --m 8 --world indep --N 24 --seed 0
+e1w0_tree16_N24_s0 sftrain.py --arch tree --m 16 --world indep --N 24 --seed 0
+e1w0_tree32_N24_s0 sftrain.py --arch tree --m 32 --world indep --N 24 --seed 0
+e1w0_tree1_N24_s1 sftrain.py --arch tree --m 1 --world indep --N 24 --seed 1
+e1w0_tree2_N24_s1 sftrain.py --arch tree --m 2 --world indep --N 24 --seed 1
+e1w0_tree4_N24_s1 sftrain.py --arch tree --m 4 --world indep --N 24 --seed 1
+e1w0_tree8_N24_s1 sftrain.py --arch tree --m 8 --world indep --N 24 --seed 1
+e1w0_tree16_N24_s1 sftrain.py --arch tree --m 16 --world indep --N 24 --seed 1
+e1w0_tree32_N24_s1 sftrain.py --arch tree --m 32 --world indep --N 24 --seed 1
+e1w0_tree1_N24_s2 sftrain.py --arch tree --m 1 --world indep --N 24 --seed 2
+e1w0_tree2_N24_s2 sftrain.py --arch tree --m 2 --world indep --N 24 --seed 2
+e1w0_tree4_N24_s2 sftrain.py --arch tree --m 4 --world indep --N 24 --seed 2
+e1w0_tree8_N24_s2 sftrain.py --arch tree --m 8 --world indep --N 24 --seed 2
+e1w0_tree16_N24_s2 sftrain.py --arch tree --m 16 --world indep --N 24 --seed 2
+e1w0_tree32_N24_s2 sftrain.py --arch tree --m 32 --world indep --N 24 --seed 2
+e1w0_tree1_N12_s0 sftrain.py --arch tree --m 1 --world indep --N 12 --seed 0
+e1w0_tree2_N12_s0 sftrain.py --arch tree --m 2 --world indep --N 12 --seed 0
+e1w0_tree4_N12_s0 sftrain.py --arch tree --m 4 --world indep --N 12 --seed 0
+e1w0_tree8_N12_s0 sftrain.py --arch tree --m 8 --world indep --N 12 --seed 0
+e1w0_tree16_N12_s0 sftrain.py --arch tree --m 16 --world indep --N 12 --seed 0
+e1w0_tree32_N12_s0 sftrain.py --arch tree --m 32 --world indep --N 12 --seed 0
+e1w0_tree1_N12_s1 sftrain.py --arch tree --m 1 --world indep --N 12 --seed 1
+e1w0_tree2_N12_s1 sftrain.py --arch tree --m 2 --world indep --N 12 --seed 1
+e1w0_tree4_N12_s1 sftrain.py --arch tree --m 4 --world indep --N 12 --seed 1
+e1w0_tree8_N12_s1 sftrain.py --arch tree --m 8 --world indep --N 12 --seed 1
+e1w0_tree16_N12_s1 sftrain.py --arch tree --m 16 --world indep --N 12 --seed 1
+e1w0_tree32_N12_s1 sftrain.py --arch tree --m 32 --world indep --N 12 --seed 1
+e1w0_tree1_N12_s2 sftrain.py --arch tree --m 1 --world indep --N 12 --seed 2
+e1w0_tree2_N12_s2 sftrain.py --arch tree --m 2 --world indep --N 12 --seed 2
+e1w0_tree4_N12_s2 sftrain.py --arch tree --m 4 --world indep --N 12 --seed 2
+e1w0_tree8_N12_s2 sftrain.py --arch tree --m 8 --world indep --N 12 --seed 2
+e1w0_tree16_N12_s2 sftrain.py --arch tree --m 16 --world indep --N 12 --seed 2
+e1w0_tree32_N12_s2 sftrain.py --arch tree --m 32 --world indep --N 12 --seed 2
+e1w0_tree1_N6_s0 sftrain.py --arch tree --m 1 --world indep --N 6 --seed 0
+e1w0_tree2_N6_s0 sftrain.py --arch tree --m 2 --world indep --N 6 --seed 0
+e1w0_tree4_N6_s0 sftrain.py --arch tree --m 4 --world indep --N 6 --seed 0
+e1w0_tree8_N6_s0 sftrain.py --arch tree --m 8 --world indep --N 6 --seed 0
+e1w0_tree16_N6_s0 sftrain.py --arch tree --m 16 --world indep --N 6 --seed 0
+e1w0_tree32_N6_s0 sftrain.py --arch tree --m 32 --world indep --N 6 --seed 0
+e1w0_tree1_N6_s1 sftrain.py --arch tree --m 1 --world indep --N 6 --seed 1
+e1w0_tree2_N6_s1 sftrain.py --arch tree --m 2 --world indep --N 6 --seed 1
+e1w0_tree4_N6_s1 sftrain.py --arch tree --m 4 --world indep --N 6 --seed 1
+e1w0_tree8_N6_s1 sftrain.py --arch tree --m 8 --world indep --N 6 --seed 1
+e1w0_tree16_N6_s1 sftrain.py --arch tree --m 16 --world indep --N 6 --seed 1
+e1w0_tree32_N6_s1 sftrain.py --arch tree --m 32 --world indep --N 6 --seed 1
+e1w0_tree1_N6_s2 sftrain.py --arch tree --m 1 --world indep --N 6 --seed 2
+e1w0_tree2_N6_s2 sftrain.py --arch tree --m 2 --world indep --N 6 --seed 2
+e1w0_tree4_N6_s2 sftrain.py --arch tree --m 4 --world indep --N 6 --seed 2
+e1w0_tree8_N6_s2 sftrain.py --arch tree --m 8 --world indep --N 6 --seed 2
+e1w0_tree16_N6_s2 sftrain.py --arch tree --m 16 --world indep --N 6 --seed 2
+e1w0_tree32_N6_s2 sftrain.py --arch tree --m 32 --world indep --N 6 --seed 2
+e1w0_tree1_N3_s0 sftrain.py --arch tree --m 1 --world indep --N 3 --seed 0
+e1w0_tree2_N3_s0 sftrain.py --arch tree --m 2 --world indep --N 3 --seed 0
+e1w0_tree4_N3_s0 sftrain.py --arch tree --m 4 --world indep --N 3 --seed 0
+e1w0_tree8_N3_s0 sftrain.py --arch tree --m 8 --world indep --N 3 --seed 0
+e1w0_tree16_N3_s0 sftrain.py --arch tree --m 16 --world indep --N 3 --seed 0
+e1w0_tree32_N3_s0 sftrain.py --arch tree --m 32 --world indep --N 3 --seed 0
+e1w0_tree1_N3_s1 sftrain.py --arch tree --m 1 --world indep --N 3 --seed 1
+e1w0_tree2_N3_s1 sftrain.py --arch tree --m 2 --world indep --N 3 --seed 1
+e1w0_tree4_N3_s1 sftrain.py --arch tree --m 4 --world indep --N 3 --seed 1
+e1w0_tree8_N3_s1 sftrain.py --arch tree --m 8 --world indep --N 3 --seed 1
+e1w0_tree16_N3_s1 sftrain.py --arch tree --m 16 --world indep --N 3 --seed 1
+e1w0_tree32_N3_s1 sftrain.py --arch tree --m 32 --world indep --N 3 --seed 1
+e1w0_tree1_N3_s2 sftrain.py --arch tree --m 1 --world indep --N 3 --seed 2
+e1w0_tree2_N3_s2 sftrain.py --arch tree --m 2 --world indep --N 3 --seed 2
+e1w0_tree4_N3_s2 sftrain.py --arch tree --m 4 --world indep --N 3 --seed 2
+e1w0_tree8_N3_s2 sftrain.py --arch tree --m 8 --world indep --N 3 --seed 2
+e1w0_tree16_N3_s2 sftrain.py --arch tree --m 16 --world indep --N 3 --seed 2
+e1w0_tree32_N3_s2 sftrain.py --arch tree --m 32 --world indep --N 3 --seed 2

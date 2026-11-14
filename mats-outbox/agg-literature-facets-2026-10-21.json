@@ -1,0 +1,488 @@
+[
+ {
+  "works": [
+   {
+    "id": "satorras2020nebp",
+    "cite": "Victor Garcia Satorras, Max Welling (2020/AISTATS 2021). Neural Enhanced Belief Propagation on Factor Graphs. arXiv:2003.01998",
+    "content": "Extends GNNs to factor graphs (FG-GNN) and runs it jointly with BP: at every BP iteration the FG-GNN takes the BP messages as input and outputs corrected messages; it helps when the factor graph has loops or the generative model is misspecified (abstract verified; LDPC-decoding experiments from recall).",
+    "implication": "Architecture to borrow: run the exact Gaussian clearing / BP solver over the assumed source structure and let attention output residual corrections to its messages. The result falls back to exact Bayes when the structure is right and learns fixes when it is wrong. Use it as the inference-layer variant to test against the plain transformer bar.",
+    "verified": true
+   },
+   {
+    "id": "satorras2019hybrid",
+    "cite": "Victor Garcia Satorras, Zeynep Akata, Max Welling (2019, NeurIPS). Combining Generative and Discriminative Models for Hybrid Inference. arXiv:1906.02547",
+    "content": "A hybrid recurrent model that combines graphical-model inference with a learned GNN-structured inverse model, using cross-validation to set how much work each part does (abstract verified; that the graphical part is a Kalman smoother tested on Lorenz-attractor and NCLT data is recall).",
+    "implication": "The closest precedent for a Gaussian clearing layer plus a learned correction. The data-dependent balance between the two parts is a ready-made ablation: how much does the learned part add on top of exact Gaussian inference for each information structure?",
+    "verified": true
+   },
+   {
+    "id": "yoon2018gnnpgm",
+    "cite": "KiJung Yoon, Renjie Liao, Yuwen Xiong, Lisa Zhang, Ethan Fetaya, Raquel Urtasun, Richard Zemel, Xaq Pitkow (2018). Inference in Probabilistic Graphical Models by Graph Neural Networks. arXiv:1803.07710",
+    "content": "GNNs trained to output marginals or MAP states on graphical models learn a message-passing algorithm that beats loopy BP on loopy graphs (abstract verified; that it generalizes to larger and differently shaped graphs is recall, since the abstract was truncated).",
+    "implication": "A baseline to add: a GNN over the agent-relation graph, trained on exact marginals (distillation from Bayes), checked on generalization to more agents and new topologies than seen in training. This is the test that separates a learned inference rule from a memorized one.",
+    "verified": true
+   },
+   {
+    "id": "zhang2019fgnn",
+    "cite": "Zhen Zhang, Fan Wu, Wee Sun Lee (2019; NeurIPS 2020). Factor Graph Neural Network. arXiv:1906.00554",
+    "content": "Generalizes GNNs to factor graphs so that they capture higher-order (not only pairwise) dependencies, and shows that FGNN can represent max-product BP (abstract verified).",
+    "implication": "A known limit: pairwise q\u00b7k attention and pairwise GNNs carry pairwise relations, but XOR-like complementary information needs a factor over 3 or more sources. Add factor or hyperedge nodes, or a set-level token, and test whether XOR cases close the gap to Bayes.",
+    "verified": true
+   },
+   {
+    "id": "kuck2020bpnn",
+    "cite": "Jonathan Kuck, Shuvam Chakraborty, Hao Tang, Rachel Luo, Jiaming Song, Ashish Sabharwal, Stefano Ermon (2020, NeurIPS). Belief Propagation Neural Networks. arXiv:2007.00295",
+    "content": "BPNNs are parameterized operators on factor graphs that generalize BP; the strict form, BPNN-D, provably keeps many of BP's properties for any parameter values, converges 1.7x faster than BP on Ising models with tighter bounds, and is far faster than handcrafted model counters (abstract verified).",
+    "implication": "Architecture to borrow: constrain the learned layer so that its fixed points match the exact solver for any weights. This gives a guaranteed 'no worse than exact BP or Gaussian clearing on the assumed structure' floor, which a free transformer lacks.",
+    "verified": true
+   },
+   {
+    "id": "nachmani2016",
+    "cite": "Eliya Nachmani, Yair Beery, David Burshtein (2016). Learning to Decode Linear Codes Using Deep Learning. arXiv:1607.04793",
+    "content": "Unrolls BP on the Tanner graph, learns a weight on each edge, and preserves BP's independence from the transmitted codeword, so a single codeword is enough for training (abstract verified).",
+    "implication": "A minimal baseline: unrolled BP or Gaussian clearing with learned per-edge (per source-pair) weights. Down-weighting duplicated or correlated sources is exactly a per-edge reweighting, and this baseline has few parameters.",
+    "verified": true
+   },
+   {
+    "id": "weiss2001gabp",
+    "cite": "Yair Weiss, William T. Freeman (2001). Correctness of Belief Propagation in Gaussian Graphical Models of Arbitrary Topology. Neural Computation 13(10):2173-2200. DOI:10.1162/089976601750541769",
+    "content": "Gaussian BP on loopy graphs, when it converges, gives the exact posterior means but generally incorrect variances. DOI resolved to the MIT Press article page (HTTP 403 on the body); the content claim is recall, not read in this pass.",
+    "implication": "A known limit for the proposed inference layer: if (K^T B K + \u039b) w = K^T B dl is solved by iterative message passing over a loopy source graph (duplicates and correlated noise make loops), the means can be right while the confidence is wrong. Solve it directly or with CG, and score calibration and log loss, not only the point forecast.",
+    "verified": true
+   },
+   {
+    "id": "lorch2022avici",
+    "cite": "Lars Lorch, Scott Sussex, Jonas Rothfuss, Andreas Krause, Bernhard Sch\u00f6lkopf (2022, NeurIPS). Amortized Inference for Causal Structure Learning. arXiv:2205.12934",
+    "content": "Trains a variational inference model on simulator data to predict causal structure directly from observational or interventional data. The architecture builds in the permutation invariances needed for statistical efficiency and generalizes to substantially shifted distributions (abstract verified; that it alternates attention over variables and samples is recall).",
+    "implication": "A template for hidden provenance: amortize inference of the source-dependency graph (who duplicates or correlates with whom) from agents' joint track records across many questions, trained on a simulator over information structures. This targets the regime where learned keys currently fall short.",
+    "verified": true
+   },
+   {
+    "id": "ke2022csiva",
+    "cite": "Nan Rosemary Ke, Silvia Chiappa, Jane Wang, Anirudh Goyal, Jorg Bornschein, Melanie Rey, Theophane Weber, Matthew Botvinick, Michael Mozer, Danilo J. Rezende (2022). Learning to Induce Causal Structure. arXiv:2204.04875",
+    "content": "Supervised training on synthetic graphs of a network that maps observational and interventional data to graph structure; it generalizes to new graphs, is robust to train-test shift, and leads on naturalistic graphs at low sample size (abstract verified; that the model is a transformer, CSIvA, is recall).",
+    "implication": "A second amortized structure-learning baseline next to AVICI. Its supervised graph targets correspond directly to the 'attention classifies relations between sources' head, which can be supervised with the true relation labels from the simulator.",
+    "verified": true
+   },
+   {
+    "id": "xu2019alignment",
+    "cite": "Keyulu Xu, Jingling Li, Mozhi Zhang, Simon S. Du, Ken-ichi Kawarabayashi, Stefanie Jegelka (2019, ICLR 2020). What Can Neural Networks Reason About? arXiv:1905.13211",
+    "content": "Defines algorithmic alignment between a network's computation structure and the target algorithm, and proves a sample-complexity bound that falls as alignment improves; this explains why GNNs learn DP-like reasoning tasks that less structured networks fail (abstract verified).",
+    "implication": "A design rule and a testable prediction: make modules match the steps of exact Bayes, namely pairwise relation detection (attention) followed by a linear solve (unrolled solver iterations). Measure sample efficiency against a plain transformer, and test whether the number of layers needed grows with the depth of the dependency structure. This fits the finding that one self-attention layer beats a q\u00b7k readout on duplicates.",
+    "verified": true
+   }
+  ],
+  "takeaways": [
+   "The strongest design from this literature is a hybrid: an exact solver (Gaussian clearing or BP) over the assumed source structure, plus learned residual corrections to its messages (Satorras & Welling 2003.01998; Satorras, Akata & Welling 1906.02547). It recovers exact Bayes when the structure is right, so it should be benchmarked as a separate arm against the plain-transformer bar.",
+   "To guarantee 'no worse than exact inference', borrow the BPNN-D construction (2007.00295): parameterize the learned layer so that its fixed points match the exact solver for any weights. Learned per-edge weights on unrolled BP (1607.04793) are the cheapest baseline for down-weighting duplicates.",
+   "Two known limits to design for. (a) Pairwise attention or GNN messages cannot express higher-order factors in one step, so XOR-like complementary sources need factor or hyperedge nodes (FGNN, 1906.00554). (b) Iterative Gaussian BP on loopy source graphs gives correct means but wrong variances (Weiss & Freeman 2001; recall). Solve the clearing system directly and score calibration as well as point forecasts.",
+   "For hidden provenance, amortized structure learning (AVICI 2205.12934, CSIvA 2204.04875) is the template: train on a simulator over information structures to infer the source-dependency graph from joint track records across questions. Supervise the relation-classification attention head with the simulator's true relation labels.",
+   "Algorithmic alignment (1905.13211) predicts that architectures whose modules match the steps of exact Bayes (pairwise relation detection, then a linear solve) learn with fewer samples. A cheap check: compare the sample-efficiency curves of a plain transformer and the aligned model, and test whether the layers needed grow with dependency depth. Generalization to more agents and new topologies (Yoon et al. 1803.07710) is the test that separates learned inference from memorization."
+  ]
+ },
+ {
+  "works": [
+   {
+    "id": "1703.06114",
+    "cite": "Zaheer, Kottur, Ravanbakhsh, Poczos, Salakhutdinov (2017). Deep Sets. arXiv:1703.06114",
+    "content": "Characterizes permutation-invariant set functions and proposes the rho(sum_i phi(x_i)) architecture (main theorem stated in abstract; the exact sum-decomposition form is from recall of the paper).",
+    "implication": "Sum pooling of per-agent embeddings is exactly the Bayes aggregator when agents' evidence is conditionally independent given the outcome (phi = log-likelihood ratio, rho = sigmoid). Add it as the 'independent-evidence' baseline; its failures on duplicates, correlated noise and XOR are the expected ones, not bugs.",
+    "verified": true
+   },
+   {
+    "id": "1901.09006",
+    "cite": "Wagstaff, Fuchs, Engelcke, Posner, Osborne (2019). On the Limitations of Representing Functions on Sets. arXiv:1901.09006",
+    "content": "Proves that with continuous maps (neural nets, GPs), sum-decomposition can represent arbitrary set functions only if the latent dimension is at least the maximum set size (verified in abstract).",
+    "implication": "This is a known limit on any pool-then-readout aggregator: covering arbitrary information structures over N agents needs message or latent dimension of about N, or interactions before pooling. It is a representation bound, not a learning bound, so it does not explain why outcome-trained vector messages leave bandwidth unused.",
+    "verified": true
+   },
+   {
+    "id": "1810.00825",
+    "cite": "Lee, Lee, Kim, Kosiorek, Choi, Teh (2019, ICML). Set Transformer: A Framework for Attention-based Permutation-Invariant Neural Networks. arXiv:1810.00825",
+    "content": "Attention-based encoder and decoder for sets. Self-attention models interactions among elements, and inducing points cut the cost from O(n^2) (verified in abstract). The SAB, ISAB and PMA block names and the pooling-by-multihead-attention decoder are from recall.",
+    "implication": "This is the standard permutation-invariant form of Kelvin's bar ('plain self-attention over all agents'). Use SAB layers plus PMA as the order-free transformer baseline. The project's finding that one self-attention layer handles duplicates better than a q.k readout is the SAB-versus-pooling result of this paper.",
+    "verified": true
+   },
+   {
+    "id": "1807.01613",
+    "cite": "Garnelo, Rosenbaum, Maddison, Ramalho, Saxton, Shanahan, Teh, Rezende, Eslami (2018, ICML). Conditional Neural Processes. arXiv:1807.01613",
+    "content": "Encodes each context point, mean-aggregates the encodings and decodes a predictive distribution for targets; trained by meta-learning over many functions (verified that the abstract describes NN-structured stochastic-process models; the mean aggregation is from recall).",
+    "implication": "A CNP is the amortized-inference version of a Deep Sets aggregator over agents. It is a cheap baseline that inherits the independence and mean-pooling limits.",
+    "verified": true
+   },
+   {
+    "id": "1901.05761",
+    "cite": "Kim, Mnih, Schwarz, Garnelo, Eslami, Rosenbaum, Vinyals, Teh (2019, ICLR). Attentive Neural Processes. arXiv:1901.05761",
+    "content": "Shows that NPs underfit at the context points they condition on and fixes this with attention, letting each target attend to relevant context points; this improves accuracy, training speed and range of functions (verified in abstract).",
+    "implication": "This is direct evidence that mean-pooled amortized inference underfits and that attention over sources fixes it. It is the closest published template for 'query attends to agent keys/values' (cross-attention) plus self-attention among agents. Ablate both as the project already does.",
+    "verified": true
+   },
+   {
+    "id": "2112.10510",
+    "cite": "Muller, Hollmann, Pineda Arango, Grabocka, Hutter (2022, ICLR). Transformers Can Do Bayesian Inference. arXiv:2112.10510",
+    "content": "Prior-Data Fitted Networks: repeatedly sample a task from a prior, sample a dataset, mask a label and train a transformer on the set-valued input to predict it. The model approximates the posterior predictive in one forward pass, nearly matches GPs and is >200x faster than alternatives (verified in abstract). That the cross-entropy prior-data loss equals the expected KL to the posterior predictive up to a constant is from recall of the paper.",
+    "implication": "This is the project's training recipe almost verbatim: a prior over information structures yields agent evidence and an outcome, and an aggregator is trained with CE on the outcome. Its optimum is the exact Bayes posterior under that prior. Report KL to the exact posterior, which is computable here.",
+    "verified": true
+   },
+   {
+    "id": "2207.01848",
+    "cite": "Hollmann, Muller, Eggensperger, Hutter (2023, ICLR). TabPFN: A Transformer That Solves Small Tabular Classification Problems in a Second. arXiv:2207.01848",
+    "content": "A PFN trained offline on synthetic tasks does in-context classification on small tabular datasets in one forward pass, with no tuning, and is competitive with state-of-the-art methods (verified in abstract). That its prior is built from structural causal models and BNNs is from recall.",
+    "implication": "Its prior design is the closest borrowable piece: sampling random causal graphs is the same move as sampling random information structures (shared parents give duplicated or correlated evidence; XOR-like children give complementary evidence). It also shows the attention-over-set architecture scales when the prior is rich.",
+    "verified": true
+   },
+   {
+    "id": "2111.02080",
+    "cite": "Xie, Raghunathan, Liang, Ma (2022, ICLR). An Explanation of In-context Learning as Implicit Bayesian Inference. arXiv:2111.02080",
+    "content": "With a mixture-of-HMMs pretraining distribution, in-context learning emerges as inference of a shared latent concept. The paper proves when this holds despite prompt/pretraining mismatch and releases the synthetic GINC dataset, which shows order sensitivity and cases where zero-shot beats few-shot (verified in abstract).",
+    "implication": "Read Kelvin's bar (a sequential transformer reading raw agent inputs) as an implicit Bayesian inferrer of the latent information structure. Its reported order sensitivity predicts that a sequential baseline will vary with agent order, so evaluate it over permutations or with permutation averaging.",
+    "verified": true
+   },
+   {
+    "id": "2306.15063",
+    "cite": "Raventos, Paul, Chen, Ganguli (2023, NeurIPS). Pretraining task diversity and the emergence of non-Bayesian in-context learning for regression. arXiv:2306.15063",
+    "content": "Below a task-diversity threshold, a pretrained transformer behaves like the Bayes estimator with the finite pretraining task set as prior and fails on new tasks. Above it, the transformer matches ridge regression, a broader Gaussian prior, and solves unseen tasks (verified in abstract).",
+    "implication": "'Approach the exact Bayes posterior' depends on which prior. Sweep the number of distinct information structures seen in training, and test on held-out structures against two references: Bayes under the training mixture and Bayes under the true structure.",
+    "verified": true
+   },
+   {
+    "id": "2003.01998",
+    "cite": "Garcia Satorras, Welling (2021, AISTATS). Neural Enhanced Belief Propagation on Factor Graphs. arXiv:2003.01998",
+    "content": "Extends GNNs to factor graphs and couples them with belief propagation to correct BP when the generative model is approximate or the graph has loops (verified in abstract up to the method statement; the hybrid BP+GNN message design is from recall).",
+    "implication": "This is a ready template for the proposed explicit inference layer: run BP or Gaussian clearing, and use attention or a GNN both to infer factors (relations between sources) and to add a learned residual to messages. Duplicates create loops and double-counting, the case where plain BP fails and the learned correction pays off.",
+    "verified": true
+   }
+  ],
+  "takeaways": [
+   "The project is a PFN problem (Muller et al. 2112.10510; Hollmann et al. 2207.01848). Sample an information structure from a prior, sample agents' evidence and the outcome, and train with CE. The CE optimum is the exact posterior under that prior. Kelvin's bar is in effect a PFN or Set Transformer (1810.00825) over raw agent inputs, so build that baseline with SAB+PMA (order-free) and a sequential variant, and score all models by KL to the exact posterior, not only Brier or log loss on outcomes.",
+   "Training on outcomes and distilling from Bayes have the same population minimizer (CE on y ~ p(y|evidence) equals expected KL to the posterior plus a constant; the PFN derivation, recalled from the paper rather than the abstract). The finding that generic vector messages use extra bandwidth only under distillation is therefore most likely a variance or sample-efficiency effect: the Bayes target is a Rao-Blackwellized label. Test it by scaling outcome-trained data or by using soft posterior labels, before concluding that outcome training cannot use bandwidth.",
+   "Sum or mean pooling (Deep Sets 1703.06114, CNP 1807.01613) is exactly Bayes only for conditionally independent sources. Wagstaff et al. (1901.09006) prove that universal pooled representations need latent dimension >= N, and the ANP (1901.05761) shows that mean-pooled amortized inference underfits. This is published support for interactions before readout (self-attention among agents), consistent with the result that one SA layer beats a q.k readout on duplicates.",
+   "Generalization claims need a held-out-structure split. Raventos et al. (2306.15063) show that transformers track Bayes under the training mixture until task diversity passes a threshold. Nagler (2305.11097, verified) argues that PFN behavior is better explained as a pre-tuned frequentist predictor whose bias vanishes only with appropriate localization. Report distance to Bayes under both the training mixture and the true held-out structure, and sweep the number of training structures.",
+   "For the explicit inference layer, neural-enhanced BP (2003.01998) gives a tested hybrid design: attention classifies relations between sources and emits factors or precision entries, a classical solver (BP or the Gaussian clearing (K^T B K + Lambda) w = K^T B dl) does the inference, and a learned residual corrects loopy or misspecified cases. Compare it against the PFN-style transformer at equal parameters and equal training-structure diversity."
+  ]
+ },
+ {
+  "works": [
+   {
+    "id": "hahn2020",
+    "cite": "Michael Hahn (2020). Theoretical Limitations of Self-Attention in Neural Sequence Models. TACL 2020. arXiv:1906.06755",
+    "content": "Shows that soft and hard self-attention with a fixed number of layers and heads cannot model periodic finite-state languages such as PARITY or hierarchical structure as input length grows. Verified in the abstract. From recall, not the abstract: the soft-attention argument is that flipping one input changes the output by only O(1/n), so confidence on parity-like functions decays toward chance.",
+    "implication": "XOR-like complementary information spread across a growing number of agents cannot be decoded confidently by fixed-depth softmax attention. This holds for the plain-transformer bar as well as for our aggregator. Keep XOR structures at a fixed small arity k, and report results as a function of both n and k.",
+    "verified": true
+   },
+   {
+    "id": "hahn_rofin2024",
+    "cite": "Michael Hahn, Mark Rofin (2024). Why are Sensitive Functions Hard for Transformers? ACL 2024. arXiv:2402.09963",
+    "content": "Proves that transformers whose output is sensitive to many input positions sit at isolated, sharp points of parameter space. This gives a low-sensitivity bias in generalization and explains why PARITY is hard to learn. Verified in the abstract.",
+    "implication": "The exact Bayes posterior over many conditionally independent agents has high average sensitivity: every agent's log-likelihood ratio moves the output by O(1), whatever n is. Expect learned aggregators to under-use individual agents at large n. Measure per-agent sensitivity of the learned aggregator against the Bayes posterior directly, as a diagnostic.",
+    "verified": true
+   },
+   {
+    "id": "chiang_cholak2022",
+    "cite": "David Chiang, Peter Cholak (2022). Overcoming a Theoretical Limitation of Self-Attention. ACL 2022. arXiv:2202.12172",
+    "content": "Builds a transformer that recognizes PARITY and FIRST exactly, and uses layer normalization to push cross-entropy arbitrarily close to zero, getting around Hahn's lemma. The abstract notes that such solutions can be learned but generalize poorly in length. Verified in the abstract. From recall, not the abstract: the construction uses a position encoding that depends on i/n.",
+    "implication": "The O(1/n) dilution can be undone by explicit length- or count-dependent rescaling (n, or layer norm). This is direct support for giving the aggregator access to set size or count features. It also warns that such fixes may not generalize to unseen n.",
+    "verified": true
+   },
+   {
+    "id": "xu2019gin",
+    "cite": "Keyulu Xu, Weihua Hu, Jure Leskovec, Stefanie Jegelka (2019). How Powerful are Graph Neural Networks? ICLR 2019. arXiv:1810.00826",
+    "content": "Characterizes the expressive power of neighbourhood aggregators. Verified in the abstract. From recall, not the abstract: mean and max aggregators cannot tell apart multisets that have the same proportions, while sum aggregation (GIN) is injective on multisets.",
+    "implication": "Softmax attention is a weighted mean, so it cannot by itself tell k independent agreeing agents from 1 agent duplicated k times. Independent evidence needs sum, i.e. additive log-likelihood ratios; duplicated evidence needs mean. The aggregator needs a sum path, or count scalers as in PNA (Corso et al. 2020, arXiv:2004.05718, verified), gated by learned relation classification. This fits the planned direction of an explicit inference layer whose relations come from attention.",
+    "verified": true
+   },
+   {
+    "id": "velickovic2024",
+    "cite": "Petar Velickovic, Christos Perivolaropoulos, Federico Barbero, Razvan Pascanu (2024). Softmax is not Enough (for Sharp Size Generalisation). arXiv:2410.01104",
+    "content": "Proves that learned softmax circuits must disperse as the number of items grows at test time, even for finding the maximum key. Proposes an adaptive temperature to reduce this. Verified in the abstract.",
+    "implication": "If the aggregator learns to pick out one decisive source, such as a hypothesis-type source or a single informative key, that selection will blur when there are more agents at test time than in training. Add a train-n versus test-n split to every information-structure benchmark, and try adaptive temperature as a cheap ablation.",
+    "verified": true
+   },
+   {
+    "id": "wagstaff2019",
+    "cite": "Edward Wagstaff, Fabian B. Fuchs, Martin Engelcke, Ingmar Posner, Michael Osborne (2019). On the Limitations of Representing Functions on Sets. ICML 2019. arXiv:1901.09006",
+    "content": "Proves that a sum-decomposition (Deep Sets) with continuous maps needs a latent dimension at least as large as the maximum set size to be universal. Verified in the abstract.",
+    "implication": "Under conditional independence, Bayes aggregation is exactly sum-decomposable, with dimension equal to the number of hypotheses minus 1, because it sums log-likelihood ratios. Only correlated, duplicated or XOR structures need the high-dimensional or pairwise (attention) part. This motivates a hybrid: an additive evidence channel plus attention-computed correction terms. It also explains why generic vector messages trained from outcomes alone may not need extra bandwidth on CI-dominated data.",
+    "verified": true
+   },
+   {
+    "id": "ramsauer2020",
+    "cite": "Hubert Ramsauer, Bernhard Schafl, Johannes Lehner, Philipp Seidl, Michael Widrich, Thomas Adler, et al. (2020). Hopfield Networks is All You Need. ICLR 2021. arXiv:2008.02217",
+    "content": "Shows that the modern continuous Hopfield update equals transformer attention, with fixed points that average over all patterns (global), average over a subset (metastable), or retrieve a single pattern. Verified in the abstract.",
+    "implication": "In this framing, near-duplicate agents with similar keys form a metastable cluster, and softmax weights that cluster by its multiplicity. That is the opposite of the Bayes treatment of duplicates. It gives a mechanistic reason why a self-attention layer that first detects key similarity, and so can deduplicate, beats a single q.k readout. Check whether the learned layer's attention maps show agents attending within duplicate clusters.",
+    "verified": true
+   },
+   {
+    "id": "tsai2019",
+    "cite": "Yao-Hung Hubert Tsai, Shaojie Bai, Makoto Yamada, Louis-Philippe Morency, Ruslan Salakhutdinov (2019). Transformer Dissection: A Unified Understanding of Transformer's Attention via the Lens of Kernel. EMNLP 2019. arXiv:1908.11775",
+    "content": "Rewrites attention as a kernel smoother (Nadaraya-Watson) over inputs, with kernel scores given by input similarity, and explores alternative and asymmetric kernels. Verified in the abstract.",
+    "implication": "A kernel smoother estimates a locally weighted mean of the values. It does not do a product-of-likelihoods update. So a single attention readout over forecasts implements linear opinion pooling, and the gap to Bayes on independent-evidence structures is structural, not an optimization failure. Add a logarithmic or extremized pooling baseline next to it.",
+    "verified": true
+   },
+   {
+    "id": "vonoswald2022",
+    "cite": "Johannes von Oswald, Eyvind Niklasson, Ettore Randazzo, Joao Sacramento, Alexander Mordvintsev, Andrey Zhmoginov (2022). Transformers learn in-context by gradient descent. ICML 2023. arXiv:2212.07677",
+    "content": "Shows that one linear self-attention layer can implement one gradient-descent step on a least-squares loss, and that trained attention-only transformers on regression match this construction. Verified in the abstract. From recall, not the abstract: stacking layers gives further, preconditioned steps.",
+    "implication": "The Gaussian clearing system (K^T B K + Lambda) w = K^T B dl is a regularized least-squares solve. It could be approximated by unrolled linear-attention layers, so depth would trade off against how ill-conditioned the K^T B K system is (e.g. heavily duplicated or correlated sources). This bridges the 'explicit inference layer' and the 'plain transformer' bar: a candidate ablation is an exact solve versus L unrolled linear-attention steps.",
+    "verified": true
+   },
+   {
+    "id": "muller2021pfn",
+    "cite": "Samuel Muller, Noah Hollmann, Sebastian Pineda Arango, Josif Grabocka, Frank Hutter (2021). Transformers Can Do Bayesian Inference. ICLR 2022. arXiv:2112.10510",
+    "content": "Prior-Data Fitted Networks train a transformer on sets of samples drawn from a prior over tasks, so that it approximates the posterior predictive distribution in a single forward pass. Verified in the abstract.",
+    "implication": "This is the closest existing recipe for training an aggregator to approach exact Bayes across a prior over information structures. Sample a structure, then evidence, then agent reports, and train on the outcome or on the Bayes posterior. It is a natural strong baseline (a PFN-style set transformer over raw agent inputs) for the bar Kelvin set. It also fits the finding that distillation from Bayes beats outcome-only training, since the PFN loss uses Bayes-optimal targets in expectation.",
+    "verified": true
+   }
+  ],
+  "takeaways": [
+   "Softmax attention averages, but Bayes adds independent evidence. Under conditional independence the posterior log-odds is a sum of per-agent log-likelihood ratios, so each agent's influence is O(1) at any n. A softmax readout gives each agent O(1/n) influence (Hahn 2020; Xu et al. 2019, mean vs sum). The aggregator needs an explicit additive or count-scaled channel (sum, PNA-style scalers, or the Gaussian clearing solve), with attention only deciding which sources are duplicates or correlated. This matches the 'attention classifies relations, an inference layer combines' direction.",
+   "The plain-transformer bar is subject to the same sensitivity limits. XOR over a growing number of agents is unlearnable or non-generalizing for fixed-depth softmax transformers (Hahn 2020; Hahn and Rofin 2024; Chiang and Cholak 2022). Benchmarks should keep XOR arity k small and fixed, and report the Bayes ceiling and the transformer bar separately, so that 'matches the transformer' is not read as 'reaches Bayes'.",
+   "Duplicates: in the Hopfield/kernel view (Ramsauer et al. 2020; Tsai et al. 2019), softmax weights a cluster of near-identical keys by its multiplicity, so a single q.k readout over-counts duplicated evidence. A preceding self-attention layer can detect key similarity and deduplicate. This is a mechanistic reason for the observed self-attention advantage that can be checked on the attention maps.",
+   "Size generalization should be its own test axis: train at n agents, test at 2n to 4n. Softmax selection disperses with n (Velickovic et al. 2024), and count-dependent fixes generalize poorly in length (Chiang and Cholak 2022). Adaptive temperature, and an exact clearing solve that scales with n by construction, are cheap ablations.",
+   "Baselines and architectures to borrow: a PFN-style transformer trained on samples from a prior over information structures (Muller et al. 2021) as the strong learned baseline; unrolled linear-attention steps (von Oswald et al. 2022) versus an exact (K^T B K + Lambda) solve as the depth-versus-exactness ablation; Set Transformer (Lee et al. 2019, arXiv:1810.00825, verified) and attention with normalization instead of softmax, or sum/max pooling (Richter and Wattenhofer 2020, arXiv:2005.09561, verified), as permutation-invariant aggregators that do not use softmax. All works were checked to exist through the arXiv API. Statements marked 'from recall' (Hahn's O(1/n) lemma, Chiang and Cholak's i/n encoding, the GIN mean-vs-sum result, von Oswald's multi-layer steps) go beyond the fetched abstracts."
+  ]
+ },
+ {
+  "works": [
+   {
+    "id": "genest-zidek-1986",
+    "cite": "Genest, C. and Zidek, J.V. (1986). Combining Probability Distributions: A Critique and an Annotated Bibliography. Statistical Science 1(1):114-148. doi:10.1214/ss/1177013825",
+    "content": "Standard survey of opinion pools. Linear pooling keeps the marginalization property but is not externally Bayesian. Log-linear (geometric) pooling is externally Bayesian: pooling commutes with updating on a common likelihood. Also covers the supra-Bayesian approach, which treats expert reports as data. (Existence verified via Crossref; content from recall.) A related modern paper, verified on arXiv: Neyman and Roughgarden 2021, arXiv:2102.07081. It links each proper scoring rule to a 'quasi-arithmetic' pool, with linear pooling for the quadratic score and log pooling for the log score.",
+    "implication": "Gives the axiomatic baseline family to report: linear pool, log pool and supra-Bayes. A softmax-attention readout is a convex combination with weights summing to 1, so on values it is a linear pool and on logit values a log pool. It inherits those pools' limits unless the weights are left unnormalized.",
+    "verified": true
+   },
+   {
+    "id": "winkler-1981-clemen-winkler-1985",
+    "cite": "Winkler, R.L. (1981). Combining Probability Distributions from Dependent Information Sources. Management Science 27(4):479-488. doi:10.1287/mnsc.27.4.479; and Clemen, R.T. and Winkler, R.L. (1985). Limits for the Precision and Value of Information from Dependent Sources. Operations Research 33(2):427-442. doi:10.1287/opre.33.2.427",
+    "content": "Winkler models expert errors as multivariate normal with covariance Sigma, which gives the generalized-least-squares combination w proportional to Sigma^{-1} 1. Clemen and Winkler show that with equicorrelation rho, n dependent experts equal n/(1+(n-1)rho) independent ones, which tends to 1/rho as n grows. (Existence verified via Crossref; formulas from recall.)",
+    "implication": "Add a Winkler/GLS baseline that fits Sigma on agent logits. The proposed Gaussian clearing (K^T B K + Lambda) w = K^T B dl generalizes this, with keys K acting as a low-rank factorization of the error/overlap covariance. On correlated-Gaussian structures the learned aggregator should match this closed form.",
+    "verified": true
+   },
+   {
+    "id": "satopaa-2014-logit-baron-2014",
+    "cite": "Satopaa, V.A., Baron, J., Foster, D.P., Mellers, B.A., Tetlock, P.E. and Ungar, L.H. (2014). Combining multiple probability predictions using a simple logit model. International Journal of Forecasting 30(2):344-356. doi:10.1016/j.ijforecast.2013.09.009; and Baron, J., Mellers, B.A., Tetlock, P.E., Stone, E. and Ungar, L.H. (2014). Two Reasons to Make Aggregated Probability Forecasts More Extreme. Decision Analysis 11(2). doi:10.1287/deca.2014.0293",
+    "content": "Satopaa et al. propose the extremized mean of log-odds, p = logistic(a * mean logit p_i) with a > 1, fitted on Good Judgment Project data (details from recall). Baron et al. give two reasons to extremize: averaging compresses probabilities toward 0.5 at the ends of the scale, and each forecaster ignores the evidence that other forecasters hold (verified in abstract).",
+    "implication": "Add 'extremized mean logit with a fitted a' as the minimal learned baseline. The fitted a acts as a learned effective-independent-count scalar. Any attention aggregator should beat it on non-exchangeable structures and match it on exchangeable ones.",
+    "verified": true
+   },
+   {
+    "id": "satopaa-pif-2015",
+    "cite": "Satopaa, V.A., Jensen, S.T., Pemantle, R. and Ungar, L.H. (2015/2017). Partial Information Framework: Model-Based Aggregation of Estimates from Diverse Information Sources. arXiv:1505.06472 (Electronic Journal of Statistics); companion paper Satopaa, Pemantle and Ungar (2016), Modeling Probability Forecasts via Information Diversity, JASA, doi:10.1080/01621459.2015.1100621",
+    "content": "Treats heterogeneity across forecasters as differences in information, not measurement noise. Each forecast is a conditional expectation given a subset of a shared information pool. In a Gaussian specification it beats measurement-error aggregators on two real prediction polls (verified in abstract). In the Gaussian model the forecast covariance encodes pairwise information overlap, and the oracle aggregator is the conditional mean Sigma_{Y,X} Sigma_XX^{-1} X (recall). Ernst, Pemantle, Satopaa and Ungar (arXiv:1608.04717, verified) give a closed form for two forecasters.",
+    "implication": "Closest existing model of the project's 'keys' for overlapping and duplicated evidence. Use the Gaussian partial-information oracle as an analytic ceiling for overlap structures and test whether learned K^T K recovers the overlap matrix. It does not cover XOR or complementary information, where the Gaussian assumption fails.",
+    "verified": true
+   },
+   {
+    "id": "palley-soll-2019",
+    "cite": "Palley, A.B. and Soll, J.B. (2019). Extracting the Wisdom of Crowds When Information Is Shared. Management Science 65(5):2291-2309. doi:10.1287/mnsc.2018.3047",
+    "content": "Correlated errors from shared information limit crowd accuracy. The proposed elicitation asks each respondent for their own estimate and also for a prediction of the others' average estimate (verified in abstract). The 'pivoting' aggregator uses the gap between the two to remove the shared component and amplify the private one (details from recall).",
+    "implication": "A concrete extra message field that is not provenance: each agent's prediction of the crowd. It is a candidate way to beat the 'keys only work when provenance is visible' result. It is cheap to add to the simulator, since in the synthetic setting the Bayes-optimal meta-prediction is computable.",
+    "verified": true
+   },
+   {
+    "id": "prelec-2017-sp-2004-bts",
+    "cite": "Prelec, D., Seung, H.S. and McCoy, J. (2017). A solution to the single-question crowd wisdom problem. Nature 541:532-535. doi:10.1038/nature21054; and Prelec, D. (2004). A Bayesian Truth Serum for Subjective Data. Science 306:462-466. doi:10.1126/science.1102081",
+    "content": "The 'surprisingly popular' rule picks the answer whose actual frequency exceeds the respondents' predicted frequency. It recovers the truth even when the majority is wrong because only a minority holds the decisive evidence. Bayesian Truth Serum scores answers and meta-predictions so that honest reporting is a Bayes-Nash equilibrium. (Both existence-verified via Crossref; content from recall.)",
+    "implication": "Use it as a baseline and as a probe: with the same meta-prediction channel as Palley and Soll, can the aggregator learn surprisingly-popular-style corrections? BTS is the incentive-side reference for colluding or biased sources, but its guarantees assume a common prior and a large population.",
+    "verified": true
+   },
+   {
+    "id": "ostrovsky-2012",
+    "cite": "Ostrovsky, M. (2012). Information Aggregation in Dynamic Markets With Strategic Traders. Econometrica 80(6):2595-2647. doi:10.3982/ECTA8479",
+    "content": "With finitely many partially informed strategic traders, the price of any 'separable' security converges in every equilibrium to its expectation given the pooled information. Arrow-Debreu and additive securities are separable. For non-separable securities some prior admits an equilibrium that does not aggregate (verified in abstract). (Recall: the standard non-separable counterexample is XOR-like.)",
+    "implication": "Gives a formal condition for when sequential price-moving aggregation reaches the pooled posterior. It predicts that XOR or complementary structures are where single-number sequential aggregation can fail. That supports richer vector messages or explicit pairwise interaction for those structures.",
+    "verified": true
+   },
+   {
+    "id": "lambert-ostrovsky-panov-2018",
+    "cite": "Lambert, N.S., Ostrovsky, M. and Panov, M. (2018). Strategic Trading in Informationally Complex Environments. Econometrica 86(4):1119-1157. doi:10.3982/ECTA12635",
+    "content": "A Kyle (1985) linear-normal model with arbitrary correlations among asset value, trader signals, market-maker signals and noise demand. A unique linear equilibrium always exists and is characterized analytically. Large markets aggregate all information when noise demand is positively correlated with the value or uncorrelated; otherwise they aggregate everything except the information in the noise demand (verified in abstract).",
+    "implication": "An analytic Gaussian benchmark for strategic or biased sources with arbitrary correlation. It can generate test structures with known equilibrium prices to compare against Bayes and the learned aggregator when sources shade their reports.",
+    "verified": true
+   },
+   {
+    "id": "hanson-2003-lmsr",
+    "cite": "Hanson, R. (2003). Combinatorial Information Market Design. Information Systems Frontiers 5(1):107-119. doi:10.1023/A:1022058209073",
+    "content": "Introduces market scoring rules, including the logarithmic MSR (LMSR). A sequential market maker lets each trader move the price, paying the scoring-rule difference. For LMSR the cost is C(q) = b log sum exp(q_i/b), and prices are softmax(q/b). The design extends to combinatorial outcome spaces. (Existence verified via Crossref; content from recall.)",
+    "implication": "LMSR is a sequential aggregator whose state is summed log-odds shares with a softmax readout. It is a direct comparison point for the 'transformer reads agents sequentially' bar. A myopic-trader LMSR simulation is a cheap baseline, and it is exact for conditionally independent evidence.",
+    "verified": true
+   },
+   {
+    "id": "neyman-roughgarden-2021-arieli-2018",
+    "cite": "Neyman, E. and Roughgarden, T. (2021). Are You Smarter Than a Random Expert? The Robust Aggregation of Substitutable Signals. arXiv:2111.03153; and Arieli, I., Babichenko, Y. and Smorodinsky, R. (2018). Robust forecast aggregation. PNAS 115(52). doi:10.1073/pnas.1813934115",
+    "content": "Neyman and Roughgarden: when the information structure is chosen adversarially, no nontrivial guarantee is possible in general. Under 'projective substitutes' (diminishing returns to signals), averaging beats a random expert, and averaging followed by extremizing away from the prior by a constant factor does better (verified in abstract). Arieli et al.: an aggregator that sees only the forecasts can nearly match an omniscient one with two experts under assumptions, but this is hopeless with many experts (verified in abstract). Related, verified on arXiv: de Oliveira, Ishii and Lin, arXiv:2106.00088 (with two states and two actions, the robustly optimal strategy under unknown correlation uses only the best source).",
+    "implication": "These are impossibility results that bound what a forecast-only aggregator can do. Without second-order information (keys, provenance, meta-predictions), complements and XOR cannot be handled across structures. This is a formal reason why learned keys need visible provenance.",
+    "verified": true
+   }
+  ],
+  "takeaways": [
+   "Softmax-normalized attention puts the readout inside the linear-pool and log-pool family, with weights summing to 1. For n conditionally independent evidence-type sources with a common prior, Bayes is logit p = sum_i logit p_i - (n-1) logit prior. A convex combination cannot express this; it needs weights summing to n plus a prior correction, which is extremization in Satopaa/Baron/Neyman-Roughgarden terms. Check whether the current architectures have an unnormalized or learned-count path, and test the hypothesis-type vs evidence-type split specifically on this prior-subtraction term.",
+   "Add a closed-form baseline ladder before the transformer bar: linear pool, mean logit, extremized mean logit with fitted a, Winkler GLS on logits (w proportional to Sigma^{-1} 1, with Sigma fitted), the Gaussian partial-information oracle (Satopaa et al.), and a myopic LMSR sequential market. The proposed Gaussian clearing layer is a keyed, low-rank generalization of Winkler/PIF. On Gaussian overlap structures it should match the PIF oracle exactly, which is a clean unit test for the inference layer.",
+   "The robust-aggregation impossibility results (Arieli et al. 2018; Neyman and Roughgarden 2021) and Ostrovsky's separability condition give a theoretical reason why forecasts alone, or keys without provenance, cannot reach Bayes on complementary or XOR structures. Treat 'keys need provenance' as expected, not as a failure, and frame results as which second-order signals restore identifiability.",
+   "Meta-predictions are a candidate second-order signal that is not provenance: each agent also reports its prediction of the other agents' average (Palley and Soll pivoting; Prelec surprisingly popular). In the simulator the Bayes-optimal meta-prediction is computable. Test whether adding it as a message field closes the gap that provenance currently closes for duplicates and shared evidence.",
+   "For biased or strategic sources, Lambert, Ostrovsky and Panov give an analytic linear-normal equilibrium under arbitrary correlation, and BTS gives an incentive-side reference. Both rely on Gaussian or common-prior assumptions. Use them to generate known-answer test cases rather than as architectures. Of all these works, only the sequential-market literature (LMSR, Ostrovsky) speaks to the 'read agents sequentially' transformer bar."
+  ]
+ },
+ {
+  "works": [
+   {
+    "id": "julier-uhlmann-1997-ci",
+    "cite": "Julier, S. J. and Uhlmann, J. K. (1997). A non-divergent estimation algorithm in the presence of unknown correlations. Proc. American Control Conference 1997. DOI 10.1109/ACC.1997.609105",
+    "content": "Introduces covariance intersection (CI): fuse two estimates with unknown cross-correlation as P^-1 = w P_a^-1 + (1-w) P_b^-1 (convex combination of information matrices), proved consistent for any actual correlation. [Abstract verified via doi.org/Exa: CI introduced, consistent irrespective of correlation; the formula is from recall.]",
+    "implication": "Add CI as a bracketing baseline: in log-likelihood/information form it is a convex pool (weights sum to 1), the safe answer under full duplication, while naive summation (weights 1 each) is exact only for independent evidence. A learned aggregator should land between these two on every information structure and beat both where the structure is identifiable.",
+    "verified": true
+   },
+   {
+    "id": "grime-durrant-whyte-1994-channel-filter",
+    "cite": "Grime, S. and Durrant-Whyte, H. F. (1994). Data fusion in decentralized sensor networks. Control Engineering Practice 2(5):849-863. DOI 10.1016/0967-0661(94)90349-2",
+    "content": "Decentralized information-filter fusion without a central node; introduces the channel filter, which tracks the information already exchanged over each link and subtracts it (y_fused = y_a + y_b - y_common), exact on tree-connected networks. [Existence and bibliographic data verified via doi.org; no abstract available, so the channel filter description is from recall.]",
+    "implication": "An exact reference mechanism for duplicated evidence: removal of common information is exact only when provenance (which information passed where) is tracked. That matches the current finding that learned keys reach the ceiling only when provenance is visible; the channel filter is the oracle-provenance baseline for the duplicate/overlap structures.",
+    "verified": true
+   },
+   {
+    "id": "noack-2017-ici",
+    "cite": "Noack, B., Sijs, J., Reinhardt, M. and Hanebeck, U. D. (2017). Decentralized data fusion with inverse covariance intersection. Automatica 79. DOI 10.1016/j.automatica.2017.01.019",
+    "content": "Inverse covariance intersection (ICI): extends ellipsoidal intersection, bounds the maximum common information the estimates could share and removes that bound, guaranteeing consistency under unknown common information while being less conservative than CI. [Abstract verified via ScienceDirect/KIT PDF snippets.]",
+    "implication": "A middle baseline between CI and naive sum for partially overlapping evidence; also a concrete parameterization to borrow: the aggregator (e.g. attention over keys) could predict an estimate of the shared information between source pairs that is then subtracted, as in ICI, instead of predicting fusion weights directly.",
+    "verified": true
+   },
+   {
+    "id": "cattivelli-sayed-2010-diffusion-kf",
+    "cite": "Cattivelli, F. S. and Sayed, A. H. (2010). Diffusion strategies for distributed Kalman filtering and smoothing. IEEE Trans. Automatic Control 55(9):2069-2084. DOI 10.1109/TAC.2010.2042987",
+    "content": "Nodes communicate only with neighbours; each runs a local Kalman update and then convexly combines neighbours' estimates (diffusion), with mean and mean-square performance analysis. [Abstract verified via doi.org/Exa.]",
+    "implication": "Reference point if the aggregator becomes multi-round or decentralized: convex neighbour averaging (like consensus, cf. Olfati-Saber, Fax and Murray 2007, Proc. IEEE, DOI 10.1109/JPROC.2006.887293, which I checked by DOI metadata only) converges to network averages, not the Bayes product. Matching Bayes needs rescaling by the count of independent sources, the same counting problem the project studies.",
+    "verified": true
+   },
+   {
+    "id": "sukhbaatar-2016-commnet",
+    "cite": "Sukhbaatar, S., Szlam, A. and Fergus, R. (2016). Learning Multiagent Communication with Backpropagation (CommNet). arXiv:1605.07736",
+    "content": "CommNet: agents exchange continuous messages, aggregated by averaging the hidden states of the other agents, and the protocol is learned end to end with the policy. [Abstract verified via arXiv API; the mean-pooling detail is from recall.]",
+    "implication": "Add a CommNet-style mean-pooled aggregator as a weak baseline. Mean pooling does not change when a source is duplicated, and a sum does, so neither counts evidence correctly without key-dependent weights. This gives a clean lower rung below the self-attention reference.",
+    "verified": true
+   },
+   {
+    "id": "foerster-2016-dial",
+    "cite": "Foerster, J. N., Assael, Y. M., de Freitas, N. and Whiteson, S. (2016). Learning to Communicate with Deep Multi-Agent Reinforcement Learning (RIAL/DIAL). arXiv:1605.06676",
+    "content": "RIAL learns messages with deep Q-learning; DIAL passes gradients through the communication channel during centralized training. [Abstract verified via arXiv API.] DIAL's discretise/regularise unit, which adds noise during training so messages become discretizable, is from recall.",
+    "implication": "The noise-injected channel offers a ready way to set a message bit budget, which lets you test whether vector messages carry more bits than a scalar forecast. DIAL beating RIAL also shows that a direct gradient into the message channel beats a sparse task signal. That parallels, but does not prove, the finding that Bayes distillation beats outcome-only training for using bandwidth.",
+    "verified": true
+   },
+   {
+    "id": "das-2018-tarmac",
+    "cite": "Das, A., Gervet, T., Romoff, J., Batra, D., Rabbat, M. and Pineau, J. (2018). TarMAC: Targeted Multi-Agent Communication. arXiv:1810.11187 (ICML 2019)",
+    "content": "Agents learn what to send and whom to address: each message has a signature (key) and value, and receivers attend over them with a query, with multiple communication rounds, all learned from task reward without communication supervision. [Abstract verified via arXiv API (authors list truncated at five in my query; the last two are from recall); the signature/value/query mechanism is from recall.]",
+    "implication": "This is the closest prior architecture to the project's key/value design. Its one-round form is the q.k readout and its multi-round form sits between that readout and full self-attention, so it is the natural named baseline. Its keys were learned from reward alone and were never scored against a Bayes posterior, which is the gap the project fills.",
+    "verified": true
+   },
+   {
+    "id": "wang-2019-imac",
+    "cite": "Wang, R., He, X., Yu, R., Qiu, W. and An, B. (2019). Learning Efficient Multi-agent Communication: An Information Bottleneck Approach (IMAC). arXiv:1911.06992",
+    "content": "Limited-bandwidth MARL communication: an information-bottleneck regulariser limits message entropy and a learned scheduler chooses who communicates. [Abstract verified via arXiv API.]",
+    "implication": "An explicit bandwidth control to borrow: put an IB/entropy penalty on vector messages and report the information they carry about the agent's evidence, I(message; evidence). That turns 'does not use extra bandwidth' into a measured rate-versus-loss curve for outcome-trained and Bayes-distilled messages.",
+    "verified": true
+   },
+   {
+    "id": "satorras-welling-2020-nebp",
+    "cite": "Garcia Satorras, V. and Welling, M. (2020/2021). Neural Enhanced Belief Propagation on Factor Graphs. arXiv:2003.01998 (AISTATS 2021, PMLR v130)",
+    "content": "Extends GNNs to factor graphs (FG-GNN) and runs one jointly with belief propagation: at each iteration the FG-GNN takes the BP messages and outputs corrected ones, fixing loopy-graph and model-mismatch errors; beats BP for LDPC decoding on bursty channels. [Abstract verified via arXiv abs page and PMLR, fetched through Exa; the arXiv API was rate-limited.]",
+    "implication": "An architecture template for the planned explicit inference layer: keep Gaussian clearing or BP as the backbone and let attention output corrections to its messages or its B/Lambda terms. When the assumed structure is right the model reduces to exact inference, and the learned part only fixes loops (duplicated evidence) and mismatch (correlated or biased sources).",
+    "verified": true
+   },
+   {
+    "id": "dong-2025-difnet",
+    "cite": "Dong, R., Wang, M., Liu, N., Guo, T., Kang, J., Shen, X. and Mao, Y. (2025). DIFNet: Decentralized Information Filtering Fusion Neural Network with Unknown Correlation in Sensor Measurement Noises. arXiv:2508.18854",
+    "content": "A decentralized information-filter fusion in which a neural network learns the unknown correlations in measurement noise between sensors, to restore near-optimal fusion accuracy. [Abstract verified via the arxiv.org/html page fetched through Exa; arXiv API not queried for this id.]",
+    "implication": "The closest learned-fusion analogue of the Gaussian clearing equation with a learned cross-correlation term B: a direct baseline and a design precedent for predicting the correlation structure, rather than fusion weights, from source keys.",
+    "verified": true
+   }
+  ],
+  "takeaways": [
+   "Data fusion has two answers to duplicated or correlated evidence: subtract the common information exactly when provenance is tracked (channel filter, exact on trees), or bound it conservatively when it is not (CI convex pool, ICI bounded subtraction). This explains the current finding that keys reach the ceiling only with provenance visible: without identifying information, no aggregator can do better than a conservative bound. Report each information structure against an oracle-provenance channel-filter score, a CI score and a naive-sum score.",
+   "The planned Gaussian clearing (K^T B K + Lambda) w = K^T B dl is generalized least squares, the information filter with a known cross-covariance, and is exact when B is right. The literature suggests learning the structure (B, the shared information between source pairs) from keys rather than fusion weights (DIFNet, ICI), and putting learned corrections on top of an exact backbone (Neural Enhanced BP). Then the model reduces to exact inference when the structure is identified.",
+   "The learned-communication MARL aggregators are the natural ladder of baselines: CommNet mean pooling, TarMAC one-round q.k attention, multi-round TarMAC, full self-attention, then the explicit inference layer. My own analysis, not from these papers: mean pooling and softmax-normalized attention cannot represent how many independent copies of a piece of evidence exist, and a sum over-counts duplicates. So the observed self-attention advantage on duplicates is expected, and these ablations would show where counting enters.",
+   "None of the MARL communication papers checked (CommNet, DIAL, TarMAC, IMAC) measures messages against an exact Bayes posterior; they report task reward. Calibration against the Bayes posterior across controlled information structures is the project's distinct contribution. IMAC's information-bottleneck penalty is a ready tool to measure message rate and test whether Bayes distillation, unlike outcome training, raises I(message; evidence).",
+   "If aggregation becomes iterative or decentralized, consensus/diffusion averaging converges to network averages, not the Bayes product, and loops re-count shared evidence. Any multi-round design needs a channel-filter-like or count-aware correction, so test multi-round variants on the duplicate structures."
+  ]
+ },
+ {
+  "takeaways": [
+   "Make the project's top-level framing use the same names as the field. LEAP (2609.01337) is a deterministic 'Bayes over per-item likelihoods' layer, the hand-built form of the evidence-type channel. The supervisor reconciler in the AIA Forecaster and MoA are LLM versions of 'one model reads all raw messages', which is the plain-transformer bar. Learned linear pooling (2609.33257) and the trimmed mean (Halawi) are the report-level baselines. Each fails in a predictable way on the synthetic structures: LEAP's independent likelihoods double-count duplicates (my inference, not stated in its abstract), and linear pools stay underconfident on complementary or XOR evidence. These failures are exactly what the K^T B K clearing layer is meant to fix, so they make clean contrasts.",
+   "The real-data evidence agrees with the synthetic findings on correlation. Larger LLMs have more correlated errors (2506.07962). Self-MoA often beats mixing different LLMs (2502.00674). Adding forecasters to a learned pool does not reliably help (2609.33257). Deliberation helps diverse models but not three copies of one model (2512.22625). For LLM agents, the duplicated or correlated-noise regime is the normal case, not an edge case. So a model of how sources relate, built from keys or provenance, is the part of the aggregator that matters for real LLM crowds.",
+   "There is a cheap real-data testbed. ForecastBench has many LLM and human forecasters on a shared, leakage-free set of questions; 2609.33257 reports 70 LLMs with more than 1,000 shared subquestions per group. Metaculus AI Benchmarking supplies bot forecasts, Pro forecasts and community forecasts on the same questions. On these, metadata (model family, retrieval source, shared prompt) can act as provenance keys. The open question is whether provenance-aware keys beat learned linear pooling. That reproduces the current 'keys work only when provenance is visible' result outside simulation. Brier and log score can be reported, with Paleka et al.'s leakage cautions (2506.00723) applied.",
+   "A rich message plus distillation is the analog of rationale-based aggregation. Kotamraju and Blanco (2109.07017, abstract verified) found that written justifications improve crowd aggregation. LEAP turns each evidence item into likelihood parameters. Both support the current finding that vector messages need supervision from Bayes or likelihoods; outcomes alone are not enough. A concrete experiment: elicit per-source likelihood vectors from an LLM in LEAP's style as the message, then train only the relation and clearing layer.",
+   "Calibration has to be handled explicitly. Schoenegger et al. found an acquiescence bias, with the mean forecast significantly above 50%. AIA needed statistical calibration to reach superforecaster level. Lichtendahl et al. (1705.02391, abstract verified) show that the Bayes-optimal ensemble moves probabilities into information space, combines them linearly, and maps back, so it extremizes or anti-extremizes depending on how information is shared. The aggregator should therefore include a per-source calibration map (logit, then an affine transform) before the relation layer, and anti-extremizing should be expected on duplicated-source structures."
+  ],
+  "works": [
+   {
+    "id": "halawi2024",
+    "cite": "Halawi, Zhang, Chen (Yueh-Han), Steinhardt (2024). Approaching Human-Level Forecasting with Language Models. arXiv:2402.18563 (NeurIPS 2024, from memory).",
+    "content": "Retrieval-augmented LM pipeline that searches news, samples many forecasts and aggregates them. On questions published after the models' knowledge cutoffs it nears the competitive-forecaster crowd aggregate and sometimes beats it. Verified in the abstract: the dataset, the retrieval, the aggregation, and 'nears crowd'. From memory and unverified: the aggregation is a trimmed mean over samples, and the model is fine-tuned on its own reasoning traces that beat the crowd.",
+    "implication": "The standard real-data report-level baseline is a trimmed mean or average over LLM samples. Because the samples share the same retrieved articles, it is a natural 'duplicated evidence' case in which a provenance-aware aggregator should beat averaging.",
+    "verified": true
+   },
+   {
+    "id": "schoenegger2024",
+    "cite": "Schoenegger, Tuminauskaite, Park, Tetlock (2024). Wisdom of the Silicon Crowd: LLM Ensemble Prediction Capabilities Rival Human Crowd Accuracy. arXiv:2402.19379.",
+    "content": "Study 1: the median of a crowd of 12 LLMs on 31 binary questions is statistically indistinguishable from 925 human forecasters, and LLMs show an acquiescence bias (mean forecast above 50%). Study 2: showing GPT-4 or Claude 2 the human median improves their accuracy by 17-28%, but that is worse than simply averaging the human and machine forecasts. All of this was verified in the abstract.",
+    "implication": "Study 2 shows an LLM conditioning on another source's report doing worse than a simple pool. This is evidence that a naive 'read everything' integrator can underperform an explicit combination rule, which is directly relevant to the transformer bar. It is also a reason to give each source its own calibration correction.",
+    "verified": true
+   },
+   {
+    "id": "karger2024forecastbench",
+    "cite": "Karger, Bastani, Chen (Yueh-Han), Jacobs, Halawi, Zhang (2024). ForecastBench: A Dynamic Benchmark of AI Forecasting Capabilities. arXiv:2409.19839 (ICLR 2025, from memory).",
+    "content": "A dynamic benchmark of 1,000 automatically generated questions, all with no known answer at the time of submission. Forecasts from experts, the general public and LLMs were collected on a 200-question subset, and expert forecasters beat the best LLM (p<0.001). Public leaderboard at forecastbench.org. Verified in the abstract.",
+    "implication": "A dataset: many forecasters (LLM and human) on shared, leakage-free questions with known metadata. It supports testing learned keys, with model family, prompt or retrieval used as provenance, against linear pooling on real outcomes.",
+    "verified": true
+   },
+   {
+    "id": "metaculus-aib-q2-2025",
+    "cite": "Metaculus (2025). Q2 AI Benchmark Results (notebook). https://www.metaculus.com/notebooks/40456/q2-ai-benchmark-results/ (fetched).",
+    "content": "A team of 10 Pro forecasters significantly beats the top-10 bot team (p=0.00001). The bot team's head-to-head score against the Pros was -11.3, -8.9, -17.7 and -20.0 over four quarters, with no clear trend. The winning bot, which is open-source, aggregates five final predictions from Sonnet, o4-mini and o3. 'Models matter more than prompts.' Verified from the fetched page.",
+    "implication": "The mentor's own platform supplies a dataset of many bot forecasts, Pro forecasts and community forecasts on identical questions. Most bot ensembles there are multi-model averages over shared search results, so they test whether relation-aware aggregation adds anything beyond the model-quality effect.",
+    "verified": true
+   },
+   {
+    "id": "leap2026",
+    "cite": "Chen (Yufei), Zhao, Xu, Xie, Wu, Liu (2026). LEAP: Likelihood Elicitation and Aggregation for LLM-based Probabilistic Forecasting. arXiv:2609.01337.",
+    "content": "Instead of 'monolithic prediction', in which one LLM reads all the evidence, the LLM elicits likelihood parameters for each evidence item separately, and an explicit prior plus a deterministic probabilistic model combine them into a posterior. On the same evidence it improves most accuracy and calibration metrics, including under controlled comparisons of inference budget. Verified in the abstract. The abstract does not say how the method handles dependence between evidence items.",
+    "implication": "This is the closest existing system to evidence-type sources sending likelihood messages, plus a fixed Bayes layer. It is a direct baseline for the clearing layer, and also a target for its fix: add a learned relation matrix B to handle duplicates and correlation that a combination assuming independence would double-count. That double-counting is inferred, not tested.",
+    "verified": true
+   },
+   {
+    "id": "peng2026weak2strong",
+    "cite": "Peng, Luo, Chen (Zhi), Tang (2026). Two Heads Are Better Than One: Aggregating Weaker LLMs for Better Forecasts. arXiv:2609.33257.",
+    "content": "Uses 70 LLM forecasters on ForecastBench, with more than 1,000 shared subquestions per group. A learned linear pool of two weaker models matches or beats the strongest single model in 11 of 16 groups and comes within 5% Brier in all 16. Adding more models does not reliably help. Verified in the abstract.",
+    "implication": "Learned linear pooling is a strong, cheap real-data baseline for the aggregator. The finding that more models do not help is consistent with correlated sources, which is the regime where keys or relation classification should beat a linear pool.",
+    "verified": true
+   },
+   {
+    "id": "aia2025",
+    "cite": "Alur, Stadie, Kang, Chen (Ryan), McManus, Rickert, Lee (2025). AIA Forecaster: Technical Report. arXiv:2511.07678.",
+    "content": "Agentic news search, plus a supervisor agent that reconciles disparate forecasts for the same event, plus statistical calibration against LLM biases. It reaches superforecaster level on ForecastBench. It underperforms prediction-market consensus, but an ensemble with the market beats the market alone. Verified in the abstract.",
+    "implication": "The supervisor reconciler is the LLM instance of the 'plain model reading all agents' raw outputs' bar. The finding that the market ensemble adds information is a real case of partially overlapping sources where the right weight depends on that overlap.",
+    "verified": true
+   },
+   {
+    "id": "moa2024-selfmoa2025",
+    "cite": "Wang (Junlin), Wang (Jue), Athiwaratkun, Zhang, Zou (2024). Mixture-of-Agents Enhances Large Language Model Capabilities. arXiv:2406.04692. Also Li (Wenzhe), Lin, Xia, Jin (2025). Rethinking Mixture-of-Agents: Is Mixing Different Large Language Models Beneficial? arXiv:2502.00674.",
+    "content": "MoA: layered LLM agents, each reading all outputs from the previous layer, reach state of the art on AlpacaEval 2.0. Self-MoA: aggregating samples from only the best single model beats mixing different LLMs (6.6% on AlpacaEval, 3.8% averaged over MMLU, CRUX and MATH) because quality matters more than diversity. A sequential version aggregates many outputs over rounds as well as all at once. Verified in the abstracts.",
+    "implication": "MoA is the LLM-level 'self-attention over all messages' architecture, a baseline at the same level as the transformer bar. Self-MoA's quality-diversity trade-off shows that the aggregator must weight by information content rather than reward source diversity for its own sake. Its sequential mode bears on streaming many agents.",
+    "verified": true
+   },
+   {
+    "id": "kim2025correlated",
+    "cite": "Kim, Garg (Avi), Peng (Kenny), Garg (Nikhil) (2025). Correlated Errors in Large Language Models. arXiv:2506.07962.",
+    "content": "Across more than 350 LLMs, errors are strongly correlated: when two models both err, they give the same wrong answer 60% of the time on one leaderboard. Shared architecture and provider drive the correlation, and larger, more accurate models are highly correlated even across providers. Verified in the abstract.",
+    "implication": "This gives empirical grounding for the correlated-noise and duplicated-evidence regimes. On real LLM crowds, the effective number of independent sources is far below N, so source-relation estimation (the B matrix or an attention-based relation classifier) is required, not optional.",
+    "verified": true
+   },
+   {
+    "id": "schneider2025deliberation",
+    "cite": "Schneider, Schramm (2025). The Wisdom of Deliberating AI Crowds: Does Deliberation Improve LLM-Based Forecasting? arXiv:2512.22625.",
+    "content": "On 202 questions from the Metaculus Q2 2025 AI tournament, letting LLMs (GPT-5, Claude Sonnet 4.5, Gemini 2.5 Pro) review each other's forecasts lowers log loss by about 4% only for diverse models with shared information. Homogeneous groups gain nothing, and distributing extra information did not help. Verified in the abstract.",
+    "implication": "This is a factorial over information structure (shared vs distributed) and source diversity on real Metaculus questions, a template for a real-data ablation. The null result for distributed information suggests that current LLMs do not pool complementary evidence through deliberation, which leaves room for an explicit inference layer.",
+    "verified": true
+   }
+  ]
+ }
+]

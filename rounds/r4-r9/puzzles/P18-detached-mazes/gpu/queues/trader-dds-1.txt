@@ -1,0 +1,9 @@
+t_p05 train18.py --mode prog --alpha 0.5 --width 128 --T 30 --warmup_frac 0.2 --ckpt_sec 300 --steps 100000 --seed 0 --name t_p05 --out out/p1 --time_steps 300
+t_a1 train18.py --mode ds --K 4 --order rand --detach 1 --width 128 --T 30 --warmup_frac 0.2 --ckpt_sec 300 --steps 100000 --seed 0 --name t_a1 --out out/p1 --time_steps 300
+t_p0 train18.py --mode prog --alpha 0 --width 128 --T 30 --warmup_frac 0.2 --ckpt_sec 300 --steps 100000 --seed 0 --name t_p0 --out out/p1 --time_steps 300
+t_p1 train18.py --mode prog --alpha 1 --width 128 --T 30 --warmup_frac 0.2 --ckpt_sec 300 --steps 100000 --seed 0 --name t_p1 --out out/p1 --time_steps 300
+t_a2 train18.py --mode ds --K 4 --order rr --detach 1 --width 128 --T 30 --warmup_frac 0.2 --ckpt_sec 300 --steps 100000 --seed 0 --name t_a2 --out out/p1 --time_steps 300
+t_a3 train18.py --mode ds --K 4 --order rand --detach 0 --width 128 --T 30 --warmup_frac 0.2 --ckpt_sec 300 --steps 100000 --seed 0 --name t_a3 --out out/p1 --time_steps 300
+t_a5 train18.py --mode ds --K 1 --order rr --detach 1 --width 128 --T 30 --warmup_frac 0.2 --ckpt_sec 300 --steps 100000 --seed 0 --name t_a5 --out out/p1 --time_steps 300
+ev_mref eval18.py --kind mref --ckpt mref/dt_net.pth --sets v9,m13,m59,e19,e33,e59 --out out/ev_mref
+END

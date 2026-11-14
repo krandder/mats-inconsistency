@@ -1,0 +1,18 @@
+- 2026-09-29T13:37:24Z CREATE vm=trader-cat-p3-1 zone=us-central1-c epoch=1790689044 type=c2d-highcpu-32 spot max_run=5h rate_ceiling=1.20 spend_before=0
+- 2026-09-29T13:38:53Z READY vm=trader-cat-p3-1 ip=[ip-removed] cpus=32 torch=2.14.0+cpu 
+- 2026-09-29T13:39:44Z START vm=trader-cat-p3-1 queue=t1_queue.txt jobs=38 parallel=32
+- 2026-09-29T13:41:26Z SYNC vm=trader-cat-p3-1 verified_files=34 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P3/results
+- 2026-09-29T13:46:47Z SYNC vm=trader-cat-p3-1 verified_files=60 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P3/results
+- 2026-09-29T13:52:23Z SYNC vm=trader-cat-p3-1 verified_files=67 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P3/results
+- 2026-09-29T13:58:17Z SYNC vm=trader-cat-p3-1 verified_files=78 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P3/results
+- 2026-09-29T14:00:00Z START vm=trader-cat-p3-1 queue=t1_queue2.txt jobs=16 parallel=16
+- 2026-09-29T14:03:00Z SYNC vm=trader-cat-p3-1 verified_files=98 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P3/results
+- 2026-09-29T14:08:30Z SYNC vm=trader-cat-p3-1 verified_files=107 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P3/results
+- 2026-09-29T14:17:51Z DELETE vm=trader-cat-p3-1 epoch=1790691032 reason="spot preemption (GCE system event compute.instances.preempted 14:10:32Z; termination action DELETE); last verified sync 14:08:30Z" leftover_disks="none" spend_now=n/a
+- 2026-09-29T14:18:50Z CREATE vm=trader-cat-p3-2 zone=us-central1-f epoch=1790691529 type=c2d-highcpu-32 spot max_run=5h rate_ceiling=1.20 spend_before=0.66
+- 2026-09-29T14:25:15Z READY vm=trader-cat-p3-2 ip=[ip-removed] cpus=32 torch=2.14.0+cpu 
+- 2026-09-29T14:25:59Z START vm=trader-cat-p3-2 queue=t1_queue3.txt jobs=3 parallel=3
+- 2026-09-29T14:27:54Z SYNC vm=trader-cat-p3-2 verified_files=5 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P3/results
+- 2026-09-29T14:33:23Z SYNC vm=trader-cat-p3-2 verified_files=5 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P3/results
+- 2026-09-29T14:41:28Z SYNC vm=trader-cat-p3-2 verified_files=8 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P3/results
+- 2026-09-29T14:42:55Z DELETE vm=trader-cat-p3-2 epoch=1790692974 reason="queue3 done" leftover_disks="none" spend_now=1.14

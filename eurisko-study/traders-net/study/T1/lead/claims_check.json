@@ -1,0 +1,462 @@
+{
+ "n": 57,
+ "n_fail": 0,
+ "claims": [
+  {
+   "claim": "L1.1 Euler identity, frozen-LN graph, worst rel err (<1e-9)",
+   "stated": 8.8e-16,
+   "got": 8.75968079866856e-16,
+   "tol": 1e-16,
+   "file": "study/T1/w1/out/L1a.json",
+   "ok": true
+  },
+  {
+   "claim": "L1.2 SGD per-step identity max rel resid",
+   "stated": 1.8e-13,
+   "got": 1.784050369710391e-13,
+   "tol": 1e-14,
+   "file": "study/T1/w1/out/L1b.json",
+   "ok": true
+  },
+  {
+   "claim": "L1.2 R2 true income vs norm growth, SGD neurons(out)",
+   "stated": 0.989,
+   "got": 0.9893586191754346,
+   "tol": 0.001,
+   "file": "study/T1/w1/out/L1b.json",
+   "ok": true
+  },
+  {
+   "claim": "L1.2 R2 books vs true income, SGD neurons",
+   "stated": 0.32,
+   "got": 0.32363445423663584,
+   "tol": 0.005,
+   "file": "study/T1/w1/out/L1b.json",
+   "ok": true
+  },
+  {
+   "claim": "L1.2 R2 books vs true income, Adam neurons",
+   "stated": 0.14,
+   "got": 0.13907678590616832,
+   "tol": 0.005,
+   "file": "study/T1/w1/out/L1b.json",
+   "ok": true
+  },
+  {
+   "claim": "L1.2 R2 books vs norm growth, Adam neurons(out)",
+   "stated": 0.022,
+   "got": 0.02159890810544837,
+   "tol": 0.0005,
+   "file": "study/T1/w1/out/L1b.json",
+   "ok": true
+  },
+  {
+   "claim": "L1.3 Spearman(income, |theta|^2), lambda=1e-2",
+   "stated": 0.9993,
+   "got": 0.9992668621700879,
+   "tol": 5e-05,
+   "file": "study/T1/w1/out/L1c.json",
+   "ok": true
+  },
+  {
+   "claim": "L1.3 rent/income median, lambda=1e-2",
+   "stated": 1.008,
+   "got": 1.0084135448490816,
+   "tol": 0.0005,
+   "file": "study/T1/w1/out/L1c.json",
+   "ok": true
+  },
+  {
+   "claim": "L1.4 in-sample: frac noise features with income>0",
+   "stated": 1.0,
+   "got": 1.0,
+   "tol": 0,
+   "file": "study/T1/w1/out/L1d.json",
+   "ok": true
+  },
+  {
+   "claim": "L1.4 prequential: frac noise features with income<0",
+   "stated": 0.975,
+   "got": 0.975438596491228,
+   "tol": 0.0005,
+   "file": "study/T1/w1/out/L1d.json",
+   "ok": true
+  },
+  {
+   "claim": "L2.1 payoff = log-score gain = tangent+KL, max abs err",
+   "stated": 1.1e-14,
+   "got": 1.0658141036401503e-14,
+   "tol": 1e-15,
+   "file": "study/T1/w1/out/L2.json",
+   "ok": true
+  },
+  {
+   "claim": "L2.3 seed1 E[exact] from base rate",
+   "stated": 0.2645,
+   "got": 0.2644916536038599,
+   "tol": 5e-05,
+   "file": "study/T1/w1/out/L2.json",
+   "ok": true
+  },
+  {
+   "claim": "L2.3 seed1 I(X;Y)",
+   "stated": 0.2656,
+   "got": 0.26562931385301647,
+   "tol": 5e-05,
+   "file": "study/T1/w1/out/L2.json",
+   "ok": true
+  },
+  {
+   "claim": "L2.4 tangent vs IG shares, rel L1 median",
+   "stated": 0.72,
+   "got": 0.719111196101477,
+   "tol": 0.005,
+   "file": "study/T1/w1/out/L2.json",
+   "ok": true
+  },
+  {
+   "claim": "L2.4 arrival-order sd / IG share, median",
+   "stated": 0.95,
+   "got": 0.9549624772011794,
+   "tol": 0.005,
+   "file": "study/T1/w1/out/L2.json",
+   "ok": true
+  },
+  {
+   "claim": "L3.2 marginal revenue / C, concave trunk, seed1",
+   "stated": 0.707,
+   "got": 0.7065305001814404,
+   "tol": 0.001,
+   "file": "study/T1/w1/out/L3.json",
+   "ok": true
+  },
+  {
+   "claim": "L3 M7 E8 fine-grained charge per routed token (A)",
+   "stated": 59664,
+   "got": 59664.0,
+   "tol": 0,
+   "file": "study/T1/w1/out/flops_M7.json",
+   "ok": true
+  },
+  {
+   "claim": "L3 M7 E8 fine-grained active FLOPs/token",
+   "stated": 240704,
+   "got": 240704.0,
+   "tol": 0,
+   "file": "study/T1/w1/out/flops_M7.json",
+   "ok": true
+  },
+  {
+   "claim": "L3 K1 break-even nats/FLOP, lone logistic-32",
+   "stated": 0.00057,
+   "got": 0.0005681818181818183,
+   "tol": 5e-06,
+   "file": "study/T1/w1/out/flops_K1.json",
+   "ok": true
+  },
+  {
+   "claim": "L4.1 telescoping, tangent books, max resid",
+   "stated": 3.3e-14,
+   "got": 3.301638263137259e-14,
+   "tol": 1e-15,
+   "file": "study/T1/w2/results/summary.json",
+   "ok": true
+  },
+  {
+   "claim": "L4.3 hindsight gap periodic D=64, lr 0.05",
+   "stated": 0.0051,
+   "got": 0.00512,
+   "tol": 5e-05,
+   "file": "study/T1/w2/results/summary_delay.csv",
+   "ok": true
+  },
+  {
+   "claim": "L4.3 hindsight gap periodic D=512, lr 0.05",
+   "stated": 0.046,
+   "got": 0.04641,
+   "tol": 0.0005,
+   "file": "study/T1/w2/results/summary_delay.csv",
+   "ok": true
+  },
+  {
+   "claim": "L4.3 hindsight gap periodic D=512 shuffled, lr 0.05",
+   "stated": -0.57,
+   "got": -0.56602,
+   "tol": 0.005,
+   "file": "study/T1/w2/results/summary_delay.csv",
+   "ok": true
+  },
+  {
+   "claim": "L4.3 exact income prng D=512, lr 0.05",
+   "stated": -1.78,
+   "got": -1.77806,
+   "tol": 0.005,
+   "file": "study/T1/w2/results/summary_delay.csv",
+   "ok": true
+  },
+  {
+   "claim": "L4.3 scaled step: hindsight gap prime D=512",
+   "stated": 0.0296,
+   "got": 0.0296,
+   "tol": 5e-05,
+   "file": "study/T1/w2/results/summary_delay_stable.csv",
+   "ok": true
+  },
+  {
+   "claim": "L4.3 scaled step: hindsight gap and D=512",
+   "stated": 0.0307,
+   "got": 0.03067,
+   "tol": 5e-05,
+   "file": "study/T1/w2/results/summary_delay_stable.csv",
+   "ok": true
+  },
+  {
+   "claim": "L4.3 scaled step: trade-price exact income prime D=512",
+   "stated": -0.004,
+   "got": -0.00419,
+   "tol": 0.0005,
+   "file": "study/T1/w2/results/summary_delay_stable.csv",
+   "ok": true
+  },
+  {
+   "claim": "L4.3 scaled step: trade-price exact income and D=512",
+   "stated": -0.012,
+   "got": -0.01233,
+   "tol": 0.0005,
+   "file": "study/T1/w2/results/summary_delay_stable.csv",
+   "ok": true
+  },
+  {
+   "claim": "L4.3 scaled step: |gap| lfsr16 D=64 (largest on lfsr16/prng)",
+   "stated": 0.00049,
+   "got": 0.00049,
+   "tol": 5e-06,
+   "file": "study/T1/w2/results/summary_delay_stable.csv",
+   "ok": true
+  },
+  {
+   "claim": "L4.4 stale/|W_trade| D=64, lr 0.05",
+   "stated": -0.747,
+   "got": -0.7473189269116377,
+   "tol": 0.0005,
+   "file": "study/T1/w2/results/summary.json",
+   "ok": true
+  },
+  {
+   "claim": "L4.4 stale/|W_trade| D=512, lr 0.05",
+   "stated": -1.197,
+   "got": -1.196574189514076,
+   "tol": 0.0005,
+   "file": "study/T1/w2/results/summary.json",
+   "ok": true
+  },
+  {
+   "claim": "L4.5 self-resolved prng D=0: exact income",
+   "stated": 0.056,
+   "got": 0.056,
+   "tol": 0.0005,
+   "file": "study/T1/w2/results/summary_delay.csv",
+   "ok": true
+  },
+  {
+   "claim": "L4.5 self-resolved prng D=0: KL",
+   "stated": 0.055,
+   "got": 0.05533,
+   "tol": 0.0005,
+   "file": "study/T1/w2/results/summary_delay.csv",
+   "ok": true
+  },
+  {
+   "claim": "L5.1 bound ln(1/eps)",
+   "stated": 6.907755,
+   "got": 6.907755278982137,
+   "tol": 1e-06,
+   "file": "study/T1/w2/results/summary.json",
+   "ok": true
+  },
+  {
+   "claim": "L5.1 arm b max member E (<= bound)",
+   "stated": 6.90739,
+   "got": 6.907392976992372,
+   "tol": 5e-06,
+   "file": "study/T1/w2/results/summary.json",
+   "ok": true
+  },
+  {
+   "claim": "L5.2 arm a reader-at-clearing E, seed 1",
+   "stated": 48.4,
+   "got": 48.384,
+   "tol": 0.05,
+   "file": "study/T1/w2/results/summary.json",
+   "ok": true
+  },
+  {
+   "claim": "L5.3 arm a-D64 max member E",
+   "stated": 447.81,
+   "got": 447.81191846500616,
+   "tol": 0.005,
+   "file": "study/T1/w2/results/summary.json",
+   "ok": true
+  },
+  {
+   "claim": "L5.3 bound (D+1) ln(1/eps)",
+   "stated": 449.0,
+   "got": 449.00409313383886,
+   "tol": 0.005,
+   "file": "study/T1/w2/results/summary.json",
+   "ok": true
+  },
+  {
+   "claim": "L5.4 E_C periodic, no births (arm N)",
+   "stated": 1239,
+   "got": 1239.01327,
+   "tol": 0.5,
+   "file": "study/T1/w2/results/summary_li.csv",
+   "ok": true
+  },
+  {
+   "claim": "L5.4 E_C periodic, births rho=1e-2",
+   "stated": 472,
+   "got": 472.00713,
+   "tol": 0.5,
+   "file": "study/T1/w2/results/summary_li.csv",
+   "ok": true
+  },
+  {
+   "claim": "L5.4 E_C diag, no births",
+   "stated": 4535,
+   "got": 4534.70052,
+   "tol": 0.5,
+   "file": "study/T1/w2/results/summary_li.csv",
+   "ok": true
+  },
+  {
+   "claim": "L5.4 E_C diag, births rho=1e-2",
+   "stated": 1065,
+   "got": 1065.21865,
+   "tol": 0.5,
+   "file": "study/T1/w2/results/summary_li.csv",
+   "ok": true
+  },
+  {
+   "claim": "L5.4 plateau ratio diag rho=1e-2 (<0.2 pass)",
+   "stated": 0.18,
+   "got": 0.1777,
+   "tol": 0.005,
+   "file": "study/T1/w2/results/summary_li.csv",
+   "ok": true
+  },
+  {
+   "claim": "L5.4 plateau ratio periodic rho=1e-2 (<0.2 fails)",
+   "stated": 0.29,
+   "got": 0.2882,
+   "tol": 0.005,
+   "file": "study/T1/w2/results/summary_li.csv",
+   "ok": true
+  },
+  {
+   "claim": "L6.1 buy-and-hold DAG vs flat mixture, max |dlogW|",
+   "stated": 8.9e-16,
+   "got": 8.881784197001252e-16,
+   "tol": 1e-17,
+   "file": "study/T1/w3/out/summary.json",
+   "ok": true
+  },
+  {
+   "claim": "L6.2 rebalanced DAG vs flat CRP, max |dlogW|",
+   "stated": 9.1e-13,
+   "got": 9.094947017729282e-13,
+   "tol": 1e-14,
+   "file": "study/T1/w3/out/summary.json",
+   "ok": true
+  },
+  {
+   "claim": "L6.3 toy 50/50 CRP growth",
+   "stated": 0.087,
+   "got": 0.08717669357238891,
+   "tol": 0.0005,
+   "file": "study/T1/w3/out/summary.json",
+   "ok": true
+  },
+  {
+   "claim": "L6.3 toy leaf / buy-and-hold growth",
+   "stated": -0.424,
+   "got": -0.4236489301936017,
+   "tol": 0.0005,
+   "file": "study/T1/w3/out/summary.json",
+   "ok": true
+  },
+  {
+   "claim": "L6 ca110 online EG minus best leaf",
+   "stated": 0.0132,
+   "got": 0.0131857,
+   "tol": 5e-05,
+   "file": "study/T1/w3/out/L6_growth.csv",
+   "ok": true
+  },
+  {
+   "claim": "L6 periodic uniform CRP growth",
+   "stated": 0.2,
+   "got": 0.203141,
+   "tol": 0.005,
+   "file": "study/T1/w3/out/L6_growth.csv",
+   "ok": true
+  },
+  {
+   "claim": "L7.1 closed form vs autograd, max rel err (renorm)",
+   "stated": 8.6e-16,
+   "got": 8.61205378376229e-16,
+   "tol": 1e-17,
+   "file": "study/T1/w3/out/summary.json",
+   "ok": true
+  },
+  {
+   "claim": "L7.4 top-1 censored: final argmax = best",
+   "stated": 0.067,
+   "got": 0.06666666666666667,
+   "tol": 0.0005,
+   "file": "study/T1/w3/out/summary.json",
+   "ok": true
+  },
+  {
+   "claim": "L7.4 top-1 + Exp3: final argmax = best",
+   "stated": 0.52,
+   "got": 0.5166666666666667,
+   "tol": 0.005,
+   "file": "study/T1/w3/out/summary.json",
+   "ok": true
+  },
+  {
+   "claim": "L7.4 top-1 censored regret last 1k",
+   "stated": 0.378,
+   "got": 0.37794288496923895,
+   "tol": 0.0005,
+   "file": "study/T1/w3/out/summary.json",
+   "ok": true
+  },
+  {
+   "claim": "L7.4 top-1 + Exp3 regret last 1k",
+   "stated": 0.023,
+   "got": 0.02269289628395713,
+   "tol": 0.0005,
+   "file": "study/T1/w3/out/summary.json",
+   "ok": true
+  },
+  {
+   "claim": "L7.5 censored top-2 grad rel err vs full info",
+   "stated": 0.43,
+   "got": 0.4259597022566315,
+   "tol": 0.005,
+   "file": "study/T1/w3/out/summary.json",
+   "ok": true
+  },
+  {
+   "claim": "L7.6 broker books conserve, max resid",
+   "stated": 2.6e-18,
+   "got": 2.6020852139652106e-18,
+   "tol": 1e-19,
+   "file": "study/T1/w3/out/summary.json",
+   "ok": true
+  }
+ ]
+}

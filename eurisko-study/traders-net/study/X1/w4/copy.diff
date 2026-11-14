@@ -1,0 +1,26 @@
+== M8/w1/sign_gate.py
+127c127
+< np.savez_compressed(os.path.join("/tmp/traders-net/M8", f"census-{ARM}-s{SEED}.npz"), dl=dl.numpy(), ema=ema.numpy(), ema_abs=ema_abs.numpy(), gate=gate.numpy())
+---
+> np.savez_compressed(os.path.join("/tmp/traders-net/X1w4/M8", f"census-{ARM}-s{SEED}.npz"), dl=dl.numpy(), ema=ema.numpy(), ema_abs=ema_abs.numpy(), gate=gate.numpy())
+== M8/w2/gated.py
+160,161c160,161
+<     os.makedirs("/tmp/traders-net/M8w2", exist_ok=True)
+<     np.savez_compressed(f"/tmp/traders-net/M8w2/z_{arm}_s{seed}.npz", Z=Z, Y=Y, M=M)
+---
+>     os.makedirs("/tmp/traders-net/X1w4/M8w2", exist_ok=True)
+>     np.savez_compressed(f"/tmp/traders-net/X1w4/M8w2/z_{arm}_s{seed}.npz", Z=Z, Y=Y, M=M)
+== M6/w1/run_w1.py
+19c19
+< TMP = "/tmp/traders-net/M6/w1"
+---
+> TMP = "/tmp/traders-net/X1w4/M6w1"
+== K1/econ.py
+442c442
+<             sys.path.insert(0, '/home/agent/workspaces/eurisko-study/traders-net/study/S0/substrate')
+---
+>             sys.path.insert(0, '/tmp/traders-net/X1w4/study/S0/substrate')
+15c15
+<     p = f"/tmp/traders-net/M8w2/z_{a}_s{seed}.npz"
+---
+>     p = f"/tmp/traders-net/X1w4/M8w2/z_{a}_s{seed}.npz"

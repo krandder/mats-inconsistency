@@ -1,0 +1,699 @@
+{
+  "schema": "aggbench.result/v1",
+  "run_id": "l2-vector-messages-20261020-E3-sybil",
+  "track": "EXPLORATORY",
+  "smoke": false,
+  "created_utc": "2026-10-20T23:11:52+00:00",
+  "harness": {
+    "version": "0.1.0",
+    "git_commit": "78a4f11a02caaddde0394c9458de661969f44fb6",
+    "git_dirty": false,
+    "sha256": "e50881934b0fe8f82e9343535cce37057fd977b558f02c26c90e4e542fdbbade"
+  },
+  "env": {
+    "name": "E3-sybil",
+    "config": {
+      "n_agents": 5,
+      "n_pieces": 12,
+      "pieces_per_agent": [
+        2,
+        6
+      ],
+      "strength_range": [
+        0.1,
+        0.6
+      ],
+      "prior": 0.5,
+      "key_noise": 0.15,
+      "n_sybil": 3,
+      "n_biased": 0,
+      "bias_temp": 3.0,
+      "bias_shift": 1.5,
+      "n_colluders": 0
+    }
+  },
+  "visibility": "full",
+  "splits": {
+    "train": {
+      "split": "train",
+      "first_seed": 0,
+      "n": 200000
+    },
+    "eval": {
+      "split": "dev",
+      "first_seed": 10000000,
+      "n": 5000
+    }
+  },
+  "oracle_check": {
+    "env": "E3-sybil",
+    "split": "smoke",
+    "episodes_checked": 24,
+    "max_abs_diff": 1.1102230246251565e-16,
+    "tolerance": 1e-08,
+    "verified": true
+  },
+  "methods": {
+    "bayes": {
+      "logloss": {
+        "mean": 0.2647292160922485,
+        "ci_low": 0.25013086412879715,
+        "ci_high": 0.2790250187756936,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 0.0817059759560461,
+        "ci_low": 0.07665861785881005,
+        "ci_high": 0.08672322153390644,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 0.0,
+        "ci_low": 0.0,
+        "ci_high": 0.0,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 0.0,
+        "ci_low": 0.0,
+        "ci_high": 0.0,
+        "n": 5000
+      }
+    },
+    "oracle_clearing": {
+      "logloss": {
+        "mean": 0.2828841149563638,
+        "ci_low": 0.2675618464382704,
+        "ci_high": 0.2979988119316033,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 0.08751828601380755,
+        "ci_low": 0.08230263980499275,
+        "ci_high": 0.0928000571824623,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 0.01700577129700641,
+        "ci_low": 0.01577638959049217,
+        "ci_high": 0.018289551133527867,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 0.018154898864115324,
+        "ci_low": 0.01326527442015013,
+        "ci_high": 0.02305856703038837,
+        "n": 5000
+      }
+    },
+    "linear_pool": {
+      "logloss": {
+        "mean": 0.4207575738763954,
+        "ci_low": 0.41226973404224154,
+        "ci_high": 0.42924892215951155,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 0.13003905231594587,
+        "ci_low": 0.12639743307073498,
+        "ci_high": 0.1337814117569259,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 0.15273425785987432,
+        "ci_low": 0.14914323562515228,
+        "ci_high": 0.15656667639167515,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 0.15602835778414698,
+        "ci_low": 0.14548265171347224,
+        "ci_high": 0.16629956146303418,
+        "n": 5000
+      }
+    },
+    "log_pool": {
+      "logloss": {
+        "mean": 0.38919160743658515,
+        "ci_low": 0.37958532148381985,
+        "ci_high": 0.3988131081578925,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 0.11975546263317065,
+        "ci_low": 0.11568713155562632,
+        "ci_high": 0.12376021010391625,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 0.12178050920244159,
+        "ci_low": 0.11849474435299943,
+        "ci_high": 0.1252230151621573,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 0.12446239134433663,
+        "ci_low": 0.11452413392554454,
+        "ci_high": 0.13424591094731145,
+        "n": 5000
+      }
+    },
+    "sum_logodds": {
+      "logloss": {
+        "mean": 0.7042062121147614,
+        "ci_low": 0.6436292596616962,
+        "ci_high": 0.7628016294838227,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 0.1291986259602966,
+        "ci_low": 0.12076797277854581,
+        "ci_high": 0.1381778997582029,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 0.453052155494839,
+        "ci_low": 0.4304398914785904,
+        "ci_high": 0.4748726245830735,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 0.4394769960225129,
+        "ci_low": 0.38929434250946354,
+        "ci_high": 0.48802183623309253,
+        "n": 5000
+      }
+    },
+    "extremized_log_pool": {
+      "logloss": {
+        "mean": 0.3439336960987166,
+        "ci_low": 0.3282486072770685,
+        "ci_high": 0.35924512684452736,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 0.10802704530651035,
+        "ci_low": 0.10253502589047334,
+        "ci_high": 0.11363372059733275,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 0.07860336432195743,
+        "ci_low": 0.07441773866918429,
+        "ci_high": 0.08286393509742182,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 0.07920448000646815,
+        "ci_low": 0.06899953660003864,
+        "ci_high": 0.08949854673445014,
+        "n": 5000
+      }
+    },
+    "vecmsg_m1:trained": {
+      "logloss": {
+        "mean": 0.2987773426772656,
+        "ci_low": 0.28232146542239067,
+        "ci_high": 0.31370144633957653,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 0.09267588359481144,
+        "ci_low": 0.08714699315397717,
+        "ci_high": 0.09767674388528931,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 0.03294273346477043,
+        "ci_low": 0.03102239808559179,
+        "ci_high": 0.035045194186065186,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 0.034048126585017144,
+        "ci_low": 0.026769480326701414,
+        "ci_high": 0.04095255648699448,
+        "n": 5000
+      }
+    },
+    "vecmsg_m1:control:untrained_init": {
+      "logloss": {
+        "mean": 0.6967239711341219,
+        "ci_low": 0.6942285462052137,
+        "ci_high": 0.6993126878060175,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 0.25178046473017557,
+        "ci_low": 0.25053624080686054,
+        "ci_high": 0.25307114953100635,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 0.4267512641072233,
+        "ci_low": 0.41979016879023257,
+        "ci_high": 0.433806043670546,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 0.4319947550418734,
+        "ci_low": 0.416974014011911,
+        "ci_high": 0.446965090854565,
+        "n": 5000
+      }
+    },
+    "vecmsg_m1:control:random_network": {
+      "logloss": {
+        "mean": 0.6939026206848552,
+        "ci_low": 0.6936054594328928,
+        "ci_high": 0.6941924830733598,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 0.2503776839466966,
+        "ci_low": 0.25022910972180296,
+        "ci_high": 0.25052260883757455,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 0.42419501918859953,
+        "ci_low": 0.41738281376385733,
+        "ci_high": 0.4308466647475131,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 0.42917340459260683,
+        "ci_low": 0.41469021735018097,
+        "ci_high": 0.44384655565439435,
+        "n": 5000
+      }
+    },
+    "vecmsg_m4:trained": {
+      "logloss": {
+        "mean": 0.29877126913738056,
+        "ci_low": 0.28260060496305944,
+        "ci_high": 0.3138331336756389,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 0.09276739520597375,
+        "ci_low": 0.08712313720742496,
+        "ci_high": 0.09801158778312588,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 0.030549946939398647,
+        "ci_low": 0.02883097880955615,
+        "ci_high": 0.03248640608725272,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 0.03404205304513216,
+        "ci_low": 0.02715966135319048,
+        "ci_high": 0.04053207109140869,
+        "n": 5000
+      }
+    },
+    "vecmsg_m4:control:untrained_init": {
+      "logloss": {
+        "mean": 0.6940308709283974,
+        "ci_low": 0.693062197249916,
+        "ci_high": 0.6949768654256534,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 0.2504415796168586,
+        "ci_low": 0.24995744349635374,
+        "ci_high": 0.25091437315734205,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 0.4243827398325211,
+        "ci_low": 0.41752084333204165,
+        "ci_high": 0.4308812817009367,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 0.4293016548361491,
+        "ci_low": 0.4147338821078799,
+        "ci_high": 0.44378596517194935,
+        "n": 5000
+      }
+    },
+    "vecmsg_m4:control:random_network": {
+      "logloss": {
+        "mean": 0.6972384930624276,
+        "ci_low": 0.6956783999527623,
+        "ci_high": 0.6988822423469023,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 0.2520395261914043,
+        "ci_low": 0.2512603500798665,
+        "ci_high": 0.25286042439242773,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 0.4273055382421807,
+        "ci_low": 0.4205613981203943,
+        "ci_high": 0.4342003261429772,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 0.43250927697017905,
+        "ci_low": 0.4177147229260539,
+        "ci_high": 0.4472926722472804,
+        "n": 5000
+      }
+    },
+    "vecmsg_m16:trained": {
+      "logloss": {
+        "mean": 0.29395619850198695,
+        "ci_low": 0.27795219073759525,
+        "ci_high": 0.30948015194807005,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 0.09098119989315685,
+        "ci_low": 0.08562303160351216,
+        "ci_high": 0.09622496005058721,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 0.02703572971742045,
+        "ci_low": 0.025500138711482344,
+        "ci_high": 0.028756641200870996,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 0.029226982409738502,
+        "ci_low": 0.02260913493897795,
+        "ci_high": 0.035485275937044015,
+        "n": 5000
+      }
+    },
+    "vecmsg_m16:control:untrained_init": {
+      "logloss": {
+        "mean": 0.6917263847667732,
+        "ci_low": 0.6913514911813747,
+        "ci_high": 0.6921080111698075,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 0.24928975934711092,
+        "ci_low": 0.2491023471269975,
+        "ci_high": 0.24948054801157968,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 0.4220274699518783,
+        "ci_low": 0.4152854162506788,
+        "ci_high": 0.4286177502886306,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 0.42699716867452464,
+        "ci_low": 0.4124940996351109,
+        "ci_high": 0.44150870521351565,
+        "n": 5000
+      }
+    },
+    "vecmsg_m16:control:random_network": {
+      "logloss": {
+        "mean": 0.6912248728368753,
+        "ci_low": 0.6886758016039083,
+        "ci_high": 0.6936690295836389,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 0.24905693491284037,
+        "ci_low": 0.24778629297587884,
+        "ci_high": 0.2502746980953072,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 0.42196179398454753,
+        "ci_low": 0.4148109707340629,
+        "ci_high": 0.42869625029712427,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 0.42649565674462675,
+        "ci_low": 0.41141549603054406,
+        "ci_high": 0.44093697429298107,
+        "n": 5000
+      }
+    }
+  },
+  "learned_arms": [
+    "vecmsg_m1:trained",
+    "vecmsg_m4:trained",
+    "vecmsg_m16:trained"
+  ],
+  "controls": {
+    "vecmsg_m1:trained": {
+      "random_network": "vecmsg_m1:control:random_network",
+      "untrained_init": "vecmsg_m1:control:untrained_init"
+    },
+    "vecmsg_m4:trained": {
+      "random_network": "vecmsg_m4:control:random_network",
+      "untrained_init": "vecmsg_m4:control:untrained_init"
+    },
+    "vecmsg_m16:trained": {
+      "random_network": "vecmsg_m16:control:random_network",
+      "untrained_init": "vecmsg_m16:control:untrained_init"
+    }
+  },
+  "extra": {
+    "lane": "L2",
+    "question": "vector messages from local encoders + attention aggregator vs scalar reports",
+    "runner": "results/explore/l2-vector-messages-20261020/run_l2.py",
+    "runner_sha256": "9020f5727463ba4ed20889e7b44afc67e88eadb99101d156ec44c720133fc2a5",
+    "message_dims": [
+      1,
+      4,
+      16
+    ],
+    "message_definition": "per agent: learned key in R^m and learned value in R^m (2m floats)",
+    "training": {
+      "labels": "truth (no distillation to bayes)",
+      "steps": 2500,
+      "batch": 512,
+      "lr": 0.002,
+      "optimizer": "AdamW wd 1e-4, one-cycle",
+      "checkpoint_choice": "best loss on first 10k train episodes held out",
+      "train_seed": 0
+    },
+    "inputs": "batch.agent_inputs('full'): own obs + own key; E2/E3 features add own piece LLRs mu*x",
+    "e3_biased_handling": null,
+    "locality_check": {
+      "vecmsg_m1": {
+        "passed": true,
+        "episodes": 500,
+        "trials": 5,
+        "atol": 1e-09,
+        "encoder": "trained encoder, message = [key, value] in R^(2m)"
+      },
+      "vecmsg_m4": {
+        "passed": true,
+        "episodes": 500,
+        "trials": 5,
+        "atol": 1e-09,
+        "encoder": "trained encoder, message = [key, value] in R^(2m)"
+      },
+      "vecmsg_m16": {
+        "passed": true,
+        "episodes": 500,
+        "trials": 5,
+        "atol": 1e-09,
+        "encoder": "trained encoder, message = [key, value] in R^(2m)"
+      }
+    },
+    "paired_differences": {
+      "vecmsg_m1": {
+        "trained_minus_oracle_clearing": {
+          "mean": 0.015893227720901824,
+          "ci_low": 0.009959660750344561,
+          "ci_high": 0.021713455666548902,
+          "n": 5000
+        },
+        "trained_minus_extremized_log_pool": {
+          "mean": -0.045156353421451,
+          "ci_low": -0.0527119758252512,
+          "ci_high": -0.03743697267610749,
+          "n": 5000
+        }
+      },
+      "vecmsg_m4": {
+        "trained_minus_oracle_clearing": {
+          "mean": 0.01588715418101683,
+          "ci_low": 0.010137082913289403,
+          "ci_high": 0.02120795248088727,
+          "n": 5000
+        },
+        "trained_minus_extremized_log_pool": {
+          "mean": -0.045162426961336,
+          "ci_low": -0.05326801237160591,
+          "ci_high": -0.03745627888637674,
+          "n": 5000
+        }
+      },
+      "vecmsg_m16": {
+        "trained_minus_oracle_clearing": {
+          "mean": 0.011072083545623182,
+          "ci_low": 0.005562514811353503,
+          "ci_high": 0.016617922520461247,
+          "n": 5000
+        },
+        "trained_minus_extremized_log_pool": {
+          "mean": -0.04997749759672965,
+          "ci_low": -0.058708882022844404,
+          "ci_high": -0.04157503379526979,
+          "n": 5000
+        }
+      }
+    },
+    "fit_info": {
+      "vecmsg_m1": {
+        "best_val_loss": 0.3044840693473816,
+        "val_history": [
+          [
+            250,
+            0.32969
+          ],
+          [
+            500,
+            0.3162
+          ],
+          [
+            750,
+            0.31534
+          ],
+          [
+            1000,
+            0.31007
+          ],
+          [
+            1250,
+            0.30979
+          ],
+          [
+            1500,
+            0.30872
+          ],
+          [
+            1750,
+            0.3059
+          ],
+          [
+            2000,
+            0.30578
+          ],
+          [
+            2250,
+            0.30536
+          ],
+          [
+            2500,
+            0.30448
+          ]
+        ],
+        "seconds": 718.3
+      },
+      "vecmsg_m4": {
+        "best_val_loss": 0.3014919385313988,
+        "val_history": [
+          [
+            250,
+            0.33601
+          ],
+          [
+            500,
+            0.31295
+          ],
+          [
+            750,
+            0.31354
+          ],
+          [
+            1000,
+            0.30934
+          ],
+          [
+            1250,
+            0.3069
+          ],
+          [
+            1500,
+            0.30607
+          ],
+          [
+            1750,
+            0.30234
+          ],
+          [
+            2000,
+            0.30316
+          ],
+          [
+            2250,
+            0.30208
+          ],
+          [
+            2500,
+            0.30149
+          ]
+        ],
+        "seconds": 443.4
+      },
+      "vecmsg_m16": {
+        "best_val_loss": 0.2969193682074547,
+        "val_history": [
+          [
+            250,
+            0.33077
+          ],
+          [
+            500,
+            0.31689
+          ],
+          [
+            750,
+            0.30794
+          ],
+          [
+            1000,
+            0.30469
+          ],
+          [
+            1250,
+            0.30597
+          ],
+          [
+            1500,
+            0.30231
+          ],
+          [
+            1750,
+            0.29914
+          ],
+          [
+            2000,
+            0.29887
+          ],
+          [
+            2250,
+            0.29776
+          ],
+          [
+            2500,
+            0.29692
+          ]
+        ],
+        "seconds": 358.4
+      }
+    },
+    "extremize_alpha": 1.895941927647464,
+    "torch_threads": 1
+  }
+}

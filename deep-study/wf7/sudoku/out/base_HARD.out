@@ -1,0 +1,26 @@
+== baselines on HARD: 300 puzzles
+   K0  one pass of M_A (grids only), own confidence (margin): accuracy 0.7533
+   K1  one pass of mB6   (201030 parameters), own confidence (margin ): accuracy 0.6833; FLOPs per puzzle 3.757e+08
+   K1  one pass of mB6   (201030 parameters), own confidence (maxprob): accuracy 0.6967; FLOPs per puzzle 3.757e+08
+   K1  one pass of mB6   (201030 parameters), own confidence (entropy): accuracy 0.7067; FLOPs per puzzle 3.757e+08
+   K1  one pass of mB6t  (25958 parameters), own confidence (margin ): accuracy 0.5233; FLOPs per puzzle 4.851e+07
+   K1  one pass of mB6t  (25958 parameters), own confidence (maxprob): accuracy 0.5500; FLOPs per puzzle 4.851e+07
+   K1  one pass of mB6t  (25958 parameters), own confidence (entropy): accuracy 0.5600; FLOPs per puzzle 4.851e+07
+   K1  one pass of D6    (201030 parameters), own confidence (margin ): accuracy 0.6533; FLOPs per puzzle 3.757e+08
+   K1  one pass of D6    (201030 parameters), own confidence (maxprob): accuracy 0.6500; FLOPs per puzzle 3.757e+08
+   K1  one pass of D6    (201030 parameters), own confidence (entropy): accuracy 0.6700; FLOPs per puzzle 3.757e+08
+   KT  one pass of mB6 in the order of pi_trust^B: accuracy 0.7433; FLOPs per puzzle 5.649e+08
+   E4(e) rule 'T_B(x|c) > 1/2': an accepted answer exists for 0.9900 of puzzles; accepted answers that are wrong: 74 of 297
+   K2  best of  1 passes of mB6 by its own route log-probability: accuracy 0.6833; solution among the 1 candidates 0.6833; FLOPs 3.757e+08
+   K2  best of  2 passes of mB6 by its own route log-probability: accuracy 0.6833; solution among the 2 candidates 0.6867; FLOPs 7.514e+08
+   K2  best of  4 passes of mB6 by its own route log-probability: accuracy 0.6833; solution among the 4 candidates 0.6900; FLOPs 1.503e+09
+   K2  best of  8 passes of mB6 by its own route log-probability: accuracy 0.6833; solution among the 8 candidates 0.6900; FLOPs 3.006e+09
+   K2  best of 16 passes of mB6 by its own route log-probability: accuracy 0.6833; solution among the 16 candidates 0.7033; FLOPs 6.011e+09
+   K2  best of 32 passes of mB6 by its own route log-probability: accuracy 0.6833; solution among the 32 candidates 0.7167; FLOPs 1.202e+10
+   E5 found contexts (K1: own confidence, margin): fails on 95 of 300 puzzles. At the first wrong step: M_B's probability on the wrong value mean 0.988 (median 0.994); surprise at the true value 6.23 nats; empty cells 17.0, of which M_B's top value is wrong at 0.416
+      at the same state pi_trust^B picks the same cell 0.505 of the time; M_B's top value at its cell is right 0.453 of the time (top probability there 0.986; surprise at the truth 3.11 nats)
+   E5 found contexts (KT: trust order): fails on 77 of 300 puzzles. At the first wrong step: M_B's probability on the wrong value mean 0.986 (median 0.993); surprise at the true value 5.36 nats; empty cells 19.7, of which M_B's top value is wrong at 0.396
+      at the same state own confidence (margin) picks the same cell 0.273 of the time; M_B's top value at its cell is right 0.701 of the time (top probability there 0.991; surprise at the truth 1.54 nats)
+   KT against K1 (margin): puzzles only K1 solves 24, only KT solves 42
+   total time 883s
+exit 0

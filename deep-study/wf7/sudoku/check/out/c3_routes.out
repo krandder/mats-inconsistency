@@ -1,0 +1,27 @@
+   own confidence: lowest entropy       test excess   0.2392   validation excess   0.2830 (31s)
+   own confidence: top probability      test excess   0.2377   validation excess   0.3807 (65s)
+   own confidence: top-1 minus top-2    test excess   0.2555   validation excess   0.4331 (105s)
+   least confident first                test excess   1.4072   validation excess   1.4651 (147s)
+   raster order                         test excess   0.0938   validation excess   0.3033 (192s)
+   pi_trust                             test excess   0.1979   validation excess   0.2230 (267s)
+
+E2 on 800 fresh held-out test grids (my seed). excess, 95% interval, and paired difference to pi_trust
+   own confidence: lowest entropy         0.2392 [ 0.1871, 0.2923]    +0.0413 [-0.0183,+0.1057]
+   own confidence: top probability        0.2377 [ 0.1884, 0.2897]    +0.0398 [-0.0244,+0.1068]
+   own confidence: top-1 minus top-2      0.2555 [ 0.1971, 0.3121]    +0.0575 [-0.0147,+0.1286]
+   least confident first                  1.4072 [ 1.3650, 1.4465]    +1.2093 [+1.1516,+1.2674]
+   raster order                           0.0938 [ 0.0537, 0.1319]    -0.1041 [-0.1624,-0.0440]
+   pi_trust                               0.1979 [ 0.1508, 0.2436]    +0.0000 [+0.0000,+0.0000]
+   one random order                       0.5929 [ 0.5461, 0.6445]    +0.3950 [+0.3262,+0.4640]
+   learned mixture (EM, 256 fresh val grids)   0.0475 [ 0.0216, 0.0727]    -0.1504 [-0.1810,-0.1190]   minus raster -0.0463 [-0.0855,-0.0072]
+      weights: lowest entropy 0.244, top probability 0.089, top-1 minus top-2 0.095, least confident firs 0.000, raster order 0.164, pi_trust 0.408
+   headline comparison, lowest entropy minus pi_trust: +0.0413 [-0.0218, +0.1064]
+
+in distribution: 400 fresh grids of the training orbits
+   own confidence: lowest entropy         0.3758 [ 0.3042, 0.4531]    +0.1421 [+0.0490,+0.2345]
+   raster order                           0.3912 [ 0.3311, 0.4531]    +0.1574 [+0.0742,+0.2328]
+   pi_trust                               0.2338 [ 0.1702, 0.2960]    +0.0000 [+0.0000,+0.0000]
+
+worker's saved per-grid NLL arrays: ['own_confidence_lowest_entropy', 'own_confidence_top_probability', 'own_confidence_top-1_minus_top-2', 'least_confident_first', 'raster_order', 'one_random_order', 'pi_trust_learned_on_real_grids']
+calls of M 300096; total 352s
+exit 0

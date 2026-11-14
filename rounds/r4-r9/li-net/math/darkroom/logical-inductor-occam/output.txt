@@ -1,0 +1,120 @@
+Traders: 2061  Occam code lengths (bits, after normalisation):
+  dark          best trader iid 0.0  -log2 prior = 3.28
+  noise         best trader iid 0.5  -log2 prior = 4.28
+  structured    best trader per (1, 0, 1, 1, 0, 0, 1, 1, 1)  -log2 prior = 17.28
+  think         best trader per (0, 1, 1, 0, 1, 0, 0, 1, 1, 1)  -log2 prior = 18.28
+  pseudorandom  best trader iid 0.5  -log2 prior = 4.28
+
+=== Part 1: watch each room for T steps (market with change-point traders) ===
+
+-- room: dark   (Occam cap for best trader = 3.28 bits; max |E_M money profit| = 0.0e+00)
+   t   P(x=1 before obs)  EIG_t(bits)  cum logloss  cum EIG   log2 wealth of best trader
+    1     0.5000           8.31e-01        1.00      0.83       1.00
+   10     0.0046           3.19e-02        1.72      2.51       1.72
+   30     0.0005           5.79e-03        1.76      2.74       1.76
+  100     0.0000           4.36e-04        1.77      2.81       1.77
+  300     0.0000           3.34e-05        1.77      2.84       1.77
+ 1000     0.0000           9.17e-06        1.77      2.85       1.77
+ 4000     0.0000           6.74e-07        1.77      2.86       1.77
+
+-- room: noise   (Occam cap for best trader = 4.28 bits; max |E_M money profit| = 0.0e+00)
+   t   P(x=1 before obs)  EIG_t(bits)  cum logloss  cum EIG   log2 wealth of best trader
+    1     0.5000           8.31e-01        1.00      0.83      -0.00
+   10     0.0344           1.45e-01       13.27      4.40       3.27
+   30     0.6311           4.51e-02       32.53      7.53       2.53
+  100     0.5076           3.38e-03      104.09      8.85       4.09
+  300     0.5043           7.90e-04      304.16      9.16       4.16
+ 1000     0.5065           1.06e-03     1004.10      9.95       4.10
+ 4000     0.5000           9.53e-07     4004.28     10.06       4.28
+   cum logloss - T*1 bit (excess over the stream's entropy) = 4.28
+
+-- room: pseudorandom   (Occam cap for best trader = 4.28 bits; max |E_M money profit| = 0.0e+00)
+   t   P(x=1 before obs)  EIG_t(bits)  cum logloss  cum EIG   log2 wealth of best trader
+    1     0.5000           8.31e-01        1.00      0.83      -0.00
+   10     0.3029           3.45e-01       12.24      4.95       2.24
+   30     0.5143           1.41e-02       34.04      6.19       4.04
+  100     0.4996           7.93e-04      104.21      6.51       4.21
+  300     0.5000           8.28e-05      304.26      6.61       4.26
+ 1000     0.5001           1.22e-04     1004.27      6.64       4.27
+ 4000     0.5000           4.77e-07     4004.28      6.65       4.28
+   cum logloss - T*1 bit (excess over the stream's entropy) = 4.28
+
+-- room: structured   (Occam cap for best trader = 17.28 bits; max |E_M money profit| = 0.0e+00)
+   t   P(x=1 before obs)  EIG_t(bits)  cum logloss  cum EIG   log2 wealth of best trader
+    1     0.5000           8.31e-01        1.00      0.83       1.00
+   10     0.6298           2.41e-01       12.41      5.55      12.41
+   30     0.9981           1.99e-02       17.23      8.16      17.23
+  100     0.9999           9.33e-04       17.26      8.43      17.26
+  300     1.0000           1.40e-04       17.27      8.55      17.27
+ 1000     1.0000           2.04e-05       17.27      8.60      17.27
+ 4000     1.0000           1.52e-06       17.28      8.62      17.28
+
+-- room: think   (Occam cap for best trader = 18.28 bits; max |E_M money profit| = 0.0e+00)
+   t   P(x=1 before obs)  EIG_t(bits)  cum logloss  cum EIG   log2 wealth of best trader
+    1     0.5000           8.31e-01        1.00      0.83       1.00
+   10     0.2437           4.13e-01       13.28      5.73      13.28
+   30     0.9990           1.10e-02       18.22      8.26      18.22
+  100     0.9999           9.33e-04       18.26      8.55      18.26
+  300     1.0000           7.39e-05       18.27      8.67      18.27
+ 1000     1.0000           2.04e-05       18.27      8.72      18.27
+ 4000     1.0000           1.52e-06       18.28      8.74      18.28
+
+=== Part 1b: noise room, KT (Beta(1/2,1/2)) market vs simple trader 'theta=1/2' ===
+  n=      10  log2 wealth of theta=1/2 trader vs KT =    2.02   (0.5*log2 n = 1.66)
+  n=     100  log2 wealth of theta=1/2 trader vs KT =    3.65   (0.5*log2 n = 3.32)
+  n=    1000  log2 wealth of theta=1/2 trader vs KT =    5.08   (0.5*log2 n = 4.98)
+  n=   10000  log2 wealth of theta=1/2 trader vs KT =    6.97   (0.5*log2 n = 6.64)
+  n=  100000  log2 wealth of theta=1/2 trader vs KT =    8.62   (0.5*log2 n = 8.30)
+  n= 1000000  log2 wealth of theta=1/2 trader vs KT =   10.29   (0.5*log2 n = 9.97)
+
+=== Part 2: what each objective prefers (costs per step: dark 0, think 0, others 1) ===
+
+ horizon T=100
+  room          criterion   E_M[money]  realised log-profit  cum ex-ante EIG   cost*T
+  dark           (no rank)       0.00            1.77             2.81           0
+  noise          (no rank)       0.00            4.09             8.85         100
+  pseudorandom   (no rank)       0.00            4.21             6.51         100
+  structured     (no rank)       0.00           17.26             8.43         100
+  think          (no rank)       0.00           18.26             8.55           0
+
+ horizon T=1000
+  room          criterion   E_M[money]  realised log-profit  cum ex-ante EIG   cost*T
+  dark           (no rank)       0.00            1.77             2.85           0
+  noise          (no rank)       0.00            4.10             9.95        1000
+  pseudorandom   (no rank)       0.00            4.27             6.64        1000
+  structured     (no rank)       0.00           17.27             8.60        1000
+  think          (no rank)       0.00           18.27             8.72           0
+
+ horizon T=4000
+  room          criterion   E_M[money]  realised log-profit  cum ex-ante EIG   cost*T
+  dark           (no rank)       0.00            1.77             2.86           0
+  noise          (no rank)       0.00            4.28            10.06        4000
+  pseudorandom   (no rank)       0.00            4.28             6.65        4000
+  structured     (no rank)       0.00           17.28             8.62        4000
+  think          (no rank)       0.00           18.28             8.74           0
+
+ exchange rate lambda (cost units per bit) needed for structured to beat dark, objective = lambda*IG - cost*T
+  T=    20: IG_struct=  7.87 IG_dark= 2.67  lambda* =       3.8
+  T=   100: IG_struct=  8.43 IG_dark= 2.81  lambda* =      17.8
+  T=  1000: IG_struct=  8.60 IG_dark= 2.85  lambda* =     174.0
+  T=  4000: IG_struct=  8.62 IG_dark= 2.86  lambda* =     694.4
+  T=100000: IG_struct=  8.62 IG_dark= 2.86  lambda* =   17359.9   (IG saturated, lambda* grows linearly in T)
+
+=== Part 3: greedy agent, each step picks argmax_r lambda*EIG_r - cost_r (T=3000) ===
+
+A: world = dark/noise/pseudorandom/structured, costs 0/1/1/1
+  lambda=       0  visits {'dark': 3000, 'noise': 0, 'pseudorandom': 0, 'structured': 0}  last visit {'dark': 2999, 'noise': None, 'pseudorandom': None, 'structured': None}  last-500 mix {'dark': 500, 'noise': 0, 'pseudorandom': 0, 'structured': 0}
+  lambda=       1  visits {'dark': 3000, 'noise': 0, 'pseudorandom': 0, 'structured': 0}  last visit {'dark': 2999, 'noise': None, 'pseudorandom': None, 'structured': None}  last-500 mix {'dark': 500, 'noise': 0, 'pseudorandom': 0, 'structured': 0}
+  lambda=      10  visits {'dark': 2946, 'noise': 21, 'pseudorandom': 13, 'structured': 20}  last visit {'dark': 2999, 'noise': 56, 'pseudorandom': 68, 'structured': 63}  last-500 mix {'dark': 500, 'noise': 0, 'pseudorandom': 0, 'structured': 0}
+  lambda=     100  visits {'dark': 2890, 'noise': 46, 'pseudorandom': 32, 'structured': 32}  last visit {'dark': 2999, 'noise': 101, 'pseudorandom': 172, 'structured': 171}  last-500 mix {'dark': 500, 'noise': 0, 'pseudorandom': 0, 'structured': 0}
+  lambda=   10000  visits {'dark': 1325, 'noise': 1152, 'pseudorandom': 268, 'structured': 255}  last visit {'dark': 2999, 'noise': 2184, 'pseudorandom': 2697, 'structured': 894}  last-500 mix {'dark': 499, 'noise': 0, 'pseudorandom': 1, 'structured': 0}
+
+B: add 'think' (dark room + self-posed problem), cost 0
+  lambda=       0  visits {'dark': 3000, 'noise': 0, 'pseudorandom': 0, 'structured': 0, 'think': 0}  last visit {'dark': 2999, 'noise': None, 'pseudorandom': None, 'structured': None, 'think': None}  last-500 mix {'dark': 500, 'noise': 0, 'pseudorandom': 0, 'structured': 0, 'think': 0}
+  lambda=       1  visits {'dark': 1023, 'noise': 0, 'pseudorandom': 0, 'structured': 0, 'think': 1977}  last visit {'dark': 2048, 'noise': None, 'pseudorandom': None, 'structured': None, 'think': 2999}  last-500 mix {'dark': 0, 'noise': 0, 'pseudorandom': 0, 'structured': 0, 'think': 500}
+  lambda=      10  visits {'dark': 1023, 'noise': 21, 'pseudorandom': 13, 'structured': 20, 'think': 1923}  last visit {'dark': 2102, 'noise': 78, 'pseudorandom': 94, 'structured': 89, 'think': 2999}  last-500 mix {'dark': 0, 'noise': 0, 'pseudorandom': 0, 'structured': 0, 'think': 500}
+  lambda=     100  visits {'dark': 1023, 'noise': 46, 'pseudorandom': 32, 'structured': 32, 'think': 1867}  last visit {'dark': 2158, 'noise': 129, 'pseudorandom': 300, 'structured': 299, 'think': 2999}  last-500 mix {'dark': 0, 'noise': 0, 'pseudorandom': 0, 'structured': 0, 'think': 500}
+  lambda=   10000  visits {'dark': 511, 'noise': 1151, 'pseudorandom': 267, 'structured': 255, 'think': 816}  last visit {'dark': 2695, 'noise': 2428, 'pseudorandom': 2439, 'structured': 1150, 'think': 2999}  last-500 mix {'dark': 196, 'noise': 0, 'pseudorandom': 0, 'structured': 0, 'think': 304}
+
+C: all costs equal (0)
+  lambda=       1  visits {'dark': 511, 'noise': 1337, 'pseudorandom': 512, 'structured': 640}  last visit {'dark': 2808, 'noise': 2870, 'pseudorandom': 2861, 'structured': 2999}  last-500 mix {'dark': 256, 'noise': 35, 'pseudorandom': 80, 'structured': 129}

@@ -1,0 +1,11 @@
+**Verdict: major revision.** Round-2 #1, #6–#9 are addressed; #2–#5 remain partial. Checked read-only at 17:35 UTC. Recomputed: median c **1.1371**, D2 **16/72 failures**, S4 **4/12 Gaussian failures and 10/12 mixture passes**.
+
+1. **CLV validation remains absent** — [report:325](/home/agent/workspaces/mats/outbox/stationary-numerics-2026-10-31.md:325). Naming finite windows and quoting warm-up sensitivity does not validate either horizon; pre-injection rank loss remains unchecked. **Fix:** validate both horizons and the complete window, or label Summary 9’s directions explicitly unvalidated.
+
+2. **Response populations and aggregations still differ** — [report:338](/home/agent/workspaces/mats/outbox/stationary-numerics-2026-10-31.md:338). At n=64, finite responses include all 128 paths; tangent responses use 63–64 survivors. The figure averages per-net log-medians; the new JSON takes their median. Neither supports “same net” comparisons. **Fix:** match survival populations and aggregation, then label them precisely.
+
+3. **Claimed observation times are rounded silently** — [report:340](/home/agent/workspaces/mats/outbox/stationary-numerics-2026-10-31.md:340). “At t=n” actually samples t/n=**0.9531, 0.9844, 1.0547** across widths; “1.5n” also uses nearest samples. **Fix:** interpolate consistently or state the actual times in the report and Summary 9.
+
+4. **Censoring is fixed in prose but not the figure** — [fig_response.py:38](/home/agent/workspaces/mats/work/stationary-numerics/scratch/fig_response.py:38). Sentinels still produce artificial survival drops after 2n. Summary 10 also omits the n=8 exception: only **20%**, not over a quarter, remain uncrossed. **Fix:** stop curves at 2n with surviving mass retained; qualify the summary with n≥16.
+
+5. **Scorecard arithmetic passes; its classification does not** — [report:421](/home/agent/workspaces/mats/outbox/stationary-numerics-2026-10-31.md:421). The rows sum to **17 hits/18 misses**, but D1’s registered pooled statistic is unavailable. **Fix:** report **17 hits, 17 misses, one unscorable**; “17/35 demonstrated hits” remains valid. Update Summary and section 9 accordingly.

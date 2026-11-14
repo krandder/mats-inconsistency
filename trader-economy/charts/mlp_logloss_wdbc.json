@@ -1,0 +1,46 @@
+{
+ "id": "mlp_logloss_wdbc",
+ "kind": "bar",
+ "title": "MLP agents (wdbc, 32 tanh units): test log loss (lower is better)",
+ "unit": "nats",
+ "source": "trader-economy/results/mlp_summary.json",
+ "note": "compute cost 0.0002 per connection per round; 5 seeds, 95% t-intervals",
+ "bars": [
+  {
+   "label": "Backprop",
+   "value": 0.10391,
+   "ci": 0.04266,
+   "highlight": false
+  },
+  {
+   "label": "LOO pay + ledger",
+   "value": 0.09988,
+   "ci": 0.04185,
+   "highlight": false
+  },
+  {
+   "label": "MSR one order + ledger",
+   "value": 0.13039,
+   "ci": 0.05217,
+   "highlight": false
+  },
+  {
+   "label": "Shapley-16 pay + ledger",
+   "value": 0.54504,
+   "ci": 0.31162,
+   "highlight": true
+  },
+  {
+   "label": "Shapley-16, output rescaled (diagnostic)",
+   "value": 0.31719,
+   "ci": 0.36976,
+   "highlight": false
+  },
+  {
+   "label": "Logistic regression",
+   "value": 0.09662,
+   "ci": 0.03975,
+   "highlight": false
+  }
+ ]
+}

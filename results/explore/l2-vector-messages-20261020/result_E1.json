@@ -1,0 +1,693 @@
+{
+  "schema": "aggbench.result/v1",
+  "run_id": "l2-vector-messages-20261020-E1",
+  "track": "EXPLORATORY",
+  "smoke": false,
+  "created_utc": "2026-10-20T23:18:23+00:00",
+  "harness": {
+    "version": "0.1.0",
+    "git_commit": "edfbe03cdde27729ed97101b802617cb3afe0b89",
+    "git_dirty": false,
+    "sha256": "e50881934b0fe8f82e9343535cce37057fd977b558f02c26c90e4e542fdbbade"
+  },
+  "env": {
+    "name": "E1",
+    "config": {
+      "n_agents": 5,
+      "d": 4,
+      "obs_dim": 2,
+      "coverage": 3,
+      "n_factors": 2,
+      "factor_scale": 1.0,
+      "noise_range": [
+        0.3,
+        2.0
+      ],
+      "key_noise": 0.3
+    }
+  },
+  "visibility": "full",
+  "splits": {
+    "train": {
+      "split": "train",
+      "first_seed": 0,
+      "n": 200000
+    },
+    "eval": {
+      "split": "dev",
+      "first_seed": 10000000,
+      "n": 5000
+    }
+  },
+  "oracle_check": {
+    "env": "E1",
+    "split": "smoke",
+    "episodes_checked": 24,
+    "max_abs_diff": 2.886579864025407e-15,
+    "tolerance": 1e-08,
+    "verified": true
+  },
+  "methods": {
+    "bayes": {
+      "logloss": {
+        "mean": 1.1819436259385405,
+        "ci_low": 1.1343573942267577,
+        "ci_high": 1.2285943795635266,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 0.709139642178735,
+        "ci_low": 0.6884158249839056,
+        "ci_high": 0.7299682381777244,
+        "n": 5000
+      },
+      "kl": {
+        "mean": -9.192646643896296e-18,
+        "ci_low": -1.5011325515956738e-17,
+        "ci_high": -3.596012376760888e-18,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 0.0,
+        "ci_low": 0.0,
+        "ci_high": 0.0,
+        "n": 5000
+      }
+    },
+    "oracle_clearing": {
+      "logloss": {
+        "mean": 1.1819436259385403,
+        "ci_low": 1.1343573942267577,
+        "ci_high": 1.2285943795635261,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 0.709139642178735,
+        "ci_low": 0.6884158249839057,
+        "ci_high": 0.7299682381777244,
+        "n": 5000
+      },
+      "kl": {
+        "mean": -9.192646643896296e-18,
+        "ci_low": -1.5011325515956738e-17,
+        "ci_high": -3.596012376760888e-18,
+        "n": 5000
+      },
+      "regret": {
+        "mean": -2.0130563882503338e-16,
+        "ci_low": -5.032152472495e-16,
+        "ci_high": 4.695466238047167e-17,
+        "n": 5000
+      }
+    },
+    "linear_pool": {
+      "logloss": {
+        "mean": 4.60552342913386,
+        "ci_low": 4.578840466792968,
+        "ci_high": 4.630807711238802,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 2.3147468624920284,
+        "ci_low": 2.2665246458457156,
+        "ci_high": 2.361418556545562,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 3.430333728542951,
+        "ci_low": 3.399944183835,
+        "ci_high": 3.4612820317926225,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 3.4235798031953193,
+        "ci_low": 3.377691829433584,
+        "ci_high": 3.4702643982820516,
+        "n": 5000
+      }
+    },
+    "log_pool": {
+      "logloss": {
+        "mean": 3.243733776922208,
+        "ci_low": 3.213433978665246,
+        "ci_high": 3.2741218066253417,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 1.4324574325616926,
+        "ci_low": 1.3962637179777053,
+        "ci_high": 1.467864143412315,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 2.0673824065592123,
+        "ci_low": 2.048089889085027,
+        "ci_high": 2.086729004707374,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 2.0617901509836676,
+        "ci_low": 2.0252776539966564,
+        "ci_high": 2.0996212313036446,
+        "n": 5000
+      }
+    },
+    "sum_logodds": {
+      "logloss": {
+        "mean": 1.999640342759934,
+        "ci_low": 1.9525302737630679,
+        "ci_high": 2.0455569212474525,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 0.9441339757401329,
+        "ci_low": 0.9188188263423803,
+        "ci_high": 0.9718763536541831,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 0.8251796395915393,
+        "ci_low": 0.8058315001639437,
+        "ci_high": 0.845740010388336,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 0.8176967168213934,
+        "ci_low": 0.7850260644829659,
+        "ci_high": 0.8507040874059277,
+        "n": 5000
+      }
+    },
+    "extremized_log_pool": {
+      "logloss": {
+        "mean": 1.9996616532201013,
+        "ci_low": 1.9524889675341437,
+        "ci_high": 2.045625507366173,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 0.9441345909985422,
+        "ci_low": 0.9188062485248589,
+        "ci_high": 0.9718838322848632,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 0.825204587053469,
+        "ci_low": 0.8058386972073532,
+        "ci_high": 0.8457719692823036,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 0.8177180272815607,
+        "ci_low": 0.7850052604409606,
+        "ci_high": 0.8507412278125577,
+        "n": 5000
+      }
+    },
+    "vecmsg_m1:trained": {
+      "logloss": {
+        "mean": 3.951935059350941,
+        "ci_low": 3.902778458720729,
+        "ci_high": 4.003669096239197,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 1.8143406038903056,
+        "ci_low": 1.7696428274638518,
+        "ci_high": 1.8610734207388582,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 2.7584615769036462,
+        "ci_low": 2.7227606326537974,
+        "ci_high": 2.796958085347991,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 2.7699914334124,
+        "ci_low": 2.715113008580553,
+        "ci_high": 2.8237739702038698,
+        "n": 5000
+      }
+    },
+    "vecmsg_m1:control:untrained_init": {
+      "logloss": {
+        "mean": 6.137564240388535,
+        "ci_low": 6.088721076754367,
+        "ci_high": 6.184826991456102,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 4.89643345753089,
+        "ci_low": 4.802054060729003,
+        "ci_high": 4.989551657457345,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 4.962730998179058,
+        "ci_low": 4.914648537156542,
+        "ci_high": 5.011642741262908,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 4.955620614449995,
+        "ci_low": 4.890070888778657,
+        "ci_high": 5.020446759066978,
+        "n": 5000
+      }
+    },
+    "vecmsg_m1:control:random_network": {
+      "logloss": {
+        "mean": 5.824413110422208,
+        "ci_low": 5.77699973778829,
+        "ci_high": 5.868884636755445,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 4.206247885022639,
+        "ci_low": 4.121762729892179,
+        "ci_high": 4.285439175595384,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 4.650189736028581,
+        "ci_low": 4.600742543058089,
+        "ci_high": 4.6984032598342305,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 4.642469484483667,
+        "ci_low": 4.579745176948757,
+        "ci_high": 4.705996583672743,
+        "n": 5000
+      }
+    },
+    "vecmsg_m4:trained": {
+      "logloss": {
+        "mean": 2.72623221720298,
+        "ci_low": 2.6782491788128286,
+        "ci_high": 2.775646909673648,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 1.2229145199288698,
+        "ci_low": 1.190248382629317,
+        "ci_high": 1.253847059157417,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 1.5399873507510762,
+        "ci_low": 1.511405702020567,
+        "ci_high": 1.5686519588262435,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 1.5442885912644393,
+        "ci_low": 1.5017899406580169,
+        "ci_high": 1.5895712646960045,
+        "n": 5000
+      }
+    },
+    "vecmsg_m4:control:untrained_init": {
+      "logloss": {
+        "mean": 5.795422441997661,
+        "ci_low": 5.751341434346029,
+        "ci_high": 5.839280598261154,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 4.202447589453727,
+        "ci_low": 4.1183413506011455,
+        "ci_high": 4.283416076443504,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 4.618098928000537,
+        "ci_low": 4.572357244642455,
+        "ci_high": 4.665004701558356,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 4.613478816059121,
+        "ci_low": 4.553746550875843,
+        "ci_high": 4.675861289232686,
+        "n": 5000
+      }
+    },
+    "vecmsg_m4:control:random_network": {
+      "logloss": {
+        "mean": 7.043527893432442,
+        "ci_low": 6.946199497850473,
+        "ci_high": 7.136014435795895,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 4.873869998774742,
+        "ci_low": 4.777989139352707,
+        "ci_high": 4.964607349785694,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 5.866634608258789,
+        "ci_low": 5.783038604864703,
+        "ci_high": 5.948931233522172,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 5.861584267493903,
+        "ci_low": 5.75556551879928,
+        "ci_high": 5.9589387461613175,
+        "n": 5000
+      }
+    },
+    "vecmsg_m16:trained": {
+      "logloss": {
+        "mean": 2.3941154683028283,
+        "ci_low": 2.345712036284551,
+        "ci_high": 2.443578252711636,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 1.0802803113762904,
+        "ci_low": 1.0523951433120773,
+        "ci_high": 1.108721731133548,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 1.2101666674033618,
+        "ci_low": 1.1864830570488365,
+        "ci_high": 1.2349882967824153,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 1.2121718423642878,
+        "ci_low": 1.1714559636910418,
+        "ci_high": 1.254940343343912,
+        "n": 5000
+      }
+    },
+    "vecmsg_m16:control:untrained_init": {
+      "logloss": {
+        "mean": 5.724364220416728,
+        "ci_low": 5.677865339782791,
+        "ci_high": 5.7697901335866995,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 4.012417514283483,
+        "ci_low": 3.93217918847368,
+        "ci_high": 4.0907481743866265,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 4.547848503232394,
+        "ci_low": 4.5000590431381005,
+        "ci_high": 4.5960939440611215,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 4.5424205944781875,
+        "ci_low": 4.481156435784802,
+        "ci_high": 4.605106005604056,
+        "n": 5000
+      }
+    },
+    "vecmsg_m16:control:random_network": {
+      "logloss": {
+        "mean": 5.852869176075187,
+        "ci_low": 5.799941564137324,
+        "ci_high": 5.904298875592291,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 4.162181486666911,
+        "ci_low": 4.077474284513474,
+        "ci_high": 4.2418999435275175,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 4.680207406137286,
+        "ci_low": 4.6264454887352935,
+        "ci_high": 4.731575075833753,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 4.670925550136647,
+        "ci_low": 4.60562647101632,
+        "ci_high": 4.736589107888272,
+        "n": 5000
+      }
+    }
+  },
+  "learned_arms": [
+    "vecmsg_m1:trained",
+    "vecmsg_m4:trained",
+    "vecmsg_m16:trained"
+  ],
+  "controls": {
+    "vecmsg_m1:trained": {
+      "random_network": "vecmsg_m1:control:random_network",
+      "untrained_init": "vecmsg_m1:control:untrained_init"
+    },
+    "vecmsg_m4:trained": {
+      "random_network": "vecmsg_m4:control:random_network",
+      "untrained_init": "vecmsg_m4:control:untrained_init"
+    },
+    "vecmsg_m16:trained": {
+      "random_network": "vecmsg_m16:control:random_network",
+      "untrained_init": "vecmsg_m16:control:untrained_init"
+    }
+  },
+  "extra": {
+    "lane": "L2",
+    "question": "vector messages from local encoders + attention aggregator vs scalar reports",
+    "runner": "results/explore/l2-vector-messages-20261020/run_l2.py",
+    "runner_sha256": "9020f5727463ba4ed20889e7b44afc67e88eadb99101d156ec44c720133fc2a5",
+    "message_dims": [
+      1,
+      4,
+      16
+    ],
+    "message_definition": "per agent: learned key in R^m and learned value in R^m (2m floats)",
+    "training": {
+      "labels": "truth (no distillation to bayes)",
+      "steps": 2500,
+      "batch": 512,
+      "lr": 0.002,
+      "optimizer": "AdamW wd 1e-4, one-cycle",
+      "checkpoint_choice": "best loss on first 10k train episodes held out",
+      "train_seed": 0
+    },
+    "inputs": "batch.agent_inputs('full'): own obs + own key; E2/E3 features add own piece LLRs mu*x",
+    "e3_biased_handling": null,
+    "locality_check": {
+      "vecmsg_m1": {
+        "passed": true,
+        "episodes": 500,
+        "trials": 5,
+        "atol": 1e-09,
+        "encoder": "trained encoder, message = [key, value] in R^(2m)"
+      },
+      "vecmsg_m4": {
+        "passed": true,
+        "episodes": 500,
+        "trials": 5,
+        "atol": 1e-09,
+        "encoder": "trained encoder, message = [key, value] in R^(2m)"
+      },
+      "vecmsg_m16": {
+        "passed": true,
+        "episodes": 500,
+        "trials": 5,
+        "atol": 1e-09,
+        "encoder": "trained encoder, message = [key, value] in R^(2m)"
+      }
+    },
+    "paired_differences": {
+      "vecmsg_m1": {
+        "trained_minus_oracle_clearing": {
+          "mean": 2.7699914334124007,
+          "ci_low": 2.715113008580553,
+          "ci_high": 2.8237739702038698,
+          "n": 5000
+        },
+        "trained_minus_extremized_log_pool": {
+          "mean": 1.9522734061308398,
+          "ci_low": 1.9039381333878063,
+          "ci_high": 2.0011278625955917,
+          "n": 5000
+        }
+      },
+      "vecmsg_m4": {
+        "trained_minus_oracle_clearing": {
+          "mean": 1.5442885912644393,
+          "ci_low": 1.5017899406580169,
+          "ci_high": 1.5895712646960045,
+          "n": 5000
+        },
+        "trained_minus_extremized_log_pool": {
+          "mean": 0.7265705639828784,
+          "ci_low": 0.6927527730369544,
+          "ci_high": 0.7595001884591117,
+          "n": 5000
+        }
+      },
+      "vecmsg_m16": {
+        "trained_minus_oracle_clearing": {
+          "mean": 1.212171842364288,
+          "ci_low": 1.171455963691042,
+          "ci_high": 1.254940343343912,
+          "n": 5000
+        },
+        "trained_minus_extremized_log_pool": {
+          "mean": 0.39445381508272714,
+          "ci_low": 0.3687327245264669,
+          "ci_high": 0.42128384497866733,
+          "n": 5000
+        }
+      }
+    },
+    "fit_info": {
+      "vecmsg_m1": {
+        "best_val_loss": 0.2738686725497246,
+        "val_history": [
+          [
+            250,
+            0.88703
+          ],
+          [
+            500,
+            0.579
+          ],
+          [
+            750,
+            0.47554
+          ],
+          [
+            1000,
+            0.40587
+          ],
+          [
+            1250,
+            0.37718
+          ],
+          [
+            1500,
+            0.34387
+          ],
+          [
+            1750,
+            0.30667
+          ],
+          [
+            2000,
+            0.29019
+          ],
+          [
+            2250,
+            0.27864
+          ],
+          [
+            2500,
+            0.27387
+          ]
+        ],
+        "seconds": 259.2
+      },
+      "vecmsg_m4": {
+        "best_val_loss": -0.9673223942518234,
+        "val_history": [
+          [
+            250,
+            -0.05683
+          ],
+          [
+            500,
+            -0.33956
+          ],
+          [
+            750,
+            -0.45872
+          ],
+          [
+            1000,
+            -0.61762
+          ],
+          [
+            1250,
+            -0.72414
+          ],
+          [
+            1500,
+            -0.79879
+          ],
+          [
+            1750,
+            -0.8733
+          ],
+          [
+            2000,
+            -0.93407
+          ],
+          [
+            2250,
+            -0.95598
+          ],
+          [
+            2500,
+            -0.96732
+          ]
+        ],
+        "seconds": 240.3
+      },
+      "vecmsg_m16": {
+        "best_val_loss": -1.3038940131664276,
+        "val_history": [
+          [
+            250,
+            -0.05231
+          ],
+          [
+            500,
+            -0.32246
+          ],
+          [
+            750,
+            -0.59701
+          ],
+          [
+            1000,
+            -0.89353
+          ],
+          [
+            1250,
+            -1.02806
+          ],
+          [
+            1500,
+            -1.13533
+          ],
+          [
+            1750,
+            -1.19212
+          ],
+          [
+            2000,
+            -1.25829
+          ],
+          [
+            2250,
+            -1.29148
+          ],
+          [
+            2500,
+            -1.30389
+          ]
+        ],
+        "seconds": 238.1
+      }
+    },
+    "extremize_alpha": 5.0076946419186985,
+    "torch_threads": 1
+  }
+}

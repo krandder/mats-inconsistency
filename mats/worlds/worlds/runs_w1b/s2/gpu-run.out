@@ -1,0 +1,47 @@
+creating soup-gpu-w1b-1028-s2-1028060817-23907 (g2-standard-8 + nvidia-l4, STANDARD) in us-central1-a ...
+NAME                                   ZONE           MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP      STATUS
+soup-gpu-w1b-1028-s2-1028060817-23907  us-central1-a  g2-standard-8               [ip-removed]  [ip-removed]  RUNNING
+waiting for soup-gpu-w1b-1028-s2-1028060817-23907 ([ip-removed]) startup script (up to 25 min) ...
+gpu=NVIDIA L4, 580.178.04
+nvcc=Build cuda_12.9.r12.9/compiler.35813241_0
+clang=Ubuntu clang version 18.1.3 (1ubuntu1)
+bun=1.3.14
+bend=v2.0.29@c8691aa
+READY: soup-gpu-w1b-1028-s2-1028060817-23907 us-central1-a [ip-removed]
+rsync /tmp/l4runs/w1b-1028-s2 -> soup-gpu-w1b-1028-s2-1028060817-23907:/root/soup
+W: http://packages.cloud.google.com/apt/dists/apt-transport-artifact-registry-stable/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
+W: https://us-apt.pkg.dev/projects/gce-ai-infra/dists/gpudirect-gib-apt/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
+
+Running kernel seems to be up-to-date.
+
+Restarting services...
+ systemctl restart packagekit.service polkit.service rsyslog.service ssh.service
+
+Service restarts being deferred:
+ systemctl restart networkd-dispatcher.service
+ systemctl restart unattended-upgrades.service
+
+No containers need to be restarted.
+
+User sessions running outdated binaries:
+ soup @ session #10: sshd[3410]
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+GPU 0: NVIDIA L4 (UUID: GPU-fcefe300-4703-317f-b3af-e1dda62f09ea)
+24 passed in 34.61s
+[A_s2] step 100000 train 0.5305 val 0.4682 gap 0.2865 best 0.4664@96000 (3697s; data 16.9ms comp 20.1ms per step)
+[E_s2] step 100000 train 0.7108 val 0.4522 gap 0.2704 best 0.4500@88000 (4409s; data 16.3ms comp 27.7ms per step)
+[B_s2] step 100000 train -0.1206 val 0.0516 gap 0.4535 best 0.0401@92000 (5075s; data 19.5ms comp 30.9ms per step)
+[D_s2] step 100000 train -0.6046 val 0.0271 gap 0.4290 best 0.0271@100000 (5091s; data 19.4ms comp 31.1ms per step)
+[C_s2] step 100000 train -0.1999 val 0.0106 gap 0.4124 best 0.0106@100000 (5676s; data 17.8ms comp 38.4ms per step)
+evalset N=4096 repeat E=125: sample 0.4s refs 2.5s; bayes=-2.650 oracle=-2.650 count=0.048 item=0.981 prior=1.429 r0=1.062 shortcut=1.429
+evalset N=4096 ucb E=125: sample 5.1s refs 2.1s; bayes=-2.297 oracle=-2.299 count=-1.462 item=0.614 prior=1.294 r0=0.792 shortcut=1.297
+DONE /root/runs/w1b-1028-s2/runs/B_s2
+DONE /root/runs/w1b-1028-s2/runs/E_s2
+DONE /root/runs/w1b-1028-s2/runs/D_s2
+DONE /root/runs/w1b-1028-s2/runs/A_s2
+DONE /root/runs/w1b-1028-s2/runs/C_s2
+ALL-DONE
+rsync soup-gpu-w1b-1028-s2-1028060817-23907:/root/runs -> /tmp/l4runs/w1b-1028-s2/runs
+Deleted [https://www.googleapis.com/compute/v1/projects/GCP_PROJECT/zones/us-central1-a/instances/soup-gpu-w1b-1028-s2-1028060817-23907].
+GPU-RUN EXIT 0

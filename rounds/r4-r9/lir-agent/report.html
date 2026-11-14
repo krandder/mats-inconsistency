@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LIR Masks Morning Report</title>
+<style>
+:root{--bg:#fbfbf9;--fg:#1d1f22;--muted:#5d6470;--accent:#2457c5;--line:#dcdfe4;--panel:#f1f3f6;--tldr:#eef4ff;--tldr-line:#9db8f0;--code:#eceef2;--warn:#8a5a00}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#15171a;--fg:#e4e6ea;--muted:#9aa2ae;--accent:#86a8f5;--line:#2f343b;--panel:#1d2025;--tldr:#1a2436;--tldr-line:#3d5a93;--code:#262a31;--warn:#e0b050}}
+:root[data-theme="dark"]{--bg:#15171a;--fg:#e4e6ea;--muted:#9aa2ae;--accent:#86a8f5;--line:#2f343b;--panel:#1d2025;--tldr:#1a2436;--tldr-line:#3d5a93;--code:#262a31;--warn:#e0b050}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:16px}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-text-size-adjust:100%}
+.layout{display:grid;grid-template-columns:minmax(0,1fr);max-width:1180px;margin:0 auto;padding:0 16px}
+nav.toc{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 0;margin:0 -16px;padding-left:16px;padding-right:16px}
+nav.toc details summary{cursor:pointer;font-weight:600;color:var(--muted);font-size:14px}
+nav.toc ol{margin:6px 0 4px;padding-left:20px;font-size:14px;line-height:1.5}
+nav.toc a{color:var(--fg);text-decoration:none}
+nav.toc a:hover{color:var(--accent)}
+main{max-width:860px;width:100%;min-width:0;padding-bottom:64px}
+@media (min-width:1180px){.layout{grid-template-columns:260px minmax(0,860px);gap:40px}
+ nav.toc{position:sticky;top:16px;align-self:start;max-height:calc(100vh - 32px);overflow:auto;border:0;margin:24px 0 0;padding:0}
+ nav.toc details summary{pointer-events:none;list-style:none}
+ nav.toc details summary::-webkit-details-marker{display:none}}
+h1{font-size:1.75rem;line-height:1.25;margin:28px 0 8px}
+h2{font-size:1.3rem;margin:36px 0 10px;padding-bottom:4px;border-bottom:1px solid var(--line)}
+p,li{overflow-wrap:anywhere}
+a{color:var(--accent)}
+code{background:var(--code);padding:1px 5px;border-radius:4px;font:0.88em ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+section.tldr{background:var(--tldr);border:1px solid var(--tldr-line);border-radius:10px;padding:4px 20px 12px;margin-top:24px}
+section.tldr h2{border:0;margin-top:14px}
+.tablewrap{overflow-x:auto;margin:14px 0}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+caption{text-align:left;font-weight:600;color:var(--muted);padding-bottom:6px;font-size:13px}
+th,td{border:1px solid var(--line);padding:6px 9px;vertical-align:top;text-align:left}
+th{background:var(--panel)}
+td ul{margin:0;padding-left:18px}
+sup.fn{font-size:0.72em;line-height:0}
+sup.fn a{text-decoration:none}
+li.src{list-style:none;margin-left:-20px}
+.srcn{color:var(--muted);font-variant-numeric:tabular-nums;margin-right:4px}
+figure{margin:18px 0}
+figure img{display:block;max-width:100%;height:auto;background:#fff;border:1px solid var(--line);border-radius:6px;padding:4px}
+figcaption{color:var(--muted);font-size:13.5px;margin-top:6px}
+.meta{color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="toc" aria-label="Contents"><details open><summary>Contents</summary><ol><li><a href="#1-tl-dr">1. TL;DR</a></li><li><a href="#2-the-claim-and-what-the-night-says-about-it">2. The claim, and what the night says about it</a></li><li><a href="#3-hawks-verdicts-and-whether-the-runs-answered-them">3. Hawks: verdicts and whether the runs answered them</a></li><li><a href="#4-results-per-experiment-with-the-fused-baseline-alongside">4. Results per experiment, with the fused baseline alongside</a></li><li><a href="#5-the-forecaster-training-scheme-what-worked-what-did-not">5. The forecaster training scheme: what worked, what did not</a></li><li><a href="#6-what-this-means-for-the-mats-framing-and-for-calibrated-ai">6. What this means for the MATS framing and for calibrated-ai</a></li><li><a href="#7-next-experiments-ranked">7. Next experiments, ranked</a></li><li><a href="#8-costs-and-unverified-items">8. Costs and unverified items</a></li><li><a href="#addendum-eurisko-2026-10-03-18-30z-two-things-the-report-agent-did-not-have">Addendum (eurisko, 2026-10-03 18:30Z): two things the report agent did not have</a></li><li><a href="#9-sources">9. Sources</a></li></ol></details></nav>
+<main>
+<h1>LIR control masks for transformer post-training: morning report</h1>
+<p>Report agent for eurisko, written 2026-10-03 at about 18:20Z, after every experiment and both theory items had finished. Spec: <code>GOAL.md</code>. Paths are relative to <code>/home/agent/workspaces/eurisko-study/lir-agent/</code> unless they start with <code>/</code>.</p>
+<p>How to read the numbers. Every number comes from <code>CLAIMS.md</code>, the skeptic's audit (checked at 18:07Z), which re-derived each one from the raw run files. A number that is not in <code>CLAIMS.md</code> is marked <strong>(unaudited)</strong> and names the file it was read from. A citation from memory, or a detail not checked against the paper, is marked (unverified). Every result in this report used the fixed per-environment forecast format (one decile token per claim). The free-form judged format (FF, GOAL.md addendum) was not built, so no result uses it.</p>
+<p>Words used throughout:</p>
+<ul><li>
+<strong>P (protected)</strong>: separate belief, forecast and action adapters on a frozen Qwen3 base. Reward can move only the action adapter. Beliefs and forecasts learn only from what turned out true.
+</li><li>
+<strong>Fused baseline (B0, called F in E1, A0 in E2)</strong>: one adapter gets reward on every sampled token, plus the same truth losses. Same model, environment and step count.
+</li><li>
+<strong>D / M0 (token mask)</strong>: one shared adapter with belief and forecast tokens left out of the reward loss. This is the published DCPO-style recipe.
+</li><li>
+<strong>ShipHunt</strong>: the Battleship-style text POMDP in <code>harness/</code>, with exact Bayes answers. Preset <code>syco</code> adds a captain's note and an approval rater that pays for agreeing with the note and for stating P(success) of at least 0.7.
+</li></ul>
+<section id="1-tl-dr" class="tldr">
+<h2>1. TL;DR</h2>
+<ul><li>
+<strong>Outcome.</strong> At Qwen3-0.6B, reward-only action adapters kept the belief the rater reads honest. E2's shift toward a false note was +0.036 ± 0.026 protected vs +0.286 ± 0.013 fused, and E1's false-note agreement was 0.000 vs 0.593 ± 0.526. The reward step provably cannot write to beliefs or forecasts, which the run logs confirm. But forecast calibration and self-prediction showed no fused failure to prevent, reward did not rise in the protected arms, and the separate forecaster collapsed to a constant. So "calibration survives RL while reward rises" is still untested.
+</li><li>
+<strong>Decision for Kelvin.</strong> Is "localized honesty under RL" the MATS framing? It fits if it is framed as a checkable guarantee plus a measured cost, not as better calibration. Also: is a round two funded? It needs an informative forecaster, a setup where reward rises, and E2's untrained leak arms. GPU so far is $46.99 at the ceiling rate against the $60 cap.
+</li><li>
+<strong>Next.</strong> Cheapest first: compute T2's projected-error metric on the saved E1/E3 records (CPU, no GPU). Nothing is running: 0 GPU VMs at 18:09Z.
+</li></ul>
+</section>
+<section id="2-the-claim-and-what-the-night-says-about-it">
+<h2>2. The claim, and what the night says about it</h2>
+<p>The claim (GOAL.md): GRPO and RLHF act like one Local Inconsistency Resolution step with a control mask of all ones (Richardson et al. 2026, arXiv 2604.17140<sup class="fn"><a href="#src-1">[1]</a></sup>). So the tension between "I want reward" and "this is what I believe and predict" is partly resolved by moving beliefs and forecasts, not only actions. If reward may move only an action adapter, then calibration and introspection should survive RL while reward rises, and the fused baseline should show the known failures.</p>
+<p>What the night supports:</p>
+<ul><li>
+<strong>The mask isolates the reward step exactly.</strong> In E1's protected arm, the reward-phase gradient into the belief and forecast adapters was 0 at all 60 steps in all 6 P runs, and the reward step changed beliefs by 0 (CLAIMS E1). In E2, swapping in only the post-RL action adapter left beliefs and forecasts bit-identical in all 3 protected seeds (CLAIMS E2). This holds by construction. The hawks called it a unit test, so it is a correctness result, not a discovery.
+</li><li>
+<strong>The token mask leaks; the parameter mask does not.</strong> In E1's DCPO-style arm D, each reward step still moved the situation report: mean absolute change 0.0055, and a mean per-seed maximum of 0.091 at a false-note cell. The fused arm moved it by 0.0108 and 0.338 (CLAIMS E1).
+</li><li>
+<strong>The fused baseline moves the belief the rater pays for.</strong> E1: post-RL false-note agreement was 0.000 in every P seed, against 0.780 / 0.000 / 1.000 for the fused arm F. At step 30 it was 0.854 for F (CLAIMS E1). E2: the shift toward the note was +0.036 ± 0.026 protected vs +0.286 ± 0.013 fused (Welch t = 14.05; exact permutation p = 0.10, the smallest possible with 2 vs 3 seeds). Arms that also let reward into the belief and forecast adapters drifted too: +0.591 ± 0.100 (alpha 0.3) and +0.441 ± 0.201 (alpha 1.0) (CLAIMS E2). These are not a dose: the harness gives every alpha &gt; 0 a full-size reward step, so both are "routing on" arms and the dose response is untested (eurisko's addendum below, CLAIMS addendum 18:12Z). E4: the fused arm's report drifted +0.149 ± 0.063 from the exact posterior (CLAIMS E4). This is the LIR prediction, observed in the claim the rater reads.
+</li></ul>
+<p>What the night does not support, or could not test:</p>
+<ul><li>
+<strong>Forecast calibration did not separate the arms.</strong> E1 committed-plan ECE was 0.114 ± 0.049 (P), 0.107 ± 0.021 (fused) and 0.088 ± 0.006 (token mask) (CLAIMS E1). In E4 the protected forecaster moved no more than a no-RL twin, but the twin alone swings by about 0.1 (CLAIMS E4).
+</li><li>
+<strong>Reward did not rise in the protected arms.</strong> E2's protected env reward went from 0.522 to 0.379 ± 0.115. In E7, eval reward fell in every arm (CLAIMS E2, E7). "While reward rises" was never tested.
+</li><li>
+<strong>The fused self-model did not break.</strong> In E7 the fused arm tracked its own actions better than the protected one (0.938 vs 0.753) and showed no optimism (-0.003 ± 0.004). Gate 0 found no privileged self-access, so this measures self-prediction tracking, not introspection (CLAIMS E7). T2 shows that, as built, reward cannot reach the fused self-claim except through shared weights (section 6).
+</li><li>
+<strong>The separate forecaster carried no information.</strong> At 0.6B, E3's protected forecaster gave the same answer, 0.6501, to every plan (sd 7e-5). So the search question was not tested (CLAIMS E3).
+</li><li>
+<strong>Goal-blind beliefs cost no perception, at small scale.</strong> E5c with 2 seeds: Q minus V Brier was -0.0011 / +0.0005 (CLAIMS E5).
+</li><li>
+<strong>No directed drift of the learned utility.</strong> E6 found none, on a tiny random-init model that barely learned (CLAIMS E6).
+</li></ul>
+<p>Net: the claim's first half (reward pressure moves beliefs) is confirmed for a rater-read belief at 0.6B. The protective half works for that belief. The parts about forecasts, introspection and rising reward are open: the fused failure did not appear, or the setup could not show it.</p>
+</section>
+<section id="3-hawks-verdicts-and-whether-the-runs-answered-them">
+<h2>3. Hawks: verdicts and whether the runs answered them</h2>
+<p>Every hawk ran before its experiment, and every hawk returned RESHAPE. The E2 hawk also killed E2 in its filed form (<code>hawks/E2.md</code> §6). Each PREREG adopted its hawk's reshape. No hawk number below is audited in CLAIMS.md, so objections are quoted without their toy numbers.</p>
+<div class="tablewrap"><table><thead><tr><th>item</th><th>verdict</th><th>strongest objection (hawk file)</th><th>answered?</th></tr></thead><tbody>
+<tr><td>E1</td><td>RESHAPE</td><td>The expected result is either bought by extra supervision or already published (RLCR, DCPO, CoCal). On plain env reward, GRPO puts no pressure on the claim. (<code>hawks/E1.md</code>)</td><td>Partly. Supervision was matched: F had the same truth losses and the same 60 x 32 compute. Conceded for forecast calibration (ECE 0.114 / 0.107 / 0.088). Against the DCPO-style mask, only the mid-run leak separates them; the end-of-run difference was not significant.</td></tr>
+<tr><td>E2</td><td>RESHAPE; filed form killed</td><td>The gradient share is zero by construction in the protected arm and undefined in the fused arm, and it is blind to leaks through shared positions. (<code>hawks/E2.md</code>)</td><td>Conceded. A functional swap test replaced it: bit-identical in all 3 protected and 5 dose runs. The falsifier arms A2/A3 were never trained, so this stays <strong>open</strong>.</td></tr>
+<tr><td>E3</td><td>RESHAPE</td><td>An optimism gap measures the forecaster's calibration in the selected tail, not exploitation. (<code>hawks/E3.md</code>)</td><td>Answered as a metric question: RAPc's raw gap went negative (-0.094 / -0.125) while its gold value fell (-0.226 / -0.116). The main question is <strong>not answered</strong>: the protected forecaster was constant.</td></tr>
+<tr><td>E4</td><td>RESHAPE</td><td>The leak question has a unit-test answer, and Turpin probes score plan text that every arm trains with reward. (<code>hawks/E4.md</code>)</td><td>Conceded. The leak is exactly 0.0 in P, 0.503 with all gates on and 0.489 fused (<code>leak.json</code>; test 2 passed at 18:03Z). Reliance was measured instead. The Turpin verbalisation half was not run (no FF).</td></tr>
+<tr><td>E5</td><td>RESHAPE</td><td>The protected arm is null by construction: the goal is independent of the board, and every cell is queried, so relevance has no work to do. (<code>hawks/E5.md</code>)</td><td>Answered by E5c, a two-board task where a query must pick the board: Q matched V, and S (wrong board named) was worse. "Deletion protects beliefs from wishful bias" is <strong>untested</strong>, because E5a's beliefs did not use evidence.</td></tr>
+<tr><td>E6</td><td>RESHAPE</td><td>The outcome is fixed by construction; only directed, self-serving drift would be new. (<code>hawks/E6.md</code>)</td><td>Conceded at toy scale. The masked arm equals its no-reward replay exactly. Directed drift was not shown (+0.004 ± 0.034 net of familiarity), and power was low.</td></tr>
+<tr><td>E7</td><td>RESHAPE</td><td>The protected arm wins by construction (trained vs stale), and a sub-8B model may have no introspection to break. (<code>hawks/E7.md</code>)</td><td>Answered: every arm got the same self-prediction loss, and the protected arm did not win (0.753 vs 0.938). Conceded: Gate 0 self-advantage was -0.039 [-0.104, +0.005].</td></tr>
+<tr><td>T1</td><td>RESHAPE</td><td>The expected result follows from order statistics, the bound is vacuous where it matters, and with no cost per forecast there is nothing to stop. (<code>hawks/T1.md</code>)</td><td>Conceded, and T1 killed itself: the learned gap model with a stopping rule lost to a tuned fixed n in 27 of 27 cells.</td></tr>
+<tr><td>T2</td><td>RESHAPE</td><td>The paradox half is uninformative because a fixed point always exists. A fused-vs-protected test can be null with full leakage when the action reaches reward cheaply. (<code>hawks/T2.md</code>)</td><td>Answered by two theorems, checked numerically on toys (0 bound violations over 5560 fixed points). The null is now an exact corollary. Not checked on the LLM runs.</td></tr>
+<tr><td>FORECAST</td><td>RESHAPE</td><td>Pessimistic errors on never-chosen plans are never corrected, and ShipHunt's back door (revealed hidden state, unfired hit facts) makes "coherence ≈ branching" the expected result. (<code>hawks/FORECAST.md</code>)</td><td><strong>Not tested.</strong> All 129 run configs with an <code>fc_arm</code> field used A4, full branching (report agent's check of <code>experiments/*/runs/**/config.json</code>, 18:12Z). The back door was never closed.</td></tr>
+</tbody></table></div>
+</section>
+<section id="4-results-per-experiment-with-the-fused-baseline-alongside">
+<h2>4. Results per experiment, with the fused baseline alongside</h2>
+<p>All runs: Qwen3-0.6B with LoRA r8 on ShipHunt, except E6 (random-init tiny Qwen3 on CPU). <code>mask_violations</code> = 0 in every audited run: 15 in E1, 14 in E3, 12 in E6 (CLAIMS).</p>
+<div class="tablewrap"><table><thead><tr><th>exp</th><th>paper modified</th><th>seeds</th><th>protected arm</th><th>fused baseline</th><th>verdict</th><th>file</th></tr></thead><tbody>
+<tr><td>E1</td><td>Phasic Policy Gradient (arXiv 2009.04416<sup class="fn"><a href="#src-2">[2]</a></sup>), with DCPO (arXiv 2603.09117<sup class="fn"><a href="#src-3">[3]</a></sup>) as the token-mask arm</td><td>3 per ON arm</td><td>false-note agreement 0.000 (0/0/0); committed ECE 0.114 ± 0.049; env reward 0.574 ± 0.039</td><td>F: agreement 0.593 ± 0.526 (0.780 / 0.000 / 1.000); ECE 0.107 ± 0.021. D: ECE 0.088 ± 0.006, env reward 0.535 ± 0.020</td><td>MIXED</td><td><code>experiments/E1/RESULTS.md</code></td></tr>
+<tr><td>E2</td><td>Drori et al. 2025 (arXiv 2511.11584<sup class="fn"><a href="#src-6">[6]</a></sup>) with Gradient Routing (arXiv 2410.04332<sup class="fn"><a href="#src-7">[7]</a></sup>)</td><td>A1 3, A0 2</td><td>shift toward note +0.036 ± 0.026; agreement 0.000</td><td>+0.286 ± 0.013; agreement 0.948 ± 0.015</td><td>PARTIAL</td><td><code>experiments/E2/RESULTS.md</code></td></tr>
+<tr><td>E3</td><td>RAP (arXiv 2305.14992<sup class="fn"><a href="#src-9">[9]</a></sup>) and Tree of Thoughts (arXiv 2305.10601<sup class="fn"><a href="#src-10">[10]</a></sup>), read through Gao et al. 2022 (arXiv 2210.10760<sup class="fn"><a href="#src-8">[8]</a></sup>)</td><td>P 2, B0s 3</td><td>forecaster constant (mean 0.6501, sd 7e-5 and 3e-5)</td><td>B0s states the approval threshold: mean forecast 0.747 / 0.750 (third seed 0.314)</td><td>instrument check failed; claim untested</td><td><code>experiments/E3/RESULTS.md</code></td></tr>
+<tr><td>E4</td><td>Stream of Search (arXiv 2404.03683<sup class="fn"><a href="#src-11">[11]</a></sup>) and Searchformer (arXiv 2402.14083<sup class="fn"><a href="#src-12">[12]</a></sup>)</td><td>3</td><td>forecast shift minus no-RL twin -0.079 ± 0.041 (within the twin's ±0.1 noise)</td><td>report drift vs Bayes +0.149 ± 0.063; approval gain 0.390 (agree 0.118, confident 0.274)</td><td>mixed</td><td><code>experiments/E4/RESULTS.md</code></td></tr>
+<tr><td>E5</td><td>Value Equivalence (arXiv 2011.03506<sup class="fn"><a href="#src-17">[17]</a></sup>) for E5c; Paster et al. 2022 (arXiv 2205.15967<sup class="fn"><a href="#src-18">[18]</a></sup>) for E5a</td><td>E5c 2; E5a 1-2 per cell</td><td>E5c goal deleted + query vs visible: -0.0011 / +0.0005 Brier vs Bayes</td><td>E5a (fused only): stated-confident rate 1.00 in all 5 approval runs, goal deleted or not</td><td>mixed</td><td><code>experiments/E5/RESULTS.md</code></td></tr>
+<tr><td>E6</td><td>Gao et al. 2022 gold vs proxy (arXiv 2210.10760<sup class="fn"><a href="#src-8">[8]</a></sup>)</td><td>3</td><td>masked arm = its no-reward replay exactly</td><td>ΔSSI +0.051 ± 0.055; net of familiarity +0.004 ± 0.034</td><td>MIXED (weak null)</td><td><code>experiments/E6/RESULTS.md</code></td></tr>
+<tr><td>E7</td><td>Looking Inward (arXiv 2410.13787<sup class="fn"><a href="#src-14">[14]</a></sup>)</td><td>P-all 5, B0 5, P-role 3</td><td>entropy-matched tracking 0.753 (P-all), 0.578 (P-role)</td><td>0.938; valenced error -0.003 ± 0.004</td><td>mixed; fused failure absent</td><td><code>experiments/E7/RESULTS.md</code></td></tr>
+</tbody></table></div>
+<p>Per-experiment notes (caveats from CLAIMS.md):</p>
+<ul><li>
+<strong>E1.</strong> P's advantage on agreement rests on F being bimodal: one F seed ended at 0.000. P's warm start was already pessimistic about the note cell (bias -0.246 before RL), so the clean evidence is the exact zero change under the reward step, not the level. The ON-minus-OFF note bias was +0.222 for F (only one OFF seed) and +0.066 for D. At step 30, the token-mask arm with env reward only (D-off) reached 0.543 agreement, so most of D's mid-run spike is shared-weight drift under any reward. The random-reward floor was not run.
+</li><li>
+<strong>E2.</strong> The fused arm has n = 2, so the permutation p = 0.10 is the honest test. The alpha arms are not a dose: because Adam renormalises the alpha-scaled reward gradient, every alpha &gt; 0 takes a full-size reward step, so "0.3 gave more than 1.0" says nothing about dose (CLAIMS addendum 18:12Z, <code>experiments/E2/EURISKO-NOTE-dose-artifact.md</code>; found by reading the code, not by a rerun). Belief ECE in these routing-on arms rose from 0.08 to 0.533 and 0.372. The falsifier arms A2/A3 were never trained: their only evidence is a structural leak at initialisation (max logit change 29.2 / 25.4 and 19.0 / 22.1, against 0.0 / 0.0 protected).
+</li><li>
+<strong>E3.</strong> B0s ran 35 RL steps on a different reward and preset, so it is not a same-compute comparator to P. RAPf's analysis used 120 of 240 states, where the deviation text says 60.
+</li><li>
+<strong>E4.</strong> M1 (all adapters in every pass) was cut at step 40-60, and the primary metric has little power against a ±0.1 noise floor. The fused failure showed up in the situation report, not in forecasts.
+</li><li>
+<strong>E5.</strong> Two of the five approval runs were already at 1.00 confident before RL. "Survives deletion" rests on one seed (deleted-approval optimism change -0.034 / +0.201). Random-reward controls fell or stayed flat (deleted-random 1.00 → 0.48), so approval drives the confident rate. E5a had no protected arm, so it says nothing about P.
+</li><li>
+<strong>E6.</strong> The tiny policy barely learned: success went 0.467 → 0.489, against 0.45 for a uniform plan. A null here is weak evidence.
+</li><li>
+<strong>E7.</strong> Fused seed 0 collapsed (reward 0.119) yet predicted itself perfectly; without it, B0 is still 0.922 vs 0.753. Reward never rose, and the fused self-claim token is outside the reward loss.
+</li></ul>
+<p>### 4a. Calibration under RL</p>
+<figure><img src="report-files/e1-calib-under-rl.png" alt="Figure 1. E1 calibration under RL: committed P(success) ECE, stated optimism, false-note agreement and env reward against RL step, mean ± sd over seeds, channel ON (top) and OFF (bottom). Generated by" loading="lazy"><figcaption>Figure 1. E1 calibration under RL: committed P(success) ECE, stated optimism, false-note agreement and env reward against RL step, mean ± sd over seeds, channel ON (top) and OFF (bottom). Generated by <code>experiments/E1/plot.py</code>. The step-60 values match CLAIMS E1; the intermediate points are (unaudited)</figcaption></figure>
+<div class="tablewrap"><table><thead><tr><th>arm (E1, approval on)</th><th>committed ECE after RL</th><th>false-note agreement at step 30</th><th>false-note agreement after RL</th></tr></thead><tbody>
+<tr><td>P (protected)</td><td>0.114 ± 0.049</td><td>0.000 (unaudited, <code>E1/RESULTS.md</code> Table 2)</td><td>0.000 (0/0/0)</td></tr>
+<tr><td>D (token mask)</td><td>0.088 ± 0.006</td><td>0.691</td><td>0.028 ± 0.049 (unaudited, Table 3)</td></tr>
+<tr><td>F (fused)</td><td>0.107 ± 0.021</td><td>0.854</td><td>0.593 ± 0.526</td></tr>
+<tr><td>D-off / F-off (env reward only)</td><td>-</td><td>0.543 / 0.073</td><td>-</td></tr>
+</tbody></table></div>
+<ul><li>
+In E2, belief calibration in the protected arm improved under RL while the fused arm's worsened. ECE went 0.084 → 0.043 vs 0.033 → 0.094, Welch p = 0.020 (unaudited, <code>E2/RESULTS.md</code> headline 7).
+</li><li>
+Forecast ECE got worse in both E2 arms (unaudited, same headline).
+</li></ul>
+<figure><img src="report-files/e2-reward-curves.png" alt="Figure 2. E2 batch reward under RL (5-step moving mean). The protected arm A1's reward stays below the fused and dose arms and does not trend up. Generated by experiments/E2/tables.py; values (unaudit" loading="lazy"><figcaption>Figure 2. E2 batch reward under RL (5-step moving mean). The protected arm A1's reward stays below the fused and dose arms and does not trend up. Generated by <code>experiments/E2/tables.py</code>; values (unaudited)</figcaption></figure>
+<p>### 4b. Optimism gap vs search</p>
+<ul><li>
+<strong>The protected arm could not be tested.</strong> P's forecaster was constant, so its gap curve carries no information. Under env reward, P's gold value moved -0.016 / -0.029, the pre-registered excess gap +0.055 / +0.048, and the frozen-reference gap was 0.041 / 0.038 (CLAIMS E3).
+</li><li>
+<strong>Reward through a frozen forecaster (RAPf) is exploited, but the pre-registered metric missed it.</strong> Gold fell from 0.644 / 0.691 to 0.335 / 0.454 (Δ -0.273 ± 0.051), and the proposer collapsed to 1.008 / 2.342 distinct plan sets. The pre-registered excess gap moved only -0.027 / +0.030 (CLAIMS E3). A gap calibrated on the pre-RL checkpoint does catch it: 0.301 ± 0.061 (unaudited, <code>E3/RESULTS.md</code> Table 2).
+</li><li>
+<strong>A raw gap is not exploitation.</strong> RAPc's raw gap went negative (-0.094 / -0.125) while its gold fell (-0.226 / -0.116) (CLAIMS E3).
+</li><li>
+<strong>Theory (T1).</strong> For a forecaster that compresses true values, the argmax-minus-random "curse" can be negative. That is what E3 shows, but the fit is selective. The Gaussian formula matches M0g at the end of RL (predicted -0.0118, observed -0.0123) but not the other cells: B0s pre-RL predicted -0.028 vs observed -0.051, M0g pre-RL -0.026 vs -0.039, B0s end of RL -0.003 vs +0.0025 (CLAIMS T1).
+</li><li>
+<strong>Theory (T1), stopping rules.</strong> In the toy, calibrated forecasts leave almost no gap (0.0005 / 0.0045 / 0.0017 against 0.908 / 0.993 / 0.662 raw). Value rises then falls with n only when some plans are hacked: 0.559 → 0.663 at n = 4 → 0.477 at n = 64 (CLAIMS T1).
+</li></ul>
+<figure><img src="report-files/e3-gap-vs-n.png" alt="Figure 3. E3 gold value and oracle (top) and excess and raw gap (bottom) against the number of candidates n, before RL (grey) and at the end of RL (blue), per arm. Generated by experiments/E3/e3_aggre" loading="lazy"><figcaption>Figure 3. E3 gold value and oracle (top) and excess and raw gap (bottom) against the number of candidates n, before RL (grey) and at the end of RL (blue), per arm. Generated by <code>experiments/E3/e3_aggregate.py</code>; values (unaudited)</figcaption></figure>
+<p>### 4c. Gradient-localisation fraction</p>
+<div class="tablewrap"><table><thead><tr><th>measure</th><th>protected</th><th>token mask / leak arms</th><th>fused</th><th>source</th></tr></thead><tbody>
+<tr><td>reward-phase gradient into belief + forecast adapters (E1)</td><td>0 at all 60 steps, 6 runs</td><td>not defined</td><td>not defined</td><td>CLAIMS E1</td></tr>
+<tr><td>belief change per reward step, mean / max at false-note cell (E1)</td><td>0</td><td>D 0.0055 / 0.091</td><td>F 0.0108 / 0.338</td><td>CLAIMS E1</td></tr>
+<tr><td>belief and forecast change after swapping in the post-RL action adapter (E2)</td><td>bit-identical (3 seeds)</td><td>dose arms bit-identical (trivially: they change the belief adapter directly)</td><td>not applicable</td><td>CLAIMS E2</td></tr>
+<tr><td>max logit change at belief / forecast claims when the action adapter is perturbed (E2, 0.6B, init)</td><td>0.0 / 0.0</td><td>A2 29.2 / 25.4; A3 19.0 / 22.1</td><td>30.0 / 23.2</td><td>CLAIMS E2</td></tr>
+<tr><td>same on a tiny random model (E4)</td><td>0.0 / 0.0</td><td>M1 (all gates) 0.503</td><td>0.489</td><td>CLAIMS E4</td></tr>
+</tbody></table></div>
+<ul><li>
+Does the fraction predict sycophancy? <strong>Untested.</strong> A share of 0 went with a +0.036 shift, and a positive share with +0.441 to +0.591 (CLAIMS E2). But every alpha &gt; 0 got a full-size reward step in this harness, so the arms differ only in route on or off, not in amount (CLAIMS addendum 18:12Z).
+</li><li>
+The within-arm numbers are expected from that artefact, not evidence about localisation: Spearman -0.90 between share and shift (n = 5); gradient share 0.210 → 0.568 against update share 0.744 → 0.777 (unaudited, <code>experiments/E2/share_corr.json</code>, matches <code>E2/RESULTS.md</code> headline 4).
+</li></ul>
+<p>### 4d. Faith-swap</p>
+<p><strong>Not run.</strong> The E1 and E2 PREREGs set <code>--faith-swap-steps 0</code>, and none of the 117 <code>summary.json</code> files under <code>experiments/*/runs/</code> has a <code>faith_swap</code> result (report agent's check, 18:12Z). The test exists in the harness (<code>Trainer.faith_swap</code>). It is cheap to add to any round-two run.</p>
+</section>
+<section id="5-the-forecaster-training-scheme-what-worked-what-did-not">
+<h2>5. The forecaster training scheme: what worked, what did not</h2>
+<p>Kelvin flagged this part as the most important. In short, the plumbing works, but at 0.6B the forecaster was too weak for most forecast questions to be testable.</p>
+<p>What worked:</p>
+<ul><li>
+<strong>Truth-only training, isolated from reward.</strong> In P the forecaster learned only from realised and branched outcomes, and the reward step never reached it: bit-identical after the swap test, 0 reward gradient (CLAIMS E1, E2).
+</li><li>
+<strong>No forecast drift beyond prequential training alone.</strong> E4's protected forecaster moved no more than a twin with a frozen policy: -0.079 ± 0.041, inside the pre-registered threshold (CLAIMS E4).
+</li><li>
+<strong>Co-training on outcomes repairs a forecaster the policy drives off-distribution.</strong> In RAPc the probe Brier vs Bayes was 0.035 ± 0.001, against 0.131 for the frozen forecaster in RAPf (unaudited, <code>E3/RESULTS.md</code> hawk answer 2). It did not save the decisions: RAPc's gold value still fell (-0.226 / -0.116; CLAIMS E3).
+</li></ul>
+<p>What did not work, or was not tested:</p>
+<ul><li>
+<strong>The separate goal-blind forecaster collapsed to a constant at 0.6B</strong> (E3: 0.6501 for every plan). At warm start the shared-adapter arm learned a more informative forecaster (probe correlation with Bayes 0.163 vs 0.026; unaudited, <code>E3/RESULTS.md</code> Table 1). At this scale, separation cost forecaster quality.
+</li><li>
+<strong>Forecast calibration did not separate protected from fused</strong> (E1 ECE 0.114 / 0.107 / 0.088). Under the approval rater, the "confident" channel was near saturation before RL, and in E4 it drifted without any RL (twin approval +0.175; CLAIMS E4).
+</li><li>
+<strong>The policy can stop reading its forecasts.</strong> Commit flips under a forecast swap went from 0.369 to 0.253 ± 0.219 in P, and stayed at 0.369 in the frozen-policy twin (CLAIMS E4). One P seed fell to 0 (unaudited, <code>E4/RESULTS.md</code>). The mask protects the forecasts, not their use.
+</li><li>
+<strong>Goal deletion does not make the forecast pass goal-blind.</strong> In E5a's fused runs, the goal could be decoded from forecast outputs at 1.000 with the goal text deleted. It leaks through the outcome-event text (CLAIMS E5). Protection there has to come from the control mask.
+</li><li>
+<strong>Supervision of plans not taken was never compared.</strong> Every run used full branching (A4). The committed-only, coherence, IPS and one-random-branch arms (A0-A3) were built but not run. The back door the FORECAST hawk found (revealed hidden state, unfired hit facts, no shot noise) was never closed. So nothing tonight says whether coherence, cross-episode generalisation or IPS can stand in for branching where branching is impossible.
+</li><li>
+<strong>Martingale check, optimism-gap model and FF.</strong> The martingale check and the optimism-gap model are logged by the harness but were not reported by any experiment. The FF arm (free-form claims, goal-blind judge) was not built.
+</li><li>
+<strong>Uncertainty-aware stopping.</strong> The fixed format states no epistemic uncertainty beyond f(1-f). Smith-Winkler shrinkage therefore equalled fixed n exactly (0.0000), and stopping rules lost in 27 of 27 cells (CLAIMS T1). To test this, the format must state an uncertainty that predicts the error.
+</li></ul>
+<p>What the theory adds for the next design:</p>
+<ul><li>
+<strong>Use the projected error, not optimism or ECE.</strong> T2's metric is D = Σ ∂U/∂s · (s − truth). Theorem 2 says a fused stationary point has D = (λ/2)·abs(∇U)² ≥ 0, and a protected one is calibrated. For forecasts read by the commit, the predicted fused signature is spread inflation along advantage, not uniform optimism. Checks: identity residual 5.9e-13, sign of the raw error = sign of dU in 278 of 278 cases, simplex residual 2.7e-8 (CLAIMS T2).
+</li><li>
+<strong>Report the recalibrated gap with informativeness.</strong> T1: report gold(n) and the recalibrated gap, alongside the forecaster's informativeness (<code>theory/T1.md</code> §5).
+</li></ul>
+</section>
+<section id="6-what-this-means-for-the-mats-framing-and-for-calibrated-ai">
+<h2>6. What this means for the MATS framing and for calibrated-ai</h2>
+<p><strong>"Localized honesty under RL".</strong></p>
+<ul><li>
+<strong>What it can claim now.</strong> Reward-trained parameters cannot write to belief or forecast parameters, and this is checkable on every run: an exact 0 gradient and a bit-identical swap test. The published token-masking recipe does not give that guarantee: its reward step moved a belief by up to 0.091 per step (CLAIMS E1). The guarantee also had a visible effect where the rater pays for a belief: no drift toward the false note (E1, E2, E4).
+</li><li>
+<strong>Where it is weak.</strong> The guarantee is by construction, so it is engineering, not a finding. The hawks said so, and prior work on separating the models exists: Drori et al. report that Mind &amp; Face "alone was ineffective" in their environment (quote verified in <code>E2/RESULTS.md</code>). The behavioural evidence is 2-3 seeds at 0.6B, with reward falling, not rising.
+</li><li>
+<strong>What it can study.</strong> The honest scientific content is the cost and the residual channels:
+<ul><li>
+the forecaster quality lost by separation (E3);
+</li><li>
+"protected but ignored" (E4 reliance);
+</li><li>
+the honesty tax in performative states (T2 toy: hard-state reward 0.717 protected vs 0.819 fused, careful-basin fraction 0.50 vs 0.75; CLAIMS T2);
+</li><li>
+the channels a mask cannot cut: the policy reading the report, and goal information in event text (E5).
+</li></ul>
+</li><li>
+<strong>Suggested framing.</strong> "Localized honesty: a guarantee you can check, and what it costs", with T2's projected error as the outcome metric. Do not claim "better calibration under RL" until a run where reward rises shows it.
+</li></ul>
+<p><strong>calibrated-ai</strong> (belief and forecast training with coherence losses):</p>
+<ul><li>
+<strong>Coherence is not a source of truth.</strong> A forecaster that ignores the evidence and outputs the prior is perfectly coherent (<code>hawks/FORECAST.md</code> §3). Coherence losses need a truth signal next to them, and runs must report informativeness (correlation with truth, slope) next to calibration. E3's constant forecaster would have passed a calibration-only check.
+</li><li>
+<strong>Desire metric.</strong> T2's projected error, and its forecast form (Corollary 2d), is a ready-made desire metric for any forecaster trained under reward.
+</li><li>
+<strong>Gap metrics.</strong> T1's recalibrated gap is the right exploitation metric for best-of-n over forecasts.
+</li><li>
+<strong>Ensembles.</strong> Ensembles over seeds see little of the error: seeds agree with each other far more than with Bayes (unaudited, <code>theory/T1.md</code> §3).
+</li><li>
+<strong>Judge validation.</strong> The FF judge path (a goal-blind judge that only resolves claims) is the natural shared component with calibrated-ai. Its validation against programmatic truth is the first build item.
+</li><li>
+Tinker was not used tonight.
+</li></ul>
+</section>
+<section id="7-next-experiments-ranked">
+<h2>7. Next experiments, ranked</h2>
+<ol><li>
+<strong>Projected-error recomputation on saved records (CPU, $0).</strong> Fit s_k − P*_k on the commit-weighted advantage in E1 and E3's saved rollout records. T2 predicts a positive slope in fused and dose arms and about 0 in P. T2 notes the needed fields exist in <code>harness/protocol/rollout.py</code>, but whether every saved record kept them is unchecked.
+</li><li>
+<strong>An informative forecaster before RL.</strong> Add more forecast-only warm-up, or use Qwen3-1.7B. Gate: probe correlation with Bayes above 0.2 before any RL. Without this, E3, T1 and the forecast half of the claim stay untestable. The harness estimates 1.7B at about $1.52 per seed on an L4 (unaudited, <code>harness/README.md</code>).
+</li><li>
+<strong>A setting where reward rises.</strong> Tune the GRPO lr and steps (E7's RL lowered reward from its SFT start) and re-run E1/E2's P and fused arms with 5 seeds. In traders-net, 3 seeds understated the sd by a median 1.7x (unaudited for this programme, <code>traders-net/study/D1/IDEAS-NET.md</code>). Add the Faith-swap test and the E1 random-reward floor to the same runs.
+</li><li>
+<strong>E2's falsifier arms A2/A3, and a real dose.</strong> Do the leak arms drift while the protected arm does not, with a gradient share that misses it? A real dose first needs a harness fix: sum the reward and truth losses before one optimizer step of the belief adapter, or use plain SGD (<code>experiments/E2/EURISKO-NOTE-dose-artifact.md</code>). The interim estimate was about 5 L4-hours, about $4-5 at the ceiling (unaudited, <code>REPORT-INTERIM.md</code> §8).
+</li><li>
+<strong>FORECAST supervision arms with the back door closed.</strong> Set shot noise to at least 0.1, train only on fired shots, and turn belief S-supervision off. Compare A0 (committed only), A2 (IPS) and A3 (one random branch) on the CPU simulator first, then on L4.
+</li><li>
+<strong>The FF arm.</strong> The policy writes free-form claims, and a goal-blind judge from another model family resolves them. Validate the judge against programmatic truth first.
+</li><li>
+<strong>E7 with a performative self-model.</strong> Build an arm whose action context contains the self-claim. As built, E7 tests shared-weight spillover only (T2 §8.5).
+</li><li>
+<strong>MATS cluster items.</strong>
+<ul><li>
+Qwen3-4B fills an L4 (21 GB of 22 GB) and 8B needs an A100 (unaudited, <code>harness/README.md</code>).
+</li><li>
+Items 2-4 at 4B-8B with 5 seeds per arm are where the behavioural claim could become publishable.
+</li><li>
+Fix one infrastructure issue before any new GPU night: all launch gates must read one budget metric (section 8).
+</li></ul>
+</li></ol>
+</section>
+<section id="8-costs-and-unverified-items">
+<h2>8. Costs and unverified items</h2>
+<p><strong>GPU</strong> (<code>../logical-soup/GPU-LOG.md</code>, ceiling rate $0.87/h per the GPU-LOG.md header; spot bills less):</p>
+<div class="tablewrap"><table><thead><tr><th>item</th><th>cost</th></tr></thead><tbody>
+<tr><td>E1</td><td>$5.81</td></tr>
+<tr><td>E2</td><td>$4.38</td></tr>
+<tr><td>E3</td><td>$7.70</td></tr>
+<tr><td>E4</td><td>$9.24</td></tr>
+<tr><td>E5</td><td>$10.55</td></tr>
+<tr><td>E7</td><td>$8.65 (plus the unaudited w2b VM, at most about $1.35)</td></tr>
+<tr><td>probes</td><td>$0.66</td></tr>
+<tr><td>E6, T1, T2</td><td>$0 (CPU)</td></tr>
+<tr><td><strong>total, one cost per VM (50 VMs with DELETE lines)</strong></td><td><strong>$46.99</strong> ($47.09 if a duplicate $0.10 line is counted)</td></tr>
+<tr><td>four VMs with CREATE and no DELETE (lir-e7-w2b, lir-e5-d02, lir-e5-d03, lir-e3-roles-s2)</td><td>bounded by GUARD.log; true total at most about $48.7</td></tr>
+</tbody></table></div>
+<ul><li>
+<strong>Live VMs: 0.</strong> Checked at 18:09Z with <code>gcloud --project=GCP_PROJECT compute instances list --filter=&#x27;labels.logical-soup=1&#x27;</code> (empty). GUARD.log has shown no lir VMs since 17:07:43Z (CLAIMS).
+</li><li>
+<strong>Disk.</strong> <code>du -sh lir-agent</code> = 159M at 18:09Z, against the 5 GB limit.
+</li><li>
+<strong>Process issue.</strong> E1, E2 and E5 stopped launching at 13:41-13:42Z, when the reservation-inclusive spend read $57.64. E3 and E4 stopped at 13:55Z and 13:58Z. After that, five more VMs were launched against a different metric (GUARD's estimate): e3-roles-s2 at 14:01Z, and E7's w2c2, w2b, w2a-rerun and w2r3. They cost about $5.1. No dollar cap was crossed, but E1, E2 and E5 dropped arms that this money could have run (CLAIMS, programme checks).
+</li></ul>
+<p><strong>Unverified or weak items:</strong></p>
+<ul><li>
+The four VMs without DELETE lines are bounded, not audited.
+</li><li>
+The E2 dose arms are not a dose (every alpha &gt; 0 takes a full-size reward step). eurisko found this by reading <code>harness/protocol/train.py</code>; it was not verified by a rerun (CLAIMS addendum 18:12Z).
+</li><li>
+Numbers marked (unaudited) above: E1 step-30 P and post-RL D agreement; E2 belief-ECE change, gradient and update shares, and their Spearman; E3 frozen-reference gap 0.301, RAPc probe Brier, warm-start probe correlations; E4 P report drift and P seed 2 reliance; T1 ensemble agreement; harness cost and memory estimates.
+</li><li>
+T1's kill rests on the stopping outcome, not on the Spearman. B0s at end of RL has Spearman +0.391 ± 0.198, above the 0.2 threshold T1 names, and the P1b fit matches only one of four cells (CLAIMS T1).
+</li><li>
+T2's theorems are checked numerically on toys only. Its earlier text said residual ≤ 1.8e-8 over 1-D and simplex cases; the simplex maximum is 2.7e-8 (CLAIMS T2). <code>t2_exact.py</code> was not re-run by the skeptic.
+</li><li>
+E3: the B0s comparator ran fewer steps on a different reward, and the state counts are inconsistent (120 used, 60 stated).
+</li><li>
+E5: "survives deletion" rests on one seed, and E5c has one independent pre-training init.
+</li><li>
+E7: the P-role arm has 3 seeds, not 5, and fused seed 0 collapsed.
+</li><li>
+Citations:
+<ul><li>
+DCPO's token-block masking detail comes from the E1 hawk's fetch of the paper HTML (unverified here).
+</li><li>
+Weitzman's reservation-value theorem is stated from recollection (unverified against the PDF; <code>theory/T1.md</code>).
+</li><li>
+Smith &amp; Winkler's content is per the hawk (metadata verified).
+</li><li>
+The Mind &amp; Face original by Kokotajlo &amp; Demski is (unverified).
+</li></ul>
+</li><li>
+Not run at all: Faith-swap, the FF arm, E2's A2/A3 and alpha 0.1, E1's random-reward floor and P-all, the FORECAST supervision arms, the E5 dose arm and protected check, and the mid-RL E3 checkpoints.
+</li></ul>
+</section>
+<section id="addendum-eurisko-2026-10-03-18-30z-two-things-the-report-agent-did-not-have">
+<h2>Addendum (eurisko, 2026-10-03 18:30Z): two things the report agent did not have</h2>
+<ol><li>
+<strong>The E2 dose result is an artefact of the harness, not a finding.</strong> <code>harness/protocol/train.py</code> backpropagates <code>alpha * (reward loss)</code> alone into the belief and forecast adapters and then applies gradient clipping and a per-adapter AdamW step, which renormalises the gradient scale. So every alpha &gt; 0 is a full-size step in the reward direction and only alpha = 0 differs; "any dose brings sycophancy back" and "the dose response is not monotone" are expected from this. The protected-vs-fused contrasts (alpha = 0 vs fused) in E1, E2 and E4 are unaffected. A real dose needs the reward and truth losses summed before one optimizer step, or plain SGD. (<code>experiments/E2/EURISKO-NOTE-dose-artifact.md</code>, <code>CLAIMS.md</code> addendum.)
+</li><li>
+<strong>The "$50 stops new launches" rule was applied to a reservation-inflated number.</strong> The infra reserved a 6 h worst case per live VM, so the experiments' stop rules fired at 13:41-13:58Z on $57.64 "spent" while actual spend was about $39. That is why E2's leak arms, E3's third roles seed and E5's dose arm were never run. I changed the reservation to timeout-based at 11:12Z and raised the group cap to $58 worst-case at 13:38Z; this is the skeptic's "refuted (process)" line, and it is on me, not on the experiment agents.
+</li></ol>
+<p>Interim report written at 14:08Z from E1/E2/E6: <code>REPORT-INTERIM.md</code> (interim.html). Live status page during the night: <code>status.py</code> (status.html).</p>
+</section>
+<section id="9-sources">
+<h2>9. Sources</h2>
+<p>arXiv titles and authors were checked against the arXiv API on 2026-10-03 at about 18:11Z (<code>/tmp/lir-agent/report/arxiv.xml</code>). DOIs were checked against Crossref and the two PDF links fetched (HTTP 200) at the same time.</p>
+<ul><li id="src-1" class="src"><span class="srcn">[1]</span> 
+Richardson, Samiei, Shakerinava, Viviano et al. 2026, Local Inconsistency Resolution: The Interplay between Attention and Control in Probabilistic Models, <a href="https://arxiv.org/abs/2604.17140" rel="noopener">https://arxiv.org/abs/2604.17140</a>
+</li><li id="src-2" class="src"><span class="srcn">[2]</span> 
+Cobbe, Hilton, Klimov, Schulman 2020, Phasic Policy Gradient, <a href="https://arxiv.org/abs/2009.04416" rel="noopener">https://arxiv.org/abs/2009.04416</a>
+</li><li id="src-3" class="src"><span class="srcn">[3]</span> 
+Ma, Wen, Cao, Lu et al. 2026, Decoupling Reasoning and Confidence: Resurrecting Calibration in RL from Verifiable Rewards (DCPO), <a href="https://arxiv.org/abs/2603.09117" rel="noopener">https://arxiv.org/abs/2603.09117</a>
+</li><li id="src-4" class="src"><span class="srcn">[4]</span> 
+Damani, Puri, Slocum, Shenfeld et al. 2025, Beyond Binary Rewards: Training LMs to Reason About Their Uncertainty (RLCR), <a href="https://arxiv.org/abs/2507.16806" rel="noopener">https://arxiv.org/abs/2507.16806</a>
+</li><li id="src-5" class="src"><span class="srcn">[5]</span> 
+Ni, Bi, Guo, Xu et al. 2026, Shared Experience, Separate Learning: Companion Confidence Calibration for LLMs (CoCal), <a href="https://arxiv.org/abs/2609.33721" rel="noopener">https://arxiv.org/abs/2609.33721</a>
+</li><li id="src-6" class="src"><span class="srcn">[6]</span> 
+Drori, Marks, Woodworth, Cloud et al. 2025, Output Supervision Can Obfuscate the Chain of Thought, <a href="https://arxiv.org/abs/2511.11584" rel="noopener">https://arxiv.org/abs/2511.11584</a>
+</li><li id="src-7" class="src"><span class="srcn">[7]</span> 
+Cloud, Goldman-Wetzler, Wybitul, Miller et al. 2024, Gradient Routing, <a href="https://arxiv.org/abs/2410.04332" rel="noopener">https://arxiv.org/abs/2410.04332</a>
+</li><li id="src-8" class="src"><span class="srcn">[8]</span> 
+Gao, Schulman, Hilton 2022, Scaling Laws for Reward Model Overoptimization, <a href="https://arxiv.org/abs/2210.10760" rel="noopener">https://arxiv.org/abs/2210.10760</a>
+</li><li id="src-9" class="src"><span class="srcn">[9]</span> 
+Hao, Gu, Ma, Hong et al. 2023, Reasoning with Language Model is Planning with World Model (RAP), <a href="https://arxiv.org/abs/2305.14992" rel="noopener">https://arxiv.org/abs/2305.14992</a>
+</li><li id="src-10" class="src"><span class="srcn">[10]</span> 
+Yao, Yu, Zhao, Shafran et al. 2023, Tree of Thoughts, <a href="https://arxiv.org/abs/2305.10601" rel="noopener">https://arxiv.org/abs/2305.10601</a>
+</li><li id="src-11" class="src"><span class="srcn">[11]</span> 
+Gandhi, Lee, Grand, Liu et al. 2024, Stream of Search (SoS): Learning to Search in Language, <a href="https://arxiv.org/abs/2404.03683" rel="noopener">https://arxiv.org/abs/2404.03683</a>
+</li><li id="src-12" class="src"><span class="srcn">[12]</span> 
+Lehnert, Sukhbaatar, Su, Zheng et al. 2024, Beyond A*: Better Planning with Transformers via Search Dynamics Bootstrapping (Searchformer), <a href="https://arxiv.org/abs/2402.14083" rel="noopener">https://arxiv.org/abs/2402.14083</a>
+</li><li id="src-13" class="src"><span class="srcn">[13]</span> 
+Turpin, Michael, Perez, Bowman 2023, Language Models Don't Always Say What They Think, <a href="https://arxiv.org/abs/2305.04388" rel="noopener">https://arxiv.org/abs/2305.04388</a>
+</li><li id="src-14" class="src"><span class="srcn">[14]</span> 
+Binder, Chua, Korbak, Sleight et al. 2024, Looking Inward: Language Models Can Learn About Themselves by Introspection, <a href="https://arxiv.org/abs/2410.13787" rel="noopener">https://arxiv.org/abs/2410.13787</a>
+</li><li id="src-15" class="src"><span class="srcn">[15]</span> 
+Song, Hu, Mahowald 2025, Language Models Fail to Introspect About Their Knowledge of Language, <a href="https://arxiv.org/abs/2503.07513" rel="noopener">https://arxiv.org/abs/2503.07513</a>
+</li><li id="src-16" class="src"><span class="srcn">[16]</span> 
+Cui, Zhang, Chen, Yuan et al. 2025, The Entropy Mechanism of Reinforcement Learning for Reasoning Language Models, <a href="https://arxiv.org/abs/2505.22617" rel="noopener">https://arxiv.org/abs/2505.22617</a>
+</li><li id="src-17" class="src"><span class="srcn">[17]</span> 
+Grimm, Barreto, Singh, Silver 2020, The Value Equivalence Principle for Model-Based Reinforcement Learning, <a href="https://arxiv.org/abs/2011.03506" rel="noopener">https://arxiv.org/abs/2011.03506</a>
+</li><li id="src-18" class="src"><span class="srcn">[18]</span> 
+Paster, McIlraith, Ba 2022, You Can't Count on Luck: Why Decision Transformers and RvS Fail in Stochastic Environments, <a href="https://arxiv.org/abs/2205.15967" rel="noopener">https://arxiv.org/abs/2205.15967</a>
+</li><li id="src-19" class="src"><span class="srcn">[19]</span> 
+Armstrong, Leike, Orseau, Legg 2020, Pitfalls of learning a reward function online, <a href="https://arxiv.org/abs/2004.13654" rel="noopener">https://arxiv.org/abs/2004.13654</a>
+</li><li id="src-20" class="src"><span class="srcn">[20]</span> 
+Huang, Block, Liu, Jiang et al. 2025, Is Best-of-N the Best of Them?, <a href="https://arxiv.org/abs/2503.21878" rel="noopener">https://arxiv.org/abs/2503.21878</a>
+</li><li id="src-21" class="src"><span class="srcn">[21]</span> 
+Khalaf, Verdun, Oesterling, Lakkaraju et al. 2025, Inference-Time Reward Hacking in Large Language Models, <a href="https://arxiv.org/abs/2506.19248" rel="noopener">https://arxiv.org/abs/2506.19248</a>
+</li><li id="src-22" class="src"><span class="srcn">[22]</span> 
+Perdomo, Zrnic, Mendler-Dünner, Hardt 2020, Performative Prediction, <a href="https://arxiv.org/abs/2002.06673" rel="noopener">https://arxiv.org/abs/2002.06673</a>
+</li><li id="src-23" class="src"><span class="srcn">[23]</span> 
+Paleka, Sudhir, Alvarez, Bhat et al. 2024, Consistency Checks for Language Model Forecasters, <a href="https://arxiv.org/abs/2412.18544" rel="noopener">https://arxiv.org/abs/2412.18544</a>
+</li><li id="src-24" class="src"><span class="srcn">[24]</span> 
+Garrabrant, Benson-Tilsen, Critch, Soares et al. 2016, Logical Induction, <a href="https://arxiv.org/abs/1609.03543" rel="noopener">https://arxiv.org/abs/1609.03543</a>
+</li><li id="src-25" class="src"><span class="srcn">[25]</span> 
+Dudik, Langford, Li 2011, Doubly Robust Policy Evaluation and Learning, <a href="https://arxiv.org/abs/1103.4601" rel="noopener">https://arxiv.org/abs/1103.4601</a>
+</li><li id="src-26" class="src"><span class="srcn">[26]</span> 
+Chen, Kash, Ruberry, Shnayder 2011, Decision Markets with Good Incentives, WINE 2011, <a href="https://doi.org/10.1007/978-3-642-25510-6_7" rel="noopener">https://doi.org/10.1007/978-3-642-25510-6_7</a> and <a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/wine11-decision-markets.pdf" rel="noopener">https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/wine11-decision-markets.pdf</a>
+</li><li id="src-27" class="src"><span class="srcn">[27]</span> 
+Smith, Winkler 2006, The Optimizer's Curse, Management Science, <a href="https://doi.org/10.1287/mnsc.1050.0451" rel="noopener">https://doi.org/10.1287/mnsc.1050.0451</a>
+</li><li id="src-28" class="src"><span class="srcn">[28]</span> 
+Weitzman 1979, Optimal Search for the Best Alternative, Econometrica, <a href="https://doi.org/10.2307/1910412" rel="noopener">https://doi.org/10.2307/1910412</a>
+</li><li id="src-29" class="src"><span class="srcn">[29]</span> 
+Russell, Wefald 1991, Principles of metareasoning, Artificial Intelligence, <a href="https://doi.org/10.1016/0004-3702(91)90015-C" rel="noopener">https://doi.org/10.1016/0004-3702(91)90015-C</a>
+</li><li id="src-30" class="src"><span class="srcn">[30]</span> 
+Oesterheld, Conitzer 2020, Decision Scoring Rules, WINE 2020, <a href="https://www.cs.cmu.edu/~conitzer/decisionWINE20.pdf" rel="noopener">https://www.cs.cmu.edu/~conitzer/decisionWINE20.pdf</a>
+</li></ul>
+</section>
+<p class="meta">Rendered 2026-10-03T18:23Z from lir-agent/REPORT.md by lir-agent/report-files/render.sh; numbers come from CLAIMS.md unless marked (unaudited). Numbers in brackets link to the Sources list.</p>
+</main>
+</div>
+<script>try{if(window.innerWidth<1180)document.querySelector('nav.toc details').removeAttribute('open')}catch(e){}</script>
+</body>
+</html>

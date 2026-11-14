@@ -1,0 +1,154 @@
+{
+  "schema": "binding-plateau-paper-figure-v1",
+  "checked_at": "2026-10-28T12:23:16.711318+00:00",
+  "definition": {
+    "panel_a": "exact-mixture Bayes NLL gaps to full Bayes; error bars are paired episode SE",
+    "panel_b": "per-model predictive-mean RMS response divided by Bayes response on the fixed Bayes symmetric-KL >= 0.3 subset; no model-level aggregate",
+    "successful_group": "acquired_sibling plus plateau_then_escape historical statuses"
+  },
+  "inputs": {
+    "/home/agent/workspaces/inconsistency-search-astra-teacher-graphs-20261024/experiments/tiny_pfn_plateau_20261028/binding-reference.json": "fdc07e0e81d80fec58e9fa432d202dfce5739c4f87e21f17b131b014361fb4d3",
+    "/home/agent/workspaces/inconsistency-search-astra-teacher-graphs-20261024/experiments/tiny_pfn_plateau_20261028/binding-intervention.json": "b805971c141b6dea38756bf8ed7b0993ab8a716807ecbbd0357635fc8ed96ebd"
+  },
+  "selection": {
+    "bayes_symmetric_kl_minimum": 0.3,
+    "selected_n": 1988,
+    "total_n": 4096
+  },
+  "panel_a": [
+    {
+      "label": "Q",
+      "reference_key": "query_mixture",
+      "mean_nll_gap": 0.18498189152134306,
+      "paired_se": 0.004320605701815731
+    },
+    {
+      "label": "Q + U",
+      "reference_key": "binding_blind_mixture",
+      "mean_nll_gap": 0.12552278518483662,
+      "paired_se": 0.003626317031024063
+    },
+    {
+      "label": "Q + S",
+      "reference_key": "full_mixture",
+      "mean_nll_gap": 0.0,
+      "paired_se": 0.0
+    }
+  ],
+  "panel_b": [
+    {
+      "run": "w16_h1_L2_mix4_s3",
+      "compact_label": "16/h1/mix/s3",
+      "historical_status": "stalled",
+      "group": "stalled",
+      "head_components": 4,
+      "selected_n": 1988,
+      "mean_response_rms_ratio": 0.003737689690639399,
+      "mean_response_percent_of_bayes": 0.3737689690639399
+    },
+    {
+      "run": "w16_h1_L2_mix4_s4",
+      "compact_label": "16/h1/mix/s4",
+      "historical_status": "stalled",
+      "group": "stalled",
+      "head_components": 4,
+      "selected_n": 1988,
+      "mean_response_rms_ratio": 0.004662241784920742,
+      "mean_response_percent_of_bayes": 0.4662241784920742
+    },
+    {
+      "run": "w16_h2_L2_ds4_mix4_s1",
+      "compact_label": "16/h2/ds4/mix/s1",
+      "historical_status": "stalled",
+      "group": "stalled",
+      "head_components": 4,
+      "selected_n": 1988,
+      "mean_response_rms_ratio": 0.0024005471769727046,
+      "mean_response_percent_of_bayes": 0.24005471769727046
+    },
+    {
+      "run": "w32_h2_L2_mix4_s3",
+      "compact_label": "32/h2/mix/s3",
+      "historical_status": "stalled",
+      "group": "stalled",
+      "head_components": 4,
+      "selected_n": 1988,
+      "mean_response_rms_ratio": 0.0033258194540204404,
+      "mean_response_percent_of_bayes": 0.33258194540204405
+    },
+    {
+      "run": "w16_h2_L2_s3",
+      "compact_label": "16/h2/s3",
+      "historical_status": "stalled",
+      "group": "stalled",
+      "head_components": 1,
+      "selected_n": 1988,
+      "mean_response_rms_ratio": 0.003004200257824568,
+      "mean_response_percent_of_bayes": 0.3004200257824568
+    },
+    {
+      "run": "w16_h2_L2_s4",
+      "compact_label": "16/h2/s4",
+      "historical_status": "stalled",
+      "group": "stalled",
+      "head_components": 1,
+      "selected_n": 1988,
+      "mean_response_rms_ratio": 0.0042002917451454585,
+      "mean_response_percent_of_bayes": 0.42002917451454586
+    },
+    {
+      "run": "w16_h1_L2_mix4_s0",
+      "compact_label": "16/h1/mix/s0",
+      "historical_status": "acquired_sibling",
+      "group": "successful",
+      "head_components": 4,
+      "selected_n": 1988,
+      "mean_response_rms_ratio": 0.8771754431643584,
+      "mean_response_percent_of_bayes": 87.71754431643583
+    },
+    {
+      "run": "w16_h2_L2_ds4_mix4_s0",
+      "compact_label": "16/h2/ds4/mix/s0",
+      "historical_status": "acquired_sibling",
+      "group": "successful",
+      "head_components": 4,
+      "selected_n": 1988,
+      "mean_response_rms_ratio": 0.9579262574585178,
+      "mean_response_percent_of_bayes": 95.79262574585178
+    },
+    {
+      "run": "w32_h2_L2_mix4_s0",
+      "compact_label": "32/h2/mix/s0",
+      "historical_status": "acquired_sibling",
+      "group": "successful",
+      "head_components": 4,
+      "selected_n": 1988,
+      "mean_response_rms_ratio": 0.9923050177687828,
+      "mean_response_percent_of_bayes": 99.23050177687827
+    },
+    {
+      "run": "w16_h2_L2_s0",
+      "compact_label": "16/h2/s0",
+      "historical_status": "acquired_sibling",
+      "group": "successful",
+      "head_components": 1,
+      "selected_n": 1988,
+      "mean_response_rms_ratio": 0.8601923096529089,
+      "mean_response_percent_of_bayes": 86.01923096529089
+    },
+    {
+      "run": "w16_h2_L2_s2",
+      "compact_label": "16/h2/s2",
+      "historical_status": "plateau_then_escape",
+      "group": "successful",
+      "head_components": 1,
+      "selected_n": 1988,
+      "mean_response_rms_ratio": 0.8213898434460297,
+      "mean_response_percent_of_bayes": 82.13898434460297
+    }
+  ],
+  "outputs": {
+    "/home/agent/workspaces/mats/outbox/binding-plateau-paper-2026-10-28/figures/binding-summary.pdf": "73f6a337ac649c585fd270b9cd5d6b4220afd83e3c017c51efa9f66cd643c8af",
+    "/home/agent/workspaces/mats/outbox/binding-plateau-paper-2026-10-28/figures/binding-summary.png": "831534e8d20b21b47c3c83a191a7e810f8fc8959e411d8af07a6ddcfaf210494"
+  }
+}

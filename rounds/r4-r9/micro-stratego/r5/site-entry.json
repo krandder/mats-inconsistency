@@ -1,0 +1,54 @@
+{
+ "date": "17 Oct",
+ "name": "Round 5 E-MS-6x6: 6x6 Barrage micro-Stratego with preference-guided search (stopped at the gate)",
+ "status": "informative",
+ "oneline": "Gate failed, so the pre-registered search rules were not run as tests. Two world models (1.0M and 0.49M parameters) learned the 6x6 rules (battle accuracy 0.9999), but one pass ends 0.048 nats per hidden slot from the exact posterior (bar 0.05), and 16 rollouts made beliefs 11x worse and action values 2.4x worse. EXPLORATORY: the keys collapsed again despite the spec's two fixes (cosine 0.99 within and 0.98 across flanks); trust ranks rollout errors far better than entropy (Spearman +0.23 vs -0.36); the Miner utility swap moved 34% of boards (bar 75%) with beliefs unchanged; search scored 0.50 vs P0. Post hoc: rollout claims conditioned on sampled neighbours plus log pooling destroy the belief; even exact window scoring loses to one pass (0.076 vs 0.048). 3 seeds, audited; $2.73.",
+ "led_to": [],
+ "page": {
+  "why": "Gemini's round-5 spec ranked this second. Round 4's 4x4 micro-Stratego stopped at its gate: one forward pass was already within 0.024 nats per slot of the exact posterior, so search had nothing to close, and the deduplicating keys collapsed. Round 5 moved to a 6x6 board with 8 pieces per side (10,080 hidden setups) and a behaviour policy whose moves depend jointly on a piece and its neighbours, so that inferring the setup should be harder. It also changed two lines of code to stop the keys collapsing. Rollouts look only at the 3 hidden pieces near their first move, and the pooling rules are fitted on the whole 8-piece belief instead of one value. Then it asked whether search steered toward the left or the right flank leaves the merged belief unchanged, whether self-trust beats entropy, and whether a test-time utility swap changes moves without touching beliefs.",
+  "what": "6x6 board with two lakes; 60,000 / 5,000 / 3,000 self-play games on 8,064 / 1,008 / 1,008 disjoint setups. The exact Bayes posterior over all 10,080 setups (including what each opponent move reveals) was checked against a brute-force replay (error 6.7e-16). Two any-order transformers per seed (1.0M and 0.49M parameters), trained only on real games. Rollouts sample 3 nearby hidden pieces, score that guess against the real last 4 moves with the model's own move predictor, and play 4 moves ahead inside the model. Four pooling rules (plain mixing, Ataraxos-style, key deduplication, a 3-layer attention pool) were fitted on a separate calibration split. Pre-registered before launch (PREREG-R5-E2.md), 3 seeds on L4 GPUs, independent audit.",
+  "result": "The gate failed. The world models learned the rules (battle accuracy 0.9999; NLL 0.0001 when 7 of 8 pieces are known). The one-pass belief ended 0.0484 nats per hidden slot from the exact posterior [95% CI 0.0471, 0.0498], just under the 0.05 bar; the gap grows from 0.02 early in a game to 0.10 late. The pre-registered 16-rollout signal went the wrong way: belief KL 0.047 to 0.539, action-value MSE 0.015 to 0.036. EXPLORATORY, computed by the same pipeline but not rule tests: the keys collapsed again (cosine 0.99 within flanks, 0.98 across; bar: a 0.25 gap). Attention pooling cut the value's sensitivity to the search policy 3.6x but made the belief's 6.2x worse. Self-trust ranked rollout errors at Spearman +0.23 against -0.36 for entropy (bar 0.25). The Miner utility swap moved choices toward more Miner captures on 34% of boards where it could (bar 75%), with the world model bit-identical. Search scored 0.503 against the one-pass policy.",
+  "sowhat": "A harder board did not open a usable gap: the one-pass net closes about 60% of what the opponent's moves reveal, and nothing we built from rollouts did better. Post hoc diagnostics explain most of it. Each rollout's belief claim was conditioned on its sampled neighbours, so the one-of-each pieces got exact zeros, and log pooling kept them (pooling in probability space: KL 0.17 instead of 0.54, still worse than one pass at 0.053). Even scoring the real last 4 moves without any sampling loses to one pass (0.076 vs 0.048): here the learned inverse beats the learned forward model. The keys collapse in the fitted projection, not in the attention fingerprint, which still separates flanks a little. Self-trust over entropy is again the one consistent signal.",
+  "decided": "Recorded E2-D0 as failed and reported D1-D3 only as exploratory, as pre-registered; no rule was re-evaluated after the numbers were seen. Not run or chosen: belief claims as marginals with probability-space pooling; keys without a fitted projection or with a contrastive loss; a gap test on late positions; trust used to weight real decisions.",
+  "chart": {
+   "bars": [
+    {
+     "label": "one-pass net (1.0M)",
+     "value": 0.0467,
+     "text": "0.047"
+    },
+    {
+     "label": "one-pass net (0.49M)",
+     "value": 0.0493,
+     "text": "0.049"
+    },
+    {
+     "label": "gate bar (gap needed)",
+     "value": 0.05,
+     "text": "0.05"
+    },
+    {
+     "label": "window-only check (post hoc)",
+     "value": 0.0825,
+     "text": "0.083"
+    },
+    {
+     "label": "16-rollout consensus (pre-registered)",
+     "value": 0.5389,
+     "text": "0.54"
+    }
+   ],
+   "caption": "KL to the exact Bayes posterior per hidden opponent piece (nats), calibration positions, 3-seed means. The gate needed the one-pass nets to stay at least 0.05 away, and rollouts to bring beliefs closer; rollouts moved them further away.",
+   "aria": "Both one-pass nets sit just under the 0.05 bar; the window-only check and the pre-registered 16-rollout consensus are both further from the posterior than one pass"
+  },
+  "details": {
+   "methods": [
+    "Pre-registered in PREREG-R5-E2.md (sha256 732514b5...) at 03:25:20Z, before the first launch at 03:26:12Z. No rule changed; operational events (a timing smoke, one spot preemption and rerun, a late data push) are logged with times in PREREG-R5-E2-AMENDMENTS.md.",
+    "Data: 60,000 / 5,000 / 3,000 self-play games of a coupled 2-ply behaviour policy (tau 0.5, 1, 2) on 8,064 / 1,008 / 1,008 disjoint setups. Oracle: exact posterior over 10,080 setups x unknown tau, brute-force checked on 30 positions (6.7e-16); Q* from 64 simulator playouts per legal move.",
+    "World models: 4 layers d 128 (1,001,644 parameters) and 3 layers d 96 (492,268), 16,000 steps of batch 1024 on train games only. Gate on 2,000 test and 1,000 calibration positions at turns 6-36 and 11,034 first-ply test battles per seed.",
+    "Exploratory D1-D3 exactly as pre-specified: 500 two-flank positions (24 rollouts under 80/20 and 20/80 flank skew, reference 128); 169,992 rollouts scored against Q*; 240 utility-swap positions; 400 duplicate games per seed.",
+    "3 seeds, 95% t-intervals across seeds; on-VM independent recomputation of the gate numbers agrees to 1e-6; 69 numbers re-derived from per-item CSVs (8e-7). Independent audit (AUDIT-R5-E2.md): supported with corrections, no verdict changes; 300 numbers re-derived, CPU recomputation from the checkpoints within 2.2e-6. GPU $2.73 at the list-price ceiling over 5 VMs (one preempted); no VM or disk left."
+   ]
+  }
+ }
+}

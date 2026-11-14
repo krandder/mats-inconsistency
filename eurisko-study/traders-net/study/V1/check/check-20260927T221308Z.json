@@ -1,0 +1,305 @@
+{
+ "checked_at": "2026-09-27T22:13:08+00:00",
+ "stages": [
+  {
+   "stage": "hermetic",
+   "checks": [
+    {
+     "name": "runs.json lists the fixture",
+     "pass": true,
+     "detail": "[{\"run\": \"Z9.fixture\", \"rows\": 2, \"updated\": \"2026-09-27T22:13:08+00:00\", \"source\": \"study\"}]"
+    },
+    {
+     "name": "csv served with header and 2 rows",
+     "pass": true,
+     "detail": "['step', 'price_ca30', 'cons_resid_total', 'ec_pat4', 'bce_ca30', 'brier_ca30'] 2"
+    },
+    {
+     "name": "nan served as empty",
+     "pass": true,
+     "detail": "['200', '0.64', '', '0.7', '0.35', '0.1']"
+    },
+    {
+     "name": "appended row visible on next request (re-read per refresh)",
+     "pass": true,
+     "detail": "rows=3 last=300"
+    },
+    {
+     "name": "half-written last row skipped",
+     "pass": true,
+     "detail": ""
+    },
+    {
+     "name": "json: same rows, numbers typed, nan -> null",
+     "pass": true,
+     "detail": "[{\"step\": 100.0, \"price_ca30\": 0.61, \"cons_resid_total\": 0.002, \"ec_pat4\": 0.5, \"bce_ca30\": 0.4, \"brier_ca30\": 0.12}, {\"step\": 200.0, \"price_ca30\": 0.64, \"cons_resid_total\": null, \"ec_pat4\": 0.7, \"bce_ca30\": 0.35, \"brier_ca30\": 0.1}]"
+    },
+    {
+     "name": "unknown run is 404",
+     "pass": true,
+     "detail": "404"
+    },
+    {
+     "name": "path traversal refused",
+     "pass": true,
+     "detail": "404"
+    }
+   ],
+   "pass": true
+  },
+  {
+   "stage": "exporter",
+   "base": "http://[ip-removed]:8767",
+   "runs": [
+    {
+     "run": "wealth-net.train-s1",
+     "status": 200,
+     "rows": 206,
+     "cols": 85,
+     "last_step": "20600",
+     "pass": true
+    },
+    {
+     "run": "wealth-net.train-s2",
+     "status": 200,
+     "rows": 207,
+     "cols": 85,
+     "last_step": "20700",
+     "pass": true
+    },
+    {
+     "run": "wealth-net.train-s3",
+     "status": 200,
+     "rows": 206,
+     "cols": 85,
+     "last_step": "20600",
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "stage": "grafana",
+   "uid": "traders-net",
+   "runs": {
+    "wealth-net.train-s1": {
+     "status": 200,
+     "error": null,
+     "fields": 85,
+     "rows": 206,
+     "last_step": 20600,
+     "fresh": true,
+     "pass": true
+    },
+    "wealth-net.train-s2": {
+     "status": 200,
+     "error": null,
+     "fields": 85,
+     "rows": 207,
+     "last_step": 20700,
+     "fresh": true,
+     "pass": true
+    },
+    "wealth-net.train-s3": {
+     "status": 200,
+     "error": null,
+     "fields": 85,
+     "rows": 206,
+     "last_step": 20600,
+     "fresh": true,
+     "pass": true
+    }
+   },
+   "panels": [
+    {
+     "id": 1,
+     "title": "Wealth by scale (sum over units) and total income R",
+     "pattern": "^(step|wealth_[a-z0-9]+|R_total)$",
+     "verdict": "PASS",
+     "runs_with_data": {
+      "wealth-net.train-s1": 5,
+      "wealth-net.train-s2": 5,
+      "wealth-net.train-s3": 5
+     },
+     "bad": [],
+     "why": ""
+    },
+    {
+     "id": 2,
+     "title": "Runs",
+     "verdict": "SKIP",
+     "why": "not a panel-1 column panel"
+    },
+    {
+     "id": 3,
+     "title": "Wealth by family: out",
+     "pattern": "^(step|wf_out_.*)$",
+     "verdict": "PASS",
+     "runs_with_data": {
+      "wealth-net.train-s1": 8,
+      "wealth-net.train-s2": 8,
+      "wealth-net.train-s3": 8
+     },
+     "bad": [],
+     "why": ""
+    },
+    {
+     "id": 4,
+     "title": "Wealth by family: head",
+     "pattern": "^(step|wf_head_.*)$",
+     "verdict": "PASS",
+     "runs_with_data": {
+      "wealth-net.train-s1": 8,
+      "wealth-net.train-s2": 8,
+      "wealth-net.train-s3": 8
+     },
+     "bad": [],
+     "why": ""
+    },
+    {
+     "id": 5,
+     "title": "Wealth by family: neuron",
+     "pattern": "^(step|wf_neuron_.*)$",
+     "verdict": "PASS",
+     "runs_with_data": {
+      "wealth-net.train-s1": 8,
+      "wealth-net.train-s2": 8,
+      "wealth-net.train-s3": 8
+     },
+     "bad": [],
+     "why": ""
+    },
+    {
+     "id": 6,
+     "title": "Wealth by family: comp",
+     "pattern": "^(step|wf_comp_.*)$",
+     "verdict": "PASS",
+     "runs_with_data": {
+      "wealth-net.train-s1": 8,
+      "wealth-net.train-s2": 8,
+      "wealth-net.train-s3": 8
+     },
+     "bad": [],
+     "why": ""
+    },
+    {
+     "id": 7,
+     "title": "Wealth Gini vs shuffled-label null",
+     "pattern": "^(step|gini_[a-z0-9_]+)$",
+     "verdict": "PASS",
+     "runs_with_data": {
+      "wealth-net.train-s1": 4,
+      "wealth-net.train-s2": 4,
+      "wealth-net.train-s3": 4
+     },
+     "bad": [],
+     "why": ""
+    },
+    {
+     "id": 8,
+     "title": "Rank churn: 1 - Spearman(wealth now, 1000 steps ago)",
+     "pattern": "^(step|churn_[a-z0-9]+)$",
+     "verdict": "PASS",
+     "runs_with_data": {
+      "wealth-net.train-s1": 4,
+      "wealth-net.train-s2": 4,
+      "wealth-net.train-s3": 4
+     },
+     "bad": [],
+     "why": ""
+    },
+    {
+     "id": 9,
+     "title": "Income turnover: Spearman(income this window, previous window)",
+     "pattern": "^(step|turnover_[a-z0-9]+)$",
+     "verdict": "PASS",
+     "runs_with_data": {
+      "wealth-net.train-s1": 4,
+      "wealth-net.train-s2": 4,
+      "wealth-net.train-s3": 4
+     },
+     "bad": [],
+     "why": ""
+    },
+    {
+     "id": 10,
+     "title": "Births, bankruptcies, units in the red",
+     "pattern": "^(step|births|bankrupt|dead_frac|neg_[a-z0-9]+)$",
+     "verdict": "PASS",
+     "runs_with_data": {
+      "wealth-net.train-s1": 4,
+      "wealth-net.train-s2": 4,
+      "wealth-net.train-s3": 4
+     },
+     "bad": [],
+     "why": ""
+    },
+    {
+     "id": 11,
+     "title": "Conservation residual (fraction of |income|)",
+     "pattern": "^step$|^(cons_resid_.*|cons_sum_resid_max)$",
+     "verdict": "PASS",
+     "runs_with_data": {
+      "wealth-net.train-s1": 6,
+      "wealth-net.train-s2": 6,
+      "wealth-net.train-s3": 6
+     },
+     "bad": [],
+     "why": ""
+    },
+    {
+     "id": 12,
+     "title": "Exploitation E_C(t) by trader class",
+     "pattern": "^step$|^ec_.*$",
+     "verdict": "PENDING",
+     "runs_with_data": {},
+     "bad": [],
+     "why": "M5 exploit.py (E_C) via S0 runlog.py"
+    },
+    {
+     "id": 13,
+     "title": "Market price per family (mean probability)",
+     "pattern": "^step$|^price_.*$",
+     "verdict": "PENDING",
+     "runs_with_data": {},
+     "bad": [],
+     "why": "S0 runlog.py (price per family)"
+    },
+    {
+     "id": 14,
+     "title": "Held-out BCE per family (nats; dashed = logistic baseline)",
+     "pattern": "^step$|^bce_.*$",
+     "verdict": "PASS",
+     "runs_with_data": {
+      "wealth-net.train-s1": 16,
+      "wealth-net.train-s2": 16,
+      "wealth-net.train-s3": 16
+     },
+     "bad": [],
+     "why": ""
+    },
+    {
+     "id": 15,
+     "title": "Brier score per family (0.25 = always 0.5)",
+     "pattern": "^step$|^brier_.*$",
+     "verdict": "PASS",
+     "runs_with_data": {
+      "wealth-net.train-s1": 8,
+      "wealth-net.train-s2": 8,
+      "wealth-net.train-s3": 8
+     },
+     "bad": [],
+     "why": ""
+    }
+   ],
+   "version": 1,
+   "title": "traders-net",
+   "run_variable": {
+    "values": 3,
+    "pass": true
+   },
+   "pass": true
+  }
+ ],
+ "pass": true
+}

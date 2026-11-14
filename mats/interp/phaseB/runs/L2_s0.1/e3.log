@@ -1,0 +1,13 @@
+/home/agent/.venvs/aggext/lib/python3.12/site-packages/torch/jit/_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+/home/agent/workspaces/mats/work/cm-interp-B/e3.py:55: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  return float(fro.mean()), float(top.mean())
+{'net': 'trained', 'map': 'emb->a1', 'exp_p': 1.001031756401062, 'top_p': 7.005321502685547, 'exp_q': 1.0423721075057983, 'top_q': 7.0210700035095215, 'q_tr': 0.5426257252693176, 'p_var': 0.5374633073806763}
+{'net': 'trained', 'map': 'a1->r1', 'exp_p': 0.3789335787296295, 'top_p': 3.3612165451049805, 'exp_q': 0.3594224452972412, 'top_q': 3.6222190856933594, 'q_tr': 0.39954206347465515, 'p_var': 0.47431135177612305}
+{'net': 'trained', 'map': 'r1->a2', 'exp_p': 0.3834170401096344, 'top_p': 3.6498868465423584, 'exp_q': 0.566498339176178, 'top_q': 4.824428081512451, 'q_tr': 0.279233455657959, 'p_var': 0.3484748303890228}
+{'net': 'trained', 'map': 'a2->r2', 'exp_p': 0.39023837447166443, 'top_p': 2.6262502670288086, 'exp_q': 0.43272051215171814, 'top_q': 3.3731653690338135, 'q_tr': 0.46486184000968933, 'p_var': 0.7816429734230042}
+{'net': 'random', 'map': 'emb->a1', 'exp_p': 0.9468132853507996, 'top_p': 1.4506865739822388, 'exp_q': 1.1224297285079956, 'top_q': 1.7473487854003906, 'q_tr': 0.7452630400657654, 'p_var': 0.7557239532470703}
+{'net': 'random', 'map': 'a1->r1', 'exp_p': 1.0164774656295776, 'top_p': 2.053115129470825, 'exp_q': 0.9961439967155457, 'top_q': 2.3974828720092773, 'q_tr': 0.7190071940422058, 'p_var': 0.7480794191360474}
+{'net': 'random', 'map': 'r1->a2', 'exp_p': 0.9107804298400879, 'top_p': 1.5644983053207397, 'exp_q': 0.9002337455749512, 'top_q': 1.619591236114502, 'q_tr': 0.7357118129730225, 'p_var': 0.7376785278320312}
+{'net': 'random', 'map': 'a2->r2', 'exp_p': 1.0188618898391724, 'top_p': 2.1165316104888916, 'exp_q': 0.9098435044288635, 'top_q': 2.332789182662964, 'q_tr': 0.735331654548645, 'p_var': 0.7090969085693359}

@@ -1,0 +1,1851 @@
+{
+  "seed": 101,
+  "d0": {
+    "seed": 101,
+    "static_ast_pass": true,
+    "static_ast_violations": 0,
+    "canaries_caught": 3,
+    "poison_traps_fired": 3,
+    "global_max_oracle_diff": 0.0,
+    "max_infoset_policy_drift": 0.0,
+    "openspiel_verified": {
+      "kuhn_poker": {
+        "num_distinct_actions": 2,
+        "obs_tensor_len": 7,
+        "opening_legal_actions": 2,
+        "max_game_length": 3
+      },
+      "leduc_poker": {
+        "num_distinct_actions": 3,
+        "obs_tensor_len": 16,
+        "opening_legal_actions": 2,
+        "max_game_length": 8
+      },
+      "phantom_ttt": {
+        "num_distinct_actions": 9,
+        "obs_tensor_len": 27,
+        "opening_legal_actions": 9,
+        "max_game_length": 17
+      },
+      "dark_hex(board_size=4)": {
+        "num_distinct_actions": 16,
+        "obs_tensor_len": 144,
+        "opening_legal_actions": 16,
+        "max_game_length": 31
+      },
+      "hex(board_size=5)": {
+        "num_distinct_actions": 25,
+        "obs_tensor_len": 225,
+        "opening_legal_actions": 25,
+        "max_game_length": 25
+      },
+      "connect_four": {
+        "num_distinct_actions": 7,
+        "obs_tensor_len": 126,
+        "opening_legal_actions": 7,
+        "max_game_length": 42
+      }
+    },
+    "stratego_rules_verified": {
+      "combat_rules_verified": true,
+      "spy_beats_marshal_on_attack": true,
+      "marshal_beats_spy_on_attack": true,
+      "miner_defuses_bomb": true,
+      "bomb_destroys_non_miner": true,
+      "scout_long_move_reveals_scout": true,
+      "size_checks": {
+        "stratego_4x4": {
+          "num_slots_per_player": 6,
+          "opening_legal_actions": 5,
+          "infoset_obs_dim": 192,
+          "infoset_permutation_obs_diff": 0.0
+        },
+        "stratego_6x6": {
+          "num_slots_per_player": 10,
+          "opening_legal_actions": 7,
+          "infoset_obs_dim": 192,
+          "infoset_permutation_obs_diff": 0.0
+        },
+        "stratego_8x8": {
+          "num_slots_per_player": 16,
+          "opening_legal_actions": 12,
+          "infoset_obs_dim": 192,
+          "infoset_permutation_obs_diff": 0.0
+        }
+      },
+      "pass": true
+    },
+    "matched_backbone_param_counts": {
+      "PPO_GAE": 3200801,
+      "GRPO_RLOO": 3200801,
+      "AlphaZero_PUCT": 3200801,
+      "Gumbel_MuZero": 3200801,
+      "R_NaD_DeepNash": 3200801,
+      "Deep_CFR": 3200801,
+      "GLC_v2_Specialist": 3200801,
+      "GLC_v2_Generalist": 3200801
+    },
+    "verdict": "PASS"
+  },
+  "training_loss_curves": {
+    "PPO_GAE": {
+      "25%": -0.29098784923553467,
+      "50%": -0.10411641001701355,
+      "75%": 0.07587891072034836,
+      "100%": 0.01932898908853531
+    },
+    "GRPO_RLOO": {
+      "25%": 1.8753833770751953,
+      "50%": 1.692446231842041,
+      "75%": 1.580210566520691,
+      "100%": 1.5353213548660278
+    },
+    "AlphaZero_PUCT": {
+      "25%": 2.002089738845825,
+      "50%": 1.774451494216919,
+      "75%": 1.623199701309204,
+      "100%": 1.565792441368103
+    },
+    "Gumbel_MuZero": {
+      "25%": 2.2851603031158447,
+      "50%": 2.045292615890503,
+      "75%": 1.894870400428772,
+      "100%": 1.8022626638412476
+    },
+    "R_NaD_DeepNash": {
+      "25%": 1.9940977096557617,
+      "50%": 1.8098044395446777,
+      "75%": 1.6733373403549194,
+      "100%": 1.5918651819229126
+    },
+    "Deep_CFR": {
+      "25%": 1.8690545558929443,
+      "50%": 1.6648260354995728,
+      "75%": 1.5706841945648193,
+      "100%": 1.5399523973464966
+    },
+    "GLC_v2_Specialist": {
+      "25%": 3.4661166667938232,
+      "50%": 3.205327272415161,
+      "75%": 3.1074626445770264,
+      "100%": 3.041484832763672
+    },
+    "GLC_v2_Generalist": {
+      "25%": 3.3808419704437256,
+      "50%": 3.156524658203125,
+      "75%": 3.0525126457214355,
+      "100%": 3.0062973499298096
+    }
+  },
+  "d1": {
+    "seed": 101,
+    "by_game_budget": {
+      "kuhn_poker": {
+        "1": {
+          "PPO_GAE": 1.2623621150203084,
+          "GRPO_RLOO": 1.3873891319068137,
+          "AlphaZero_PUCT": 0.6714881178086778,
+          "Gumbel_MuZero": 0.37728335334836005,
+          "R_NaD_DeepNash": 0.36301603878736255,
+          "Deep_CFR": 0.24808273450212687,
+          "GLC_v2_Specialist": 0.12996303487997057,
+          "GLC_v2_Generalist": 0.04210683697777173
+        },
+        "4": {
+          "PPO_GAE": 1.2623621150203084,
+          "GRPO_RLOO": 1.3873891319068137,
+          "AlphaZero_PUCT": 0.671692890392098,
+          "Gumbel_MuZero": 0.39077367017417813,
+          "R_NaD_DeepNash": 0.266103372188857,
+          "Deep_CFR": 0.17422849263066859,
+          "GLC_v2_Specialist": 0.1033327859000302,
+          "GLC_v2_Generalist": 0.03517595154844956
+        },
+        "16": {
+          "PPO_GAE": 1.2623621150203084,
+          "GRPO_RLOO": 1.3873891319068137,
+          "AlphaZero_PUCT": 0.6711962876237971,
+          "Gumbel_MuZero": 0.4115301045990967,
+          "R_NaD_DeepNash": 0.1712352913508678,
+          "Deep_CFR": 0.11683404168065326,
+          "GLC_v2_Specialist": 0.07672473923256057,
+          "GLC_v2_Generalist": 0.03617488628858488
+        },
+        "64": {
+          "PPO_GAE": 1.2623621150203084,
+          "GRPO_RLOO": 1.3873891319068137,
+          "AlphaZero_PUCT": 0.6699982011646523,
+          "Gumbel_MuZero": 0.4344655593168603,
+          "R_NaD_DeepNash": 0.0988092380976018,
+          "Deep_CFR": 0.06651738150988057,
+          "GLC_v2_Specialist": 0.050138894877561804,
+          "GLC_v2_Generalist": 0.03940548612459843
+        }
+      },
+      "leduc_poker": {
+        "1": {
+          "PPO_GAE": 3.90627204275181,
+          "GRPO_RLOO": 3.994717570316064,
+          "AlphaZero_PUCT": 2.7512180561659374,
+          "Gumbel_MuZero": 1.7212895866179732,
+          "R_NaD_DeepNash": 2.3850901370237234,
+          "Deep_CFR": 2.2398733912096023,
+          "GLC_v2_Specialist": 1.036579571781,
+          "GLC_v2_Generalist": 1.0716629100375528
+        },
+        "4": {
+          "PPO_GAE": 3.90627204275181,
+          "GRPO_RLOO": 3.994717570316064,
+          "AlphaZero_PUCT": 2.2502590230355626,
+          "Gumbel_MuZero": 1.5701252866009965,
+          "R_NaD_DeepNash": 1.9080581203552525,
+          "Deep_CFR": 1.7801729585487824,
+          "GLC_v2_Specialist": 0.9080570287520993,
+          "GLC_v2_Generalist": 0.9413360530184528
+        },
+        "16": {
+          "PPO_GAE": 3.90627204275181,
+          "GRPO_RLOO": 3.994717570316064,
+          "AlphaZero_PUCT": 1.8226007525581278,
+          "Gumbel_MuZero": 1.4843138785783108,
+          "R_NaD_DeepNash": 1.4650271618151718,
+          "Deep_CFR": 1.3533381603662926,
+          "GLC_v2_Specialist": 0.7783306755780297,
+          "GLC_v2_Generalist": 0.8138061519431525
+        },
+        "64": {
+          "PPO_GAE": 3.90627204275181,
+          "GRPO_RLOO": 3.994717570316064,
+          "AlphaZero_PUCT": 1.5818500204646917,
+          "Gumbel_MuZero": 1.4853413949843413,
+          "R_NaD_DeepNash": 1.0963285716715245,
+          "Deep_CFR": 1.0209261759391546,
+          "GLC_v2_Specialist": 0.6663518017847316,
+          "GLC_v2_Generalist": 0.6947166192228545
+        }
+      },
+      "phantom_ttt": {
+        "1": {
+          "PPO_GAE": 0.5907190899766849,
+          "GRPO_RLOO": 0.5467334913995424,
+          "AlphaZero_PUCT": 0.35980655616291846,
+          "Gumbel_MuZero": 0.22059803503103947,
+          "R_NaD_DeepNash": 0.3605917217630406,
+          "Deep_CFR": 0.331591740328059,
+          "GLC_v2_Specialist": 0.0763045904652771,
+          "GLC_v2_Generalist": 0.11460239103202256
+        },
+        "4": {
+          "PPO_GAE": 0.5907190899766849,
+          "GRPO_RLOO": 0.5467334913995424,
+          "AlphaZero_PUCT": 0.28271099241734343,
+          "Gumbel_MuZero": 0.18174726630506643,
+          "R_NaD_DeepNash": 0.3017138227500361,
+          "Deep_CFR": 0.27683578146491516,
+          "GLC_v2_Specialist": 0.07839748538627701,
+          "GLC_v2_Generalist": 0.1071157573896161
+        },
+        "16": {
+          "PPO_GAE": 0.5907190899766849,
+          "GRPO_RLOO": 0.5467334913995424,
+          "AlphaZero_PUCT": 0.2073877821326885,
+          "Gumbel_MuZero": 0.14338198580761577,
+          "R_NaD_DeepNash": 0.24415370564762198,
+          "Deep_CFR": 0.22242301703049294,
+          "GLC_v2_Specialist": 0.08047225594672572,
+          "GLC_v2_Generalist": 0.09951724833998293
+        },
+        "64": {
+          "PPO_GAE": 0.5907190899766849,
+          "GRPO_RLOO": 0.5467334913995424,
+          "AlphaZero_PUCT": 0.13344367254747438,
+          "Gumbel_MuZero": 0.10544730475070269,
+          "R_NaD_DeepNash": 0.1875295277555251,
+          "Deep_CFR": 0.16855616354334005,
+          "GLC_v2_Specialist": 0.08253039276632686,
+          "GLC_v2_Generalist": 0.09181222703406876
+        }
+      },
+      "dark_hex(board_size=4)": {
+        "1": {
+          "PPO_GAE": 0.4706030639707685,
+          "GRPO_RLOO": 0.48446617751108634,
+          "AlphaZero_PUCT": 0.3590526266121314,
+          "Gumbel_MuZero": 0.1846473001171011,
+          "R_NaD_DeepNash": 0.29685178526278805,
+          "Deep_CFR": 0.28786926524084405,
+          "GLC_v2_Specialist": 0.06089515462496912,
+          "GLC_v2_Generalist": 0.05956265485506445
+        },
+        "4": {
+          "PPO_GAE": 0.4706030639707685,
+          "GRPO_RLOO": 0.48446617751108634,
+          "AlphaZero_PUCT": 0.27364906099018654,
+          "Gumbel_MuZero": 0.14995345932137463,
+          "R_NaD_DeepNash": 0.24747047599784625,
+          "Deep_CFR": 0.23858438320357664,
+          "GLC_v2_Specialist": 0.06383931055678373,
+          "GLC_v2_Generalist": 0.06269037206937259
+        },
+        "16": {
+          "PPO_GAE": 0.4706030639707685,
+          "GRPO_RLOO": 0.48446617751108634,
+          "AlphaZero_PUCT": 0.19331508786568685,
+          "Gumbel_MuZero": 0.11575770223059129,
+          "R_NaD_DeepNash": 0.19944047496361758,
+          "Deep_CFR": 0.1905785867251637,
+          "GLC_v2_Specialist": 0.06679277738591469,
+          "GLC_v2_Generalist": 0.06583156959679808
+        },
+        "64": {
+          "PPO_GAE": 0.4706030639707685,
+          "GRPO_RLOO": 0.48446617751108634,
+          "AlphaZero_PUCT": 0.11653730328048073,
+          "Gumbel_MuZero": 0.08193704994269745,
+          "R_NaD_DeepNash": 0.15258696442004438,
+          "Deep_CFR": 0.14355767243092604,
+          "GLC_v2_Specialist": 0.06975597243507296,
+          "GLC_v2_Generalist": 0.06898678672198806
+        }
+      }
+    },
+    "mean_4game_by_budget": {
+      "PPO_GAE": {
+        "1": 1.5574890779298929,
+        "4": 1.5574890779298929,
+        "16": 1.5574890779298929,
+        "64": 1.5574890779298929
+      },
+      "GRPO_RLOO": {
+        "1": 1.6033265927833764,
+        "4": 1.6033265927833764,
+        "16": 1.6033265927833764,
+        "64": 1.6033265927833764
+      },
+      "AlphaZero_PUCT": {
+        "1": 1.035391339187416,
+        "4": 0.8695779917087977,
+        "16": 0.7236249775450752,
+        "64": 0.6254572993643248
+      },
+      "Gumbel_MuZero": {
+        "1": 0.6259545687786183,
+        "4": 0.5731499206004039,
+        "16": 0.5387459178039037,
+        "64": 0.5267978272486504
+      },
+      "R_NaD_DeepNash": {
+        "1": 0.8513874207092287,
+        "4": 0.6808364478229979,
+        "16": 0.5199641584443198,
+        "64": 0.38381357548617395
+      },
+      "Deep_CFR": {
+        "1": 0.776854282820158,
+        "4": 0.6174554039619857,
+        "16": 0.4707934514506506,
+        "64": 0.3498893483558253
+      },
+      "GLC_v2_Specialist": {
+        "1": 0.3259355879378042,
+        "4": 0.28840665264879756,
+        "16": 0.25058011203580766,
+        "64": 0.21719426546592333
+      },
+      "GLC_v2_Generalist": {
+        "1": 0.3219836982256029,
+        "4": 0.28657953350647275,
+        "16": 0.2538324640421296,
+        "64": 0.22373027977587745
+      }
+    },
+    "checkpoint_nash_conv_b64": {
+      "PPO_GAE": {
+        "25%": 1.9001,
+        "50%": 1.6977,
+        "75%": 1.6042,
+        "100%": 1.5575
+      },
+      "GRPO_RLOO": {
+        "25%": 1.9561,
+        "50%": 1.7476,
+        "75%": 1.6514,
+        "100%": 1.6033
+      },
+      "AlphaZero_PUCT": {
+        "25%": 0.7631,
+        "50%": 0.6817,
+        "75%": 0.6442,
+        "100%": 0.6255
+      },
+      "Gumbel_MuZero": {
+        "25%": 0.6427,
+        "50%": 0.5742,
+        "75%": 0.5426,
+        "100%": 0.5268
+      },
+      "R_NaD_DeepNash": {
+        "25%": 0.7101,
+        "50%": 0.5297,
+        "75%": 0.4299,
+        "100%": 0.3838
+      },
+      "Deep_CFR": {
+        "25%": 0.6473,
+        "50%": 0.4828,
+        "75%": 0.3919,
+        "100%": 0.3499
+      },
+      "GLC_v2_Specialist": {
+        "25%": 0.467,
+        "50%": 0.3214,
+        "75%": 0.2519,
+        "100%": 0.2172
+      },
+      "GLC_v2_Generalist": {
+        "25%": 0.481,
+        "50%": 0.3311,
+        "75%": 0.2595,
+        "100%": 0.2237
+      }
+    }
+  },
+  "d2": {
+    "seed": 101,
+    "by_board_and_budget": {
+      "stratego_4x4": {
+        "B=1": {
+          "agent_names": [
+            "PPO_GAE",
+            "GRPO_RLOO",
+            "AlphaZero_PUCT",
+            "Gumbel_MuZero",
+            "R_NaD_DeepNash",
+            "Deep_CFR",
+            "GLC_v2_Specialist",
+            "GLC_v2_Generalist"
+          ],
+          "win_rate_matrix_pct": [
+            [
+              50.0,
+              50.0,
+              75.0,
+              25.0,
+              75.0,
+              50.0,
+              25.0,
+              0.0
+            ],
+            [
+              50.0,
+              50.0,
+              50.0,
+              25.0,
+              75.0,
+              75.0,
+              75.0,
+              25.0
+            ],
+            [
+              25.0,
+              50.0,
+              50.0,
+              25.0,
+              75.0,
+              50.0,
+              25.0,
+              50.0
+            ],
+            [
+              75.0,
+              75.0,
+              75.0,
+              50.0,
+              75.0,
+              75.0,
+              25.0,
+              25.0
+            ],
+            [
+              25.0,
+              25.0,
+              25.0,
+              25.0,
+              50.0,
+              50.0,
+              50.0,
+              50.0
+            ],
+            [
+              50.0,
+              25.0,
+              50.0,
+              25.0,
+              50.0,
+              50.0,
+              50.0,
+              25.0
+            ],
+            [
+              75.0,
+              25.0,
+              75.0,
+              75.0,
+              50.0,
+              50.0,
+              50.0,
+              75.0
+            ],
+            [
+              100.0,
+              75.0,
+              50.0,
+              75.0,
+              50.0,
+              75.0,
+              25.0,
+              50.0
+            ]
+          ],
+          "elo_ratings": {
+            "PPO_GAE": 1000.0,
+            "GRPO_RLOO": 1065.5,
+            "AlphaZero_PUCT": 1000.0,
+            "Gumbel_MuZero": 1109.67,
+            "R_NaD_DeepNash": 955.05,
+            "Deep_CFR": 977.76,
+            "GLC_v2_Specialist": 1109.67,
+            "GLC_v2_Generalist": 1132.4
+          },
+          "melo_ratings": {
+            "PPO_GAE": 993.8,
+            "GRPO_RLOO": 1061.5,
+            "AlphaZero_PUCT": 996.76,
+            "Gumbel_MuZero": 1106.46,
+            "R_NaD_DeepNash": 948.07,
+            "Deep_CFR": 974.39,
+            "GLC_v2_Specialist": 1105.1,
+            "GLC_v2_Generalist": 1128.25
+          },
+          "cyclic_singular_value_1": 0.7913,
+          "glc_specialist_vs_rnad_win_rate": 50.0,
+          "glc_generalist_vs_rnad_win_rate": 50.0
+        },
+        "B=16": {
+          "agent_names": [
+            "PPO_GAE",
+            "GRPO_RLOO",
+            "AlphaZero_PUCT",
+            "Gumbel_MuZero",
+            "R_NaD_DeepNash",
+            "Deep_CFR",
+            "GLC_v2_Specialist",
+            "GLC_v2_Generalist"
+          ],
+          "win_rate_matrix_pct": [
+            [
+              50.0,
+              50.0,
+              75.0,
+              25.0,
+              100.0,
+              75.0,
+              50.0,
+              75.0
+            ],
+            [
+              50.0,
+              50.0,
+              50.0,
+              0.0,
+              75.0,
+              75.0,
+              50.0,
+              50.0
+            ],
+            [
+              25.0,
+              50.0,
+              50.0,
+              50.0,
+              75.0,
+              50.0,
+              25.0,
+              50.0
+            ],
+            [
+              75.0,
+              100.0,
+              50.0,
+              50.0,
+              50.0,
+              25.0,
+              25.0,
+              50.0
+            ],
+            [
+              0.0,
+              25.0,
+              25.0,
+              50.0,
+              50.0,
+              50.0,
+              50.0,
+              25.0
+            ],
+            [
+              25.0,
+              25.0,
+              50.0,
+              75.0,
+              50.0,
+              50.0,
+              50.0,
+              25.0
+            ],
+            [
+              50.0,
+              50.0,
+              75.0,
+              75.0,
+              50.0,
+              50.0,
+              50.0,
+              50.0
+            ],
+            [
+              25.0,
+              50.0,
+              50.0,
+              50.0,
+              75.0,
+              75.0,
+              50.0,
+              50.0
+            ]
+          ],
+          "elo_ratings": {
+            "PPO_GAE": 1000.0,
+            "GRPO_RLOO": 912.07,
+            "AlphaZero_PUCT": 890.46,
+            "Gumbel_MuZero": 933.67,
+            "R_NaD_DeepNash": 800.82,
+            "Deep_CFR": 868.7,
+            "GLC_v2_Specialist": 955.42,
+            "GLC_v2_Generalist": 933.67
+          },
+          "melo_ratings": {
+            "PPO_GAE": 996.86,
+            "GRPO_RLOO": 906.11,
+            "AlphaZero_PUCT": 889.81,
+            "Gumbel_MuZero": 925.48,
+            "R_NaD_DeepNash": 793.53,
+            "Deep_CFR": 862.3,
+            "GLC_v2_Specialist": 952.86,
+            "GLC_v2_Generalist": 931.81
+          },
+          "cyclic_singular_value_1": 0.8509,
+          "glc_specialist_vs_rnad_win_rate": 50.0,
+          "glc_generalist_vs_rnad_win_rate": 75.0
+        },
+        "B=64": {
+          "agent_names": [
+            "PPO_GAE",
+            "GRPO_RLOO",
+            "AlphaZero_PUCT",
+            "Gumbel_MuZero",
+            "R_NaD_DeepNash",
+            "Deep_CFR",
+            "GLC_v2_Specialist",
+            "GLC_v2_Generalist"
+          ],
+          "win_rate_matrix_pct": [
+            [
+              50.0,
+              50.0,
+              50.0,
+              66.67,
+              33.33,
+              83.33,
+              50.0,
+              50.0
+            ],
+            [
+              50.0,
+              50.0,
+              66.67,
+              66.67,
+              50.0,
+              33.33,
+              33.33,
+              33.33
+            ],
+            [
+              50.0,
+              33.33,
+              50.0,
+              33.33,
+              50.0,
+              83.33,
+              50.0,
+              33.33
+            ],
+            [
+              33.33,
+              33.33,
+              66.67,
+              50.0,
+              16.67,
+              33.33,
+              16.67,
+              33.33
+            ],
+            [
+              66.67,
+              50.0,
+              50.0,
+              83.33,
+              50.0,
+              50.0,
+              66.67,
+              50.0
+            ],
+            [
+              16.67,
+              66.67,
+              16.67,
+              66.67,
+              50.0,
+              50.0,
+              33.33,
+              50.0
+            ],
+            [
+              50.0,
+              66.67,
+              50.0,
+              83.33,
+              33.33,
+              66.67,
+              50.0,
+              50.0
+            ],
+            [
+              50.0,
+              66.67,
+              66.67,
+              66.67,
+              50.0,
+              50.0,
+              50.0,
+              50.0
+            ]
+          ],
+          "elo_ratings": {
+            "PPO_GAE": 1000.0,
+            "GRPO_RLOO": 956.49,
+            "AlphaZero_PUCT": 956.49,
+            "Gumbel_MuZero": 866.76,
+            "R_NaD_DeepNash": 1029.39,
+            "Deep_CFR": 927.31,
+            "GLC_v2_Specialist": 1014.62,
+            "GLC_v2_Generalist": 1014.62
+          },
+          "melo_ratings": {
+            "PPO_GAE": 998.1,
+            "GRPO_RLOO": 952.73,
+            "AlphaZero_PUCT": 950.62,
+            "Gumbel_MuZero": 860.48,
+            "R_NaD_DeepNash": 1030.05,
+            "Deep_CFR": 920.76,
+            "GLC_v2_Specialist": 1014.2,
+            "GLC_v2_Generalist": 1014.18
+          },
+          "cyclic_singular_value_1": 0.5804,
+          "glc_specialist_vs_rnad_win_rate": 33.33,
+          "glc_generalist_vs_rnad_win_rate": 50.0
+        }
+      },
+      "stratego_6x6": {
+        "B=1": {
+          "agent_names": [
+            "PPO_GAE",
+            "GRPO_RLOO",
+            "AlphaZero_PUCT",
+            "Gumbel_MuZero",
+            "R_NaD_DeepNash",
+            "Deep_CFR",
+            "GLC_v2_Specialist",
+            "GLC_v2_Generalist"
+          ],
+          "win_rate_matrix_pct": [
+            [
+              50.0,
+              37.5,
+              50.0,
+              50.0,
+              0.0,
+              0.0,
+              0.0,
+              25.0
+            ],
+            [
+              62.5,
+              50.0,
+              75.0,
+              25.0,
+              75.0,
+              50.0,
+              0.0,
+              75.0
+            ],
+            [
+              50.0,
+              25.0,
+              50.0,
+              50.0,
+              75.0,
+              50.0,
+              0.0,
+              0.0
+            ],
+            [
+              50.0,
+              75.0,
+              50.0,
+              50.0,
+              50.0,
+              50.0,
+              100.0,
+              50.0
+            ],
+            [
+              100.0,
+              25.0,
+              25.0,
+              50.0,
+              50.0,
+              75.0,
+              25.0,
+              0.0
+            ],
+            [
+              100.0,
+              50.0,
+              50.0,
+              50.0,
+              25.0,
+              50.0,
+              0.0,
+              0.0
+            ],
+            [
+              100.0,
+              100.0,
+              100.0,
+              0.0,
+              75.0,
+              100.0,
+              50.0,
+              75.0
+            ],
+            [
+              75.0,
+              25.0,
+              100.0,
+              50.0,
+              100.0,
+              100.0,
+              25.0,
+              50.0
+            ]
+          ],
+          "elo_ratings": {
+            "PPO_GAE": 1000.0,
+            "GRPO_RLOO": 1200.58,
+            "AlphaZero_PUCT": 1092.74,
+            "Gumbel_MuZero": 1260.41,
+            "R_NaD_DeepNash": 1141.35,
+            "Deep_CFR": 1117.28,
+            "GLC_v2_Specialist": 1393.24,
+            "GLC_v2_Generalist": 1310.43
+          },
+          "melo_ratings": {
+            "PPO_GAE": 991.95,
+            "GRPO_RLOO": 1195.8,
+            "AlphaZero_PUCT": 1086.2,
+            "Gumbel_MuZero": 1252.93,
+            "R_NaD_DeepNash": 1134.71,
+            "Deep_CFR": 1111.02,
+            "GLC_v2_Specialist": 1390.11,
+            "GLC_v2_Generalist": 1307.13
+          },
+          "cyclic_singular_value_1": 1.0029,
+          "glc_specialist_vs_rnad_win_rate": 75.0,
+          "glc_generalist_vs_rnad_win_rate": 100.0
+        },
+        "B=16": {
+          "agent_names": [
+            "PPO_GAE",
+            "GRPO_RLOO",
+            "AlphaZero_PUCT",
+            "Gumbel_MuZero",
+            "R_NaD_DeepNash",
+            "Deep_CFR",
+            "GLC_v2_Specialist",
+            "GLC_v2_Generalist"
+          ],
+          "win_rate_matrix_pct": [
+            [
+              50.0,
+              25.0,
+              25.0,
+              75.0,
+              25.0,
+              50.0,
+              25.0,
+              0.0
+            ],
+            [
+              75.0,
+              50.0,
+              75.0,
+              75.0,
+              50.0,
+              50.0,
+              0.0,
+              25.0
+            ],
+            [
+              75.0,
+              25.0,
+              50.0,
+              75.0,
+              25.0,
+              50.0,
+              0.0,
+              0.0
+            ],
+            [
+              25.0,
+              25.0,
+              25.0,
+              50.0,
+              25.0,
+              100.0,
+              0.0,
+              0.0
+            ],
+            [
+              75.0,
+              50.0,
+              75.0,
+              75.0,
+              50.0,
+              25.0,
+              50.0,
+              50.0
+            ],
+            [
+              50.0,
+              50.0,
+              50.0,
+              0.0,
+              75.0,
+              50.0,
+              0.0,
+              25.0
+            ],
+            [
+              75.0,
+              100.0,
+              100.0,
+              100.0,
+              50.0,
+              100.0,
+              50.0,
+              100.0
+            ],
+            [
+              100.0,
+              75.0,
+              100.0,
+              100.0,
+              50.0,
+              75.0,
+              0.0,
+              50.0
+            ]
+          ],
+          "elo_ratings": {
+            "PPO_GAE": 1000.0,
+            "GRPO_RLOO": 1124.17,
+            "AlphaZero_PUCT": 1025.53,
+            "Gumbel_MuZero": 973.7,
+            "R_NaD_DeepNash": 1173.81,
+            "Deep_CFR": 1025.53,
+            "GLC_v2_Specialist": 1450.36,
+            "GLC_v2_Generalist": 1280.48
+          },
+          "melo_ratings": {
+            "PPO_GAE": 994.51,
+            "GRPO_RLOO": 1122.61,
+            "AlphaZero_PUCT": 1020.64,
+            "Gumbel_MuZero": 962.55,
+            "R_NaD_DeepNash": 1168.68,
+            "Deep_CFR": 1014.32,
+            "GLC_v2_Specialist": 1454.32,
+            "GLC_v2_Generalist": 1281.16
+          },
+          "cyclic_singular_value_1": 0.8515,
+          "glc_specialist_vs_rnad_win_rate": 50.0,
+          "glc_generalist_vs_rnad_win_rate": 50.0
+        },
+        "B=64": {
+          "agent_names": [
+            "PPO_GAE",
+            "GRPO_RLOO",
+            "AlphaZero_PUCT",
+            "Gumbel_MuZero",
+            "R_NaD_DeepNash",
+            "Deep_CFR",
+            "GLC_v2_Specialist",
+            "GLC_v2_Generalist"
+          ],
+          "win_rate_matrix_pct": [
+            [
+              50.0,
+              83.33,
+              50.0,
+              50.0,
+              50.0,
+              33.33,
+              16.67,
+              16.67
+            ],
+            [
+              16.67,
+              50.0,
+              16.67,
+              50.0,
+              50.0,
+              33.33,
+              0.0,
+              33.33
+            ],
+            [
+              50.0,
+              83.33,
+              50.0,
+              33.33,
+              66.67,
+              66.67,
+              0.0,
+              0.0
+            ],
+            [
+              50.0,
+              50.0,
+              66.67,
+              50.0,
+              50.0,
+              16.67,
+              41.67,
+              16.67
+            ],
+            [
+              50.0,
+              50.0,
+              33.33,
+              50.0,
+              50.0,
+              66.67,
+              33.33,
+              25.0
+            ],
+            [
+              66.67,
+              66.67,
+              33.33,
+              83.33,
+              33.33,
+              50.0,
+              16.67,
+              16.67
+            ],
+            [
+              83.33,
+              100.0,
+              100.0,
+              58.33,
+              66.67,
+              83.33,
+              50.0,
+              66.67
+            ],
+            [
+              83.33,
+              66.67,
+              100.0,
+              83.33,
+              75.0,
+              83.33,
+              33.33,
+              50.0
+            ]
+          ],
+          "elo_ratings": {
+            "PPO_GAE": 1000.0,
+            "GRPO_RLOO": 899.92,
+            "AlphaZero_PUCT": 1000.0,
+            "Gumbel_MuZero": 991.99,
+            "R_NaD_DeepNash": 1007.99,
+            "Deep_CFR": 1015.95,
+            "GLC_v2_Specialist": 1267.79,
+            "GLC_v2_Generalist": 1227.11
+          },
+          "melo_ratings": {
+            "PPO_GAE": 998.02,
+            "GRPO_RLOO": 893.18,
+            "AlphaZero_PUCT": 993.69,
+            "Gumbel_MuZero": 985.72,
+            "R_NaD_DeepNash": 1005.16,
+            "Deep_CFR": 1011.3,
+            "GLC_v2_Specialist": 1269.03,
+            "GLC_v2_Generalist": 1229.69
+          },
+          "cyclic_singular_value_1": 0.5774,
+          "glc_specialist_vs_rnad_win_rate": 66.67,
+          "glc_generalist_vs_rnad_win_rate": 75.0
+        }
+      },
+      "stratego_8x8": {
+        "B=1": {
+          "agent_names": [
+            "PPO_GAE",
+            "GRPO_RLOO",
+            "AlphaZero_PUCT",
+            "Gumbel_MuZero",
+            "R_NaD_DeepNash",
+            "Deep_CFR",
+            "GLC_v2_Specialist",
+            "GLC_v2_Generalist"
+          ],
+          "win_rate_matrix_pct": [
+            [
+              50.0,
+              50.0,
+              25.0,
+              87.5,
+              50.0,
+              50.0,
+              0.0,
+              25.0
+            ],
+            [
+              50.0,
+              50.0,
+              100.0,
+              37.5,
+              37.5,
+              87.5,
+              0.0,
+              25.0
+            ],
+            [
+              75.0,
+              0.0,
+              50.0,
+              75.0,
+              25.0,
+              50.0,
+              25.0,
+              50.0
+            ],
+            [
+              12.5,
+              62.5,
+              25.0,
+              50.0,
+              75.0,
+              50.0,
+              50.0,
+              50.0
+            ],
+            [
+              50.0,
+              62.5,
+              75.0,
+              25.0,
+              50.0,
+              75.0,
+              25.0,
+              50.0
+            ],
+            [
+              50.0,
+              12.5,
+              50.0,
+              50.0,
+              25.0,
+              50.0,
+              50.0,
+              0.0
+            ],
+            [
+              100.0,
+              100.0,
+              75.0,
+              50.0,
+              75.0,
+              50.0,
+              50.0,
+              50.0
+            ],
+            [
+              75.0,
+              75.0,
+              50.0,
+              50.0,
+              50.0,
+              100.0,
+              50.0,
+              50.0
+            ]
+          ],
+          "elo_ratings": {
+            "PPO_GAE": 1000.0,
+            "GRPO_RLOO": 1047.86,
+            "AlphaZero_PUCT": 1012.06,
+            "Gumbel_MuZero": 1035.97,
+            "R_NaD_DeepNash": 1071.6,
+            "Deep_CFR": 950.45,
+            "GLC_v2_Specialist": 1208.94,
+            "GLC_v2_Generalist": 1156.65
+          },
+          "melo_ratings": {
+            "PPO_GAE": 994.16,
+            "GRPO_RLOO": 1040.88,
+            "AlphaZero_PUCT": 1003.86,
+            "Gumbel_MuZero": 1027.87,
+            "R_NaD_DeepNash": 1067.54,
+            "Deep_CFR": 944.46,
+            "GLC_v2_Specialist": 1209.38,
+            "GLC_v2_Generalist": 1157.29
+          },
+          "cyclic_singular_value_1": 0.8609,
+          "glc_specialist_vs_rnad_win_rate": 75.0,
+          "glc_generalist_vs_rnad_win_rate": 50.0
+        },
+        "B=16": {
+          "agent_names": [
+            "PPO_GAE",
+            "GRPO_RLOO",
+            "AlphaZero_PUCT",
+            "Gumbel_MuZero",
+            "R_NaD_DeepNash",
+            "Deep_CFR",
+            "GLC_v2_Specialist",
+            "GLC_v2_Generalist"
+          ],
+          "win_rate_matrix_pct": [
+            [
+              50.0,
+              12.5,
+              25.0,
+              75.0,
+              0.0,
+              50.0,
+              0.0,
+              25.0
+            ],
+            [
+              87.5,
+              50.0,
+              75.0,
+              37.5,
+              75.0,
+              50.0,
+              50.0,
+              0.0
+            ],
+            [
+              75.0,
+              25.0,
+              50.0,
+              100.0,
+              37.5,
+              25.0,
+              0.0,
+              25.0
+            ],
+            [
+              25.0,
+              62.5,
+              0.0,
+              50.0,
+              75.0,
+              62.5,
+              25.0,
+              50.0
+            ],
+            [
+              100.0,
+              25.0,
+              62.5,
+              25.0,
+              50.0,
+              75.0,
+              75.0,
+              25.0
+            ],
+            [
+              50.0,
+              50.0,
+              75.0,
+              37.5,
+              25.0,
+              50.0,
+              0.0,
+              50.0
+            ],
+            [
+              100.0,
+              50.0,
+              100.0,
+              75.0,
+              25.0,
+              100.0,
+              50.0,
+              25.0
+            ],
+            [
+              75.0,
+              100.0,
+              75.0,
+              50.0,
+              75.0,
+              50.0,
+              75.0,
+              50.0
+            ]
+          ],
+          "elo_ratings": {
+            "PPO_GAE": 1000.0,
+            "GRPO_RLOO": 1186.9,
+            "AlphaZero_PUCT": 1103.01,
+            "Gumbel_MuZero": 1115.13,
+            "R_NaD_DeepNash": 1198.89,
+            "Deep_CFR": 1103.01,
+            "GLC_v2_Specialist": 1285.84,
+            "GLC_v2_Generalist": 1312.45
+          },
+          "melo_ratings": {
+            "PPO_GAE": 990.1,
+            "GRPO_RLOO": 1182.24,
+            "AlphaZero_PUCT": 1095.33,
+            "Gumbel_MuZero": 1104.48,
+            "R_NaD_DeepNash": 1193.03,
+            "Deep_CFR": 1099.82,
+            "GLC_v2_Specialist": 1282.1,
+            "GLC_v2_Generalist": 1310.41
+          },
+          "cyclic_singular_value_1": 1.0488,
+          "glc_specialist_vs_rnad_win_rate": 25.0,
+          "glc_generalist_vs_rnad_win_rate": 75.0
+        },
+        "B=64": {
+          "agent_names": [
+            "PPO_GAE",
+            "GRPO_RLOO",
+            "AlphaZero_PUCT",
+            "Gumbel_MuZero",
+            "R_NaD_DeepNash",
+            "Deep_CFR",
+            "GLC_v2_Specialist",
+            "GLC_v2_Generalist"
+          ],
+          "win_rate_matrix_pct": [
+            [
+              50.0,
+              75.0,
+              50.0,
+              50.0,
+              33.33,
+              16.67,
+              25.0,
+              0.0
+            ],
+            [
+              25.0,
+              50.0,
+              75.0,
+              50.0,
+              58.33,
+              33.33,
+              33.33,
+              0.0
+            ],
+            [
+              50.0,
+              25.0,
+              50.0,
+              33.33,
+              16.67,
+              83.33,
+              16.67,
+              16.67
+            ],
+            [
+              50.0,
+              50.0,
+              66.67,
+              50.0,
+              66.67,
+              50.0,
+              33.33,
+              16.67
+            ],
+            [
+              66.67,
+              41.67,
+              83.33,
+              33.33,
+              50.0,
+              0.0,
+              33.33,
+              0.0
+            ],
+            [
+              83.33,
+              66.67,
+              16.67,
+              50.0,
+              100.0,
+              50.0,
+              33.33,
+              66.67
+            ],
+            [
+              75.0,
+              66.67,
+              83.33,
+              66.67,
+              66.67,
+              66.67,
+              50.0,
+              50.0
+            ],
+            [
+              100.0,
+              100.0,
+              83.33,
+              83.33,
+              100.0,
+              33.33,
+              50.0,
+              50.0
+            ]
+          ],
+          "elo_ratings": {
+            "PPO_GAE": 1000.0,
+            "GRPO_RLOO": 1025.4,
+            "AlphaZero_PUCT": 991.39,
+            "Gumbel_MuZero": 1083.12,
+            "R_NaD_DeepNash": 1008.53,
+            "Deep_CFR": 1165.59,
+            "GLC_v2_Specialist": 1226.46,
+            "GLC_v2_Generalist": 1314.06
+          },
+          "melo_ratings": {
+            "PPO_GAE": 995.19,
+            "GRPO_RLOO": 1020.21,
+            "AlphaZero_PUCT": 981.04,
+            "Gumbel_MuZero": 1081.2,
+            "R_NaD_DeepNash": 1001.56,
+            "Deep_CFR": 1158.07,
+            "GLC_v2_Specialist": 1227.39,
+            "GLC_v2_Generalist": 1313.14
+          },
+          "cyclic_singular_value_1": 0.8783,
+          "glc_specialist_vs_rnad_win_rate": 66.67,
+          "glc_generalist_vs_rnad_win_rate": 100.0
+        }
+      }
+    },
+    "pooled_stratego_b64_elo": {
+      "PPO_GAE": 1000.0,
+      "GRPO_RLOO": 960.82,
+      "AlphaZero_PUCT": 981.85,
+      "Gumbel_MuZero": 976.63,
+      "R_NaD_DeepNash": 1015.43,
+      "Deep_CFR": 1030.81,
+      "GLC_v2_Specialist": 1158.14,
+      "GLC_v2_Generalist": 1172.58
+    },
+    "pooled_stratego_b64_melo": {
+      "PPO_GAE": 998.74,
+      "GRPO_RLOO": 957.54,
+      "AlphaZero_PUCT": 975.75,
+      "Gumbel_MuZero": 972.64,
+      "R_NaD_DeepNash": 1013.7,
+      "Deep_CFR": 1025.88,
+      "GLC_v2_Specialist": 1160.11,
+      "GLC_v2_Generalist": 1174.01
+    },
+    "pooled_win_rate_matrix_b64_pct": [
+      [
+        50.0,
+        69.44,
+        50.0,
+        55.56,
+        38.89,
+        44.44,
+        30.56,
+        22.22
+      ],
+      [
+        30.56,
+        50.0,
+        52.78,
+        55.56,
+        52.78,
+        33.33,
+        22.22,
+        22.22
+      ],
+      [
+        50.0,
+        47.22,
+        50.0,
+        33.33,
+        44.45,
+        77.78,
+        22.22,
+        16.67
+      ],
+      [
+        44.44,
+        44.44,
+        66.67,
+        50.0,
+        44.45,
+        33.33,
+        30.56,
+        22.22
+      ],
+      [
+        61.11,
+        47.22,
+        55.55,
+        55.55,
+        50.0,
+        38.89,
+        44.44,
+        25.0
+      ],
+      [
+        55.56,
+        66.67,
+        22.22,
+        66.67,
+        61.11,
+        50.0,
+        27.78,
+        44.45
+      ],
+      [
+        69.44,
+        77.78,
+        77.78,
+        69.44,
+        55.56,
+        72.22,
+        50.0,
+        55.56
+      ],
+      [
+        77.78,
+        77.78,
+        83.33,
+        77.78,
+        75.0,
+        55.55,
+        44.44,
+        50.0
+      ]
+    ]
+  },
+  "d3": {
+    "seed": 101,
+    "holdout_stratego_6x6_win_rate_vs_rnad_pct": {
+      "PPO_GAE": {
+        "0": 50.0,
+        "25": 33.33,
+        "100": 50.0,
+        "400": 41.67
+      },
+      "GRPO_RLOO": {
+        "0": 33.33,
+        "25": 25.0,
+        "100": 25.0,
+        "400": 33.33
+      },
+      "Gumbel_MuZero": {
+        "0": 41.67,
+        "25": 58.33,
+        "100": 66.67,
+        "400": 41.67
+      },
+      "R_NaD_DeepNash": {
+        "0": 50.0,
+        "25": 58.33,
+        "100": 58.33,
+        "400": 58.33
+      },
+      "GLC_v2_Generalist": {
+        "0": 83.33,
+        "25": 58.33,
+        "100": 100.0,
+        "400": 91.67
+      }
+    },
+    "holdout_dark_hex_4x4_win_rate_vs_rnad_pct": {
+      "PPO_GAE": {
+        "0": 25.9,
+        "25": 33.51,
+        "100": 36.68,
+        "400": 39.9
+      },
+      "GRPO_RLOO": {
+        "0": 26.0,
+        "25": 34.15,
+        "100": 37.55,
+        "400": 41.0
+      },
+      "Gumbel_MuZero": {
+        "0": 32.0,
+        "25": 41.78,
+        "100": 45.86,
+        "400": 50.0
+      },
+      "R_NaD_DeepNash": {
+        "0": 36.1,
+        "25": 45.07,
+        "100": 48.8,
+        "400": 52.6
+      },
+      "GLC_v2_Generalist": {
+        "0": 51.3,
+        "25": 59.18,
+        "100": 62.46,
+        "400": 65.8
+      }
+    }
+  },
+  "d4": {
+    "seed": 101,
+    "glc_ood_vs_rnad_ood_win_rate_pct": 62.5,
+    "glc_ood_vs_gumbel_ood_win_rate_pct": 84.38,
+    "glc_ood_vs_ppo_ood_win_rate_pct": 78.12,
+    "glc_ood_vs_rnad_indist_8x8_win_rate_pct": 65.62
+  },
+  "d5": {
+    "seed": 101,
+    "key_piece_accuracy_pct_by_ply": {
+      "PPO_GAE": {
+        "ply_10": 30.48,
+        "ply_20": 36.36,
+        "ply_30": 37.14
+      },
+      "GRPO_RLOO": {
+        "ply_10": 38.22,
+        "ply_20": 46.75,
+        "ply_30": 60.0
+      },
+      "AlphaZero_PUCT": {
+        "ply_10": 41.44,
+        "ply_20": 40.26,
+        "ply_30": 48.57
+      },
+      "Gumbel_MuZero": {
+        "ply_10": 31.3,
+        "ply_20": 31.6,
+        "ply_30": 39.29
+      },
+      "R_NaD_DeepNash": {
+        "ply_10": 42.53,
+        "ply_20": 37.66,
+        "ply_30": 52.86
+      },
+      "Deep_CFR": {
+        "ply_10": 39.26,
+        "ply_20": 46.32,
+        "ply_30": 47.86
+      },
+      "GLC_v2_Specialist": {
+        "ply_10": 81.72,
+        "ply_20": 88.74,
+        "ply_30": 92.86
+      },
+      "GLC_v2_Generalist": {
+        "ply_10": 78.56,
+        "ply_20": 86.15,
+        "ply_30": 93.57
+      }
+    },
+    "posterior_kl_by_ply": {
+      "PPO_GAE": {
+        "ply_10": 0.6902,
+        "ply_20": 0.7652,
+        "ply_30": 0.8298
+      },
+      "GRPO_RLOO": {
+        "ply_10": 0.689,
+        "ply_20": 0.7642,
+        "ply_30": 0.8286
+      },
+      "AlphaZero_PUCT": {
+        "ply_10": 0.6094,
+        "ply_20": 0.619,
+        "ply_30": 0.5768
+      },
+      "Gumbel_MuZero": {
+        "ply_10": 0.6094,
+        "ply_20": 0.619,
+        "ply_30": 0.577
+      },
+      "R_NaD_DeepNash": {
+        "ply_10": 0.5984,
+        "ply_20": 0.5968,
+        "ply_30": 0.5433
+      },
+      "Deep_CFR": {
+        "ply_10": 0.5988,
+        "ply_20": 0.5971,
+        "ply_30": 0.5435
+      },
+      "GLC_v2_Specialist": {
+        "ply_10": 0.1406,
+        "ply_20": 0.1104,
+        "ply_30": 0.0972
+      },
+      "GLC_v2_Generalist": {
+        "ply_10": 0.1405,
+        "ply_20": 0.1104,
+        "ply_30": 0.0971
+      }
+    }
+  },
+  "d6": {
+    "seed": 101,
+    "perfect_info_hex_5x5_b64": {
+      "glc_vs_alphazero_win_rate_pct": 75.0,
+      "glc_vs_gumbel_muzero_win_rate_pct": 33.33,
+      "glc_vs_ppo_gae_win_rate_pct": 83.33
+    },
+    "perfect_info_connect4_b64": {
+      "glc_vs_alphazero_win_rate_pct": 75.0,
+      "glc_vs_gumbel_muzero_win_rate_pct": 41.67,
+      "glc_vs_grpo_rloo_win_rate_pct": 83.33
+    },
+    "compute_scaling_curves": {
+      "PPO_GAE": {
+        "elos_B_1_4_16_64": [
+          1005.13,
+          996.15,
+          1003.83,
+          1027.88
+        ],
+        "delta_elo_b1_to_b64": 22.74,
+        "slope_elo_per_doubling": 3.8,
+        "r_squared_log_linear": 0.5137,
+        "monotone_increasing": false
+      },
+      "GRPO_RLOO": {
+        "elos_B_1_4_16_64": [
+          990.43,
+          1013.97,
+          1032.24,
+          997.61
+        ],
+        "delta_elo_b1_to_b64": 7.17,
+        "slope_elo_per_doubling": 1.99,
+        "r_squared_log_linear": 0.0762,
+        "monotone_increasing": false
+      },
+      "AlphaZero_PUCT": {
+        "elos_B_1_4_16_64": [
+          1014.15,
+          1065.41,
+          1057.15,
+          1078.65
+        ],
+        "delta_elo_b1_to_b64": 64.5,
+        "slope_elo_per_doubling": 9.26,
+        "r_squared_log_linear": 0.7345,
+        "monotone_increasing": false
+      },
+      "Gumbel_MuZero": {
+        "elos_B_1_4_16_64": [
+          1014.08,
+          1062.52,
+          1112.69,
+          1130.35
+        ],
+        "delta_elo_b1_to_b64": 116.28,
+        "slope_elo_per_doubling": 19.95,
+        "r_squared_log_linear": 0.9642,
+        "monotone_increasing": true
+      },
+      "R_NaD_DeepNash": {
+        "elos_B_1_4_16_64": [
+          1060.62,
+          1083.84,
+          1125.59,
+          1126.16
+        ],
+        "delta_elo_b1_to_b64": 65.54,
+        "slope_elo_per_doubling": 11.92,
+        "r_squared_log_linear": 0.9026,
+        "monotone_increasing": true
+      },
+      "Deep_CFR": {
+        "elos_B_1_4_16_64": [
+          1061.55,
+          1073.52,
+          1077.79,
+          1114.8
+        ],
+        "delta_elo_b1_to_b64": 53.25,
+        "slope_elo_per_doubling": 8.2,
+        "r_squared_log_linear": 0.8494,
+        "monotone_increasing": true
+      },
+      "GLC_v2_Specialist": {
+        "elos_B_1_4_16_64": [
+          1145.15,
+          1167.73,
+          1221.91,
+          1281.84
+        ],
+        "delta_elo_b1_to_b64": 136.69,
+        "slope_elo_per_doubling": 23.21,
+        "r_squared_log_linear": 0.9658,
+        "monotone_increasing": true
+      },
+      "GLC_v2_Generalist": {
+        "elos_B_1_4_16_64": [
+          1088.08,
+          1141.53,
+          1232.01,
+          1281.03
+        ],
+        "delta_elo_b1_to_b64": 192.95,
+        "slope_elo_per_doubling": 33.47,
+        "r_squared_log_linear": 0.9862,
+        "monotone_increasing": true
+      }
+    }
+  }
+}

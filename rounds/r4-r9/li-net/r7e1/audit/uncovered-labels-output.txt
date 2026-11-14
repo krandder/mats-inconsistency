@@ -1,0 +1,38 @@
+uncovered tokens: 101 hand-labelled: 101 without a label: []
+   57  design constant / label (tau tier, flip rate, t, exponent, ceiling, cap, rate, model name, section no.)
+   22  rule bar (threshold quoted from PREREG section 3)
+    9  result number verified by a hand entry on the adjacent line
+    8  reference value from the spec / R6
+    5  cost from the R7-E1 ledger (GPU-LOG.md)
+reference values found in the spec: {'0.9494': True, '0.069': True, '0.038': True, '0.382': True, '0.880': True, '0.863': True, '94.9 (= 0.9494 x 100, rounded)': True}
+ledger values found in GPU-LOG.md (r7e1): {'0.00': True, '0.76': True, '0.22': True, '$0.98': True}
+  spot  0: line 146 KL diff kc_K3: printed 0.0336
+  spot  1: line 304 theta_real training seconds (min, max): printed 2556
+  spot  2: line 51 attn_K3 below kc_K3 at tau 2.5 (%): printed 7.5
+  spot  3: line 157 jacobi W8/W1 tau2.5 CI: printed 2.113
+  spot  4: line 224 W(N) row attn_K3 tau 2.5: printed 3.591
+  spot  5: line 30 PUCT coverage mixed: printed 0.9863
+  spot  6: line 32 attn W16/W1 tau0.3: printed 1.024
+  spot  7: line 249 MSE cut vs kc_K1 2.5 + per seed: printed 0.152
+  spot  8: line 192 wave-1 share NW: printed 0.803
+  spot  9: line 34 ckpt size MB, params: printed 2.5
+  spot 10: line 153 jacobi KL CI, looped_lin KL, diff: printed 0.0397
+  spot 11: line 200 union JSD cut x mixed (mean of per-seed ratios), open, puct: printed 0.01739
+  spot 12: line 31 JSD ratio mixed: printed 2.93
+  spot 13: line 275 ckpt s102: bytes, final val BCE root/std6/full: printed 0.5011
+  spot 14: line 187 P-ActivePUCT clean puct30: coverage, attn JSD, attn KL, union JSD: printed 0.0294
+  spot 15: line 128 P-FullSupport KL, JSD mmd: printed 0.1183
+  spot 16: line 29 jacobi W8/W1 by tier: printed 1.823
+  spot 17: line 32 MSE cut tau2.5 vs mmd (%): printed 22.7
+  spot 18: line 178 P-ActivePUCT mixed open: coverage, attn JSD, attn KL, union JSD: printed 0.02500
+  spot 19: line 161 eta_t x mean_c P_tc, min and max over seeds and steps ('about 0.19'): printed 0.19
+  spot 20: line 31 KL cuts mixed, clean (%): printed 51.3
+  spot 21: line 135 P-FullSupport KL, JSD looped_attn: printed 0.0317
+  spot 22: line 32 MSE cut tau2.5 vs kc_K1 (%): printed 11.4
+  spot 23: line 195 mixed ratio, diff: printed 0.0165
+  spot 24: line 168 econ KL; jacobi - econ: printed 0.0457
+  spot 25: line 31 JSD ratio mixed: printed 2.74
+  spot 26: line 250 attn W8/W1 by tier: printed 1.030
+  spot 27: line 197 clean ratio, diff, KL cut: printed 4.58
+  spot 28: line 46 closed form range over extreme (lambda, beta) pairs: printed 1.44
+  spot 29: line 130 P-FullSupport KL, JSD kc_K3: printed 0.01358

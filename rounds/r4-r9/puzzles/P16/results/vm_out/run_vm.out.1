@@ -1,0 +1,104 @@
+2026-09-29T21:01:00Z start design_tune: ev design --split tune --n_per 21
+2026-09-29T21:01:05Z FAIL design_tune
+2026-09-29T21:01:05Z start design_pilot: ev design --split pilot --n_per 42
+2026-09-29T21:01:12Z FAIL design_pilot
+2026-09-29T21:01:12Z start tune_C4_a1_r.25: ev run --split tune --arm C4 --params {"alpha": 1, "rho": .25, "tag": "a1_r.25"}
+2026-09-29T21:01:12Z start pilot_E1: ev run --split pilot --arm E1 --params {"per": 8}
+2026-09-29T21:01:12Z start pilot_L: ev run --split pilot --arm L
+2026-09-29T21:01:15Z FAIL pilot_E1
+2026-09-29T21:01:15Z FAIL tune_C4_a1_r.25
+2026-09-29T21:01:15Z start tune_C4_a1_r.5: ev run --split tune --arm C4 --params {"alpha": 1, "rho": .5, "tag": "a1_r.5"}
+2026-09-29T21:01:15Z FAIL pilot_L
+2026-09-29T21:01:17Z FAIL tune_C4_a1_r.5
+2026-09-29T21:01:17Z start tune_C4_a2_r.25: ev run --split tune --arm C4 --params {"alpha": 2, "rho": .25, "tag": "a2_r.25"}
+2026-09-29T21:01:19Z FAIL tune_C4_a2_r.25
+2026-09-29T21:01:19Z start tune_C4_a2_r.5: ev run --split tune --arm C4 --params {"alpha": 2, "rho": .5, "tag": "a2_r.5"}
+2026-09-29T21:01:21Z FAIL tune_C4_a2_r.5
+2026-09-29T21:01:21Z start tune_C4_a4_r.25: ev run --split tune --arm C4 --params {"alpha": 4, "rho": .25, "tag": "a4_r.25"}
+2026-09-29T21:01:23Z FAIL tune_C4_a4_r.25
+2026-09-29T21:01:23Z start tune_C4_a4_r.5: ev run --split tune --arm C4 --params {"alpha": 4, "rho": .5, "tag": "a4_r.5"}
+2026-09-29T21:01:26Z FAIL tune_C4_a4_r.5
+2026-09-29T21:01:26Z start tune_C4_a8_r.25: ev run --split tune --arm C4 --params {"alpha": 8, "rho": .25, "tag": "a8_r.25"}
+2026-09-29T21:01:28Z FAIL tune_C4_a8_r.25
+2026-09-29T21:01:28Z start tune_C4_a8_r.5: ev run --split tune --arm C4 --params {"alpha": 8, "rho": .5, "tag": "a8_r.5"}
+2026-09-29T21:01:30Z FAIL tune_C4_a8_r.5
+2026-09-29T21:01:30Z start tune_pick1: python analyze.py tune
+2026-09-29T21:01:31Z FAIL tune_pick1
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+FileNotFoundError: [Errno 2] No such file or directory: '/root/out/tuned.json'
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-09-29T21:01:31Z start tune_C5_s.5: ev run --split tune --arm C5 --params 
+2026-09-29T21:01:33Z FAIL tune_C5_s.5
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-09-29T21:01:33Z start tune_C5_s1: ev run --split tune --arm C5 --params 
+2026-09-29T21:01:35Z FAIL tune_C5_s1
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-09-29T21:01:35Z start tune_C5_s2: ev run --split tune --arm C5 --params 
+2026-09-29T21:01:37Z FAIL tune_C5_s2
+2026-09-29T21:01:37Z start tune_S1_lr1e-3_E10: ev run --split tune --arm S1 --params {"lr": 1e-3, "E_steps": 10, "tag": "lr1e-3_E10"}
+2026-09-29T21:01:39Z FAIL tune_S1_lr1e-3_E10
+2026-09-29T21:01:39Z start tune_S1_lr1e-3_E20: ev run --split tune --arm S1 --params {"lr": 1e-3, "E_steps": 20, "tag": "lr1e-3_E20"}
+2026-09-29T21:01:41Z FAIL tune_S1_lr1e-3_E20
+2026-09-29T21:01:41Z start tune_S1_lr3e-3_E10: ev run --split tune --arm S1 --params {"lr": 3e-3, "E_steps": 10, "tag": "lr3e-3_E10"}
+2026-09-29T21:01:44Z FAIL tune_S1_lr3e-3_E10
+2026-09-29T21:01:44Z start tune_S1_lr3e-3_E20: ev run --split tune --arm S1 --params {"lr": 3e-3, "E_steps": 20, "tag": "lr3e-3_E20"}
+2026-09-29T21:01:46Z FAIL tune_S1_lr3e-3_E20
+2026-09-29T21:01:46Z start tune_S1_lr1e-2_E10: ev run --split tune --arm S1 --params {"lr": 1e-2, "E_steps": 10, "tag": "lr1e-2_E10"}
+2026-09-29T21:01:48Z FAIL tune_S1_lr1e-2_E10
+2026-09-29T21:01:48Z start tune_S1_lr1e-2_E20: ev run --split tune --arm S1 --params {"lr": 1e-2, "E_steps": 20, "tag": "lr1e-2_E20"}
+2026-09-29T21:01:50Z FAIL tune_S1_lr1e-2_E20
+2026-09-29T21:01:50Z start tune_S2_lr1e-3_E10: ev run --split tune --arm S2 --params {"lr": 1e-3, "E_steps": 10, "tag": "lr1e-3_E10"}
+2026-09-29T21:01:52Z FAIL tune_S2_lr1e-3_E10
+2026-09-29T21:01:52Z start tune_S2_lr1e-3_E20: ev run --split tune --arm S2 --params {"lr": 1e-3, "E_steps": 20, "tag": "lr1e-3_E20"}
+2026-09-29T21:01:54Z FAIL tune_S2_lr1e-3_E20
+2026-09-29T21:01:54Z start tune_S2_lr3e-3_E10: ev run --split tune --arm S2 --params {"lr": 3e-3, "E_steps": 10, "tag": "lr3e-3_E10"}
+2026-09-29T21:01:56Z FAIL tune_S2_lr3e-3_E10
+2026-09-29T21:01:56Z start tune_S2_lr3e-3_E20: ev run --split tune --arm S2 --params {"lr": 3e-3, "E_steps": 20, "tag": "lr3e-3_E20"}
+2026-09-29T21:01:58Z FAIL tune_S2_lr3e-3_E20
+2026-09-29T21:01:58Z start tune_S2_lr1e-2_E10: ev run --split tune --arm S2 --params {"lr": 1e-2, "E_steps": 10, "tag": "lr1e-2_E10"}
+2026-09-29T21:02:00Z FAIL tune_S2_lr1e-2_E10
+2026-09-29T21:02:00Z start tune_S2_lr1e-2_E20: ev run --split tune --arm S2 --params {"lr": 1e-2, "E_steps": 20, "tag": "lr1e-2_E20"}
+2026-09-29T21:02:03Z FAIL tune_S2_lr1e-2_E20
+2026-09-29T21:02:03Z start tune_pick2: python analyze.py tune
+2026-09-29T21:02:04Z FAIL tune_pick2
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+FileNotFoundError: [Errno 2] No such file or directory: '/root/out/tuned.json'
+2026-09-29T21:02:04Z start pilot_C4: ev run --split pilot --arm C4 --params 
+2026-09-29T21:02:06Z FAIL pilot_C4
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+FileNotFoundError: [Errno 2] No such file or directory: '/root/out/tuned.json'
+2026-09-29T21:02:06Z start pilot_C5: ev run --split pilot --arm C5 --params 
+2026-09-29T21:02:08Z FAIL pilot_C5

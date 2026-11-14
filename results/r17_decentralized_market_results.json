@@ -1,0 +1,1478 @@
+{
+  "round": "R17",
+  "title": "Decentralized Market-Training, Econometrica Incentive-Compatibility & Architecture Discovery",
+  "seeds": [
+    101,
+    102,
+    103
+  ],
+  "elapsed_seconds": 55.02738833427429,
+  "verdicts": {
+    "R17-D0_zero_oracle_and_strict_decentralized_autograd": "PASS",
+    "R17-E1_econometrica_ic_and_sybil_clone_annihilation": "PASS",
+    "R17-E2_iclr_zero_global_backprop_multihop_parity": "PASS",
+    "R17-E3_iclr_architecture_market_pruning_and_mitosis": "PASS",
+    "overall": "PASS"
+  },
+  "e1_econometrica_summary": {
+    "S1_Naive_LMSR_LinearScore": {
+      "equilibrium_inflator_alpha_mean": 9.333333492279053,
+      "equilibrium_inflator_alpha_sd": 2.174600947032753,
+      "equilibrium_clone_alpha_mean": 12.0,
+      "equilibrium_clone_alpha_sd": 0.0,
+      "equilibrium_market_kl_mean": 1.1792647043863933,
+      "equilibrium_market_kl_sd": 0.026190442001415255,
+      "equilibrium_market_brier_mean": 0.1206467052300771,
+      "equilibrium_market_brier_sd": 0.0013226340414752675,
+      "kl_ratio_vs_honest_oracle_mean": 56.98499259278765,
+      "kl_ratio_vs_honest_oracle_sd": 1.9024750715781251,
+      "ortho_specialist_payout_share_mean": 0.14897997226102294,
+      "ortho_specialist_payout_share_sd": 0.028449353790493882,
+      "clone_cartel_payout_share_mean": 0.5951995503625929,
+      "clone_cartel_payout_share_sd": 0.05047595841149563,
+      "inflator_payout_share_mean": 0.25582050070254697,
+      "inflator_payout_share_sd": 0.0659891272089494,
+      "coalition_clone_plus_inflator_share_mean": 0.8510200510651398,
+      "coalition_clone_plus_inflator_share_sd": 0.028449337667082124
+    },
+    "S2_Normalized_Pool_Static_LOO": {
+      "equilibrium_inflator_alpha_mean": 2.333333412806193,
+      "equilibrium_inflator_alpha_sd": 0.32998314689218594,
+      "equilibrium_clone_alpha_mean": 0.20000000298023224,
+      "equilibrium_clone_alpha_sd": 0.0,
+      "equilibrium_market_kl_mean": 0.26872697472572327,
+      "equilibrium_market_kl_sd": 0.01998389005378743,
+      "equilibrium_market_brier_mean": 0.059971608221530914,
+      "equilibrium_market_brier_sd": 0.001164654513753242,
+      "kl_ratio_vs_honest_oracle_mean": 12.961694649605667,
+      "kl_ratio_vs_honest_oracle_sd": 0.6605240490917758,
+      "ortho_specialist_payout_share_mean": 0.7081440372231517,
+      "ortho_specialist_payout_share_sd": 0.04991690909645516,
+      "clone_cartel_payout_share_mean": 0.0,
+      "clone_cartel_payout_share_sd": 0.0,
+      "inflator_payout_share_mean": 0.2918559541826144,
+      "inflator_payout_share_sd": 0.04991692977556583,
+      "coalition_clone_plus_inflator_share_mean": 0.2918559541826144,
+      "coalition_clone_plus_inflator_share_sd": 0.04991692977556583
+    },
+    "S3_VCG_Gershgorin_LOO": {
+      "equilibrium_inflator_alpha_mean": 0.9666666785875956,
+      "equilibrium_inflator_alpha_sd": 0.12472191607846733,
+      "equilibrium_clone_alpha_mean": 1.1333333651224773,
+      "equilibrium_clone_alpha_sd": 0.47140454888893074,
+      "equilibrium_market_kl_mean": 0.022689089179039,
+      "equilibrium_market_kl_sd": 0.001671217302460007,
+      "equilibrium_market_brier_mean": 0.008222250267863274,
+      "equilibrium_market_brier_sd": 0.00028686423724903293,
+      "kl_ratio_vs_honest_oracle_mean": 1.0984692638317715,
+      "kl_ratio_vs_honest_oracle_sd": 0.11027995883563924,
+      "ortho_specialist_payout_share_mean": 0.8546785142131316,
+      "ortho_specialist_payout_share_sd": 0.04293176428204971,
+      "clone_cartel_payout_share_mean": 0.012605400308339764,
+      "clone_cartel_payout_share_sd": 0.011983559568347717,
+      "inflator_payout_share_mean": 0.13271600249489782,
+      "inflator_payout_share_sd": 0.03449544952977283,
+      "coalition_clone_plus_inflator_share_mean": 0.1453214028032376,
+      "coalition_clone_plus_inflator_share_sd": 0.04293181172309013
+    },
+    "S4_Core_Capped_Behavioral_VCG": {
+      "equilibrium_inflator_alpha_mean": 0.9666666785875956,
+      "equilibrium_inflator_alpha_sd": 0.12472191607846733,
+      "equilibrium_clone_alpha_mean": 1.1333333651224773,
+      "equilibrium_clone_alpha_sd": 0.47140454888893074,
+      "equilibrium_market_kl_mean": 0.022340319429834683,
+      "equilibrium_market_kl_sd": 0.0018894376097137629,
+      "equilibrium_market_brier_mean": 0.008093888405710459,
+      "equilibrium_market_brier_sd": 0.00037905984267354,
+      "kl_ratio_vs_honest_oracle_mean": 1.0819498748785676,
+      "kl_ratio_vs_honest_oracle_sd": 0.12120790813075337,
+      "ortho_specialist_payout_share_mean": 0.8753872784118938,
+      "ortho_specialist_payout_share_sd": 0.04775403547406386,
+      "clone_cartel_payout_share_mean": 0.012722538076335013,
+      "clone_cartel_payout_share_sd": 0.01190253872672725,
+      "inflator_payout_share_mean": 0.11189014027633053,
+      "inflator_payout_share_sd": 0.03585595551775765,
+      "coalition_clone_plus_inflator_share_mean": 0.12461267835266554,
+      "coalition_clone_plus_inflator_share_sd": 0.04775407097681789
+    }
+  },
+  "e1_clone_share_reduction_pct": 97.862475186921,
+  "e1_complementary_shill_audit": {
+    "single_xor_specialist_net_payout": 0.38,
+    "S3_uncapped_vcg_shill_pair_payout_ratio": 2.0,
+    "S3_uncapped_shill_split_net_gain": 0.38,
+    "S4_core_capped_vcg_shill_pair_payout_ratio": 1.0,
+    "S4_core_capped_shill_split_net_gain": -0.040000000000000036,
+    "S4_false_name_proof_on_complements": true
+  },
+  "e2_decentralized_summary": {
+    "MultiHop_Equiv_SAT": {
+      "M1_Local_Greedy_Layerwise": {
+        "test_acc_mean": 0.4635416666666667,
+        "test_acc_sd": 0.035563802822259544,
+        "test_kl_mean": 0.5993495384852091,
+        "test_kl_sd": 0.018472258457261637,
+        "test_brier_mean": 0.26100197434425354,
+        "test_brier_sd": 0.008828094687036265
+      },
+      "M2_Decentralized_Naive_LMSR": {
+        "test_acc_mean": 0.4947916666666667,
+        "test_acc_sd": 0.020751793555350558,
+        "test_kl_mean": 0.6071477731068929,
+        "test_kl_sd": 0.014504007169100672,
+        "test_brier_mean": 0.26476341485977173,
+        "test_brier_sd": 0.006956970391587593
+      },
+      "M2b_InfoMax_ZeroPrice_Bottleneck": {
+        "test_acc_mean": 0.4921875,
+        "test_acc_sd": 0.017758049084617,
+        "test_kl_mean": 0.8293428222338358,
+        "test_kl_sd": 0.0211008767841278,
+        "test_brier_mean": 0.338945468266805,
+        "test_brier_sd": 0.007282941594324325
+      },
+      "M3a_Decentralized_TypeIII_ScalarPrice_VCG": {
+        "test_acc_mean": 0.9036458333333334,
+        "test_acc_sd": 0.012075024082676697,
+        "test_kl_mean": 0.2958078980445862,
+        "test_kl_sd": 0.008250057925780683,
+        "test_brier_mean": 0.11302923162778218,
+        "test_brier_sd": 0.003980817621686234
+      },
+      "M3_Decentralized_VCG_Gershgorin_LIR": {
+        "test_acc_mean": 1.0,
+        "test_acc_sd": 0.0,
+        "test_kl_mean": 0.0030465320063134036,
+        "test_kl_sd": 5.487870899855993e-10,
+        "test_brier_mean": 0.0015339543266842763,
+        "test_brier_sd": 5.4878708998559937e-11
+      },
+      "M4_Global_Backprop_Ceiling": {
+        "test_acc_mean": 1.0,
+        "test_acc_sd": 0.0,
+        "test_kl_mean": 0.0030465320063134036,
+        "test_kl_sd": 5.487870899855993e-10,
+        "test_brier_mean": 0.0015339543266842763,
+        "test_brier_sd": 5.4878708998559937e-11
+      }
+    },
+    "Hidden_Parity_Sudoku": {
+      "M1_Local_Greedy_Layerwise": {
+        "test_acc_mean": 0.4791666666666667,
+        "test_acc_sd": 0.00736569563735987,
+        "test_kl_mean": 0.5955154498418173,
+        "test_kl_sd": 0.008581172224487328,
+        "test_brier_mean": 0.2592582603295644,
+        "test_brier_sd": 0.004271819952413131
+      },
+      "M2_Decentralized_Naive_LMSR": {
+        "test_acc_mean": 0.4739583333333333,
+        "test_acc_sd": 0.008026580733032522,
+        "test_kl_mean": 0.5923549930254618,
+        "test_kl_sd": 0.010864137945514779,
+        "test_brier_mean": 0.25785065690676373,
+        "test_brier_sd": 0.005338202761536766
+      },
+      "M2b_InfoMax_ZeroPrice_Bottleneck": {
+        "test_acc_mean": 0.4921875,
+        "test_acc_sd": 0.017758049084617,
+        "test_kl_mean": 0.8293428222338358,
+        "test_kl_sd": 0.0211008767841278,
+        "test_brier_mean": 0.338945468266805,
+        "test_brier_sd": 0.007282941594324325
+      },
+      "M3a_Decentralized_TypeIII_ScalarPrice_VCG": {
+        "test_acc_mean": 0.9036458333333334,
+        "test_acc_sd": 0.012075024082676697,
+        "test_kl_mean": 0.2958078980445862,
+        "test_kl_sd": 0.008250057925780683,
+        "test_brier_mean": 0.11302923162778218,
+        "test_brier_sd": 0.003980817621686234
+      },
+      "M3_Decentralized_VCG_Gershgorin_LIR": {
+        "test_acc_mean": 1.0,
+        "test_acc_sd": 0.0,
+        "test_kl_mean": 0.0030465320063134036,
+        "test_kl_sd": 5.487870899855993e-10,
+        "test_brier_mean": 0.0015339543266842763,
+        "test_brier_sd": 5.4878708998559937e-11
+      },
+      "M4_Global_Backprop_Ceiling": {
+        "test_acc_mean": 1.0,
+        "test_acc_sd": 0.0,
+        "test_kl_mean": 0.0030465320063134036,
+        "test_kl_sd": 5.487870899855993e-10,
+        "test_brier_mean": 0.0015339543266842763,
+        "test_brier_sd": 5.4878708998559937e-11
+      }
+    }
+  },
+  "e2_m2_tbptt1_grad_cosine_mean": 0.9999998609224955,
+  "e3_architecture_summary": {
+    "A1_Static_Unpruned_Pool": {
+      "active_total_modules_mean": 12.0,
+      "active_total_modules_sd": 0.0,
+      "surviving_clones_mean": 6.0,
+      "surviving_clones_sd": 0.0,
+      "surviving_junk_mean": 4.0,
+      "surviving_junk_sd": 0.0,
+      "active_xor_modules_mean": 2.0,
+      "active_xor_modules_sd": 0.0,
+      "junk_pruned_recall_mean": 0.0,
+      "junk_pruned_recall_sd": 0.0,
+      "excess_clone_pruned_recall_mean": 0.0,
+      "excess_clone_pruned_recall_sd": 0.0,
+      "xor_bottleneck_survival_rate_mean": 1.0,
+      "xor_bottleneck_survival_rate_sd": 0.0,
+      "productive_mitosis_rate_mean": 0.0,
+      "productive_mitosis_rate_sd": 0.0,
+      "compute_rent_paid_mean": 0.14400000000000002,
+      "compute_rent_paid_sd": 0.0,
+      "compute_rent_reduction_pct_mean": 0.0,
+      "compute_rent_reduction_pct_sd": 0.0,
+      "test_acc_mean": 0.7974999944368998,
+      "test_acc_sd": 0.020716339979982238,
+      "test_kl_mean": 0.18391462663809457,
+      "test_kl_sd": 0.005806078462085357,
+      "test_brier_mean": 0.06865150729815166,
+      "test_brier_sd": 0.003719001781161101,
+      "net_market_welfare_mean": -0.3279146266380946,
+      "net_market_welfare_sd": 0.005806078462085357
+    },
+    "A2_GradMag_Taylor_Pruning": {
+      "active_total_modules_mean": 7.333333333333333,
+      "active_total_modules_sd": 0.4714045207910317,
+      "surviving_clones_mean": 6.0,
+      "surviving_clones_sd": 0.0,
+      "surviving_junk_mean": 0.3333333333333333,
+      "surviving_junk_sd": 0.4714045207910317,
+      "active_xor_modules_mean": 1.0,
+      "active_xor_modules_sd": 0.0,
+      "junk_pruned_recall_mean": 0.9166666666666666,
+      "junk_pruned_recall_sd": 0.11785113019775792,
+      "excess_clone_pruned_recall_mean": 0.0,
+      "excess_clone_pruned_recall_sd": 0.0,
+      "xor_bottleneck_survival_rate_mean": 0.5,
+      "xor_bottleneck_survival_rate_sd": 0.0,
+      "productive_mitosis_rate_mean": 0.0,
+      "productive_mitosis_rate_sd": 0.0,
+      "compute_rent_paid_mean": 0.08800000000000001,
+      "compute_rent_paid_sd": 0.005656854249492379,
+      "compute_rent_reduction_pct_mean": 38.888888888888886,
+      "compute_rent_reduction_pct_sd": 3.928371006591928,
+      "test_acc_mean": 0.7149999936421713,
+      "test_acc_sd": 0.01968502866785633,
+      "test_kl_mean": 0.2412459005912145,
+      "test_kl_sd": 0.005063628895314325,
+      "test_brier_mean": 0.09248629212379456,
+      "test_brier_sd": 0.0037802200207025438,
+      "net_market_welfare_mean": -0.3292459005912145,
+      "net_market_welfare_sd": 0.009304101931580473
+    },
+    "A2b_OBD_SecondOrder_Hessian_Pruning": {
+      "active_total_modules_mean": 8.0,
+      "active_total_modules_sd": 0.0,
+      "surviving_clones_mean": 6.0,
+      "surviving_clones_sd": 0.0,
+      "surviving_junk_mean": 1.0,
+      "surviving_junk_sd": 0.0,
+      "active_xor_modules_mean": 1.0,
+      "active_xor_modules_sd": 0.0,
+      "junk_pruned_recall_mean": 0.75,
+      "junk_pruned_recall_sd": 0.0,
+      "excess_clone_pruned_recall_mean": 0.0,
+      "excess_clone_pruned_recall_sd": 0.0,
+      "xor_bottleneck_survival_rate_mean": 0.5,
+      "xor_bottleneck_survival_rate_sd": 0.0,
+      "productive_mitosis_rate_mean": 0.0,
+      "productive_mitosis_rate_sd": 0.0,
+      "compute_rent_paid_mean": 0.09600000000000002,
+      "compute_rent_paid_sd": 1.3877787807814457e-17,
+      "compute_rent_reduction_pct_mean": 33.333333333333336,
+      "compute_rent_reduction_pct_sd": 0.0,
+      "test_acc_mean": 0.7183333237965902,
+      "test_acc_sd": 0.01885619094688491,
+      "test_kl_mean": 0.24117166300614676,
+      "test_kl_sd": 0.0051383244883282135,
+      "test_brier_mean": 0.09246777494748433,
+      "test_brier_sd": 0.0037952599042375707,
+      "net_market_welfare_mean": -0.3371716630061467,
+      "net_market_welfare_sd": 0.005138324488328214
+    },
+    "A3_FlatRent_Simultaneous_VCG": {
+      "active_total_modules_mean": 1.0,
+      "active_total_modules_sd": 0.0,
+      "surviving_clones_mean": 0.0,
+      "surviving_clones_sd": 0.0,
+      "surviving_junk_mean": 0.0,
+      "surviving_junk_sd": 0.0,
+      "active_xor_modules_mean": 1.0,
+      "active_xor_modules_sd": 0.0,
+      "junk_pruned_recall_mean": 1.0,
+      "junk_pruned_recall_sd": 0.0,
+      "excess_clone_pruned_recall_mean": 0.0,
+      "excess_clone_pruned_recall_sd": 0.0,
+      "xor_bottleneck_survival_rate_mean": 0.5,
+      "xor_bottleneck_survival_rate_sd": 0.0,
+      "productive_mitosis_rate_mean": 0.0,
+      "productive_mitosis_rate_sd": 0.0,
+      "compute_rent_paid_mean": 0.012000000000000002,
+      "compute_rent_paid_sd": 1.734723475976807e-18,
+      "compute_rent_reduction_pct_mean": 91.66666666666667,
+      "compute_rent_reduction_pct_sd": 0.0,
+      "test_acc_mean": 0.7099999785423279,
+      "test_acc_sd": 0.0035355305341848568,
+      "test_kl_mean": 0.27656592925389606,
+      "test_kl_sd": 0.003372657410849423,
+      "test_brier_mean": 0.10747896134853363,
+      "test_brier_sd": 0.0006218061939306092,
+      "net_market_welfare_mean": -0.28856592925389607,
+      "net_market_welfare_sd": 0.003372657410849423
+    },
+    "A4_VCG_Wealth_Architecture_Market": {
+      "active_total_modules_mean": 5.0,
+      "active_total_modules_sd": 0.0,
+      "surviving_clones_mean": 1.0,
+      "surviving_clones_sd": 0.0,
+      "surviving_junk_mean": 0.0,
+      "surviving_junk_sd": 0.0,
+      "active_xor_modules_mean": 4.0,
+      "active_xor_modules_sd": 0.0,
+      "junk_pruned_recall_mean": 1.0,
+      "junk_pruned_recall_sd": 0.0,
+      "excess_clone_pruned_recall_mean": 1.0,
+      "excess_clone_pruned_recall_sd": 0.0,
+      "xor_bottleneck_survival_rate_mean": 1.0,
+      "xor_bottleneck_survival_rate_sd": 0.0,
+      "productive_mitosis_rate_mean": 1.0,
+      "productive_mitosis_rate_sd": 0.0,
+      "compute_rent_paid_mean": 0.06,
+      "compute_rent_paid_sd": 0.0,
+      "compute_rent_reduction_pct_mean": 58.333333333333336,
+      "compute_rent_reduction_pct_sd": 0.0,
+      "test_acc_mean": 0.9583333333333334,
+      "test_acc_sd": 0.015320657170640387,
+      "test_kl_mean": 0.008224381133913994,
+      "test_kl_sd": 0.002567126335722356,
+      "test_brier_mean": 0.002998709911480546,
+      "test_brier_sd": 0.0010211175555397067,
+      "net_market_welfare_mean": -0.06822438113391399,
+      "net_market_welfare_sd": 0.002567126335722356
+    }
+  },
+  "e3_taylor_sign_flip_rate_mean": 0.625,
+  "seed_records": {
+    "d0": [
+      {
+        "seed": 101,
+        "static_ast_pass": true,
+        "static_ast_violations": 0,
+        "canaries_caught": 3,
+        "poison_traps_fired": 3,
+        "global_max_oracle_diff": 0.0,
+        "per_env_diffs": {
+          "galanis_t3s111o2ye2": 0.0,
+          "equiv_sat": 0.0,
+          "sudoku_6x6": 0.0
+        },
+        "verdict": "PASS"
+      },
+      {
+        "seed": 102,
+        "static_ast_pass": true,
+        "static_ast_violations": 0,
+        "canaries_caught": 3,
+        "poison_traps_fired": 3,
+        "global_max_oracle_diff": 0.0,
+        "per_env_diffs": {
+          "galanis_t3s111o2ye2": 0.0,
+          "equiv_sat": 0.0,
+          "sudoku_6x6": 0.0
+        },
+        "verdict": "PASS"
+      },
+      {
+        "seed": 103,
+        "static_ast_pass": true,
+        "static_ast_violations": 0,
+        "canaries_caught": 3,
+        "poison_traps_fired": 3,
+        "global_max_oracle_diff": 0.0,
+        "per_env_diffs": {
+          "galanis_t3s111o2ye2": 0.0,
+          "equiv_sat": 0.0,
+          "sudoku_6x6": 0.0
+        },
+        "verdict": "PASS"
+      }
+    ],
+    "e1": [
+      {
+        "seed": 101,
+        "honest_oracle_kl": 0.021112751215696335,
+        "mechanisms": {
+          "S1_Naive_LMSR_LinearScore": {
+            "equilibrium_inflator_alpha": 6.400000095367432,
+            "equilibrium_clone_alpha": 12.0,
+            "equilibrium_market_kl": 1.1487356424331665,
+            "equilibrium_market_brier": 0.11990979313850403,
+            "kl_ratio_vs_honest_oracle": 54.40956655516955,
+            "ortho_specialist_payout_share": 0.17315577764438136,
+            "clone_cartel_payout_share": 0.6636036609628099,
+            "inflator_payout_share": 0.16324057162516473,
+            "coalition_clone_plus_inflator_share": 0.8268442325879746,
+            "mean_payouts_per_agent": [
+              0.1752435714006424,
+              0.15985877811908722,
+              0.9609573483467102,
+              0.1073390394449234,
+              0.10834011435508728,
+              0.10761243104934692,
+              0.200334370136261,
+              0.11557943373918533
+            ]
+          },
+          "S2_Normalized_Pool_Static_LOO": {
+            "equilibrium_inflator_alpha": 1.9000000953674316,
+            "equilibrium_clone_alpha": 0.20000000298023224,
+            "equilibrium_market_kl": 0.2902599573135376,
+            "equilibrium_market_brier": 0.06152576580643654,
+            "kl_ratio_vs_honest_oracle": 13.74808779529136,
+            "ortho_specialist_payout_share": 0.7577400897247115,
+            "clone_cartel_payout_share": 0.0,
+            "inflator_payout_share": 0.24225987551915745,
+            "coalition_clone_plus_inflator_share": 0.24225987551915745,
+            "mean_payouts_per_agent": [
+              0.11557481437921524,
+              0.10244143009185791,
+              -0.03677468001842499,
+              -0.1639792025089264,
+              -0.16296504437923431,
+              -0.16378720104694366,
+              0.058043722063302994,
+              0.011659052222967148
+            ]
+          },
+          "S3_VCG_Gershgorin_LOO": {
+            "equilibrium_inflator_alpha": 0.800000011920929,
+            "equilibrium_clone_alpha": 0.800000011920929,
+            "equilibrium_market_kl": 0.021923933178186417,
+            "equilibrium_market_brier": 0.00811146292835474,
+            "kl_ratio_vs_honest_oracle": 1.0384214238212122,
+            "ortho_specialist_payout_share": 0.8445283597771579,
+            "clone_cartel_payout_share": 0.0042275972569889644,
+            "inflator_payout_share": 0.15124391645024804,
+            "coalition_clone_plus_inflator_share": 0.155471513707237,
+            "mean_payouts_per_agent": [
+              0.09687403589487076,
+              0.07556528598070145,
+              0.0006240663933567703,
+              -9.781889821169898e-05,
+              0.00023914207122288644,
+              -2.9881897717132233e-05,
+              0.02269088476896286,
+              0.008190729655325413
+            ]
+          },
+          "S4_Core_Capped_Behavioral_VCG": {
+            "equilibrium_inflator_alpha": 0.800000011920929,
+            "equilibrium_clone_alpha": 0.800000011920929,
+            "equilibrium_market_kl": 0.020877623930573463,
+            "equilibrium_market_brier": 0.0077263773418962955,
+            "kl_ratio_vs_honest_oracle": 0.9888632569616003,
+            "ortho_specialist_payout_share": 0.9066546523734443,
+            "clone_cartel_payout_share": 0.004579010560974702,
+            "inflator_payout_share": 0.08876632979454611,
+            "coalition_clone_plus_inflator_share": 0.09334534035552082,
+            "mean_payouts_per_agent": [
+              0.09716688841581345,
+              0.07556753605604172,
+              0.0006358835380524397,
+              -0.00010011211270466447,
+              0.00023650239745620638,
+              -2.6187424737145193e-05,
+              0.016010461375117302,
+              0.0009011604124680161
+            ]
+          }
+        },
+        "key_falsification_max_gain": -0.0014881814422551543,
+        "key_falsification_unprofitable": true,
+        "complementary_shill_audit": {
+          "single_xor_specialist_net_payout": 0.38,
+          "S3_uncapped_vcg_shill_pair_payout_ratio": 2.0,
+          "S3_uncapped_shill_split_net_gain": 0.38,
+          "S4_core_capped_vcg_shill_pair_payout_ratio": 1.0,
+          "S4_core_capped_shill_split_net_gain": -0.040000000000000036,
+          "S4_false_name_proof_on_complements": true
+        }
+      },
+      {
+        "seed": 102,
+        "honest_oracle_kl": 0.019956381991505623,
+        "mechanisms": {
+          "S1_Naive_LMSR_LinearScore": {
+            "equilibrium_inflator_alpha": 11.600000381469727,
+            "equilibrium_clone_alpha": 12.0,
+            "equilibrium_market_kl": 1.1763663291931152,
+            "equilibrium_market_brier": 0.11952628195285797,
+            "kl_ratio_vs_honest_oracle": 58.946873721591025,
+            "ortho_specialist_payout_share": 0.10904074245204973,
+            "clone_cartel_payout_share": 0.5786721041411463,
+            "inflator_payout_share": 0.3122871500510627,
+            "coalition_clone_plus_inflator_share": 0.8909592541922091,
+            "mean_payouts_per_agent": [
+              0.16102783381938934,
+              0.16391003131866455,
+              1.3134217262268066,
+              0.13724279403686523,
+              0.13694030046463013,
+              0.13681930303573608,
+              0.4581241309642792,
+              0.47248145937919617
+            ]
+          },
+          "S2_Normalized_Pool_Static_LOO": {
+            "equilibrium_inflator_alpha": 2.700000047683716,
+            "equilibrium_clone_alpha": 0.20000000298023224,
+            "equilibrium_market_kl": 0.24210861325263977,
+            "equilibrium_market_brier": 0.05872222036123276,
+            "kl_ratio_vs_honest_oracle": 12.131889104733142,
+            "ortho_specialist_payout_share": 0.6398406043794833,
+            "clone_cartel_payout_share": 0.0,
+            "inflator_payout_share": 0.3601594133288246,
+            "coalition_clone_plus_inflator_share": 0.3601594133288246,
+            "mean_payouts_per_agent": [
+              0.07563119381666183,
+              0.10145867615938187,
+              -0.02377057634294033,
+              -0.09534383565187454,
+              -0.09568476676940918,
+              -0.0959278866648674,
+              0.04317696392536163,
+              0.05650502070784569
+            ]
+          },
+          "S3_VCG_Gershgorin_LOO": {
+            "equilibrium_inflator_alpha": 1.100000023841858,
+            "equilibrium_clone_alpha": 1.8000000715255737,
+            "equilibrium_market_kl": 0.025008250027894974,
+            "equilibrium_market_brier": 0.008615625090897083,
+            "kl_ratio_vs_honest_oracle": 1.2531454869194056,
+            "ortho_specialist_payout_share": 0.80791311158912,
+            "clone_cartel_payout_share": 0.029552352700695003,
+            "inflator_payout_share": 0.16253453981759985,
+            "coalition_clone_plus_inflator_share": 0.19208689251829486,
+            "mean_payouts_per_agent": [
+              0.0574442483484745,
+              0.08225131779909134,
+              0.0016827827785164118,
+              0.0012120173778384924,
+              0.001169090741313994,
+              0.0010459813056513667,
+              0.010596594773232937,
+              0.01750711351633072
+            ]
+          },
+          "S4_Core_Capped_Behavioral_VCG": {
+            "equilibrium_inflator_alpha": 1.100000023841858,
+            "equilibrium_clone_alpha": 1.8000000715255737,
+            "equilibrium_market_kl": 0.025008250027894974,
+            "equilibrium_market_brier": 0.008615625090897083,
+            "kl_ratio_vs_honest_oracle": 1.2531454869194056,
+            "ortho_specialist_payout_share": 0.80791311158912,
+            "clone_cartel_payout_share": 0.029552352700695003,
+            "inflator_payout_share": 0.16253453981759985,
+            "coalition_clone_plus_inflator_share": 0.19208689251829486,
+            "mean_payouts_per_agent": [
+              0.0574442483484745,
+              0.08225131779909134,
+              0.0016827827785164118,
+              0.0012120173778384924,
+              0.001169090741313994,
+              0.0010459813056513667,
+              0.010596594773232937,
+              0.01750711351633072
+            ]
+          }
+        },
+        "key_falsification_max_gain": -0.0006255434127524495,
+        "key_falsification_unprofitable": true,
+        "complementary_shill_audit": {
+          "single_xor_specialist_net_payout": 0.38,
+          "S3_uncapped_vcg_shill_pair_payout_ratio": 2.0,
+          "S3_uncapped_shill_split_net_gain": 0.38,
+          "S4_core_capped_vcg_shill_pair_payout_ratio": 1.0,
+          "S4_core_capped_shill_split_net_gain": -0.040000000000000036,
+          "S4_false_name_proof_on_complements": true
+        }
+      },
+      {
+        "seed": 103,
+        "honest_oracle_kl": 0.021054217591881752,
+        "mechanisms": {
+          "S1_Naive_LMSR_LinearScore": {
+            "equilibrium_inflator_alpha": 10.0,
+            "equilibrium_clone_alpha": 12.0,
+            "equilibrium_market_kl": 1.212692141532898,
+            "equilibrium_market_brier": 0.12250404059886932,
+            "kl_ratio_vs_honest_oracle": 57.598537501602394,
+            "ortho_specialist_payout_share": 0.16474339668663773,
+            "clone_cartel_payout_share": 0.5433228859838225,
+            "inflator_payout_share": 0.2919337804314134,
+            "coalition_clone_plus_inflator_share": 0.8352566664152359,
+            "mean_payouts_per_agent": [
+              0.1818062961101532,
+              0.1811186671257019,
+              0.8919110298156738,
+              0.10166382044553757,
+              0.10152047872543335,
+              0.10182929784059525,
+              0.3113017678260803,
+              0.33181998133659363
+            ]
+          },
+          "S2_Normalized_Pool_Static_LOO": {
+            "equilibrium_inflator_alpha": 2.4000000953674316,
+            "equilibrium_clone_alpha": 0.20000000298023224,
+            "equilibrium_market_kl": 0.27381235361099243,
+            "equilibrium_market_brier": 0.05966683849692345,
+            "kl_ratio_vs_honest_oracle": 13.0051070487925,
+            "ortho_specialist_payout_share": 0.7268514175652602,
+            "clone_cartel_payout_share": 0.0,
+            "inflator_payout_share": 0.27314857369986123,
+            "coalition_clone_plus_inflator_share": 0.27314857369986123,
+            "mean_payouts_per_agent": [
+              0.10255569219589233,
+              0.10958797484636307,
+              -0.03228149190545082,
+              -0.14171995222568512,
+              -0.14211568236351013,
+              -0.14169158041477203,
+              0.03859361633658409,
+              0.04112933203577995
+            ]
+          },
+          "S3_VCG_Gershgorin_LOO": {
+            "equilibrium_inflator_alpha": 1.0,
+            "equilibrium_clone_alpha": 0.800000011920929,
+            "equilibrium_market_kl": 0.021135084331035614,
+            "equilibrium_market_brier": 0.007939662784337997,
+            "kl_ratio_vs_honest_oracle": 1.003840880754697,
+            "ortho_specialist_payout_share": 0.9115940712731166,
+            "clone_cartel_payout_share": 0.0040362509673353315,
+            "inflator_payout_share": 0.0843695512168456,
+            "coalition_clone_plus_inflator_share": 0.08840580218418093,
+            "mean_payouts_per_agent": [
+              0.0865207314491272,
+              0.08699291944503784,
+              0.0006803684518672526,
+              2.692363159439992e-05,
+              -8.157566298905294e-06,
+              6.097167715779506e-05,
+              0.003830693894997239,
+              0.01222828309983015
+            ]
+          },
+          "S4_Core_Capped_Behavioral_VCG": {
+            "equilibrium_inflator_alpha": 1.0,
+            "equilibrium_clone_alpha": 0.800000011920929,
+            "equilibrium_market_kl": 0.021135084331035614,
+            "equilibrium_market_brier": 0.007939662784337997,
+            "kl_ratio_vs_honest_oracle": 1.003840880754697,
+            "ortho_specialist_payout_share": 0.9115940712731166,
+            "clone_cartel_payout_share": 0.0040362509673353315,
+            "inflator_payout_share": 0.0843695512168456,
+            "coalition_clone_plus_inflator_share": 0.08840580218418093,
+            "mean_payouts_per_agent": [
+              0.0865207314491272,
+              0.08699291944503784,
+              0.0006803684518672526,
+              2.692363159439992e-05,
+              -8.157566298905294e-06,
+              6.097167715779506e-05,
+              0.003830693894997239,
+              0.01222828309983015
+            ]
+          }
+        },
+        "key_falsification_max_gain": -0.0008207629143726081,
+        "key_falsification_unprofitable": true,
+        "complementary_shill_audit": {
+          "single_xor_specialist_net_payout": 0.38,
+          "S3_uncapped_vcg_shill_pair_payout_ratio": 2.0,
+          "S3_uncapped_shill_split_net_gain": 0.38,
+          "S4_core_capped_vcg_shill_pair_payout_ratio": 1.0,
+          "S4_core_capped_shill_split_net_gain": -0.040000000000000036,
+          "S4_false_name_proof_on_complements": true
+        }
+      }
+    ],
+    "e2": [
+      {
+        "seed": 101,
+        "strict_detach_verified": true,
+        "max_cross_module_grad": 0.0,
+        "m2_tbptt1_grad_cosine": 0.9999998211860657,
+        "domains": {
+          "MultiHop_Equiv_SAT": {
+            "M1_Local_Greedy_Layerwise": {
+              "test_acc": 0.4140625,
+              "test_kl": 0.6254311203956604,
+              "test_brier": 0.2734505236148834,
+              "final_beta_stakes": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+              ]
+            },
+            "M2_Decentralized_Naive_LMSR": {
+              "test_acc": 0.46875,
+              "test_kl": 0.6275831460952759,
+              "test_brier": 0.27453261613845825,
+              "final_beta_stakes": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+              ]
+            },
+            "M2b_InfoMax_ZeroPrice_Bottleneck": {
+              "test_acc": 0.47265625,
+              "test_kl": 0.8239468336105347,
+              "test_brier": 0.3367479741573334,
+              "final_beta_stakes": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+              ]
+            },
+            "M3a_Decentralized_TypeIII_ScalarPrice_VCG": {
+              "test_acc": 0.9140625,
+              "test_kl": 0.2862939238548279,
+              "test_brier": 0.10855865478515625,
+              "final_beta_stakes": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+              ]
+            },
+            "M3_Decentralized_VCG_Gershgorin_LIR": {
+              "test_acc": 1.0,
+              "test_kl": 0.003046532394364476,
+              "test_brier": 0.001533954287879169,
+              "final_beta_stakes": [
+                1.4110795259475708,
+                1.3912959098815918,
+                6.0,
+                1.3695268630981445,
+                1.3849965333938599,
+                1.387969970703125
+              ]
+            },
+            "M4_Global_Backprop_Ceiling": {
+              "test_acc": 1.0,
+              "test_kl": 0.003046532394364476,
+              "test_brier": 0.001533954287879169,
+              "final_beta_stakes": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+              ]
+            }
+          },
+          "Hidden_Parity_Sudoku": {
+            "M1_Local_Greedy_Layerwise": {
+              "test_acc": 0.46875,
+              "test_kl": 0.6076290011405945,
+              "test_brier": 0.26527294516563416,
+              "final_beta_stakes": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+              ]
+            },
+            "M2_Decentralized_Naive_LMSR": {
+              "test_acc": 0.46484375,
+              "test_kl": 0.5936223268508911,
+              "test_brier": 0.2587446868419647,
+              "final_beta_stakes": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+              ]
+            },
+            "M2b_InfoMax_ZeroPrice_Bottleneck": {
+              "test_acc": 0.47265625,
+              "test_kl": 0.8239468336105347,
+              "test_brier": 0.3367479741573334,
+              "final_beta_stakes": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+              ]
+            },
+            "M3a_Decentralized_TypeIII_ScalarPrice_VCG": {
+              "test_acc": 0.9140625,
+              "test_kl": 0.2862939238548279,
+              "test_brier": 0.10855865478515625,
+              "final_beta_stakes": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+              ]
+            },
+            "M3_Decentralized_VCG_Gershgorin_LIR": {
+              "test_acc": 1.0,
+              "test_kl": 0.003046532394364476,
+              "test_brier": 0.001533954287879169,
+              "final_beta_stakes": [
+                1.3754587173461914,
+                6.0,
+                1.3062937259674072,
+                3.3860135078430176,
+                1.3721405267715454,
+                1.3731282949447632
+              ]
+            },
+            "M4_Global_Backprop_Ceiling": {
+              "test_acc": 1.0,
+              "test_kl": 0.003046532394364476,
+              "test_brier": 0.001533954287879169,
+              "final_beta_stakes": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+              ]
+            }
+          }
+        }
+      },
+      {
+        "seed": 102,
+        "strict_detach_verified": true,
+        "max_cross_module_grad": 0.0,
+        "m2_tbptt1_grad_cosine": 0.9999999105930328,
+        "domains": {
+          "MultiHop_Equiv_SAT": {
+            "M1_Local_Greedy_Layerwise": {
+              "test_acc": 0.49609375,
+              "test_kl": 0.5850242972373962,
+              "test_brier": 0.2539542317390442,
+              "final_beta_stakes": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+              ]
+            },
+            "M2_Decentralized_Naive_LMSR": {
+              "test_acc": 0.51953125,
+              "test_kl": 0.5953984260559082,
+              "test_brier": 0.2588682770729065,
+              "final_beta_stakes": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+              ]
+            },
+            "M2b_InfoMax_ZeroPrice_Bottleneck": {
+              "test_acc": 0.48828125,
+              "test_kl": 0.8574579954147339,
+              "test_brier": 0.3487585783004761,
+              "final_beta_stakes": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+              ]
+            },
+            "M3a_Decentralized_TypeIII_ScalarPrice_VCG": {
+              "test_acc": 0.91015625,
+              "test_kl": 0.29471608996391296,
+              "test_brier": 0.11230127513408661,
+              "final_beta_stakes": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+              ]
+            },
+            "M3_Decentralized_VCG_Gershgorin_LIR": {
+              "test_acc": 1.0,
+              "test_kl": 0.003046532394364476,
+              "test_brier": 0.001533954287879169,
+              "final_beta_stakes": [
+                1.4149186611175537,
+                1.4124155044555664,
+                6.0,
+                1.308694839477539,
+                1.3994495868682861,
+                1.4119874238967896
+              ]
+            },
+            "M4_Global_Backprop_Ceiling": {
+              "test_acc": 1.0,
+              "test_kl": 0.003046532394364476,
+              "test_brier": 0.001533954287879169,
+              "final_beta_stakes": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+              ]
+            }
+          },
+          "Hidden_Parity_Sudoku": {
+            "M1_Local_Greedy_Layerwise": {
+              "test_acc": 0.484375,
+              "test_kl": 0.5888252854347229,
+              "test_brier": 0.25576066970825195,
+              "final_beta_stakes": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+              ]
+            },
+            "M2_Decentralized_Naive_LMSR": {
+              "test_acc": 0.47265625,
+              "test_kl": 0.5784608721733093,
+              "test_brier": 0.2509117126464844,
+              "final_beta_stakes": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+              ]
+            },
+            "M2b_InfoMax_ZeroPrice_Bottleneck": {
+              "test_acc": 0.48828125,
+              "test_kl": 0.8574579954147339,
+              "test_brier": 0.3487585783004761,
+              "final_beta_stakes": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+              ]
+            },
+            "M3a_Decentralized_TypeIII_ScalarPrice_VCG": {
+              "test_acc": 0.91015625,
+              "test_kl": 0.29471608996391296,
+              "test_brier": 0.11230127513408661,
+              "final_beta_stakes": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+              ]
+            },
+            "M3_Decentralized_VCG_Gershgorin_LIR": {
+              "test_acc": 1.0,
+              "test_kl": 0.003046532394364476,
+              "test_brier": 0.001533954287879169,
+              "final_beta_stakes": [
+                1.2940930128097534,
+                1.6504932641983032,
+                1.3645193576812744,
+                1.4388247728347778,
+                1.380057454109192,
+                1.3770838975906372
+              ]
+            },
+            "M4_Global_Backprop_Ceiling": {
+              "test_acc": 1.0,
+              "test_kl": 0.003046532394364476,
+              "test_brier": 0.001533954287879169,
+              "final_beta_stakes": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+              ]
+            }
+          }
+        }
+      },
+      {
+        "seed": 103,
+        "strict_detach_verified": true,
+        "max_cross_module_grad": 0.0,
+        "m2_tbptt1_grad_cosine": 0.9999998509883881,
+        "domains": {
+          "MultiHop_Equiv_SAT": {
+            "M1_Local_Greedy_Layerwise": {
+              "test_acc": 0.48046875,
+              "test_kl": 0.5875931978225708,
+              "test_brier": 0.255601167678833,
+              "final_beta_stakes": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+              ]
+            },
+            "M2_Decentralized_Naive_LMSR": {
+              "test_acc": 0.49609375,
+              "test_kl": 0.5984617471694946,
+              "test_brier": 0.26088935136795044,
+              "final_beta_stakes": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+              ]
+            },
+            "M2b_InfoMax_ZeroPrice_Bottleneck": {
+              "test_acc": 0.515625,
+              "test_kl": 0.806623637676239,
+              "test_brier": 0.3313298523426056,
+              "final_beta_stakes": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+              ]
+            },
+            "M3a_Decentralized_TypeIII_ScalarPrice_VCG": {
+              "test_acc": 0.88671875,
+              "test_kl": 0.3064136803150177,
+              "test_brier": 0.1182277649641037,
+              "final_beta_stakes": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+              ]
+            },
+            "M3_Decentralized_VCG_Gershgorin_LIR": {
+              "test_acc": 1.0,
+              "test_kl": 0.003046531230211258,
+              "test_brier": 0.0015339544042944908,
+              "final_beta_stakes": [
+                1.1819978952407837,
+                1.6931123733520508,
+                6.0,
+                1.3699134588241577,
+                1.3520699739456177,
+                1.3610492944717407
+              ]
+            },
+            "M4_Global_Backprop_Ceiling": {
+              "test_acc": 1.0,
+              "test_kl": 0.003046531230211258,
+              "test_brier": 0.0015339544042944908,
+              "final_beta_stakes": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+              ]
+            }
+          },
+          "Hidden_Parity_Sudoku": {
+            "M1_Local_Greedy_Layerwise": {
+              "test_acc": 0.484375,
+              "test_kl": 0.5900920629501343,
+              "test_brier": 0.25674116611480713,
+              "final_beta_stakes": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+              ]
+            },
+            "M2_Decentralized_Naive_LMSR": {
+              "test_acc": 0.484375,
+              "test_kl": 0.6049817800521851,
+              "test_brier": 0.26389557123184204,
+              "final_beta_stakes": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+              ]
+            },
+            "M2b_InfoMax_ZeroPrice_Bottleneck": {
+              "test_acc": 0.515625,
+              "test_kl": 0.806623637676239,
+              "test_brier": 0.3313298523426056,
+              "final_beta_stakes": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+              ]
+            },
+            "M3a_Decentralized_TypeIII_ScalarPrice_VCG": {
+              "test_acc": 0.88671875,
+              "test_kl": 0.3064136803150177,
+              "test_brier": 0.1182277649641037,
+              "final_beta_stakes": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+              ]
+            },
+            "M3_Decentralized_VCG_Gershgorin_LIR": {
+              "test_acc": 1.0,
+              "test_kl": 0.003046531230211258,
+              "test_brier": 0.0015339544042944908,
+              "final_beta_stakes": [
+                1.3701791763305664,
+                5.61710786819458,
+                1.3888710737228394,
+                5.371461868286133,
+                1.3806668519973755,
+                1.3755289316177368
+              ]
+            },
+            "M4_Global_Backprop_Ceiling": {
+              "test_acc": 1.0,
+              "test_kl": 0.003046531230211258,
+              "test_brier": 0.0015339544042944908,
+              "final_beta_stakes": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "e3": [
+      {
+        "seed": 101,
+        "taylor_sign_flip_rate": 0.625,
+        "arms": {
+          "A1_Static_Unpruned_Pool": {
+            "active_total_modules": 12.0,
+            "surviving_clones": 6.0,
+            "surviving_junk": 4.0,
+            "active_xor_modules": 2.0,
+            "junk_pruned_recall": 0.0,
+            "excess_clone_pruned_recall": 0.0,
+            "xor_bottleneck_survival_rate": 1.0,
+            "productive_mitosis_rate": 0.0,
+            "compute_rent_paid": 0.14400000000000002,
+            "compute_rent_reduction_pct": 0.0,
+            "test_acc": 0.824999988079071,
+            "test_kl": 0.17759031057357788,
+            "test_brier": 0.0639725849032402,
+            "net_market_welfare": -0.3215903105735779
+          },
+          "A2_GradMag_Taylor_Pruning": {
+            "active_total_modules": 7.0,
+            "surviving_clones": 6.0,
+            "surviving_junk": 0.0,
+            "active_xor_modules": 1.0,
+            "junk_pruned_recall": 1.0,
+            "excess_clone_pruned_recall": 0.0,
+            "xor_bottleneck_survival_rate": 0.5,
+            "productive_mitosis_rate": 0.0,
+            "compute_rent_paid": 0.084,
+            "compute_rent_reduction_pct": 41.666666666666664,
+            "test_acc": 0.7425000071525574,
+            "test_kl": 0.23408496379852295,
+            "test_brier": 0.08717701584100723,
+            "net_market_welfare": -0.31808496379852297
+          },
+          "A2b_OBD_SecondOrder_Hessian_Pruning": {
+            "active_total_modules": 8.0,
+            "surviving_clones": 6.0,
+            "surviving_junk": 1.0,
+            "active_xor_modules": 1.0,
+            "junk_pruned_recall": 0.75,
+            "excess_clone_pruned_recall": 0.0,
+            "xor_bottleneck_survival_rate": 0.5,
+            "productive_mitosis_rate": 0.0,
+            "compute_rent_paid": 0.096,
+            "compute_rent_reduction_pct": 33.333333333333336,
+            "test_acc": 0.7450000047683716,
+            "test_kl": 0.23390527069568634,
+            "test_brier": 0.08713609725236893,
+            "net_market_welfare": -0.3299052706956863
+          },
+          "A3_FlatRent_Simultaneous_VCG": {
+            "active_total_modules": 1.0,
+            "surviving_clones": 0.0,
+            "surviving_junk": 0.0,
+            "active_xor_modules": 1.0,
+            "junk_pruned_recall": 1.0,
+            "excess_clone_pruned_recall": 0.0,
+            "xor_bottleneck_survival_rate": 0.5,
+            "productive_mitosis_rate": 0.0,
+            "compute_rent_paid": 0.012,
+            "compute_rent_reduction_pct": 91.66666666666667,
+            "test_acc": 0.7149999737739563,
+            "test_kl": 0.28132665157318115,
+            "test_brier": 0.10821904987096786,
+            "net_market_welfare": -0.29332665157318116
+          },
+          "A4_VCG_Wealth_Architecture_Market": {
+            "active_total_modules": 5.0,
+            "surviving_clones": 1.0,
+            "surviving_junk": 0.0,
+            "active_xor_modules": 4.0,
+            "junk_pruned_recall": 1.0,
+            "excess_clone_pruned_recall": 1.0,
+            "xor_bottleneck_survival_rate": 1.0,
+            "productive_mitosis_rate": 1.0,
+            "compute_rent_paid": 0.06,
+            "compute_rent_reduction_pct": 58.333333333333336,
+            "test_acc": 0.9574999809265137,
+            "test_kl": 0.011849546805024147,
+            "test_brier": 0.004430875182151794,
+            "net_market_welfare": -0.07184954680502414
+          }
+        }
+      },
+      {
+        "seed": 102,
+        "taylor_sign_flip_rate": 0.625,
+        "arms": {
+          "A1_Static_Unpruned_Pool": {
+            "active_total_modules": 12.0,
+            "surviving_clones": 6.0,
+            "surviving_junk": 4.0,
+            "active_xor_modules": 2.0,
+            "junk_pruned_recall": 0.0,
+            "excess_clone_pruned_recall": 0.0,
+            "xor_bottleneck_survival_rate": 1.0,
+            "productive_mitosis_rate": 0.0,
+            "compute_rent_paid": 0.14400000000000002,
+            "compute_rent_reduction_pct": 0.0,
+            "test_acc": 0.7925000190734863,
+            "test_kl": 0.18254157900810242,
+            "test_brier": 0.06891077011823654,
+            "net_market_welfare": -0.32654157900810243
+          },
+          "A2_GradMag_Taylor_Pruning": {
+            "active_total_modules": 8.0,
+            "surviving_clones": 6.0,
+            "surviving_junk": 1.0,
+            "active_xor_modules": 1.0,
+            "junk_pruned_recall": 0.75,
+            "excess_clone_pruned_recall": 0.0,
+            "xor_bottleneck_survival_rate": 0.5,
+            "productive_mitosis_rate": 0.0,
+            "compute_rent_paid": 0.096,
+            "compute_rent_reduction_pct": 33.333333333333336,
+            "test_acc": 0.7049999833106995,
+            "test_kl": 0.2448616474866867,
+            "test_brier": 0.0945989117026329,
+            "net_market_welfare": -0.3408616474866867
+          },
+          "A2b_OBD_SecondOrder_Hessian_Pruning": {
+            "active_total_modules": 8.0,
+            "surviving_clones": 6.0,
+            "surviving_junk": 1.0,
+            "active_xor_modules": 1.0,
+            "junk_pruned_recall": 0.75,
+            "excess_clone_pruned_recall": 0.0,
+            "xor_bottleneck_survival_rate": 0.5,
+            "productive_mitosis_rate": 0.0,
+            "compute_rent_paid": 0.096,
+            "compute_rent_reduction_pct": 33.333333333333336,
+            "test_acc": 0.7049999833106995,
+            "test_kl": 0.2448616474866867,
+            "test_brier": 0.0945989117026329,
+            "net_market_welfare": -0.3408616474866867
+          },
+          "A3_FlatRent_Simultaneous_VCG": {
+            "active_total_modules": 1.0,
+            "surviving_clones": 0.0,
+            "surviving_junk": 0.0,
+            "active_xor_modules": 1.0,
+            "junk_pruned_recall": 1.0,
+            "excess_clone_pruned_recall": 0.0,
+            "xor_bottleneck_survival_rate": 0.5,
+            "productive_mitosis_rate": 0.0,
+            "compute_rent_paid": 0.012,
+            "compute_rent_reduction_pct": 91.66666666666667,
+            "test_acc": 0.7074999809265137,
+            "test_kl": 0.2744382917881012,
+            "test_brier": 0.10669761896133423,
+            "net_market_welfare": -0.2864382917881012
+          },
+          "A4_VCG_Wealth_Architecture_Market": {
+            "active_total_modules": 5.0,
+            "surviving_clones": 1.0,
+            "surviving_junk": 0.0,
+            "active_xor_modules": 4.0,
+            "junk_pruned_recall": 1.0,
+            "excess_clone_pruned_recall": 1.0,
+            "xor_bottleneck_survival_rate": 1.0,
+            "productive_mitosis_rate": 1.0,
+            "compute_rent_paid": 0.06,
+            "compute_rent_reduction_pct": 58.333333333333336,
+            "test_acc": 0.9399999976158142,
+            "test_kl": 0.0065816123969852924,
+            "test_brier": 0.0024429350160062313,
+            "net_market_welfare": -0.06658161239698529
+          }
+        }
+      },
+      {
+        "seed": 103,
+        "taylor_sign_flip_rate": 0.625,
+        "arms": {
+          "A1_Static_Unpruned_Pool": {
+            "active_total_modules": 12.0,
+            "surviving_clones": 6.0,
+            "surviving_junk": 4.0,
+            "active_xor_modules": 2.0,
+            "junk_pruned_recall": 0.0,
+            "excess_clone_pruned_recall": 0.0,
+            "xor_bottleneck_survival_rate": 1.0,
+            "productive_mitosis_rate": 0.0,
+            "compute_rent_paid": 0.14400000000000002,
+            "compute_rent_reduction_pct": 0.0,
+            "test_acc": 0.7749999761581421,
+            "test_kl": 0.19161199033260345,
+            "test_brier": 0.07307116687297821,
+            "net_market_welfare": -0.33561199033260347
+          },
+          "A2_GradMag_Taylor_Pruning": {
+            "active_total_modules": 7.0,
+            "surviving_clones": 6.0,
+            "surviving_junk": 0.0,
+            "active_xor_modules": 1.0,
+            "junk_pruned_recall": 1.0,
+            "excess_clone_pruned_recall": 0.0,
+            "xor_bottleneck_survival_rate": 0.5,
+            "productive_mitosis_rate": 0.0,
+            "compute_rent_paid": 0.084,
+            "compute_rent_reduction_pct": 41.666666666666664,
+            "test_acc": 0.6974999904632568,
+            "test_kl": 0.24479109048843384,
+            "test_brier": 0.09568294882774353,
+            "net_market_welfare": -0.32879109048843386
+          },
+          "A2b_OBD_SecondOrder_Hessian_Pruning": {
+            "active_total_modules": 8.0,
+            "surviving_clones": 6.0,
+            "surviving_junk": 1.0,
+            "active_xor_modules": 1.0,
+            "junk_pruned_recall": 0.75,
+            "excess_clone_pruned_recall": 0.0,
+            "xor_bottleneck_survival_rate": 0.5,
+            "productive_mitosis_rate": 0.0,
+            "compute_rent_paid": 0.096,
+            "compute_rent_reduction_pct": 33.333333333333336,
+            "test_acc": 0.7049999833106995,
+            "test_kl": 0.2447480708360672,
+            "test_brier": 0.09566831588745117,
+            "net_market_welfare": -0.3407480708360672
+          },
+          "A3_FlatRent_Simultaneous_VCG": {
+            "active_total_modules": 1.0,
+            "surviving_clones": 0.0,
+            "surviving_junk": 0.0,
+            "active_xor_modules": 1.0,
+            "junk_pruned_recall": 1.0,
+            "excess_clone_pruned_recall": 0.0,
+            "xor_bottleneck_survival_rate": 0.5,
+            "productive_mitosis_rate": 0.0,
+            "compute_rent_paid": 0.012,
+            "compute_rent_reduction_pct": 91.66666666666667,
+            "test_acc": 0.7074999809265137,
+            "test_kl": 0.2739328444004059,
+            "test_brier": 0.1075202152132988,
+            "net_market_welfare": -0.2859328444004059
+          },
+          "A4_VCG_Wealth_Architecture_Market": {
+            "active_total_modules": 5.0,
+            "surviving_clones": 1.0,
+            "surviving_junk": 0.0,
+            "active_xor_modules": 4.0,
+            "junk_pruned_recall": 1.0,
+            "excess_clone_pruned_recall": 1.0,
+            "xor_bottleneck_survival_rate": 1.0,
+            "productive_mitosis_rate": 1.0,
+            "compute_rent_paid": 0.06,
+            "compute_rent_reduction_pct": 58.333333333333336,
+            "test_acc": 0.9775000214576721,
+            "test_kl": 0.006241984199732542,
+            "test_brier": 0.0021223195362836123,
+            "net_market_welfare": -0.06624198419973254
+          }
+        }
+      }
+    ]
+  }
+}

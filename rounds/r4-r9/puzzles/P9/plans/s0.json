@@ -1,0 +1,162 @@
+[
+ {
+  "name": "prep",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_eval.py prep --out {OUT} --cache /root/cache",
+  "done": "{OUT}/eval/prep.json"
+ },
+ {
+  "name": "p9a_X1_s0",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9a.py --arm X1 --seed 0 --steps 1500 --out {OUT} --scratch {OUT}/partial --cache /root/cache",
+  "done": "{OUT}/p9a/X1_s0.json"
+ },
+ {
+  "name": "train_N1_s0",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_train.py --arm N1 --seed 0 --steps 4000 --out {OUT} --scratch {OUT}/partial ",
+  "done": "{OUT}/train/N1_s0.json"
+ },
+ {
+  "name": "train_N1_s1",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_train.py --arm N1 --seed 1 --steps 4000 --out {OUT} --scratch {OUT}/partial ",
+  "done": "{OUT}/train/N1_s1.json"
+ },
+ {
+  "name": "train_N1_s2",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_train.py --arm N1 --seed 2 --steps 4000 --out {OUT} --scratch {OUT}/partial ",
+  "done": "{OUT}/train/N1_s2.json"
+ },
+ {
+  "name": "train_N0_s0",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_train.py --arm N0 --seed 0 --steps 4000 --out {OUT} --scratch {OUT}/partial ",
+  "done": "{OUT}/train/N0_s0.json"
+ },
+ {
+  "name": "eval_gate_N1_s0",
+  "deps": [
+   "prep",
+   "train_N1_s0"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py gate --arm N1 --seed 0 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/gate_N1_s0.json"
+ },
+ {
+  "name": "eval_gate_N1_s1",
+  "deps": [
+   "prep",
+   "train_N1_s1"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py gate --arm N1 --seed 1 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/gate_N1_s1.json"
+ },
+ {
+  "name": "eval_gate_N1_s2",
+  "deps": [
+   "prep",
+   "train_N1_s2"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py gate --arm N1 --seed 2 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/gate_N1_s2.json"
+ },
+ {
+  "name": "eval_gate_N0_s0",
+  "deps": [
+   "prep",
+   "train_N0_s0"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py gate --arm N0 --seed 0 --out {OUT} --cache /root/cache ",
+  "done": "{OUT}/eval/gate_N0_s0.json"
+ },
+ {
+  "name": "p9a_X0_s0",
+  "deps": [
+   "p9a_X1_s0"
+  ],
+  "cmd": "{PY} {CODE}/p9a.py --arm X0 --seed 0 --steps 1500 --out {OUT} --scratch {OUT}/partial --cache /root/cache",
+  "done": "{OUT}/p9a/X0_s0.json"
+ },
+ {
+  "name": "p9a_X4_s0",
+  "deps": [
+   "p9a_X1_s0"
+  ],
+  "cmd": "{PY} {CODE}/p9a.py --arm X4 --seed 0 --steps 1500 --out {OUT} --scratch {OUT}/partial --cache /root/cache",
+  "done": "{OUT}/p9a/X4_s0.json"
+ },
+ {
+  "name": "p9a_X2_s0",
+  "deps": [
+   "p9a_X1_s0"
+  ],
+  "cmd": "{PY} {CODE}/p9a.py --arm X2 --seed 0 --steps 1500 --out {OUT} --scratch {OUT}/partial --cache /root/cache",
+  "done": "{OUT}/p9a/X2_s0.json"
+ },
+ {
+  "name": "p9a_X2p_s0",
+  "deps": [
+   "p9a_X1_s0"
+  ],
+  "cmd": "{PY} {CODE}/p9a.py --arm X2p --seed 0 --steps 1500 --out {OUT} --scratch {OUT}/partial --cache /root/cache",
+  "done": "{OUT}/p9a/X2p_s0.json"
+ },
+ {
+  "name": "p9a_X3_s0",
+  "deps": [
+   "p9a_X1_s0"
+  ],
+  "cmd": "{PY} {CODE}/p9a.py --arm X3 --seed 0 --steps 1500 --out {OUT} --scratch {OUT}/partial --cache /root/cache",
+  "done": "{OUT}/p9a/X3_s0.json"
+ },
+ {
+  "name": "p9a_X2_s1",
+  "deps": [
+   "p9a_X1_s0"
+  ],
+  "cmd": "{PY} {CODE}/p9a.py --arm X2 --seed 1 --steps 1500 --out {OUT} --scratch {OUT}/partial --cache /root/cache",
+  "done": "{OUT}/p9a/X2_s1.json"
+ },
+ {
+  "name": "p9a_X2p_s1",
+  "deps": [
+   "p9a_X1_s0"
+  ],
+  "cmd": "{PY} {CODE}/p9a.py --arm X2p --seed 1 --steps 1500 --out {OUT} --scratch {OUT}/partial --cache /root/cache",
+  "done": "{OUT}/p9a/X2p_s1.json"
+ },
+ {
+  "name": "p9a_X3_s1",
+  "deps": [
+   "p9a_X1_s0"
+  ],
+  "cmd": "{PY} {CODE}/p9a.py --arm X3 --seed 1 --steps 1500 --out {OUT} --scratch {OUT}/partial --cache /root/cache",
+  "done": "{OUT}/p9a/X3_s1.json"
+ },
+ {
+  "name": "p9a_X2_s2",
+  "deps": [
+   "p9a_X1_s0"
+  ],
+  "cmd": "{PY} {CODE}/p9a.py --arm X2 --seed 2 --steps 1500 --out {OUT} --scratch {OUT}/partial --cache /root/cache",
+  "done": "{OUT}/p9a/X2_s2.json"
+ },
+ {
+  "name": "p9a_X2p_s2",
+  "deps": [
+   "p9a_X1_s0"
+  ],
+  "cmd": "{PY} {CODE}/p9a.py --arm X2p --seed 2 --steps 1500 --out {OUT} --scratch {OUT}/partial --cache /root/cache",
+  "done": "{OUT}/p9a/X2p_s2.json"
+ },
+ {
+  "name": "p9a_X3_s2",
+  "deps": [
+   "p9a_X1_s0"
+  ],
+  "cmd": "{PY} {CODE}/p9a.py --arm X3 --seed 2 --steps 1500 --out {OUT} --scratch {OUT}/partial --cache /root/cache",
+  "done": "{OUT}/p9a/X3_s2.json"
+ }
+]

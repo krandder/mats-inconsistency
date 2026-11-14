@@ -1,0 +1,73 @@
+# R6-E1 audit re-derivation (462 seed-level values compared with summary.json; 105 3-seed statistics compared with analysis/results.json)
+
+## largest |mine - summary.json| (seed-level)
+  5.800e-05  s101  fs_kl_mmd: mine 0.1192627  summary 0.1192047
+  5.338e-05  s102  fs_kl_mmd: mine 0.1216237  summary 0.1215703
+  3.806e-05  s103  fs_kl_mmd: mine 0.1189969  summary 0.1189589
+  1.420e-05  s102  ap_open_kl_mmd: mine 0.1394919  summary 0.1394777
+  1.292e-05  s103  fs_kl_kc: mine 0.0723981  summary 0.0723852
+  1.200e-05  s103  ap_open_kl_mmd: mine 0.1414700  summary 0.1414580
+  1.097e-05  s102  fs_kl_kc: mine 0.0784181  summary 0.0784071
+  9.498e-06  s101  ap_open_kl_mmd: mine 0.1420814  summary 0.1420719
+  4.369e-06  s101  fs_kl_kc: mine 0.0703494  summary 0.0703450
+  2.522e-06  s103  key_K4_cos_ov1: mine 0.4169383  summary 0.4169358
+  2.405e-06  s103  key_K3_gap: mine 0.9815007  summary 0.9814983
+  2.352e-06  s103  key_K4_same: mine 0.9431963  summary 0.9431940
+
+## largest per category
+  W      3.874e-07  s103 W_t0.3_N4
+  ap     1.420e-05  s102 ap_open_kl_mmd
+  fs     5.800e-05  s101 fs_kl_mmd
+  keys   2.522e-06  s103 key_K4_cos_ov1
+  mse    4.316e-08  s102 mse_mix_t2.5_N1
+
+## largest |mine - results.json| (3-seed mean / CI bounds)
+  5.534e-05  D2.1.mmd.kl_diff.lo: mine 0.0830417  results.json 0.0829863
+  4.975e-05  D2.1.mmd.kl_diff.mean: mine 0.0863738  results.json 0.0863240
+  4.828e-05  D2.1.looped_kl_ratio.hi: mine 2.2392566  results.json 2.2392083
+  4.416e-05  D2.1.mmd.kl_diff.hi: mine 0.0897058  results.json 0.0896617
+  2.832e-05  D2.1.mmd.jsd_ratio.hi: mine 7.2609289  results.json 7.2609006
+  2.540e-05  D2.1.looped_kl_ratio.lo: mine 1.8419588  results.json 1.8419842
+  1.698e-05  D2.1.kc.kl_diff.hi: mine 0.0505867  results.json 0.0505697
+  1.144e-05  D2.1.looped_kl_ratio.mean: mine 2.0406077  results.json 2.0405962
+  1.075e-05  D2.1.mmd.jsd_ratio.mean: mine 6.5361946  results.json 6.5361838
+  9.362e-06  D2.1.kc.kl_diff.mean: mine 0.0401345  results.json 0.0401251
+
+## verdicts (mine with t = 4.30265 / mine with t = 4.303 / results.json)
+  E1-D0: PASS / PASS / PASS
+  E1-D1: PASS / PASS / PASS
+  E1-D2.1: PASS / PASS / PASS
+  E1-D2.2: FAIL / FAIL / FAIL
+  E1-D3: FAIL / FAIL / FAIL
+
+## rule statistics (mine)
+  E1-D0: fs_cut_scaled_mix 0.6315 [0.6212, 0.6418] (0.6282, 0.6362, 0.6302); clause-1 Pearson (summary.json only) 0.9994 [0.9994, 0.9995] (0.9994, 0.9995, 0.9994)
+  E1-D1 K4: Pearson 0.8628 [0.8581, 0.8675] (0.8628, 0.8609, 0.8647); gap 0.6291 [0.6266, 0.6316] (0.6291, 0.6281, 0.6301); same 0.9433 across 0.3142; curve 0.3092, 0.4168, 0.5424, 0.6612, 0.7546, 0.9433; Spearman mean-curve 1.000, per seed [1.0, 1.0, 1.0]; clause1 True clause2 True
+  E1-D1 K3: Pearson 0.8799 [0.8759, 0.8838] (0.8803, 0.8812, 0.8781); gap 0.9673 [0.9356, 0.9989] (0.9633, 0.9570, 0.9815); same 0.9551 across -0.0122; curve 0.0098, 0.2658, 0.4960, 0.6721, 0.7747, 0.9551; Spearman mean-curve 1.000, per seed [1.0, 1.0, 1.0]; clause1 True clause2 True
+  E1-D2.1 scaled_mix: JSD ratio 5.823 [5.154, 6.491] (5.668, 5.667, 6.133); JSD diff 0.03754 [0.03501, 0.04006] (0.03791, 0.03639, 0.03831); KL diff 0.0695 [0.0658, 0.0732] (0.0698, 0.0679, 0.0708); ratio of means 5.816
+  E1-D2.1 mmd: JSD ratio 6.536 [5.811, 7.261] (6.252, 6.521, 6.835); JSD diff 0.04308 [0.04197, 0.04420] (0.04266, 0.04304, 0.04355); KL diff 0.0864 [0.0830, 0.0897] (0.0850, 0.0877, 0.0864); ratio of means 6.528
+  E1-D2.1 kc: JSD ratio 2.846 [2.485, 3.207] (2.683, 2.892, 2.963); JSD diff 0.01436 [0.01287, 0.01584] (0.01367, 0.01475, 0.01465); KL diff 0.0401 [0.0297, 0.0506] (0.0361, 0.0445, 0.0398); ratio of means 2.842
+  E1-D2.1 looped KL ratio 2.041 [1.842, 2.239] (1.949, 2.081, 2.092); lowest-KL pool per seed ['attn_K3', 'attn_K3', 'attn_K4']
+  E1-D2.2: coverage puct 0.94938 [0.94708, 0.95168] (0.94836, 0.94961, 0.95017); open 0.8276 [0.8194, 0.8358] (0.8274, 0.8311, 0.8245); JSD ratio 2.000 [1.912, 2.087] (1.979, 1.980, 2.040); JSD diff 0.01305 [0.01264, 0.01346] (0.01323, 0.01292, 0.01300); KL cut 0.3823 [0.3575, 0.4070] (0.3709, 0.3864, 0.3895); wave-1 NW share 0.8241 [0.8150, 0.8332] (0.8253, 0.8200, 0.8270); parts {'coverage>=0.95': False, 'jsd_ratio>=1.8': True, 'jsd_diff_ci_lo>0': True, 'kl_cut>=0.20': True, 'wave1_share>=0.75': True}
+    sensitivity (not registered): evidence coverage incl. anchors puct 0.95306 [0.95100, 0.95513] (0.95217, 0.95322, 0.95381), open 0.8395 [0.8320, 0.8469] (0.8403, 0.8419, 0.8361); wave-1 strict NW-only share 0.6662 [0.6418, 0.6907] (0.6760, 0.6563, 0.6663)
+  E1-D3 W16/W1_t0.3: 1.0753 [0.6265, 1.5242] (1.0931, 1.2464, 0.8864)
+  E1-D3 W8/W1_t0.3: 1.0470 [0.7712, 1.3228] (1.0799, 1.1378, 0.9232)
+  E1-D3 W8/W1_t1.5: 1.9995 [1.7835, 2.2155] (2.0762, 2.0172, 1.9051)
+  E1-D3 W16/W1_t1.5: 2.1935 [1.7783, 2.6086] (2.2841, 2.2957, 2.0006)
+  E1-D3 W8/W1_t2.5: 3.5359 [3.2833, 3.7884] (3.6439, 3.5217, 3.4421)
+  E1-D3 W16/W1_t2.5: 4.5219 [3.9520, 5.0918] (4.7190, 4.5766, 4.2700)
+  E1-D3 msecut_vs_mmd_t0.3: 0.3851 [0.3635, 0.4067] (0.3760, 0.3933, 0.3861)
+  E1-D3 msecut_vs_kc_t2.5: 0.1033 [0.0766, 0.1300] (0.0926, 0.1141, 0.1033)
+  E1-D3 msecut_vs_mmd_t2.5: 0.2297 [0.2142, 0.2452] (0.2238, 0.2290, 0.2363)
+  E1-D3 msecut_vs_mix_t2.5: 0.4724 [0.4574, 0.4874] (0.4707, 0.4674, 0.4791)
+  E1-D3 msecut_meanOfPerN_vs_kc_t2.5: 0.1042 [0.0779, 0.1304] (0.0937, 0.1148, 0.1041)
+  E1-D3 msecut_N16_vs_kc_t2.5: 0.1566 [0.1481, 0.1652] (0.1565, 0.1601, 0.1532)
+  E1-D3 msecut_Astar_cells_vs_kc_t2.5: 0.0686 [0.0341, 0.1030] (0.0713, 0.0809, 0.0535)
+  E1-D3 msecut_meanOfPerN_vs_mmd_t0.3: 0.3533 [0.3348, 0.3718] (0.3447, 0.3571, 0.3581)
+  E1-D3 W(N) means: tau 0.3: 0.8603, 0.9633, 0.9324, 0.8974, 0.9194; tau 1.5: 0.5621, 0.7950, 0.9917, 1.1231, 1.2310; tau 2.5: 0.3556, 0.5796, 0.8892, 1.2563, 1.6053
+  E1-D3 parts {'clean_dedup': True, 'high_noise_support': False, 'monotone': True}; monotone per seed [True, True, True]
+
+## structural checks (per seed)
+  s101: {"fs_first6_are_tiles": true, "fs_reads_per_bag": [24, 24], "fs_skewed_in_pref_half_NW": 0.9021111111111111, "fs_skewed_in_pref_half_SE": 0.9053333333333333, "fs_skewed_strict_NWonly_under_NW": 0.8693333333333333, "fs_skewed_strict_SEonly_under_SE": 0.8716666666666667, "fs_union_arrays_identical": true, "fs_union_max_abs_diff_NW_SE": 0.0, "ap_wave1_strict_share_NW": 0.676, "puct_waves_have_6_distinct_patches_NW": true, "puct_reads_NW": 24, "open_reads_NW": 24, "evidence_coverage_incl_anchors_puct_NW": 0.9517777777777777, "evidence_coverage_incl_anchors_open_NW": 0.8415555555555555, "ap_wave1_strict_share_SE": 0.6556666666666666, "puct_waves_have_6_distinct_patches_SE": true, "puct_reads_SE": 24, "open_reads_SE": 24, "evidence_coverage_incl_anchors_puct_SE": 0.9525555555555554, "evidence_coverage_incl_anchors_open_SE": 0.8391111111111111, "evidence_coverage_incl_anchors_open": 0.8403333333333334, "evidence_coverage_incl_anchors_puct": 0.9521666666666666, "keybag0_is_open_NW_bag": true, "keybag1_is_open_SE_bag": true, "key_K3_pearson_renormalised_keys": 0.8802614578783571, "key_K3_npairs": 414000, "key_K3_n_same_pairs": 19802, "key_K3_n_across_pairs": 129709, "key_K3_pairs_by_level": {"0": 185181, "1": 22723, "2": 86642, "3": 24657, "4": 74995, "6": 19802}, "key_K3_overlap5_pairs": 0, "key_K4_pearson_renormalised_keys": 0.8627834232004538, "key_K4_npairs": 414000, "key_K4_n_same_pairs": 19802, "key_K4_n_across_pairs": 129709, "key_K4_pairs_by_level": {"0": 185181, "1": 22723, "2": 86642, "3": 24657, "4": 74995, "6": 19802}, "key_K4_overlap5_pairs": 0, "ctrl_bg_never_overlaps_astar": true, "ctrl_bg_reads": 8}
+  s102: {"fs_first6_are_tiles": true, "fs_reads_per_bag": [24, 24], "fs_skewed_in_pref_half_NW": 0.9007777777777778, "fs_skewed_in_pref_half_SE": 0.902, "fs_skewed_strict_NWonly_under_NW": 0.866, "fs_skewed_strict_SEonly_under_SE": 0.8678888888888889, "fs_union_arrays_identical": true, "fs_union_max_abs_diff_NW_SE": 0.0, "ap_wave1_strict_share_NW": 0.6563333333333333, "puct_waves_have_6_distinct_patches_NW": true, "puct_reads_NW": 24, "open_reads_NW": 24, "evidence_coverage_incl_anchors_puct_NW": 0.9539444444444444, "evidence_coverage_incl_anchors_open_NW": 0.8407222222222221, "ap_wave1_strict_share_SE": 0.6693333333333333, "puct_waves_have_6_distinct_patches_SE": true, "puct_reads_SE": 24, "open_reads_SE": 24, "evidence_coverage_incl_anchors_puct_SE": 0.9525, "evidence_coverage_incl_anchors_open_SE": 0.843111111111111, "evidence_coverage_incl_anchors_open": 0.8419166666666666, "evidence_coverage_incl_anchors_puct": 0.9532222222222222, "keybag0_is_open_NW_bag": true, "keybag1_is_open_SE_bag": true, "key_K3_pearson_renormalised_keys": 0.8812327783426429, "key_K3_npairs": 414000, "key_K3_n_same_pairs": 19447, "key_K3_n_across_pairs": 130510, "key_K3_pairs_by_level": {"0": 186551, "1": 23187, "2": 86692, "3": 24264, "4": 73859, "6": 19447}, "key_K3_overlap5_pairs": 0, "key_K4_pearson_renormalised_keys": 0.8609347883077455, "key_K4_npairs": 414000, "key_K4_n_same_pairs": 19447, "key_K4_n_across_pairs": 130510, "key_K4_pairs_by_level": {"0": 186551, "1": 23187, "2": 86692, "3": 24264, "4": 73859, "6": 19447}, "key_K4_overlap5_pairs": 0, "ctrl_bg_never_overlaps_astar": true, "ctrl_bg_reads": 8}
+  s103: {"fs_first6_are_tiles": true, "fs_reads_per_bag": [24, 24], "fs_skewed_in_pref_half_NW": 0.907, "fs_skewed_in_pref_half_SE": 0.8986666666666666, "fs_skewed_strict_NWonly_under_NW": 0.8727777777777778, "fs_skewed_strict_SEonly_under_SE": 0.8654444444444445, "fs_union_arrays_identical": true, "fs_union_max_abs_diff_NW_SE": 0.0, "ap_wave1_strict_share_NW": 0.6663333333333333, "puct_waves_have_6_distinct_patches_NW": true, "puct_reads_NW": 24, "open_reads_NW": 24, "evidence_coverage_incl_anchors_puct_NW": 0.9527777777777777, "evidence_coverage_incl_anchors_open_NW": 0.841, "ap_wave1_strict_share_SE": 0.6696666666666666, "puct_waves_have_6_distinct_patches_SE": true, "puct_reads_SE": 24, "open_reads_SE": 24, "evidence_coverage_incl_anchors_puct_SE": 0.9548333333333333, "evidence_coverage_incl_anchors_open_SE": 0.8312222222222222, "evidence_coverage_incl_anchors_open": 0.836111111111111, "evidence_coverage_incl_anchors_puct": 0.9538055555555556, "keybag0_is_open_NW_bag": true, "keybag1_is_open_SE_bag": true, "key_K3_pearson_renormalised_keys": 0.8781300474956355, "key_K3_npairs": 414000, "key_K3_n_same_pairs": 19721, "key_K3_n_across_pairs": 130112, "key_K3_pairs_by_level": {"0": 186300, "1": 22853, "2": 86007, "3": 24249, "4": 74870, "6": 19721}, "key_K3_overlap5_pairs": 0, "key_K4_pearson_renormalised_keys": 0.8646870464050159, "key_K4_npairs": 414000, "key_K4_n_same_pairs": 19721, "key_K4_n_across_pairs": 130112, "key_K4_pairs_by_level": {"0": 186300, "1": 22853, "2": 86007, "3": 24249, "4": 74870, "6": 19721}, "key_K4_overlap5_pairs": 0, "ctrl_bg_never_overlaps_astar": true, "ctrl_bg_reads": 8}

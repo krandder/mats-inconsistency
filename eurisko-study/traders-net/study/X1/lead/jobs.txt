@@ -1,0 +1,14 @@
+M6w1_ME_A|cd /tmp/traders-net/X1lead/clean/study/M6/w1 && python3 run_w1.py ME A 5
+M6w1_ME_B|cd /tmp/traders-net/X1lead/clean/study/M6/w1 && python3 run_w1.py ME B 5
+M5probeP16|cd /tmp/traders-net/X1lead/clean/study/M5/w4 && python3 probes.py --source preq --ckpt P16 --seed 5
+M5probeP4|cd /tmp/traders-net/X1lead/clean/study/M5/w4 && python3 probes.py --source preq --ckpt P4 --seed 5
+M8w1none|cd /tmp/traders-net/X1lead/w4/study/M8/w1 && python3 sign_gate.py none 5
+M8w2absag|cd /tmp/traders-net/X1lead/w4/study/M8/w2 && python3 gated.py absag 5
+M8w2random|cd /tmp/traders-net/X1lead/w4/study/M8/w2 && python3 gated.py random 5
+M6w2_cg|cd /tmp/traders-net/X1lead/clean/study/M6/w2 && python3 pool.py --arm cg --seed 5 --T 60000 --out /tmp/traders-net/X1lead/out/M6w2
+M6lead_boost|cd /tmp/traders-net/X1lead/clean/study/M6/lead && python3 pool_kc.py --arm boost --seed 5 --T 60000 --out /tmp/traders-net/X1lead/out/M6w2
+M6w4_li_fp|cd /tmp/traders-net/X1lead/clean/study/M6/w4 && OUT=/tmp/traders-net/X1lead/out/M6w4 python3 fp_layer.py li fp 5
+M6w4_li_pass2|cd /tmp/traders-net/X1lead/clean/study/M6/w4 && OUT=/tmp/traders-net/X1lead/out/M6w4 python3 fp_layer.py li pass2 5
+K1w2Son|cd /tmp/traders-net/X1lead/w4/study/K1/w2 && python3 w2run.py S-on10k 5
+M9AK1hw128|cd /tmp/traders-net/X1lead/w4/study/M9/w3 && python3 run_kq.py A 1 128 5
+M9AK64hw2|cd /tmp/traders-net/X1lead/w4/study/M9/w3 && python3 run_kq.py A 64 2 5

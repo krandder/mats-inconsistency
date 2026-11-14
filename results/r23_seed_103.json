@@ -1,0 +1,788 @@
+{
+  "seed": 103,
+  "device": "cuda",
+  "gpu_name": "NVIDIA L4",
+  "d0": {
+    "seed": 103,
+    "static_ast_pass": true,
+    "static_ast_violations": 0,
+    "canaries_caught": 7,
+    "poison_traps_fired": 3,
+    "global_max_oracle_diff": 0.0,
+    "per_env_diffs": {
+      "equiv_sat": 0.0,
+      "sudoku_6x6": 0.0,
+      "galanis_market_t3s111o2ye2": 0.0,
+      "micro_stratego_4x4": 0.0,
+      "proposal_poker": 0.0,
+      "shiphunt_6x6": 0.0
+    },
+    "verdict": "PASS"
+  },
+  "e1": {
+    "seed": 103,
+    "telescoping_checks": {
+      "equiv_sat": {
+        "sybil_split_max_profit_gain": 0.0,
+        "sybil_split_max_cost_diff": 0.0,
+        "opposing_twins_max_net_profit": 0.0,
+        "opposing_twins_max_price_shift": 0.0,
+        "max_market_maker_loss": 0.3532316717679082,
+        "theoretical_mm_loss_bound": 0.6931471805599453,
+        "mm_loss_within_bound": 1.0
+      },
+      "sudoku_6x6": {
+        "sybil_split_max_profit_gain": 8.881784197001252e-16,
+        "sybil_split_max_cost_diff": 8.881784197001252e-16,
+        "opposing_twins_max_net_profit": 0.0,
+        "opposing_twins_max_price_shift": 0.0,
+        "max_market_maker_loss": 0.690562575817304,
+        "theoretical_mm_loss_bound": 0.6931471805599453,
+        "mm_loss_within_bound": 1.0
+      },
+      "galanis_market_t3s111o2ye2": {
+        "sybil_split_max_profit_gain": 0.0,
+        "sybil_split_max_cost_diff": 0.0,
+        "opposing_twins_max_net_profit": 0.0,
+        "opposing_twins_max_price_shift": 0.0,
+        "max_market_maker_loss": 0.17159352772620995,
+        "theoretical_mm_loss_bound": 0.6931471805599453,
+        "mm_loss_within_bound": 1.0
+      }
+    },
+    "per_env": {
+      "equiv_sat": {
+        "S1_Linear_Pool": {
+          "delta_sybil_k1": 0.0,
+          "delta_sybil_k2": 0.0005381203372962773,
+          "delta_sybil_k4": 0.0013813606346957386,
+          "delta_sybil_k8": 0.0025011845282278955,
+          "delta_sybil_max": 0.0025011845282278955,
+          "delta_collude_3cartel": -0.0028147740347776564,
+          "opposing_twins_profit": 0.0,
+          "heldout_acc_k1": 0.53125,
+          "heldout_acc_k8": 0.515625,
+          "heldout_brier_k8": 0.3147162199020386,
+          "heldout_kl_k8": 0.3661966323852539,
+          "max_mm_loss": 0.8922088146209717,
+          "clearing_passes": 1.0
+        },
+        "S2_Simultaneous_Raw_VCG": {
+          "delta_sybil_k1": 0.0,
+          "delta_sybil_k2": 0.02,
+          "delta_sybil_k4": 0.06,
+          "delta_sybil_k8": 0.14,
+          "delta_sybil_max": 0.14,
+          "delta_collude_3cartel": 0.12,
+          "opposing_twins_profit": 1.0238722784175014,
+          "heldout_acc_k1": 0.53125,
+          "heldout_acc_k8": 0.515625,
+          "heldout_brier_k8": 0.2629711925983429,
+          "heldout_kl_k8": 0.21099671721458435,
+          "max_mm_loss": 1.1427542615225947,
+          "clearing_passes": 16.0
+        },
+        "S3_Bootstrap_Shapley": {
+          "delta_sybil_k1": 0.0,
+          "delta_sybil_k2": 0.013980904594063759,
+          "delta_sybil_k4": 0.04663816839456558,
+          "delta_sybil_k8": 0.12445399165153503,
+          "delta_sybil_max": 0.12445399165153503,
+          "delta_collude_3cartel": 0.0,
+          "opposing_twins_profit": 0.0,
+          "heldout_acc_k1": 0.53125,
+          "heldout_acc_k8": 0.515625,
+          "heldout_brier_k8": 0.3021754026412964,
+          "heldout_kl_k8": 0.3130788803100586,
+          "max_mm_loss": -0.5419734716415405,
+          "clearing_passes": 90.0
+        },
+        "S4_Core_Capped_VCG": {
+          "delta_sybil_k1": 0.0,
+          "delta_sybil_k2": 8.888888888888893e-07,
+          "delta_sybil_k4": 2.2222222222222225e-06,
+          "delta_sybil_k8": 3.88888888888889e-06,
+          "delta_sybil_max": 3.88888888888889e-06,
+          "delta_collude_3cartel": -1.0961335774116603e-06,
+          "opposing_twins_profit": 0.0008004696831913415,
+          "heldout_acc_k1": 0.53125,
+          "heldout_acc_k8": 0.515625,
+          "heldout_brier_k8": 0.2629711925983429,
+          "heldout_kl_k8": 0.21099671721458435,
+          "max_mm_loss": 0.0007300068944602155,
+          "clearing_passes": 16.0
+        },
+        "S5_Sequential_Hanson_LMSR": {
+          "delta_sybil_k1": 0.0,
+          "delta_sybil_k2": 0.0,
+          "delta_sybil_k4": 2.3283064365386963e-10,
+          "delta_sybil_k8": 1.1408701539039612e-08,
+          "delta_sybil_max": 1.1408701539039612e-08,
+          "delta_collude_3cartel": 0.0,
+          "opposing_twins_profit": 0.0,
+          "heldout_acc_k1": 0.53125,
+          "heldout_acc_k8": 0.53125,
+          "heldout_brier_k8": 0.3284374475479126,
+          "heldout_kl_k8": 0.4445841312408447,
+          "max_mm_loss": 0.6834849119186401,
+          "clearing_passes": 1.0
+        },
+        "S6_Kyle_Batch_Call_AMM": {
+          "delta_sybil_k1": 0.0,
+          "delta_sybil_k2": 0.0,
+          "delta_sybil_k4": 0.0,
+          "delta_sybil_k8": 0.0,
+          "delta_sybil_max": 0.0,
+          "delta_collude_3cartel": 0.0,
+          "opposing_twins_profit": 0.0,
+          "heldout_acc_k1": 0.53125,
+          "heldout_acc_k8": 0.53125,
+          "heldout_brier_k8": 0.2608068585395813,
+          "heldout_kl_k8": 0.20937566459178925,
+          "max_mm_loss": 0.41688859462738037,
+          "clearing_passes": 1.0
+        },
+        "S7_Futarchy_Conditional_Market": {
+          "delta_sybil_k1": 0.0,
+          "delta_sybil_k2": 0.0,
+          "delta_sybil_k4": 0.0,
+          "delta_sybil_k8": 0.0,
+          "delta_sybil_max": 0.0,
+          "delta_collude_3cartel": 0.0,
+          "opposing_twins_profit": 0.0,
+          "heldout_acc_k1": 0.546875,
+          "heldout_acc_k8": 0.546875,
+          "heldout_brier_k8": 0.2638189494609833,
+          "heldout_kl_k8": 0.21333009004592896,
+          "max_mm_loss": 0.4305480420589447,
+          "clearing_passes": 1.0
+        }
+      },
+      "sudoku_6x6": {
+        "S1_Linear_Pool": {
+          "delta_sybil_k1": 0.0,
+          "delta_sybil_k2": 0.001065183780156076,
+          "delta_sybil_k4": 0.002734331297688186,
+          "delta_sybil_k8": 0.004950972157530487,
+          "delta_sybil_max": 0.004950972157530487,
+          "delta_collude_3cartel": 0.005571696255356074,
+          "opposing_twins_profit": 0.0,
+          "heldout_acc_k1": 0.5625,
+          "heldout_acc_k8": 0.59375,
+          "heldout_brier_k8": 0.32126015424728394,
+          "heldout_kl_k8": 1.471113920211792,
+          "max_mm_loss": 1.995700716972351,
+          "clearing_passes": 1.0
+        },
+        "S2_Simultaneous_Raw_VCG": {
+          "delta_sybil_k1": 0.0,
+          "delta_sybil_k2": 0.02,
+          "delta_sybil_k4": 0.06,
+          "delta_sybil_k8": 0.14,
+          "delta_sybil_max": 0.14,
+          "delta_collude_3cartel": 0.12,
+          "opposing_twins_profit": 1.0238722784175014,
+          "heldout_acc_k1": 0.546875,
+          "heldout_acc_k8": 0.59375,
+          "heldout_brier_k8": 0.2545240521430969,
+          "heldout_kl_k8": 0.6700934171676636,
+          "max_mm_loss": 1.1531254059179163,
+          "clearing_passes": 16.0
+        },
+        "S3_Bootstrap_Shapley": {
+          "delta_sybil_k1": 0.0,
+          "delta_sybil_k2": 0.19683489948511124,
+          "delta_sybil_k4": 0.7358180359005928,
+          "delta_sybil_k8": 1.6272454932332039,
+          "delta_sybil_max": 1.6272454932332039,
+          "delta_collude_3cartel": 0.0,
+          "opposing_twins_profit": 0.0,
+          "heldout_acc_k1": 0.5625,
+          "heldout_acc_k8": 0.59375,
+          "heldout_brier_k8": 0.31189650297164917,
+          "heldout_kl_k8": 1.2603974342346191,
+          "max_mm_loss": -1.7317073345184326,
+          "clearing_passes": 90.0
+        },
+        "S4_Core_Capped_VCG": {
+          "delta_sybil_k1": 0.0,
+          "delta_sybil_k2": 8.888888888888893e-07,
+          "delta_sybil_k4": 2.2222222222222225e-06,
+          "delta_sybil_k8": 3.88888888888889e-06,
+          "delta_sybil_max": 3.88888888888889e-06,
+          "delta_collude_3cartel": -1.0961335774116603e-06,
+          "opposing_twins_profit": 0.0003226995663392452,
+          "heldout_acc_k1": 0.546875,
+          "heldout_acc_k8": 0.59375,
+          "heldout_brier_k8": 0.2545240521430969,
+          "heldout_kl_k8": 0.6700934171676636,
+          "max_mm_loss": 0.00042684999289665214,
+          "clearing_passes": 16.0
+        },
+        "S5_Sequential_Hanson_LMSR": {
+          "delta_sybil_k1": 0.0,
+          "delta_sybil_k2": 0.0,
+          "delta_sybil_k4": 0.0,
+          "delta_sybil_k8": 7.450580596923828e-09,
+          "delta_sybil_max": 7.450580596923828e-09,
+          "delta_collude_3cartel": 0.0,
+          "opposing_twins_profit": 0.0,
+          "heldout_acc_k1": 0.546875,
+          "heldout_acc_k8": 0.546875,
+          "heldout_brier_k8": 0.32336485385894775,
+          "heldout_kl_k8": 1.283708095550537,
+          "max_mm_loss": 0.6916831731796265,
+          "clearing_passes": 1.0
+        },
+        "S6_Kyle_Batch_Call_AMM": {
+          "delta_sybil_k1": 0.0,
+          "delta_sybil_k2": 0.0,
+          "delta_sybil_k4": 1.1641532182693481e-10,
+          "delta_sybil_k8": 1.280568540096283e-09,
+          "delta_sybil_max": 1.280568540096283e-09,
+          "delta_collude_3cartel": 0.0,
+          "opposing_twins_profit": 0.0,
+          "heldout_acc_k1": 0.546875,
+          "heldout_acc_k8": 0.546875,
+          "heldout_brier_k8": 0.24761784076690674,
+          "heldout_kl_k8": 0.650877833366394,
+          "max_mm_loss": 0.38283175230026245,
+          "clearing_passes": 1.0
+        },
+        "S7_Futarchy_Conditional_Market": {
+          "delta_sybil_k1": 0.0,
+          "delta_sybil_k2": 1.1641532182693481e-10,
+          "delta_sybil_k4": 0.0,
+          "delta_sybil_k8": 1.1641532182693481e-10,
+          "delta_sybil_max": 1.1641532182693481e-10,
+          "delta_collude_3cartel": 0.0,
+          "opposing_twins_profit": 0.0,
+          "heldout_acc_k1": 0.5625,
+          "heldout_acc_k8": 0.5625,
+          "heldout_brier_k8": 0.24652637541294098,
+          "heldout_kl_k8": 0.6518762111663818,
+          "max_mm_loss": 0.40501832962036133,
+          "clearing_passes": 1.0
+        }
+      },
+      "galanis_market_t3s111o2ye2": {
+        "S1_Linear_Pool": {
+          "delta_sybil_k1": 0.0,
+          "delta_sybil_k2": 0.0054391734302043915,
+          "delta_sybil_k4": 0.013962412253022194,
+          "delta_sybil_k8": 0.025281278416514397,
+          "delta_sybil_max": 0.025281278416514397,
+          "delta_collude_3cartel": 0.028450945811346176,
+          "opposing_twins_profit": 0.0,
+          "heldout_acc_k1": 0.765625,
+          "heldout_acc_k8": 0.734375,
+          "heldout_brier_k8": 0.15504194796085358,
+          "heldout_kl_k8": 0.18058107793331146,
+          "max_mm_loss": 1.1501832008361816,
+          "clearing_passes": 1.0
+        },
+        "S2_Simultaneous_Raw_VCG": {
+          "delta_sybil_k1": 0.0,
+          "delta_sybil_k2": 0.02710750699043274,
+          "delta_sybil_k4": 0.07291966304183006,
+          "delta_sybil_k8": 0.1407928578555584,
+          "delta_sybil_max": 0.1407928578555584,
+          "delta_collude_3cartel": 0.1551850363612175,
+          "opposing_twins_profit": 1.0238722784175014,
+          "heldout_acc_k1": 0.71875,
+          "heldout_acc_k8": 0.6875,
+          "heldout_brier_k8": 0.18561553955078125,
+          "heldout_kl_k8": 0.25868797302246094,
+          "max_mm_loss": 1.086449034298811,
+          "clearing_passes": 16.0
+        },
+        "S3_Bootstrap_Shapley": {
+          "delta_sybil_k1": 0.0,
+          "delta_sybil_k2": 0.0016955286264419556,
+          "delta_sybil_k4": 0.0031604717951267958,
+          "delta_sybil_k8": 0.0429453207179904,
+          "delta_sybil_max": 0.0429453207179904,
+          "delta_collude_3cartel": 0.0028120660688728096,
+          "opposing_twins_profit": 0.0,
+          "heldout_acc_k1": 0.765625,
+          "heldout_acc_k8": 0.734375,
+          "heldout_brier_k8": 0.1548534333705902,
+          "heldout_kl_k8": 0.18043996393680573,
+          "max_mm_loss": 0.14570114016532898,
+          "clearing_passes": 90.0
+        },
+        "S4_Core_Capped_VCG": {
+          "delta_sybil_k1": 0.0,
+          "delta_sybil_k2": 0.022501866146528826,
+          "delta_sybil_k4": 0.04614840789217979,
+          "delta_sybil_k8": 0.056595462393494375,
+          "delta_sybil_max": 0.056595462393494375,
+          "delta_collude_3cartel": 0.14217861944381482,
+          "opposing_twins_profit": 1.0238722784175014,
+          "heldout_acc_k1": 0.71875,
+          "heldout_acc_k8": 0.6875,
+          "heldout_brier_k8": 0.18561553955078125,
+          "heldout_kl_k8": 0.25868797302246094,
+          "max_mm_loss": 0.9579516200079059,
+          "clearing_passes": 16.0
+        },
+        "S5_Sequential_Hanson_LMSR": {
+          "delta_sybil_k1": 0.0,
+          "delta_sybil_k2": 0.0,
+          "delta_sybil_k4": 0.0,
+          "delta_sybil_k8": 0.0,
+          "delta_sybil_max": 0.0,
+          "delta_collude_3cartel": 0.0,
+          "opposing_twins_profit": 0.0,
+          "heldout_acc_k1": 0.765625,
+          "heldout_acc_k8": 0.765625,
+          "heldout_brier_k8": 0.14686834812164307,
+          "heldout_kl_k8": 0.16907735168933868,
+          "max_mm_loss": 0.6917595267295837,
+          "clearing_passes": 1.0
+        },
+        "S6_Kyle_Batch_Call_AMM": {
+          "delta_sybil_k1": 0.0,
+          "delta_sybil_k2": 0.0,
+          "delta_sybil_k4": 0.0,
+          "delta_sybil_k8": 0.0,
+          "delta_sybil_max": 0.0,
+          "delta_collude_3cartel": 0.0,
+          "opposing_twins_profit": 0.0,
+          "heldout_acc_k1": 0.71875,
+          "heldout_acc_k8": 0.71875,
+          "heldout_brier_k8": 0.17632414400577545,
+          "heldout_kl_k8": 0.2438514530658722,
+          "max_mm_loss": 0.5246647596359253,
+          "clearing_passes": 1.0
+        },
+        "S7_Futarchy_Conditional_Market": {
+          "delta_sybil_k1": 0.0,
+          "delta_sybil_k2": 0.0,
+          "delta_sybil_k4": 0.0,
+          "delta_sybil_k8": 0.0,
+          "delta_sybil_max": 0.0,
+          "delta_collude_3cartel": 0.0,
+          "opposing_twins_profit": 0.0,
+          "heldout_acc_k1": 0.765625,
+          "heldout_acc_k8": 0.765625,
+          "heldout_brier_k8": 0.18373432755470276,
+          "heldout_kl_k8": 0.2567034959793091,
+          "max_mm_loss": 0.47323253750801086,
+          "clearing_passes": 1.0
+        }
+      }
+    },
+    "mean_across_envs": {
+      "S1_Linear_Pool": {
+        "delta_sybil_k2": 0.0023474925158855817,
+        "delta_sybil_k4": 0.006026034728468706,
+        "delta_sybil_k8": 0.010911145034090927,
+        "delta_sybil_max": 0.010911145034090927,
+        "delta_collude_3cartel": 0.010402622677308198,
+        "opposing_twins_profit": 0.0,
+        "heldout_acc_k1": 0.6197916666666666,
+        "heldout_acc_k8": 0.6145833333333334,
+        "heldout_brier_k8": 0.26367277403672534,
+        "heldout_kl_k8": 0.6726305435101191,
+        "max_mm_loss": 1.3460309108098347,
+        "clearing_passes": 1.0
+      },
+      "S2_Simultaneous_Raw_VCG": {
+        "delta_sybil_k2": 0.022369168996810917,
+        "delta_sybil_k4": 0.06430655434727668,
+        "delta_sybil_k8": 0.1402642859518528,
+        "delta_sybil_max": 0.1402642859518528,
+        "delta_collude_3cartel": 0.13172834545373915,
+        "opposing_twins_profit": 1.0238722784175014,
+        "heldout_acc_k1": 0.5989583333333334,
+        "heldout_acc_k8": 0.5989583333333334,
+        "heldout_brier_k8": 0.23437026143074036,
+        "heldout_kl_k8": 0.37992603580156964,
+        "max_mm_loss": 1.127442900579774,
+        "clearing_passes": 16.0
+      },
+      "S3_Bootstrap_Shapley": {
+        "delta_sybil_k2": 0.07083711090187232,
+        "delta_sybil_k4": 0.2618722253634284,
+        "delta_sybil_k8": 0.5982149352009097,
+        "delta_sybil_max": 0.5982149352009097,
+        "delta_collude_3cartel": 0.0009373553562909365,
+        "opposing_twins_profit": 0.0,
+        "heldout_acc_k1": 0.6197916666666666,
+        "heldout_acc_k8": 0.6145833333333334,
+        "heldout_brier_k8": 0.2563084463278453,
+        "heldout_kl_k8": 0.5846387594938278,
+        "max_mm_loss": -0.7093265553315481,
+        "clearing_passes": 90.0
+      },
+      "S4_Core_Capped_VCG": {
+        "delta_sybil_k2": 0.007501214641435535,
+        "delta_sybil_k4": 0.01538428411220808,
+        "delta_sybil_k8": 0.018867746723757385,
+        "delta_sybil_max": 0.018867746723757385,
+        "delta_collude_3cartel": 0.047392142392220005,
+        "opposing_twins_profit": 0.341665149222344,
+        "heldout_acc_k1": 0.5989583333333334,
+        "heldout_acc_k8": 0.5989583333333334,
+        "heldout_brier_k8": 0.23437026143074036,
+        "heldout_kl_k8": 0.37992603580156964,
+        "max_mm_loss": 0.3197028256317543,
+        "clearing_passes": 16.0
+      },
+      "S5_Sequential_Hanson_LMSR": {
+        "delta_sybil_k2": 0.0,
+        "delta_sybil_k4": 7.761021455128987e-11,
+        "delta_sybil_k8": 6.28642737865448e-09,
+        "delta_sybil_max": 6.28642737865448e-09,
+        "delta_collude_3cartel": 0.0,
+        "opposing_twins_profit": 0.0,
+        "heldout_acc_k1": 0.6145833333333334,
+        "heldout_acc_k8": 0.6145833333333334,
+        "heldout_brier_k8": 0.2662235498428345,
+        "heldout_kl_k8": 0.6324565261602402,
+        "max_mm_loss": 0.6889758706092834,
+        "clearing_passes": 1.0
+      },
+      "S6_Kyle_Batch_Call_AMM": {
+        "delta_sybil_k2": 0.0,
+        "delta_sybil_k4": 3.8805107275644936e-11,
+        "delta_sybil_k8": 4.268561800320943e-10,
+        "delta_sybil_max": 4.268561800320943e-10,
+        "delta_collude_3cartel": 0.0,
+        "opposing_twins_profit": 0.0,
+        "heldout_acc_k1": 0.5989583333333334,
+        "heldout_acc_k8": 0.5989583333333334,
+        "heldout_brier_k8": 0.22824961443742117,
+        "heldout_kl_k8": 0.3680349836746852,
+        "max_mm_loss": 0.441461702187856,
+        "clearing_passes": 1.0
+      },
+      "S7_Futarchy_Conditional_Market": {
+        "delta_sybil_k2": 3.8805107275644936e-11,
+        "delta_sybil_k4": 0.0,
+        "delta_sybil_k8": 3.8805107275644936e-11,
+        "delta_sybil_max": 3.8805107275644936e-11,
+        "delta_collude_3cartel": 0.0,
+        "opposing_twins_profit": 0.0,
+        "heldout_acc_k1": 0.625,
+        "heldout_acc_k8": 0.625,
+        "heldout_brier_k8": 0.23135988414287567,
+        "heldout_kl_k8": 0.3739699323972066,
+        "max_mm_loss": 0.43626630306243896,
+        "clearing_passes": 1.0
+      }
+    }
+  },
+  "e2": {
+    "seed": 103,
+    "strict_detach_verified": true,
+    "max_cross_module_grad": 0.0,
+    "environments": {
+      "sudoku_6x6": {
+        "M1_Global_Backprop_Oracle": {
+          "test_acc": 0.20118343830108643,
+          "test_kl": 3.6389963626861572,
+          "test_brier": 1.23025643825531,
+          "surviving_sybil_clones": 4.0,
+          "active_tier2_specialists": 4.0,
+          "sybil_replacements": 0.0,
+          "clearing_passes_per_step": 1.0
+        },
+        "M2_Decentralized_Raw_VCG_REINFORCE": {
+          "test_acc": 0.17497886717319489,
+          "test_kl": 1.6619431972503662,
+          "test_brier": 0.8335906267166138,
+          "surviving_sybil_clones": 4.0,
+          "active_tier2_specialists": 4.0,
+          "sybil_replacements": 0.0,
+          "clearing_passes_per_step": 13.0
+        },
+        "M3_Decentralized_Sequential_LMSR_REINFORCE": {
+          "test_acc": 0.19864749908447266,
+          "test_kl": 1.676376223564148,
+          "test_brier": 0.8376849889755249,
+          "surviving_sybil_clones": 4.0,
+          "active_tier2_specialists": 4.0,
+          "sybil_replacements": 0.0,
+          "clearing_passes_per_step": 1.0
+        },
+        "M4_Decentralized_Kyle_LMSR_Pinned_LIR": {
+          "test_acc": 0.22231614589691162,
+          "test_kl": 4.134871959686279,
+          "test_brier": 1.1634544134140015,
+          "surviving_sybil_clones": 4.0,
+          "active_tier2_specialists": 4.0,
+          "sybil_replacements": 0.0,
+          "clearing_passes_per_step": 1.0
+        },
+        "M5_Decentralized_Kyle_LMSR_Futarchy_Evolution": {
+          "test_acc": 0.2147083729505539,
+          "test_kl": 4.091902732849121,
+          "test_brier": 1.1920676231384277,
+          "surviving_sybil_clones": 0.0,
+          "active_tier2_specialists": 8.0,
+          "sybil_replacements": 4.0,
+          "clearing_passes_per_step": 1.0
+        }
+      },
+      "equiv_sat": {
+        "M1_Global_Backprop_Oracle": {
+          "test_acc": 0.5,
+          "test_kl": 0.448667049407959,
+          "test_brier": 0.6333712339401245,
+          "surviving_sybil_clones": 4.0,
+          "active_tier2_specialists": 4.0,
+          "sybil_replacements": 0.0,
+          "clearing_passes_per_step": 1.0
+        },
+        "M2_Decentralized_Raw_VCG_REINFORCE": {
+          "test_acc": 0.5044642686843872,
+          "test_kl": 0.24871809780597687,
+          "test_brier": 0.5006800293922424,
+          "surviving_sybil_clones": 4.0,
+          "active_tier2_specialists": 4.0,
+          "sybil_replacements": 0.0,
+          "clearing_passes_per_step": 13.0
+        },
+        "M3_Decentralized_Sequential_LMSR_REINFORCE": {
+          "test_acc": 0.4977678656578064,
+          "test_kl": 0.2649798095226288,
+          "test_brier": 0.517888605594635,
+          "surviving_sybil_clones": 4.0,
+          "active_tier2_specialists": 4.0,
+          "sybil_replacements": 0.0,
+          "clearing_passes_per_step": 1.0
+        },
+        "M4_Decentralized_Kyle_LMSR_Pinned_LIR": {
+          "test_acc": 0.4866071343421936,
+          "test_kl": 0.8422478437423706,
+          "test_brier": 0.7111339569091797,
+          "surviving_sybil_clones": 4.0,
+          "active_tier2_specialists": 4.0,
+          "sybil_replacements": 0.0,
+          "clearing_passes_per_step": 1.0
+        },
+        "M5_Decentralized_Kyle_LMSR_Futarchy_Evolution": {
+          "test_acc": 0.5133928656578064,
+          "test_kl": 0.7109993696212769,
+          "test_brier": 0.6759697794914246,
+          "surviving_sybil_clones": 0.0,
+          "active_tier2_specialists": 8.0,
+          "sybil_replacements": 4.0,
+          "clearing_passes_per_step": 1.0
+        }
+      },
+      "micro_stratego_4x4": {
+        "M1_Global_Backprop_Oracle": {
+          "test_acc": 0.3057851195335388,
+          "test_kl": 2.9551260471343994,
+          "test_brier": 1.1869186162948608,
+          "surviving_sybil_clones": 4.0,
+          "active_tier2_specialists": 4.0,
+          "sybil_replacements": 0.0,
+          "clearing_passes_per_step": 1.0
+        },
+        "M2_Decentralized_Raw_VCG_REINFORCE": {
+          "test_acc": 0.26446279883384705,
+          "test_kl": 0.6396738886833191,
+          "test_brier": 0.806586503982544,
+          "surviving_sybil_clones": 4.0,
+          "active_tier2_specialists": 4.0,
+          "sybil_replacements": 0.0,
+          "clearing_passes_per_step": 13.0
+        },
+        "M3_Decentralized_Sequential_LMSR_REINFORCE": {
+          "test_acc": 0.24380165338516235,
+          "test_kl": 0.7768040895462036,
+          "test_brier": 0.8877593874931335,
+          "surviving_sybil_clones": 4.0,
+          "active_tier2_specialists": 4.0,
+          "sybil_replacements": 0.0,
+          "clearing_passes_per_step": 1.0
+        },
+        "M4_Decentralized_Kyle_LMSR_Pinned_LIR": {
+          "test_acc": 0.3140496015548706,
+          "test_kl": 4.167396545410156,
+          "test_brier": 1.2158081531524658,
+          "surviving_sybil_clones": 4.0,
+          "active_tier2_specialists": 4.0,
+          "sybil_replacements": 0.0,
+          "clearing_passes_per_step": 1.0
+        },
+        "M5_Decentralized_Kyle_LMSR_Futarchy_Evolution": {
+          "test_acc": 0.3471074402332306,
+          "test_kl": 3.8702149391174316,
+          "test_brier": 1.20116126537323,
+          "surviving_sybil_clones": 0.0,
+          "active_tier2_specialists": 8.0,
+          "sybil_replacements": 4.0,
+          "clearing_passes_per_step": 1.0
+        }
+      }
+    }
+  },
+  "e3": {
+    "seed": 103,
+    "E3A_martingale_clearer": {
+      "per_env": {
+        "proposal_poker": {
+          "legacy_optional_stopping_drift": 0.05115807056427002,
+          "martingale_optional_stopping_drift": 1.862645149230957e-09,
+          "exact_cond_martingale_violation": 2.2118911147117615e-09,
+          "drift_reduction_pct": 99.99999635903949
+        },
+        "shiphunt_6x6": {
+          "legacy_optional_stopping_drift": 0.12065684795379639,
+          "martingale_optional_stopping_drift": 3.725290298461914e-09,
+          "exact_cond_martingale_violation": 2.7939677238464355e-09,
+          "drift_reduction_pct": 99.99999691249161
+        },
+        "sudoku_6x6": {
+          "legacy_optional_stopping_drift": 0.03256891667842865,
+          "martingale_optional_stopping_drift": 0.0,
+          "exact_cond_martingale_violation": 5.2532413974404335e-09,
+          "drift_reduction_pct": 100.0
+        }
+      },
+      "mean": {
+        "legacy_optional_stopping_drift": 0.06812794506549835,
+        "martingale_optional_stopping_drift": 1.862645149230957e-09,
+        "exact_cond_martingale_violation": 3.41970007866621e-09,
+        "drift_reduction_pct": 99.99999775717703
+      }
+    },
+    "E3B_sign_symmetric_voi": {
+      "per_env": {
+        "proposal_poker": {
+          "B_4": {
+            "legacy_signed_q_jsd": 0.17919045686721802,
+            "sign_symmetric_voi_jsd": 0.0,
+            "legacy_trap_discovery_recall": 0.0,
+            "sign_symmetric_trap_discovery_recall": 1.0
+          },
+          "B_8": {
+            "legacy_signed_q_jsd": 0.17919045686721802,
+            "sign_symmetric_voi_jsd": 0.0,
+            "legacy_trap_discovery_recall": 0.0,
+            "sign_symmetric_trap_discovery_recall": 1.0
+          },
+          "B_16": {
+            "legacy_signed_q_jsd": 0.010556008666753769,
+            "sign_symmetric_voi_jsd": 0.0,
+            "legacy_trap_discovery_recall": 1.0,
+            "sign_symmetric_trap_discovery_recall": 1.0
+          }
+        },
+        "shiphunt_6x6": {
+          "B_4": {
+            "legacy_signed_q_jsd": 0.17919045686721802,
+            "sign_symmetric_voi_jsd": 0.0,
+            "legacy_trap_discovery_recall": 0.0,
+            "sign_symmetric_trap_discovery_recall": 1.0
+          },
+          "B_8": {
+            "legacy_signed_q_jsd": 0.17919045686721802,
+            "sign_symmetric_voi_jsd": 0.0,
+            "legacy_trap_discovery_recall": 0.0,
+            "sign_symmetric_trap_discovery_recall": 1.0
+          },
+          "B_16": {
+            "legacy_signed_q_jsd": 0.010551465675234795,
+            "sign_symmetric_voi_jsd": 0.0,
+            "legacy_trap_discovery_recall": 1.0,
+            "sign_symmetric_trap_discovery_recall": 1.0
+          }
+        },
+        "sudoku_6x6": {
+          "B_4": {
+            "legacy_signed_q_jsd": 0.17919045686721802,
+            "sign_symmetric_voi_jsd": 0.0,
+            "legacy_trap_discovery_recall": 0.0,
+            "sign_symmetric_trap_discovery_recall": 1.0
+          },
+          "B_8": {
+            "legacy_signed_q_jsd": 0.17919045686721802,
+            "sign_symmetric_voi_jsd": 0.0,
+            "legacy_trap_discovery_recall": 0.0,
+            "sign_symmetric_trap_discovery_recall": 1.0
+          },
+          "B_16": {
+            "legacy_signed_q_jsd": 0.010552233085036278,
+            "sign_symmetric_voi_jsd": 0.0,
+            "legacy_trap_discovery_recall": 1.0,
+            "sign_symmetric_trap_discovery_recall": 1.0
+          }
+        }
+      },
+      "mean": {
+        "B_4": {
+          "legacy_signed_q_jsd": 0.17919045686721802,
+          "sign_symmetric_voi_jsd": 0.0,
+          "legacy_trap_discovery_recall": 0.0,
+          "sign_symmetric_trap_discovery_recall": 1.0
+        },
+        "B_8": {
+          "legacy_signed_q_jsd": 0.17919045686721802,
+          "sign_symmetric_voi_jsd": 0.0,
+          "legacy_trap_discovery_recall": 0.0,
+          "sign_symmetric_trap_discovery_recall": 1.0
+        },
+        "B_16": {
+          "legacy_signed_q_jsd": 0.01055323580900828,
+          "sign_symmetric_voi_jsd": 0.0,
+          "legacy_trap_discovery_recall": 1.0,
+          "sign_symmetric_trap_discovery_recall": 1.0
+        }
+      }
+    },
+    "E3C_four_channel_neuromodulator_gate": {
+      "per_env": {
+        "proposal_poker": {
+          "naive_stationary_noise_ne_retention": 0.03302507847547531,
+          "hardened_stationary_noise_ne_retention": 0.9200000166893005,
+          "delusion_regime_shift_kl_binary_naive": 0.2019897699356079,
+          "delusion_regime_shift_kl_4channel": 0.013941016048192978,
+          "scalar_dopamine_outcome_leak_bias": 0.1559198945760727,
+          "four_channel_observation_gated_bias": 0.04005566984415054,
+          "acc_scalar_dopamine_leak": 0.828125,
+          "acc_binary_chi_naive": 0.59375,
+          "acc_four_channel_lir": 0.828125
+        },
+        "shiphunt_6x6": {
+          "naive_stationary_noise_ne_retention": 0.03302507847547531,
+          "hardened_stationary_noise_ne_retention": 0.9200000166893005,
+          "delusion_regime_shift_kl_binary_naive": 0.02920384146273136,
+          "delusion_regime_shift_kl_4channel": 0.026010382920503616,
+          "scalar_dopamine_outcome_leak_bias": 0.26171305775642395,
+          "four_channel_observation_gated_bias": 0.03366513550281525,
+          "acc_scalar_dopamine_leak": 0.6875,
+          "acc_binary_chi_naive": 0.875,
+          "acc_four_channel_lir": 0.875
+        },
+        "sudoku_6x6": {
+          "naive_stationary_noise_ne_retention": 0.03302507847547531,
+          "hardened_stationary_noise_ne_retention": 0.9200000166893005,
+          "delusion_regime_shift_kl_binary_naive": 0.7388891577720642,
+          "delusion_regime_shift_kl_4channel": 0.00010699908307287842,
+          "scalar_dopamine_outcome_leak_bias": 0.05944911390542984,
+          "four_channel_observation_gated_bias": 0.04861565679311752,
+          "acc_scalar_dopamine_leak": 0.96875,
+          "acc_binary_chi_naive": 0.03125,
+          "acc_four_channel_lir": 0.984375
+        }
+      },
+      "mean": {
+        "naive_stationary_noise_ne_retention": 0.03302507847547531,
+        "hardened_stationary_noise_ne_retention": 0.9200000166893005,
+        "delusion_regime_shift_kl_binary_naive": 0.32336092305680114,
+        "delusion_regime_shift_kl_4channel": 0.013352799350589825,
+        "scalar_dopamine_outcome_leak_bias": 0.15902735541264215,
+        "four_channel_observation_gated_bias": 0.04077882071336111,
+        "acc_scalar_dopamine_leak": 0.828125,
+        "acc_binary_chi_naive": 0.5,
+        "acc_four_channel_lir": 0.8958333333333334
+      }
+    }
+  }
+}

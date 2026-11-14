@@ -1,0 +1,29 @@
+2026-09-29T20:04:06Z STARTFAIL trader-mresnet-11 us-central1-a (no capacity?)
+2026-09-29T20:07:13Z STARTFAIL trader-mresnet-11 us-central1-a (no capacity?)
+2026-09-29T20:07:54Z MOVED trader-mresnet-11 to p4ctl: two STARTFAILs in us-central1-a; stopped VM deleted with its disk (instances and disks lists empty), relaunching from the synced state with termination DELETE
+2026-09-29T20:22:10Z STARTFAIL trader-mresnet-10 us-central1-b (no capacity?)
+2026-09-29T20:26:26Z RESTARTED trader-mresnet-10 after stop (spot preemption or max-run)
+2026-09-29T21:03:26Z STARTFAIL trader-mresnet-14 us-east1-d (no capacity?)
+2026-09-29T21:06:30Z STARTFAIL trader-mresnet-14 us-east1-d (no capacity?)
+2026-09-29T21:09:05Z MOVED trader-mresnet-14 to p4ctl: two STARTFAILs in us-east1-d; stopped VM deleted with its disk (instances and disks lists empty), relaunching from the synced state with termination DELETE
+2026-09-29T21:33:35Z STARTFAIL trader-mresnet-10 us-central1-b (no capacity?)
+2026-09-29T21:36:18Z STARTFAIL trader-mresnet-10 us-central1-b (no capacity?)
+2026-09-29T21:38:56Z STARTFAIL trader-mresnet-10 us-central1-b (no capacity?)
+2026-09-29T21:40:12Z MOVED trader-mresnet-10 to p4ctl: three STARTFAILs in us-central1-b; stopped VM deleted with its disk (instances and disks lists empty), relaunching from the synced state with termination DELETE
+2026-09-29T22:03:48Z STARTFAIL trader-mresnet-13 us-west1-b (no capacity?)
+2026-09-29T22:04:05Z STARTFAIL trader-mresnet-12 us-west1-b (no capacity?)
+2026-09-29T22:06:28Z STARTFAIL trader-mresnet-13 us-west1-b (no capacity?)
+2026-09-29T22:06:46Z STARTFAIL trader-mresnet-12 us-west1-b (no capacity?)
+2026-09-29T22:09:09Z STARTFAIL trader-mresnet-13 us-west1-b (no capacity?)
+2026-09-29T22:09:28Z STARTFAIL trader-mresnet-12 us-west1-b (no capacity?)
+2026-09-29T22:11:55Z STARTFAIL trader-mresnet-13 us-west1-b (no capacity?)
+2026-09-29T22:12:10Z STARTFAIL trader-mresnet-12 us-west1-b (no capacity?)
+2026-09-29T22:14:27Z STARTFAIL trader-mresnet-13 us-west1-b (no capacity?)
+2026-09-29T22:14:39Z STARTFAIL trader-mresnet-12 us-west1-b (no capacity?)
+2026-09-29T22:16:55Z STARTFAIL trader-mresnet-13 us-west1-b (no capacity?)
+2026-09-29T22:17:07Z STARTFAIL trader-mresnet-12 us-west1-b (no capacity?)
+2026-09-29T22:18:02Z MOVED trader-mresnet-13: four+ STARTFAILs in us-west1-b; stopped VM deleted with its disk (instances and disks lists empty); its remaining work (4 deep-eval jobs, 1.24 blocks, and memdepth4 moved from -16) moved to trader-mresnet-15 (move13.sh), whose runner was restarted
+2026-09-29T22:18:02Z MOVED trader-mresnet-12 to p4ctl: four+ STARTFAILs in us-west1-b; stopped VM deleted with its disk (instances and disks lists empty), relaunching from the synced state with termination DELETE, max-run 4 h
+2026-09-29T22:34:58Z DELETED trader-mresnet-15 after sha256-verified sync of 66 files (instances and disks lists empty)
+2026-09-29T22:37:03Z ALL_P3_VMS_DELETED
+2026-09-29T22:39:39Z MOVED memdepth4 from trader-mresnet-15 to trader-mresnet-22: -15's run_p3.sh predates the solo pass, so it declared P3_DONE without running memdepth4 and was deleted; memdepth4 added to results/re5/trader-mresnet-22/solo.txt (-22, preempted at ~22:37, is relaunched by p4ctl with it)

@@ -1,0 +1,15 @@
+- 2026-09-29T12:37:12Z CREATE vm=trader-cat-p5-1 zone=us-central1-c epoch=1790685432 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.40 spend_before=0
+- 2026-09-29T12:41:14Z READY vm=trader-cat-p5-1 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T13:10:55Z START vm=trader-cat-p5-1 plan=all
+- 2026-09-29T13:11:43Z RESTART driver on trader-cat-p5-1 (main arms 3 seeds; ledger caps on y-free wealth)
+- 2026-09-29T13:21:10Z SYNC vm=trader-cat-p5-1 verified_files=68 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P5/results/vm
+- 2026-09-29T13:32:33Z SYNC vm=trader-cat-p5-1 verified_files=80 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P5/results/vm
+- 2026-09-29T13:43:03Z SYNC vm=trader-cat-p5-1 verified_files=92 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P5/results/vm
+- 2026-09-29T13:53:56Z SYNC vm=trader-cat-p5-1 verified_files=116 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P5/results/vm
+- 2026-09-29T14:04:53Z SYNC vm=trader-cat-p5-1 verified_files=122 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P5/results/vm
+- 2026-09-29T14:15:22Z SYNC vm=trader-cat-p5-1 verified_files=134 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P5/results/vm
+- 2026-09-29T14:25:57Z SYNC vm=trader-cat-p5-1 verified_files=139 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P5/results/vm
+- 2026-09-29T14:36:40Z SYNC vm=trader-cat-p5-1 verified_files=139 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P5/results/vm
+- 2026-09-29T14:47:06Z SYNC vm=trader-cat-p5-1 verified_files=151 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P5/results/vm
+- 2026-09-29T14:55:55Z SYNC vm=trader-cat-p5-1 verified_files=161 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P5/results/vm
+- 2026-09-29T14:57:16Z DELETE vm=trader-cat-p5-1 epoch=1790693836 reason="down" leftover_disks="none" spend_now=0.93

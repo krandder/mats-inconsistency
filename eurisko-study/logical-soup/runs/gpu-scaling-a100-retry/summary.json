@@ -1,0 +1,142 @@
+[
+  {
+    "name": "profile-gpu-k18",
+    "device": "a100",
+    "lane": "gpu",
+    "logk": 18,
+    "logq": 12,
+    "fuel": 256,
+    "epochs_requested": 1,
+    "epochs_completed": 1,
+    "wall_s": 7.7407920199999865,
+    "exit_code": 0,
+    "cuda_passes": 30,
+    "cuda_wall_s": 1.258162525,
+    "instructions": 28974755,
+    "instructions_per_s": 3743125.370780864,
+    "ledger": "PASS",
+    "host_phase_columns": [
+      "epoch",
+      "prices_settle_ms",
+      "replication_ms",
+      "metrics_ms"
+    ],
+    "host_phases": [
+      [
+        0,
+        241,
+        1925,
+        3013
+      ]
+    ],
+    "phase_columns": [
+      "epoch",
+      "prepare_ms",
+      "boundary_ms",
+      "traders_ms",
+      "aggregate_ms",
+      "host_finish_ms"
+    ],
+    "phases": [
+      [
+        0,
+        8,
+        0,
+        1221,
+        39,
+        5179
+      ]
+    ],
+    "csv_reference": "profile-gpu-k18",
+    "csv_identical_prefix": true
+  },
+  {
+    "name": "profile-cpu-k18",
+    "device": "a100",
+    "lane": "cpu",
+    "logk": 18,
+    "logq": 12,
+    "fuel": 256,
+    "epochs_requested": 1,
+    "epochs_completed": 1,
+    "wall_s": 10.739457122999994,
+    "exit_code": 0,
+    "cuda_passes": 0,
+    "cuda_wall_s": 0.0,
+    "instructions": 28974755,
+    "instructions_per_s": 2697972.0360302627,
+    "ledger": "PASS",
+    "host_phase_columns": [
+      "epoch",
+      "prices_settle_ms",
+      "replication_ms",
+      "metrics_ms"
+    ],
+    "host_phases": [
+      [
+        0,
+        110,
+        2000,
+        2870
+      ]
+    ],
+    "phase_columns": [
+      "epoch",
+      "prepare_ms",
+      "boundary_ms",
+      "traders_ms",
+      "aggregate_ms",
+      "host_finish_ms"
+    ],
+    "phases": [
+      [
+        0,
+        7,
+        0,
+        4953,
+        23,
+        4980
+      ]
+    ],
+    "csv_reference": "profile-gpu-k18",
+    "csv_identical_prefix": true
+  },
+  {
+    "name": "gpu-k20",
+    "device": "a100",
+    "lane": "gpu",
+    "logk": 20,
+    "logq": 12,
+    "fuel": 256,
+    "epochs_requested": 10,
+    "epochs_completed": 10,
+    "wall_s": 436.249807615,
+    "exit_code": 0,
+    "cuda_passes": 290,
+    "cuda_wall_s": 46.508852712,
+    "instructions": 1076450270,
+    "instructions_per_s": 2467508.8703992986,
+    "ledger": "PASS",
+    "csv_reference": "gpu-k20",
+    "csv_identical_prefix": true
+  },
+  {
+    "name": "cpu-k20",
+    "device": "a100",
+    "lane": "cpu",
+    "logk": 20,
+    "logq": 12,
+    "fuel": 256,
+    "epochs_requested": 10,
+    "epochs_completed": 10,
+    "wall_s": 534.4552030540001,
+    "exit_code": 0,
+    "cuda_passes": 0,
+    "cuda_wall_s": 0.0,
+    "instructions": 1076450270,
+    "instructions_per_s": 2014107.56944439,
+    "ledger": "PASS",
+    "csv_reference": "gpu-k20",
+    "csv_identical_prefix": true
+  }
+]

@@ -1,0 +1,47 @@
+[
+ {
+  "title": "The pi family leaks through close offsets.",
+  "text": "wealth-net draws pi digit offsets in [0,2000); a pair of pi questions within W=32 digits lets one read the other's future. 62.9% of seeds 1-2000 have such a pair; seeds 1-3 and 5 have none, seed 4 has one. Seed 4 gives pi P4 BCE 0.521 instead of ~ln 2, and every pi-sensitive quantity at seed 4 moves (S0-1a/1b, M5 probe edges). Committed 3-seed numbers are clean-seed numbers, not typical-seed numbers. Seed 5 (no leak) supports this: pi P4 0.6942 and the M5 P16 probe edge goes the other way (phi 0.122, z +6.4 vs z -38 at seed 4). With only 3 clean seeds the M5 P16 sd (0.0007) was simply too small; 5-seed sd is 0.012.",
+  "evidence": "X1/w1/results/pi_offsets.json; X1/w1/results/compare_S0_s4.json; X1/w1/results/compare_S0_s5.json; X1/lead/results/tiebreak.json"
+ },
+ {
+  "title": "Three-seed sds understate seed variance.",
+  "text": "Across the 21 quantities the lead re-ran on seed 5, the 5-seed sd is a median 1.7x the committed 3-seed sd (range 0.8-18x; this set was chosen because seed 4 looked off, so it is biased upward). In V1, head wealth sd is understated 5.6x (pooled -1039 +- 388 vs -1241 +- 69) and comp wealth 3.2x. In K1 the shift recovery was 833 +- 58 steps on seeds 1-3 and 1700 at seed 4. Treat any committed '+-' from 3 seeds as a lower bound; sign and ordering claims survive far more often than magnitudes.",
+  "evidence": "X1/lead/results/tiebreak.json; X1/w5/v1/fresh_seed_z.json"
+ },
+ {
+  "title": "S0 delay ordering does not reproduce.",
+  "text": "Committed: delay 64 best (0.327) vs delay 0 (0.377) and 512 (0.442). Fresh seeds 3 and 5: delay 0 0.365/0.361, delay 64 0.384/0.393, delay 512 0.388/0.368. Delay 64 is not better than delay 0 on either fresh seed; S0-3a/3b/3c are refuted.",
+  "evidence": "X1/w1/results/compare_S0_s4.json; X1/w1/results/compare_S0_s5.json"
+ },
+ {
+  "title": "LFSR16 is a lottery that decides many BCE comparisons.",
+  "text": "Whether a run learns LFSR16 flips M8's absag-vs-random result (seed 4 absag -0.083 with LFSR16, +0.006 without), M6's pool ranking (cg learnt LFSR16 0/4 seeds, (a) 3/3: arm-systematic in the w2 harness) and M9's K/Q series. Claims stated with LFSR16 removed reproduce; raw whole-run BCE claims often do not.",
+  "evidence": "X1/w4/repro.csv; X1/w3/results/skeptic.json; X1/lead/results/tiebreak.json"
+ },
+ {
+  "title": "Gate B wording versus the committed decisions.",
+  "text": "M3: exact LOO settlement beats the gradnorm proxy by 0.245 +- 0.097 on a fresh segment (3/3 >= 0.05), so the plan's literal 'nothing beats recent |a.g|' is false; M3's PREREG scopes the stop rule to book currencies, where it holds. M2: the neuron-level 'win' is knife-edge and becomes a tie on a fresh segment, which strengthens coalition_win = false.",
+  "evidence": "X1/w2/results/R2_rederive_fresh.json; X1/w2/results/R2_fresh/stoprule.json"
+ },
+ {
+  "title": "M6 stress pass narrows the survivors.",
+  "text": "The base rule keeps 10 arms; the stress pass drops cg and fb01, leaving b, cq, fb05. The cg margin over BOOST was only ~0.0014 +- 0.0003 nats. On fresh seeds 4 and 5, cg noise 0.0020/0.0021 reproduces and cg < BOOST holds (paired -0.0022/-0.0013).",
+  "evidence": "M6/lead/M6-verdict.json; M6/lead/M6-stress-verdict.json; X1/w3/results/skeptic.json"
+ },
+ {
+  "title": "M7 edge is real, the flag is a judgement.",
+  "text": "dsfw beats ds3 on bce_all at seed 4 too (E8 -1.38%, E64 -3.70%) and pays post-shift (+0.056/+0.077). It is the best of three family-prior variants (best-of-3 null p=0.33 at E64 on seeds 1-3) and needs family labels, so wealth_beats_deepseek = false is a defensible judgement, not a failed replication.",
+  "evidence": "X1/w3/results/skeptic.json; X1/w3/results/repro.json"
+ },
+ {
+  "title": "G1 runner jams while a job runs.",
+  "text": "job-run.sh inherits queue-runner's flock fd 7, so cron dispatches nothing and skips orphan detection while any job runs; closing fd 7 (7>&-) fixes it in a sandbox. The fix is not applied (G1 is not X1's to edit). The money ledger is exact: 23/23 VMs, total $6.0673.",
+  "evidence": "X1/w5/g1/runner_jam.json; X1/w5/g1/ledger_check.json"
+ },
+ {
+  "title": "Stale or mislabeled records.",
+  "text": "CURRENCY.lock why(b) says top neurons are negative near or above the base rate; under most books they are negative less often (books_cum 0.256 < 0.384). V1's step-23300 table is a mid-run cut (runs now at ~31.1k). L1 labels introduction numbers as 'abstract numbers'. None of these changes a decision.",
+  "evidence": "M1/lead/results/sign_census_summary.csv; X1/w5/CLAIMS.md; X1/w1/results/L1_check.json"
+ }
+]

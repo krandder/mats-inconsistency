@@ -1,0 +1,57 @@
+{
+ "model": "Qwen/Qwen3-1.7B",
+ "max_new": 352,
+ "runs": [
+  {
+   "impl": "dynamic",
+   "batch": 128,
+   "rep": 0,
+   "ok": true,
+   "seconds": 101.0717363357544,
+   "s_per_decode_step": 0.14352008497173135,
+   "chains_per_s": 1.266427188327065,
+   "error": null
+  },
+  {
+   "impl": "dynamic",
+   "batch": 32,
+   "rep": 0,
+   "ok": true,
+   "seconds": 28.68955659866333,
+   "s_per_decode_step": 0.08148019828579643,
+   "chains_per_s": 1.1153881974390862,
+   "error": null
+  },
+  {
+   "impl": "static",
+   "batch": 128,
+   "rep": 0,
+   "ok": true,
+   "seconds": 198.99445581436157,
+   "s_per_decode_step": 0.28261247277259827,
+   "chains_per_s": 0.6432339887180878,
+   "error": null
+  },
+  {
+   "impl": "static-compile",
+   "batch": 128,
+   "rep": 0,
+   "ok": false,
+   "seconds": 138.26986622810364,
+   "s_per_decode_step": 0.0,
+   "chains_per_s": 0.0,
+   "error": "RuntimeError('Error: accessing tensor output of CUDAGraphs that has been overwritten by a subsequent run. Stack trace: File \"/root/pylib/transformers/utils/generic.py\", line 939, in wrapper\\n    output = func(self, *args, **kwargs)\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \"/root/pylib/trans"
+  },
+  {
+   "impl": "static-compile",
+   "batch": 128,
+   "rep": 1,
+   "ok": false,
+   "seconds": 3.045910596847534,
+   "s_per_decode_step": 0.0,
+   "chains_per_s": 0.0,
+   "error": "RuntimeError('Error: accessing tensor output of CUDAGraphs that has been overwritten by a subsequent run. Stack trace: File \"/root/pylib/transformers/utils/generic.py\", line 939, in wrapper\\n    output = func(self, *args, **kwargs)\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \"/root/pylib/trans"
+  }
+ ],
+ "fastest_impl": "dynamic"
+}

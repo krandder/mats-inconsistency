@@ -1,0 +1,87 @@
+{
+ "model": "Claude Fable 5.2 (claude-fable-5-2[1m])",
+ "is_kelvins_design": "A variant in six places; his design otherwise (demonstration as terminal state, score read only there, target in proportion to the score, GFlowNet as rollout policy, distillation back).\n1. The alien trajectory is one bit chosen first; the demonstration is then built in its own order. Two routes per demonstration, so the backward policy and route counting never arise (the note admits this).\n2. His consistency requirement (Q6 b: agreement among amplified predictions) is replaced by \"the amplified sampler equals the score-proportional target\", which is reading (a) lifted to the amplifier. His own form was tried only as a loss on a two-parameter head, at K = 2 and 8, with fresh rollouts per call.\n3. That head reads search statistics: it is the trust head of his 20 Oct table, \"real data only\". E3b trains it on the score with no real data.\n4. His table makes cross-order variance the training signal of the search policy under fixed reality-trained parameters. Not tested there. The amplified one-pass head is not built.\n5. No trust head reads the alien bit; no augmented submitted state (his Q5 addition). \"Must fade with compute\" is the coordinator's constraint, not his words.\n6. No network; distillation is a table overwrite.",
+ "verdicts": [
+  {
+   "claim": "1. No source proves amplify-then-distil converges or states a condition on amplified predictions; Morozov has no theorem and its experiments never read the score in the search",
+   "verdict": "CONFIRMED",
+   "reason": "Sentences found: 2406.13655 main.tex l.249 (\"All experiments ... are carried out with this option\"), no theorem environment in the file; Tiapkin Thm 1; Scientist AI l.226, 233, 269-271; MENTS Thm 4-5; VarGrad l.555. I did no literature search of my own, so \"nobody\" holds only for the sources named."
+  },
+  {
+   "claim": "2. Weighting converges to the target for every full-support policy and any backward law over the alien bit; otherwise to the target on what the policy shows",
+   "verdict": "CONFIRMED",
+   "reason": "check/c1_limits.py, 3 new worlds, random backward law: E[w 1_d] = R(d) to 1e-16; TV 0.002-0.02 at K = 8,192; selective policy stops at exactly the hidden mass (0.424, 0.084, 0.175)."
+  },
+  {
+   "claim": "3. Soft tree reaches the target whatever the policy if it reads the score at terminal leaves; otherwise its limit is the network's own numbers",
+   "verdict": "CONFIRMED",
+   "reason": "c1: full backup gives TV 0.0000 and exact log Z under A, B and S; 0.10-0.56 without score reads. c6, new world, selective policy: 0.018 after 16,384 simulations, which is 16,322 score reads for 96 terminal edges (170 times plain enumeration)."
+  },
+  {
+   "claim": "4. Refinement reaches the target only with the reverse-over-forward Metropolis-Hastings filter",
+   "verdict": "CONFIRMED",
+   "reason": "Own kernel, c1: MH limit 0.0000 and target invariant; ratio as printed (4_method.tex l.110, forward over reverse) 0.40-0.87; greedy equals 1 minus the top share. Their code not read by me either."
+  },
+  {
+   "claim": "5a. One round cuts the error to about 1/K; rounds compound; K = 1 drifts",
+   "verdict": "CONFIRMED",
+   "reason": "c2, exact maps: ratio converges to 0.500 (K = 2) and 0.333 (K = 3) in 3 worlds; 0.71-0.84 far from the target; K = 1 with 64 rollouts drifts 0.14-0.59 to 0.49-0.75. The quarter step lowers the finite-batch floor (0.45 to 0.20, 0.19 to 0.08 at 48 rounds); it does not remove it (c6)."
+  },
+  {
+   "claim": "5b. A refinement round never increases the error",
+   "verdict": "REFUTED",
+   "reason": "False for the error the note reports (TV over demonstrations). A policy whose demonstration law is exactly the target but whose alien bit is skewed goes from 0 to 0.08 in one round (c2, 3 worlds). The proof holds only on (alien bit, demonstration) against target x 1/2."
+  },
+  {
+   "claim": "6. A fixed uniform backward law makes distillation erase the alien bit; counting each demonstration once keeps it",
+   "verdict": "CONFIRMED",
+   "reason": "c2: information goes to 0.000-0.03 under the fixed law. Counted once, the alien bit's conditional is untouched (the information number itself moves, 0.11 to 0.43 in one world)."
+  },
+  {
+   "claim": "7. Order-against-order agreement has no anchor; alone it collapses to one half",
+   "verdict": "CONFIRMED",
+   "reason": "c4: shared set mismatch 1e-16, weighted or not, with error 0.14-0.20 unweighted at K = 16,384. c3: parameters within 0.0009 of zero in 360 runs. A plain ridge pull does as well or better than data + (i) from n = 32. Tested only as a loss on the head."
+  },
+  {
+   "claim": "8. The residual variance is zero only at the target and needs no enumeration of orders",
+   "verdict": "CONFIRMED",
+   "reason": "c4, own estimator: 24, 7.2, 1.5, 0.38, 0.11 for weighting; unweighted stuck at 2.3. See the gap below."
+  },
+  {
+   "claim": "8-gap. The same loss with alien concepts",
+   "verdict": "GAP",
+   "reason": "As coded (fixed 1/2 backward law) it is 0.22-0.26 for a sampler whose demonstration law is exactly the target but whose alien bit is informative (c2). Minimising it erases alien concepts, the note's own warning in claim 6. It needs a learned backward law over the alien history."
+  },
+  {
+   "claim": "9. The anchored losses alone match 512 real examples; adding them never hurt",
+   "verdict": "REFUTED",
+   "reason": "c3, 3 new worlds x 20 seeds. Direction holds (0.086 against raw 0.71). But (ii) alone matches about 128 examples (0.086/0.067 against 0.085/0.067; 512 give 0.077/0.059), and added to 512 it is 8-11 % worse. With a badly wrong score (target 0.18 nats from reality) (ii) alone is 0.14-0.15, worse than always one half (0.115), and 36-64 % worse than data at n = 512. Compute is unequal: (ii) uses 6,000K + 128,000 rollouts per fit, data-only at most 4,096."
+  },
+  {
+   "claim": "10. Trust split holds in the limit; a free head does not",
+   "verdict": "CONFIRMED",
+   "reason": "The worker's F3 limit is hard-coded to the weighted share. Independently (c5): effective sample size grows linearly; the weighted share's limit is the target under A and B (0.0000), 0.36-0.67 off under the selective policy; free head 0.17-0.41 from the target (A against B only 0.013-0.045)."
+  },
+  {
+   "claim": "11. Trust fitted through K rollouts copies the rollout policy; exactly at K = 1",
+   "verdict": "CONFIRMED",
+   "reason": "c5: TV 0.009-0.025 to the policy's own order frequencies at K = 1. Stronger than reported: at K = 4,096 the weights are still 0.03-0.85 from the exact fit."
+  },
+  {
+   "claim": "12. Carries over to a trained network",
+   "verdict": "NOT CHECKED",
+   "reason": "Nothing ran on a network, by the worker or by me. CPU only, no cluster job."
+  },
+  {
+   "claim": "Missed: his variance as he placed it",
+   "verdict": "GAP",
+   "reason": "His 20 Oct table uses cross-order variance to train where the search looks, with reality-trained parameters fixed; there a constant answer is not available. Untested."
+  },
+  {
+   "claim": "Missed: what \"500 examples\" measures",
+   "verdict": "GAP",
+   "reason": "The best head of this family nearly ignores the rollouts (alpha 0.10-0.17); always one half scores 0.117, the best head 0.075. The whole range is 0.04 nats."
+  }
+ ],
+ "plain_words": "Context: on 10 Nov you said the GFlowNet is the rollout policy and the search is an amplification on top of many rollouts, distilled back. An agent built a small exact world for that. I checked its note with my own code on new worlds. Nothing is a trained network.\nWhat held. All three amplifications return demonstrations in proportion to the score once they read the score at terminal states. Distilling back cuts the policy's error by 1/K per round (I got exactly 1/2 and 1/3). Order-against-order agreement alone has no anchor. Trust fitted through few rollouts copies the rollout policy, in one world still at 4,096 rollouts.\nWhat did not hold. \"Worth about 500 real examples\": in my worlds about 128, and added to 512 real examples it made things 8-11 % worse. When I made the score badly wrong, that loss alone did worse than always answering one half. It teaches the score, not reality, which is the reason for your \"real data only\" rule on the trust head.\n\"A refinement round never increases the error\": a policy that already sampled exactly in proportion to the score got worse in one round.\nOne thing you should know about the recommended variance loss: as written it is zero only when the alien bit carries nothing, so minimising it erases alien concepts unless a backward law over the alien history is learned too.\nIt is a variant of your design in places: one alien bit chosen first, and your cross-order variance was never tried as the signal that trains the search policy, where your 20 Oct table puts it.\nI don't know whether any of it survives a trained network.\nFiles: /home/agent/workspaces/mats/work/deep-study/wf12/amplified-gflownet/check/ (c1 to c6, out/)."
+}

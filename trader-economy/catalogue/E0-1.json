@@ -1,0 +1,11 @@
+{
+ "id": "E0-1",
+ "question": "Is a hidden unit needed, or can an agent be just some of the weights?",
+ "setup": "Softmax regression, 8 inputs, 3 classes. Agents own one weight (24 agents), one input's weights (8), or one class's weights (3). Trade = additive logit contribution; ledger, compute cost per active weight, bankruptcy and respawn. 800 rounds of 250 fresh examples.",
+ "result": "Weights work as agents at every granularity; the ledger balances in every run. With leave-one-out pay, each agent's own-pay gradient is exactly the global gradient: at zero cost the weights match backprop to 0.000 relative difference.",
+ "status": "Gain",
+ "files": [
+  "exp0.py",
+  "results/exp0_summary.json"
+ ]
+}

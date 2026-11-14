@@ -1,0 +1,134 @@
+# GPU-LOG (traders-net, machine ledger; COST.md is derived from it)
+
+- 2026-09-27T22:16:09Z PENDING-CREATE vm=tn-gpu-g1-smoke-09272216-331 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=0.38 max_run_min=26 ws=G1 job=g1-smoke spent_before_usd=0
+- 2026-09-27T22:16:23Z CREATE vm=tn-gpu-g1-smoke-09272216-331 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run_min=26 rate_usd_h=0.87 (UNVERIFIED-ceiling) reserve_usd=0.38 ws=G1 job=g1-smoke
+- 2026-09-27T22:20:06Z READY vm=tn-gpu-g1-smoke-09272216-331 ip=[ip-removed] torch=2.14.0+cu130 cuda=13.0 gpu=NVIDIA_L4 python=Python_3.12.3 driver=580.173.02 
+- 2026-09-27T22:20:08Z RUN vm=tn-gpu-g1-smoke-09272216-331 ws=G1 job=g1-smoke run_timeout_min=6
+- 2026-09-27T22:31:22Z DELETE vm=tn-gpu-g1-smoke-09272216-331 zone=us-central1-a type=g2-standard-8 age_h=0.237 cost_usd=0.2062 (rate ceiling x age) reason="job g1-smoke finished: failed (runner signalled)"
+- 2026-09-27T22:31:35Z COST-AUDIT vm=tn-gpu-g1-smoke-09272216-331 ws=G1 duration_s=907.747 rate_usd_h=0.87 cost_usd=0.219372 basis=insert-to-delete-receipt UNVERIFIED-ceiling instances=[] disks=[] evidence=infra/state/audit/tn-gpu-g1-smoke-09272216-331/
+- 2026-09-27T22:32:08Z PENDING-CREATE vm=tn-gpu-g1-smoke2-09272232-25494 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=0.38 max_run_min=26 ws=G1 job=g1-smoke2 spent_before_usd=0.22
+- 2026-09-27T22:32:23Z CREATE vm=tn-gpu-g1-smoke2-09272232-25494 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run_min=26 rate_usd_h=0.87 (UNVERIFIED-ceiling) reserve_usd=0.38 ws=G1 job=g1-smoke2
+- 2026-09-27T22:42:39Z COST-AUDIT vm=tn-gpu-g1-smoke2-09272232-25494 ws=G1 duration_s=240.948 rate_usd_h=0.87 cost_usd=0.058229 basis=insert-to-delete-receipt UNVERIFIED-ceiling instances=[] disks=[] evidence=infra/state/audit/tn-gpu-g1-smoke2-09272232-25494/
+- 2026-09-27T22:44:10Z PENDING-CREATE vm=tn-gpu-g1-smoke3-09272244-11541 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=0.38 max_run_min=26 ws=G1 job=g1-smoke3 spent_before_usd=0.28
+- 2026-09-27T22:44:23Z CREATE vm=tn-gpu-g1-smoke3-09272244-11541 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run_min=26 rate_usd_h=0.87 (UNVERIFIED-ceiling) reserve_usd=0.38 ws=G1 job=g1-smoke3
+- 2026-09-27T22:48:56Z PREEMPTED-AT-STARTUP vm=tn-gpu-g1-smoke3-09272244-11541 (instance gone before READY)
+- 2026-09-27T22:49:05Z COST-AUDIT vm=tn-gpu-g1-smoke3-09272244-11541 ws=G1 duration_s=203.573 rate_usd_h=0.87 cost_usd=0.049197 basis=insert-to-delete-receipt UNVERIFIED-ceiling instances=[] disks=[] evidence=infra/state/audit/tn-gpu-g1-smoke3-09272244-11541/
+- 2026-09-27T22:50:11Z PENDING-CREATE vm=tn-gpu-g1-smoke3-09272250-1818 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=0.38 max_run_min=26 ws=G1 job=g1-smoke3 spent_before_usd=0.33
+- 2026-09-27T22:50:24Z CREATE vm=tn-gpu-g1-smoke3-09272250-1818 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run_min=26 rate_usd_h=0.87 (UNVERIFIED-ceiling) reserve_usd=0.38 ws=G1 job=g1-smoke3
+- 2026-09-27T22:53:58Z READY vm=tn-gpu-g1-smoke3-09272250-1818 ip=[ip-removed] torch=2.14.0+cu130 cuda=13.0 gpu=NVIDIA_L4 python=Python_3.12.3 driver=580.173.02 
+- 2026-09-27T22:54:01Z RUN vm=tn-gpu-g1-smoke3-09272250-1818 ws=G1 job=g1-smoke3 run_timeout_min=6
+- 2026-09-27T22:56:03Z RUN-END vm=tn-gpu-g1-smoke3-09272250-1818 ws=G1 job=g1-smoke3 rc=0
+- 2026-09-27T22:57:16Z DELETE vm=tn-gpu-g1-smoke3-09272250-1818 zone=us-central1-a type=g2-standard-8 age_h=0.098 cost_usd=0.0853 (rate ceiling x age) reason="job g1-smoke3 finished: done (run.sh rc=0)"
+- 2026-09-27T22:57:29Z COST-AUDIT vm=tn-gpu-g1-smoke3-09272250-1818 ws=G1 duration_s=420.558 rate_usd_h=0.87 cost_usd=0.101635 basis=insert-to-delete-receipt UNVERIFIED-ceiling instances=[] disks=[] evidence=infra/state/audit/tn-gpu-g1-smoke3-09272250-1818/
+- 2026-09-27T22:57:49Z ZERO-VM-CHECK verdict=ZERO instances=0 disks=0 running_jobs=none evidence=infra/state/zero-vm-check.json
+- 2026-09-27T23:25:16Z PENDING-CREATE vm=tn-gpu-m1-b-sgd-adam-09272325-23565 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=1.59 max_run_min=110 ws=M1 job=m1-b-sgd-adam spent_before_usd=0.43
+- 2026-09-27T23:25:32Z CREATE vm=tn-gpu-m1-b-sgd-adam-09272325-23565 zone=us-central1-c type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run_min=110 rate_usd_h=0.87 (UNVERIFIED-ceiling) reserve_usd=1.59 ws=M1 job=m1-b-sgd-adam
+- 2026-09-27T23:29:00Z READY vm=tn-gpu-m1-b-sgd-adam-09272325-23565 ip=[ip-removed] torch=2.14.0+cu130 cuda=13.0 gpu=NVIDIA_L4 python=Python_3.12.3 driver=580.173.02 
+- 2026-09-27T23:29:03Z RUN vm=tn-gpu-m1-b-sgd-adam-09272325-23565 ws=M1 job=m1-b-sgd-adam run_timeout_min=90
+- 2026-09-28T00:16:11Z RUN-END vm=tn-gpu-m1-b-sgd-adam-09272325-23565 ws=M1 job=m1-b-sgd-adam rc=0
+- 2026-09-28T00:17:10Z DELETE vm=tn-gpu-m1-b-sgd-adam-09272325-23565 zone=us-central1-c type=g2-standard-8 age_h=0.849 cost_usd=0.7386 (rate ceiling x age) reason="job m1-b-sgd-adam finished: done (run.sh rc=0)"
+- 2026-09-28T00:17:25Z COST-AUDIT vm=tn-gpu-m1-b-sgd-adam-09272325-23565 ws=M1 duration_s=3107.748 rate_usd_h=0.87 cost_usd=0.751039 basis=insert-to-delete-receipt UNVERIFIED-ceiling instances=[] disks=[] evidence=infra/state/audit/tn-gpu-m1-b-sgd-adam-09272325-23565/
+- 2026-09-28T00:25:47Z PENDING-CREATE vm=tn-gpu-m1-b-eta03-09280025-30843 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=1.38 max_run_min=95 ws=M1 job=m1-b-eta03 spent_before_usd=1.18
+- 2026-09-28T00:26:21Z CREATE vm=tn-gpu-m1-b-eta03-09280025-30843 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run_min=95 rate_usd_h=0.87 (UNVERIFIED-ceiling) reserve_usd=1.38 ws=M1 job=m1-b-eta03
+- 2026-09-28T00:29:59Z READY vm=tn-gpu-m1-b-eta03-09280025-30843 ip=[ip-removed] torch=2.14.0+cu130 cuda=13.0 gpu=NVIDIA_L4 python=Python_3.12.3 driver=580.173.02 
+- 2026-09-28T00:30:02Z RUN vm=tn-gpu-m1-b-eta03-09280025-30843 ws=M1 job=m1-b-eta03 run_timeout_min=75
+- 2026-09-28T01:00:48Z RUN-END vm=tn-gpu-m1-b-eta03-09280025-30843 ws=M1 job=m1-b-eta03 rc=0
+- 2026-09-28T01:02:00Z DELETE vm=tn-gpu-m1-b-eta03-09280025-30843 zone=us-central1-a type=g2-standard-8 age_h=0.579 cost_usd=0.5037 (rate ceiling x age) reason="job m1-b-eta03 finished: done (run.sh rc=0)"
+- 2026-09-28T01:02:13Z COST-AUDIT vm=tn-gpu-m1-b-eta03-09280025-30843 ws=M1 duration_s=2151.211 rate_usd_h=0.87 cost_usd=0.519876 basis=insert-to-delete-receipt UNVERIFIED-ceiling instances=[] disks=[] evidence=infra/state/audit/tn-gpu-m1-b-eta03-09280025-30843/
+- 2026-09-28T06:36:19Z PENDING-CREATE vm=tn-gpu-m6-w4-fp-base-09280636-15746 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=1.59 max_run_min=110 ws=M6 job=m6-w4-fp-base spent_before_usd=1.70
+- 2026-09-28T06:36:38Z CREATE vm=tn-gpu-m6-w4-fp-base-09280636-15746 zone=us-central1-c type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run_min=110 rate_usd_h=0.87 (UNVERIFIED-ceiling) reserve_usd=1.59 ws=M6 job=m6-w4-fp-base
+- 2026-09-28T06:39:51Z READY vm=tn-gpu-m6-w4-fp-base-09280636-15746 ip=[ip-removed] torch=2.14.0+cu130 cuda=13.0 gpu=NVIDIA_L4 python=Python_3.12.3 driver=580.173.02 
+- 2026-09-28T06:39:54Z RUN vm=tn-gpu-m6-w4-fp-base-09280636-15746 ws=M6 job=m6-w4-fp-base run_timeout_min=90
+- 2026-09-28T06:54:47Z PENDING-CREATE vm=tn-gpu-m7-w1-controls-09280654-3493 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=1.59 max_run_min=110 ws=M7 job=m7-w1-controls spent_before_usd=3.29
+- 2026-09-28T06:55:00Z CREATE vm=tn-gpu-m7-w1-controls-09280654-3493 zone=us-central1-b type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run_min=110 rate_usd_h=0.87 (UNVERIFIED-ceiling) reserve_usd=1.59 ws=M7 job=m7-w1-controls
+- 2026-09-28T06:57:17Z RUN-END vm=tn-gpu-m6-w4-fp-base-09280636-15746 ws=M6 job=m6-w4-fp-base rc=0
+- 2026-09-28T06:58:13Z READY vm=tn-gpu-m7-w1-controls-09280654-3493 ip=[ip-removed] torch=2.14.0+cu130 cuda=13.0 gpu=NVIDIA_L4 python=Python_3.12.3 driver=580.173.02 
+- 2026-09-28T06:58:13Z DELETE vm=tn-gpu-m6-w4-fp-base-09280636-15746 zone=us-central1-c type=g2-standard-8 age_h=0.349 cost_usd=0.3036 (rate ceiling x age) reason="job m6-w4-fp-base finished: done (run.sh rc=0)"
+- 2026-09-28T06:58:16Z RUN vm=tn-gpu-m7-w1-controls-09280654-3493 ws=M7 job=m7-w1-controls run_timeout_min=90
+- 2026-09-28T06:58:29Z COST-AUDIT vm=tn-gpu-m6-w4-fp-base-09280636-15746 ws=M6 duration_s=1306.968 rate_usd_h=0.87 cost_usd=0.315851 basis=insert-to-delete-receipt UNVERIFIED-ceiling instances=[] disks=[] evidence=infra/state/audit/tn-gpu-m6-w4-fp-base-09280636-15746/
+- 2026-09-28T07:00:17Z PENDING-CREATE vm=tn-gpu-m7-w3-exp3-09280700-23203 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=2.03 max_run_min=140 ws=M7 job=m7-w3-exp3 spent_before_usd=3.61
+- 2026-09-28T07:00:33Z CREATE vm=tn-gpu-m7-w3-exp3-09280700-23203 zone=us-central1-b type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run_min=140 rate_usd_h=0.87 (UNVERIFIED-ceiling) reserve_usd=2.03 ws=M7 job=m7-w3-exp3
+- 2026-09-28T07:08:31Z RUN-END vm=tn-gpu-m7-w1-controls-09280654-3493 ws=M7 job=m7-w1-controls rc=0
+- 2026-09-28T07:09:31Z DELETE vm=tn-gpu-m7-w1-controls-09280654-3493 zone=us-central1-b type=g2-standard-8 age_h=0.230 cost_usd=0.2001 (rate ceiling x age) reason="job m7-w1-controls finished: done (run.sh rc=0)"
+- 2026-09-28T07:09:34Z READY vm=tn-gpu-m7-w3-exp3-09280700-23203 ip=[ip-removed] torch=2.14.0+cu130 cuda=13.0 gpu=NVIDIA_L4 python=Python_3.12.3 driver=580.173.02 
+- 2026-09-28T07:09:36Z RUN vm=tn-gpu-m7-w3-exp3-09280700-23203 ws=M7 job=m7-w3-exp3 run_timeout_min=120
+- 2026-09-28T07:09:42Z COST-AUDIT vm=tn-gpu-m7-w1-controls-09280654-3493 ws=M7 duration_s=879.248 rate_usd_h=0.87 cost_usd=0.212485 basis=insert-to-delete-receipt UNVERIFIED-ceiling instances=[] disks=[] evidence=infra/state/audit/tn-gpu-m7-w1-controls-09280654-3493/
+- 2026-09-28T07:10:38Z PENDING-CREATE vm=tn-gpu-m7-w5-bb-09280710-887 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=1.59 max_run_min=110 ws=M7 job=m7-w5-bb spent_before_usd=4.26
+- 2026-09-28T07:10:53Z CREATE vm=tn-gpu-m7-w5-bb-09280710-887 zone=us-central1-b type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run_min=110 rate_usd_h=0.87 (UNVERIFIED-ceiling) reserve_usd=1.59 ws=M7 job=m7-w5-bb
+- 2026-09-28T07:16:35Z READY vm=tn-gpu-m7-w5-bb-09280710-887 ip=[ip-removed] torch=2.14.0+cu130 cuda=13.0 gpu=NVIDIA_L4 python=Python_3.12.3 driver=580.173.02 
+- 2026-09-28T07:16:38Z RUN vm=tn-gpu-m7-w5-bb-09280710-887 ws=M7 job=m7-w5-bb run_timeout_min=90
+- 2026-09-28T07:17:47Z RUN-END vm=tn-gpu-m7-w3-exp3-09280700-23203 ws=M7 job=m7-w3-exp3 rc=0
+- 2026-09-28T07:18:52Z DELETE vm=tn-gpu-m7-w3-exp3-09280700-23203 zone=us-central1-b type=g2-standard-8 age_h=0.292 cost_usd=0.2540 (rate ceiling x age) reason="job m7-w3-exp3 finished: done (run.sh rc=0)"
+- 2026-09-28T07:19:09Z COST-AUDIT vm=tn-gpu-m7-w3-exp3-09280700-23203 ws=M7 duration_s=1108.067 rate_usd_h=0.87 cost_usd=0.267783 basis=insert-to-delete-receipt UNVERIFIED-ceiling instances=[] disks=[] evidence=infra/state/audit/tn-gpu-m7-w3-exp3-09280700-23203/
+- 2026-09-28T07:20:12Z PENDING-CREATE vm=tn-gpu-m7-w4-globalprior-09280720-10852 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=1.59 max_run_min=110 ws=M7 job=m7-w4-globalprior spent_before_usd=4.09
+- 2026-09-28T07:20:30Z CREATE vm=tn-gpu-m7-w4-globalprior-09280720-10852 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run_min=110 rate_usd_h=0.87 (UNVERIFIED-ceiling) reserve_usd=1.59 ws=M7 job=m7-w4-globalprior
+- 2026-09-28T07:23:39Z READY vm=tn-gpu-m7-w4-globalprior-09280720-10852 ip=[ip-removed] torch=2.14.0+cu130 cuda=13.0 gpu=NVIDIA_L4 python=Python_3.12.3 driver=580.173.02 
+- 2026-09-28T07:23:42Z RUN vm=tn-gpu-m7-w4-globalprior-09280720-10852 ws=M7 job=m7-w4-globalprior run_timeout_min=90
+- 2026-09-28T07:28:55Z RUN-END vm=tn-gpu-m7-w5-bb-09280710-887 ws=M7 job=m7-w5-bb rc=0
+- 2026-09-28T07:29:58Z DELETE vm=tn-gpu-m7-w5-bb-09280710-887 zone=us-central1-b type=g2-standard-8 age_h=0.306 cost_usd=0.2662 (rate ceiling x age) reason="job m7-w5-bb finished: done (run.sh rc=0)"
+- 2026-09-28T07:30:11Z COST-AUDIT vm=tn-gpu-m7-w5-bb-09280710-887 ws=M7 duration_s=1153.193 rate_usd_h=0.87 cost_usd=0.278688 basis=insert-to-delete-receipt UNVERIFIED-ceiling instances=[] disks=[] evidence=infra/state/audit/tn-gpu-m7-w5-bb-09280710-887/
+- 2026-09-28T07:31:32Z PENDING-CREATE vm=tn-gpu-m7-w2-famwealth-09280731-5657 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=1.59 max_run_min=110 ws=M7 job=m7-w2-famwealth spent_before_usd=4.36
+- 2026-09-28T07:32:11Z CREATE-FAILED vm=tn-gpu-m7-w2-famwealth-09280731-5657 ws=M7 job=m7-w2-famwealth zones=us-central1-b us-central1-c us-central1-a err="ERROR: (gcloud.compute.instances.create) Could not fetch resource: --- code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS errorDetails: - help:     links:     - description: Troubleshooting documentation"
+- 2026-09-28T07:32:33Z COST-AUDIT vm=tn-gpu-m7-w2-famwealth-09280731-5657 ws=M7 duration_s=0.000 rate_usd_h=0.87 cost_usd=0.000000 basis=create-failed-no-insert UNVERIFIED-ceiling instances=[] disks=[] evidence=infra/state/audit/tn-gpu-m7-w2-famwealth-09280731-5657/
+- 2026-09-28T07:37:26Z COST-AUDIT vm=tn-gpu-m7-w4-globalprior-09280720-10852 ws=M7 duration_s=676.934 rate_usd_h=0.87 cost_usd=0.163592 basis=insert-to-delete-receipt UNVERIFIED-ceiling instances=[] disks=[] evidence=infra/state/audit/tn-gpu-m7-w4-globalprior-09280720-10852/
+- 2026-09-28T07:38:08Z PENDING-CREATE vm=tn-gpu-m7-w4-globalprior-09280738-16860 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=1.59 max_run_min=110 ws=M7 job=m7-w4-globalprior spent_before_usd=2.94
+- 2026-09-28T07:38:44Z CREATE-FAILED vm=tn-gpu-m7-w4-globalprior-09280738-16860 ws=M7 job=m7-w4-globalprior zones=us-central1-a us-central1-b us-central1-c err="ERROR: (gcloud.compute.instances.create) Could not fetch resource: --- code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS errorDetails: - help:     links:     - description: Troubleshooting documentation"
+- 2026-09-28T07:38:58Z COST-AUDIT vm=tn-gpu-m7-w4-globalprior-09280738-16860 ws=M7 duration_s=0.000 rate_usd_h=0.87 cost_usd=0.000000 basis=create-failed-no-insert UNVERIFIED-ceiling instances=[] disks=[] evidence=infra/state/audit/tn-gpu-m7-w4-globalprior-09280738-16860/
+- 2026-09-28T07:39:06Z PENDING-CREATE vm=tn-gpu-m7-w2-famwealth-09280738-7160 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=1.59 max_run_min=110 ws=M7 job=m7-w2-famwealth spent_before_usd=2.94
+- 2026-09-28T07:39:43Z CREATE-FAILED vm=tn-gpu-m7-w2-famwealth-09280738-7160 ws=M7 job=m7-w2-famwealth zones=us-central1-a us-central1-b us-central1-c err="ERROR: (gcloud.compute.instances.create) Could not fetch resource: --- code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS errorDetails: - help:     links:     - description: Troubleshooting documentation"
+- 2026-09-28T07:40:04Z COST-AUDIT vm=tn-gpu-m7-w2-famwealth-09280738-7160 ws=M7 duration_s=0.000 rate_usd_h=0.87 cost_usd=0.000000 basis=create-failed-no-insert UNVERIFIED-ceiling instances=[] disks=[] evidence=infra/state/audit/tn-gpu-m7-w2-famwealth-09280738-7160/
+- 2026-09-28T07:46:14Z PENDING-CREATE vm=tn-gpu-m7-w2-famwealth-09280746-22968 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=1.59 max_run_min=110 ws=M7 job=m7-w2-famwealth spent_before_usd=2.94
+- 2026-09-28T07:46:31Z CREATE vm=tn-gpu-m7-w2-famwealth-09280746-22968 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run_min=110 rate_usd_h=0.87 (UNVERIFIED-ceiling) reserve_usd=1.59 ws=M7 job=m7-w2-famwealth
+- 2026-09-28T07:50:04Z READY vm=tn-gpu-m7-w2-famwealth-09280746-22968 ip=[ip-removed] torch=2.14.0+cu130 cuda=13.0 gpu=NVIDIA_L4 python=Python_3.12.3 driver=580.173.02 
+- 2026-09-28T07:50:06Z RUN vm=tn-gpu-m7-w2-famwealth-09280746-22968 ws=M7 job=m7-w2-famwealth run_timeout_min=90
+- 2026-09-28T08:08:10Z COST-AUDIT vm=tn-gpu-m7-w2-famwealth-09280746-22968 ws=M7 duration_s=934.798 rate_usd_h=0.87 cost_usd=0.225910 basis=insert-to-delete-receipt UNVERIFIED-ceiling instances=[] disks=[] evidence=infra/state/audit/tn-gpu-m7-w2-famwealth-09280746-22968/
+- 2026-09-28T08:10:12Z PENDING-CREATE vm=tn-gpu-m7-w2-famwealth-09280810-8454 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=1.59 max_run_min=110 ws=M7 job=m7-w2-famwealth spent_before_usd=3.16
+- 2026-09-28T08:10:51Z CREATE-FAILED vm=tn-gpu-m7-w2-famwealth-09280810-8454 ws=M7 job=m7-w2-famwealth zones=us-central1-b us-central1-c us-central1-a err="ERROR: (gcloud.compute.instances.create) Could not fetch resource: --- code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS errorDetails: - help:     links:     - description: Troubleshooting documentation"
+- 2026-09-28T08:11:03Z COST-AUDIT vm=tn-gpu-m7-w2-famwealth-09280810-8454 ws=M7 duration_s=0.000 rate_usd_h=0.87 cost_usd=0.000000 basis=create-failed-no-insert UNVERIFIED-ceiling instances=[] disks=[] evidence=infra/state/audit/tn-gpu-m7-w2-famwealth-09280810-8454/
+- 2026-09-28T08:18:08Z PENDING-CREATE vm=tn-gpu-m7-w2-famwealth-09280818-29046 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=1.59 max_run_min=110 ws=M7 job=m7-w2-famwealth spent_before_usd=3.16
+- 2026-09-28T08:18:41Z CREATE vm=tn-gpu-m7-w2-famwealth-09280818-29046 zone=us-central1-b type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run_min=110 rate_usd_h=0.87 (UNVERIFIED-ceiling) reserve_usd=1.59 ws=M7 job=m7-w2-famwealth
+- 2026-09-28T08:24:00Z READY vm=tn-gpu-m7-w2-famwealth-09280818-29046 ip=[ip-removed] torch=2.14.0+cu130 cuda=13.0 gpu=NVIDIA_L4 python=Python_3.12.3 driver=580.173.02 
+- 2026-09-28T08:24:03Z RUN vm=tn-gpu-m7-w2-famwealth-09280818-29046 ws=M7 job=m7-w2-famwealth run_timeout_min=90
+- 2026-09-28T08:35:19Z RUN-END vm=tn-gpu-m7-w2-famwealth-09280818-29046 ws=M7 job=m7-w2-famwealth rc=0
+- 2026-09-28T08:36:30Z DELETE vm=tn-gpu-m7-w2-famwealth-09280818-29046 zone=us-central1-b type=g2-standard-8 age_h=0.283 cost_usd=0.2462 (rate ceiling x age) reason="job m7-w2-famwealth finished: done (run.sh rc=0)"
+- 2026-09-28T08:36:46Z COST-AUDIT vm=tn-gpu-m7-w2-famwealth-09280818-29046 ws=M7 duration_s=1077.053 rate_usd_h=0.87 cost_usd=0.260288 basis=insert-to-delete-receipt UNVERIFIED-ceiling instances=[] disks=[] evidence=infra/state/audit/tn-gpu-m7-w2-famwealth-09280818-29046/
+- 2026-09-28T09:09:55Z PENDING-CREATE vm=tn-gpu-m9-w3-kq-sweep-09280909-17599 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=1.16 max_run_min=80 ws=M9 job=m9-w3-kq-sweep spent_before_usd=3.42
+- 2026-09-28T09:10:09Z CREATE vm=tn-gpu-m9-w3-kq-sweep-09280909-17599 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run_min=80 rate_usd_h=0.87 (UNVERIFIED-ceiling) reserve_usd=1.16 ws=M9 job=m9-w3-kq-sweep
+- 2026-09-28T09:13:13Z READY vm=tn-gpu-m9-w3-kq-sweep-09280909-17599 ip=[ip-removed] torch=2.14.0+cu130 cuda=13.0 gpu=NVIDIA_L4 python=Python_3.12.3 driver=580.173.02 
+- 2026-09-28T09:13:15Z RUN vm=tn-gpu-m9-w3-kq-sweep-09280909-17599 ws=M9 job=m9-w3-kq-sweep run_timeout_min=60
+- 2026-09-28T09:29:42Z RUN-END vm=tn-gpu-m9-w3-kq-sweep-09280909-17599 ws=M9 job=m9-w3-kq-sweep rc=0
+- 2026-09-28T09:30:41Z DELETE vm=tn-gpu-m9-w3-kq-sweep-09280909-17599 zone=us-central1-a type=g2-standard-8 age_h=0.330 cost_usd=0.2871 (rate ceiling x age) reason="job m9-w3-kq-sweep finished: done (run.sh rc=0)"
+- 2026-09-28T09:30:50Z COST-AUDIT vm=tn-gpu-m9-w3-kq-sweep-09280909-17599 ws=M9 duration_s=1241.707 rate_usd_h=0.87 cost_usd=0.300079 basis=insert-to-delete-receipt UNVERIFIED-ceiling instances=[] disks=[] evidence=infra/state/audit/tn-gpu-m9-w3-kq-sweep-09280909-17599/
+- 2026-09-28T09:42:29Z PENDING-CREATE vm=tn-gpu-m6-s1-stress-09280942-11535 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=2.47 max_run_min=170 ws=M6 job=m6-s1-stress spent_before_usd=3.72
+- 2026-09-28T09:42:47Z CREATE vm=tn-gpu-m6-s1-stress-09280942-11535 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run_min=170 rate_usd_h=0.87 (UNVERIFIED-ceiling) reserve_usd=2.47 ws=M6 job=m6-s1-stress
+- 2026-09-28T09:46:37Z READY vm=tn-gpu-m6-s1-stress-09280942-11535 ip=[ip-removed] torch=2.14.0+cu130 cuda=13.0 gpu=NVIDIA_L4 python=Python_3.12.3 driver=580.173.02 
+- 2026-09-28T09:46:40Z RUN vm=tn-gpu-m6-s1-stress-09280942-11535 ws=M6 job=m6-s1-stress run_timeout_min=150
+- 2026-09-28T09:56:28Z PENDING-CREATE vm=tn-gpu-m6-s2-noise-09280956-2801 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=2.90 max_run_min=200 ws=M6 job=m6-s2-noise spent_before_usd=6.19
+- 2026-09-28T09:56:47Z CREATE vm=tn-gpu-m6-s2-noise-09280956-2801 zone=us-central1-c type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run_min=200 rate_usd_h=0.87 (UNVERIFIED-ceiling) reserve_usd=2.90 ws=M6 job=m6-s2-noise
+- 2026-09-28T09:59:55Z RUN-END vm=tn-gpu-m6-s1-stress-09280942-11535 ws=M6 job=m6-s1-stress rc=0
+- 2026-09-28T10:00:56Z DELETE vm=tn-gpu-m6-s1-stress-09280942-11535 zone=us-central1-a type=g2-standard-8 age_h=0.290 cost_usd=0.2523 (rate ceiling x age) reason="job m6-s1-stress finished: done (run.sh rc=0)"
+- 2026-09-28T10:01:10Z COST-AUDIT vm=tn-gpu-m6-s1-stress-09280942-11535 ws=M6 duration_s=1099.344 rate_usd_h=0.87 cost_usd=0.265675 basis=insert-to-delete-receipt UNVERIFIED-ceiling instances=[] disks=[] evidence=infra/state/audit/tn-gpu-m6-s1-stress-09280942-11535/
+- 2026-09-28T10:02:57Z READY vm=tn-gpu-m6-s2-noise-09280956-2801 ip=[ip-removed] torch=2.14.0+cu130 cuda=13.0 gpu=NVIDIA_L4 python=Python_3.12.3 driver=580.173.02 
+- 2026-09-28T10:03:00Z RUN vm=tn-gpu-m6-s2-noise-09280956-2801 ws=M6 job=m6-s2-noise run_timeout_min=180
+- 2026-09-28T10:04:01Z RUN-END vm=tn-gpu-m6-s2-noise-09280956-2801 ws=M6 job=m6-s2-noise rc=0
+- 2026-09-28T10:05:17Z DELETE vm=tn-gpu-m6-s2-noise-09280956-2801 zone=us-central1-c type=g2-standard-8 age_h=0.126 cost_usd=0.1096 (rate ceiling x age) reason="job m6-s2-noise finished: done (run.sh rc=0)"
+- 2026-09-28T10:05:38Z COST-AUDIT vm=tn-gpu-m6-s2-noise-09280956-2801 ws=M6 duration_s=520.424 rate_usd_h=0.87 cost_usd=0.125769 basis=insert-to-delete-receipt UNVERIFIED-ceiling instances=[] disks=[] evidence=infra/state/audit/tn-gpu-m6-s2-noise-09280956-2801/
+- 2026-09-28T10:06:49Z PENDING-CREATE vm=tn-gpu-m6-s2-noise2-09281006-32495 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=2.90 max_run_min=200 ws=M6 job=m6-s2-noise2 spent_before_usd=4.12
+- 2026-09-28T10:07:06Z CREATE vm=tn-gpu-m6-s2-noise2-09281006-32495 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run_min=200 rate_usd_h=0.87 (UNVERIFIED-ceiling) reserve_usd=2.90 ws=M6 job=m6-s2-noise2
+- 2026-09-28T10:10:48Z READY vm=tn-gpu-m6-s2-noise2-09281006-32495 ip=[ip-removed] torch=2.14.0+cu130 cuda=13.0 gpu=NVIDIA_L4 python=Python_3.12.3 driver=580.173.02 
+- 2026-09-28T10:10:51Z RUN vm=tn-gpu-m6-s2-noise2-09281006-32495 ws=M6 job=m6-s2-noise2 run_timeout_min=180
+- 2026-09-28T11:07:23Z COST-AUDIT vm=tn-gpu-m6-s2-noise2-09281006-32495 ws=M6 duration_s=3295.452 rate_usd_h=0.87 cost_usd=0.796401 basis=insert-to-delete-receipt UNVERIFIED-ceiling instances=[] disks=[] evidence=infra/state/audit/tn-gpu-m6-s2-noise2-09281006-32495/
+- 2026-09-28T11:08:06Z PENDING-CREATE vm=tn-gpu-m6-s2-noise2-09281108-22713 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=2.90 max_run_min=200 ws=M6 job=m6-s2-noise2 spent_before_usd=4.91
+- 2026-09-28T11:08:18Z CREATE vm=tn-gpu-m6-s2-noise2-09281108-22713 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run_min=200 rate_usd_h=0.87 (UNVERIFIED-ceiling) reserve_usd=2.90 ws=M6 job=m6-s2-noise2
+- 2026-09-28T11:20:51Z READY vm=tn-gpu-m6-s2-noise2-09281108-22713 ip=[ip-removed] torch=2.14.0+cu130 cuda=13.0 gpu=NVIDIA_L4 python=Python_3.12.3 driver=580.173.02 
+- 2026-09-28T11:20:54Z RUN vm=tn-gpu-m6-s2-noise2-09281108-22713 ws=M6 job=m6-s2-noise2 run_timeout_min=180
+- 2026-09-28T11:55:35Z RUN-END vm=tn-gpu-m6-s2-noise2-09281108-22713 ws=M6 job=m6-s2-noise2 rc=0
+- 2026-09-28T11:56:42Z DELETE vm=tn-gpu-m6-s2-noise2-09281108-22713 zone=us-central1-a type=g2-standard-8 age_h=0.794 cost_usd=0.6908 (rate ceiling x age) reason="job m6-s2-noise2 finished: done (run.sh rc=0)"
+- 2026-09-28T11:56:59Z COST-AUDIT vm=tn-gpu-m6-s2-noise2-09281108-22713 ws=M6 duration_s=2911.736 rate_usd_h=0.87 cost_usd=0.703670 basis=insert-to-delete-receipt UNVERIFIED-ceiling instances=[] disks=[] evidence=infra/state/audit/tn-gpu-m6-s2-noise2-09281108-22713/
+- 2026-09-28T12:06:17Z PENDING-CREATE vm=tn-gpu-x1-w5-wn45-09281206-4455 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=1.16 max_run_min=80 ws=X1 job=x1-w5-wn45 spent_before_usd=5.62
+- 2026-09-28T12:06:34Z CREATE vm=tn-gpu-x1-w5-wn45-09281206-4455 zone=us-central1-b type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run_min=80 rate_usd_h=0.87 (UNVERIFIED-ceiling) reserve_usd=1.16 ws=X1 job=x1-w5-wn45
+- 2026-09-28T12:09:43Z READY vm=tn-gpu-x1-w5-wn45-09281206-4455 ip=[ip-removed] torch=2.14.0+cu130 cuda=13.0 gpu=NVIDIA_L4 python=Python_3.12.3 driver=580.173.02 
+- 2026-09-28T12:09:46Z RUN vm=tn-gpu-x1-w5-wn45-09281206-4455 ws=X1 job=x1-w5-wn45 run_timeout_min=60
+- 2026-09-28T12:36:20Z RUN-END vm=tn-gpu-x1-w5-wn45-09281206-4455 ws=X1 job=x1-w5-wn45 rc=0
+- 2026-09-28T12:37:34Z DELETE vm=tn-gpu-x1-w5-wn45-09281206-4455 zone=us-central1-b type=g2-standard-8 age_h=0.501 cost_usd=0.4359 (rate ceiling x age) reason="job x1-w5-wn45 finished: done (run.sh rc=0)"
+- 2026-09-28T12:37:47Z COST-AUDIT vm=tn-gpu-x1-w5-wn45-09281206-4455 ws=X1 duration_s=1869.445 rate_usd_h=0.87 cost_usd=0.451783 basis=insert-to-delete-receipt UNVERIFIED-ceiling instances=[] disks=[] evidence=infra/state/audit/tn-gpu-x1-w5-wn45-09281206-4455/

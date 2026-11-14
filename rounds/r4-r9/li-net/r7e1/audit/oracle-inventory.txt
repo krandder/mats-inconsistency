@@ -1,0 +1,82 @@
+2026-10-17T11:09:18Z
+== oracle and ground-truth uses in e1v4.py (bayes_marginals, Pfull, Pstd6, occ)
+261:    Y = RO.es_target({"lr": flat["lr"]}, patch.reshape(-1), C["occ"].repeat_interleave(NP, 0))
+453:    Pfull = env6.bayes_marginals(ev_full, T["note"], Pf).float()           # EVALUATION ONLY
+454:    Pstd6 = env6.bayes_marginals(ev_std6, T["note"], Pf).float()
+458:    kl = lambda m: float(wm.bern_kl(Pfull, m).mean())
+461:    R = {"n_test": n, "clause1_corr_std6": pear(sig(lstd), Pstd6),
+462:         "clause1_kl_std6": float(wm.bern_kl(Pstd6, sig(lstd)).mean()), "kl_p0": kl(mu0)}
+463:    raw = {"pstar": run.r5(Pfull), "mu0": run.r5(mu0), "occ": T["occ"].int().tolist(), "anchors": T["anchors"].tolist()}
+586:                row[f"mse_{a}"] = float(((sig(out[a]) - Pfull) ** 2).mean())
+== the same in e1v3.py functions that e1v4 calls (prospect, bag_reads3/_read3, open_search, beta_of, KeyNet, LoopedLinT4, coverage, key_stats, sample_bags, key_align_loss)
+== partA2 / rollouts / wm (functions called by e1v4)
+5:one reading per cell, s_c = occ_c XOR Bern(0.15). E_board = all 36 readings + the note. Exact Bayes P*(Z | E_board) and
+8:(which cells' readings are shown) plus run.py's any-order occupancy reveals on 30% of examples.
+52:    occ = P[rng.integers(len(P), size=n)].copy()
+53:    s = occ ^ (rng.random((n, 36)) < env6.EPS)
+56:    note = np.where(true_note, np.where(occ, sc, -1.0).argmax(1), np.where(~occ, sc, -1.0).argmax(1))
+60:    return {"occ": occ, "s": s, "note": note.astype(np.int64), "note_true": occ[np.arange(n), note], "anchors": anchors,
+77:    occ = Pt[torch.randint(Pt.shape[0], (B,), device=dev, generator=gen)]
+78:    s = occ ^ (torch.rand(B, 36, device=dev, generator=gen) < env6.EPS)
+81:    note = torch.where(true_note, torch.where(occ, sc, torch.full_like(sc, -1.0)).argmax(1),
+82:                       torch.where(~occ, sc, torch.full_like(sc, -1.0)).argmax(1))
+83:    return {"occ": occ, "s": s, "note": note}
+127:    mon_b = {k: env6.bayes_marginals(v, mon["note"], Pf).float() for k, v in mm_ev.items()}
+138:                    row[f"val_bce_{kk}"] = float(F.binary_cross_entropy_with_logits(lv, val["occ"].float()))
+150:        lg = model(ev, B["note"], rev, B["occ"].long())[0]
+152:        loss = F.binary_cross_entropy_with_logits(lg[msk], B["occ"][msk].float())
+152:def es_target(ro, patch, occ_rows):
+157:    y = occ_rows.gather(1, P6)
+== real readings B["s"] / T["s"] / C["s"] uses
+/home/agent/workspaces/eurisko-study/li-net/r5e1/partA2.py:123:    vm_ev = {"root": ev_from(val["s"], cells_mask(val["anchors"], dev)), "full": ev_from(val["s"], torch.ones_like(val["s"])),
+/home/agent/workspaces/eurisko-study/li-net/r5e1/partA2.py:124:             "std6": ev_from(val["s"], cells_mask(val["std6"], dev))}
+/home/agent/workspaces/eurisko-study/li-net/r5e1/partA2.py:125:    mm_ev = {"root": ev_from(mon["s"], cells_mask(mon["anchors"], dev)), "full": ev_from(mon["s"], torch.ones_like(mon["s"])),
+/home/agent/workspaces/eurisko-study/li-net/r5e1/partA2.py:126:             "std6": ev_from(mon["s"], cells_mask(mon["std6"], dev))}
+/home/agent/workspaces/eurisko-study/li-net/r5e1/partA2.py:148:        ev = ev_from(B["s"], em)
+/home/agent/workspaces/eurisko-study/li-net/r5e1/partA2.py:186:    s = B["s"][idx].clone()
+/home/agent/workspaces/eurisko-study/li-net/r5e1/partA2.py:225:    ev = torch.where(um & (ev_root == 0), 1 + B["s"].long(), ev_root)
+/home/agent/workspaces/eurisko-study/li-net/r7e1/e1v4.py:243:    ev_root = A2.ev_from(C["s"], A2.cells_mask(C["anchors"], dev))
+/home/agent/workspaces/eurisko-study/li-net/r7e1/e1v4.py:450:    ev_root = A2.ev_from(T["s"], A2.cells_mask(T["anchors"], dev))
+/home/agent/workspaces/eurisko-study/li-net/r7e1/e1v4.py:451:    ev_full = A2.ev_from(T["s"], torch.ones_like(T["s"]))
+/home/agent/workspaces/eurisko-study/li-net/r7e1/e1v4.py:452:    ev_std6 = A2.ev_from(T["s"], A2.cells_mask(T["std6"], dev))
+/home/agent/workspaces/eurisko-study/li-net/r7e1/e1v4.py:632:        evr = A2.ev_from(Tb["s"], A2.cells_mask(Tb["anchors"], dev))
+/home/agent/workspaces/eurisko-study/li-net/r6e1/e1v3.py:91:    s = B["s"][idx].clone()
+/home/agent/workspaces/eurisko-study/li-net/r6e1/e1v3.py:263:    ev_root = A2.ev_from(C["s"], A2.cells_mask(C["anchors"], dev))
+== patch-id inputs: geo patches/pmask/in_nw/in_se/sector/overlap in e1v4.py
+404:    half = g["in_nw"] if pref_nw else g["in_se"]
+409:        var = (mu * (1 - mu)) @ g["pmask"].T                                  # [n, 40]
+449:    sector = torch.as_tensor(env6.SECTOR, device=dev)
+467:    tiles = torch.tensor(E3.TILES, device=dev)[None].expand(n, -1)
+469:        sk, half = RO.sample_patches(l0, cfg.K - len(E3.TILES), torch.full((n,), p, device=dev), gen, cfg.gamma_voi)
+509:            inh = g["in_nw"] if nw else g["in_se"]
+561:    excl = g["overlap"][astar[:, 0]] > 0
+565:    pm = g["pmask"][astar[:, 0]].bool()
+== what pools and keys receive (Pools7.all signature and calls)
+210:    def all(self, l0, lr, dl, beta, hbar, valid, need_w=False):
+217:            k, _ = self.keys[v](hbar, dl, valid)
+222:        kl_, _ = self.lkey(hbar, dl, valid)
+224:        kj, _ = self.jkey(hbar, dl, valid)
+226:        ka, _ = self.akey(hbar, dl, valid)
+295:            k, sal = keyn(hb, dlb, valid)
+363:            out, _, _ = P.all(l0b, lrb, dlb, bb, hb, valid)
+388:def merge(P, l0, ro, need_w=False):
+390:    return P.all(l0, ro["lr"], ro["dl"], ro["beta"], ro["hbar"], valid, need_w)
+415:                ke, _ = keyn(bag["hbar"], bag["dl"], valid)
+438:            k, _ = keyn(bag["hbar"], bag["dl"], valid)
+473:        out, _, _ = merge(P, l0, ro)
+502:                o, _, Kd = merge(P, l0, ro)
+539:    _, _, un_K = merge(P, l0, un)
+578:            out, W, _ = P.all(l0, ro["lr"], ro["dl"], ro["beta"], ro["hbar"], valid, need_w=True)
+== trust features
+148:def trust_features(ro, tau):
+149-    return torch.cat([ro["hbar"], ro["ent"][:, None], torch.log(tau)[:, None], ro["dis"][:, None]], 1)
+150-
+== training targets (BCE / MSE targets) in fit7
+192:    """econ_kc_K3 (1-step precision crowding): w_r = u beta_r / (lambda + sum_b beta_b g_rb), g_rb = relu(<k_r,k_b>)^gamma."""
+255:    ref = torch.sigmoid(lref)
+261:    Y = RO.es_target({"lr": flat["lr"]}, patch.reshape(-1), C["occ"].repeat_interleave(NP, 0))
+269:        loss = F.mse_loss(trust(X[ib]), Y[ib])
+277:        tmon = float(F.mse_loss(ehat[ntrr:], Y[ntrr:]))
+297:            loss = F.binary_cross_entropy_with_logits(ls, rb)
+342:            loss = F.binary_cross_entropy_with_logits(fn(l0b, dlb, bb, hb, valid, lp.exp()), rb)
+366:                mon.setdefault(k_, []).append(float(F.binary_cross_entropy(torch.sigmoid(v_).clamp(1e-6, 1 - 1e-6), rb)))

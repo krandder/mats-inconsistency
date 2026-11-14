@@ -1,0 +1,46 @@
+{
+ "id": "split_training",
+ "kind": "bar",
+ "title": "Training each unit on its own pay: test log loss",
+ "unit": "nats/example",
+ "source": "trader-economy/results/split_summary.json",
+ "bars": [
+  {
+   "label": "backprop_c0.0",
+   "value": 0.43983,
+   "ci": 0.001,
+   "highlight": true
+  },
+  {
+   "label": "backprop_c0.002",
+   "value": 0.43892,
+   "ci": 0.00057,
+   "highlight": true
+  },
+  {
+   "label": "owen_c0.0",
+   "value": 0.49489,
+   "ci": 0.02277,
+   "highlight": false
+  },
+  {
+   "label": "owen_c0.002",
+   "value": 0.63896,
+   "ci": 0.09558,
+   "highlight": false
+  },
+  {
+   "label": "shap_c0.0",
+   "value": 0.49934,
+   "ci": 0.0134,
+   "highlight": false
+  },
+  {
+   "label": "shap_c0.002",
+   "value": 0.67098,
+   "ci": 0.06162,
+   "highlight": false
+  }
+ ],
+ "note": "Bayes log loss 0.4355; 5 seeds, 95% t-intervals"
+}

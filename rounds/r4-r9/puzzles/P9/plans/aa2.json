@@ -1,0 +1,68 @@
+[
+ {
+  "name": "aa2_train_N4p_s0",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_train.py --arm N4p --seed 0 --steps 4000 --out {OUT}/aa2 --scratch {OUT}/aa2/partial",
+  "done": "{OUT}/aa2/train/N4p_s0.json"
+ },
+ {
+  "name": "aa2_eval_gate_N4p_s0",
+  "deps": [
+   "aa2_train_N4p_s0"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py gate --arm N4p --seed 0 --out {OUT}/aa2 --cache /root/cache",
+  "done": "{OUT}/aa2/eval/gate_N4p_s0.json"
+ },
+ {
+  "name": "aa2_eval_test_N4p_s0",
+  "deps": [
+   "aa2_train_N4p_s0"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py test --arm N4p --seed 0 --out {OUT}/aa2 --cache /root/cache",
+  "done": "{OUT}/aa2/eval/test_N4p_s0.json"
+ },
+ {
+  "name": "aa2_train_N2_s1",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_train.py --arm N2 --seed 1 --steps 4000 --out {OUT}/aa2 --scratch {OUT}/aa2/partial",
+  "done": "{OUT}/aa2/train/N2_s1.json"
+ },
+ {
+  "name": "aa2_eval_gate_N2_s1",
+  "deps": [
+   "aa2_train_N2_s1"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py gate --arm N2 --seed 1 --out {OUT}/aa2 --cache /root/cache",
+  "done": "{OUT}/aa2/eval/gate_N2_s1.json"
+ },
+ {
+  "name": "aa2_eval_test_N2_s1",
+  "deps": [
+   "aa2_train_N2_s1"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py test --arm N2 --seed 1 --out {OUT}/aa2 --cache /root/cache",
+  "done": "{OUT}/aa2/eval/test_N2_s1.json"
+ },
+ {
+  "name": "aa2_train_N4p_s1",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9b_train.py --arm N4p --seed 1 --steps 4000 --out {OUT}/aa2 --scratch {OUT}/aa2/partial",
+  "done": "{OUT}/aa2/train/N4p_s1.json"
+ },
+ {
+  "name": "aa2_eval_gate_N4p_s1",
+  "deps": [
+   "aa2_train_N4p_s1"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py gate --arm N4p --seed 1 --out {OUT}/aa2 --cache /root/cache",
+  "done": "{OUT}/aa2/eval/gate_N4p_s1.json"
+ },
+ {
+  "name": "aa2_eval_test_N4p_s1",
+  "deps": [
+   "aa2_train_N4p_s1"
+  ],
+  "cmd": "{PY} {CODE}/p9b_eval.py test --arm N4p --seed 1 --out {OUT}/aa2 --cache /root/cache",
+  "done": "{OUT}/aa2/eval/test_N4p_s1.json"
+ }
+]

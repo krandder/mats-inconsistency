@@ -1,0 +1,121 @@
+creating soup-gpu-tinyheads-1028-1028044156-30504 (g2-standard-8 + nvidia-l4, STANDARD) in us-central1-a ...
+WARNING: Some requests generated warnings:
+ - Disk size: '100 GB' is larger than image size: '50 GB'. You might need to resize the root repartition manually if the operating system does not support automatic resizing. See https://cloud.google.com/compute/docs/disks/add-persistent-disk#resize_pd for details.
+
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-8 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-central1-a zone. Alternatively, you can try your request
+      again with a different VM hardware configuration or at a later time. For more
+      information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-8
+      zone: us-central1-a
+      zonesAvailable: ''
+    reason: resource_availability
+message: The zone 'projects/GCP_PROJECT/zones/us-central1-a' does not have enough
+  resources available to fulfill the request.  'NULL:0/NULL:0/NULL:0 (state:STOCKOUT,
+  sub-state:STOCKOUT, resource type:compute)'.
+
+creating soup-gpu-tinyheads-1028-1028044156-30504 (g2-standard-8 + nvidia-l4, STANDARD) in us-central1-b ...
+WARNING: Some requests generated warnings:
+ - Disk size: '100 GB' is larger than image size: '50 GB'. You might need to resize the root repartition manually if the operating system does not support automatic resizing. See https://cloud.google.com/compute/docs/disks/add-persistent-disk#resize_pd for details.
+
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-8 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-central1-b zone. Alternatively, you can try your request
+      again with a different VM hardware configuration or at a later time. For more
+      information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-8
+      zone: us-central1-b
+      zonesAvailable: ''
+    reason: resource_availability
+message: The zone 'projects/GCP_PROJECT/zones/us-central1-b' does not have enough
+  resources available to fulfill the request.  'NULL:0/NULL:0/NULL:0 (state:STOCKOUT,
+  sub-state:STOCKOUT, resource type:compute)'.
+
+creating soup-gpu-tinyheads-1028-1028044156-30504 (g2-standard-8 + nvidia-l4, STANDARD) in us-central1-c ...
+NAME                                      ZONE           MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP   STATUS
+soup-gpu-tinyheads-1028-1028044156-30504  us-central1-c  g2-standard-8               [ip-removed]  [ip-removed]  RUNNING
+waiting for soup-gpu-tinyheads-1028-1028044156-30504 ([ip-removed]) startup script (up to 25 min) ...
+gpu=NVIDIA L4, 580.178.04
+nvcc=Build cuda_12.9.r12.9/compiler.35813241_0
+clang=Ubuntu clang version 18.1.3 (1ubuntu1)
+bun=1.3.14
+bend=v2.0.29@c8691aa
+READY: soup-gpu-tinyheads-1028-1028044156-30504 us-central1-c [ip-removed]
+rsync /tmp/l4runs/tinyheads-1028 -> soup-gpu-tinyheads-1028-1028044156-30504:/root/soup
+W: http://packages.cloud.google.com/apt/dists/apt-transport-artifact-registry-stable/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
+W: https://us-apt.pkg.dev/projects/gce-ai-infra/dists/gpudirect-gib-apt/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
+
+Running kernel seems to be up-to-date.
+
+Restarting services...
+ systemctl restart packagekit.service polkit.service rsyslog.service ssh.service
+
+Service restarts being deferred:
+ systemctl restart networkd-dispatcher.service
+ systemctl restart unattended-upgrades.service
+
+No containers need to be restarted.
+
+User sessions running outdated binaries:
+ soup @ session #14: sshd[3555]
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+GPU 0: NVIDIA L4 (UUID: GPU-0c536211-d9a1-401d-b63d-00e8b0b88349)
+testset {'a': 0.6583, 'b': 0.2071, 'bayes': 0.3006, 'lab': 0.3281, 'qonly': 0.4855} floor 0.0101
+TESTSET-HASH b1ca6c6f2bb16aff 5c86272722d6f6e3
+JOB-DONE base 11 3681s 05:53 w32_h2_L2_mix4_ws 11 {"best": {"nll": 0.4429890067835328, "gap": 0.14242218133727044, "gap_se": 0.0038867025303469228, "
+JOB-DONE base 10 3687s 05:53 w32_h2_L2_mix4_ws 10 {"best": {"nll": 0.3085874564009082, "gap": 0.008020630954645799, "gap_se": 0.001028781680299185, "
+JOB-DONE w64 10 3692s 05:53 w32_h2_L2_l2h2d32_mix4_ws 10 {"best": {"nll": 0.3062229952148741, "gap": 0.0056561697686117384, "gap_se": 0.000879977089
+JOB-DONE h3 10 3701s 05:53 w32_h2_L2_l2h3d16_mix4_ws 10 {"best": {"nll": 0.44284832678444386, "gap": 0.14228150133818146, "gap_se": 0.0038949396823
+JOB-DONE h4 11 3701s 05:53 w32_h2_L2_l2h4d16_mix4_ws 11 {"best": {"nll": 0.3062988597861386, "gap": 0.0057320343398761155, "gap_se": 0.000778190776
+JOB-DONE h4 10 3702s 05:53 w32_h2_L2_l2h4d16_mix4_ws 10 {"best": {"nll": 0.3059107280108216, "gap": 0.005343902564559175, "gap_se": 0.0008064638510
+JOB-DONE h3 11 3716s 05:53 w32_h2_L2_l2h3d16_mix4_ws 11 {"best": {"nll": 0.32573924402905613, "gap": 0.02517241858279367, "gap_se": 0.0018317096948
+JOB-DONE L3 10 4581s 06:08 w32_h2_L3_mix4_ws 10 {"best": {"nll": 0.3048981956997836, "gap": 0.004331370253521239, "gap_se": 0.0007245552417645802, 
+JOB-DONE w64 11 3662s 06:54 w32_h2_L2_l2h2d32_mix4_ws 11 {"best": {"nll": 0.30610422603761184, "gap": 0.005537400591349428, "gap_se": 0.000864116302
+JOB-DONE h3 12 3683s 06:54 w32_h2_L2_l2h3d16_mix4_ws 12 {"best": {"nll": 0.3068563290125917, "gap": 0.006289503566329254, "gap_se": 0.0008607354624
+JOB-DONE w64 12 3690s 06:55 w32_h2_L2_l2h2d32_mix4_ws 12 {"best": {"nll": 0.3067140613299614, "gap": 0.006147235883698999, "gap_se": 0.0008921543110
+JOB-DONE base 12 3727s 06:55 w32_h2_L2_mix4_ws 12 {"best": {"nll": 0.30617618448373773, "gap": 0.00560935903747534, "gap_se": 0.0008800763668946916, 
+JOB-DONE h4 12 3746s 06:55 w32_h2_L2_l2h4d16_mix4_ws 12 {"best": {"nll": 0.3159401403660406, "gap": 0.015373314919778202, "gap_se": 0.0013405281795
+JOB-DONE base 13 3641s 07:08 w32_h2_L2_mix4_ws 13 {"best": {"nll": 0.30831651741836014, "gap": 0.007749691972097729, "gap_se": 0.0009012026914359582,
+JOB-DONE L3 11 4632s 07:10 w32_h2_L3_mix4_ws 11 {"best": {"nll": 0.30805341076576415, "gap": 0.007486585319501793, "gap_se": 0.0009221716008906146,
+JOB-DONE L3 12 4657s 07:11 w32_h2_L3_mix4_ws 12 {"best": {"nll": 0.3044614949667108, "gap": 0.003894669520448365, "gap_se": 0.0007138917804824011, 
+JOB-DONE h4 13 3664s 07:55 w32_h2_L2_l2h4d16_mix4_ws 13 {"best": {"nll": 0.310132205021053, "gap": 0.009565379574790558, "gap_se": 0.00117527640587
+JOB-DONE h3 13 3653s 07:55 w32_h2_L2_l2h3d16_mix4_ws 13 {"best": {"nll": 0.32613321795282235, "gap": 0.025566392506559926, "gap_se": 0.001733600757
+JOB-DONE base 14 3660s 07:56 w32_h2_L2_mix4_ws 14 {"best": {"nll": 0.3140092379774026, "gap": 0.013442412531140147, "gap_se": 0.001180372559965165, "
+JOB-DONE w64 13 3719s 07:57 w32_h2_L2_l2h2d32_mix4_ws 13 {"best": {"nll": 0.3109800346455272, "gap": 0.010413209199264755, "gap_se": 0.0011861806212
+JOB-DONE h4 14 3542s 08:07 w32_h2_L2_l2h4d16_mix4_ws 14 {"best": {"nll": 0.3119484141840619, "gap": 0.011381588737799438, "gap_se": 0.0012049824684
+JOB-DONE L3 13 4389s 08:08 w32_h2_L3_mix4_ws 13 {"best": {"nll": 0.3039016146984619, "gap": 0.003334789252199449, "gap_se": 0.0006605961407342512, 
+JOB-DONE h3 14 3502s 08:08 w32_h2_L2_l2h3d16_mix4_ws 14 {"best": {"nll": 0.31262244136767514, "gap": 0.012055615921412747, "gap_se": 0.001165277245
+JOB-DONE w64 14 3506s 08:09 w32_h2_L2_l2h2d32_mix4_ws 14 {"best": {"nll": 0.31296320035123176, "gap": 0.012396374904969362, "gap_se": 0.001170566509
+JOB-DONE L3 14 2965s 08:44 w32_h2_L3_mix4_ws 14 {"best": {"nll": 0.3052182727909509, "gap": 0.0046514473446884405, "gap_se": 0.0007590702246658904,
+HEADS-COMPLETE
+rsync soup-gpu-tinyheads-1028-1028044156-30504:/root/runs -> /tmp/l4runs/tinyheads-1028/runs
+Deleted [https://www.googleapis.com/compute/v1/projects/GCP_PROJECT/zones/us-central1-c/instances/soup-gpu-tinyheads-1028-1028044156-30504].
+GPU-RUN EXIT 0

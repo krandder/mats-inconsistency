@@ -1,0 +1,72 @@
+{
+ "mode": "gate0",
+ "gen_impl": "auto",
+ "sampler": "S0",
+ "model": "Qwen/Qwen3-1.7B",
+ "preset": "medium",
+ "dtype": "bfloat16",
+ "device": "cuda",
+ "seed": 0,
+ "init": "",
+ "ckpt_out": "",
+ "out": "/root/runs/swarm/gate0-q17",
+ "text_out": "/root/text/gate0-q17",
+ "eval_out": "",
+ "eval_text_out": "",
+ "temp": 0.7,
+ "gen_batch": 192,
+ "kv_gb": 9.0,
+ "cpu_batch": 8,
+ "max_minutes": 1000000000.0,
+ "eval_max_minutes": 1000000000.0,
+ "threads": 0,
+ "steps": 150,
+ "boards": 8,
+ "chains": 8,
+ "rounds": 2,
+ "L_train": "64,256",
+ "lr": 0.0001,
+ "kl": 0.04,
+ "clip": 1.0,
+ "micro": 4,
+ "text_every": 10,
+ "small_every": 50,
+ "small_boards": 100,
+ "small_n": 16,
+ "small_L": 128,
+ "stop100": false,
+ "eval_boards": 100,
+ "eval_L": [
+  256,
+  64
+ ],
+ "eval_n": [
+  1,
+  4,
+  16,
+  64
+ ],
+ "eval_n_long": [
+  1,
+  4,
+  16
+ ],
+ "long": false,
+ "long_budgets": [
+  256,
+  1024,
+  4096
+ ],
+ "roundrobin": false,
+ "gate_boards": 100,
+ "gate_n": 16,
+ "gate_L": [
+  64,
+  256
+ ],
+ "gate_train_steps": 5,
+ "prompt": "A",
+ "prompt_variants": "A,B",
+ "dev_boards": 30,
+ "dev_L": 256
+}

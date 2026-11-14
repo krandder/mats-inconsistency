@@ -1,0 +1,121 @@
+{
+  "name": "turtel-prompts-20260922",
+  "built_at": "2026-09-22T09:22:15Z",
+  "seconds": 6.8,
+  "args": {
+    "questions": "/home/agent/data/polymarket-train-20260922/questions.jsonl",
+    "pool": "/home/agent/data/polymarket-evidence-exa-20260922/pool.jsonl",
+    "out_dir": "data/turtel-prompts-20260922",
+    "exclude_flagged": null,
+    "flag_keys": "outcome_leak,post_date_event,date_inconsistent",
+    "max_articles": 10,
+    "max_summary_chars": 600,
+    "max_title_chars": 300,
+    "max_description_chars": 4000,
+    "split_policy": "tail",
+    "validation_size": 500,
+    "order": "prediction_date",
+    "verify": "/home/agent/data/forecasting-benchmarks/LightningRodLabs--outcome-rl-test-dataset/data/train-00000-of-00001.parquet",
+    "limit": null
+  },
+  "inputs": {
+    "questions": {
+      "path": "/home/agent/data/polymarket-train-20260922/questions.jsonl",
+      "sha256": "ac4dfc6d33d6ccb50ed46a3c3b0cddbb44f7684eff2a80377ace72f49be71b71"
+    },
+    "pool": {
+      "path": "/home/agent/data/polymarket-evidence-exa-20260922/pool.jsonl",
+      "sha256": "670f9f605c31ef8e337c637552295e4764b4f4843fc32374b21ab7997f3d3d2e"
+    },
+    "leak_flags": null
+  },
+  "counts": {
+    "records": 10000,
+    "articles_0": 9,
+    "articles_1": 22,
+    "articles_10": 1636,
+    "articles_2": 49,
+    "articles_3": 106,
+    "articles_4": 218,
+    "articles_5": 661,
+    "articles_6": 1513,
+    "articles_7": 2162,
+    "articles_8": 1964,
+    "articles_9": 1660,
+    "duplicate_or_empty_url": 17217,
+    "pool_rows": 10000,
+    "questions_without_evidence": 9,
+    "results_beyond_max_articles": 0,
+    "summaries_truncated": 65486,
+    "titles_truncated": 15
+  },
+  "articles_histogram": {
+    "0": 9,
+    "1": 22,
+    "2": 49,
+    "3": 106,
+    "4": 218,
+    "5": 661,
+    "6": 1513,
+    "7": 2162,
+    "8": 1964,
+    "9": 1660,
+    "10": 1636
+  },
+  "outputs": {
+    "train": {
+      "path": "data/turtel-prompts-20260922/train.jsonl",
+      "n": 9500,
+      "sha256": "04ffae80c656306b3486fe670a0643f6949dd5b53bf6bd8c3b95d530108f657f",
+      "yes_rate": 0.3004,
+      "prediction_date_range": [
+        "2019-12-04T20:40:01Z",
+        "2025-01-22T01:13:26Z"
+      ],
+      "mean_articles": 7.529,
+      "prompt_chars": {
+        "min": 1356,
+        "max": 9694,
+        "mean": 6369
+      }
+    },
+    "validation": {
+      "path": "data/turtel-prompts-20260922/validation.jsonl",
+      "n": 500,
+      "sha256": "4acbe9da820bed22a92cb5561a895b6358a2f04c0076ff223b660b1a5746b511",
+      "yes_rate": 0.26,
+      "prediction_date_range": [
+        "2025-01-22T03:03:44Z",
+        "2025-01-31T11:56:12Z"
+      ],
+      "mean_articles": 8.63,
+      "prompt_chars": {
+        "min": 3081,
+        "max": 8922,
+        "mean": 6946
+      }
+    }
+  },
+  "verification": {
+    "checked": 1265,
+    "exact": 1265,
+    "header_ok": 1265,
+    "footer_ok": 1265,
+    "first_mismatch": null,
+    "training_prompts_checked": 10000,
+    "training_prompts_structure_mismatch": 0,
+    "structure_identical": true,
+    "first_structure_mismatch": null,
+    "test_signature_with_articles": [
+      "header:exact",
+      "question:single-line",
+      "background:empty",
+      "criteria:text",
+      "today:YYYY-MM-DD HH:MM:SS+00:00",
+      "close:YYYY-MM-DD 00:00:00+00:00",
+      "news:---/ARTICLES/[n] title (published on <iso-ms-Z|Unknown Date> by <host>) / Summary: single-line x N, newest-first/----",
+      "footer:exact"
+    ]
+  },
+  "format": "training/turtel_prompt.py render_prompt; background empty; description as criteria"
+}

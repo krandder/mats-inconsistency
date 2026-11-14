@@ -1,0 +1,14 @@
+# PREREG-R8-E3 amendments and operational log
+
+Changes after the hash in PREREG-R8-E3.sha256, with UTC time and reason. Rules, thresholds, scoring sets and grids are never changed after a test number is seen.
+
+- 2026-10-17T15:58:30Z: PREREG-R8-E3.md hashed (sha256 dc5e5681134009a249a6d7402f737809c234dc9b4828a8d3e26f9307c29a1b02), before any launch. outbox/experiments-round-8-amendments.md (15:57:11Z) was read in full: it amends R8-E1 readings 3, 6 and 7 only; nothing in it is for R8-E3.
+- 2026-10-17T15:58:44Z: launch r8e3-main (1 on-demand L4, all 3 seeds, GPU_RUN_TIMEOUT 30m).
+- 2026-10-17T15:59:01Z: outbox/experiments-round-8-amendments.md was rewritten at 15:58:46Z (2 s after launch). Re-read in full: still R8-E1 only (readings 3, 6, 7, now with e1v5.py line references); nothing for R8-E3.
+- 2026-10-17T16:02:30Z: run_vm.sh started; the driver verified at 16:04:01Z that the three seeds were running. Pipeline finished 16:10:27Z, all 3 seeds exit 0; driver returned 16:11:15Z after the final sync and gpu-run.sh deleted the VM right after.
+- 2026-10-17T16:12:22Z: before scoring: the only amendments file is outbox/experiments-round-8-amendments.md (last rewritten 15:58:46Z, R8-E1 only). No change to R8-E3.
+- 2026-10-17T16:15:26Z: registered verdicts computed (r8/report/verdicts.csv): D1 FAIL (attention fits memorised calibration positions), D2 FAIL. POST HOC, EXPLORATORY (no verdict changes): launching r8e3-es, a D1-only rerun with early stopping on 1,000 held-out calibration roots (r8/expl_d1_es.py; same rollouts, bags and test positions), about $0.15 on one L4, within the $0.50 ceiling; mailed opus-mats first (thread 3734).
+- 2026-10-17T16:25:57Z: exploratory r8e3-es aborted by its own driver at 16:24:29Z: the driver's process check used a mistyped pattern ([r]xpl_d1_es.py, from a sed slip), so it never saw the run, started run_vm_es.sh a second time and gave up; gpu-run.sh deleted the VM (about $0.13). Fixed the two patterns ([e]xpl_d1_es.py, [r]un_vm_es.sh). Ledger $0.31. Relaunching once with GPU_RUN_TIMEOUT 11m (worst case about $0.19, total at most $0.50) and a smaller split (1,500 training + 500 held-out calibration roots) so it fits.
+- 2026-10-17T17:07:54Z: correction after audit: the 16:12:22Z entry gave the amendments file's last rewrite as 15:58:46Z. It was rewritten at 16:01:43Z, adding Part B (R8-E2 readings 5, 8, 9, 11, 13). Nothing in it is for R8-E3; no change.
+- 2026-10-17T17:07:54Z: audit corrections C1-C10 (r8/AUDIT-R8-E3.md) applied to RESULTS-R8-E3.md: provenance, wording that claimed more than the numbers, cost including deletion time ($0.49), JSD rows completed; no verdict changed.
+- 2026-10-17T17:12:42Z: r8/AUDIT-R8-E3.md replaced with the auditor's final version (sha256 8f4bcda6...; the 17:07:54Z copy was an unfinished draft with 4 placeholders); removed a sentence in RESULTS item 4 that repeated the LL Spearman numbers (the auditor's last note). No verdict or number changed.

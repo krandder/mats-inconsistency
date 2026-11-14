@@ -1,0 +1,248 @@
+\documentclass[10pt]{article}
+\usepackage[letterpaper,margin=0.72in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,booktabs,graphicx,microtype}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[hidelinks]{hyperref}
+\usepackage{caption}
+\captionsetup{font=small,labelfont=bf}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\setlength{\textfloatsep}{10pt}
+\setlength{\abovedisplayskip}{6pt}
+\setlength{\belowdisplayskip}{6pt}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\KL}{D_{\mathrm{KL}}}
+\title{\vspace{-1.1em}Weak source binding in selected stalled Bayesian transformers}
+\author{[Author]}
+\date{October 28, 2026}
+\begin{document}
+\maketitle
+\vspace{-1.2em}
+\begin{abstract}
+Small transformers trained for Bayesian prediction can stall at an intermediate
+loss. In a three-source reliability task, we distinguish nonquery-context use
+from source binding. Six retained stalled models outperform
+exact query-only Bayes, contradicting a literal query-only account. Yet on a
+prespecified subset of fresh episodes, one fixed 3-cycle of labelled-source identities
+produces only 0.24--0.47\% of
+Bayes's RMS predictive-mean change, versus 82--99\% in five acquired controls.
+An exact reference that forgets source association separates information available
+without binding from its additional value. Two new 50-seed baseline cohorts
+meet a three-evaluation acquisition criterion in 39/50 and 47/50 cases by 80k
+updates; early attention is associated with subsequent acquisition in the
+width-16 cohort. The results support weak functional
+source binding in these stalled checkpoints, without identifying their exact
+algorithm or the cause of optimization failure.
+\end{abstract}
+
+\section{Question and task}
+Prior-data fitted networks learn predictive inference across sampled tasks
+\citep{muller2021}. Related in-context and meta-learning studies report long
+plateaus followed by abrupt acquisition \citep{kirsch2022,reddy2023,nguyen2024}.
+A plateau's loss alone does not identify what information a network uses.
+We study a small setting with exact conditional distributions and a targeted
+input intervention.
+
+Each episode has independent targets
+$Y_1,\ldots,Y_4,Y_\star\sim\mathcal N(0,1)$ and three sources. Source $s$ has
+independently uniform variance $v_s\in\{0.1,0.5,2\}$ and reports
+\begin{equation}
+ O_{sj}=Y_j+\sqrt{v_s}\,\epsilon_{sj},\qquad
+ \epsilon_{sj}\stackrel{\mathrm{iid}}\sim\mathcal N(0,1).
+\end{equation}
+The four labelled targets are observed; $Y_\star$ is to be predicted.
+Write $Q=(O_{1\star},O_{2\star},O_{3\star})$ and
+$S_s=\sum_{j=1}^4(O_{sj}-Y_j)^2$. Full Bayes uses $(Q,S)$,
+where $S=(S_1,S_2,S_3)$, marginalizing 27 variance configurations. Conditional
+on $v$, the query posterior is Gaussian with variance
+$V_v=(1+\sum_s v_s^{-1})^{-1}$ and mean $V_v\sum_s O_{s\star}/v_s$.
+
+A set-style transformer receives 15 reading tokens and a query token. Tokens
+contain source/question identity vectors, readings, observed answers and type
+indicators. Identities are fresh each episode; there is no positional encoding.
+Two pre-normalized attention/MLP blocks produce a Gaussian or four-component
+Gaussian-mixture prediction. Context tokens attend to context; the query token
+reads context and itself. Fresh identities prevent a persistent source-reliability
+lookup. Finite task support and query-only behavior are distinct hypotheses:
+inference over a fixed task pool can still use context \citep{raventos2023}.
+
+\section{Finite-horizon plateaus and early associations}
+We trained new Gaussian-head cohorts at widths 16 and 32, with two heads, two
+layers, identity dimension 16, and seeds 100--149. AdamW uses learning rate
+$10^{-3}$, epsilon $10^{-8}$, decay $0.01$, batch 256, 1k linear warmup,
+gradient clipping at 1, and 80k updates without cooldown. Training episodes are
+fresh. Evaluation uses 4,096 fixed episodes every 1k updates and a separate
+4,096-episode terminal test. Vectorized forward/gradient/update checks against
+individual models pass on CPU and GPU; prediction discrepancies are below
+$8\times10^{-7}$. Softmax-invariant key-bias updates differ numerically.
+
+The gap is model NLL minus exact-mixture Bayes NLL, in nats. A plateau requires
+ten consecutive gaps in $[0.14,0.18]$, spanning 9k updates. Acquisition requires
+three consecutive gaps below $0.10$, spanning 2k updates; escape requires a preceding
+qualifying plateau. Counts require the third point. Unobserved first-point
+event times are ascertainable through 78k at the 80k evaluation horizon.
+Table~\ref{tab:cohorts} reports finite-horizon outcomes, not convergence
+probabilities. The historical 21/95 plateau count pools 19 heterogeneous
+configurations and is not an incidence estimate for either new cohort.
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{lccc}
+\toprule
+Width & Plateau entry & Acquisition & Escape given plateau \\
+\midrule
+16 & 12/50 (14.3--37.4\%) & 39/50 (64.8--87.2\%) & 1/12 (1.5--35.4\%) \\
+32 & 4/50 (3.2--18.8\%) & 47/50 (83.8--97.9\%) & 1/4 (4.6--69.9\%) \\
+\bottomrule
+\end{tabular}
+\caption{Completed baseline cohorts at 80k updates. Parentheses give Wilson
+95\% intervals. Evidence E1.}
+\label{tab:cohorts}
+\end{table}
+
+Four early metrics and their directions were specified prospectively: lower
+validation gap, greater first-layer own-source attention contrast, greater
+second-layer attention to query readings, and greater NLL increase after binding
+disruption. Selected summaries of these prespecified analyses follow; all
+20 width-16 baseline results are in evidence E1. Query-reading attention at 1k
+is associated with acquisition by 80k: AUC $0.907$ (stratified seed-bootstrap 95\% interval
+$0.814$--$0.972$). Own-source contrast at 5k has AUC $0.985$
+($0.948$--$1.000$), among 48 seeds whose retrospectively identified onset is
+after 5k; lower validation gap has AUC $0.791$. All 50 seeds were still
+unconfirmed at 5k. A post-hoc sensitivity using that operational risk set gives
+own-source AUC $0.986$ ($0.953$--$1.000$).
+The highlighted summaries are selected across metrics and landmarks without
+multiple-comparison adjustment. Their outcome is acquisition,
+not escape conditional on plateau entry. Width 32 has only three
+nonacquirers, below our five-per-class AUC reporting rule. These associations
+do not establish causality or independent predictive validation.
+
+\section{What information does the plateau retain?}
+For any query-only density $q$, proper log loss gives
+\begin{align}
+&\E\KL\!\left(p(Y_\star\mid Q,S)\,\|\,q(Y_\star\mid Q)\right) \nonumber\\
+&\quad=I(Y_\star;S\mid Q)
+ +\E\KL\!\left(p(Y_\star\mid Q)\,\|\,q(Y_\star\mid Q)\right).
+\end{align}
+Exact query-only Bayes therefore minimizes expected log loss under that
+information restriction. On 16,000 retained held-out episodes, its gap is
+$0.184982\pm0.004321$ nats (paired episode SE). Four stalled mixture models
+improve on it by $0.03861$--$0.04109$ nats (SE $0.00215$--$0.00220$);
+two stalled Gaussian models improve by approximately $0.023$ nats
+(SE $0.0028$). This is strong exploratory evidence against a literal
+query-only description.
+
+A reference retaining $U$, the unordered multiset of the three residual sums,
+forgets which query source each labelled group belongs to. With
+$L_s(v)=v^{-2}\exp[-S_s/(2v)]$, its variance weights are
+\begin{equation}
+p(v\mid Q,U)\propto p(v)p(Q\mid v)
+\frac{1}{6}\sum_{\pi\in\mathfrak S_3}\prod_{s=1}^3 L_{\pi(s)}(v_s).
+\label{eq:blind}
+\end{equation}
+Exchangeability justifies equal association weights; variance-independent density
+factors cancel. Because $U$ is a function of $S$, the standard chain rule yields
+\begin{equation}
+I(Y_\star;S\mid Q)=I(Y_\star;U\mid Q)+I(Y_\star;S\mid Q,U).
+\end{equation}
+The two gains are estimated as $0.059459\pm0.002533$ and
+$0.125523\pm0.003626$ nats. Association supplies about two thirds of the
+available contextual log-score gain. These are Bayes information values,
+not a causal decomposition of network error.
+
+The unordered reference's moment Gaussian has gap $0.145922$, close in
+sampled NLL to the stalled mixture models. They remain $0.0184$--$0.0209$
+nats worse than the exact unordered mixture; integrated scores also distinguish
+them from its Gaussian approximation. Score proximity cannot identify a
+computation, and their residual cannot simply be called a Gaussian-head floor.
+A stricter reference retaining only $T=\sum_sS_s$ has exact-mixture gap
+$0.155333$, which the four stalled mixtures beat by $0.009$--$0.011$ nats
+(paired SE $0.00136$--$0.00145$).
+The two Gaussian models beat its optimal conditional-moment Gaussian by about
+$0.011$ nats (SE $0.00154$--$0.00155$). These comparisons oppose a scalar-total-residual account within
+the respective output classes, subject to sampling and selection uncertainty.
+Richer pooled representations remain possible.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/binding-summary.pdf}
+\caption{\textbf{Left:} exact Bayes log-loss gaps under different information
+restrictions; bars show paired episode SE on 16,000 retained episodes.
+\textbf{Right:} individual checkpoint responses to the fresh binding intervention,
+relative to Bayes, on 1,988 episodes with substantial Bayes change. Checkpoints
+were selected by historical outcome; points are not random independent
+replicates. Evidence E2--E4.}
+\label{fig:binding}
+\end{figure}
+
+\section{A fresh intervention isolates source association}
+Before evaluating seed-40000 episodes ($n=4096$), we fixed the intervention,
+metrics and checkpoint-selection rule. We cyclically reassign source IDs of all
+four labelled readings per source, using $(1,2,0)$, while holding readings,
+labels and query-source IDs fixed. Bayes uses the inverse assignment. The
+unordered reference is invariant. Token-order equivalence checks verify that
+the changed neural input and recomputed Bayes describe the same assignment.
+
+The retained set uses best-validation checkpoints and contains six stalled
+models: four mixture models spanning
+three architecture families and two width-16 Gaussian models. Controls are the
+lowest successful sibling seed in each of four families plus the documented
+Gaussian seed that escaped a plateau late in training. Checkpoint selection is
+historical; evaluation episodes and intervention metrics are fresh.
+
+We measure predictive-mean response RMS and signed slope relative to Bayes,
+and distribution change $J(p,q)=\tfrac12[\KL(p\|q)+\KL(q\|p)]$.
+The prespecified subset $J(p_B,p_B')\geq0.3$ contains 1,988 episodes.
+Stalled models have only $0.24$--$0.47\%$ of Bayes's RMS mean response;
+controls have $82$--$99\%$, signed slopes $0.76$--$0.98$ and correlations
+$0.92$--$0.99$. The ratio of mean distribution changes,
+$\E[J(p_M,p_M')]/\E[J(p_B,p_B')]$, is
+$8.7\times10^{-6}$--$3.3\times10^{-5}$ for stalled models and
+$0.802$--$0.986$ for controls; paired episode SEs range from
+$4.0\times10^{-7}$ to $1.7\times10^{-6}$ and $0.0044$ to $0.0147$,
+respectively. Full-set results agree qualitatively.
+Quadrature passes grid/tail expansion, analytic Gaussian and independent
+adaptive-mixture checks. Unordered-reference weight invariance holds within
+$2.5\times10^{-15}$.
+
+First-layer attention from a source's query-reading token to its own labelled
+tokens, divided by attention to other sources' labelled tokens \emph{per token},
+is $0.997$--$1.240$ in stalled models and $14.6$--$233$ in controls, pooling
+over heads and sources. There are four own-source and eight other-source labelled
+tokens. Earlier acquired-network analyses found source-selective first-layer
+pooling and showed that post-MLP1 source-query states carry much of the response
+to changed labelled residuals (E5). Our ID-only intervention isolates association
+itself. It supports weak functional binding in the stalled checkpoints, without
+establishing attention as the unique mediator.
+
+\section{Interpretation and limitations}
+ICL studies connect plateaus to small optimizer updates, intermediate strategies
+and initialization-sensitive circuit formation
+\citep{kirsch2022,reddy2023,nguyen2024}. These offer hypotheses, not a transferred
+explanation: tasks and optimizers differ, and removing an easy strategy can
+impair acquisition. Our contribution is to distinguish contextual evidence use
+from source binding in an exactly tractable task, then test the latter directly.
+
+The Bayes references were developed after inspecting historical data. Numerical
+checks establish implementation accuracy, not confirmatory model identification.
+The intervention uses fresh episodes and prospective metrics, but historically
+selected checkpoints and one source 3-cycle. Approximate invariance to this
+cycle does not imply invariance to all source permutations or prove that a
+network computes Eq.~\eqref{eq:blind}. Cycled inputs remain on support but have
+a shifted joint distribution; the intervention measures functional sensitivity
+under that shift. The world is small, the cohorts use one
+baseline recipe, and Gaussian and mixture heads must be distinguished.
+Finite-horizon nonacquisition is not a capacity limit or permanent attractor.
+Predictor bootstrap intervals condition on the fixed evaluation set. The results
+motivate interventions on learning source routing; they do not establish a
+training remedy.
+
+\paragraph{Reproducibility.}
+Paths and hashes for evidence E1--E5 appear in \texttt{evidence.md}.
+Protocols preceded their outcomes; checkpoints are unchanged.
+
+\bibliographystyle{unsrtnat}
+\bibliography{refs}
+\end{document}

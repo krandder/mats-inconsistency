@@ -1,0 +1,11 @@
+--- claims_snapshot/analyze_tails.py	2026-10-29 09:27:22.345350395 +0000
++++ claims_checks/concurrent_update/analyze_tails.py	2026-10-29 09:49:13.597030523 +0000
+@@ -279,7 +279,7 @@
+                 res_lines.append(f'{name}{" (post hoc)" if name in POSTHOC else ""} ' + ''.join(flags_))
+             print(f'  -- [{vt}] better than zero (median rel err or rel RMSE <= 0.9, CI upper < 1), k = 4..12: ' + '; '.join(res_lines))
+             # randomised methods at stated per-event budgets: Monte Carlo (analytic) and splitting (scaled from N = 2000)
+-            ARC = {4: 3.45e9, 8: 1.34e10, 32: 2.6e11}
++            ARC = {4: 3.45e9, 8: 1.34e10, 32: 2.09e11}   # one threshold vector: shared propagation + one heaviside step (kp files)
+             for Bud in (ARC[L], 3e11):
+                 txt = []
+                 Nmc = Bud / c_path(L)

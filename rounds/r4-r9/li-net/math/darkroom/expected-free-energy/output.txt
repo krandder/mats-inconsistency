@@ -1,0 +1,123 @@
+K = 4, ln K = 1.3863 nats
+
+== 1. Known parameters (after learning is complete), per-step epistemic terms ==
+room     F_state: sal  nov   F_amb: sal  nov   predictive H
+dark       -0.0000   0.0      0.0000   0.0   -0.0000
+noise       1.3863   0.0      0.0000   0.0   1.3863
+struct     -0.0000   0.0      0.0000   0.0   -0.0000
+-> F_state: G_noise = G_dark - ln K forever; F_amb: G equal for all rooms, cost decides.
+
+== 2. Observational equivalence (same Dirichlet-Markov predictive) ==
+noise seq, 2000 obs: log evidence (both families, identical by construction) = -2791.48
+  cumulative salience F_state = 2743.5 nats, F_amb = 0.0 nats; novelty both = 28.27
+
+== 3. Novelty (parameter info gain) per visit to a row with n counts, times n ==
+   a0     noise row (uniform)   deterministic row (vertex)   theory vertex (K-1)a0(psi(a0+1)-ln a0)
+    0.1       1.5000   (=(K-1)/2=1.50)       0.5636          0.5636
+    0.5       1.5000   (=(K-1)/2=1.50)       1.0944          1.0945
+    1.0       1.4999   (=(K-1)/2=1.50)       1.2683          1.2684
+    2.0       1.4999   (=(K-1)/2=1.50)       1.3777          1.3778
+   10.0       1.4994   (=(K-1)/2=1.50)       1.4744          1.4750
+-> per row visit, noise gives >= the novelty of a learned deterministic stream for every a0;
+   all novelty decays like 1/n, so any constant cost difference eventually dominates.
+
+== 4. Greedy EFE agent choosing a room each step, T = 20000 ==
+cost per step (dark, noise, struct); fractions = share of steps in (dark, noise, struct)
+F_state threshold: noise beats dark iff lam*(c_noise-c_dark) < ln K, i.e. lam < ln4/0.05 = 27.7
+F_state  known  dark cheapest                    lam=   0.0  all=[0. 1. 0.]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=0
+F_state  known  dark cheapest                    lam=   0.1  all=[0. 1. 0.]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=0
+F_state  known  dark cheapest                    lam=   1.0  all=[0. 1. 0.]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=0
+F_state  known  dark cheapest                    lam=  10.0  all=[0. 1. 0.]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=0
+F_state  known  dark cheapest                    lam=  20.0  all=[0. 1. 0.]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=0
+F_state  known  dark cheapest                    lam=  30.0  all=[1. 0. 0.]  last10%=[1. 0. 0.]  settled-dark-after=0  ties=0
+F_state  known  dark cheapest                    lam= 100.0  all=[1. 0. 0.]  last10%=[1. 0. 0.]  settled-dark-after=0  ties=0
+F_state  known  C dislikes dark (no food there)  lam=   0.0  all=[0. 1. 0.]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=0
+F_state  known  C dislikes dark (no food there)  lam=   0.1  all=[0. 1. 0.]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=0
+F_state  known  C dislikes dark (no food there)  lam=   1.0  all=[0. 1. 0.]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=0
+F_state  known  C dislikes dark (no food there)  lam=  10.0  all=[0. 1. 0.]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=0
+F_state  known  C dislikes dark (no food there)  lam=  20.0  all=[0. 1. 0.]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=0
+F_state  known  C dislikes dark (no food there)  lam=  30.0  all=[0. 1. 0.]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=0
+F_state  known  C dislikes dark (no food there)  lam= 100.0  all=[0. 1. 0.]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=0
+F_state  a0=0.1  dark cheapest                    lam=   0.0  all=[0.    0.999 0.001]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=12
+F_state  a0=0.1  dark cheapest                    lam=   0.1  all=[0.    0.999 0.001]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=7
+F_state  a0=0.1  dark cheapest                    lam=   1.0  all=[0.    0.999 0.001]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=7
+F_state  a0=0.1  dark cheapest                    lam=  10.0  all=[0.    0.999 0.001]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=7
+F_state  a0=0.1  dark cheapest                    lam=  20.0  all=[1. 0. 0.]  last10%=[1. 0. 0.]  settled-dark-after=26  ties=2
+F_state  a0=0.1  dark cheapest                    lam=  30.0  all=[1. 0. 0.]  last10%=[1. 0. 0.]  settled-dark-after=7  ties=1
+F_state  a0=0.1  dark cheapest                    lam= 100.0  all=[1. 0. 0.]  last10%=[1. 0. 0.]  settled-dark-after=0  ties=0
+F_state  a0=0.1  C dislikes dark (no food there)  lam=   0.0  all=[0.    0.999 0.001]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=12
+F_state  a0=0.1  C dislikes dark (no food there)  lam=   0.1  all=[0.    0.999 0.001]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=7
+F_state  a0=0.1  C dislikes dark (no food there)  lam=   1.0  all=[0.    0.999 0.001]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=7
+F_state  a0=0.1  C dislikes dark (no food there)  lam=  10.0  all=[0.    0.999 0.001]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=7
+F_state  a0=0.1  C dislikes dark (no food there)  lam=  20.0  all=[0.    0.999 0.001]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=7
+F_state  a0=0.1  C dislikes dark (no food there)  lam=  30.0  all=[0.    0.999 0.001]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=7
+F_state  a0=0.1  C dislikes dark (no food there)  lam= 100.0  all=[0.    0.999 0.001]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=7
+F_state  a0=1.0  dark cheapest                    lam=   0.0  all=[0.    0.999 0.001]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=13
+F_state  a0=1.0  dark cheapest                    lam=   0.1  all=[0.    0.999 0.001]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=7
+F_state  a0=1.0  dark cheapest                    lam=   1.0  all=[0.    0.999 0.001]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=7
+F_state  a0=1.0  dark cheapest                    lam=  10.0  all=[0.001 0.999 0.001]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=7
+F_state  a0=1.0  dark cheapest                    lam=  20.0  all=[0.003 0.997 0.001]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=7
+F_state  a0=1.0  dark cheapest                    lam=  30.0  all=[1. 0. 0.]  last10%=[1. 0. 0.]  settled-dark-after=265  ties=2
+F_state  a0=1.0  dark cheapest                    lam= 100.0  all=[1. 0. 0.]  last10%=[1. 0. 0.]  settled-dark-after=0  ties=0
+F_state  a0=1.0  C dislikes dark (no food there)  lam=   0.0  all=[0.    0.999 0.001]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=13
+F_state  a0=1.0  C dislikes dark (no food there)  lam=   0.1  all=[0.    0.999 0.001]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=7
+F_state  a0=1.0  C dislikes dark (no food there)  lam=   1.0  all=[0.    0.999 0.001]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=7
+F_state  a0=1.0  C dislikes dark (no food there)  lam=  10.0  all=[0.    0.999 0.001]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=7
+F_state  a0=1.0  C dislikes dark (no food there)  lam=  20.0  all=[0.    0.999 0.001]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=7
+F_state  a0=1.0  C dislikes dark (no food there)  lam=  30.0  all=[0.    0.999 0.001]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=7
+F_state  a0=1.0  C dislikes dark (no food there)  lam= 100.0  all=[0.    0.999 0.001]  last10%=[0. 1. 0.]  settled-dark-after=-  ties=7
+
+F_amb    known  dark cheapest                    lam=   0.0  all=[0.337 0.333 0.331]  last10%=[0.331 0.338 0.332]  settled-dark-after=-  ties=20000
+F_amb    known  dark cheapest                    lam=   0.1  all=[1. 0. 0.]  last10%=[1. 0. 0.]  settled-dark-after=0  ties=0
+F_amb    known  dark cheapest                    lam=   1.0  all=[1. 0. 0.]  last10%=[1. 0. 0.]  settled-dark-after=0  ties=0
+F_amb    known  dark cheapest                    lam=  10.0  all=[1. 0. 0.]  last10%=[1. 0. 0.]  settled-dark-after=0  ties=0
+F_amb    known  dark cheapest                    lam=  20.0  all=[1. 0. 0.]  last10%=[1. 0. 0.]  settled-dark-after=0  ties=0
+F_amb    known  dark cheapest                    lam=  30.0  all=[1. 0. 0.]  last10%=[1. 0. 0.]  settled-dark-after=0  ties=0
+F_amb    known  dark cheapest                    lam= 100.0  all=[1. 0. 0.]  last10%=[1. 0. 0.]  settled-dark-after=0  ties=0
+F_amb    known  C dislikes dark (no food there)  lam=   0.0  all=[0.337 0.333 0.331]  last10%=[0.331 0.338 0.332]  settled-dark-after=-  ties=20000
+F_amb    known  C dislikes dark (no food there)  lam=   0.1  all=[0.  0.5 0.5]  last10%=[0.    0.492 0.507]  settled-dark-after=-  ties=20000
+F_amb    known  C dislikes dark (no food there)  lam=   1.0  all=[0.  0.5 0.5]  last10%=[0.    0.492 0.507]  settled-dark-after=-  ties=20000
+F_amb    known  C dislikes dark (no food there)  lam=  10.0  all=[0.  0.5 0.5]  last10%=[0.    0.492 0.507]  settled-dark-after=-  ties=20000
+F_amb    known  C dislikes dark (no food there)  lam=  20.0  all=[0.  0.5 0.5]  last10%=[0.    0.492 0.507]  settled-dark-after=-  ties=20000
+F_amb    known  C dislikes dark (no food there)  lam=  30.0  all=[0.  0.5 0.5]  last10%=[0.    0.492 0.507]  settled-dark-after=-  ties=20000
+F_amb    known  C dislikes dark (no food there)  lam= 100.0  all=[0.  0.5 0.5]  last10%=[0.    0.492 0.507]  settled-dark-after=-  ties=20000
+F_amb    a0=0.1  dark cheapest                    lam=   0.0  all=[0.064 0.678 0.258]  last10%=[0.061 0.697 0.242]  settled-dark-after=-  ties=2446
+F_amb    a0=0.1  dark cheapest                    lam=   0.1  all=[0.922 0.055 0.022]  last10%=[1. 0. 0.]  settled-dark-after=13789  ties=15
+F_amb    a0=0.1  dark cheapest                    lam=   1.0  all=[0.993 0.005 0.002]  last10%=[1. 0. 0.]  settled-dark-after=669  ties=8
+F_amb    a0=0.1  dark cheapest                    lam=  10.0  all=[1. 0. 0.]  last10%=[1. 0. 0.]  settled-dark-after=6  ties=1
+F_amb    a0=0.1  dark cheapest                    lam=  20.0  all=[1. 0. 0.]  last10%=[1. 0. 0.]  settled-dark-after=29  ties=1
+F_amb    a0=0.1  dark cheapest                    lam=  30.0  all=[1. 0. 0.]  last10%=[1. 0. 0.]  settled-dark-after=0  ties=0
+F_amb    a0=0.1  dark cheapest                    lam= 100.0  all=[1. 0. 0.]  last10%=[1. 0. 0.]  settled-dark-after=0  ties=0
+F_amb    a0=0.1  C dislikes dark (no food there)  lam=   0.0  all=[0.064 0.678 0.258]  last10%=[0.061 0.697 0.242]  settled-dark-after=-  ties=2446
+F_amb    a0=0.1  C dislikes dark (no food there)  lam=   0.1  all=[0.002 0.722 0.276]  last10%=[0.    0.716 0.284]  settled-dark-after=-  ties=730
+F_amb    a0=0.1  C dislikes dark (no food there)  lam=   1.0  all=[0.    0.722 0.278]  last10%=[0.    0.73  0.271]  settled-dark-after=-  ties=4554
+F_amb    a0=0.1  C dislikes dark (no food there)  lam=  10.0  all=[0.    0.724 0.276]  last10%=[0.    0.729 0.272]  settled-dark-after=-  ties=7540
+F_amb    a0=0.1  C dislikes dark (no food there)  lam=  20.0  all=[0.    0.722 0.278]  last10%=[0.    0.718 0.282]  settled-dark-after=-  ties=8294
+F_amb    a0=0.1  C dislikes dark (no food there)  lam=  30.0  all=[0.   0.72 0.28]  last10%=[0.    0.708 0.292]  settled-dark-after=-  ties=8905
+F_amb    a0=0.1  C dislikes dark (no food there)  lam= 100.0  all=[0.  0.7 0.3]  last10%=[0.    0.654 0.345]  settled-dark-after=-  ties=10684
+F_amb    a0=1.0  dark cheapest                    lam=   0.0  all=[0.104 0.482 0.414]  last10%=[0.102 0.486 0.411]  settled-dark-after=-  ties=3968
+F_amb    a0=1.0  dark cheapest                    lam=   0.1  all=[0.896 0.054 0.049]  last10%=[0.998 0.    0.002]  settled-dark-after=-  ties=30
+F_amb    a0=1.0  dark cheapest                    lam=   1.0  all=[0.991 0.004 0.004]  last10%=[1. 0. 0.]  settled-dark-after=1940  ties=7
+F_amb    a0=1.0  dark cheapest                    lam=  10.0  all=[1. 0. 0.]  last10%=[1. 0. 0.]  settled-dark-after=0  ties=0
+F_amb    a0=1.0  dark cheapest                    lam=  20.0  all=[1. 0. 0.]  last10%=[1. 0. 0.]  settled-dark-after=0  ties=0
+F_amb    a0=1.0  dark cheapest                    lam=  30.0  all=[1. 0. 0.]  last10%=[1. 0. 0.]  settled-dark-after=0  ties=0
+F_amb    a0=1.0  dark cheapest                    lam= 100.0  all=[1. 0. 0.]  last10%=[1. 0. 0.]  settled-dark-after=0  ties=0
+F_amb    a0=1.0  C dislikes dark (no food there)  lam=   0.0  all=[0.104 0.482 0.414]  last10%=[0.102 0.486 0.411]  settled-dark-after=-  ties=3968
+F_amb    a0=1.0  C dislikes dark (no food there)  lam=   0.1  all=[0.004 0.536 0.46 ]  last10%=[0.    0.538 0.462]  settled-dark-after=-  ties=638
+F_amb    a0=1.0  C dislikes dark (no food there)  lam=   1.0  all=[0.    0.538 0.462]  last10%=[0.    0.544 0.456]  settled-dark-after=-  ties=3633
+F_amb    a0=1.0  C dislikes dark (no food there)  lam=  10.0  all=[0.    0.539 0.461]  last10%=[0.    0.562 0.438]  settled-dark-after=-  ties=5291
+F_amb    a0=1.0  C dislikes dark (no food there)  lam=  20.0  all=[0.    0.542 0.458]  last10%=[0.   0.56 0.44]  settled-dark-after=-  ties=6745
+F_amb    a0=1.0  C dislikes dark (no food there)  lam=  30.0  all=[0.    0.539 0.461]  last10%=[0.    0.521 0.478]  settled-dark-after=-  ties=8163
+F_amb    a0=1.0  C dislikes dark (no food there)  lam= 100.0  all=[0.    0.527 0.473]  last10%=[0.    0.502 0.498]  settled-dark-after=-  ties=14453
+
+== 5. Can a preference C over the symbols separate noise from structure? ==
+Learned rooms, long-run average of G = KL(q(o)||C) + ambiguity over one structured cycle.
+  C=[0.276 0.155 0.146 0.423] F_state: G_struct - G_noise = +1.3863
+  C=[0.276 0.155 0.146 0.423] F_amb: G_struct - G_noise = +0.0000
+  C=[0.146 0.264 0.152 0.438] F_state: G_struct - G_noise = +1.3863
+  C=[0.146 0.264 0.152 0.438] F_amb: G_struct - G_noise = +0.0000
+  C=[0.416 0.21  0.155 0.219] F_state: G_struct - G_noise = +1.3863
+  C=[0.416 0.21  0.155 0.219] F_amb: G_struct - G_noise = +0.0000
+  F_state over 2000 random C: G_struct - G_noise in [1.3863, 1.3863] (ln K = 1.3863)
+  F_amb: G_struct - G_noise = -2.22e-16 for every C
+-> a single-outcome preference never favours the learnable stream over noise.

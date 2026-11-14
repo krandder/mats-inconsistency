@@ -1,0 +1,17 @@
+   own confidence: lowest entropy       done (32s)
+   own confidence: top probability      done (69s)
+   own confidence: top-1 minus top-2    done (115s)
+   least confident first                done (148s)
+   raster order                         done (184s)
+   pi_trust                             done (249s)
+== 600 grids drawn uniformly from ALL 28,200,960 grids (training / validation / test orbits: [379, 73, 148]); this mean is the KL(reality || T) of the chain rule
+   own confidence: lowest entropy                0.3027 [ 0.2447, 0.3643]  minus pi_trust +0.0741 [-0.0065,+0.1485]  by orbit set (train, val, test): 0.267, 0.436, 0.328
+   own confidence: top probability               0.3574 [ 0.2909, 0.4216]  minus pi_trust +0.1288 [+0.0495,+0.2075]  by orbit set (train, val, test): 0.370, 0.630, 0.190
+   own confidence: top-1 minus top-2             0.3929 [ 0.3213, 0.4647]  minus pi_trust +0.1643 [+0.0746,+0.2485]  by orbit set (train, val, test): 0.438, 0.432, 0.259
+   least confident first                         1.4428 [ 1.3955, 1.4898]  minus pi_trust +1.2142 [+1.1451,+1.2834]  by orbit set (train, val, test): 1.474, 1.438, 1.366
+   raster order                                  0.2454 [ 0.1957, 0.2918]  minus pi_trust +0.0169 [-0.0525,+0.0880]  by orbit set (train, val, test): 0.286, 0.299, 0.115
+   pi_trust                                      0.2286 [ 0.1782, 0.2782]  minus pi_trust +0.0000 [+0.0000,+0.0000]  by orbit set (train, val, test): 0.220, 0.274, 0.229
+   learned mixture (EM on 300 of these grids)    0.1268 [ 0.0934, 0.1589]  minus pi_trust -0.1017 [-0.1377,-0.0655]  by orbit set (train, val, test): 0.133, 0.243, 0.054
+   mixture weights: lowest entropy 0.104, top probability 0.125, top-1 minus top-2 0.232, least confident firs 0.000, raster order 0.069, pi_trust 0.471
+total 250s
+exit 0

@@ -1,0 +1,16 @@
+Dev-net findings (30 Oct, before evaluation-net estimator results). Sources in logs/ and runs/.
+- kprop at width 8 (dev 103): nMSE of E[a_c], c=1..8: K2 5e-7 5.4e-3 .024 .044 .069 .11 .13 .30; K3f 5e-7 5.1e-4 8.6e-3
+  .11 1.4 4.2 53 280; K4f 5e-7 1.8e-4 1.2e-3 3.4e-3 .02 .14 .43 1.7; augmented K2/K3 diverge from c=5.
+  Gaussian-law meets (fwd_dev103_test.log): KP2 .064/.43/.68/3.4 at c=2/4/6/8; K2X .072/.38/.70/4.5.
+  Polynomial meets: best 1.6e-3 (KP3f, degree 2, c=2); 1e2-1e20 at c>=4 (fit extrapolation).
+- GHM (ghm_smoke): err of E[h_c] (rel. tr Cov h_c) at c=8: .05 (tau 1e-2, 297 comps, 92 paths), .01 (1e-3, 5097 comps,
+  1360 paths), .01 (1e-4, 56185 comps, 12283 paths); at c=2: 8e-4 for all tau. Floor, no convergence.
+- Classes (2^16 inputs, noiseless): downstream w99 at c=8: 99 (103), 14 (110), 8 (111), 27 (129); distinct 351/58/167/80;
+  upstream distinct 22179/8493/12245/9774 (most singletons). At c=16: 3/5/2/10. At c=4: 740/19/31/130.
+- Deep noise effect at c_d=32 (noiseless vs MC deep from sampled law): 1.5e-3 (103), 3.9e-5 (110), 1.1e-3 (111),
+  1.9e-5 (129). K2-Stein table residual: 1.9e-4, 0.21, 0.059, 0.056. dev 103 along the reference ray, relative noise
+  effect MC vs K2 vs GHM(1e-3): 64/204/203 at 0.15% of median radius; 2.0/9.2/9.1 at 3%; .046/.074/.062 at median;
+  ~4e-5 (unresolved)/3.6e-6/3.6e-6 at 16x median.
+- Grid (multilinear, gnomonic) for V_8 on dev 103: 2.5e-5 .. 1.9 depending on G, X, k (erratic).
+- BO on dev 103 (k=2..6, m=4..16, cost 213..62000 paths): .26 (k=2), 1e-3..2.5e-2 (k=3), 2.4e-3..5e-3 (k=4),
+  2.4e-4..9.4e-4 (k=5), 1e-3..1.6e-3 (k=6), norm directions; limited by the noise floor (~1.5e-3 on dev 103).

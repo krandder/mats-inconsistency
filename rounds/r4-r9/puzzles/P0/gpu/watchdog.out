@@ -1,0 +1,144 @@
+WATCHDOG-START pid=513112
+DELETE vm=trader-cat-p0-a epoch=1790700141 reason="vanished (spot preemption or max-run)" spend_now=5.07
+RECREATE lane=trader-cat-p0-a old=trader-cat-p0-a new=trader-cat-p0-a-r2 zone0=us-east4-c
+creating trader-cat-p0-a-r2 in us-east4-c ...
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-4 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-east4-c zone. Consider trying your request in another
+      zone which has capacity to accommodate your request. Alternatively, you can
+      try your request again with a different VM hardware configuration or at a later
+      time. For more information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-4
+      zone: us-east4-c
+      zonesAvailable: ''
+    reason: stockout
+message: The zone 'projects/GCP_PROJECT/zones/us-east4-c' does not have enough resources
+  available to fulfill the request.  '(resource type:compute)'.
+
+creating trader-cat-p0-a-r2 in us-central1-a ...
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-4 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-central1-a zone. Consider trying your request in another
+      zone which has capacity to accommodate your request. Alternatively, you can
+      try your request again with a different VM hardware configuration or at a later
+      time. For more information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-4
+      zone: us-central1-a
+      zonesAvailable: ''
+    reason: stockout
+message: The zone 'projects/GCP_PROJECT/zones/us-central1-a' does not have enough
+  resources available to fulfill the request.  '(resource type:compute)'.
+
+creating trader-cat-p0-a-r2 in us-central1-b ...
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-4 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-central1-b zone. Consider trying your request in another
+      zone which has capacity to accommodate your request. Alternatively, you can
+      try your request again with a different VM hardware configuration or at a later
+      time. For more information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-4
+      zone: us-central1-b
+      zonesAvailable: ''
+    reason: stockout
+message: The zone 'projects/GCP_PROJECT/zones/us-central1-b' does not have enough
+  resources available to fulfill the request.  '(resource type:compute)'.
+
+creating trader-cat-p0-a-r2 in us-central1-c ...
+WARNING: Some requests generated warnings:
+ - Disk size: '100 GB' is larger than image size: '50 GB'. You might need to resize the root repartition manually if the operating system does not support automatic resizing. See https://cloud.google.com/compute/docs/disks/add-persistent-disk#resize_pd for details.
+
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-4 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-central1-c zone. Alternatively, you can try your request
+      again with a different VM hardware configuration or at a later time. For more
+      information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-4
+      zone: us-central1-c
+      zonesAvailable: ''
+    reason: resource_availability
+message: The zone 'projects/GCP_PROJECT/zones/us-central1-c' does not have enough
+  resources available to fulfill the request.  'NULL:0/NULL:0/NULL:0 (state:STOCKOUT,
+  sub-state:STOCKOUT, resource type:compute)'.
+
+creating trader-cat-p0-a-r2 in us-east4-a ...
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-4 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-east4-a zone. Consider trying your request in another
+      zone which has capacity to accommodate your request. Alternatively, you can
+      try your request again with a different VM hardware configuration or at a later
+      time. For more information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-4
+      zone: us-east4-a
+      zonesAvailable: ''
+    reason: stockout
+message: The zone 'projects/GCP_PROJECT/zones/us-east4-a' does not have enough resources
+  available to fulfill the request.  '(resource type:compute)'.
+
+CREATE-FAILED vm=trader-cat-p0-a-r2 err="ERROR: (gcloud.compute.instances.create) Could not fetch resource: --- code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS errorDetails: - help:     links:     - description: Troubleshooting documentation"
+RECREATE-FAILED lane=trader-cat-p0-a new=trader-cat-p0-a-r2
+WATCHDOG-STOP

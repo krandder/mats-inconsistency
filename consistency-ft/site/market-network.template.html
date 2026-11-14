@@ -1,0 +1,182 @@
+<title>Market Networks</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#f6f7f9; --paper:#ffffff; --grid:#e3e7ec; --line:#cfd6de; --soft:#eceff3;
+  --ink:#161b22; --ink2:#4d5866; --ink3:#7d8794;
+  --lo:#eb6834; --mid:#c9ced6; --hi:#2a78d6; --yes:#1baf7a; --no:#b06d00;
+  --shadow:0 1px 2px rgba(20,27,34,.06),0 6px 20px rgba(20,27,34,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#12161c; --paper:#1a2029; --grid:#242c37; --line:#334051; --soft:#232b36;
+    --ink:#eef1f5; --ink2:#b7c0cc; --ink3:#7f8a98;
+    --lo:#d95926; --mid:#4a5566; --hi:#3987e5; --yes:#199e70; --no:#c98500;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#12161c; --paper:#1a2029; --grid:#242c37; --line:#334051; --soft:#232b36;
+  --ink:#eef1f5; --ink2:#b7c0cc; --ink3:#7f8a98;
+  --lo:#d95926; --mid:#4a5566; --hi:#3987e5; --yes:#199e70; --no:#c98500;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Source Serif 4",Georgia,serif;font-size:17px;line-height:1.55}
+.wrap{max-width:1180px;margin:0 auto;padding-block:32px 80px;padding-inline:20px}
+h1,h2,h3{font-family:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;text-wrap:balance;line-height:1.08;margin:0}
+h1{font-size:clamp(38px,6vw,60px);letter-spacing:-.02em}
+h2{font-size:clamp(24px,3.5vw,32px);letter-spacing:-.015em}
+h3{font-size:17px}
+p{max-width:70ch;margin:0}
+.topnav{display:flex;gap:18px;flex-wrap:wrap;font-family:"Bricolage Grotesque",sans-serif;font-size:13px;font-weight:700;margin-bottom:28px}
+.topnav a{color:var(--ink2);text-decoration:none;border-bottom:2px solid transparent;padding-bottom:2px}
+.topnav a[aria-current]{color:var(--ink);border-color:var(--ink)}
+.eyebrow{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
+.lede{font-size:19px;color:var(--ink2)}
+header{display:grid;gap:16px;margin-bottom:28px}
+section{display:grid;gap:16px;margin-bottom:40px}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);padding:18px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tabs button{font-family:"JetBrains Mono",monospace;font-size:13px;padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink2);cursor:pointer}
+.tabs button[aria-pressed="true"]{border-color:var(--ink);color:var(--ink);background:var(--soft);font-weight:600}
+.tabs button:focus-visible{outline:2px solid var(--ink3);outline-offset:2px}
+.status{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.stat{display:grid;gap:2px;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--paper)}
+.stat .k{font-size:11px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;font-family:"JetBrains Mono",monospace}
+.stat .v{font-family:"JetBrains Mono",monospace;font-size:22px;font-weight:600;font-variant-numeric:tabular-nums}
+#net{width:100%;height:720px;display:block;background:var(--paper);border-radius:6px}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--ink2);align-items:center}
+.ramp{width:140px;height:10px;border-radius:5px;background:linear-gradient(90deg,var(--lo),var(--mid),var(--hi))}
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--mid);vertical-align:-2px}
+.dot.ring{box-shadow:0 0 0 2.5px var(--ink)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:800px){.two{grid-template-columns:1fr}#net{height:520px}}
+svg{display:block;max-width:100%;height:auto}
+.lbl{font-family:"JetBrains Mono",monospace;font-size:11px;fill:var(--ink3)}
+.lbl2{font-family:"JetBrains Mono",monospace;font-size:12px;fill:var(--ink2)}
+.cap{font-size:14px;color:var(--ink2);max-width:none}
+.tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--paper);font-family:"JetBrains Mono",monospace;font-size:12px;padding:7px 10px;border-radius:5px;opacity:0;max-width:380px;white-space:normal;z-index:10;line-height:1.4}
+footer{margin-top:40px;font-size:14px;color:var(--ink3)}
+</style>
+
+<div class="wrap">
+<nav class="topnav" aria-label="Site"><a href="/">Benchmark</a><a href="/self-trade-rl.html">Self-trade</a><a href="/market-game.html">Market game</a><a href="/market-network.html" aria-current="page">Market networks</a><a href="https://github.com/futarchy-fi/consistency-ft">Repository ↗</a></nav>
+<header>
+  <div class="eyebrow">Frontier market game · final pass · 22 September 2026</div>
+  <h1>Market Networks</h1>
+  <p class="lede">The Bayesian network each model built over Turtel's 1,265 test questions by trading conditional bets. Every node is a question that took part in at least one dependency; every edge is a conditional trade. Questions never linked stay independent and appear only in the distribution below.</p>
+  <div class="tabs" id="tabs" role="group" aria-label="Run"></div>
+  <div class="status" id="stats"></div>
+</header>
+
+<section>
+  <div class="panel">
+    <div class="legend" style="margin-bottom:10px"><span>market P(yes) <span class="ramp" style="display:inline-block;vertical-align:-1px"></span> 0 → 1</span><span><span class="dot ring"></span> resolved YES</span><span><span class="dot"></span> resolved NO</span><span>edge width = |P(a|b=yes) − P(a|b=no)|</span><span>drag to pan · scroll to zoom · hover for the question</span></div>
+    <svg id="net" role="img" aria-label="Network of linked questions"></svg>
+  </div>
+  <p class="cap" id="netcap"></p>
+</section>
+
+<section>
+  <div class="two">
+    <div class="panel"><h3>Distribution of final probabilities</h3><div id="hist"></div><p class="cap">All 1,265 questions, market P(yes) after the final pass, stacked by how they resolved. Mass at the right should be green and at the left amber; the overlap in the middle is where the market was unsure.</p></div>
+    <div class="panel"><h3>Component sizes</h3><div id="comps"></div><p class="cap">Connected groups of linked questions, largest first. Sessions saw 8 or 16 questions at once, so components beyond that size mean links built across sessions and passes.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="panel"><h3>Strongest dependencies</h3><div id="toplinks" style="overflow-x:auto"></div></div>
+</section>
+
+<footer>Data exported from the replayed final-pass markets (scripts/export_market_network.py). Companion: <a href="/market-game.html">market game results</a>.</footer>
+</div>
+<div class="tip" id="tip"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script id="data" type="application/json">__DATA__</script>
+<script>
+const RUNS=JSON.parse(document.getElementById('data').textContent);
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const tip=document.getElementById('tip');
+function showTip(e,html){tip.innerHTML=html;tip.style.opacity=1;tip.style.left=Math.min(e.clientX+14,innerWidth-400)+'px';tip.style.top=(e.clientY+14)+'px'}
+function hideTip(){tip.style.opacity=0}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let sim=null;
+
+function color(p){const lo=d3.color(css('--lo')),mid=d3.color(css('--mid')),hi=d3.color(css('--hi'));return p<.5?d3.interpolateRgb(lo,mid)(p/.5):d3.interpolateRgb(mid,hi)((p-.5)/.5)}
+
+function render(k){
+  const R=RUNS[k];
+  document.querySelectorAll('#tabs button').forEach((b,i)=>b.setAttribute('aria-pressed',i===k));
+  const right=R.nodes.filter(n=>(n.p>=.5)===!!n.y).length;
+  document.getElementById('stats').innerHTML=[['linked questions',R.linked,`of ${R.variables}`],['dependencies',R.edges,'conditional links'],['components',R.components,`largest ${R.component_sizes[0]}`],['treewidth',R.treewidth,`cap 8`],['linked on correct side',Math.round(100*right/R.nodes.length)+'%','P≥.5 ⇔ resolved yes']]
+    .map(([a,b,c])=>`<div class="stat"><span class="k">${a}</span><span class="v">${b}</span><span class="k" style="text-transform:none;letter-spacing:0">${c}</span></div>`).join('');
+  drawNet(R); drawHist(R); drawComps(R); drawTop(R);
+}
+
+function drawNet(R){
+  const svg=d3.select('#net'); svg.selectAll('*').remove();
+  const el=document.getElementById('net'); const W=el.clientWidth,H=el.clientHeight;
+  svg.attr('viewBox',[0,0,W,H]);
+  const g=svg.append('g');
+  svg.call(d3.zoom().scaleExtent([.3,6]).on('zoom',e=>g.attr('transform',e.transform)));
+  const nodes=R.nodes.map(n=>({...n})), links=R.links.map(l=>({...l,source:l.s,target:l.t}));
+  // seed components on a grid so they pack instead of drifting apart
+  const comps=[...new Set(nodes.map(n=>n.c))]; const cols=Math.ceil(Math.sqrt(comps.length*W/H));
+  const cpos={}; comps.forEach((c,i)=>{cpos[c]=[(i%cols+.5)*W/cols,(Math.floor(i/cols)+.5)*H/Math.ceil(comps.length/cols)]});
+  nodes.forEach(n=>{const [x,y]=cpos[n.c];n.x=x+Math.random()*10;n.y0=y;n.y=y+Math.random()*10;n.cx=x});
+  const link=g.append('g').selectAll('line').data(links).join('line').attr('stroke',css('--ink3')).attr('stroke-opacity',.8).attr('stroke-width',d=>.6+4*d.d)
+    .on('mousemove',(e,d)=>showTip(e,`dependency ${d.d.toFixed(2)} · mutual information ${d.mi.toFixed(3)} nats`)).on('mouseleave',hideTip);
+  const node=g.append('g').selectAll('circle').data(nodes).join('circle').attr('r',d=>3.5+Math.min(4,d.deg)).attr('fill',d=>color(d.p))
+    .attr('stroke',d=>d.y?css('--ink'):css('--paper')).attr('stroke-width',d=>d.y?2:1)
+    .on('mousemove',(e,d)=>showTip(e,`<b>${esc(d.text)}</b><br>market ${d.p.toFixed(2)} · resolved ${d.y?'YES':'NO'} · ${d.deg} link${d.deg>1?'s':''}`)).on('mouseleave',hideTip)
+    .call(d3.drag().on('start',(e,d)=>{if(!e.active)sim.alphaTarget(.2).restart();d.fx=d.x;d.fy=d.y}).on('drag',(e,d)=>{d.fx=e.x;d.fy=e.y}).on('end',(e,d)=>{if(!e.active)sim.alphaTarget(0);d.fx=d.fy=null}));
+  if(sim)sim.stop();
+  sim=d3.forceSimulation(nodes).force('link',d3.forceLink(links).id(d=>d.id).distance(34).strength(.7))
+    .force('charge',d3.forceManyBody().strength(-40)).force('x',d3.forceX(d=>d.cx).strength(.08)).force('y',d3.forceY(d=>d.y0).strength(.08))
+    .force('collide',d3.forceCollide(7)).alpha(1).alphaDecay(.03)
+    .on('tick',()=>{link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);node.attr('cx',d=>d.x).attr('cy',d=>d.y)});
+  const strong=R.links.filter(l=>l.d>=.5).length;
+  document.getElementById('netcap').textContent=`${R.label}, pass ${R.pass}: ${R.linked} of ${R.variables} questions linked by ${R.edges} conditional trades into ${R.components} components; ${strong} links (${Math.round(100*strong/R.edges)}%) move the other question by at least 50 points. Most components are one session's sibling markets: candidates in the same race, thresholds on the same quantity, games on the same day.`;
+}
+
+function drawHist(R){
+  const h=R.hist, W=520,Hh=240,L=40,Rr=10,T=10,B=34, n=20;
+  const tot=h.yes.map((v,i)=>v+h.no[i]); const mx=Math.max(...tot);
+  const x=i=>L+i*(W-L-Rr)/n, bw=(W-L-Rr)/n-2, y=v=>T+(Hh-T-B)*(1-v/mx);
+  let s=`<svg viewBox="0 0 ${W} ${Hh}" role="img" aria-label="Histogram of final probabilities">`;
+  for(let t=0;t<=mx;t+=Math.ceil(mx/4/50)*50)s+=`<line x1="${L}" x2="${W-Rr}" y1="${y(t)}" y2="${y(t)}" stroke="${css('--grid')}"/><text class="lbl" x="${L-6}" y="${y(t)+4}" text-anchor="end">${t}</text>`;
+  for(let i=0;i<n;i++){const yn=h.no[i],yy=h.yes[i];
+    s+=`<rect x="${x(i)+1}" y="${y(yn)}" width="${bw}" height="${Hh-B-y(yn)}" rx="2" fill="${css('--no')}"><title>${(i/20).toFixed(2)}–${((i+1)/20).toFixed(2)}: ${yn} resolved NO</title></rect>`;
+    s+=`<rect x="${x(i)+1}" y="${y(yn+yy)}" width="${bw}" height="${Math.max(0,y(yn)-y(yn+yy)-1)}" rx="2" fill="${css('--yes')}"><title>${(i/20).toFixed(2)}–${((i+1)/20).toFixed(2)}: ${yy} resolved YES</title></rect>`}
+  for(const t of [0,.25,.5,.75,1])s+=`<text class="lbl" x="${L+t*(W-L-Rr)}" y="${Hh-B+16}" text-anchor="middle">${t}</text>`;
+  s+=`<text class="lbl" x="${(L+W)/2}" y="${Hh-4}" text-anchor="middle">market P(yes)</text></svg>`;
+  s+=`<div class="legend" style="margin-top:8px"><span><span class="dot" style="background:${css('--yes')}"></span> resolved YES</span><span><span class="dot" style="background:${css('--no')}"></span> resolved NO</span></div>`;
+  document.getElementById('hist').innerHTML=s;
+}
+
+function drawComps(R){
+  const c=R.component_sizes, W=520,Hh=240,L=30,T=10,B=30; const mx=Math.max(...c); const bw=(W-L-10)/c.length;
+  let s=`<svg viewBox="0 0 ${W} ${Hh}" role="img" aria-label="Component sizes">`;
+  for(let t=2;t<=mx;t+=2)s+=`<line x1="${L}" x2="${W-10}" y1="${T+(Hh-T-B)*(1-t/mx)}" y2="${T+(Hh-T-B)*(1-t/mx)}" stroke="${css('--grid')}"/><text class="lbl" x="${L-6}" y="${T+(Hh-T-B)*(1-t/mx)+4}" text-anchor="end">${t}</text>`;
+  c.forEach((v,i)=>{const hh=(Hh-T-B)*v/mx; s+=`<rect x="${L+i*bw+1}" y="${Hh-B-hh}" width="${Math.max(1,bw-2)}" height="${hh}" rx="2" fill="${css('--hi')}"><title>component ${i+1}: ${v} questions</title></rect>`});
+  s+=`<text class="lbl" x="${(L+W)/2}" y="${Hh-6}" text-anchor="middle">components, largest first (top 40)</text></svg>`;
+  document.getElementById('comps').innerHTML=s;
+}
+
+function drawTop(R){
+  const byId=Object.fromEntries(R.nodes.map(n=>[n.id,n]));
+  const top=[...R.links].sort((a,b)=>b.mi-a.mi).slice(0,15);
+  document.getElementById('toplinks').innerHTML=`<table style="border-collapse:collapse;width:100%;font-size:14px"><thead><tr>${['Question A','P(A)','Question B','P(B)','dependency','MI'].map(h=>`<th style="text-align:left;padding:8px;border-bottom:2px solid var(--ink);font-family:'Bricolage Grotesque',sans-serif">${h}</th>`).join('')}</tr></thead><tbody>`+
+    top.map(l=>{const a=byId[l.s],b=byId[l.t];const cell=(n)=>`<td style="padding:7px 8px;border-bottom:1px solid var(--line)">${esc(n.text)} <span style="color:var(--ink3);font-family:'JetBrains Mono',monospace;font-size:12px">${n.y?'YES':'NO'}</span></td><td style="padding:7px 8px;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace">${n.p.toFixed(2)}</td>`;
+      return `<tr>${cell(a)}${cell(b)}<td style="padding:7px 8px;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace">${l.d.toFixed(2)}</td><td style="padding:7px 8px;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace">${l.mi.toFixed(3)}</td></tr>`}).join('')+'</tbody></table>';
+}
+
+const tabs=document.getElementById('tabs');
+RUNS.forEach((r,i)=>{const b=document.createElement('button');b.id='tab-'+i;b.textContent=r.label;b.onclick=()=>render(i);tabs.appendChild(b)});
+render(2);
+</script>

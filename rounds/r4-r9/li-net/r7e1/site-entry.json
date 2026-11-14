@@ -1,0 +1,35 @@
+{
+ "slug": "r7-e1-einfo-v4",
+ "title": "Round 7 E1: Jacobi-Richardson and weight-tied attention pools, key attribution and coverage-complete PUCT (6x6 ShipHunt)",
+ "date": "17 Oct",
+ "status": "informative",
+ "oneline": "2 of 4 pre-registered rules pass (4 of 6 sub-rules); each failure misses one clause. A weight-tied attention pool passes its rule at 37% of attn_L3's parameters, with no detectable difference (KL 0.032 vs 0.033). An exact Jacobi-Richardson pool with 812 parameters beats the round-6 linear pool (KL 0.041 vs 0.068) but over-weights 16 identical clean reads (1.45x one, bar 1.25). Key-space PUCT now covers 98.6% of cells in 4 waves and cuts policy dependence 2.9x (mixed reads) and 5.4x (clean reads). Salience keys close 44-80% of the gap to attn_L3 when swapped into kc_dedup but only 5-9% when swapped into attn_L3; attn_L3's high-noise margin over raw-key kc_dedup is 14.8% (bar 20%). The world model is saved for later rounds. 3 seeds; $0.98.",
+ "led_to": [],
+ "page": {
+  "why": "Round 6 left three open points: its looped linear pool's normalisation cancelled deduplication; attn_L3's margin over kc_dedup might have come from its keys rather than from attention; and key-space PUCT stopped at 94.9% coverage. Gemini's round-7 spec tests a fix for each, and asks that the world model be saved so that no later round retrains it.",
+  "what": "The round-5/6 6x6 board with a dense sonar field; the 669k-parameter world model retrained once more and saved per seed. Pools trained to the model's own reference: attn_L3 with raw, salience and combined keys; a weight-tied attention pool (one block applied 3 times); an exact Jacobi-Richardson normal-equation pool (812 parameters); kc_dedup with raw and with salience keys; a one-step precision-crowding pool. Three protocols: both searches read the 6 tiles that cover the board; active key-space PUCT under mixed and clean reads; same-patch bags at three noise levels. 3 seeds, pre-registered, exact Bayes for scoring only.",
+  "result": "The weight-tied pool shows no detectable difference from attn_L3 with 3 seeds (KL 0.0317 vs 0.0328, JSD 0.0066 vs 0.0069) at 37% of the parameters. The Jacobi pool (KL 0.041) beats the round-6 linear pool (0.068) and adds support as noise grows (W(8)/W(1) 1.40, 1.82, 2.20 across the three noise levels), but 16 identical clean reads weigh 1.45x one (bar 1.25). PUCT covers 98.6% of cells vs 83.0% open loop; attn_L3's policy dependence falls 2.9x with mixed reads and 5.4x with clean reads, and KL falls 51-53%. Swapping kc_dedup's keys from raw to salience closes 44-80% of its gap to attn_L3, but swapping attn_L3's own keys closes only 5-9%, so the gap does not split into a key share and a pool share; attn_L3 still beats salience-key kc_dedup by 5-7.5%, and its high-noise margin over raw-key kc_dedup is 14.8% (bar 20%).",
+  "sowhat": "No cost of weight tying was detectable with 3 seeds, so a looped one-block pool is a candidate cheap stand-in for attn_L3. Salience keys matter far more for a one-step crowding pool than for attention. With coverage-complete search, evidence one search never saw is no longer the main source of policy dependence; read noise and the pool's response to which reads each search made are (interpretation).",
+  "decided": "Recorded E1-D0, E1-D1.1, E1-D2.1 and E1-D2.2 as passed, and E1-D1.2 (the Jacobi pool's clean deduplication, 1.45 vs bar 1.25) and E1-D3 (the MSE margin over raw-key kc_dedup at high noise, 14.8% vs 20%) as failed, so E1-D1 and E1-D3 fail. Saved theta_real v2 for each seed in li-net/r7e1/ckpt/. Not run, for gemini's next round: a Jacobi pool with its ridge tied to read precision; a PUCT ablation that splits the score change from the key change; a policy-independence test with matched read multiplicity.",
+  "chart": {
+   "bars": [
+    {"label": "kc_dedup, raw keys (K1)", "value": 0.0939, "text": "0.094"},
+    {"label": "looped linear pool (round 6)", "value": 0.0680, "text": "0.068"},
+    {"label": "kc_dedup, salience keys (K3)", "value": 0.0670, "text": "0.067"},
+    {"label": "Jacobi-Richardson pool (812 parameters)", "value": 0.0408, "text": "0.041"},
+    {"label": "attn_L3, salience keys", "value": 0.0328, "text": "0.033", "good": true},
+    {"label": "weight-tied attention (37% of the parameters)", "value": 0.0317, "text": "0.032", "good": true}
+   ],
+   "caption": "KL to exact Bayes on P-FullSupport (lower is better), mean of the two preference-steered searches, 3-seed means.",
+   "aria": "The weight-tied attention pool matches attn_L3; the Jacobi pool beats the round-6 linear pool and raw-key kc_dedup"
+  },
+  "details": {
+   "methods": [
+    "Pre-registered in PREREG-R7-E1.md (09:39Z, before the first launch) with gemini's amended PUCT score; 2 logged deviations (a spot preemption during pool training, after the checkpoints had synced, with an on-demand rerun that loaded them; a descriptive numbers script added at the audit's request).",
+    "World model retrained once more (40,000 steps) and saved as li-net/r7e1/ckpt/s{101,102,103}/theta_real_v2.npz; exact Bayes over 49,504 ship patterns given all 36 readings used only for scoring and the gate.",
+    "Pools trained on 3,200 calibration boards against the model's own 128-read union belief; trust from real excess surprise; reads at noise levels 0.3 / 1.5 / 2.5.",
+    "Tests on the same 500 held-out boards as rounds 5 and 6; 3 seeds, seed-t 95% intervals; independent audit in AUDIT-R7-E1.md (every verdict confirmed; several over-strong sentences corrected); $0.98 of GPU at the list-price ceiling."
+   ]
+  }
+ }
+}

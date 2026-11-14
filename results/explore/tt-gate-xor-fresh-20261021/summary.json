@@ -1,0 +1,1153 @@
+{
+  "suite": "gate_fixes",
+  "git_commit": "204e78a5f6222a0fdb81dd48f5a4e2e32dbb4e1b",
+  "fresh_episodes": true,
+  "n_train_per_seed": 1536000,
+  "n_eval": 2000,
+  "steps": 3000,
+  "batch_size": 512,
+  "width": 64,
+  "grid_width": 64,
+  "layers": 3,
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "envs": {
+    "Z5": {
+      "prefix_bayes_final_maxabs_err": 7.105427357601002e-15,
+      "baselines": {
+        "bayes": {
+          "regret": 0.0,
+          "kl": 0.0,
+          "logloss": 0.23961987935846998,
+          "brier": 0.07398837417280923
+        },
+        "oracle_clearing": {
+          "regret": 0.0,
+          "kl": 0.0,
+          "logloss": 0.23961987935846998,
+          "brier": 0.07398837417280923
+        },
+        "linear_pool": {
+          "regret": 0.15911589419264946,
+          "kl": 0.1506642034778415,
+          "logloss": 0.39873577355111944,
+          "brier": 0.12450962241640408
+        },
+        "log_pool": {
+          "regret": 0.14948397620256823,
+          "kl": 0.14152689250588252,
+          "logloss": 0.38910385556103827,
+          "brier": 0.12185732408073681
+        },
+        "sum_logodds": {
+          "regret": 0.5177192638905083,
+          "kl": 0.5437195449167357,
+          "logloss": 0.7573391432489783,
+          "brier": 0.14180381665317063
+        },
+        "extremized_log_pool": {
+          "regret": 0.13411039972793376,
+          "kl": 0.12856539543701198,
+          "logloss": 0.3737302790864037,
+          "brier": 0.11745996041126804
+        }
+      },
+      "models": {
+        "full_context_transformer_none": {
+          "n_seeds": 3,
+          "regret_mean": 0.003933333333333333,
+          "regret_sd": 0.0009741092797468305,
+          "regret_per_seed": [
+            0.0031,
+            0.0053,
+            0.0034
+          ],
+          "kl_mean": 0.004066666666666666,
+          "kl_sd": 9.428090415820618e-05,
+          "kl_per_seed": [
+            0.0042,
+            0.004,
+            0.004
+          ],
+          "mean_prefix_kl_mean": null,
+          "mean_prefix_kl_sd": null,
+          "mean_prefix_kl_per_seed": null,
+          "train_seconds_mean": 29.099999999999998,
+          "n_params": 151169,
+          "in_dim": 14
+        },
+        "full_context_transformer_full": {
+          "n_seeds": 3,
+          "regret_mean": 0.004233333333333333,
+          "regret_sd": 0.0006342099196813485,
+          "regret_per_seed": [
+            0.0051,
+            0.0036,
+            0.004
+          ],
+          "kl_mean": 0.0044,
+          "kl_sd": 0.00014142135623730948,
+          "kl_per_seed": [
+            0.0042,
+            0.0045,
+            0.0045
+          ],
+          "mean_prefix_kl_mean": null,
+          "mean_prefix_kl_sd": null,
+          "mean_prefix_kl_per_seed": null,
+          "train_seconds_mean": 28.813333333333333,
+          "n_params": 151937,
+          "in_dim": 26
+        },
+        "bar_fct_no_report": {
+          "n_seeds": 3,
+          "regret_mean": 0.0031333333333333335,
+          "regret_sd": 0.000590668171555645,
+          "regret_per_seed": [
+            0.0036,
+            0.0023,
+            0.0035
+          ],
+          "kl_mean": 0.0036999999999999997,
+          "kl_sd": 8.164965809277265e-05,
+          "kl_per_seed": [
+            0.0038,
+            0.0037,
+            0.0036
+          ],
+          "mean_prefix_kl_mean": null,
+          "mean_prefix_kl_sd": null,
+          "mean_prefix_kl_per_seed": null,
+          "train_seconds_mean": 28.723333333333333,
+          "n_params": 151105,
+          "in_dim": 13
+        },
+        "bar_fct_fresh_headline_w64_l3": {
+          "n_seeds": 3,
+          "regret_mean": 0.003933333333333333,
+          "regret_sd": 0.0009741092797468305,
+          "regret_per_seed": [
+            0.0031,
+            0.0053,
+            0.0034
+          ],
+          "kl_mean": 0.004066666666666666,
+          "kl_sd": 9.428090415820618e-05,
+          "kl_per_seed": [
+            0.0042,
+            0.004,
+            0.004
+          ],
+          "mean_prefix_kl_mean": null,
+          "mean_prefix_kl_sd": null,
+          "mean_prefix_kl_per_seed": null,
+          "train_seconds_mean": 28.30333333333333,
+          "n_params": 151169,
+          "in_dim": 14
+        },
+        "A_attn_all": {
+          "n_seeds": 3,
+          "regret_mean": 0.005533333333333334,
+          "regret_sd": 0.0007363574011458175,
+          "regret_per_seed": [
+            0.0046,
+            0.0056,
+            0.0064
+          ],
+          "kl_mean": 0.0048,
+          "kl_sd": 0.00028284271247461896,
+          "kl_per_seed": [
+            0.0052,
+            0.0046,
+            0.0046
+          ],
+          "mean_prefix_kl_mean": 0.05893333333333333,
+          "mean_prefix_kl_sd": 0.0008013876853447539,
+          "mean_prefix_kl_per_seed": [
+            0.0595,
+            0.0578,
+            0.0595
+          ],
+          "train_seconds_mean": 28.536666666666665,
+          "n_params": 151105,
+          "in_dim": 14
+        },
+        "A_attn_all_reperm": {
+          "n_seeds": 3,
+          "regret_mean": 0.0057666666666666665,
+          "regret_sd": 0.001391242450313947,
+          "regret_per_seed": [
+            0.0038,
+            0.0067,
+            0.0068
+          ],
+          "kl_mean": 0.004933333333333334,
+          "kl_sd": 0.00016996731711975955,
+          "kl_per_seed": [
+            0.0051,
+            0.005,
+            0.0047
+          ],
+          "mean_prefix_kl_mean": 0.058666666666666666,
+          "mean_prefix_kl_sd": 0.0014704496666741848,
+          "mean_prefix_kl_per_seed": [
+            0.0605,
+            0.0569,
+            0.0586
+          ],
+          "train_seconds_mean": 29.03333333333333,
+          "n_params": 151105,
+          "in_dim": 14
+        },
+        "A_attn_first_last": {
+          "n_seeds": 3,
+          "regret_mean": 0.006033333333333332,
+          "regret_sd": 0.0005312459150169743,
+          "regret_per_seed": [
+            0.006,
+            0.0067,
+            0.0054
+          ],
+          "kl_mean": 0.005399999999999999,
+          "kl_sd": 0.00021602468994692844,
+          "kl_per_seed": [
+            0.0055,
+            0.0051,
+            0.0056
+          ],
+          "mean_prefix_kl_mean": 0.06366666666666666,
+          "mean_prefix_kl_sd": 0.005062498285322065,
+          "mean_prefix_kl_per_seed": [
+            0.0705,
+            0.0584,
+            0.0621
+          ],
+          "train_seconds_mean": 23.623333333333335,
+          "n_params": 134465,
+          "in_dim": 14
+        },
+        "A_attn_every_other": {
+          "n_seeds": 3,
+          "regret_mean": 0.006033333333333332,
+          "regret_sd": 0.0005312459150169743,
+          "regret_per_seed": [
+            0.006,
+            0.0067,
+            0.0054
+          ],
+          "kl_mean": 0.005399999999999999,
+          "kl_sd": 0.00021602468994692844,
+          "kl_per_seed": [
+            0.0055,
+            0.0051,
+            0.0056
+          ],
+          "mean_prefix_kl_mean": 0.06366666666666666,
+          "mean_prefix_kl_sd": 0.005062498285322065,
+          "mean_prefix_kl_per_seed": [
+            0.0705,
+            0.0584,
+            0.0621
+          ],
+          "train_seconds_mean": 23.366666666666664,
+          "n_params": 134465,
+          "in_dim": 14
+        },
+        "A_attn_last": {
+          "n_seeds": 3,
+          "regret_mean": 0.0061333333333333335,
+          "regret_sd": 0.00030912061651652346,
+          "regret_per_seed": [
+            0.0064,
+            0.0057,
+            0.0063
+          ],
+          "kl_mean": 0.005833333333333334,
+          "kl_sd": 0.00040276819911981934,
+          "kl_per_seed": [
+            0.0064,
+            0.0055,
+            0.0056
+          ],
+          "mean_prefix_kl_mean": 0.07093333333333333,
+          "mean_prefix_kl_sd": 0.002408780235351958,
+          "mean_prefix_kl_per_seed": [
+            0.0743,
+            0.0697,
+            0.0688
+          ],
+          "train_seconds_mean": 18.46,
+          "n_params": 117825,
+          "in_dim": 14
+        },
+        "A_attn_first": {
+          "n_seeds": 3,
+          "regret_mean": 0.011966666666666667,
+          "regret_sd": 0.002536839678725393,
+          "regret_per_seed": [
+            0.0085,
+            0.0129,
+            0.0145
+          ],
+          "kl_mean": 0.008933333333333333,
+          "kl_sd": 0.0009104333522498445,
+          "kl_per_seed": [
+            0.0081,
+            0.0085,
+            0.0102
+          ],
+          "mean_prefix_kl_mean": 0.05706666666666666,
+          "mean_prefix_kl_sd": 0.0009104333522498435,
+          "mean_prefix_kl_per_seed": [
+            0.0579,
+            0.0558,
+            0.0575
+          ],
+          "train_seconds_mean": 18.44,
+          "n_params": 117825,
+          "in_dim": 14
+        },
+        "A_attn_none": {
+          "n_seeds": 3,
+          "regret_mean": 0.19806666666666664,
+          "regret_sd": 0.006084041054723048,
+          "regret_per_seed": [
+            0.2056,
+            0.1979,
+            0.1907
+          ],
+          "kl_mean": 0.1876,
+          "kl_sd": 0.0012083045973594565,
+          "kl_per_seed": [
+            0.1893,
+            0.1866,
+            0.1869
+          ],
+          "mean_prefix_kl_mean": 0.1037,
+          "mean_prefix_kl_sd": 0.002993325909419152,
+          "mean_prefix_kl_per_seed": [
+            0.1077,
+            0.1005,
+            0.1029
+          ],
+          "train_seconds_mean": 13.606666666666664,
+          "n_params": 101185,
+          "in_dim": 14
+        },
+        "B_loss_every_prefix": {
+          "n_seeds": 3,
+          "regret_mean": 0.0135,
+          "regret_sd": 0.0006683312551921137,
+          "regret_per_seed": [
+            0.0128,
+            0.0144,
+            0.0133
+          ],
+          "kl_mean": 0.012166666666666666,
+          "kl_sd": 0.00012472191289246472,
+          "kl_per_seed": [
+            0.0122,
+            0.012,
+            0.0123
+          ],
+          "mean_prefix_kl_mean": 0.007200000000000001,
+          "mean_prefix_kl_sd": 0.00014142135623730948,
+          "mean_prefix_kl_per_seed": [
+            0.0073,
+            0.007,
+            0.0073
+          ],
+          "train_seconds_mean": 28.386666666666667,
+          "n_params": 151105,
+          "in_dim": 14
+        },
+        "B_loss_every_prefix_reperm": {
+          "n_seeds": 3,
+          "regret_mean": 0.014666666666666668,
+          "regret_sd": 0.0008993825042154705,
+          "regret_per_seed": [
+            0.0136,
+            0.0158,
+            0.0146
+          ],
+          "kl_mean": 0.012366666666666666,
+          "kl_sd": 9.428090415820658e-05,
+          "kl_per_seed": [
+            0.0125,
+            0.0123,
+            0.0123
+          ],
+          "mean_prefix_kl_mean": 0.007300000000000001,
+          "mean_prefix_kl_sd": 0.00014142135623730948,
+          "mean_prefix_kl_per_seed": [
+            0.0074,
+            0.0071,
+            0.0074
+          ],
+          "train_seconds_mean": 28.733333333333334,
+          "n_params": 151105,
+          "in_dim": 14
+        },
+        "B_loss_distill": {
+          "n_seeds": 3,
+          "regret_mean": 0.0045,
+          "regret_sd": 0.0013880441875771341,
+          "regret_per_seed": [
+            0.0028,
+            0.0062,
+            0.0045
+          ],
+          "kl_mean": 0.0038999999999999994,
+          "kl_sd": 0.0004966554808583779,
+          "kl_per_seed": [
+            0.0036,
+            0.0046,
+            0.0035
+          ],
+          "mean_prefix_kl_mean": 0.002533333333333333,
+          "mean_prefix_kl_sd": 0.00018856180831641273,
+          "mean_prefix_kl_per_seed": [
+            0.0024,
+            0.0028,
+            0.0024
+          ],
+          "train_seconds_mean": 28.429999999999996,
+          "n_params": 151105,
+          "in_dim": 14
+        },
+        "B_loss_every_prefix_pos": {
+          "n_seeds": 3,
+          "regret_mean": 0.009866666666666668,
+          "regret_sd": 0.0010656244908763854,
+          "regret_per_seed": [
+            0.0085,
+            0.0111,
+            0.01
+          ],
+          "kl_mean": 0.007700000000000001,
+          "kl_sd": 0.0003265986323710902,
+          "kl_per_seed": [
+            0.0073,
+            0.0081,
+            0.0077
+          ],
+          "mean_prefix_kl_mean": 0.004366666666666667,
+          "mean_prefix_kl_sd": 0.00012472191289246472,
+          "mean_prefix_kl_per_seed": [
+            0.0042,
+            0.0045,
+            0.0044
+          ],
+          "train_seconds_mean": 28.820000000000004,
+          "n_params": 155201,
+          "in_dim": 14
+        },
+        "C_state_recurrent_final": {
+          "n_seeds": 3,
+          "regret_mean": 0.005666666666666667,
+          "regret_sd": 0.001381625451737514,
+          "regret_per_seed": [
+            0.0061,
+            0.0071,
+            0.0038
+          ],
+          "kl_mean": 0.004566666666666667,
+          "kl_sd": 0.00012472191289246464,
+          "kl_per_seed": [
+            0.0046,
+            0.0044,
+            0.0047
+          ],
+          "mean_prefix_kl_mean": 0.02266666666666667,
+          "mean_prefix_kl_sd": 0.000917726659862414,
+          "mean_prefix_kl_per_seed": [
+            0.0224,
+            0.0217,
+            0.0239
+          ],
+          "train_seconds_mean": 49.906666666666666,
+          "n_params": 188737,
+          "in_dim": 14
+        },
+        "C_state_recurrent_prefix": {
+          "n_seeds": 3,
+          "regret_mean": 0.006066666666666667,
+          "regret_sd": 0.002166923061752668,
+          "regret_per_seed": [
+            0.0059,
+            0.0088,
+            0.0035
+          ],
+          "kl_mean": 0.005166666666666667,
+          "kl_sd": 0.00012472191289246464,
+          "kl_per_seed": [
+            0.0052,
+            0.005,
+            0.0053
+          ],
+          "mean_prefix_kl_mean": 0.0028333333333333335,
+          "mean_prefix_kl_sd": 4.714045207910309e-05,
+          "mean_prefix_kl_per_seed": [
+            0.0028,
+            0.0029,
+            0.0028
+          ],
+          "train_seconds_mean": 49.84666666666667,
+          "n_params": 188737,
+          "in_dim": 14
+        },
+        "C_state_feedback_final": {
+          "n_seeds": 3,
+          "regret_mean": 0.005133333333333333,
+          "regret_sd": 0.0010402991022884823,
+          "regret_per_seed": [
+            0.0043,
+            0.0045,
+            0.0066
+          ],
+          "kl_mean": 0.0044,
+          "kl_sd": 0.00024494897427831773,
+          "kl_per_seed": [
+            0.0047,
+            0.0041,
+            0.0044
+          ],
+          "mean_prefix_kl_mean": 0.0453,
+          "mean_prefix_kl_sd": 0.0018493242008906917,
+          "mean_prefix_kl_per_seed": [
+            0.0456,
+            0.0429,
+            0.0474
+          ],
+          "train_seconds_mean": 131.34333333333333,
+          "n_params": 151109,
+          "in_dim": 14
+        },
+        "C_state_feedback_prefix": {
+          "n_seeds": 3,
+          "regret_mean": 0.005466666666666666,
+          "regret_sd": 0.0015107025591499547,
+          "regret_per_seed": [
+            0.0045,
+            0.0043,
+            0.0076
+          ],
+          "kl_mean": 0.005833333333333334,
+          "kl_sd": 0.0002624669291337269,
+          "kl_per_seed": [
+            0.0062,
+            0.0056,
+            0.0057
+          ],
+          "mean_prefix_kl_mean": 0.0032666666666666664,
+          "mean_prefix_kl_sd": 9.428090415820618e-05,
+          "mean_prefix_kl_per_seed": [
+            0.0034,
+            0.0032,
+            0.0032
+          ],
+          "train_seconds_mean": 130.41333333333333,
+          "n_params": 151109,
+          "in_dim": 14
+        },
+        "V_vis_full": {
+          "n_seeds": 3,
+          "regret_mean": 0.005033333333333333,
+          "regret_sd": 0.0013767917618708922,
+          "regret_per_seed": [
+            0.0031,
+            0.0058,
+            0.0062
+          ],
+          "kl_mean": 0.005033333333333333,
+          "kl_sd": 9.428090415820658e-05,
+          "kl_per_seed": [
+            0.0051,
+            0.0049,
+            0.0051
+          ],
+          "mean_prefix_kl_mean": 0.05853333333333333,
+          "mean_prefix_kl_sd": 0.002107657994604964,
+          "mean_prefix_kl_per_seed": [
+            0.0615,
+            0.0568,
+            0.0573
+          ],
+          "train_seconds_mean": 29.203333333333333,
+          "n_params": 151873,
+          "in_dim": 26
+        }
+      }
+    },
+    "Z6": {
+      "prefix_bayes_final_maxabs_err": 3.552713678800501e-15,
+      "baselines": {
+        "bayes": {
+          "regret": 0.0,
+          "kl": 0.0,
+          "logloss": 0.4465474030258332,
+          "brier": 0.1452427077149733
+        },
+        "oracle_clearing": {
+          "regret": 0.24659977753411208,
+          "kl": 0.2618999588794074,
+          "logloss": 0.6931471805599454,
+          "brier": 0.25
+        },
+        "linear_pool": {
+          "regret": 0.24659977753411208,
+          "kl": 0.2618999588794074,
+          "logloss": 0.6931471805599454,
+          "brier": 0.25
+        },
+        "log_pool": {
+          "regret": 0.24659977753411208,
+          "kl": 0.2618999588794074,
+          "logloss": 0.6931471805599454,
+          "brier": 0.25
+        },
+        "sum_logodds": {
+          "regret": 0.24659977753411208,
+          "kl": 0.2618999588794074,
+          "logloss": 0.6931471805599454,
+          "brier": 0.25
+        },
+        "extremized_log_pool": {
+          "regret": 0.24659977753411208,
+          "kl": 0.2618999588794074,
+          "logloss": 0.6931471805599454,
+          "brier": 0.25
+        }
+      },
+      "models": {
+        "full_context_transformer_none": {
+          "n_seeds": 3,
+          "regret_mean": 0.0029666666666666665,
+          "regret_sd": 0.00023570226039551585,
+          "regret_per_seed": [
+            0.0028,
+            0.0033,
+            0.0028
+          ],
+          "kl_mean": 0.0014,
+          "kl_sd": 0.00021602468994692865,
+          "kl_per_seed": [
+            0.0017,
+            0.0012,
+            0.0013
+          ],
+          "mean_prefix_kl_mean": null,
+          "mean_prefix_kl_sd": null,
+          "mean_prefix_kl_per_seed": null,
+          "train_seconds_mean": 28.540000000000003,
+          "n_params": 150593,
+          "in_dim": 5
+        },
+        "full_context_transformer_full": {
+          "n_seeds": 3,
+          "regret_mean": 0.0031333333333333335,
+          "regret_sd": 0.0002494438257849294,
+          "regret_per_seed": [
+            0.0032,
+            0.0034,
+            0.0028
+          ],
+          "kl_mean": 0.0015333333333333334,
+          "kl_sd": 0.00012472191289246467,
+          "kl_per_seed": [
+            0.0017,
+            0.0014,
+            0.0015
+          ],
+          "mean_prefix_kl_mean": null,
+          "mean_prefix_kl_sd": null,
+          "mean_prefix_kl_per_seed": null,
+          "train_seconds_mean": 28.653333333333336,
+          "n_params": 150785,
+          "in_dim": 8
+        },
+        "bar_fct_no_report": {
+          "n_seeds": 3,
+          "regret_mean": 0.0030666666666666668,
+          "regret_sd": 0.00018856180831641273,
+          "regret_per_seed": [
+            0.0028,
+            0.0032,
+            0.0032
+          ],
+          "kl_mean": 0.0014333333333333333,
+          "kl_sd": 9.428090415820637e-05,
+          "kl_per_seed": [
+            0.0015,
+            0.0013,
+            0.0015
+          ],
+          "mean_prefix_kl_mean": null,
+          "mean_prefix_kl_sd": null,
+          "mean_prefix_kl_per_seed": null,
+          "train_seconds_mean": 28.756666666666664,
+          "n_params": 150529,
+          "in_dim": 4
+        },
+        "bar_fct_fresh_headline_w64_l3": {
+          "n_seeds": 3,
+          "regret_mean": 0.0029666666666666665,
+          "regret_sd": 0.00023570226039551585,
+          "regret_per_seed": [
+            0.0028,
+            0.0033,
+            0.0028
+          ],
+          "kl_mean": 0.0014,
+          "kl_sd": 0.00021602468994692865,
+          "kl_per_seed": [
+            0.0017,
+            0.0012,
+            0.0013
+          ],
+          "mean_prefix_kl_mean": null,
+          "mean_prefix_kl_sd": null,
+          "mean_prefix_kl_per_seed": null,
+          "train_seconds_mean": 28.353333333333335,
+          "n_params": 150593,
+          "in_dim": 5
+        },
+        "A_attn_all": {
+          "n_seeds": 3,
+          "regret_mean": 0.0026333333333333334,
+          "regret_sd": 0.0001699673171197596,
+          "regret_per_seed": [
+            0.0024,
+            0.0027,
+            0.0028
+          ],
+          "kl_mean": 0.0014666666666666667,
+          "kl_sd": 0.00012472191289246477,
+          "kl_per_seed": [
+            0.0013,
+            0.0015,
+            0.0016
+          ],
+          "mean_prefix_kl_mean": 0.044866666666666666,
+          "mean_prefix_kl_sd": 0.002266176417571137,
+          "mean_prefix_kl_per_seed": [
+            0.0474,
+            0.0453,
+            0.0419
+          ],
+          "train_seconds_mean": 28.453333333333333,
+          "n_params": 150529,
+          "in_dim": 5
+        },
+        "A_attn_all_reperm": {
+          "n_seeds": 3,
+          "regret_mean": 0.0025333333333333336,
+          "regret_sd": 0.0006182412330330468,
+          "regret_per_seed": [
+            0.0022,
+            0.002,
+            0.0034
+          ],
+          "kl_mean": 0.0014999999999999998,
+          "kl_sd": 0.0002160246899469287,
+          "kl_per_seed": [
+            0.0012,
+            0.0016,
+            0.0017
+          ],
+          "mean_prefix_kl_mean": 0.04523333333333333,
+          "mean_prefix_kl_sd": 0.002425329301810834,
+          "mean_prefix_kl_per_seed": [
+            0.0476,
+            0.0462,
+            0.0419
+          ],
+          "train_seconds_mean": 28.76,
+          "n_params": 150529,
+          "in_dim": 5
+        },
+        "A_attn_first_last": {
+          "n_seeds": 3,
+          "regret_mean": 0.0022666666666666664,
+          "regret_sd": 0.0005312459150169742,
+          "regret_per_seed": [
+            0.0023,
+            0.0016,
+            0.0029
+          ],
+          "kl_mean": 0.0015333333333333334,
+          "kl_sd": 0.00012472191289246467,
+          "kl_per_seed": [
+            0.0014,
+            0.0015,
+            0.0017
+          ],
+          "mean_prefix_kl_mean": 0.0441,
+          "mean_prefix_kl_sd": 0.0013589211407092998,
+          "mean_prefix_kl_per_seed": [
+            0.0453,
+            0.0448,
+            0.0422
+          ],
+          "train_seconds_mean": 23.576666666666668,
+          "n_params": 133889,
+          "in_dim": 5
+        },
+        "A_attn_every_other": {
+          "n_seeds": 3,
+          "regret_mean": 0.0022666666666666664,
+          "regret_sd": 0.0005312459150169742,
+          "regret_per_seed": [
+            0.0023,
+            0.0016,
+            0.0029
+          ],
+          "kl_mean": 0.0015333333333333334,
+          "kl_sd": 0.00012472191289246467,
+          "kl_per_seed": [
+            0.0014,
+            0.0015,
+            0.0017
+          ],
+          "mean_prefix_kl_mean": 0.0441,
+          "mean_prefix_kl_sd": 0.0013589211407092998,
+          "mean_prefix_kl_per_seed": [
+            0.0453,
+            0.0448,
+            0.0422
+          ],
+          "train_seconds_mean": 23.453333333333333,
+          "n_params": 133889,
+          "in_dim": 5
+        },
+        "A_attn_last": {
+          "n_seeds": 3,
+          "regret_mean": 0.0011666666666666668,
+          "regret_sd": 0.0004496912521077347,
+          "regret_per_seed": [
+            0.0009,
+            0.0018,
+            0.0008
+          ],
+          "kl_mean": 0.0006666666666666666,
+          "kl_sd": 4.714045207910318e-05,
+          "kl_per_seed": [
+            0.0007,
+            0.0006,
+            0.0007
+          ],
+          "mean_prefix_kl_mean": 0.0461,
+          "mean_prefix_kl_sd": 0.000616441400296898,
+          "mean_prefix_kl_per_seed": [
+            0.0462,
+            0.0468,
+            0.0453
+          ],
+          "train_seconds_mean": 18.656666666666666,
+          "n_params": 117249,
+          "in_dim": 5
+        },
+        "A_attn_first": {
+          "n_seeds": 3,
+          "regret_mean": 0.0032,
+          "regret_sd": 0.0004546060565661951,
+          "regret_per_seed": [
+            0.0027,
+            0.0038,
+            0.0031
+          ],
+          "kl_mean": 0.0019,
+          "kl_sd": 0.0002160246899469286,
+          "kl_per_seed": [
+            0.0016,
+            0.002,
+            0.0021
+          ],
+          "mean_prefix_kl_mean": 0.04686666666666667,
+          "mean_prefix_kl_sd": 0.0001699673171197612,
+          "mean_prefix_kl_per_seed": [
+            0.0467,
+            0.0468,
+            0.0471
+          ],
+          "train_seconds_mean": 18.52,
+          "n_params": 117249,
+          "in_dim": 5
+        },
+        "A_attn_none": {
+          "n_seeds": 3,
+          "regret_mean": 0.2466,
+          "regret_sd": 0.0,
+          "regret_per_seed": [
+            0.2466,
+            0.2466,
+            0.2466
+          ],
+          "kl_mean": 0.26193333333333335,
+          "kl_sd": 4.714045207909798e-05,
+          "kl_per_seed": [
+            0.2619,
+            0.2619,
+            0.262
+          ],
+          "mean_prefix_kl_mean": 0.12626666666666667,
+          "mean_prefix_kl_sd": 0.0008178562764256869,
+          "mean_prefix_kl_per_seed": [
+            0.1273,
+            0.1253,
+            0.1262
+          ],
+          "train_seconds_mean": 13.363333333333332,
+          "n_params": 100609,
+          "in_dim": 5
+        },
+        "B_loss_every_prefix": {
+          "n_seeds": 3,
+          "regret_mean": 0.006566666666666668,
+          "regret_sd": 0.0004496912521077348,
+          "regret_per_seed": [
+            0.0066,
+            0.0071,
+            0.006
+          ],
+          "kl_mean": 0.0078000000000000005,
+          "kl_sd": 0.0007874007874011813,
+          "kl_per_seed": [
+            0.0085,
+            0.0082,
+            0.0067
+          ],
+          "mean_prefix_kl_mean": 0.003366666666666667,
+          "mean_prefix_kl_sd": 0.0004714045207910317,
+          "mean_prefix_kl_per_seed": [
+            0.0037,
+            0.0037,
+            0.0027
+          ],
+          "train_seconds_mean": 27.886666666666667,
+          "n_params": 150529,
+          "in_dim": 5
+        },
+        "B_loss_every_prefix_reperm": {
+          "n_seeds": 3,
+          "regret_mean": 0.006933333333333334,
+          "regret_sd": 0.0009741092797468303,
+          "regret_per_seed": [
+            0.0083,
+            0.0064,
+            0.0061
+          ],
+          "kl_mean": 0.0075,
+          "kl_sd": 0.0007788880963698615,
+          "kl_per_seed": [
+            0.0084,
+            0.0076,
+            0.0065
+          ],
+          "mean_prefix_kl_mean": 0.0032999999999999995,
+          "mean_prefix_kl_sd": 0.0004966554808583781,
+          "mean_prefix_kl_per_seed": [
+            0.0037,
+            0.0036,
+            0.0026
+          ],
+          "train_seconds_mean": 28.363333333333333,
+          "n_params": 150529,
+          "in_dim": 5
+        },
+        "B_loss_distill": {
+          "n_seeds": 3,
+          "regret_mean": 0.0003,
+          "regret_sd": 0.00029439202887759485,
+          "regret_per_seed": [
+            0.0004,
+            0.0006,
+            -0.0001
+          ],
+          "kl_mean": 0.0005333333333333333,
+          "kl_sd": 4.714045207910314e-05,
+          "kl_per_seed": [
+            0.0006,
+            0.0005,
+            0.0005
+          ],
+          "mean_prefix_kl_mean": 0.0002,
+          "mean_prefix_kl_sd": 0.0,
+          "mean_prefix_kl_per_seed": [
+            0.0002,
+            0.0002,
+            0.0002
+          ],
+          "train_seconds_mean": 28.28,
+          "n_params": 150529,
+          "in_dim": 5
+        },
+        "B_loss_every_prefix_pos": {
+          "n_seeds": 3,
+          "regret_mean": 0.003133333333333333,
+          "regret_sd": 0.0011813363431112899,
+          "regret_per_seed": [
+            0.0022,
+            0.0048,
+            0.0024
+          ],
+          "kl_mean": 0.0019666666666666665,
+          "kl_sd": 4.714045207910319e-05,
+          "kl_per_seed": [
+            0.0019,
+            0.002,
+            0.002
+          ],
+          "mean_prefix_kl_mean": 0.0007333333333333333,
+          "mean_prefix_kl_sd": 4.714045207910318e-05,
+          "mean_prefix_kl_per_seed": [
+            0.0007,
+            0.0008,
+            0.0007
+          ],
+          "train_seconds_mean": 28.533333333333335,
+          "n_params": 154625,
+          "in_dim": 5
+        },
+        "C_state_recurrent_final": {
+          "n_seeds": 3,
+          "regret_mean": 0.0006666666666666666,
+          "regret_sd": 0.0013274871834493252,
+          "regret_per_seed": [
+            0.0001,
+            0.0025,
+            -0.0006
+          ],
+          "kl_mean": 0.0008333333333333334,
+          "kl_sd": 4.714045207910314e-05,
+          "kl_per_seed": [
+            0.0008,
+            0.0008,
+            0.0009
+          ],
+          "mean_prefix_kl_mean": 0.0106,
+          "mean_prefix_kl_sd": 0.0030210373494325865,
+          "mean_prefix_kl_per_seed": [
+            0.0099,
+            0.0073,
+            0.0146
+          ],
+          "train_seconds_mean": 49.57333333333333,
+          "n_params": 188161,
+          "in_dim": 5
+        },
+        "C_state_recurrent_prefix": {
+          "n_seeds": 3,
+          "regret_mean": 0.0011333333333333334,
+          "regret_sd": 0.0007586537784494029,
+          "regret_per_seed": [
+            0.0005,
+            0.0022,
+            0.0007
+          ],
+          "kl_mean": 0.0012666666666666666,
+          "kl_sd": 4.714045207910319e-05,
+          "kl_per_seed": [
+            0.0013,
+            0.0013,
+            0.0012
+          ],
+          "mean_prefix_kl_mean": 0.0004333333333333333,
+          "mean_prefix_kl_sd": 4.714045207910316e-05,
+          "mean_prefix_kl_per_seed": [
+            0.0004,
+            0.0005,
+            0.0004
+          ],
+          "train_seconds_mean": 49.11333333333334,
+          "n_params": 188161,
+          "in_dim": 5
+        },
+        "C_state_feedback_final": {
+          "n_seeds": 3,
+          "regret_mean": 0.0009333333333333333,
+          "regret_sd": 0.0007586537784494029,
+          "regret_per_seed": [
+            0.0005,
+            0.002,
+            0.0003
+          ],
+          "kl_mean": 0.0011333333333333334,
+          "kl_sd": 4.714045207910309e-05,
+          "kl_per_seed": [
+            0.0011,
+            0.0011,
+            0.0012
+          ],
+          "mean_prefix_kl_mean": 0.007566666666666667,
+          "mean_prefix_kl_sd": 0.0011897712198383167,
+          "mean_prefix_kl_per_seed": [
+            0.0062,
+            0.0091,
+            0.0074
+          ],
+          "train_seconds_mean": 129.81333333333333,
+          "n_params": 150533,
+          "in_dim": 5
+        },
+        "C_state_feedback_prefix": {
+          "n_seeds": 3,
+          "regret_mean": 0.002333333333333333,
+          "regret_sd": 0.0008498365855987974,
+          "regret_per_seed": [
+            0.002,
+            0.0035,
+            0.0015
+          ],
+          "kl_mean": 0.0016666666666666668,
+          "kl_sd": 4.714045207910309e-05,
+          "kl_per_seed": [
+            0.0016,
+            0.0017,
+            0.0017
+          ],
+          "mean_prefix_kl_mean": 0.0005666666666666666,
+          "mean_prefix_kl_sd": 4.714045207910314e-05,
+          "mean_prefix_kl_per_seed": [
+            0.0005,
+            0.0006,
+            0.0006
+          ],
+          "train_seconds_mean": 129.52666666666667,
+          "n_params": 150533,
+          "in_dim": 5
+        },
+        "V_vis_full": {
+          "n_seeds": 3,
+          "regret_mean": 0.0014333333333333333,
+          "regret_sd": 0.0005436502143433364,
+          "regret_per_seed": [
+            0.0011,
+            0.0022,
+            0.001
+          ],
+          "kl_mean": 0.0012666666666666666,
+          "kl_sd": 0.00012472191289246467,
+          "kl_per_seed": [
+            0.0014,
+            0.0011,
+            0.0013
+          ],
+          "mean_prefix_kl_mean": 0.045366666666666666,
+          "mean_prefix_kl_sd": 0.00041899350299921806,
+          "mean_prefix_kl_per_seed": [
+            0.0455,
+            0.0448,
+            0.0458
+          ],
+          "train_seconds_mean": 28.566666666666666,
+          "n_params": 150721,
+          "in_dim": 8
+        }
+      }
+    }
+  }
+}

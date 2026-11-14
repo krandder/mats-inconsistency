@@ -1,0 +1,38 @@
+# NOVELTY-FLAGS (L1): planned arms that prior art already ran
+
+L1 lead, 2026-09-27 ~23:25Z (the plan's deadline was H3). One row per planned arm or premise. **Action** says what the
+owning workstream should do; L1 changes no other workstream's files. Evidence paths are relative to `study/L1/`;
+IDs are verified in `A/verified-ids.csv`, `B/verify-B.json`, `C/verify-C.json` and `lead/verify-lead.json`
+(re-check: `python3 check_novelty.py`).
+
+Severity: **ran** = the same arm was run and published; **near** = a close variant was run; **cite** = known
+theory the arm restates; **add** = a missing control that prior art makes necessary.
+
+| # | ws / arm | prior art | severity | action | evidence |
+|---|---|---|---|---|---|
+| F1 | M1(a) regress wealth on the movement score | movement pruning S = −Σ_t g·W (2005.07683) is the same sum at unit level | cite | Treat a high R² as a check of the identity, not a finding. Report the residual only. | B/CLUSTER-B.md "Flags" 2; T1 lemma 1 (`../T1/lead/HEADER.md`) |
+| F2 | M1(c) exact LMSR book from prior ℓ0 | Integrated Gradients completeness (1703.01365); Chen-Vaughan LMSR = FTRL (1003.0034) | cite | Label it "IG on the log score from baseline ℓ0". | B/CLUSTER-B.md (IG); C/CLUSTER-C.md (Chen-Vaughan) |
+| F3 | M1(d) AttnLRP-rule books | AttnLRP (2402.05602): softmax, bilinear 1/N and LN-as-constant rules | ran | Name it a port of AttnLRP; the gate "pays twice" fix is AttnLRP's bilinear rule. | B/CLUSTER-B.md "Flags" 4 |
+| F4 | M2 sampled Shapley (64 permutations) | Neuron Shapley (2002.09815), truncated MC + bandit top-k | ran | Use its TMAB trick if 64 permutations are too few. Report cost vs Spearman against it. | B/CLUSTER-B.md "Flags" 5 |
+| F5 | M2 predictor "accumulated \|a·g\|" | Taylor importance (Σ_unit g·w)² with EMA (1906.10771) reported squared beats signed vs a leave-one-out oracle | add | Add the squared-EMA Taylor predictor. A signed-wealth win would contradict their result; say so if it happens. | B/CLUSTER-B.md "Flags" 3 |
+| F6 | M2 oracle (single zero ablation) | conductance (1805.12233): single ablation favours gradient×activation; Hydra (2307.15771): self-repair makes total ≠ direct effect | add | Use mean or resample ablation too; report heads and MLP neurons separately; do not read a books-vs-ablation gap as evidence against wealth. | B/CLUSTER-B.md "Flags" 6 |
+| F7 | M2/M3 missing currency | LCA (1909.01440): Σ_t ∇L·Δθ per parameter, conserved, summable | add | Add LCA as a predictor (M2) or currency (M3). It is the nearest "wealth over training". | B/CLUSTER-B.md "Flags" 7 |
+| F8 | M3 EMA currency; fixed-share α | Taylor EMA (1906.10771); continual backprop EMA utility \|h\|·Σ\|w_out\| (2306.13812); HBP floor s (1711.03705); fixed share (Herbster-Warmuth, recollection, unverified) | near | The EMA and floor arms replicate known forms. The new part is the signed, prequentially settled income they average. | lead/quotes-lead.txt "2306.13812", "1711.03705" |
+| F9 | M5 exploitability harness | Exploit LP in the hub (`consistency-ft.md`, `metrics.py exploit()`); online multivalid learning (2101.01739) | ran (static metric) / add (baseline) | Import `exploit()` rather than rewrite it. Add an online multicalibration forecaster as the non-market baseline at equal class C. | C/CLUSTER-C.md flags 5 |
+| F10 | M6(c)-(e) convex pool, k learned / from wealth; log vs exponential utility | Storkey 2011 (theory), Storkey-Millin-Geras 2012 (isoelastic pool of 20 trees, UCI), Barbu-Lay 2012 (budgeted betting functions) | ran (outside a net, in-sample) | Present as a replication inside a net with prequential wealth. Their wealth was settled in-sample. | A/CLUSTER-A.md findings 2-3; lead/quotes-lead.txt "1206.6443" |
+| F11 | M6(b),(f) additive corrections on ℓ0; bounded bets | GLN (1910.01526): per-unit log-loss corrections of a base prediction by geometric mixing, clipped | near | Add a GLN-style geometric-mixing arm or state why not. It is also the known fix for "a convex pool cannot add evidence". | A/CLUSTER-A.md findings 4 |
+| F12 | M6 "anchored / humble" traders | fractional Kelly = belief mixed toward the market (BLP 1201.6655 §6-7) | cite | Cite fractional Kelly as the prior art for "anchored". | C/CLUSTER-C.md flags 4 |
+| F13 | M6(g) fixed-point layer | LI MarketMaker (1609.03543); Barbu-Lay's equilibrium price with price-dependent betting (1102.1465); DEQ (1909.01377) | near | The new part is SGD-learned traders with implicit gradients inside a network. Keep the 2-pass control. | C/CLUSTER-C.md (LI); A/CLUSTER-A.md (Barbu-Lay) |
+| F14 | M7 "wealth replaces load balancing" | DeepSeek bias (2408.15664); primal-dual theory and step-size grid (2512.03915); Routing-Free MoE adaptive λ (2604.00801) | ran (for load) | Only a *quality* price is open. Compare against DeepSeek at more than one step size u (Han-Zhong show the u trade-off), and add Routing-Free MoE if cheap. | C/CLUSTER-C.md flags 1 |
+| F15 | M7 auction router | MoB (2512.10969): VCG among 4 experts, label-using bids, no wealth; cloned Vickrey society (2007.02382) | near | Cite both; route only on prequential (label-free at test) quantities, avoiding MoB's label leak. | C/CLUSTER-C.md flags 2; A/CLUSTER-A.md findings 6 |
+| F16 | M7/M8 Exp3 shadow credit and wealth of unexecuted units | SparseMixer (2310.00811) router-gradient estimator | add | Use it as the non-economic control for censored feedback. | C/CLUSTER-C.md flags 6 |
+| F17 | M7 bankruptcy and birth; K1 split and die | Hayek (Baum 1999/2000), Kwee 2001 (birth above wealth 1000, copyright share 0.25, stability "an art"), Economy of Minds 2026 (rent, bankruptcy, 6 founders) | ran (action auctions, no gradients) | Cite; expect instability (Kwee). | A/CLUSTER-A.md findings 5; lead/quotes-lead.txt "cs/0105025", "2606.02859" |
+| F18 | M8 gate by exp(η·income) with in-sample tangent books | soft movement pruning (2005.07683) | ran | Keep only as a baseline labelled "movement"; the novel arm needs M3's prequential or EMA currency, or re-entry. | B/CLUSTER-B.md "Flags" 1 |
+| F19 | M8 floor α, rebirth | continual backprop (2306.13812, already the plan's control); RigL (1911.11134, regrow by gradient); HBP floor s = 0.2 (1711.03705) | near | Add RigL-style regrowth if cheap. The only delta over continual backprop is the currency. | lead/quotes-lead.txt |
+| F20 | whole-network "Hedge over shared-trunk predictors" (not planned) | Hedge Backpropagation (1711.03705): multiplicative prequential weights with floor over 19 depth classifiers of one SGD net, concept drift | add | The closest prior art to the one-line claim. D1 must cite it; an M6 or M8 owner may add a depth-Hedge arm as a baseline. | lead/quotes-lead.txt "1711.03705" |
+| F21 | K1 monoculture vs coexistence; Kelly pool of fixed beliefs | Blume-Easley 2006 (complete markets select the most accurate; full text not read); BLP 2012 (fixed beliefs = Bayes) | ran (theory) | K1 with fixed beliefs is BMA, a demo. Only niches (incompleteness) or learning traders can surprise. | C/CLUSTER-C.md flags 3 |
+| F22 | K1 funds of funds, fixed vs rebalancing | T1 lemma 6 (theorem); Cover constant-rebalanced portfolios (recollection, unverified) | cite | Cite T1 lemma 6; the K1 arm is a check, not a finding. | `../T1/lead/HEADER.md` |
+| F23 | M9(a) lottery-ticket link | lottery ticket (1803.03635) | cite | No planned arm duplicates it. The optional arm "tickets by final wealth vs magnitude" is unplanned. | B/CLUSTER-B.md (LTH) |
+
+No flag says "drop an arm": every flagged arm still has a delta (prequential settlement, being inside a trained net,
+or the LI measurement). The flags change labels, add controls and set the bar.

@@ -1,0 +1,26 @@
+{
+ "threshold_nats_per_cell": 0.05,
+ "pilots": {
+  "1": {
+   "T": 1,
+   "seed": 0,
+   "steps": 20000,
+   "time_s": 285.2790412902832,
+   "nll_per_cell": 0.6740358024981872,
+   "nll_per_masked_cell": 1.020316605778583,
+   "solve_rate_argmax": 0.0
+  },
+  "2": {
+   "T": 2,
+   "seed": 0,
+   "steps": 20000,
+   "time_s": 360.0988597869873,
+   "nll_per_cell": 0.2785599701322652,
+   "nll_per_masked_cell": 0.41287513334588355,
+   "solve_rate_argmax": 0.035341365461847386
+  }
+ },
+ "T_chosen": 1,
+ "rule": "smallest T in {1,2} with B2-reg (2T passes) held-out per-cell NLL >= max(0.05, 10 x fee)",
+ "rule_met": true
+}

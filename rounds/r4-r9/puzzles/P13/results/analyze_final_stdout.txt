@@ -1,0 +1,99 @@
+{
+ "jopt": {
+  "DTR-eq": "none",
+  "ECON-fix": "none",
+  "ECON-fix_scores": {
+   "none": 0.0075,
+   "scale": 0.005,
+   "cap": 0.005
+  },
+  "ECON-nocap": "scale",
+  "ECON-nocap_scores": {
+   "none": 0.0,
+   "scale": 0.0025,
+   "cap": 0.0
+  },
+  "BPTT-dscov": "none",
+  "BPTT-dscov_scores": {
+   "none": 0.0
+  },
+  "M-ref": "none",
+  "ECON-F0": "none",
+  "ECON-F0_scores": {
+   "none": 0.01
+  }
+ },
+ "tiers": {
+  "S1": {
+   "fix": "LB",
+   "ECONfix_ll99": 2.1585073852539063,
+   "F0_raw_ll99": 2.1983941650390624,
+   "F0_ctrl_ll99": 0.663759765625,
+   "ECONfix_exact99": 0.0,
+   "F0_exact99": 0.0,
+   "legs": {
+    "<=0.1x F0 raw": false,
+    "< F0 post-hoc": false,
+    "exact within 2pp": true
+   },
+   "holds": false,
+   "slope_mean": 0.06857999345700436,
+   "slope_hi": 0.34802348479582135,
+   "label": "slowed",
+   "F2_holds": true,
+   "F0_source": [
+    "1.0 L4-h pilot (main run cut, 02:40Z addendum)"
+   ]
+  },
+  "S2": {
+   "ci_all": [
+    -0.8678576083463694,
+    0.45285760834636934
+   ],
+   "dtr_trained": 3,
+   "ci_trained": [
+    -1.4670672552306843,
+    0.913733921897351
+   ],
+   "ECONfix_minus_Mref": -0.94,
+   "ll_raw_ECONfix": 2.1585073852539063,
+   "ll_raw_DTR": 0.8032116129994393,
+   "holds": false,
+   "legs": {
+    "ci>0": false,
+    ">= M-ref - 2pp": false,
+    "raw ll <= DTR": false
+   }
+  },
+  "F1_holds": true,
+  "S3": {
+   "result": "economics could not be made to bind (ladder found no active candidate)",
+   "holds": false,
+   "ECON-fix_main_active_per_seed": {
+    "m_econ_s0": false,
+    "m_econ_s1": false,
+    "m_econ_s2": false,
+    "m_econ_s3": false
+   },
+   "ECON-fix_main": "economics inactive, untestable (cap never binds, no respawn, in every seed)"
+  },
+  "F3_note": "the economy reduces to local losses on mazes",
+  "S4": {
+   "ci": [
+    -0.94,
+    -0.94
+   ],
+   "ECONfix_12n": 0.0,
+   "Mref_best_over_t_20n": [
+    1.0,
+    1670
+   ],
+   "holds": false
+  },
+  "Mref_gate": {
+   "gate_m13": 1.0,
+   "gate_m59": 1.0,
+   "gate_pass": true
+  }
+ }
+}

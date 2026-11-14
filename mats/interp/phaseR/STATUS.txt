@@ -1,0 +1,11 @@
+Phase R (random networks): done, checked 2026-10-28 23:25Z (all queues finished; `ps` shows no phase-R jobs).
+Report: outbox/cm-interp-random-2026-10-28.md (tasks 1-3, verdict, surrogate-chain addition requested 22:50Z).
+Raw tables: results/tables.md (python analyze.py > results/tables.md). Prereg and amendment hashes: prereg_hashes.txt.
+Skipped on purpose (skip_jobs.txt): d = 128 and ordered d = 256 scorecards, copula depth profile at d = 8, ReLU d = 64
+scorecard, the d = 256 tanh rare-event run.
+
+Review fixes (GPT-6 review, review_gpt6/): done, checked 2026-10-29 03:35Z (`pgrep -f 'python (truth_fz|chain_fz|eps_lb|score_cb|gc_tail|surr)'` empty;
+jobs_fix.txt and jobs_truthfz.txt drained; 148 jobs ended, see jobs_fix.txt.done). Rules: PREREG-R.md amendment 2 + note
+(hashes 00:12Z, 00:41Z). New outputs: results/{truthfz,chainfz,epslb,scorecb,gctailfz}_*.json, surr_*.json rerun in place;
+replaced files in results/prereview/. Tables: python analyze.py > results/tables.md; report snippets: report_tables.py.
+Report revised in place (section "Changes after the review").

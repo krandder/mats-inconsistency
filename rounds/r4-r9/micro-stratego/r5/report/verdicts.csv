@@ -1,0 +1,25 @@
+rule,criterion,per_seed,mean,ci95,threshold,pass,note
+E2-D0 (1),"1-step battle accuracy (ply-0 battles, Z materialised), test","0.9999, 1.0000, 0.9999",0.9999,"[0.9998, 1.0001]",>= 0.97,True,
+E2-D0 (2),"7-known-slot NLL (nats), test","0.0001, 0.0002, 0.0001",0.0001,"[0.0000, 0.0002]",<= 0.05,True,
+E2-D0 (3a),"0-step KL(P*_full || P_0) per hidden slot (nats), test","0.0484, 0.0490, 0.0479",0.0484,"[0.0471, 0.0498]",>= 0.05,False,
+"E2-D0 (3a, reported)","same, total over hidden slots per position (nats)","0.2730, 0.2748, 0.2691",0.2723,"[0.2650, 0.2796]",(>= 0.40 noted in spec),n/a,
+E2-D0 (3b-i),"16 unskewed rollouts: belief KL reduction vs P_0, calibration split","-10.5248, -10.2537, -10.8701",-10.5495,"[-11.3170, -9.7820]",>= 0.10 (or 3b-ii),False,
+E2-D0 (3b-ii),"16 unskewed rollouts: action-value MSE reduction vs 0-step, calibration split","-1.3632, -1.0632, -2.0561",-1.4942,"[-2.7592, -0.2292]",>= 0.10 (or 3b-i),False,
+E2-D0 gate,capacity rule -> None; (1) and (2) and (3a) and (3b),,,,all,False,
+E2-D1 (1) (EXPLORATORY: gate failed),key cosine within-flank minus across-flank,"0.0001, 0.0008, 0.0111",0.0040,"[-0.0113, 0.0193]",">= 0.25, CI > 0",n/a,
+E2-D1 (2) (EXPLORATORY: gate failed),"JSD_mix / JSD_attn_L3, belief (CI on JSD_mix - JSD_attn)","0.1494, 0.1629, 0.1720",0.1614,"[0.1332, 0.1897]",">= 2.5, CI(diff) > 0",n/a,"diff -0.018673 [-0.020397, -0.016949]"
+E2-D1 (2) (EXPLORATORY: gate failed),"JSD_mix / JSD_attn_L3, value (CI on JSD_mix - JSD_attn)","3.5370, 3.5948, 3.5901",3.5739,"[3.4942, 3.6537]",">= 2.5, CI(diff) > 0",n/a,"diff 0.001315 [0.000946, 0.001683]"
+E2-D1 (2) (EXPLORATORY: gate failed),belief KL to ref: mix - attn_L3,"0.0435, 0.0378, 0.0402",0.0405,"[0.0333, 0.0477]","> 0, CI > 0",n/a,
+E2-D1 (2) (EXPLORATORY: gate failed),value MSE to ref: mix - attn_L3,"-0.0005, -0.0009, -0.0001",-0.0005,"[-0.0015, 0.0006]","> 0, CI > 0",n/a,
+E2-D1 (2) (EXPLORATORY: gate failed),belief KL to ref: ataraxos_mmd - attn_L3,"0.1317, 0.1492, 0.1539",0.1449,"[0.1158, 0.1740]","> 0, CI > 0",n/a,
+E2-D1 (2) (EXPLORATORY: gate failed),value MSE to ref: ataraxos_mmd - attn_L3,"0.0010, 0.0013, 0.0008",0.0010,"[0.0004, 0.0017]","> 0, CI > 0",n/a,
+E2-D1 (2) (EXPLORATORY: gate failed),belief KL to ref: kc_dedup - attn_L3,"0.1329, 0.1497, 0.1627",0.1484,"[0.1114, 0.1855]","> 0, CI > 0",n/a,
+E2-D1 (2) (EXPLORATORY: gate failed),value MSE to ref: kc_dedup - attn_L3,"0.0015, 0.0016, 0.0013",0.0015,"[0.0010, 0.0019]","> 0, CI > 0",n/a,
+E2-D1 (EXPLORATORY: gate failed),(1) and all of (2),,,,all,n/a (would be False),
+E2-D2 (EXPLORATORY: gate failed),"Spearman(beta_trust, -KL(Q*||q_r)) overall","0.2210, 0.2504, 0.2113",0.2276,"[0.1771, 0.2781]",">= 0.25, CI > 0",n/a,
+E2-D2 (EXPLORATORY: gate failed),Spearman(beta) - Spearman(-H) overall,"0.6050, 0.6108, 0.5545",0.5901,"[0.5133, 0.6670]",">= 0.20, CI > 0",n/a,
+E2-D2 (EXPLORATORY: gate failed),"same, mean within 10 entropy strata","0.1844, 0.2269, 0.1495",0.1869,"[0.0906, 0.2832]",">= 0.15, CI > 0",n/a,
+E2-D2 (EXPLORATORY: gate failed),all three,,,,all,n/a (would be False),
+E2-D3 (a) (EXPLORATORY: gate failed),utility swap: shift rate toward higher true Miner utility (relevant boards),"0.3684, 0.3108, 0.3333",0.3375,"[0.2654, 0.4096]",">= 0.75, CI lower > 0.5; hash identical; belief change 0.0000",n/a,"hash identical all seeds: True; max belief change 0; relevant boards per seed: 76, 74, 84"
+E2-D3 (b) (EXPLORATORY: gate failed),Unified-LIR effective win vs P0 (400 duplicate games/seed),"0.4775, 0.5138, 0.5175",0.5029,"[0.4480, 0.5578]","> 0.52, CI lower > 0.5",n/a,
+E2-D3 (EXPLORATORY: gate failed),(a) and (b),,,,all,n/a (would be False),

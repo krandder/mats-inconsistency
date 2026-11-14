@@ -1,0 +1,948 @@
+{
+  "round": "R27C",
+  "runner_sha256": "7dbb67339ad9b482cc1a7fc960279455db9b3790abd153828545cf77f7077f59",
+  "prereg_sha256": "a28f4bae4379631ec129811cfe5fc879a991f83a55ef37178b1a7e55060e154b",
+  "openspiel_info": {
+    "version": "2.0.2",
+    "file": "/tmp/r4e3a/pylib/pyspiel.so"
+  },
+  "device": "cpu",
+  "smoke_cpu": false,
+  "seeds": [
+    101,
+    102,
+    103,
+    104,
+    105
+  ],
+  "seed_overlap_count": 0,
+  "games": [
+    "kuhn_poker",
+    "leduc_poker",
+    "liars_dice(numdice=1,dice_sides=4)"
+  ],
+  "game_structural_stats": {
+    "kuhn_poker": {
+      "num_infosets_total": 12,
+      "num_root_infosets_per_player": {
+        "0": 3,
+        "1": 6
+      },
+      "info_tensor_dim": 11,
+      "max_legal_actions": 2,
+      "tau_eff_per_player": {
+        "0": 0.02,
+        "1": 0.01
+      }
+    },
+    "leduc_poker": {
+      "num_infosets_total": 936,
+      "num_root_infosets_per_player": {
+        "0": 6,
+        "1": 12
+      },
+      "info_tensor_dim": 30,
+      "max_legal_actions": 3,
+      "tau_eff_per_player": {
+        "0": 0.01,
+        "1": 0.005
+      }
+    },
+    "liars_dice(numdice=1,dice_sides=4)": {
+      "num_infosets_total": 1024,
+      "num_root_infosets_per_player": {
+        "0": 4,
+        "1": 32
+      },
+      "info_tensor_dim": 15,
+      "max_legal_actions": 8,
+      "tau_eff_per_player": {
+        "0": 0.015,
+        "1": 0.001875
+      }
+    }
+  },
+  "oracle_value_check_by_game": {
+    "kuhn_poker": {
+      "episodes_checked": 20,
+      "max_abs_err": 4.653222251960187e-13
+    },
+    "leduc_poker": {
+      "episodes_checked": 20,
+      "max_abs_err": 1.2876665012040434e-11
+    },
+    "liars_dice(numdice=1,dice_sides=4)": {
+      "episodes_checked": 20,
+      "max_abs_err": 4.097132355607158e-12
+    }
+  },
+  "tau_base": 0.06,
+  "beta_prox": 2.4,
+  "beta_prox_tabular": 1.2,
+  "controls_by_game": {
+    "kuhn_poker": {
+      "Control_Uniform": {
+        "nash_conv": 0.9166666666666666,
+        "inconsistency": 0.8884010784608707
+      },
+      "Control_ZeroParam_PotOdds": {
+        "nash_conv": 1.1189738292011018,
+        "inconsistency": 1.1468247121323765
+      }
+    },
+    "leduc_poker": {
+      "Control_Uniform": {
+        "nash_conv": 4.747222222222222,
+        "inconsistency": 2.943165649093958
+      },
+      "Control_ZeroParam_PotOdds": {
+        "nash_conv": 4.555044302816748,
+        "inconsistency": 2.9120379409917123
+      }
+    },
+    "liars_dice(numdice=1,dice_sides=4)": {
+      "Control_Uniform": {
+        "nash_conv": 1.3101190476190476,
+        "inconsistency": 1.128382452644774
+      },
+      "Control_ZeroParam_PotOdds": {
+        "nash_conv": 1.3660911881833355,
+        "inconsistency": 1.1882546488785282
+      }
+    }
+  },
+  "upstream_openspiel_by_game": {
+    "kuhn_poker": {
+      "OpenSpiel_Upstream_CFR": {
+        "curve": {
+          "10": 0.1373975876343151,
+          "40": 0.043465436256048595,
+          "120": 0.016157121393947538,
+          "400": 0.0038537173579251127
+        },
+        "final_nash_conv": 0.0038537173579251127
+      },
+      "OpenSpiel_Upstream_CFRPlus": {
+        "curve": {
+          "10": 0.06537418133668965,
+          "40": 0.007690295894375976,
+          "120": 0.0020127494146905955,
+          "400": 0.0005084309865960313
+        },
+        "final_nash_conv": 0.0005084309865960313
+      },
+      "OpenSpiel_Upstream_MCCFR_OurRun": {
+        "episodes": 800,
+        "training_regime": "upstream OutcomeSamplingSolver, 800 episodes (ungated diagnostic per Rule 9.5)",
+        "final_nash_conv": 0.3120371150068984
+      }
+    },
+    "leduc_poker": {
+      "OpenSpiel_Upstream_CFR": {
+        "curve": {
+          "10": 1.777157966337538,
+          "40": 0.46405998085830114,
+          "120": 0.1562161202036476,
+          "400": 0.052871589110149414
+        },
+        "final_nash_conv": 0.052871589110149414
+      },
+      "OpenSpiel_Upstream_CFRPlus": {
+        "curve": {
+          "10": 1.2208778031808132,
+          "40": 0.09529035426114155,
+          "120": 0.021917690994053052,
+          "400": 0.0024653405605794543
+        },
+        "final_nash_conv": 0.0024653405605794543
+      },
+      "OpenSpiel_Upstream_MCCFR_OurRun": {
+        "episodes": 800,
+        "training_regime": "upstream OutcomeSamplingSolver, 800 episodes (ungated diagnostic per Rule 9.5)",
+        "final_nash_conv": 4.132030603040133
+      }
+    },
+    "liars_dice(numdice=1,dice_sides=4)": {
+      "OpenSpiel_Upstream_CFR": {
+        "curve": {
+          "10": 0.28327651356397493,
+          "40": 0.08486188463944737,
+          "120": 0.028481076267041994,
+          "400": 0.008550216811372857
+        },
+        "final_nash_conv": 0.008550216811372857
+      },
+      "OpenSpiel_Upstream_CFRPlus": {
+        "curve": {
+          "10": 0.2131236101178451,
+          "40": 0.025214816558731146,
+          "120": 0.00323738207857132,
+          "400": 0.0004633997915707011
+        },
+        "final_nash_conv": 0.0004633997915707011
+      },
+      "OpenSpiel_Upstream_MCCFR_OurRun": {
+        "episodes": 800,
+        "training_regime": "upstream OutcomeSamplingSolver, 800 episodes (ungated diagnostic per Rule 9.5)",
+        "final_nash_conv": 1.2530866625934856
+      }
+    }
+  },
+  "tabular_mmd_ceiling_by_game": {
+    "kuhn_poker": {
+      "tau_base": 0.06,
+      "beta_prox_tabular": 1.2,
+      "iters": 800,
+      "nash_conv": 0.016224559139640604,
+      "inconsistency": 1.0161152994998754e-17
+    },
+    "leduc_poker": {
+      "tau_base": 0.06,
+      "beta_prox_tabular": 0.6,
+      "iters": 600,
+      "nash_conv": 0.5723247200365413,
+      "inconsistency": 0.0
+    },
+    "liars_dice(numdice=1,dice_sides=4)": {
+      "tau_base": 0.06,
+      "beta_prox_tabular": 1.2,
+      "iters": 800,
+      "nash_conv": 0.4853351447249456,
+      "inconsistency": 0.0
+    }
+  },
+  "per_seed": {
+    "101": {
+      "kuhn_poker": {
+        "Control_Random_Network": {
+          "nash_conv": 0.9179594347381812,
+          "inconsistency": 0.8805895201795251
+        },
+        "Control_Untrained_Init": {
+          "nash_conv": 0.9202082767848876,
+          "inconsistency": 0.8819671104564154
+        },
+        "Ablation_Neural_NoProx": {
+          "nash_conv": 0.2134563024125919,
+          "inconsistency": 0.16391505339264534
+        },
+        "OpenSpiel_Upstream_MCCFR_OurRun": {
+          "nash_conv": 0.3120371150068984,
+          "training_regime": "upstream OutcomeSamplingSolver, 800 episodes (ungated diagnostic per Rule 9.5)"
+        },
+        "Ceiling_Tabular_MMD_SameStages": {
+          "mirror_prox_stages": 48,
+          "q_eval_steps": 96,
+          "beta_prox": 2.4,
+          "nash_conv": 0.038138840145645614,
+          "inconsistency": 0.009939197591200044
+        },
+        "Inconsistency_ProxPrior_Neural": {
+          "nash_conv": 0.04689900710190409,
+          "inconsistency": 0.011917647380265841
+        }
+      },
+      "leduc_poker": {
+        "Control_Random_Network": {
+          "nash_conv": 4.713263769694442,
+          "inconsistency": 2.9313672591387334
+        },
+        "Control_Untrained_Init": {
+          "nash_conv": 4.770163579265686,
+          "inconsistency": 2.96139437753481
+        },
+        "Ablation_Neural_NoProx": {
+          "nash_conv": 2.736639187564601,
+          "inconsistency": 1.414762086382917
+        },
+        "OpenSpiel_Upstream_MCCFR_OurRun": {
+          "nash_conv": 4.132030603040133,
+          "training_regime": "upstream OutcomeSamplingSolver, 800 episodes (ungated diagnostic per Rule 9.5)"
+        },
+        "Ceiling_Tabular_MMD_SameStages": {
+          "mirror_prox_stages": 32,
+          "q_eval_steps": 64,
+          "beta_prox": 2.4,
+          "nash_conv": 1.0614806686719926,
+          "inconsistency": 0.2621903241982568
+        },
+        "Inconsistency_ProxPrior_Neural": {
+          "nash_conv": 1.0896122866679616,
+          "inconsistency": 0.33698120759339645
+        }
+      },
+      "liars_dice(numdice=1,dice_sides=4)": {
+        "Control_Random_Network": {
+          "nash_conv": 1.318923963161575,
+          "inconsistency": 1.1309996270066727
+        },
+        "Control_Untrained_Init": {
+          "nash_conv": 1.3095284213873792,
+          "inconsistency": 1.1264868784871116
+        },
+        "Ablation_Neural_NoProx": {
+          "nash_conv": 1.1314322491713438,
+          "inconsistency": 0.7591900713288583
+        },
+        "OpenSpiel_Upstream_MCCFR_OurRun": {
+          "nash_conv": 1.2530866625934856,
+          "training_regime": "upstream OutcomeSamplingSolver, 800 episodes (ungated diagnostic per Rule 9.5)"
+        },
+        "Ceiling_Tabular_MMD_SameStages": {
+          "mirror_prox_stages": 48,
+          "q_eval_steps": 96,
+          "beta_prox": 2.4,
+          "nash_conv": 0.4353798487776092,
+          "inconsistency": 0.04995622164900383
+        },
+        "Inconsistency_ProxPrior_Neural": {
+          "nash_conv": 0.459200786128819,
+          "inconsistency": 0.06311194479351528
+        }
+      },
+      "policy_commitment_readability": {
+        "kuhn_by_readability": {
+          "0.0": {
+            "nash_conv": 0.2446166480164566,
+            "payoff_vs_biased": 0.362490123374118,
+            "payoff_vs_reader": -0.15194128835747106,
+            "fixed_point_l1_drift": 0.08067043809532248
+          },
+          "0.5": {
+            "nash_conv": 0.19683793173946362,
+            "payoff_vs_biased": 0.32659905753656393,
+            "payoff_vs_reader": -0.11882542256980988,
+            "fixed_point_l1_drift": 0.010741623096198971
+          },
+          "1.0": {
+            "nash_conv": 0.07482614076492661,
+            "payoff_vs_biased": 0.1643223631217099,
+            "payoff_vs_reader": -0.06321935312198174,
+            "fixed_point_l1_drift": 0.019707842234218453
+          }
+        }
+      }
+    },
+    "102": {
+      "kuhn_poker": {
+        "Control_Random_Network": {
+          "nash_conv": 0.9179730681310423,
+          "inconsistency": 0.8926775197708845
+        },
+        "Control_Untrained_Init": {
+          "nash_conv": 0.9455555085767254,
+          "inconsistency": 0.9221480809152319
+        },
+        "Ablation_Neural_NoProx": {
+          "nash_conv": 0.6622476866032478,
+          "inconsistency": 0.6331485173660015
+        },
+        "OpenSpiel_Upstream_MCCFR_OurRun": {
+          "nash_conv": 0.1597744470573348,
+          "training_regime": "upstream OutcomeSamplingSolver, 800 episodes (ungated diagnostic per Rule 9.5)"
+        },
+        "Ceiling_Tabular_MMD_SameStages": {
+          "mirror_prox_stages": 48,
+          "q_eval_steps": 96,
+          "beta_prox": 2.4,
+          "nash_conv": 0.038138840145645614,
+          "inconsistency": 0.009939197591200044
+        },
+        "Inconsistency_ProxPrior_Neural": {
+          "nash_conv": 0.042628094963627794,
+          "inconsistency": 0.015400394645007972
+        }
+      },
+      "leduc_poker": {
+        "Control_Random_Network": {
+          "nash_conv": 4.748027493592261,
+          "inconsistency": 2.941459026885616
+        },
+        "Control_Untrained_Init": {
+          "nash_conv": 4.734960999498859,
+          "inconsistency": 2.925839922367027
+        },
+        "Ablation_Neural_NoProx": {
+          "nash_conv": 2.367855053298375,
+          "inconsistency": 1.222707622013958
+        },
+        "OpenSpiel_Upstream_MCCFR_OurRun": {
+          "nash_conv": 4.815684282049823,
+          "training_regime": "upstream OutcomeSamplingSolver, 800 episodes (ungated diagnostic per Rule 9.5)"
+        },
+        "Ceiling_Tabular_MMD_SameStages": {
+          "mirror_prox_stages": 32,
+          "q_eval_steps": 64,
+          "beta_prox": 2.4,
+          "nash_conv": 1.0614806686719926,
+          "inconsistency": 0.2621903241982568
+        },
+        "Inconsistency_ProxPrior_Neural": {
+          "nash_conv": 1.0135723723993524,
+          "inconsistency": 0.25366156012183866
+        }
+      },
+      "liars_dice(numdice=1,dice_sides=4)": {
+        "Control_Random_Network": {
+          "nash_conv": 1.3133347174804608,
+          "inconsistency": 1.1313679466237805
+        },
+        "Control_Untrained_Init": {
+          "nash_conv": 1.307149162072609,
+          "inconsistency": 1.1263719472747526
+        },
+        "Ablation_Neural_NoProx": {
+          "nash_conv": 0.9950933555556,
+          "inconsistency": 0.6691036095858817
+        },
+        "OpenSpiel_Upstream_MCCFR_OurRun": {
+          "nash_conv": 1.1592914427417125,
+          "training_regime": "upstream OutcomeSamplingSolver, 800 episodes (ungated diagnostic per Rule 9.5)"
+        },
+        "Ceiling_Tabular_MMD_SameStages": {
+          "mirror_prox_stages": 48,
+          "q_eval_steps": 96,
+          "beta_prox": 2.4,
+          "nash_conv": 0.4353798487776092,
+          "inconsistency": 0.04995622164900383
+        },
+        "Inconsistency_ProxPrior_Neural": {
+          "nash_conv": 0.46136100497030597,
+          "inconsistency": 0.0653996383275948
+        }
+      },
+      "policy_commitment_readability": {
+        "kuhn_by_readability": {
+          "0.0": {
+            "nash_conv": 0.2146637619347962,
+            "payoff_vs_biased": 0.36621555703969527,
+            "payoff_vs_reader": -0.15749962262583928,
+            "fixed_point_l1_drift": 0.06743283486295137
+          },
+          "0.5": {
+            "nash_conv": 0.21113676056040143,
+            "payoff_vs_biased": 0.3283780542662319,
+            "payoff_vs_reader": -0.12051445503640379,
+            "fixed_point_l1_drift": 0.023256503785220817
+          },
+          "1.0": {
+            "nash_conv": 0.07563012901740102,
+            "payoff_vs_biased": 0.1611608840595895,
+            "payoff_vs_reader": -0.06292766423339508,
+            "fixed_point_l1_drift": 0.015015097624488286
+          }
+        }
+      }
+    },
+    "103": {
+      "kuhn_poker": {
+        "Control_Random_Network": {
+          "nash_conv": 0.8943727327847961,
+          "inconsistency": 0.8656107048579665
+        },
+        "Control_Untrained_Init": {
+          "nash_conv": 0.918958047582409,
+          "inconsistency": 0.8969654341761435
+        },
+        "Ablation_Neural_NoProx": {
+          "nash_conv": 0.24352976793688524,
+          "inconsistency": 0.19002392327695086
+        },
+        "OpenSpiel_Upstream_MCCFR_OurRun": {
+          "nash_conv": 0.28730638929013175,
+          "training_regime": "upstream OutcomeSamplingSolver, 800 episodes (ungated diagnostic per Rule 9.5)"
+        },
+        "Ceiling_Tabular_MMD_SameStages": {
+          "mirror_prox_stages": 48,
+          "q_eval_steps": 96,
+          "beta_prox": 2.4,
+          "nash_conv": 0.038138840145645614,
+          "inconsistency": 0.009939197591200044
+        },
+        "Inconsistency_ProxPrior_Neural": {
+          "nash_conv": 0.05182761715144557,
+          "inconsistency": 0.017176635197132747
+        }
+      },
+      "leduc_poker": {
+        "Control_Random_Network": {
+          "nash_conv": 4.77532048583489,
+          "inconsistency": 2.95994752400582
+        },
+        "Control_Untrained_Init": {
+          "nash_conv": 4.720984510120012,
+          "inconsistency": 2.9212347630984192
+        },
+        "Ablation_Neural_NoProx": {
+          "nash_conv": 2.154340955863945,
+          "inconsistency": 1.4173206135666196
+        },
+        "OpenSpiel_Upstream_MCCFR_OurRun": {
+          "nash_conv": 4.464161346982778,
+          "training_regime": "upstream OutcomeSamplingSolver, 800 episodes (ungated diagnostic per Rule 9.5)"
+        },
+        "Ceiling_Tabular_MMD_SameStages": {
+          "mirror_prox_stages": 32,
+          "q_eval_steps": 64,
+          "beta_prox": 2.4,
+          "nash_conv": 1.0614806686719926,
+          "inconsistency": 0.2621903241982568
+        },
+        "Inconsistency_ProxPrior_Neural": {
+          "nash_conv": 1.0931995256922487,
+          "inconsistency": 0.27495511032789494
+        }
+      },
+      "liars_dice(numdice=1,dice_sides=4)": {
+        "Control_Random_Network": {
+          "nash_conv": 1.3165983072013008,
+          "inconsistency": 1.1311733069271421
+        },
+        "Control_Untrained_Init": {
+          "nash_conv": 1.3139982286472822,
+          "inconsistency": 1.1330732841138558
+        },
+        "Ablation_Neural_NoProx": {
+          "nash_conv": 1.2532359380014382,
+          "inconsistency": 0.8071945673887255
+        },
+        "OpenSpiel_Upstream_MCCFR_OurRun": {
+          "nash_conv": 1.097503830820151,
+          "training_regime": "upstream OutcomeSamplingSolver, 800 episodes (ungated diagnostic per Rule 9.5)"
+        },
+        "Ceiling_Tabular_MMD_SameStages": {
+          "mirror_prox_stages": 48,
+          "q_eval_steps": 96,
+          "beta_prox": 2.4,
+          "nash_conv": 0.4353798487776092,
+          "inconsistency": 0.04995622164900383
+        },
+        "Inconsistency_ProxPrior_Neural": {
+          "nash_conv": 0.45055787265952185,
+          "inconsistency": 0.0637498704440655
+        }
+      },
+      "policy_commitment_readability": {
+        "kuhn_by_readability": {
+          "0.0": {
+            "nash_conv": 0.2899623445143214,
+            "payoff_vs_biased": 0.35722367256439724,
+            "payoff_vs_reader": -0.14282803955258894,
+            "fixed_point_l1_drift": 0.02071968868367688
+          },
+          "0.5": {
+            "nash_conv": 0.19472624173592212,
+            "payoff_vs_biased": 0.3254472663078668,
+            "payoff_vs_reader": -0.12067252322421906,
+            "fixed_point_l1_drift": 0.014030870666665862
+          },
+          "1.0": {
+            "nash_conv": 0.07711718570551923,
+            "payoff_vs_biased": 0.1609350804753662,
+            "payoff_vs_reader": -0.06394015341452486,
+            "fixed_point_l1_drift": 0.013130807452689616
+          }
+        }
+      }
+    },
+    "104": {
+      "kuhn_poker": {
+        "Control_Random_Network": {
+          "nash_conv": 0.895295161841239,
+          "inconsistency": 0.8637386577664602
+        },
+        "Control_Untrained_Init": {
+          "nash_conv": 0.9286826502219029,
+          "inconsistency": 0.9055695285245547
+        },
+        "Ablation_Neural_NoProx": {
+          "nash_conv": 0.22070012876703765,
+          "inconsistency": 0.17295880915887618
+        },
+        "OpenSpiel_Upstream_MCCFR_OurRun": {
+          "nash_conv": 0.18264683631358486,
+          "training_regime": "upstream OutcomeSamplingSolver, 800 episodes (ungated diagnostic per Rule 9.5)"
+        },
+        "Ceiling_Tabular_MMD_SameStages": {
+          "mirror_prox_stages": 48,
+          "q_eval_steps": 96,
+          "beta_prox": 2.4,
+          "nash_conv": 0.038138840145645614,
+          "inconsistency": 0.009939197591200044
+        },
+        "Inconsistency_ProxPrior_Neural": {
+          "nash_conv": 0.03852910165158108,
+          "inconsistency": 0.008347146110060922
+        }
+      },
+      "leduc_poker": {
+        "Control_Random_Network": {
+          "nash_conv": 4.759758890894352,
+          "inconsistency": 2.9599785723198266
+        },
+        "Control_Untrained_Init": {
+          "nash_conv": 4.77150563769893,
+          "inconsistency": 2.943532413287285
+        },
+        "Ablation_Neural_NoProx": {
+          "nash_conv": 2.17943218696477,
+          "inconsistency": 1.272316864212559
+        },
+        "OpenSpiel_Upstream_MCCFR_OurRun": {
+          "nash_conv": 4.69555523252625,
+          "training_regime": "upstream OutcomeSamplingSolver, 800 episodes (ungated diagnostic per Rule 9.5)"
+        },
+        "Ceiling_Tabular_MMD_SameStages": {
+          "mirror_prox_stages": 32,
+          "q_eval_steps": 64,
+          "beta_prox": 2.4,
+          "nash_conv": 1.0614806686719926,
+          "inconsistency": 0.2621903241982568
+        },
+        "Inconsistency_ProxPrior_Neural": {
+          "nash_conv": 1.1280556516800857,
+          "inconsistency": 0.3390298488823635
+        }
+      },
+      "liars_dice(numdice=1,dice_sides=4)": {
+        "Control_Random_Network": {
+          "nash_conv": 1.3102475063550758,
+          "inconsistency": 1.1294625402458398
+        },
+        "Control_Untrained_Init": {
+          "nash_conv": 1.3120222912685349,
+          "inconsistency": 1.130218992048627
+        },
+        "Ablation_Neural_NoProx": {
+          "nash_conv": 1.3357243474800755,
+          "inconsistency": 0.9793527025752666
+        },
+        "OpenSpiel_Upstream_MCCFR_OurRun": {
+          "nash_conv": 1.3550572967814296,
+          "training_regime": "upstream OutcomeSamplingSolver, 800 episodes (ungated diagnostic per Rule 9.5)"
+        },
+        "Ceiling_Tabular_MMD_SameStages": {
+          "mirror_prox_stages": 48,
+          "q_eval_steps": 96,
+          "beta_prox": 2.4,
+          "nash_conv": 0.4353798487776092,
+          "inconsistency": 0.04995622164900383
+        },
+        "Inconsistency_ProxPrior_Neural": {
+          "nash_conv": 0.4532789467993632,
+          "inconsistency": 0.05761620417089596
+        }
+      },
+      "policy_commitment_readability": {
+        "kuhn_by_readability": {
+          "0.0": {
+            "nash_conv": 0.27919063638840125,
+            "payoff_vs_biased": 0.3616461479973664,
+            "payoff_vs_reader": -0.150097472366076,
+            "fixed_point_l1_drift": 0.030265450928590454
+          },
+          "0.5": {
+            "nash_conv": 0.1842529444193564,
+            "payoff_vs_biased": 0.31708029095415446,
+            "payoff_vs_reader": -0.11920255000105195,
+            "fixed_point_l1_drift": 0.011380051336380204
+          },
+          "1.0": {
+            "nash_conv": 0.058010600280622104,
+            "payoff_vs_biased": 0.15519575571985078,
+            "payoff_vs_reader": -0.06292625181016404,
+            "fixed_point_l1_drift": 0.01647095990805239
+          }
+        }
+      }
+    },
+    "105": {
+      "kuhn_poker": {
+        "Control_Random_Network": {
+          "nash_conv": 0.9222989983395031,
+          "inconsistency": 0.8908779110415895
+        },
+        "Control_Untrained_Init": {
+          "nash_conv": 0.8940647131616006,
+          "inconsistency": 0.8628744956442029
+        },
+        "Ablation_Neural_NoProx": {
+          "nash_conv": 0.3361508059015973,
+          "inconsistency": 0.2826950512852875
+        },
+        "OpenSpiel_Upstream_MCCFR_OurRun": {
+          "nash_conv": 0.20639524939678883,
+          "training_regime": "upstream OutcomeSamplingSolver, 800 episodes (ungated diagnostic per Rule 9.5)"
+        },
+        "Ceiling_Tabular_MMD_SameStages": {
+          "mirror_prox_stages": 48,
+          "q_eval_steps": 96,
+          "beta_prox": 2.4,
+          "nash_conv": 0.038138840145645614,
+          "inconsistency": 0.009939197591200044
+        },
+        "Inconsistency_ProxPrior_Neural": {
+          "nash_conv": 0.034349194342787936,
+          "inconsistency": 0.005943034008206575
+        }
+      },
+      "leduc_poker": {
+        "Control_Random_Network": {
+          "nash_conv": 4.733695155869607,
+          "inconsistency": 2.9513214566411095
+        },
+        "Control_Untrained_Init": {
+          "nash_conv": 4.747884348617238,
+          "inconsistency": 2.948822578499914
+        },
+        "Ablation_Neural_NoProx": {
+          "nash_conv": 1.7360694920842419,
+          "inconsistency": 0.973787029474293
+        },
+        "OpenSpiel_Upstream_MCCFR_OurRun": {
+          "nash_conv": 4.779695549164278,
+          "training_regime": "upstream OutcomeSamplingSolver, 800 episodes (ungated diagnostic per Rule 9.5)"
+        },
+        "Ceiling_Tabular_MMD_SameStages": {
+          "mirror_prox_stages": 32,
+          "q_eval_steps": 64,
+          "beta_prox": 2.4,
+          "nash_conv": 1.0614806686719926,
+          "inconsistency": 0.2621903241982568
+        },
+        "Inconsistency_ProxPrior_Neural": {
+          "nash_conv": 1.0798732334434564,
+          "inconsistency": 0.2894662600557821
+        }
+      },
+      "liars_dice(numdice=1,dice_sides=4)": {
+        "Control_Random_Network": {
+          "nash_conv": 1.3084579681352142,
+          "inconsistency": 1.1264404911493537
+        },
+        "Control_Untrained_Init": {
+          "nash_conv": 1.3170373018178614,
+          "inconsistency": 1.1340164602555127
+        },
+        "Ablation_Neural_NoProx": {
+          "nash_conv": 1.1141332126608416,
+          "inconsistency": 0.7613171168690811
+        },
+        "OpenSpiel_Upstream_MCCFR_OurRun": {
+          "nash_conv": 1.279971661079887,
+          "training_regime": "upstream OutcomeSamplingSolver, 800 episodes (ungated diagnostic per Rule 9.5)"
+        },
+        "Ceiling_Tabular_MMD_SameStages": {
+          "mirror_prox_stages": 48,
+          "q_eval_steps": 96,
+          "beta_prox": 2.4,
+          "nash_conv": 0.4353798487776092,
+          "inconsistency": 0.04995622164900383
+        },
+        "Inconsistency_ProxPrior_Neural": {
+          "nash_conv": 0.4487574075354178,
+          "inconsistency": 0.060619567562658544
+        }
+      },
+      "policy_commitment_readability": {
+        "kuhn_by_readability": {
+          "0.0": {
+            "nash_conv": 0.2574345906735557,
+            "payoff_vs_biased": 0.362784373447534,
+            "payoff_vs_reader": -0.15114230959981212,
+            "fixed_point_l1_drift": 0.08020395255048057
+          },
+          "0.5": {
+            "nash_conv": 0.16689930757465754,
+            "payoff_vs_biased": 0.30834587688086673,
+            "payoff_vs_reader": -0.11860889456807411,
+            "fixed_point_l1_drift": 0.011355308611202167
+          },
+          "1.0": {
+            "nash_conv": 0.0600920233301499,
+            "payoff_vs_biased": 0.15875305570208037,
+            "payoff_vs_reader": -0.06369968953140676,
+            "fixed_point_l1_drift": 0.012478607179798665
+          }
+        }
+      }
+    }
+  },
+  "gates": {
+    "R27C_D0_upstream_openspiel_exact_curve_reproduction": {
+      "verdict": "PASS",
+      "max_cfr_cfrplus_curve_abs_err": 0.0,
+      "kuhn_tabular_mmd_inconsistency": 1.0161152994998754e-17,
+      "leduc_tabular_mmd_inconsistency": 0.0,
+      "liars_tabular_mmd_inconsistency": 0.0,
+      "max_oracle_vs_openspiel_value_err": 1.2876665012040434e-11,
+      "min_oracle_check_episodes": 20,
+      "seed_overlap_count": 0
+    },
+    "R27C_D1_proximity_edge_prevents_cycling_and_beats_baselines": {
+      "verdict": "FAIL",
+      "kuhn_abs_bar_pass": true,
+      "leduc_abs_bar_pass": false,
+      "liars_abs_bar_pass": false,
+      "all_games_beat_controls_and_noprox": true,
+      "by_game": {
+        "kuhn_poker": {
+          "mean_nash_conv_ours": 0.042846603042269296,
+          "mean_nash_conv_tabular_same_stages": 0.038138840145645614,
+          "mean_nash_conv_random_net": 0.9095798791669523,
+          "mean_nash_conv_untrained": 0.921493839265505,
+          "mean_nash_conv_noprox": 0.335216938324272,
+          "mean_nash_conv_uniform": 0.9166666666666666,
+          "mean_nash_conv_pot_odds": 1.1189738292011018,
+          "mean_nash_conv_mccfr_ourrun": 0.22963200741294773,
+          "mean_inconsistency_ours": 0.01175697146813481,
+          "mean_inconsistency_noprox": 0.28854827089595225,
+          "ci_vs_random_net": {
+            "mean_diff": 0.8667332761246831,
+            "se": 0.007834025537853048,
+            "ci95_low": 0.8449825342661165,
+            "ci95_high": 0.8884840179832497
+          },
+          "ci_vs_untrained": {
+            "mean_diff": 0.8786472362232358,
+            "se": 0.007878651103566423,
+            "ci95_low": 0.8567725939311776,
+            "ci95_high": 0.9005218785152941
+          },
+          "ci_vs_noprox": {
+            "mean_diff": 0.29237033528200274,
+            "se": 0.08523142515406691,
+            "ci95_low": 0.05572996210396111,
+            "ci95_high": 0.5290107084600444
+          },
+          "ci_vs_uniform": {
+            "mean_diff": 0.8738200636243973,
+            "se": 0.0030657389952246064,
+            "ci95_low": 0.865308207597292,
+            "ci95_high": 0.8823319196515027
+          },
+          "ci_vs_pot_odds": {
+            "mean_diff": 1.0761272261588324,
+            "se": 0.0030657389952245765,
+            "ci95_low": 1.067615370131727,
+            "ci95_high": 1.0846390821859377
+          }
+        },
+        "leduc_poker": {
+          "mean_nash_conv_ours": 1.0808626139766209,
+          "mean_nash_conv_tabular_same_stages": 1.0614806686719926,
+          "mean_nash_conv_random_net": 4.746013159177111,
+          "mean_nash_conv_untrained": 4.749099815040145,
+          "mean_nash_conv_noprox": 2.234867375155187,
+          "mean_nash_conv_uniform": 4.747222222222222,
+          "mean_nash_conv_pot_odds": 4.555044302816748,
+          "mean_nash_conv_mccfr_ourrun": 4.5774254027526515,
+          "mean_inconsistency_ours": 0.2988187973962551,
+          "mean_inconsistency_noprox": 1.2601788431300693,
+          "ci_vs_random_net": {
+            "mean_diff": 3.6651505452004898,
+            "se": 0.020075297469551275,
+            "ci95_low": 3.6094125838057645,
+            "ci95_high": 3.720888506595215
+          },
+          "ci_vs_untrained": {
+            "mean_diff": 3.6682372010635236,
+            "se": 0.016167173400471812,
+            "ci95_low": 3.6233499316108997,
+            "ci95_high": 3.7131244705161475
+          },
+          "ci_vs_noprox": {
+            "mean_diff": 1.1540047611785655,
+            "se": 0.16585408218890266,
+            "ci95_low": 0.6935200065081133,
+            "ci95_high": 1.6144895158490178
+          },
+          "ci_vs_uniform": {
+            "mean_diff": 3.666359608245601,
+            "se": 0.01868809039994727,
+            "ci95_low": 3.6144731511291734,
+            "ci95_high": 3.7182460653620284
+          },
+          "ci_vs_pot_odds": {
+            "mean_diff": 3.4741816888401273,
+            "se": 0.01868809039994727,
+            "ci95_low": 3.4222952317237,
+            "ci95_high": 3.526068145956555
+          }
+        },
+        "liars_dice(numdice=1,dice_sides=4)": {
+          "mean_nash_conv_ours": 0.4546312036186856,
+          "mean_nash_conv_tabular_same_stages": 0.43537984877760916,
+          "mean_nash_conv_random_net": 1.3135124924667254,
+          "mean_nash_conv_untrained": 1.3119470810387333,
+          "mean_nash_conv_noprox": 1.1659238205738598,
+          "mean_nash_conv_uniform": 1.3101190476190476,
+          "mean_nash_conv_pot_odds": 1.3660911881833355,
+          "mean_nash_conv_mccfr_ourrun": 1.2289821788033333,
+          "mean_inconsistency_ours": 0.06209944505974603,
+          "mean_inconsistency_noprox": 0.7952316135495626,
+          "ci_vs_random_net": {
+            "mean_diff": 0.8588812888480397,
+            "se": 0.002280422035418104,
+            "ci95_low": 0.852549822250018,
+            "ci95_high": 0.8652127554460615
+          },
+          "ci_vs_untrained": {
+            "mean_diff": 0.8573158774200479,
+            "se": 0.004132072300271022,
+            "ci95_low": 0.845843405507637,
+            "ci95_high": 0.8687883493324587
+          },
+          "ci_vs_noprox": {
+            "mean_diff": 0.7112926169551742,
+            "se": 0.060335044170360036,
+            "ci95_low": 0.5437756788964851,
+            "ci95_high": 0.8788095550138633
+          },
+          "ci_vs_uniform": {
+            "mean_diff": 0.8554878440003622,
+            "se": 0.00244021940187031,
+            "ci95_low": 0.8487127087864307,
+            "ci95_high": 0.8622629792142936
+          },
+          "ci_vs_pot_odds": {
+            "mean_diff": 0.91145998456465,
+            "se": 0.00244021940187031,
+            "ci95_low": 0.9046848493507186,
+            "ci95_high": 0.9182351197785815
+          }
+        }
+      }
+    },
+    "R27C_D2_neural_policy_commitment_readability_and_stability": {
+      "verdict": "FAIL",
+      "evaluation_type": "objective_alignment_verification",
+      "mean_kuhn_payoff_vs_biased_unread_alpha0": 0.3620719748846221,
+      "mean_kuhn_payoff_vs_biased_readable_alpha1": 0.16007342781571934,
+      "mean_kuhn_payoff_vs_reader_unread_alpha0": -0.15070174650035748,
+      "mean_kuhn_payoff_vs_reader_readable_alpha1": -0.06334262242229449,
+      "mean_kuhn_nash_conv_unread_alpha0": 0.2571735963055063,
+      "mean_kuhn_nash_conv_readable_alpha1": 0.06913521581972377,
+      "max_fixed_point_l1_drift_alpha1": 0.019707842234218453,
+      "ci_payoff_vs_reader_alpha1_vs_alpha0": {
+        "mean_diff": 0.08735912407806298,
+        "se": 0.0025068544497800203,
+        "ci95_low": 0.08039898031152792,
+        "ci95_high": 0.09431926784459804
+      },
+      "ci_payoff_vs_biased_alpha0_vs_alpha1": {
+        "mean_diff": 0.20199854706890283,
+        "se": 0.0020071061441240667,
+        "ci95_low": 0.19642592703943715,
+        "ci95_high": 0.2075711670983685
+      },
+      "ci_nash_conv_alpha0_vs_alpha1": {
+        "mean_diff": 0.18803838048578245,
+        "se": 0.015057827936044994,
+        "ci95_low": 0.14623114781783964,
+        "ci95_high": 0.22984561315372526
+      }
+    }
+  },
+  "elapsed_sec": 484.56
+}

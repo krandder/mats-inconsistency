@@ -1,0 +1,296 @@
+{
+  "catalog_generated_at": "2026-09-12 18:38 UTC",
+  "checked_at": "2026-09-13T07:40:25.436642+00:00",
+  "purchases_or_training_jobs_created": 0,
+  "qwen9b_estimator": {
+    "dedicated": [
+      {
+        "benchmarkSource": "speed-gate",
+        "context": 262144,
+        "effectiveRatePerM": 0.78857065,
+        "gpus": "2 \u00d7 B200",
+        "id": "qwen3p5-9b-256k-lora",
+        "method": "LoRA",
+        "policyEffectiveRatePerM": 0.78857065,
+        "referenceForwardRatePerM": null
+      },
+      {
+        "benchmarkSource": "speed-gate",
+        "context": 65536,
+        "effectiveRatePerM": 0.8570159,
+        "gpus": "2 \u00d7 B200",
+        "id": "qwen3p5-9b-65k-lora",
+        "method": "LoRA",
+        "policyEffectiveRatePerM": 0.8570159,
+        "referenceForwardRatePerM": null
+      }
+    ],
+    "id": "qwen3p5-9b",
+    "label": "Qwen 3.5 9B",
+    "managed": true,
+    "managedDpo": true,
+    "managedDpoContext": 262144,
+    "managedSft": true,
+    "managedSftContext": 262144,
+    "paramCount": 9409813744,
+    "serverless": null,
+    "tinker": [
+      {
+        "cached": 0.132,
+        "context": 65536,
+        "id": "Qwen/Qwen3.5-9B",
+        "note": null,
+        "prefill": 0.66,
+        "sample": 1.995,
+        "train": 1.463
+      }
+    ]
+  },
+  "runpod_advertised_usd_per_gpu_hour": {
+    "B200 180GB": 6.79,
+    "H100 PCIe 80GB": 2.89,
+    "H100 SXM 80GB": 3.49
+  },
+  "runpod_price_context": "Public pricing-page advertisements, not authenticated region/availability quotes; storage/tax/idle time excluded.",
+  "sources": {
+    "fireworks-rft": {
+      "bytes": 8108,
+      "sha256": "a09dd8c837ec32530aa776fbb1b91ed0ddb9550313136be374dcc74212c4935a",
+      "status": 200,
+      "url": "https://docs.fireworks.ai/fine-tuning/reinforcement-fine-tuning-models.md"
+    },
+    "fireworks-serverless-training": {
+      "bytes": 26992,
+      "sha256": "d7b8a4994b8ac28488a12f0dcb0fc0c5b92369c26cf7fe988dfd2a90561cc9bc",
+      "status": 200,
+      "url": "https://docs.fireworks.ai/fine-tuning/training-api/serverless.md"
+    },
+    "fireworks-training-api": {
+      "bytes": 32292,
+      "sha256": "e51cc3a590fcdc46c630e6dd6807fbb791cf500525fc5e88a58e7318655e619e",
+      "status": 200,
+      "url": "https://docs.fireworks.ai/fine-tuning/training-api/introduction.md"
+    },
+    "fireworks-training-models": {
+      "bytes": 148975,
+      "sha256": "58f36cda85161cc1c797d3ea245cc845d69f3f11058574bbe666b27803dde72c",
+      "status": 200,
+      "url": "https://docs.fireworks.ai/fine-tuning/models.md"
+    },
+    "fireworks-training-prices": {
+      "bytes": 63277,
+      "sha256": "194d953bb8adbd35c8b826864e8772d2e22115ee980a4f0a5ace8528d8a8a0c6",
+      "status": 200,
+      "url": "https://docs.fireworks.ai/fine-tuning/cost-estimator.md"
+    },
+    "gpu-prices": {
+      "bytes": 292326,
+      "final_url": "https://www.runpod.io/pricing",
+      "preview": "       GPU Cloud Pricing | Per-Second H100, A100, RTX | Runpod              !function(o,c){var n=c.documentElement,t=\" w-mod-\";n.className+=t+\"js\",(\"ontouchstart\"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+\"touch\")}(window,doc",
+      "sha256": "d62c083d5c30d1e66fac5c347e64cbea9a39561212746f21fe4f1f290df1a730",
+      "status": 200,
+      "url": "https://www.runpod.io/gpu-pricing"
+    },
+    "openai-finetune": {
+      "bytes": 28314,
+      "sha256": "97814cbebe3259a3809a95f6f376b3934a6e1443c606394147cca82af9f30567",
+      "status": 200,
+      "url": "https://raw.githubusercontent.com/openai/openai-cookbook/main/articles/gpt-oss/fine-tune-transfomers.ipynb"
+    },
+    "openai-gpt-oss": {
+      "bytes": 24453,
+      "final_url": "https://raw.githubusercontent.com/openai/gpt-oss/main/README.md",
+      "preview": " \n \n    Try gpt-oss   \u00b7\n    Guides   \u00b7\n    Model card   \u00b7\n    OpenAI blog  \n \n \n   Download  gpt-oss-120b  and  gpt-oss-20b  on Hugging Face \n \n\n \n\nWelcome to the gpt-oss series, [OpenAI's open-weight models](https://openai.com/open-models/) designed",
+      "sha256": "578ad0f82c1d823229f9bf2b52b3f1c55ce82772ac57f634f0ca4eb46a6370aa",
+      "status": 200,
+      "url": "https://raw.githubusercontent.com/openai/gpt-oss/main/README.md"
+    },
+    "qwen-card": {
+      "bytes": 77643,
+      "final_url": "https://huggingface.co/Qwen/Qwen3.5-9B/raw/main/README.md",
+      "preview": "---\nlibrary_name: transformers\nlicense: apache-2.0\nlicense_link: https://huggingface.co/Qwen/Qwen3.5-9B/blob/main/LICENSE\npipeline_tag: image-text-to-text\nbase_model:\n- Qwen/Qwen3.5-9B-Base\n---\n\n# Qwen3.5-9B\n\n \n\n[![Qwen Chat](https://img.shields.io/b",
+      "sha256": "c5f5a8c2dddab69cfbf05279235aa5fddb137939a06539c4c7637aa900fef6d0",
+      "status": 200,
+      "url": "https://huggingface.co/Qwen/Qwen3.5-9B/raw/main/README.md"
+    }
+  },
+  "training_estimator": {
+    "generatedAt": "2026-09-12 18:38 UTC",
+    "gpuPriceEffective": "2026-09-01",
+    "gpuPriceSource": "https://fireworks.ai/pricing",
+    "gpuRates": {
+      "B200": 13,
+      "B300": 15,
+      "GB300": 20,
+      "H100": 8,
+      "H200": 8
+    },
+    "managedRates": [
+      {
+        "dpo": 1,
+        "maxParams": 16000000000,
+        "sft": 0.5
+      },
+      {
+        "dpo": 6,
+        "maxParams": 80000000000,
+        "sft": 3
+      },
+      {
+        "dpo": 12,
+        "maxParams": 300000000000,
+        "sft": 6
+      },
+      {
+        "dpo": 20,
+        "maxParams": null,
+        "sft": 10
+      }
+    ]
+  },
+  "training_models": [
+    {
+      "apiFull": false,
+      "apiLora": false,
+      "count": 0,
+      "createdAt": "2025-08-04T22:11:06.445132Z",
+      "dedicated": [],
+      "family": "GPT-OSS",
+      "flags": {
+        "rlFullParameterTunable": false,
+        "rlLoraTunable": false,
+        "rlTunable": true,
+        "supervisedFullParameterTunable": false,
+        "supervisedLoraTunable": false,
+        "useTrainingV2": false
+      },
+      "hasDedicated": false,
+      "hasServerless": false,
+      "id": "gpt-oss-20b",
+      "managedDpoLora": false,
+      "managedSftLora": false,
+      "model": "OpenAI gpt-oss-20b",
+      "paramCount": 20914757184,
+      "reference": [],
+      "rftLoraCtx": 32768,
+      "rftLoraManaged": true,
+      "rlAvailable": false,
+      "rlFullAvailable": false,
+      "rlLoraAvailable": false,
+      "serverless": [],
+      "serverlessCtx": 0,
+      "trainCtx": 131072
+    },
+    {
+      "apiFull": true,
+      "apiLora": true,
+      "count": 2,
+      "createdAt": "2025-04-29T06:07:42.965494Z",
+      "dedicated": [
+        {
+          "ctx": 128000,
+          "gpus": "4 \u00d7 B200",
+          "managedDpo": false,
+          "managedSft": false,
+          "method": "Full-Param",
+          "rlGpus": "5 \u00d7 B200",
+          "shape": "qwen3-8b-128k"
+        },
+        {
+          "ctx": 256000,
+          "gpus": "8 \u00d7 B200",
+          "managedDpo": true,
+          "managedSft": true,
+          "method": "LoRA",
+          "rlGpus": "9 \u00d7 B200",
+          "shape": "qwen3-8b-256k-h200-lora"
+        }
+      ],
+      "family": "Qwen 3",
+      "flags": {
+        "rlFullParameterTunable": true,
+        "rlLoraTunable": true,
+        "rlTunable": true,
+        "supervisedFullParameterTunable": true,
+        "supervisedLoraTunable": true,
+        "useTrainingV2": true
+      },
+      "hasDedicated": true,
+      "hasServerless": false,
+      "id": "qwen3-8b",
+      "managedDpoLora": true,
+      "managedSftLora": true,
+      "model": "Qwen 3 8B",
+      "paramCount": 8190735360,
+      "reference": [],
+      "rftLoraCtx": 32768,
+      "rftLoraManaged": true,
+      "rlAvailable": true,
+      "rlFullAvailable": true,
+      "rlLoraAvailable": true,
+      "serverless": [],
+      "serverlessCtx": 0,
+      "trainCtx": 131072
+    },
+    {
+      "apiFull": true,
+      "apiLora": true,
+      "count": 3,
+      "createdAt": "2026-04-01T17:17:28.437129Z",
+      "dedicated": [
+        {
+          "ctx": 262144,
+          "gpus": "2 \u00d7 B200",
+          "managedDpo": false,
+          "managedSft": false,
+          "method": "Full-Param",
+          "rlGpus": "3 \u00d7 B200",
+          "shape": "qwen3p5-9b-256k"
+        },
+        {
+          "ctx": 262144,
+          "gpus": "2 \u00d7 B200",
+          "managedDpo": true,
+          "managedSft": true,
+          "method": "LoRA",
+          "rlGpus": "3 \u00d7 B200",
+          "shape": "qwen3p5-9b-256k-lora"
+        },
+        {
+          "ctx": 65536,
+          "gpus": "2 \u00d7 B200",
+          "managedDpo": true,
+          "managedSft": true,
+          "method": "LoRA",
+          "rlGpus": "3 \u00d7 B200",
+          "shape": "qwen3p5-9b-65k-lora"
+        }
+      ],
+      "family": "Qwen 3.5",
+      "flags": {
+        "rlFullParameterTunable": true,
+        "rlLoraTunable": true,
+        "rlTunable": false,
+        "supervisedFullParameterTunable": true,
+        "supervisedLoraTunable": true,
+        "useTrainingV2": true
+      },
+      "hasDedicated": true,
+      "hasServerless": false,
+      "id": "qwen3p5-9b",
+      "managedDpoLora": true,
+      "managedSftLora": true,
+      "model": "Qwen 3.5 9B",
+      "paramCount": 9409813744,
+      "reference": [],
+      "rftLoraCtx": 0,
+      "rftLoraManaged": false,
+      "rlAvailable": true,
+      "rlFullAvailable": true,
+      "rlLoraAvailable": true,
+      "serverless": [],
+      "serverlessCtx": 0,
+      "trainCtx": 131072
+    }
+  ]
+}

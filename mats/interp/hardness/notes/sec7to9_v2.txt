@@ -1,0 +1,86 @@
+## 7. The low-degree method and pseudorandomness (questions 3b and 3c)
+
+**Proposition 7.1 (the low-degree method cannot give hardness evidence here). PROVEN (logical).** The low-degree method
+(Hopkins; Kunisky, Wein and Bandeira 2019, arXiv 1907.11636) predicts that a planted-versus-null testing or estimation
+problem needs time exp(Omega(D)) when degree-D polynomials of the observations fail. Here (i) the target mu(W) is a
+deterministic function of the observation W, computable to inverse-polynomial precision in randomized polynomial time
+(Proposition 3.1), so there is no polynomial-versus-superpolynomial threshold for the method to predict; and (ii) the
+natural efficient algorithms are not low-degree polynomials of W: even one forward pass composes L layers. A failure of
+degree-D polynomials would show only that a restricted class fails (as in Section 6), not that efficient algorithms do;
+a success would not give an efficient algorithm either, since a degree-D polynomial in n^2 L variables has up to
+(n^2 L)^D terms. So the answer to 3b as posed is that the low-degree test is the wrong instrument; its fine-grained
+analogue (which polynomial-size computations reach which error) is exactly the open problem.
+
+**Proposition 7.2 (how non-additive the output scale is across layers). PROVEN (exact).** With e_l = rho_l - 1
+(Lemma 6.1), G_L = sum over subsets S of layers of prod_{l in S} e_l, and the terms are orthogonal (Lemma 6.10 with
+rho-hat = 1) with E (prod_{l in S} e_l)^2 = (5/n)^{|S|}. The fraction of Var(G_L) carried by products of exactly s of
+the gain factors is C(L, s)(5/n)^s / ((1 + 5/n)^L - 1), which for L = alpha n tends to the Poisson(5 alpha) law
+conditioned on s >= 1. Truncating at first order (linear response around mean field) keeps the fraction
+5 alpha/(e^{5 alpha} - 1) of a single input's output-scale fluctuation: 50% at alpha = 1/4, 3% at alpha = 1; truncating
+at order s keeps the Poisson(5 alpha) mass up to s ([POISSON_NUMBERS]). So a fixed-order expansion of this kind loses a
+constant fraction once L/n is of order 1 and the truncation order is below about 5 alpha. This concerns the expansion in
+the gain factors (each of which depends on all earlier weights), not arbitrary descriptions that use few layers.
+
+**Pseudorandomness (3c). PROVEN statements plus a reading.**
+- Bias-free He-ReLU nets are not pseudorandom functions in any cryptographic sense: f_W(2x) = 2 f_W(x) is an efficient
+  distinguisher. Their output scale at independent inputs is correlated over W, with correlation bounded below at depth
+  proportional to width (Lemma 6.4, a statement about the quadratic observable; for wide nets, Dunbar and Aaronson's
+  criterion says outputs are correlated because ReLU has nonzero Gaussian mean).
+- If outputs were nearly independent across inputs, means would be easy (Proposition 3.4, Corollary 3.3). Provable
+  pseudorandomness of random circuits exists (He and O'Donnell 2024, arXiv 2404.14648: random reversible circuits are
+  almost k-wise independent), and it makes mean estimation trivial, not hard.
+- So "deep critical nets act like PRFs" cannot be the mechanism of any hardness. Hardness, if it exists, needs
+  structured long-range dependence that is not efficiently computable to the required precision. Candidates from
+  Section 6: the shared, multiplicatively fluctuating output scale (6.4, 7.2), a collapsed state whose couplings
+  dominate the next layer (6.11), and no contraction of the scale mode (6.7) with only slow decay of others (heuristic
+  6.9'). None of them is pseudorandom; whether they can be computed to the precision sampling reaches is the open
+  question.
+
+## 8. What is not ruled out
+
+| Route | Status after this note |
+|---|---|
+| ARC's MSP with advice (pi from theta, c random) | Not refuted by any result here. Worst-case barriers are sidestepped by advice (4.4); in the multiscale random-oracle families a fixed-subset average matches sampling and nothing beats it by more than polylog factors over the window (5.1); for random MLPs only a formal model of "mechanistic" could be refuted (3.5) |
+| Mechanistic estimators for random He-ReLU at L proportional to n | Open. Proven to fail, each for a specific observable: estimators that ignore the first constant fraction of the layers (6.5, mean squared output norm); per-layer surrogates of fixed accuracy along the true trajectory (6.10, one input's output scale); fixed-order expansions in the gain factors (7.2, same). Shown to misjudge the next layer's variance by O(1): independent-neuron closures once the state has collapsed (6.11). Measured to fail: ignoring the last layers. No transfer of these single-observable results to ARC's per-neuron means is proven. Not ruled out: descriptions that keep the full coupling structure, track the scale exactly, and keep their accumulated local errors small; non-local (multi-layer or backward-informed) descriptions |
+| Trained networks with structure | A trainer can embed circuits, so the worst-case barriers apply to adversarially trained DAG networks (4.1); train-and-explain gives the explainer the trainer's computation, which can carry the structure. Random-net results do not transfer (trained weights are not rotation invariant). Nothing here rules out efficient estimation for trained nets with structure |
+| Noisy networks | Worst case: the circuit reduction survives small absolute noise (4.1c), so the barriers of 4.2-4.3 hold for noisy DAG networks with sigma = O(1/sqrt(log size)); noise proportional to each layer's RMS is not covered. Average case: one noisy layer need not contract total variation usefully when the states' images are far apart (6.13); in our measurements noise gives forgetting in the ordered and chaotic phases (depth about ln(1/sigma)/abs(lambda)) and at the critical point only at sigma around 0.1, where K = 2's error stopped growing. If such forgetting holds in the sense of Theorem 6.12's hypothesis, layer-local errors become depth-free; that hypothesis is not proven for these networks |
+| Narrow networks, ARC's literal reading (n fixed, eps -> 0) | Easy for fixed depth: the net has finitely many linear regions (at most 2^{nL} activation patterns), each a polyhedron in fixed dimension n where the Gaussian integral of a linear function can be computed deterministically to precision eps in polylog(1/eps) operations (sketch: triangulate, then use high-order cubature on smooth integrands), so for small enough eps exact integration beats sampling. The cost is exponential in L, so the meaningful question is uniform in depth (n fixed, L -> infinity), which remains open |
+| Quantum estimators | Beat sampling quadratically in the query model with coherent access (Montanaro 2015); outside the classical question |
+
+## 9. What this means for M1 and for interpretable architectures
+
+M1 (a sample-free estimator matching sampling on deep random MLPs at depths that grow with width):
+1. *No impossibility proof is available, and none is possible without formalizing "sample-free".* On average over W a
+   hard-coded input design (nonuniformly chosen) is deterministic and matches sampling (3.5), and the worst-case
+   barriers (4.2, 4.3) do not apply to random nets. Any negative result for M1 must be about a formal class of
+   descriptions.
+2. *What the theorems say a layer-local description must get right, with the conditions under which each is proven.*
+   It must use the early layers (6.5, for the mean squared output norm; the late layers too, by measurement). Its
+   errors in the output scale do not shrink with distance to the output (6.7), so if they are independent and centered
+   with relative variance v per layer they add up to about L v; matching sampling then needs v of order eps^2/L (6.7,
+   6.10). Independent-neuron closures misjudge the next layer once the state has collapsed (6.11). The output error is
+   the signed sum of local errors tested against the true backward functions (6.6); under the unproven transport
+   heuristic 6.9' the mean-square error from constant local errors e grows like e^2 L/4. Fixed-order expansions in the
+   gain factors lose a constant fraction at L proportional to n (7.2). None of these is a proof that a successful
+   family cannot exist.
+3. *Empirical status of the cheapest layer-local estimator (ARC's K = 2) along L proportional to n (6.3):* at its own
+   budget it stays within a factor of about 1-3 of plain Monte Carlo at every depth and width tested, with no trend
+   toward a growing advantage; the higher-budget points of the hierarchy are where the hierarchy falls behind (6.3).
+
+Interpretable architectures:
+1. *Worst case.* Any architecture that can embed Boolean circuits as ReLU DAG networks of near-linear size (with or
+   without biases, and with small absolute noise) inherits the barriers: no deterministic estimator matches sampling on
+   all of its instances under #NSETH, and proving that a subexponential deterministic one exists would prove NEXP not
+   in P/poly. For layered MLPs the carried wires change the size accounting, so the fine-grained version needs a
+   separate argument there. "Interpretable by design" helps only if it restricts expressivity enough to block such
+   embeddings, e.g. bounded treewidth or probabilistic circuits with exact moments (see the lit-tangledness note for
+   what those cost).
+2. *Average case.* The theory separates two kinds of depth. If the backward functions contract (Theorem 6.12's
+   hypothesis), layer-local errors are depth-free; our measurements suggest something like this in the chaotic phase
+   and with large noise, but it is not proven for those networks. Without contraction (homogeneous activations at
+   criticality, exactly ARC's family) the scale mode never contracts (6.7) and, heuristically, other errors decay only
+   polynomially (6.9'). A design target that follows: architectures whose layers provably contract the statistics a
+   description tracks. The tension is that trainability of deep plain nets needs criticality (signal propagation
+   theory), and residual streams preserve information by design; so the depth problem is likely generic for practical
+   deep architectures unless descriptions are non-local. This last sentence is a reading (CONJECTURE), not a theorem.
+

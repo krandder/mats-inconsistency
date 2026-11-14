@@ -1,0 +1,98 @@
+[
+ {
+  "name": "rt_rms_s0",
+  "deps": [],
+  "cmd": "P9_BIN=rms {PY} {CODE}/p9b_train.py --arm N1 --seed 0 --steps 4000 --out {OUT}/retune/rms --scratch {OUT}/retune/rms/partial",
+  "done": "{OUT}/retune/rms/train/N1_s0.json"
+ },
+ {
+  "name": "rtev_rms_s0",
+  "deps": [
+   "rt_rms_s0"
+  ],
+  "cmd": "P9_BIN=rms {PY} {CODE}/p9b_eval.py gate --arm N1 --seed 0 --out {OUT}/retune/rms --cache /root/cache",
+  "done": "{OUT}/retune/rms/eval/gate_N1_s0.json"
+ },
+ {
+  "name": "rt_rms_s1",
+  "deps": [],
+  "cmd": "P9_BIN=rms {PY} {CODE}/p9b_train.py --arm N1 --seed 1 --steps 4000 --out {OUT}/retune/rms --scratch {OUT}/retune/rms/partial",
+  "done": "{OUT}/retune/rms/train/N1_s1.json"
+ },
+ {
+  "name": "rtev_rms_s1",
+  "deps": [
+   "rt_rms_s1"
+  ],
+  "cmd": "P9_BIN=rms {PY} {CODE}/p9b_eval.py gate --arm N1 --seed 1 --out {OUT}/retune/rms --cache /root/cache",
+  "done": "{OUT}/retune/rms/eval/gate_N1_s1.json"
+ },
+ {
+  "name": "rt_rmsclip_s0",
+  "deps": [],
+  "cmd": "P9_BIN=rms P9_CLIP=1 {PY} {CODE}/p9b_train.py --arm N1 --seed 0 --steps 4000 --out {OUT}/retune/rmsclip --scratch {OUT}/retune/rmsclip/partial",
+  "done": "{OUT}/retune/rmsclip/train/N1_s0.json"
+ },
+ {
+  "name": "rtev_rmsclip_s0",
+  "deps": [
+   "rt_rmsclip_s0"
+  ],
+  "cmd": "P9_BIN=rms P9_CLIP=1 {PY} {CODE}/p9b_eval.py gate --arm N1 --seed 0 --out {OUT}/retune/rmsclip --cache /root/cache",
+  "done": "{OUT}/retune/rmsclip/eval/gate_N1_s0.json"
+ },
+ {
+  "name": "rt_rmsclip_s1",
+  "deps": [],
+  "cmd": "P9_BIN=rms P9_CLIP=1 {PY} {CODE}/p9b_train.py --arm N1 --seed 1 --steps 4000 --out {OUT}/retune/rmsclip --scratch {OUT}/retune/rmsclip/partial",
+  "done": "{OUT}/retune/rmsclip/train/N1_s1.json"
+ },
+ {
+  "name": "rtev_rmsclip_s1",
+  "deps": [
+   "rt_rmsclip_s1"
+  ],
+  "cmd": "P9_BIN=rms P9_CLIP=1 {PY} {CODE}/p9b_eval.py gate --arm N1 --seed 1 --out {OUT}/retune/rmsclip --cache /root/cache",
+  "done": "{OUT}/retune/rmsclip/eval/gate_N1_s1.json"
+ },
+ {
+  "name": "rt_sigclip_s0",
+  "deps": [],
+  "cmd": "P9_BIN=sig P9_CLIP=1 {PY} {CODE}/p9b_train.py --arm N1 --seed 0 --steps 4000 --out {OUT}/retune/sigclip --scratch {OUT}/retune/sigclip/partial --lr 1e-3",
+  "done": "{OUT}/retune/sigclip/train/N1_s0.json"
+ },
+ {
+  "name": "rtev_sigclip_s0",
+  "deps": [
+   "rt_sigclip_s0"
+  ],
+  "cmd": "P9_BIN=sig P9_CLIP=1 {PY} {CODE}/p9b_eval.py gate --arm N1 --seed 0 --out {OUT}/retune/sigclip --cache /root/cache",
+  "done": "{OUT}/retune/sigclip/eval/gate_N1_s0.json"
+ },
+ {
+  "name": "rt_sigclip_s1",
+  "deps": [],
+  "cmd": "P9_BIN=sig P9_CLIP=1 {PY} {CODE}/p9b_train.py --arm N1 --seed 1 --steps 4000 --out {OUT}/retune/sigclip --scratch {OUT}/retune/sigclip/partial --lr 1e-3",
+  "done": "{OUT}/retune/sigclip/train/N1_s1.json"
+ },
+ {
+  "name": "rtev_sigclip_s1",
+  "deps": [
+   "rt_sigclip_s1"
+  ],
+  "cmd": "P9_BIN=sig P9_CLIP=1 {PY} {CODE}/p9b_eval.py gate --arm N1 --seed 1 --out {OUT}/retune/sigclip --cache /root/cache",
+  "done": "{OUT}/retune/sigclip/eval/gate_N1_s1.json"
+ },
+ {
+  "name": "pilot_X2",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9a.py --arm X2 --seed 0 --steps 12000 --dev_every 1500 --tag _pilot --out {OUT}/pilot --scratch {OUT}/partial --cache /root/cache",
+  "done": "{OUT}/pilot/p9a/X2_s0_pilot.json"
+ },
+ {
+  "name": "pilot_X3",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9a.py --arm X3 --seed 0 --steps 12000 --dev_every 1500 --tag _pilot --out {OUT}/pilot --scratch {OUT}/partial --cache /root/cache",
+  "done": "{OUT}/pilot/p9a/X3_s0_pilot.json"
+ }
+]

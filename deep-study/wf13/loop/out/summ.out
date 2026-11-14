@@ -1,0 +1,125 @@
+SUDOKU s_s1.json (B_train 512, order conf): loop log closed/opened ['0.58/384', '1.00/35', '1.00/48', '1.00/59', '1.00/54']; one-shot states 13007
+  hard C: rounds [785, 73, 145, 145, 144, 166] | oneshot 150 | hand 43 | random 411 | final_mrvorder 43
+  hard median: rounds [578.0, 64.0, 116.5, 114.0, 110.0, 131.0] | oneshot 110.0 | hand 39.0
+  mixed C: rounds [704, 35, 47, 47, 47, 54] | oneshot 55 | hand 30 | random 303 | final_mrvorder 30
+  mixed median: rounds [519.0, 27.0, 27.0, 27.0, 28.5, 32.0] | oneshot 38.0 | hand 27.0
+  hard IS success/rollout: rounds ['0.000', '0.495', '0.522', '0.535', '0.608', '0.610'] | oneshot 0.569 | hand 0.364
+  hard -logP(sol): rounds ['10.27', '1.68', '1.67', '1.62', '1.33', '1.32'] | oneshot 1.71 ; P(sol)<1%: rounds ['1.00', '0.04', '0.06', '0.07', '0.08', '0.09'] | oneshot 0.25
+  multi IS err: rounds ['0.090', '0.035', '0.029', '0.032', '0.036', '0.040'] | hand 0.016192285064100028 ; one-pass solved hard: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+  bad_random         rho 0.5 eps 0.02 | hard C 411 closed 1.00 | mixed C 303 closed 1.00 | multi closed 0.92 | IS succ 0.000 | IS err multi 0.1113053613053613 | P(sol)<1% 1.0
+  bad_perm           rho 0.5 eps 0.02 | hard C 164 closed 1.00 | mixed C 53 closed 1.00 | multi closed 0.98 | IS succ 0.001 | IS err multi 0.09188034188034187 | P(sol)<1% 1.0
+  bad_avoid_noguard  rho 0.0 eps 0.00 | hard C 1340 closed 0.37 | mixed C 1129 closed 0.46 | multi closed 0.40 | IS succ 0.019 | IS err multi 0.062286301532300754 | P(sol)<1% 0.98
+  bad_avoid_floor    rho 0.0 eps 0.02 | hard C 166 closed 1.00 | mixed C 57 closed 1.00 | multi closed 0.98 | IS succ 0.023 | IS err multi 0.08461968314422698 | P(sol)<1% 0.7
+  bad_avoid_share    rho 0.5 eps 0.00 | hard C 314 closed 0.92 | mixed C 58 closed 1.00 | multi closed 0.90 | IS succ 0.019 | IS err multi 0.05366172788674458 | P(sol)<1% 0.98
+  final_rho0         rho 0.0 eps 0.02 | hard C 164 closed 1.00 | mixed C 54 closed 1.00 | multi closed 0.98 | IS succ 0.607 | IS err multi 0.037803367896439975 | P(sol)<1% 0.09
+  final_eps0         rho 0.5 eps 0.00 | hard C 165 closed 1.00 | mixed C 54 closed 1.00 | multi closed 0.98 | IS succ 0.685 | IS err multi 0.04934737225725299 | P(sol)<1% 0.15
+  final_mrvorder     rho 0.5 eps 0.02 | hard C 43 closed 1.00 | mixed C 30 closed 1.00 | multi closed 1.00 | IS succ 0.458 | IS err multi 0.02361089764334772 | P(sol)<1% 0.0
+  totals: violations 3, wrong solutions 0 over 4160 (arm, puzzle) trees x 8 budgets; closed trees with the exact set: True
+  trees closed in cap, summed over arms: 3949
+SUDOKU s_s1_mask.json (B_train 512, order confmask): loop log closed/opened ['1.00/30', '1.00/33', '1.00/36', '1.00/42', '1.00/39']; one-shot states 23999
+  hard C: rounds [46, 67, 86, 86, 86, 95] | oneshot 93 | hand 43 | random n/a | final_mrvorder n/a
+  hard median: rounds [41.0, 58.5, 69.5, 71.0, 70.5, 77.0] | oneshot 74.5 | hand 39.0
+  mixed C: rounds [29, 32, 35, 32, 34, 33] | oneshot 34 | hand 29 | random n/a | final_mrvorder n/a
+  mixed median: rounds [26.0, 26.0, 26.0, 26.0, 26.0, 27.0] | oneshot 27.0 | hand 26.0
+  hard IS success/rollout: rounds ['0.345', '0.448', '0.471', '0.500', '0.550', '0.566'] | oneshot 0.549 | hand 0.364
+  hard -logP(sol): rounds ['1.28', '1.60', '1.81', '1.69', '1.44', '1.48'] | oneshot 1.54 ; P(sol)<1%: rounds ['0.01', '0.02', '0.05', '0.05', '0.05', '0.07'] | oneshot 0.09
+  multi IS err: rounds ['0.027', '0.032', '0.030', '0.034', '0.036', '0.046'] | hand 0.018602807591058184 ; one-pass solved hard: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+  totals: violations 0, wrong solutions 0 over 1440 (arm, puzzle) trees x 8 budgets; closed trees with the exact set: True
+  trees closed in cap, summed over arms: 1440
+SUDOKU s_s2.json (B_train 512, order conf): loop log closed/opened ['0.10/500', '1.00/52', '1.00/39', '1.00/58', '1.00/63']; one-shot states 2256
+  hard C: rounds [1796, 95, 93, 142, 152, 171] | oneshot 246 | hand 44 | random 411 | final_mrvorder 44
+  hard median: rounds [1340.5, 82.5, 77.5, 109.0, 120.0, 135.0] | oneshot 219.5 | hand 40.0
+  mixed C: rounds [1649, 56, 41, 48, 52, 56] | oneshot 176 | hand 30 | random 310 | final_mrvorder 30
+  mixed median: rounds [900.5, 48.0, 27.0, 28.0, 31.0, 37.0] | oneshot 156.0 | hand 27.0
+  hard IS success/rollout: rounds ['0.000', '0.369', '0.501', '0.558', '0.575', '0.604'] | oneshot 0.220 | hand 0.353
+  hard -logP(sol): rounds ['14.75', '3.36', '2.01', '1.69', '1.49', '1.42'] | oneshot 5.55 ; P(sol)<1%: rounds ['1.00', '0.59', '0.15', '0.08', '0.06', '0.06'] | oneshot 0.73
+  multi IS err: rounds ['nan', '0.070', '0.047', '0.044', '0.036', '0.043'] | hand 0.01699672601826931 ; one-pass solved hard: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+  bad_random         rho 0.5 eps 0.02 | hard C 411 closed 1.00 | mixed C 310 closed 1.00 | multi closed 0.95 | IS succ 0.000 | IS err multi 0.09136336914114691 | P(sol)<1% 0.99
+  bad_perm           rho 0.5 eps 0.02 | hard C 173 closed 1.00 | mixed C 55 closed 1.00 | multi closed 0.98 | IS succ 0.000 | IS err multi 0.09646079229412563 | P(sol)<1% 1.0
+  bad_avoid_noguard  rho 0.0 eps 0.00 | hard C 1397 closed 0.34 | mixed C 1147 closed 0.45 | multi closed 0.40 | IS succ 0.020 | IS err multi 0.04844315014479844 | P(sol)<1% 0.98
+  bad_avoid_floor    rho 0.0 eps 0.02 | hard C 168 closed 1.00 | mixed C 56 closed 1.00 | multi closed 0.98 | IS succ 0.025 | IS err multi 0.08615664019894875 | P(sol)<1% 0.7
+  bad_avoid_share    rho 0.5 eps 0.00 | hard C 296 closed 0.93 | mixed C 97 closed 0.98 | multi closed 0.97 | IS succ 0.020 | IS err multi 0.04587950476388453 | P(sol)<1% 0.98
+  final_rho0         rho 0.0 eps 0.02 | hard C 169 closed 1.00 | mixed C 55 closed 1.00 | multi closed 0.98 | IS succ 0.605 | IS err multi 0.042053298124211 | P(sol)<1% 0.06
+  final_eps0         rho 0.5 eps 0.00 | hard C 172 closed 1.00 | mixed C 55 closed 1.00 | multi closed 0.98 | IS succ 0.680 | IS err multi 0.051807476304916375 | P(sol)<1% 0.17
+  final_mrvorder     rho 0.5 eps 0.02 | hard C 44 closed 1.00 | mixed C 30 closed 1.00 | multi closed 1.00 | IS succ 0.456 | IS err multi 0.021669104067203755 | P(sol)<1% 0.02
+  totals: violations 0, wrong solutions 0 over 4160 (arm, puzzle) trees x 8 budgets; closed trees with the exact set: True
+  trees closed in cap, summed over arms: 3800
+SUDOKU s_s2_mask.json (B_train 512, order confmask): loop log closed/opened ['1.00/29', '1.00/34', '1.00/37', '1.00/39', '1.00/39']; one-shot states 24000
+  hard C: rounds [45, 64, 76, 83, 87, 89] | oneshot 87 | hand 44 | random n/a | final_mrvorder n/a
+  hard median: rounds [42.0, 57.0, 68.0, 71.0, 74.5, 77.0] | oneshot 70.5 | hand 40.0
+  mixed C: rounds [30, 30, 32, 33, 34, 35] | oneshot 34 | hand 30 | random n/a | final_mrvorder n/a
+  mixed median: rounds [26.0, 26.0, 26.0, 26.0, 27.0, 27.0] | oneshot 26.5 | hand 26.0
+  hard IS success/rollout: rounds ['0.340', '0.461', '0.501', '0.498', '0.487', '0.517'] | oneshot 0.518 | hand 0.353
+  hard -logP(sol): rounds ['1.28', '1.64', '1.71', '1.77', '1.80', '1.67'] | oneshot 1.66 ; P(sol)<1%: rounds ['0.00', '0.03', '0.09', '0.09', '0.06', '0.08'] | oneshot 0.09
+  multi IS err: rounds ['0.026', '0.039', '0.031', '0.034', '0.032', '0.037'] | hand 0.022749416372411034 ; one-pass solved hard: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+  totals: violations 0, wrong solutions 0 over 1440 (arm, puzzle) trees x 8 budgets; closed trees with the exact set: True
+  trees closed in cap, summed over arms: 1440
+PARITY world 101: one-pass M 0.2223, prior 0.3560, T vs truth 0.0599
+  W_aud@256   rounds ['0.1423', '0.1400', '0.1367', '0.1369', '0.1323', '0.1250'] | oneshot 0.1332 | hand_spec 0.0928 | hand_rho 0.1566 | random 0.9648 | flip 0.1848
+  W_cert@256  rounds ['0.6944', '0.5993', '0.5963', '0.5942', '0.5796', '0.6000'] | oneshot 0.6078 | hand_spec 0.5017 | hand_rho 0.6818 | random 1.0000 | flip 0.7347
+  found@256   rounds ['0.3605', '0.6001', '0.6165', '0.6052', '0.6547', '0.6469'] | oneshot 0.6241 | hand_spec 0.6381 | hand_rho 0.4061 | random 0.0000 | flip 0.3550
+  E_aud@256   rounds ['0.0071', '0.0080', '0.0061', '0.0072', '0.0066', '0.0075'] | oneshot 0.0072 | hand_spec 0.0045 | hand_rho 0.0083 | random 0.1024 | flip 0.0087
+  E_found@256 rounds ['0.2305', '0.1493', '0.1410', '0.1564', '0.1342', '0.1372'] | oneshot 0.1354 | hand_spec 0.1171 | hand_rho 0.2320 | random 0.4194 | flip 0.2796
+  E_IS@K=16   rounds ['0.4360', '0.1395', '0.1025', '0.0993', '0.1075', '0.1365'] | oneshot 0.1006 | hand_rho 0.2837 | flip 0.4201 | avoid_noguard 0.4359 | avoid_floor 0.4233 | conforder n/a
+  E_IS@K=64   rounds ['0.4238', '0.0714', '0.0646', '0.0544', '0.0565', '0.0631'] | oneshot 0.0707 | hand_rho 0.1533 | flip 0.4042 | avoid_noguard 0.4213 | avoid_floor 0.3683 | conforder n/a
+  E_IS@K=256  rounds ['0.3619', '0.0258', '0.0178', '0.0227', '0.0301', '0.0292'] | oneshot 0.0373 | hand_rho 0.0941 | flip 0.4193 | avoid_noguard 0.4158 | avoid_floor 0.3166 | conforder n/a
+  one-pass err rounds ['0.418', '0.327', '0.316', '0.308', '0.302', '0.284'] | oneshot 0.2816 ; KL(T,pol) rounds ['10.90', '1.54', '1.45', '1.44', '1.43', '1.45'] | oneshot 1.51 | eps0 1.40 ; under100x rounds ['0.977', '0.083', '0.039', '0.052', '0.033', '0.052'] | oneshot 0.080 | eps0 0.062
+  IS eps0 final: ['0.2519', '0.1526', '0.1124', '0.0702', '0.0380'] ; calls per rollout 18.1
+  round5             W_cert 1.000 0.600 0.066 0.009 | W_aud 0.674 0.125 0.003 0.000 | E_aud 0.0411 0.0075 0.0003 0.0000
+  hand_spec          W_cert 1.000 0.502 0.043 0.005 | W_aud 0.580 0.093 0.002 0.000 | E_aud 0.0281 0.0045 0.0002 0.0000
+  bad_random         W_cert 1.000 1.000 0.941 0.787 | W_aud 1.000 0.965 0.581 0.316 | E_aud 0.1884 0.1024 0.0313 0.0176
+  bad_flip           W_cert 1.000 0.735 0.116 0.022 | W_aud 0.720 0.185 0.007 0.001 | E_aud 0.0446 0.0087 0.0005 0.0001
+  bad_avoid_noguard  W_cert 1.000 1.000 1.000 1.000 | W_aud 0.985 0.980 0.980 0.980 | E_aud 0.1735 0.1897 0.1458 0.1578
+  bad_avoid_floor    W_cert 1.000 0.999 0.988 0.949 | W_aud 0.969 0.934 0.758 0.539 | E_aud 0.0878 0.0799 0.0532 0.0380
+  bad_avoid_share    W_cert 1.000 0.702 0.120 0.024 | W_aud 0.747 0.176 0.008 0.001 | E_aud 0.0432 0.0087 0.0006 0.0001
+  final_rho0         W_cert 1.000 0.923 0.624 0.312 | W_aud 0.843 0.459 0.117 0.019 | E_aud 0.0827 0.0491 0.0076 0.0008
+  final_rho1         W_cert 1.000 0.502 0.043 0.005 | W_aud 0.580 0.093 0.002 0.000 | E_aud 0.0281 0.0045 0.0002 0.0000
+  final_conforder    W_cert 1.000 0.999 0.817 0.529 | W_aud 1.000 0.833 0.218 0.063 | E_aud 0.1390 0.0892 0.0119 0.0036
+  violations: cert 0, Z 0; audit misses 1 of 172800 queries (18 arms)
+  same answers: cert intersect 1.0000/1.0000, audit intersect 1.0000/1.0000, audit point spread mean 0.0221 (256) 0.00013 (2048), found-point spread 0.3741 (256) 0.00067 (2048)
+PARITY world 102: one-pass M 0.1850, prior 0.3711, T vs truth 0.0064
+  W_aud@256   rounds ['0.0649', '0.0546', '0.0532', '0.0506', '0.0512', '0.0535'] | oneshot 0.0503 | hand_spec 0.0416 | hand_rho 0.0647 | random 0.9431 | flip 0.0872
+  W_cert@256  rounds ['0.5313', '0.4470', '0.4148', '0.4414', '0.4342', '0.4359'] | oneshot 0.4400 | hand_spec 0.3729 | hand_rho 0.5494 | random 1.0000 | flip 0.6180
+  found@256   rounds ['0.5247', '0.7448', '0.8248', '0.7909', '0.8020', '0.7920'] | oneshot 0.7913 | hand_spec 0.7482 | hand_rho 0.5330 | random 0.0000 | flip 0.4400
+  E_aud@256   rounds ['0.0028', '0.0024', '0.0027', '0.0031', '0.0034', '0.0029'] | oneshot 0.0030 | hand_spec 0.0020 | hand_rho 0.0034 | random 0.0500 | flip 0.0034
+  E_found@256 rounds ['0.1856', '0.0823', '0.0653', '0.0679', '0.0714', '0.0710'] | oneshot 0.0782 | hand_spec 0.0849 | hand_rho 0.1871 | random 0.4547 | flip 0.2421
+  E_IS@K=16   rounds ['0.4502', '0.0527', '0.0861', '0.0791', '0.0706', '0.0553'] | oneshot 0.0808 | hand_rho 0.2277 | flip 0.4149 | avoid_noguard 0.3602 | avoid_floor 0.3263 | conforder n/a
+  E_IS@K=64   rounds ['0.4357', '0.0363', '0.0352', '0.0425', '0.0402', '0.0206'] | oneshot 0.0485 | hand_rho 0.1281 | flip 0.4035 | avoid_noguard 0.3524 | avoid_floor 0.2828 | conforder n/a
+  E_IS@K=256  rounds ['0.4047', '0.0119', '0.0129', '0.0328', '0.0128', '0.0150'] | oneshot 0.0118 | hand_rho 0.0600 | flip 0.4125 | avoid_noguard 0.3493 | avoid_floor 0.2270 | conforder n/a
+  one-pass err rounds ['0.454', '0.336', '0.307', '0.291', '0.278', '0.272'] | oneshot 0.2663 ; KL(T,pol) rounds ['11.47', '1.52', '1.51', '1.33', '1.21', '1.11'] | oneshot 1.07 | eps0 1.03 ; under100x rounds ['0.995', '0.036', '0.081', '0.078', '0.048', '0.029'] | oneshot 0.008 | eps0 0.032
+  IS eps0 final: ['0.1815', '0.1218', '0.0689', '0.0337', '0.0221'] ; calls per rollout 17.4
+  round5             W_cert 1.000 0.436 0.024 0.002 | W_aud 0.494 0.054 0.001 0.000 | E_aud 0.0233 0.0029 0.0001 0.0000
+  hand_spec          W_cert 1.000 0.373 0.014 0.001 | W_aud 0.424 0.042 0.001 0.000 | E_aud 0.0103 0.0020 0.0001 0.0000
+  bad_random         W_cert 1.000 1.000 0.881 0.619 | W_aud 1.000 0.943 0.419 0.148 | E_aud 0.1104 0.0500 0.0141 0.0075
+  bad_flip           W_cert 1.000 0.618 0.046 0.006 | W_aud 0.541 0.087 0.002 0.000 | E_aud 0.0087 0.0034 0.0002 0.0000
+  bad_avoid_noguard  W_cert 1.000 0.995 0.995 0.995 | W_aud 0.930 0.850 0.842 0.842 | E_aud 0.0500 0.0429 0.0354 0.0310
+  bad_avoid_floor    W_cert 1.000 0.983 0.903 0.750 | W_aud 0.839 0.657 0.384 0.169 | E_aud 0.0537 0.0252 0.0174 0.0112
+  bad_avoid_share    W_cert 1.000 0.522 0.041 0.005 | W_aud 0.512 0.069 0.002 0.000 | E_aud 0.0141 0.0034 0.0001 0.0000
+  final_rho0         W_cert 1.000 0.866 0.509 0.200 | W_aud 0.802 0.335 0.048 0.005 | E_aud 0.0425 0.0084 0.0016 0.0002
+  final_rho1         W_cert 1.000 0.373 0.014 0.001 | W_aud 0.424 0.042 0.001 0.000 | E_aud 0.0103 0.0020 0.0001 0.0000
+  final_conforder    W_cert 1.000 0.994 0.864 0.663 | W_aud 1.000 0.837 0.340 0.111 | E_aud 0.1437 0.0712 0.0036 0.0014
+  violations: cert 0, Z 0; audit misses 5 of 172800 queries (18 arms)
+  same answers: cert intersect 1.0000/1.0000, audit intersect 1.0000/1.0000, audit point spread mean 0.0089 (256) 0.00003 (2048), found-point spread 0.2402 (256) 0.00015 (2048)
+PARITY world 103: one-pass M 0.2154, prior 0.3528, T vs truth 0.0101
+  W_aud@256   rounds ['0.2042', '0.1952', '0.2010', '0.1882', '0.1942', '0.1878'] | oneshot 0.1740 | hand_spec 0.1589 | hand_rho 0.2284 | random 0.9028 | flip 0.2472
+  W_cert@256  rounds ['0.8068', '0.7381', '0.7261', '0.7294', '0.7135', '0.7186'] | oneshot 0.7350 | hand_spec 0.7278 | hand_rho 0.8223 | random 1.0000 | flip 0.8280
+  found@256   rounds ['0.1987', '0.4861', '0.5403', '0.5296', '0.5701', '0.5809'] | oneshot 0.5856 | hand_spec 0.3065 | hand_rho 0.1824 | random 0.0000 | flip 0.1825
+  E_aud@256   rounds ['0.0090', '0.0137', '0.0132', '0.0126', '0.0137', '0.0105'] | oneshot 0.0118 | hand_spec 0.0116 | hand_rho 0.0120 | random 0.0571 | flip 0.0110
+  E_found@256 rounds ['0.3407', '0.1851', '0.1784', '0.1752', '0.1663', '0.1623'] | oneshot 0.1683 | hand_spec 0.2852 | hand_rho 0.3443 | random 0.4477 | flip 0.3479
+  E_IS@K=16   rounds ['0.4708', '0.0689', '0.0688', '0.0864', '0.0817', '0.0999'] | oneshot 0.1156 | hand_rho 0.2688 | flip 0.4146 | avoid_noguard 0.3105 | avoid_floor 0.2980 | conforder n/a
+  E_IS@K=64   rounds ['0.4636', '0.0346', '0.0272', '0.0532', '0.0422', '0.0441'] | oneshot 0.0457 | hand_rho 0.1906 | flip 0.4150 | avoid_noguard 0.3034 | avoid_floor 0.2706 | conforder n/a
+  E_IS@K=256  rounds ['0.4165', '0.0234', '0.0225', '0.0212', '0.0196', '0.0256'] | oneshot 0.0211 | hand_rho 0.1098 | flip 0.4198 | avoid_noguard 0.3029 | avoid_floor 0.2092 | conforder n/a
+  one-pass err rounds ['0.448', '0.301', '0.292', '0.267', '0.267', '0.263'] | oneshot 0.2564 ; KL(T,pol) rounds ['11.59', '1.16', '1.26', '1.28', '1.21', '1.20'] | oneshot 1.19 | eps0 1.11 ; under100x rounds ['0.994', '0.029', '0.020', '0.050', '0.048', '0.043'] | oneshot 0.016 | eps0 0.045
+  IS eps0 final: ['0.2510', '0.1196', '0.0876', '0.0455', '0.0337'] ; calls per rollout 18.2
+  round5             W_cert 1.000 0.719 0.112 0.023 | W_aud 0.761 0.188 0.009 0.001 | E_aud 0.0577 0.0105 0.0007 0.0001
+  hand_spec          W_cert 1.000 0.728 0.075 0.013 | W_aud 0.720 0.159 0.006 0.001 | E_aud 0.0396 0.0116 0.0004 0.0000
+  bad_random         W_cert 1.000 1.000 0.837 0.585 | W_aud 1.000 0.903 0.444 0.162 | E_aud 0.1047 0.0571 0.0178 0.0133
+  bad_flip           W_cert 1.000 0.828 0.169 0.045 | W_aud 0.788 0.247 0.021 0.003 | E_aud 0.0428 0.0110 0.0018 0.0002
+  bad_avoid_noguard  W_cert 1.000 0.991 0.987 0.987 | W_aud 0.963 0.918 0.909 0.907 | E_aud 0.1958 0.1326 0.0946 0.1053
+  bad_avoid_floor    W_cert 1.000 0.986 0.952 0.923 | W_aud 0.903 0.816 0.652 0.510 | E_aud 0.1294 0.0795 0.0464 0.0312
+  bad_avoid_share    W_cert 1.000 0.805 0.165 0.044 | W_aud 0.788 0.221 0.020 0.003 | E_aud 0.0481 0.0178 0.0018 0.0002
+  final_rho0         W_cert 1.000 0.959 0.784 0.527 | W_aud 0.886 0.613 0.211 0.088 | E_aud 0.1082 0.0342 0.0046 0.0011
+  final_rho1         W_cert 1.000 0.728 0.075 0.013 | W_aud 0.720 0.159 0.006 0.001 | E_aud 0.0396 0.0116 0.0004 0.0000
+  final_conforder    W_cert 1.000 0.990 0.778 0.555 | W_aud 0.991 0.816 0.288 0.104 | E_aud 0.0978 0.0856 0.0141 0.0023
+  violations: cert 0, Z 0; audit misses 1 of 172800 queries (18 arms)
+  same answers: cert intersect 1.0000/1.0000, audit intersect 1.0000/1.0000, audit point spread mean 0.0388 (256) 0.00032 (2048), found-point spread 0.3940 (256) 0.00105 (2048)

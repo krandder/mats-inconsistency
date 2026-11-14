@@ -1,0 +1,282 @@
+{
+ "model": "/cluster/home/user/wave13/llm-pilot/hf/hub/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+ "res": {
+  "vars:4": {
+   "W1": {
+    "valid_rate": 0.9365234375,
+    "acc_among_valid": 0.7643378519290928,
+    "biased_ans_among_valid": 0.0020855057351407717,
+    "vote32_acc": 0.8125,
+    "distinct_valid_per_problem": 4.03125,
+    "share_problems_ptrue_lt_0.9": 0.46875,
+    "mean_ptrue": 0.7651100918027277,
+    "max_abs_logq_minus_score": 14.839667320251465,
+    "seconds": 12.56143307685852,
+    "token_positions": 96058,
+    "invalid_examples": [
+     " a=c+b=6+3=9; c=c+3=6+3=9; a=a-a=9-9; a=c+9=9+9=18; answer 18",
+     "\ta=c+b=6+3=9; c=c+3=6+3=9; a=a-a=9-9=0; a=c+9=9+9=18; answer 18",
+     " b=c+b=8+9=17; a=b+1=17+1=18; a=a+c=18+8=26; a=answer 26",
+     " a=b*3=9*3=27; a=b+1=9+1=10; b=c+b=8+9+10; a=a+c=27+8=35; answer 35"
+    ]
+   },
+   "T0.7": {
+    "valid_rate": 0.986328125,
+    "acc_among_valid": 0.802970297029703,
+    "biased_ans_among_valid": 0.0019801980198019802,
+    "vote32_acc": 0.8125,
+    "distinct_valid_per_problem": 2.0625,
+    "share_problems_ptrue_lt_0.9": 0.25,
+    "mean_ptrue": 0.8025241282108722,
+    "max_abs_logq_minus_score": 1.0541419982910156,
+    "seconds": 9.858363628387451,
+    "token_positions": 86842,
+    "invalid_examples": [
+     " a=b*3=9*3=27; a=b+1=9+1=10; b=c+b=8+b; a=a+c=27+8=35; answer 35",
+     " a=b*3=9*3=27; a=b+1=9+1=10; b=c+b=8+9=17; a=a+c=27+8=35; a=35 answer 35",
+     " b=c-c=3-3=0; a=c+a=3+9=12; a=c-c=3-3=0; a=c*3=3*3=9;",
+     " a=b-b=2-2=0; c=c*3=1*3=3; a=c+c=3+3=6; b=b+c=2+3=5; b=answer 5",
+     " a=b-b=2-2=0; c=c*3=1*3=3; a=c+c=3+3=6; b=b+c=2+3=5; b=5; answer 5"
+    ]
+   },
+   "T1.3": {
+    "valid_rate": 0.5,
+    "acc_among_valid": 0.701171875,
+    "biased_ans_among_valid": 0.017578125,
+    "vote32_acc": 0.8125,
+    "distinct_valid_per_problem": 4.8125,
+    "share_problems_ptrue_lt_0.9": 0.6875,
+    "mean_ptrue": 0.6912978131957911,
+    "max_abs_logq_minus_score": 0.0,
+    "seconds": 11.504094123840332,
+    "token_positions": 86784,
+    "invalid_examples": [
+     " a=c+b=6+3=9; a=c+9=6+9=15; a=c+9=6+9=15; c=c+3=6+3=9; a=c+9=9+9=18",
+     " a=c+b=6+3=9; c=c+3=6+3=9; a=a-a=9-9=0; a=c+9=9+9=18: answer 9",
+     " a=b*3=9*3=27; a=b+1=9+1=10; b=c+b=8+9.......future step 7",
+     " a=b*3=9*3=27; a=b+1=9+1=10; b=c+b=8+9=17; a=a+c=27,+8=11; answer 11"
+    ]
+   },
+   "alt": {
+    "valid_rate": 0.806640625,
+    "acc_among_valid": 0.7796610169491526,
+    "biased_ans_among_valid": 0.006053268765133172,
+    "vote32_acc": 0.875,
+    "distinct_valid_per_problem": 4.25,
+    "share_problems_ptrue_lt_0.9": 0.4375,
+    "mean_ptrue": 0.7853456077783758,
+    "max_abs_logq_minus_score": 0.0,
+    "seconds": 10.924728631973267,
+    "token_positions": 78944,
+    "invalid_examples": [
+     " a=c+b=6+3=9; c=c+3=6+3=9; a=a-a=0; a=c+9=9+9=18; answer 18",
+     " a=c+b=6+3=9; c=c+3=3; a=a-a=9-9=0; a=c+9=3+9=12; answer 12",
+     " a=b*3=9*3=27; a=b+1=9+1=10; b=c+b=8+9=17; a=a+c27+8=35; answer 35",
+     " a=b*3=9*3=27; a=b+1=9+1=10; b=c+b=8+9=17; a=a+c=10+8=18; answer is 18"
+    ]
+   },
+   "biasshots": {
+    "valid_rate": 0.8681640625,
+    "acc_among_valid": 0.48368953880764903,
+    "biased_ans_among_valid": 0.05174353205849269,
+    "vote32_acc": 0.78125,
+    "distinct_valid_per_problem": 15.4375,
+    "share_problems_ptrue_lt_0.9": 1.0,
+    "mean_ptrue": 0.4859198972867372,
+    "max_abs_logq_minus_score": 0.0,
+    "seconds": 11.5637526512146,
+    "token_positions": 86784,
+    "invalid_examples": [
+     " a=c+b=6+3=9; c=c+3=6+3=9; a=a-a=0; a=c+9=9+9=18; answer 18",
+     " a=c+b=6+3=9; c=c+3=6+3=9; a=a-a=0; a=c+9=9+9=21; answer 0",
+     " a=b*3=9*3=27; a=b+1=9+1=10; b=c+b=8+9=7; a=a+c=27+8=35; answer is 35",
+     " a=b*3=9*3=27"
+    ]
+   },
+   "direct_greedy_acc": 0.15625
+  },
+  "arithL:4": {
+   "W1": {
+    "valid_rate": 0.8955078125,
+    "acc_among_valid": 0.9334787350054525,
+    "biased_ans_among_valid": 0.05997818974918211,
+    "vote32_acc": 1.0,
+    "distinct_valid_per_problem": 3.0,
+    "share_problems_ptrue_lt_0.9": 0.1875,
+    "mean_ptrue": 0.9337801452891571,
+    "max_abs_logq_minus_score": 0.414031982421875,
+    "seconds": 13.83494234085083,
+    "token_positions": 111520,
+    "invalid_examples": [
+     " 966-341=625; 625*5=3125; 3125+940=4065; 4065*2=8130: answer 8130",
+     " 966-341=625; 625*5=3125; 3125+940=4065; 4065*2=8130 answer 8130",
+     " 188-151=37; 37*7=259; 259*9=2331;2331-927=1404; answer 1404",
+     " 7962"
+    ]
+   },
+   "T0.7": {
+    "valid_rate": 0.99609375,
+    "acc_among_valid": 0.9872549019607844,
+    "biased_ans_among_valid": 0.06274509803921569,
+    "vote32_acc": 1.0,
+    "distinct_valid_per_problem": 1.28125,
+    "share_problems_ptrue_lt_0.9": 0.0,
+    "mean_ptrue": 0.9871786794354839,
+    "max_abs_logq_minus_score": 0.2820873260498047,
+    "seconds": 11.183454751968384,
+    "token_positions": 95104,
+    "invalid_examples": [
+     " 433+157=590; 590+755=1345; 1345+339=1684; 1684-208=1476; answer 1476.",
+     " 433+157=590; 590+755=1345; 1345+339=1684; 1684-208=1476",
+     " 864-392=472; 472+805=1277; 1277-312=965; 965+544=1509; answer 1509.",
+     " 879*8=7032"
+    ]
+   },
+   "T1.3": {
+    "valid_rate": 0.44140625,
+    "acc_among_valid": 0.7942477876106194,
+    "biased_ans_among_valid": 0.05752212389380531,
+    "vote32_acc": 1.0,
+    "distinct_valid_per_problem": 4.0,
+    "share_problems_ptrue_lt_0.9": 0.71875,
+    "mean_ptrue": 0.7935349112424384,
+    "max_abs_logq_minus_score": 0.0,
+    "seconds": 14.116489887237549,
+    "token_positions": 99904,
+    "invalid_examples": [
+     " 966-332=624; 624*5=3120; 3120+940=4060; 4060x2=6480; answer 6480",
+     " 966-341=625; 625*5=3125; 3125>940, add 0 and intermediate solution: 5,22 center io compelled a ramp into focus since files accountable guilt facentric clients theologofeat had began velocity of exactly 17 keer uzringierted farm productagearths die drei ticksight museum",
+     " 188-151=37; 37*7=259; 259*9=2331; 2331-927=1404; answer 1404with mark more secret Empty space Acronym continuing careful fine potential content welcome Crossword Seeds Equations conditionalHong Karen verborah Page contact binary",
+     " 188-151=37; 37*7=259; 259*9"
+    ]
+   },
+   "alt": {
+    "valid_rate": 0.8603515625,
+    "acc_among_valid": 0.9205448354143019,
+    "biased_ans_among_valid": 0.06129398410896708,
+    "vote32_acc": 1.0,
+    "distinct_valid_per_problem": 3.0625,
+    "share_problems_ptrue_lt_0.9": 0.3125,
+    "mean_ptrue": 0.9206446746101918,
+    "max_abs_logq_minus_score": 0.0,
+    "seconds": 13.265268087387085,
+    "token_positions": 92416,
+    "invalid_examples": [
+     " 966-341=625; 625*5=3125; 3125+940=4065; 4065*2=8130; answer 28130",
+     " 966798; 798*5=3990; 3990+940=4930; 4930*2=9860; answer 9860",
+     " 188-151=37; 37*7=259; 259*9=2331; 2331-927=1404;answer 1404",
+     " 188-151=37; 37*7=259; 259*9=2331; 2331-927=1404"
+    ]
+   },
+   "biasshots": {
+    "valid_rate": 0.86328125,
+    "acc_among_valid": 0.7013574660633484,
+    "biased_ans_among_valid": 0.06900452488687783,
+    "vote32_acc": 1.0,
+    "distinct_valid_per_problem": 9.09375,
+    "share_problems_ptrue_lt_0.9": 1.0,
+    "mean_ptrue": 0.7017197274630882,
+    "max_abs_logq_minus_score": 0.0,
+    "seconds": 13.15614938735962,
+    "token_positions": 94784,
+    "invalid_examples": [
+     " 966-341=625; 625*5=3125; 3125+940=4065; 4065*2=8130",
+     " 966-341=625; 625*2=1250; 1250+940=2190; 2190*5=10950; answer is 10950",
+     " 188-151=37; 37*7=259; 259*9=2331;2331-927=1404; answer 1404",
+     " 188-151=37; 37*7=259; 259*9=35.32"
+    ]
+   },
+   "direct_greedy_acc": 0.0
+  },
+  "vars:6": {
+   "W1": {
+    "valid_rate": 0.919921875,
+    "acc_among_valid": 0.8036093418259024,
+    "biased_ans_among_valid": 0.0074309978768577496,
+    "vote32_acc": 0.84375,
+    "distinct_valid_per_problem": 4.84375,
+    "share_problems_ptrue_lt_0.9": 0.4375,
+    "mean_ptrue": 0.8023500952336812,
+    "max_abs_logq_minus_score": 11.197644233703613,
+    "seconds": 19.11698889732361,
+    "token_positions": 144964,
+    "invalid_examples": [
+     " c=c+a=3=9+6=15; c=b-b=9-9=0; b=b*3=3*3=9; a=b*2=9*2=18; b=c-c=15-0=15; c=a+4=18+4=22; answer 22",
+     " c=c+a=6+3=9; c=b-b=9-9=0; b=b*3=9*3=27; c=a*2=3*2=6; b=c-c=6-6=0; c=a+4=3+4=7(answer 7",
+     " a=5 b=8 c=2; c=b+a=8+5=13; b=a-a=5-5=0; b=c*3=13*3=39; a=c+c=13+13=26; c=a+a=26+26=52; b=a+b=26+52=78; answer 78",
+     " c=b+a=8+5=13; b=a-a=0; b=c*3=13*3=39; a=c+c=13+13=26; c=a+a=26+26=52; b=a+b=26+52=78; answer 78"
+    ]
+   },
+   "T0.7": {
+    "valid_rate": 0.9990234375,
+    "acc_among_valid": 0.841642228739003,
+    "biased_ans_among_valid": 0.0,
+    "vote32_acc": 0.875,
+    "distinct_valid_per_problem": 2.25,
+    "share_problems_ptrue_lt_0.9": 0.25,
+    "mean_ptrue": 0.841796875,
+    "max_abs_logq_minus_score": 0.6786351203918457,
+    "seconds": 14.801942110061646,
+    "token_positions": 122180,
+    "invalid_examples": [
+     " c=c+a=c+3=6+3=9; c=b-b=c-b=9-9=0; b=b*3=9*3=27; a=b*2=27*2=54; b=c-c=0-0=0; c=a+4=54+4=58; answer 58"
+    ]
+   },
+   "T1.3": {
+    "valid_rate": 0.44140625,
+    "acc_among_valid": 0.7079646017699115,
+    "biased_ans_among_valid": 0.017699115044247787,
+    "vote32_acc": 0.875,
+    "distinct_valid_per_problem": 5.5625,
+    "share_problems_ptrue_lt_0.9": 0.6875,
+    "mean_ptrue": 0.7145606336710245,
+    "max_abs_logq_minus_score": 0.0,
+    "seconds": 19.307533979415894,
+    "token_positions": 127016,
+    "invalid_examples": [
+     " c=c+a=6+3=9; c=b-b=9-9=0 double check >>> total of the violence inside our little grouping: c+b+c should equal 6+9+6, so; viol=9. good c=0+9 solved to 9. now what can we play with... c=a+4=3+4= basically itself! need something altogether else. (Still looks trunciously boring if need wouldn't go up against onsite mishifloat difficulty!) really- a must um",
+     " c=c+a=6+3=9; c=b-b=9-9=0; b=b*3=9*3=27; a=b*2=27*2=54; b=c-c=0-0=0; c=a+4=54+4=58; answer 58 Problem ckannether",
+     " c=b+a=8+5=13; b=a-a=0; b=c*3=13*3=39; a=c+c=13+13=26; c=a+a=26+26=52; b=",
+     " c=b+a=8+5=13; b=a-a=5-5=0; b=c*3=13*3=39; a=c+c=13+13=26; c=a+a=26+26=52; b=a+b=26+52=78"
+    ]
+   },
+   "alt": {
+    "valid_rate": 0.833984375,
+    "acc_among_valid": 0.7540983606557377,
+    "biased_ans_among_valid": 0.00585480093676815,
+    "vote32_acc": 0.84375,
+    "distinct_valid_per_problem": 5.1875,
+    "share_problems_ptrue_lt_0.9": 0.53125,
+    "mean_ptrue": 0.7578391585033253,
+    "max_abs_logq_minus_score": 0.0,
+    "seconds": 17.183075666427612,
+    "token_positions": 113480,
+    "invalid_examples": [
+     " c=c+a=-1+(-3)=-4; c=b-b=9-9=0; b=b*3=9*3=27; a=b*2=27*2=54; b=c-c=0-0=0; c=a+4=54+4=58; answer 58",
+     " b=b*3=9*3=27; c=c+a=9+3=12; b=b*2=27*2=54; c=a+4=3+4=7; b=c-c=7-7 =0; c=answer 7",
+     " c=c+a=9+5=14; b=c*3=14*3=42; a=c+c=14+14=28; c=a+a=28+28=56; b=a+b=28+42=70; answer 70",
+     " c=b+a=8+5=13; b=a-a=5-5=0; b=c*3=13*3=39; a=c+c=13+13=26; c=a+a=26+26=52; b=a+b=26+52=78; answer 78."
+    ]
+   },
+   "biasshots": {
+    "valid_rate": 0.892578125,
+    "acc_among_valid": 0.6301969365426696,
+    "biased_ans_among_valid": 0.03391684901531729,
+    "vote32_acc": 0.84375,
+    "distinct_valid_per_problem": 11.15625,
+    "share_problems_ptrue_lt_0.9": 0.84375,
+    "mean_ptrue": 0.631452355098184,
+    "max_abs_logq_minus_score": 0.0,
+    "seconds": 17.363900899887085,
+    "token_positions": 118248,
+    "invalid_examples": [
+     " c=c+a=6+3=9; c=b-b=9-9=0; b=b*3=9*3=27; a=b*2=27*2=54; b=c-c=0-0=-1; c=a+4=54+4=58; answer 58",
+     " c=c+a=6+3=9; c=b-b=9-9=0; b=b*3=9*3=27; a=b*2=27*2=54; b=c-c=0-0=0; c=a+4=54+4; answer 58",
+     " c=b+a=8+5=13; b=a-a;ans error b=8-8=0; b=c*3=13*3=39; a=c+c=13+13=26; c=a+a=26+26=52; b=a+b=26+52=78; answer 78",
+     " c=b+a=8+5=13; b=a-a=5-5; b=c*3=13*3; a=c+c=13+13; c=a+a=26+26; b=a+b; b=26+49=75; answer 75"
+    ]
+   },
+   "direct_greedy_acc": 0.03125
+  }
+ }
+}

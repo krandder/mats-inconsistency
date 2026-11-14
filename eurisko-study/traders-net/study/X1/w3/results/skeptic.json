@@ -1,0 +1,254 @@
+{
+ "M7": {
+  "gate_rules": {
+   "R1": "3/3 paired wins + not collapsed (w1 PREREG merger rule): PASS for dsfw at E8 and E64",
+   "R2": "R1 + paired mean gap > 1% at both E: PASS (-1.30%, -1.87%)",
+   "R3": "w2 own PREREG: gap > larger seed sd (unpaired): FAIL; decision.json"
+  },
+  "paired_t_dsfw_vs_ds3_bce_all": {
+   "E8": {
+    "mean": -0.00512,
+    "paired_sd": 0.00095,
+    "t": -9.334842247108055,
+    "df": 2,
+    "p_two_sided": 0.011282041146263407
+   },
+   "E64": {
+    "mean": -0.00724,
+    "paired_sd": 0.00492,
+    "t": -2.548790212763958,
+    "df": 2,
+    "p_two_sided": 0.12558345756619435
+   }
+  },
+  "wealth_cells_primary_metric": 20,
+  "noncollapsed_cells": 8,
+  "noncollapsed_3of3": [
+   "w2:dsfw:E8",
+   "w2:dsfw_fast:E8",
+   "w2:dsfw_mean:E8",
+   "w2:dsfw:E64"
+  ],
+  "expected_3of3_under_null": 1.0,
+  "note": "w2 ran three dsfw variants (dsfw, dsfw_fast, dsfw_mean); the lead reports the best. Under a no-effect null a given variant wins 3/3 at E64 with p=1/8, so at least one of three does with p=0.33. The E8 edge is strong (paired t=-9.3) but E64 (t=-2.55, p=0.13, df 2) is weak; R1/R2 treat 3/3 as sufficient, which the 1/8 null rate does not support at E64. Seed 4 (CPU) adds a 4th paired win at both E: E8 -1.38%, E64 -3.70%; 4-seed paired t E8 -12.8 (p=0.001), E64 -3.3 (p=0.047), df 3; sign test 4/4 p=0.0625 per E. So the bce_all edge replicates; the post-shift cost also replicates (+0.056 / +0.077). The false flag still rests on the lead's cost and family-label reasons, not on the edge being noise.",
+  "seed4": {
+   "E8": {
+    "dsfw": 0.40368208289146423,
+    "ds3": 0.4093477129936218,
+    "d": -0.005665630102157593,
+    "d_post_shift": 0.055790483951568604,
+    "dsfw_wall_s": 1645.4995698928833
+   },
+   "E64": {
+    "dsfw": 0.3960131108760834,
+    "ds3": 0.41121917963027954,
+    "d": -0.015206068754196167,
+    "d_post_shift": 0.07734560966491699,
+    "dsfw_wall_s": 1473.6710772514343
+   }
+  },
+  "four_seeds": {
+   "E8": {
+    "d": [
+     -0.006175875663757324,
+     -0.004332691431045532,
+     -0.004865676164627075,
+     -0.005665630102157593
+    ],
+    "rel_pct": -1.3235109927201374,
+    "paired_sd": 0.0008203162959959556,
+    "t": -12.82424441906446,
+    "df": 3,
+    "p_two_sided": 0.0010231743110412728,
+    "wins": 4,
+    "sign_test_one_sided_p": 0.0625
+   },
+   "E64": {
+    "d": [
+     -0.012648999691009521,
+     -0.006048768758773804,
+     -0.003031313419342041,
+     -0.015206068754196167
+    ],
+    "rel_pct": -2.344078984698606,
+    "paired_sd": 0.005655287991253225,
+    "t": -3.265541090077768,
+    "df": 3,
+    "p_two_sided": 0.0469347011492292,
+    "wins": 4,
+    "sign_test_one_sided_p": 0.0625
+   }
+  }
+ },
+ "M6": {
+  "lfsr16_learnt_w2_harness": {
+   "a": {
+    "lfsr16_bce": [
+     0.192890501390247,
+     0.23065368416291415,
+     0.18863022475655578
+    ],
+    "learnt": 3
+   },
+   "cg": {
+    "lfsr16_bce": [
+     0.6952859384716664,
+     0.6953003624328957,
+     0.6956368221540193
+    ],
+    "learnt": 0,
+    "seed4_lfsr16_bce": 0.6951080722399703
+   },
+   "cq": {
+    "lfsr16_bce": [
+     0.6960464487680701,
+     0.695971842522059,
+     0.6871459980579357
+    ],
+    "learnt": 0
+   },
+   "d0": {
+    "lfsr16_bce": [
+     0.3270668920943706,
+     0.6060492506580595,
+     0.6982807227983222
+    ],
+    "learnt": 1
+   },
+   "dfs": {
+    "lfsr16_bce": [
+     0.6988668397597171,
+     0.4902266092827674,
+     0.25801207334181686
+    ],
+    "learnt": 2
+   },
+   "wd": {
+    "lfsr16_bce": [
+     0.7022856895773646,
+     0.3007105850645646,
+     0.1717399139800468
+    ],
+    "learnt": 2
+   },
+   "boost": {
+    "lfsr16_bce": [
+     0.6963853247785592,
+     0.6967615157665319,
+     0.3166420182246573
+    ],
+    "learnt": 1,
+    "seed4_lfsr16_bce": 0.33579616971357656
+   }
+  },
+  "fisher_one_sided_a_learns_more": {
+   "cg": 0.05000000000000001,
+   "cq": 0.05000000000000001,
+   "d0": 0.20000000000000004,
+   "dfs": 0.5,
+   "wd": 0.5,
+   "boost": 0.20000000000000004
+  },
+  "cg_minus_boost_noise": {
+   "per_seed": [
+    -0.001384316105133454,
+    -0.0012037182647812728,
+    -0.0017038946101093355
+   ],
+   "mean": -0.001430642993341354,
+   "sd": 0.00025328586524854643,
+   "t": -9.78320029634527
+  },
+  "exlfsr_cg_minus_boost": [
+   -0.002677378415262166,
+   -0.002020550065422122,
+   0.00337414446614287
+  ],
+  "stress_pass": "M6.md stress pass (12:01Z merge) drops cg and fb01 under independent evidence; survivors across stress are b, cq, fb05 (M6/lead/M6-stress-verdict.json).",
+  "note": "The cg survival margin is ~0.0014 nats of noise excess (0.2% of ln 2) but consistent (paired t=-9.8, 3/3). The +35-44% learnable-BCE gap of cg vs (a) is LFSR16: (a) learnt it in 3/3 seeds, cg in 0/3 (Fisher one-sided p=0.050). Excluding LFSR16 cg ties BOOST. So cg survives on a tiny but real noise margin, and it systematically blocks LFSR16 learning in this harness; calling that seed luck is not supported by 3/3 vs 0/3. Seed 4: cg LFSR16 BCE 0.695 (not learnt; 0/4), BOOST 0.336 (learnt); cg noise still below BOOST (margin -0.0022).",
+  "seed4": {
+   "cg_lfsr16": 0.6951080722399703,
+   "boost_lfsr16": 0.33579616971357656
+  },
+  "stress_verdict_keys": [
+   "base_arms_survive",
+   "beats_kill_controls_including_ES",
+   "beats_kill_controls_somewhere",
+   "checked_at",
+   "dropped_somewhere",
+   "n_bad",
+   "n_checks",
+   "number_checks",
+   "stress_complete",
+   "survive_all_stress",
+   "table"
+  ]
+ },
+ "M5": {
+  "per_family_probeL": {
+   "preq-P4-win:lfsr16": [
+    0.3783,
+    0.241073
+   ],
+   "preq-P4-win:ca110": [
+    0.00557754,
+    0.00235927
+   ],
+   "preq-P4-win:prime": [
+    0.00160394,
+    0.000380683
+   ],
+   "preq-P4-win:pi": [
+    0.185521,
+    0.0144751
+   ],
+   "preq-P16-win:lfsr16": [
+    0.451657,
+    0.0635887
+   ],
+   "preq-P16-win:ca110": [
+    0.025144,
+    0.00458819
+   ],
+   "preq-P16-win:prime": [
+    0.00574138,
+    0.000680313
+   ],
+   "preq-P16-win:pi": [
+    0.171855,
+    0.0100865
+   ]
+  },
+  "shifted_copy_share": "S0/SUBSTRATE-w2.md: wealth-net pi 1.000 +- 0.000, prng 0.000 (M1 audit)",
+  "note": "The pi part of the probe edge (0.186 / 0.172 nats/q-step within family) coexists with a documented shifted-copy share of 1.0 for wealth-net pi, so a probe shared across questions can memorise it. That makes the artefact reading plausible but it is not tested: no probe was run on the PRNG-parity family (shifted-copy share 0). Status stays unverified. Seed 4 (which draws close pi offsets, X1/w1 12:14Z): probe L pi 0.119 / 0.113 and lfsr16 0.265 / 0.269 (P4 / P16), vs seeds 1-3 pi 0.186 / 0.172. The pi edge shrinks when the net itself sees shifted pi copies, which fits the artefact reading but does not test it.",
+  "seed4_P4": {
+   "probeL_fam": {
+    "periodic": 0.001541644324117442,
+    "lfsr16": 0.2650500692777596,
+    "ca30": -0.003396967539592879,
+    "ca110": 0.00846537703104093,
+    "prime": 0.0015342909715836868,
+    "pi": 0.11889257092535263,
+    "and": -0.0010552630053134635,
+    "or": 0.008644465228241189
+   },
+   "probeL_phi": 0.07056349459133725,
+   "note": "seed 4 draws pi offsets with shifted copies inside W=32 (X1/w1 12:14Z), so the net itself partly learns pi at seed 4"
+  },
+  "seed4_P16": {
+   "probeL_fam": {
+    "periodic": 0.00538880352058095,
+    "lfsr16": 0.2685532582777378,
+    "ca30": -0.0036957243096549064,
+    "ca110": 0.028578776623977092,
+    "prime": 0.004455348017974757,
+    "pi": 0.1129635544163757,
+    "and": 7.081336982082575e-05,
+    "or": 0.013928389904880533
+   },
+   "probeL_phi": 0.09237646386789511,
+   "note": "seed 4 draws pi offsets with shifted copies inside W=32 (X1/w1 12:14Z), so the net itself partly learns pi at seed 4"
+  }
+ },
+ "checked_at": "2026-09-28T13:16:19Z"
+}

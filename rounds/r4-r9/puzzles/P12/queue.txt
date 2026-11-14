@@ -1,0 +1,42 @@
+# ARM SEED, in priority order (the gate run DT 0 is already trained when the queue starts)
+# Reduced grid (projection > 4 h): primary arms DT / DTxARB / DT+fb first (seeds 0-2, then the ARB-kappa
+# baseline and CostNet+BB 0, then seeds 3-4), then the rest; DTxARB-noFB and -bp at 2 seeds, CostNet+BB at 3,
+# DT-TD dropped; DT+pen seeds 3-4 last (run only if time allows). Reordered at the p12-2 -> p12-3 handoff
+# (p12-2 was spot-preempted at 16:02Z) so the baseline set is complete before seeds 3-4.
+# 19:36Z: seed 4 of DT / DTxARB / DT+fb deferred (falsification locked with 3 seeds: DTxARB valid at n=49 1.7%).
+# 19:57Z: 1-seed readouts reordered, longest first (DTxARB-bp 0, then -noFB 0, then DT+pen 0); the rest
+# deferred for the $6 budget stop (commented out). A0-flow / A0-deg solvers after them (also started on CPU locally).
+DT 0
+DTxARB 0
+DT+fb 0
+DT 1
+DTxARB 1
+DT+fb 1
+DT 2
+DTxARB 2
+DT+fb 2
+SOLVER arbk
+CostNet+BB 0
+DT 3
+DTxARB 3
+DT+fb 3
+DTxARB-bp 0
+DTxARB-noFB 0
+SOLVER a0flow
+SOLVER a0deg
+# 21:11Z p12-5 (us-central1-c) was also preempted after 6 min, before its job started: GPU work stopped here; CostNet+BB 0 is evaluated on CPU from its step-9000 .part; DTxARB-bp 0, DTxARB-noFB 0, SOLVER a0flow/a0deg not run on GPU.
+# 21:06Z p12-4 preempted after 7 min; p12-5 gets ~80 min of budget: DT+pen 0 (from scratch, ~1 h + eval) deferred.
+# DT+pen 0
+# deferred:
+# DT 4
+# DTxARB 4
+# DT+fb 4
+# DT+pen 1
+# CostNet+BB 1
+# DT+pen 2
+# DTxARB-noFB 1
+# DTxARB-bp 1
+# CostNet+BB 2
+# U1-DT 0
+# DT+pen 3
+# DT+pen 4

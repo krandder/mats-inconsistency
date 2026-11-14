@@ -1,0 +1,33 @@
+t(0.975, 2 df) closed form = 4.302652729749
+anchor_order18 identical in all 3 seeds: True
+s101: K0==root (FS, 4 pools, rounded arrays) True; K0==root (M_0=18, both tau modes) True; FS tiles shared NW/SE True, first 6 tile slots = the partition True, slots 24/28 repeat first 2 True; first-24 coverage 1.0000; skewed reads in preferred half NW 0.9034 SE 0.8978
+s101: sr18 tau {'0.3': 0.501875, '1.5': 0.498125}; sr18t3 tau {'0.3': 0.33266666666666667, '1.5': 0.33129166666666665, '2.5': 0.3360416666666667}; sr18 reads in NW half under U_NW 0.9050; D3 background disjoint from A* True; PUCT 6 distinct per wave True
+s102: K0==root (FS, 4 pools, rounded arrays) True; K0==root (M_0=18, both tau modes) True; FS tiles shared NW/SE True, first 6 tile slots = the partition True, slots 24/28 repeat first 2 True; first-24 coverage 1.0000; skewed reads in preferred half NW 0.9087 SE 0.9017
+s102: sr18 tau {'0.3': 0.497625, '1.5': 0.502375}; sr18t3 tau {'0.3': 0.33891666666666664, '1.5': 0.3323333333333333, '2.5': 0.32875}; sr18 reads in NW half under U_NW 0.9037; D3 background disjoint from A* True; PUCT 6 distinct per wave True
+s103: K0==root (FS, 4 pools, rounded arrays) True; K0==root (M_0=18, both tau modes) True; FS tiles shared NW/SE True, first 6 tile slots = the partition True, slots 24/28 repeat first 2 True; first-24 coverage 1.0000; skewed reads in preferred half NW 0.9052 SE 0.9091
+s103: sr18 tau {'0.3': 0.5023333333333333, '1.5': 0.49766666666666665}; sr18t3 tau {'0.3': 0.33466666666666667, '1.5': 0.3340416666666667, '2.5': 0.33129166666666665}; sr18 reads in NW half under U_NW 0.9062; D3 background disjoint from A* True; PUCT 6 distinct per wave True
+
+family                                               n  max |mine - theirs|  worst key
+root KL by M_0                                      12            2.228e-07  s103 M2 (mine 0.2797043, theirs 0.2797041)
+sparse-root FS curve KL                             96            3.453e-04  s103 mmd K32 (mine 0.1760139, theirs 0.1756686)
+sparse-root FS curve JSD                            96            3.505e-07  s103 mmd K32 (mine 0.0592102, theirs 0.05920985)
+strong-root sr18 KL                                 84            1.668e-05  s103 mmd K24 (mine 0.1029004, theirs 0.1028837)
+strong-root sr18 JSD                                84            6.346e-08  s103 mmd K24 (mine 0.04675573, theirs 0.04675567)
+strong-root sr18t3 KL                               84            9.708e-07  s102 mmd K24 (mine 0.08470067, theirs 0.0846997)
+strong-root sr18t3 JSD                              84            2.692e-08  s101 mmd K16 (mine 0.02484235, theirs 0.02484232)
+D3 W(N)                                            225            5.125e-07  s102 jacobi_prec t1.5_N8 (mine 1.161687, theirs 1.161688)
+D3 MSE                                             180            2.599e-08  s101 attn_K3 t1.5_N8 (mine 0.0347691, theirs 0.03476907)
+PUCT coverage (per preference)                      24            1.243e-07  s101 K3_R6 NW (mine 0.9612778, theirs 0.9612779)
+PUCT wave-1 preferred-half share                    24            3.783e-08  s103 K3_R6 NW (mine 0.8146667, theirs 0.8146666)
+PUCT coverage (cell)                                12            1.042e-07  s101 K3_R6 (mine 0.9636111, theirs 0.9636112)
+PUCT attn_K3 KL                                     12            7.249e-08  s102 K3_R6 (mine 0.04805007, theirs 0.04805)
+PUCT attn_K3 JSD                                    12            1.600e-08  s101 K1_R7 (mine 0.01077585, theirs 0.01077587)
+results.json FS (3-seed mean/CI)                   192            4.349e-04  fs_kl_mmd_K32 hi (mine 0.1871372, theirs 0.1867023)
+results.json strong root (3-seed mean/CI)          336            1.868e-05  sr18_kl_mmd_K24 hi (mine 0.1100177, theirs 0.1099991)
+results.json root KL                                12            3.135e-07  kl_root_2 hi (mine 0.2797529, theirs 0.2797526)
+results.json PUCT                                   48            1.327e-07  puct_K1_R7_coverage hi (mine 0.9678417, theirs 0.9678418)
+results.json D3 W(N)                               225            7.968e-07  W_kc_K3_t1.5_N8 lo (mine 1.042881, theirs 1.042882)
+results.json D3 W ratios                            90            1.867e-06  econ_D3_W8/W1_t1.5 hi (mine 1.830601, theirs 1.830603)
+results.json D3 MSE                                 48            1.607e-08  mse_attn_K3_t0.3 hi (mine 0.03481989, theirs 0.03481988)
+
+LARGEST absolute difference over all 1980 comparisons: (('results.json FS (3-seed mean/CI)', 'fs_kl_mmd_K32 hi', 0.1871372027930409, 0.1867022603939348), 0.000434942399106103)

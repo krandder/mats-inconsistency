@@ -1,0 +1,40 @@
+## 5. Conjectures and the bottleneck (merged ledger with astra)
+
+**C0, the conjecture I set out to make, is false** [A's M-whole; refuted by astra's own red-team, 3.7].
+- Statement as made precise after review A. Cost model: arithmetic on real numbers with unit-cost normal cdf and
+  inverse cdf (or b = O(log n)-bit floats), expected cost over W, all preprocessing charged. m(T) = the largest number
+  of radius-exact spherical samples whose generation and full forward evaluation, with the best batching the model
+  allows, cost at most T. Claim: for fixed alpha > 0 and 0 < a < b there is c = c(alpha, a, b) > 0 such that every
+  uniform estimator family A_n of expected cost T_n in [n^a T_fwd, n^b T_fwd] has R(A_n) >= c V_sph / m(T_n) at
+  L = alpha n.
+- Refutation: the multilevel reference-trajectory sampler of 3.7 has gain Omega(n / log^2 n) under schoolbook-type
+  costs (PROVEN UNDER the stated cost hypotheses [A]); measured two-level gains up to 1.5x at L = n and 7x at L = 16n
+  (post hoc), none at L = n/4 up to width 256.
+
+**C0\*, THE BOTTLENECK (revised).** Same model and window; the baseline is now the best multilevel
+reference-trajectory sampler B\*(T) (any prefix depths and sample allocations). Claim: no uniform estimator family has
+R(A_n) <= B\*(T_n) / G_n with G_n growing polynomially in n at L = alpha n.
+- Status: CONJECTURE with little evidence: nothing tested here or in earlier lanes beats the plain samplers, let alone
+  this one, but the multilevel sampler itself shows how unsafe such conjectures are. No implication from a standard
+  hypothesis is established, and a proof would face the barrier of 3.3.
+- Cheapest refutation: an estimator with a polynomial gain over B\*: for example a better control for the first
+  layers' amplitude variation (which carries the Theta(1) variance the reference trajectory cannot remove), or several
+  reference trajectories.
+- Why it is the bottleneck: any honest "cannot beat sampling" statement for unrestricted algorithms needs a theorem
+  connecting the arithmetic cost of an arbitrary white-box computation to an unavoidable residual error in mu(W), and
+  the baseline must already exploit the net's depth collapse. Kernel tails, Hermite degree, gate-cell counts and the
+  recursive mean extraction each constrain one representation or one observable; none supplies that bridge [C+A].
+- ARC's own question (a sample-free estimator matching sampling) is untouched by the refutation; at depth it now
+  means matching B\*, not plain MC.
+- Relation to the sibling lane (cut-rank-ext, finished today): once a bounded interface may carry real numbers or
+  nonlinear readouts, its precision-power separations disappear and only running time is left. C0\* is that
+  running-time question for whole-network estimators.
+
+| Conjecture | Status and evidence | Cheapest refutation |
+|---|---|---|
+| **C1 (weight-noise sensitivity at finite width).** For L = alpha n and delta in [C L^{-3}, delta_0], 1 - Corr(mu(W), mu(W_rho)) = Theta(delta^{2/3}) uniformly in n. | PROVEN in the mean-field limit [A]. MEASURED agreement with mean field at n = 32, L <= 32, only in the linear regime (delta <= 1e-2 lies below this window at these depths), so the 2/3 law itself is untested at finite width. | Unbiased two-scale stability measurements at larger L showing another exponent. |
+| **C3, M-design.** For each p, sum_{s > p} b_{2s} >= c_p (1 - q) at L = alpha n, so positive designs with N <= n^p have bounded gains (3.5). | PROVEN in mean field (fraction 1/2, gain bound about 4) [A]; CONJECTURE at finite width. MEASURED: PENDING. | Kernel values k(-1), k(0), b_2 across n showing the even tail vanishing. |
+| **C2 (partition methods).** Distinguish three classes: methods that discard unselected cells (PROVEN to fail, 3.5); methods that cover a fixed mass with fully gate-resolved cells (PROVEN to need exponentially many cells [A]); methods with downstream-informed certificates on coarser cells (CONJECTURE: exp(c n) cells at fixed normalised precision; PROVEN UNDER explicit nonalignment and capture hypotheses, 3.7). | MEASURED for our B&B: PENDING. | A polynomial cell count with enclosed integration error at fixed normalised precision. |
+| **Region count.** E R <= (C n L)^{n-1} for bias-free nets. | Extra hypothesis (sampled pattern counts are lower bounds only). MEASURED at n = 3: PENDING. | Verified counts above that scaling. |
+| **T-relative (tails)** [A r1]. A computable threshold sequence t_n with P_W(e^{-bn} <= p_W(t_n) <= e^{-an}) >= 0.9 on which no polynomial-time algorithm gets relative error 1/2 with conditional success probability >= 2/3. | CONJECTURE; no distribution-preserving reduction; the spin-glass observation (4.3) concerns near-maximal outputs of a surrogate. | Radius integration plus importance sampling with polynomial cost and bounded relative variance. |
+

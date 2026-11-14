@@ -1,0 +1,13 @@
+{
+ "id": "E-MR-7",
+ "question": "Can the traders' own profit bids choose who acts (an auction for each step) and when to halt?",
+ "status": "Problem",
+ "setup": "E-MR-5 economy tested in auction order (the highest predicted-gain bid acts) against round-robin order, at L32 and L320; bid halting when the best bid <= c at L64.",
+ "result": "No. Bids are 23 times too high (predicted 0.126 vs realized 0.0055, corr 0.20), likely a winner's curse from picking the highest of four noisy bids (not tested). So bid halting almost never fires (85-90 of 96 steps at every cost) and gains nothing over random, and auction order is erratic at depth: L320 at 320 steps 0.99 / 0.02 / 0.66 by seed in the base economy and 0.00 in the halteps, Lindahl-bounty and all six priced runs, while round-robin order holds 0.99 or better in every cov run.",
+ "files": [
+  "market-resnet/RESULTS.md",
+  "market-resnet/econ2.py",
+  "market-resnet/results/summary.json",
+  "market-resnet/charts/p2_depth_L320.json"
+ ]
+}

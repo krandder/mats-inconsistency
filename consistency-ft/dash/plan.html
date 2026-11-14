@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RLEF Research Plan</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono&family=Source+Serif+4:opsz,wght@8..60,700&display=swap">
+<style>
+:root { --paper:#fafbf9; --ink:#151a20; --ink2:#565d66; --line:#e2e5e1; --card:#ffffff;
+  --task:#e8effb; --taskline:#2563c7; --gate:#f8efdd; --gateline:#b07207; --amend:#e4f3ee; --amendline:#0e8a6c; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --paper:#14171c; --ink:#eef1f4; --ink2:#aab2bb; --line:#2c313a; --card:#1b1f26;
+  --task:#1d2c45; --taskline:#6b9fe8; --gate:#35290f; --gateline:#d99a33; --amend:#17322b; --amendline:#3db392; } }
+:root[data-theme="dark"] { --paper:#14171c; --ink:#eef1f4; --ink2:#aab2bb; --line:#2c313a; --card:#1b1f26;
+  --task:#1d2c45; --taskline:#6b9fe8; --gate:#35290f; --gateline:#d99a33; --amend:#17322b; --amendline:#3db392; }
+body { margin:0; background:var(--paper); color:var(--ink); font:400 16px/1.6 "IBM Plex Sans",system-ui,sans-serif; }
+.wrap { max-width:1200px; margin:0 auto; padding:40px 24px 80px; }
+h1 { font:700 34px/1.15 "Source Serif 4",Georgia,serif; margin:0 0 6px; }
+.sub { color:var(--ink2); margin:0 0 6px; max-width:70ch; }
+.meta { font:400 13px "IBM Plex Mono",monospace; color:var(--ink2); margin-bottom:24px; }
+.frame { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:22px; overflow-x:auto; }
+svg { display:block; min-width:1378px; color:var(--ink2); }
+.n-task rect { fill:var(--task); stroke:var(--taskline); stroke-width:1.3; }
+.n-gate rect { fill:var(--gate); stroke:var(--gateline); stroke-width:1.6; }
+.n-amend rect { fill:var(--amend); stroke:var(--amendline); stroke-width:1.3; }
+.n-title { font:600 13px "IBM Plex Sans",sans-serif; fill:var(--ink); }
+.n-bead { font:400 11px "IBM Plex Mono",monospace; fill:var(--ink2); }
+.legend { display:flex; gap:22px; margin:16px 2px 0; font-size:13.5px; color:var(--ink2); flex-wrap:wrap; }
+.chip { display:inline-block; width:13px; height:13px; border-radius:4px; margin-right:7px; vertical-align:-2px; border:1.3px solid; }
+a { color:var(--taskline); }
+g.st-closed rect { opacity:0.45; }
+g.st-closed .n-title { text-decoration:line-through; opacity:0.6; }
+g.st-closed .n-bead { opacity:0.6; }
+g.st-in_progress rect { stroke-width:2.4; animation:pulse 1.6s ease-in-out infinite; }
+g.st-blocked rect { stroke:#d03b3b; }
+@keyframes pulse { 50% { opacity:0.55; } }
+@media (prefers-reduced-motion: reduce) { g.st-in_progress rect { animation:none; } }
+#live { font:400 13px "IBM Plex Mono",monospace; color:var(--ink2); margin-top:10px; }
+</style></head><body><div class="wrap">
+<h1>RLEF Research Plan</h1>
+<p class="sub">Task DAG for the RLEF × Forecasting program (epic <code>hub-t8k9c</code> in hub beads). Arrows read top to bottom: a task can start when everything pointing into it is done. Gate 0 (the <a href="/proposal.html">proposal</a>) was approved by Jessica on 2026-08-19 with the cutoff-audit amendment (green).</p>
+<p class="meta">consistency-ft · beads live in futarchy-fi/hub · dashboard at <a href="/">consistency.futarchy.ai</a></p>
+<div class="frame"><svg viewBox="0 0 1378 914" role="img" aria-label="RLEF research plan: task dependency graph from cutoff audit and infrastructure through pilot, Gate 1, full run, and Gate 2." font-family="IBM Plex Sans, system-ui, sans-serif"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor"/></marker></defs><path d="M145 86 C 145 115, 417 115, 417 141" fill="none" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.4" marker-end="url(#arr)"/><path d="M417 200 C 417 229, 553 229, 553 255" fill="none" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.4" marker-end="url(#arr)"/><path d="M417 86 C 417 172, 553 172, 553 255" fill="none" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.4" marker-end="url(#arr)"/><path d="M553 314 C 553 343, 553 343, 553 369" fill="none" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.4" marker-end="url(#arr)"/><path d="M553 314 C 553 343, 825 343, 825 369" fill="none" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.4" marker-end="url(#arr)"/><path d="M417 86 C 417 115, 689 115, 689 141" fill="none" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.4" marker-end="url(#arr)"/><path d="M417 86 C 417 115, 961 115, 961 141" fill="none" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.4" marker-end="url(#arr)"/><path d="M825 428 C 825 457, 417 457, 417 483" fill="none" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.4" marker-end="url(#arr)"/><path d="M689 200 C 689 229, 825 229, 825 255" fill="none" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.4" marker-end="url(#arr)"/><path d="M417 86 C 417 172, 825 172, 825 255" fill="none" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.4" marker-end="url(#arr)"/><path d="M689 86 C 689 286, 689 286, 689 483" fill="none" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.4" marker-end="url(#arr)"/><path d="M825 428 C 825 457, 689 457, 689 483" fill="none" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.4" marker-end="url(#arr)"/><path d="M961 86 C 961 286, 961 286, 961 483" fill="none" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.4" marker-end="url(#arr)"/><path d="M961 200 C 961 343, 961 343, 961 483" fill="none" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.4" marker-end="url(#arr)"/><path d="M825 314 C 825 400, 961 400, 961 483" fill="none" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.4" marker-end="url(#arr)"/><path d="M689 86 C 689 286, 961 286, 961 483" fill="none" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.4" marker-end="url(#arr)"/><path d="M689 542 C 689 571, 689 571, 689 597" fill="none" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.4" marker-end="url(#arr)"/><path d="M961 542 C 961 571, 689 571, 689 597" fill="none" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.4" marker-end="url(#arr)"/><path d="M553 314 C 553 457, 689 457, 689 597" fill="none" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.4" marker-end="url(#arr)"/><path d="M689 656 C 689 685, 689 685, 689 711" fill="none" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.4" marker-end="url(#arr)"/><path d="M417 542 C 417 628, 689 628, 689 711" fill="none" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.4" marker-end="url(#arr)"/><path d="M689 770 C 689 799, 689 799, 689 825" fill="none" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.4" marker-end="url(#arr)"/><g class="n-amend" data-bead="hub-t8k9c.2"><rect x="30" y="30" width="230" height="56" rx="9"/><text x="44" y="54" class="n-title">Collect advertised cutoffs</text><text x="44" y="72" class="n-bead">hub-t8k9c.2</text></g><g class="n-task" data-bead="hub-t8k9c.1"><rect x="302" y="30" width="230" height="56" rx="9"/><text x="316" y="54" class="n-title">Fireworks unblock + backfill</text><text x="316" y="72" class="n-bead">hub-t8k9c.1</text></g><g class="n-task" data-bead="hub-t8k9c.5"><rect x="574" y="30" width="230" height="56" rx="9"/><text x="588" y="54" class="n-title">Exploit(c,S) LP metric</text><text x="588" y="72" class="n-bead">hub-t8k9c.5</text></g><g class="n-task" data-bead="hub-t8k9c.6"><rect x="846" y="30" width="230" height="56" rx="9"/><text x="860" y="54" class="n-title">Episode builder</text><text x="860" y="72" class="n-bead">hub-t8k9c.6</text></g><g class="n-task" data-bead="hub-t8k9c.18"><rect x="1118" y="30" width="230" height="56" rx="9"/><text x="1132" y="54" class="n-title">Native models + Luna levels</text><text x="1132" y="72" class="n-bead">hub-t8k9c.18</text></g><g class="n-amend" data-bead="hub-t8k9c.8"><rect x="302" y="144" width="230" height="56" rx="9"/><text x="316" y="168" class="n-title">Post-cutoff probe set</text><text x="316" y="186" class="n-bead">hub-t8k9c.8</text></g><g class="n-task" data-bead="hub-t8k9c.10"><rect x="574" y="144" width="230" height="56" rx="9"/><text x="588" y="168" class="n-title">Reasoning-mode sweep</text><text x="588" y="186" class="n-bead">hub-t8k9c.10</text></g><g class="n-task" data-bead="hub-t8k9c.11"><rect x="846" y="144" width="230" height="56" rx="9"/><text x="860" y="168" class="n-title">KL anchor (arm A2)</text><text x="860" y="186" class="n-bead">hub-t8k9c.11</text></g><g class="n-amend" data-bead="hub-t8k9c.9"><rect x="438" y="258" width="230" height="56" rx="9"/><text x="452" y="282" class="n-title">Contamination runner</text><text x="452" y="300" class="n-bead">hub-t8k9c.9</text></g><g class="n-task" data-bead="hub-t8k9c.13"><rect x="710" y="258" width="230" height="56" rx="9"/><text x="724" y="282" class="n-title">Platform + model decision</text><text x="724" y="300" class="n-bead">hub-t8k9c.13</text></g><g class="n-amend" data-bead="hub-t8k9c.3"><rect x="438" y="372" width="230" height="56" rx="9"/><text x="452" y="396" class="n-title">Dashboard: cutoff section</text><text x="452" y="414" class="n-bead">hub-t8k9c.3</text></g><g class="n-amend" data-bead="hub-t8k9c.4"><rect x="710" y="372" width="230" height="56" rx="9"/><text x="724" y="396" class="n-title">Clean Brier windows</text><text x="724" y="414" class="n-bead">hub-t8k9c.4</text></g><g class="n-task" data-bead="hub-t8k9c.12"><rect x="302" y="486" width="230" height="56" rx="9"/><text x="316" y="510" class="n-title">Brier anchor (arm A1)</text><text x="316" y="528" class="n-bead">hub-t8k9c.12</text></g><g class="n-task" data-bead="hub-t8k9c.14"><rect x="574" y="486" width="230" height="56" rx="9"/><text x="588" y="510" class="n-title">Eval battery automation</text><text x="588" y="528" class="n-bead">hub-t8k9c.14</text></g><g class="n-task" data-bead="hub-t8k9c.15"><rect x="846" y="486" width="230" height="56" rx="9"/><text x="860" y="510" class="n-title">Pilot run (control + A2)</text><text x="860" y="528" class="n-bead">hub-t8k9c.15</text></g><g class="n-gate" data-bead="hub-t8k9c.16"><rect x="574" y="600" width="230" height="56" rx="9"/><text x="588" y="624" class="n-title">GATE 1 · Jessica review</text><text x="588" y="642" class="n-bead">hub-t8k9c.16</text></g><g class="n-task" data-bead="hub-t8k9c.17"><rect x="574" y="714" width="230" height="56" rx="9"/><text x="588" y="738" class="n-title">Full run, all arms × seeds</text><text x="588" y="756" class="n-bead">hub-t8k9c.17</text></g><g class="n-gate" data-bead="hub-t8k9c.7"><rect x="574" y="828" width="230" height="56" rx="9"/><text x="588" y="852" class="n-title">GATE 2 · write up / extend</text><text x="588" y="870" class="n-bead">hub-t8k9c.7</text></g></svg></div>
+<div class="legend">
+  <span><span class="chip" style="background:var(--task);border-color:var(--taskline)"></span>core task</span>
+  <span><span class="chip" style="background:var(--amend);border-color:var(--amendline)"></span>cutoff-audit amendment (Jessica, Gate 0)</span>
+  <span><span class="chip" style="background:var(--gate);border-color:var(--gateline)"></span>approval gate</span>
+</div>
+<p id="live">live status: loading…</p>
+<script>
+async function refresh() {
+  try {
+    const r = await fetch('/plan-status.json', {cache: 'no-store'});
+    const d = await r.json();
+    let done = 0, total = 0;
+    document.querySelectorAll('g[data-bead]').forEach(g => {
+      const st = d.status[g.dataset.bead];
+      g.classList.remove('st-closed','st-in_progress','st-blocked');
+      if (st) g.classList.add('st-' + st);
+      total += 1; if (st === 'closed') done += 1;
+    });
+    const age = Math.round((Date.now()/1000 - d.updated)/60);
+    document.getElementById('live').textContent =
+      `live status: ${done}/${total} closed · beads snapshot ${age} min old · page refreshes every 60 s`;
+  } catch (e) {
+    document.getElementById('live').textContent = 'live status unavailable (' + e.message + ')';
+  }
+}
+refresh(); setInterval(refresh, 60000);
+</script>
+</div></body></html>

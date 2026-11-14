@@ -1,0 +1,15 @@
+Model: GPT-6 (Codex)
+
+Checked 2026-10-29 13:32 UTC using source reads, JSON, SHA256 and file timestamps; no Python or experiments run.
+
+1. **High: predictive fit is presented as an identified computation.** Draft:15,32,34,100–101 calls A “mostly the Bayes statistic” with a “small extra dependence on spread.” `results/e14.json:by_group.A.heldout_R2` gives SS .8918, SA .8792, MAX .8586 and SYM .9019. Correlated statistics on natural episodes can all predict well without identifying the statistic computed; the .0101 R² gain is not a causal decomposition. Update 23:2431 reports a 49% encoding change on large-error pairs, making unqualified “small” particularly misleading. **Fix:** “SS predicts most natural-episode variation; matched pairs establish additional spread sensitivity. Its computational form and relative causal importance remain unresolved.”
+
+2. **High: group B’s dependence on other inputs is overstated by an unmatched comparison.** Draft:18,104 treats .53→.67 as establishing substantial dependence. `e14_fit.py:47–65,85–92,115` compares an MLP on sorted log magnitudes with HGB on raw magnitudes plus other inputs. Learner, representation and inputs change together; F5 is not a proven error-only ceiling. **Fix:** call this suggestive, remove “ceiling,” and require matched HGB fits with/without other inputs before attributing the gain. Likewise P98 establishes failed transfer of absolute g (`same`), not distinct functional shapes independent of scale/offset.
+
+3. **Medium: the plain summary loses important scope.** Draft:8–14 turns A’s approximate per-source description into independent processing, presents E8’s baseline-dependent decomposition as where error “lives,” and implies E13 removes most of both ranges’ effects. Updates 18:1883 and 23:2436–2447 support a descriptive decomposition and pooled large-range removal .81; middle-range A removal is .33, A large-range removal overshoots, and its control is .16. **Fix:** say “approximately,” “descriptive,” and “pooled large-error pairs”; retain limited specificity and mean-squared-deviation accuracy scope.
+
+4. **Medium: incomplete disclosure of supplementary checks.** Draft:51 says “all candidate forms,” but `e14_causal_prep.py:50` omits MAX. `e14_causal_summ.py:18` introduces |Δg|>.1, absent from Amendment 21/addendum. **Fix:** list the four frozen predictors and label .1 an exploratory descriptive threshold, not a registered rejection bar.
+
+Audit: forms, split, K=8 derivatives, pair construction and confirmation counts implement the registration. Reported numbers match JSON; additions SYM/COUNT are labelled. Hashes match; predictions timestamp 13:27:38 precedes logged freeze 13:27:39 and earliest saved measurement 13:28:25. This supports chronology but does not prove first network access.
+
+Survive: E12/E13 directional findings, numerical fits, operational P98. Reword: mechanism, smallness, B-input attribution and summary scope. Fail: P97 and confirmation under P99; no tested form establishes the proposed rule.

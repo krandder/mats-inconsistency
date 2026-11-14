@@ -1,0 +1,13 @@
+{
+ "id": "E-T1-2",
+ "question": "With a regulator paying by counterfactuals, does pay follow each agent's true value?",
+ "setup": "Same 10 agents report truthful logits; the regulator fits a combiner and pays each epoch's pot by one rule. True value = Shapley of the information in the union of the agents' features.",
+ "result": "Spearman(pay, true value): LOO 0.81\u00b10.10, MSR one order 0.54\u00b10.14, MSR over 16 orders 0.68\u00b10.05, exact Shapley 0.76\u00b10.04, Kelly 0.12\u00b10.14. Budget: LOO pays 0.58\u00b10.13 of the pot; the MSR rules pay 1.02-1.03. All 10 agents alive under MSR-16 and Shapley; 5.2\u00b12.8 under LOO. Output log loss 0.52-0.54, still about 0.06 nats worse than logistic regression.",
+ "status": "Informative",
+ "files": [
+  "econ.py",
+  "results/summary.json",
+  "charts/toy1_pay_vs_value.json",
+  "charts/toy1_logloss.json"
+ ]
+}

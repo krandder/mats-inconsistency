@@ -1,0 +1,16 @@
+# world 101: all registered arms and the memorising baseline. Exact references and the report are made on the
+# evaluation side (cexact.py, creport.py) from the forecasts written here.
+export CUDA_VISIBLE_DEVICES=""
+export PY=/cluster/home/user/grpo-pilot/venv/bin/python
+export PROBWORLD=/cluster/home/user/wave7/probworld
+export LEVELS=1,4 SMALL=1 NTHREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1
+cd /cluster/home/user/wave13/consistency/code
+D=../data/w101; O=../out/w101; mkdir -p $O
+date -u
+sha256sum *.py ../PREREG.md
+$PY -c "import torch; print('cuda visible:', torch.cuda.is_available())"
+$PY -B mkjobs.py > $O/jobs.txt
+$PY -B cdirect.py $D $O 64 256 1024 4096 20480 > ../logs/direct_w101.log 2>&1 &
+for s in 0 1 2 3 4 5 6 7 8 9; do $PY -B ctrain.py $D $O $O/jobs.txt $s 10 700 > ../logs/train_w101_$s.log 2>&1 & done
+wait
+date -u

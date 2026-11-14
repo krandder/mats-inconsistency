@@ -1,0 +1,386 @@
+{
+  "schema": "aggbench.result/v1",
+  "run_id": "l2-vector-messages-20261020-E2-distill-m8",
+  "track": "EXPLORATORY",
+  "smoke": false,
+  "created_utc": "2026-10-20T23:34:55+00:00",
+  "harness": {
+    "version": "0.1.0",
+    "git_commit": "1d48a0ada43be6603b43f1e5e3ab94cd38ae0370",
+    "git_dirty": false,
+    "sha256": "e50881934b0fe8f82e9343535cce37057fd977b558f02c26c90e4e542fdbbade"
+  },
+  "env": {
+    "name": "E2",
+    "config": {
+      "n_agents": 5,
+      "n_pieces": 12,
+      "pieces_per_agent": [
+        2,
+        6
+      ],
+      "strength_range": [
+        0.1,
+        0.6
+      ],
+      "prior": 0.5,
+      "key_noise": 0.15,
+      "n_sybil": 0,
+      "n_biased": 0,
+      "bias_temp": 3.0,
+      "bias_shift": 1.5,
+      "n_colluders": 0
+    }
+  },
+  "visibility": "full",
+  "splits": {
+    "train": {
+      "split": "train",
+      "first_seed": 0,
+      "n": 200000
+    },
+    "eval": {
+      "split": "dev",
+      "first_seed": 10000000,
+      "n": 5000
+    }
+  },
+  "oracle_check": {
+    "env": "E2",
+    "split": "smoke",
+    "episodes_checked": 24,
+    "max_abs_diff": 2.220446049250313e-16,
+    "tolerance": 1e-08,
+    "verified": true
+  },
+  "methods": {
+    "bayes": {
+      "logloss": {
+        "mean": 0.2647292160922485,
+        "ci_low": 0.25013086412879715,
+        "ci_high": 0.2790250187756936,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 0.0817059759560461,
+        "ci_low": 0.07665861785881005,
+        "ci_high": 0.08672322153390644,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 0.0,
+        "ci_low": 0.0,
+        "ci_high": 0.0,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 0.0,
+        "ci_low": 0.0,
+        "ci_high": 0.0,
+        "n": 5000
+      }
+    },
+    "oracle_clearing": {
+      "logloss": {
+        "mean": 0.2828841149563638,
+        "ci_low": 0.2675618464382704,
+        "ci_high": 0.2979988119316033,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 0.08751828601380755,
+        "ci_low": 0.08230263980499274,
+        "ci_high": 0.09280005718246231,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 0.01700577129700641,
+        "ci_low": 0.01577638959049217,
+        "ci_high": 0.018289551133527867,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 0.01815489886411534,
+        "ci_low": 0.013265274420150136,
+        "ci_high": 0.023058567030388374,
+        "n": 5000
+      }
+    },
+    "linear_pool": {
+      "logloss": {
+        "mean": 0.4125994732262305,
+        "ci_low": 0.40489639401345007,
+        "ci_high": 0.4202372955730353,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 0.12501869894348855,
+        "ci_low": 0.1216959224239341,
+        "ci_high": 0.12836166872048982,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 0.1438392738089515,
+        "ci_low": 0.1411847583255294,
+        "ci_high": 0.14683083263413516,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 0.14787025713398208,
+        "ci_low": 0.137874864970818,
+        "ci_high": 0.15757664077554537,
+        "n": 5000
+      }
+    },
+    "log_pool": {
+      "logloss": {
+        "mean": 0.37382108961411226,
+        "ci_low": 0.36487690092237596,
+        "ci_high": 0.38251708465612616,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 0.11241568956486918,
+        "ci_low": 0.10867207056406845,
+        "ci_high": 0.11609597648538832,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 0.10531990942943589,
+        "ci_low": 0.10316684413300954,
+        "ci_high": 0.10784859500576886,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 0.10909187352186382,
+        "ci_low": 0.10008851907078889,
+        "ci_high": 0.11801146051385666,
+        "n": 5000
+      }
+    },
+    "sum_logodds": {
+      "logloss": {
+        "mean": 0.4055888820350186,
+        "ci_low": 0.37182068087183884,
+        "ci_high": 0.4376342076559015,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 0.10382412686582315,
+        "ci_low": 0.09657232073553622,
+        "ci_high": 0.11099289963586417,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 0.14201711211348014,
+        "ci_low": 0.13502147717027285,
+        "ci_high": 0.149106773389896,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 0.14085966594277013,
+        "ci_low": 0.117329864828528,
+        "ci_high": 0.1634467758372261,
+        "n": 5000
+      }
+    },
+    "extremized_log_pool": {
+      "logloss": {
+        "mean": 0.30976213260164337,
+        "ci_low": 0.29346992923224585,
+        "ci_high": 0.3249668400546856,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 0.09578908276160678,
+        "ci_low": 0.09033179863635858,
+        "ci_high": 0.10109230103207989,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 0.04272767976951494,
+        "ci_low": 0.04025032176597336,
+        "ci_high": 0.0451143810637406,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 0.04503291650939492,
+        "ci_low": 0.03670450802730538,
+        "ci_high": 0.05337899854398761,
+        "n": 5000
+      }
+    },
+    "vecmsg_distill_m8:trained": {
+      "logloss": {
+        "mean": 0.28363467431619527,
+        "ci_low": 0.2680645366973437,
+        "ci_high": 0.2984934681576721,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 0.0879983253814383,
+        "ci_low": 0.08263581853384651,
+        "ci_high": 0.09317244566123287,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 0.017421595976240496,
+        "ci_low": 0.016241586766081804,
+        "ci_high": 0.01862966897474424,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 0.018905458223946788,
+        "ci_low": 0.01372567230054788,
+        "ci_high": 0.024095490357849175,
+        "n": 5000
+      }
+    },
+    "vecmsg_distill_m8:control:untrained_init": {
+      "logloss": {
+        "mean": 0.7283005446802666,
+        "ci_low": 0.7207911482568651,
+        "ci_high": 0.7353945503580182,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 0.26701155984394526,
+        "ci_low": 0.263339727085857,
+        "ci_high": 0.27048020287346003,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 0.4592996744069636,
+        "ci_low": 0.45046208092529755,
+        "ci_high": 0.4682719047666907,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 0.46357132858801814,
+        "ci_low": 0.44693020980631415,
+        "ci_high": 0.4798598190312168,
+        "n": 5000
+      }
+    },
+    "vecmsg_distill_m8:control:random_network": {
+      "logloss": {
+        "mean": 0.6969105845122198,
+        "ci_low": 0.6963910306112955,
+        "ci_high": 0.6974248332285947,
+        "n": 5000
+      },
+      "brier": {
+        "mean": 0.25188096613437355,
+        "ci_low": 0.2516212847070356,
+        "ci_high": 0.252138072482678,
+        "n": 5000
+      },
+      "kl": {
+        "mean": 0.4271827922791475,
+        "ci_low": 0.4203211853588554,
+        "ci_high": 0.43378877914717645,
+        "n": 5000
+      },
+      "regret": {
+        "mean": 0.4321813684199714,
+        "ci_low": 0.41766745736557925,
+        "ci_high": 0.44697055323602075,
+        "n": 5000
+      }
+    }
+  },
+  "learned_arms": [
+    "vecmsg_distill_m8:trained"
+  ],
+  "controls": {
+    "vecmsg_distill_m8:trained": {
+      "random_network": "vecmsg_distill_m8:control:random_network",
+      "untrained_init": "vecmsg_distill_m8:control:untrained_init"
+    }
+  },
+  "extra": {
+    "lane": "L2",
+    "diagnostic": "declared distillation to bayes (soft targets sigmoid(bayes logit) on train)",
+    "runner": "results/explore/l2-vector-messages-20261020/run_l2_distill.py",
+    "runner_sha256": "d1cd897fdfbf68f69a5f849b1d22f77ec1c835d52766ad3fcedf1be1a8d1f45a",
+    "imports_sha256": {
+      "run_l2.py": "9020f5727463ba4ed20889e7b44afc67e88eadb99101d156ec44c720133fc2a5"
+    },
+    "message_dims": [
+      8
+    ],
+    "steps": 2500,
+    "locality_check": {
+      "vecmsg_distill_m8": {
+        "passed": true,
+        "episodes": 500,
+        "trials": 5
+      }
+    },
+    "paired_differences": {
+      "vecmsg_distill_m8": {
+        "trained_minus_oracle_clearing": {
+          "mean": 0.0007505593598314525,
+          "ci_low": -0.004397840869188587,
+          "ci_high": 0.0058277510941252,
+          "n": 5000
+        },
+        "trained_minus_extremized_log_pool": {
+          "mean": -0.02612745828544813,
+          "ci_low": -0.03256121863518922,
+          "ci_high": -0.01980861902125275,
+          "n": 5000
+        }
+      }
+    },
+    "fit_info": {
+      "vecmsg_distill_m8": {
+        "best_val_loss": 0.2863986864686012,
+        "val_history": [
+          [
+            250,
+            0.30689
+          ],
+          [
+            500,
+            0.29882
+          ],
+          [
+            750,
+            0.29542
+          ],
+          [
+            1000,
+            0.29313
+          ],
+          [
+            1250,
+            0.29084
+          ],
+          [
+            1500,
+            0.28937
+          ],
+          [
+            1750,
+            0.28804
+          ],
+          [
+            2000,
+            0.28715
+          ],
+          [
+            2250,
+            0.28646
+          ],
+          [
+            2500,
+            0.2864
+          ]
+        ],
+        "seconds": 205.0
+      }
+    },
+    "extremize_alpha": 2.1901848491013984
+  }
+}

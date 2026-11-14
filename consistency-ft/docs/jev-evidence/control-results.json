@@ -1,0 +1,488 @@
+[
+  {
+    "name": "implies",
+    "repeat": 0,
+    "request": {
+      "model": "jev-latest",
+      "state": "An integer is sampled uniformly from 1 through 10 inclusive. Event A: number is 1 or 2. Event B: number is at most 5.",
+      "questions": {
+        "a": {
+          "type": "noul",
+          "instructions": "Does event A occur?"
+        },
+        "not_a": {
+          "type": "noul",
+          "instructions": "Does event A not occur?"
+        },
+        "b": {
+          "type": "noul",
+          "instructions": "Does event B occur?"
+        },
+        "and": {
+          "type": "noul",
+          "instructions": "Do both event A and event B occur?"
+        },
+        "or": {
+          "type": "noul",
+          "instructions": "Does at least one of event A and event B occur (inclusive OR)?"
+        },
+        "joint": {
+          "type": "choice",
+          "instructions": "Which mutually exclusive joint outcome occurs?",
+          "criteria": {
+            "both": "A occurs and B occurs",
+            "a_only": "A occurs and B does not occur",
+            "b_only": "A does not occur and B occurs",
+            "neither": "A does not occur and B does not occur"
+          }
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "a": {
+          "type": "noul",
+          "noul": 0.23
+        },
+        "not_a": {
+          "type": "noul",
+          "noul": 0.73
+        },
+        "b": {
+          "type": "noul",
+          "noul": 0.64
+        },
+        "and": {
+          "type": "noul",
+          "noul": 0.43
+        },
+        "or": {
+          "type": "noul",
+          "noul": 0.82
+        },
+        "joint": {
+          "type": "choice",
+          "choice": "both",
+          "confidence": 0.33,
+          "probabilities": {
+            "both": 0.5,
+            "b_only": 0.19,
+            "a_only": 0.08,
+            "neither": 0.23
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 468,
+        "output_tokens": 129
+      }
+    },
+    "seconds": 2.3020997990388423
+  },
+  {
+    "name": "uncertain",
+    "repeat": 0,
+    "request": {
+      "model": "jev-latest",
+      "state": "A deployment has intermittent errors. A recent config change and increased load are both plausible causes, but no cause has been verified. Event A: the config change caused errors. Event B: increased load caused errors.",
+      "questions": {
+        "a": {
+          "type": "noul",
+          "instructions": "Does event A occur?"
+        },
+        "not_a": {
+          "type": "noul",
+          "instructions": "Does event A not occur?"
+        },
+        "b": {
+          "type": "noul",
+          "instructions": "Does event B occur?"
+        },
+        "and": {
+          "type": "noul",
+          "instructions": "Do both event A and event B occur?"
+        },
+        "or": {
+          "type": "noul",
+          "instructions": "Does at least one of event A and event B occur (inclusive OR)?"
+        },
+        "joint": {
+          "type": "choice",
+          "instructions": "Which mutually exclusive joint outcome occurs?",
+          "criteria": {
+            "both": "A occurs and B occurs",
+            "a_only": "A occurs and B does not occur",
+            "b_only": "A does not occur and B occurs",
+            "neither": "A does not occur and B does not occur"
+          }
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "a": {
+          "type": "noul",
+          "noul": 0.39
+        },
+        "not_a": {
+          "type": "noul",
+          "noul": 0.55
+        },
+        "b": {
+          "type": "noul",
+          "noul": 0.47
+        },
+        "and": {
+          "type": "noul",
+          "noul": 0.2
+        },
+        "or": {
+          "type": "noul",
+          "noul": 0.74
+        },
+        "joint": {
+          "type": "choice",
+          "choice": "neither",
+          "confidence": 0.36,
+          "probabilities": {
+            "a_only": 0.26,
+            "both": 0.18,
+            "b_only": 0.05,
+            "neither": 0.51
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 475,
+        "output_tokens": 130
+      }
+    },
+    "seconds": 0.6620673739816993
+  },
+  {
+    "name": "implies",
+    "repeat": 1,
+    "request": {
+      "model": "jev-latest",
+      "state": "An integer is sampled uniformly from 1 through 10 inclusive. Event A: number is 1 or 2. Event B: number is at most 5.",
+      "questions": {
+        "a": {
+          "type": "noul",
+          "instructions": "Does event A occur?"
+        },
+        "not_a": {
+          "type": "noul",
+          "instructions": "Does event A not occur?"
+        },
+        "b": {
+          "type": "noul",
+          "instructions": "Does event B occur?"
+        },
+        "and": {
+          "type": "noul",
+          "instructions": "Do both event A and event B occur?"
+        },
+        "or": {
+          "type": "noul",
+          "instructions": "Does at least one of event A and event B occur (inclusive OR)?"
+        },
+        "joint": {
+          "type": "choice",
+          "instructions": "Which mutually exclusive joint outcome occurs?",
+          "criteria": {
+            "both": "A occurs and B occurs",
+            "a_only": "A occurs and B does not occur",
+            "b_only": "A does not occur and B occurs",
+            "neither": "A does not occur and B does not occur"
+          }
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "a": {
+          "type": "noul",
+          "noul": 0.23
+        },
+        "not_a": {
+          "type": "noul",
+          "noul": 0.75
+        },
+        "b": {
+          "type": "noul",
+          "noul": 0.66
+        },
+        "and": {
+          "type": "noul",
+          "noul": 0.44
+        },
+        "or": {
+          "type": "noul",
+          "noul": 0.79
+        },
+        "joint": {
+          "type": "choice",
+          "choice": "both",
+          "confidence": 0.41,
+          "probabilities": {
+            "a_only": 0.06,
+            "b_only": 0.18,
+            "both": 0.56,
+            "neither": 0.2
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 468,
+        "output_tokens": 129
+      }
+    },
+    "seconds": 0.6877481918781996
+  },
+  {
+    "name": "uncertain",
+    "repeat": 1,
+    "request": {
+      "model": "jev-latest",
+      "state": "A deployment has intermittent errors. A recent config change and increased load are both plausible causes, but no cause has been verified. Event A: the config change caused errors. Event B: increased load caused errors.",
+      "questions": {
+        "a": {
+          "type": "noul",
+          "instructions": "Does event A occur?"
+        },
+        "not_a": {
+          "type": "noul",
+          "instructions": "Does event A not occur?"
+        },
+        "b": {
+          "type": "noul",
+          "instructions": "Does event B occur?"
+        },
+        "and": {
+          "type": "noul",
+          "instructions": "Do both event A and event B occur?"
+        },
+        "or": {
+          "type": "noul",
+          "instructions": "Does at least one of event A and event B occur (inclusive OR)?"
+        },
+        "joint": {
+          "type": "choice",
+          "instructions": "Which mutually exclusive joint outcome occurs?",
+          "criteria": {
+            "both": "A occurs and B occurs",
+            "a_only": "A occurs and B does not occur",
+            "b_only": "A does not occur and B occurs",
+            "neither": "A does not occur and B does not occur"
+          }
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "a": {
+          "type": "noul",
+          "noul": 0.39
+        },
+        "not_a": {
+          "type": "noul",
+          "noul": 0.54
+        },
+        "b": {
+          "type": "noul",
+          "noul": 0.47
+        },
+        "and": {
+          "type": "noul",
+          "noul": 0.19
+        },
+        "or": {
+          "type": "noul",
+          "noul": 0.74
+        },
+        "joint": {
+          "type": "choice",
+          "choice": "neither",
+          "confidence": 0.34,
+          "probabilities": {
+            "both": 0.16,
+            "b_only": 0.05,
+            "a_only": 0.29,
+            "neither": 0.5
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 475,
+        "output_tokens": 130
+      }
+    },
+    "seconds": 0.9377334909513593
+  },
+  {
+    "name": "implies",
+    "repeat": 2,
+    "request": {
+      "model": "jev-latest",
+      "state": "An integer is sampled uniformly from 1 through 10 inclusive. Event A: number is 1 or 2. Event B: number is at most 5.",
+      "questions": {
+        "a": {
+          "type": "noul",
+          "instructions": "Does event A occur?"
+        },
+        "not_a": {
+          "type": "noul",
+          "instructions": "Does event A not occur?"
+        },
+        "b": {
+          "type": "noul",
+          "instructions": "Does event B occur?"
+        },
+        "and": {
+          "type": "noul",
+          "instructions": "Do both event A and event B occur?"
+        },
+        "or": {
+          "type": "noul",
+          "instructions": "Does at least one of event A and event B occur (inclusive OR)?"
+        },
+        "joint": {
+          "type": "choice",
+          "instructions": "Which mutually exclusive joint outcome occurs?",
+          "criteria": {
+            "both": "A occurs and B occurs",
+            "a_only": "A occurs and B does not occur",
+            "b_only": "A does not occur and B occurs",
+            "neither": "A does not occur and B does not occur"
+          }
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "a": {
+          "type": "noul",
+          "noul": 0.22
+        },
+        "not_a": {
+          "type": "noul",
+          "noul": 0.74
+        },
+        "b": {
+          "type": "noul",
+          "noul": 0.66
+        },
+        "and": {
+          "type": "noul",
+          "noul": 0.44
+        },
+        "or": {
+          "type": "noul",
+          "noul": 0.82
+        },
+        "joint": {
+          "type": "choice",
+          "choice": "both",
+          "confidence": 0.29,
+          "probabilities": {
+            "both": 0.47,
+            "b_only": 0.16,
+            "neither": 0.26,
+            "a_only": 0.11
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 468,
+        "output_tokens": 129
+      }
+    },
+    "seconds": 0.6803243791218847
+  },
+  {
+    "name": "uncertain",
+    "repeat": 2,
+    "request": {
+      "model": "jev-latest",
+      "state": "A deployment has intermittent errors. A recent config change and increased load are both plausible causes, but no cause has been verified. Event A: the config change caused errors. Event B: increased load caused errors.",
+      "questions": {
+        "a": {
+          "type": "noul",
+          "instructions": "Does event A occur?"
+        },
+        "not_a": {
+          "type": "noul",
+          "instructions": "Does event A not occur?"
+        },
+        "b": {
+          "type": "noul",
+          "instructions": "Does event B occur?"
+        },
+        "and": {
+          "type": "noul",
+          "instructions": "Do both event A and event B occur?"
+        },
+        "or": {
+          "type": "noul",
+          "instructions": "Does at least one of event A and event B occur (inclusive OR)?"
+        },
+        "joint": {
+          "type": "choice",
+          "instructions": "Which mutually exclusive joint outcome occurs?",
+          "criteria": {
+            "both": "A occurs and B occurs",
+            "a_only": "A occurs and B does not occur",
+            "b_only": "A does not occur and B occurs",
+            "neither": "A does not occur and B does not occur"
+          }
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "a": {
+          "type": "noul",
+          "noul": 0.4
+        },
+        "not_a": {
+          "type": "noul",
+          "noul": 0.55
+        },
+        "b": {
+          "type": "noul",
+          "noul": 0.48
+        },
+        "and": {
+          "type": "noul",
+          "noul": 0.2
+        },
+        "or": {
+          "type": "noul",
+          "noul": 0.75
+        },
+        "joint": {
+          "type": "choice",
+          "choice": "neither",
+          "confidence": 0.3,
+          "probabilities": {
+            "b_only": 0.05,
+            "both": 0.16,
+            "a_only": 0.31,
+            "neither": 0.48
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 475,
+        "output_tokens": 130
+      }
+    },
+    "seconds": 0.6612798019777983
+  }
+]

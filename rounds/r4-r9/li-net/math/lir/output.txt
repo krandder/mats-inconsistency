@@ -1,0 +1,41 @@
+C1/C8  identities on a random 3-valued X with 3 edges (one negative weight)
+  trial 0: <<M>> num 1.531954 cf 1.531954 | |mu_num-mu_cf| 1.6e-09 | -log mu(x) 0.294443 vs (<<M+x>>-<<M>>)/B 0.294443 | sum_a b_a log(p_a/mu) per x [-1.532 -1.532 -1.532] vs -<<M>> -1.531954
+  trial 1: <<M>> num 0.130361 cf 0.130361 | |mu_num-mu_cf| 1.6e-09 | -log mu(x) 1.731099 vs (<<M+x>>-<<M>>)/B 1.731099 | sum_a b_a log(p_a/mu) per x [-0.1304 -0.1304 -0.1304] vs -<<M>> -0.130361
+  trial 2: <<M>> num -0.029168 cf -0.029168 | |mu_num-mu_cf| 2.5e-09 | -log mu(x) 0.994684 vs (<<M+x>>-<<M>>)/B 0.994684 | sum_a b_a log(p_a/mu) per x [0.0292 0.0292 0.0292] vs -<<M>> 0.029168
+
+toy: ACC=0.8; Bayes-optimal market loss 0.50040 nats; uninformed log2 0.69315
+C2  grad L numeric  [-0.0269 -0.2478 -0.0268  0.0046  0.0607  0.1258] 
+    closed form      [-0.0269 -0.2478 -0.0268  0.0046  0.0607  0.1258] 
+    max |E_mu s_i| = 1.0e-16
+C3  global grad     [-0.0269 -0.2478 -0.0268  0.0046  0.0607  0.1258] 
+    sum of T_i grads  [-0.0269 -0.2478 -0.0268  0.0046  0.0607  0.1258] 
+    max diff 1.6e-10
+C4  plain-inconsistency descent: stakes [0. 0. 0. 0.] (all 0), market loss 0.69315 (= log2)
+C5  direct GD on L: loss 0.50040; stakes beta_i(R) rows=trader cols=R:
+[[1.2329 0.    ]
+ [0.     1.2329]]
+    effective log-odds weight beta*theta (target logit 1.3863 on diagonal, 0 off):
+[[1.3863 0.    ]
+ [0.     1.3863]]
+    LIR schedule (1/(1+t/500), 4000 rounds x 64 samples): loss 0.50057; stakes:
+[[1.2955 0.    ]
+ [0.0348 1.3166]]
+    effective weight:
+[[1.3363 0.    ]
+ [0.0372 1.4055]]
+    'own edge + data' focus: stakes [0. 0. 0. 0.] -> 0, loss 0.69315
+C6  trader 0 regime 0: beta=1.2329  E_q[s_i | R=0] = -5.27e-12
+C6  trader 0 regime 1: beta=0.0000  E_q[s_i | R=1] = -2.97e-11
+C6  trader 1 regime 0: beta=0.0000  E_q[s_i | R=0] = -2.29e-11
+C6  trader 1 regime 1: beta=1.2329  E_q[s_i | R=1] = +1.32e-11
+C7  LOO trader 0: grad of r_i on own params [ 0.0269  0.0268 -0.0046] vs -grad L [ 0.0269  0.0268 -0.0046]
+C7  LOO trader 1: grad of r_i on own params [ 0.2478 -0.0607 -0.1258] vs -grad L [ 0.2478 -0.0607 -0.1258]
+    Kelly-stake P&L game: d2pi_0/db0db1 = -0.01074, d2pi_1/db1db0 = -0.06538 (unequal -> no exact potential)
+    sum_i pi_i = -0.182839 = -<<M>> = -0.182839
+
+C9  normalized pool of two 0.9 posteriors: 0.9000; with prior edge at weight -1 (Bayes): 0.9878 (exact 0.9878); generic solver: 0.9878
+C10 GAN: L_GAN=-1.99183; disc focus (D+1,e-1): 0.30277 vs -L-log2 1.29868; gen focus (D-1,e+1): -0.30277 vs L+log2 -1.29868; sum of the two foci 0.0e+00
+    corrected: -L/2-log2 = 0.30277, L/2+log2 = -0.30277 (paper's proof drops the 1/2 from the fair coin)
+    general bD=1, be=0: numeric 0.41714; -bD*L/2+(bD+be)JS-bD*log2 = 0.41714; paper -bD*L+(bD+be)JS-bD*log2 = 1.41305
+    general bD=0.7, be=0.4: numeric 0.33775; -bD*L/2+(bD+be)JS-bD*log2 = 0.33775; paper -bD*L+(bD+be)JS-bD*log2 = 1.03489
+    general bD=2, be=-0.5: numeric 0.77709; -bD*L/2+(bD+be)JS-bD*log2 = 0.77709; paper -bD*L+(bD+be)JS-bD*log2 = 2.76892

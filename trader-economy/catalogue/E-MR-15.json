@@ -1,0 +1,15 @@
+{
+ "id": "E-MR-15",
+ "question": "Does the economy's 0.93 against 0.12 gap at 100x survive the strongest fair backprop baseline, Bansal et al. 2022 DT-recall with progressive loss?",
+ "status": "No gain",
+ "setup": "dtrecall.py: Bansal et al. 2022's recurrent block with input recall, width-3 convolutions, progressive loss alpha 1, up to 30 iterations in training; three budgets: published width 400 and schedule (12,000 iterations, dtr_full), width 400 for the economy's training time (700 s, dtr_eqtime), width 96 for the economy's training FLOPs (3,090 iterations, dtr_eqflop). Also progressive loss on our own block (bptt_cov_progcov, alpha 0, 0.5, 1). Same task and tests. Exact-string accuracy (every output bit right) at L320 with 320 steps (10x) and L3200 with 3200 steps (100x), 3 seeds, t-intervals, on the phase-2 sets (40 strings per seed at L3200); 'fresh' = 200 new strings per seed at L3200 (seed 777 + L), k/n pooled with a 95% Wilson interval. Every arm: 3000 iterations, batch 64, D = 24, lengths 8 to 32.",
+ "result": "No: DT-recall beats the economy at 100x. dtr_full 0.98 +- 0.04 (589/600 [0.97, 0.99] fresh), dtr_eqtime 0.98 +- 0.04 (574/600 [0.94, 0.97] fresh), dtr_eqflop 1.00 (600/600 [0.99, 1.00] fresh), against the economy 0.93 +- 0.14 (557/600 [0.90, 0.95] fresh). Progressive loss on our own block: alpha 0 0.14 +- 0.32 (104/600 [0.15, 0.21] fresh), 0.5 0.80 +- 0.65 (487/600 [0.78, 0.84] fresh), 1 0.80 +- 0.11 (513/600 [0.82, 0.88] fresh), the level of truncated BPTT in random order (phase 1's 'Bansal bar 0.64' was this kind of arm). The economy's remaining edge is reach, from a hand-built dyadic layout (offsets +-2^j): at L3200 with 320 steps it scores 0.78 where DT-recall, which moves about 5 positions per iteration, scores 0.00 (0.98 at 1600 steps). DT-recall's log loss is small at 100x (0.000 to 0.061 nats per bit) but not immune to blow-ups (dtr_full 2.3 at 10x; seed 1 overflowed on 3 fresh strings).",
+ "files": [
+  "market-resnet/RESULTS.md",
+  "market-resnet/dtrecall.py",
+  "market-resnet/econ2.py",
+  "market-resnet/reeval.py",
+  "market-resnet/mkjobs4.sh",
+  "market-resnet/results/p3_summary.json"
+ ]
+}

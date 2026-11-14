@@ -1,0 +1,22 @@
+{
+ "id": "E-MR-5",
+ "question": "Without any backprop across depth, do traders paid only by covariance markets extrapolate in depth and length further than the same traders trained end to end?",
+ "status": "Informative",
+ "setup": "Phase 2 (econ2.py): 4 traders with own weights and Adam, shared across levels j (offsets 0, +-2^j), reading detached state and trained only on their own profit (LMSR earnings minus compute cost); wealth ledger with W0 = 20, trade size capped at half the worst-case loss, respawn at 0. Stream 3 = covariance markets 'is y_i = y_(i+2^j)?' plus VOC markets (k = 5, 50, 500). BPTT control: the same traders, trained end to end on the final loss (bptt_cov, 3 seeds), with Bansal's progressive loss (bptt_cov_prog, 2), on every step's loss (bptt_cov_ds, 3), or on every step's loss plus the covariance targets on c (bptt_cov_dscov, 3; in the other BPTT arms c is a free latent). Controls without stream 3: econ_none, bptt_none. 3000 iterations, batch 64, D = 24, lengths 8-32; test at L = 32, 320, 3200, 32000 in round-robin order. Equal compute: 657 s vs 694 to 772 s training, 0.28 vs 0.29 GB.",
+ "result": "Informative (audit 2026-09-29): the extrapolation is real, the economics is not what causes it. Exact-string accuracy (every output bit right) at L32 (24 steps) / L320 (320) / L3200 (3200): economy 1.00 / 1.00 / 0.93 +- 0.14 (3 seeds, 40 strings); bptt_cov_dscov (full BPTT through the 24 training steps, same per-step and covariance losses, trained in fixed round-robin order) 1.00 / 0.98 +- 0.05 / 0.12 +- 0.35 (seeds 0.00, 0.08, 0.28); bptt_cov 0.97 / 0.00 / 0.00; bptt_cov_prog 0.86 / 0.00 / 0.00; bptt_cov_ds 0.99 / 0.00 / 0.00. The market payoff is exactly detached one-step backprop with a loss at every step (truncated BPTT k=1 plus deep supervision): per-trader gradient cosine 1.0000000 against a BPTT replica, with and without the VOC and bid heads (eqv4.py, results/eqv4.txt). The wealth cap never binds (nocap 0.92). Minimal honest claim: on prefix sums, detached per-step-loss training in random module order extrapolates to 100x the training length (0.93 vs 0.12 for full BPTT); the market payoff is a relabelling of that objective. Confounds (random vs fixed training order, VOC targets only for the economy, per-trader optimizers) are tested in RESULTS.md section 17. Both arms become extremely overconfident past the training length (log loss 501 and 5,900 to 11,000 nats per bit at L3200).",
+ "files": [
+  "market-resnet/RESULTS.md",
+  "market-resnet/econ2.py",
+  "market-resnet/run_p2.sh",
+  "market-resnet/run_p2post.sh",
+  "market-resnet/results/summary.json",
+  "market-resnet/charts/p2_depth_L32.json",
+  "market-resnet/charts/p2_depth_L320.json",
+  "market-resnet/charts/p2_depth_L3200.json",
+  "market-resnet/charts/p2_depth_L32000.json",
+  "market-resnet/run_p2cov.sh",
+  "market-resnet/eqv4.py",
+  "market-resnet/results/eqv4.txt",
+  "market-resnet-AUDIT.md"
+ ]
+}

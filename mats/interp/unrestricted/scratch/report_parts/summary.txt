@@ -1,0 +1,59 @@
+## Summary for Kelvin
+
+DRAFT; numbers in [brackets] are filled after the queue.
+
+**Short answer.** The adaptive deductive estimator I built (a certified branch-and-bound) beats sampling only at
+width 3, and its cost grows exponentially with width: that part of the progress prong failed. The difficulties prong
+then found two things. First, "deterministic" is no restriction on random weights, so the question is whether
+sampling is optimal among all algorithms, and no one can currently prove that. Second, the natural conjecture that
+plain Monte Carlo is optimal is false: astra's red-team of my conjecture found a multilevel sampler that shares the
+late layers through one reference trajectory and beats radius-exact MC by a factor that grows with depth (proven
+asymptotically; measured 15x at width 8, depth 256; break-even at ARC's 256 x 32). So deterministic estimators can
+beat plain sampling at depth, by better sampling rather than by deduction, and ARC's question at depth becomes
+matching that sampler without sampling.
+
+**Progress prong (MEASURED, pre-registered, 72 nets of widths 3-32 and depths 4-64).**
+- The estimator is a branch-and-bound over input cones. It is exact on every cell where all units are certified
+  stable, bounds every other cell with symbolic linear bounds computed from the actual downstream weights, returns a
+  certificate, and refines where the certified gap (or a backward-sensitivity proxy) is largest.
+- Against radius-exact scrambled-Sobol RQMC at equal FLOPs: [width 3]; [width 4]; [widths 6-8]; [widths 16-32]. The
+  certificate is [result].
+- Cost: [passes to a fixed precision against width and depth]. A cell costs 46-170 forward passes. Nothing in this
+  family can reach 10M+ parameters.
+- Unscrambled Sobol points do [about as well as] RQMC, but they are sampling at fixed points, and the gain of any
+  such design over radius-exact MC is capped by the low-degree content of the net's angular function: the measured
+  2-design ceiling at L = n/4 falls from about 7 (width 16) to about 2 (widths 64-256); about 4x for positive designs
+  in the infinite-width limit (proven by astra).
+
+**Difficulties prong.**
+1. In an idealised arithmetic model, determinism is no restriction on random weights (PROVEN; one exact construction
+   from the first layer's rotation symmetry, one from the weights' digits). So the question is whether sampling,
+   implemented as well as possible, is optimal among all algorithms. "As well as possible" matters twice: batching
+   inputs through fast matrix multiplication beats serial MC by n^{0.19}, and the multilevel sampler beats
+   radius-exact MC by Omega(n / log^2 n) at depth proportional to width (PROVEN UNDER schoolbook-type costs; measured
+   two-level gains 1.5x at L = n = 128, 3x at L = 4n, 7x at L = 16n, 15x at width 8 and depth 256; none at L <= n/4).
+2. No one can currently prove that any estimator is optimal. It would be a super-linear time lower bound for a natural
+   explicit problem, and I know of no technique for those. The worst-case barriers (IKW, #NSETH) do not reach random
+   weights, the interpolation route to average-case hardness needs a polynomial estimand, and the known average-case
+   hard problems (spin-glass partition functions, random-circuit amplitudes, permanents) concern exact or relative
+   precision. ARC's mean is the additive, infinite-temperature end, which sampling already reaches.
+3. Restricted classes that provably fail, with sizes: positive-weight designs (gain at most about 4 in the
+   infinite-width limit); polynomials in the weights (the mean's Hermite degree grows with depth, about 2, 7 and 17 at
+   depths 4, 16 and 32; plug-in estimates put degree-8 polynomials at a few to 17 MC samples at depths 16-32);
+   first-layer cell selection (exponentially little mass); stable estimators (must be as rough as the mean). Any
+   estimator must also meet three proven necessary conditions (correlation, final row, depth recursion).
+4. Your analogies (section 4). Threshold-circuit derandomisation: close in the worst case (ReLU nets contain TC0), but
+   on random weights its barrier disappears; no transfer to average-case hardness is established. Convex-body
+   volume: the oracle separation has a proven ReLU analogue (no black-box algorithm beats MC by more than about 4x); no
+   white-box or average-case reduction is established. Spin glasses: the only precise, testable observation; the
+   infinite-width kernel fails the full-RSB concavity test from depth 9, which suggests, for a Gaussian surrogate
+   only, an overlap gap for finding near-maximal outputs. It says nothing about means.
+5. Bottleneck (section 5): the revised conjecture C0*, that nothing beats the best multilevel sampler by a
+   polynomially growing factor at depth proportional to width. It has little evidence; its cheapest refutation is a
+   better control for the first layers' amplitude variation, which carries the variance the reference trajectory
+   cannot remove.
+
+**Which prong wins.** For deductive estimators the difficulties prong wins: none of ours or of the analysed classes
+matches sampling at scale, and no impossibility proof is in reach. The one positive result of the lane came from
+red-teaming the difficulties prong: plain MC is the wrong baseline at depth.
+

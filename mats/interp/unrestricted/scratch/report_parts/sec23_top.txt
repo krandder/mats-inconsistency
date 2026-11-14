@@ -1,0 +1,17 @@
+### 2.3 Cost against width and depth, and what could scale
+
+Forward passes the primary B&B needed to reach a given nMSE, against RQMC (medians over the nets that reached it
+within 8.4e6 passes; "-" = none did; post hoc table, `results/eval_tables.md`):
+
+TABLE_CTP
+
+- The B&B's cost to nMSE 1e-4 grows by roughly 10x per unit of width from 3 to 6 (1e4-4e4 passes at width 3,
+  4e4-3e5 at width 4, 2e6-8e6 at width 6) and is out of reach (> 8.4e6) at width 8 and above, while RQMC needs 130-2,000
+  passes throughout. Depth matters much less than width at these sizes. This is the curse of dimensionality the
+  partition analysis predicts (3.5, 3.7): cells must resolve the kink geometry in n - 1 dimensions, and a cell costs
+  46-170 forward passes.
+- The certificate degrades exponentially with depth wherever units stay unstable on a cell (its nMSE reaches 1e16-1e34
+  at widths 6-8 and depth 32-64), so certification is practical only where cells can be made exactly linear, which in
+  our runs means width 3.
+
+How each deterministic family's cost grows ("gain" is against the best sampler at equal cost):

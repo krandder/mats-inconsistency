@@ -1,0 +1,15 @@
+{
+  "name": "phase3",
+  "note": "Phase 3 default: K x F x seeds, plus three variants on K=2^14 F=2^12. Edit cells here; scripts/matrix.sh matrices/phase3.json",
+  "epochs": 5000,
+  "chunk": 100,
+  "base": {"b": 64, "free-income": 0},
+  "K": ["2^12", "2^14", "2^16"],
+  "F": ["2^8", "2^10", "2^12"],
+  "seeds": [1, 2, 3],
+  "variants": [
+    {"name": "heldpi", "K": "2^14", "F": "2^12", "args": {"held-out-family": "pi", "release": 2000}},
+    {"name": "r1", "K": "2^14", "F": "2^12", "args": {"visible-radius": 1}},
+    {"name": "boot", "K": "2^14", "F": "2^12", "bootstrap": {"free-income": 4096, "epochs": 50}}
+  ]
+}

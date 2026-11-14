@@ -1,0 +1,5 @@
+cd /tmp/traders-net/X1w1/T1/w1 && python3 check_L1.py b > /tmp/traders-net/X1w1/log_T1_L1b.txt 2>&1
+cd /tmp/traders-net/X1w1/T1/w2 && python3 check_delay.py --seeds 4 > /tmp/traders-net/X1w1/log_T1_delay.txt 2>&1 && python3 check_delay.py --seeds 4 --eta-scale --out results/delay_stable.json > /tmp/traders-net/X1w1/log_T1_delays.txt 2>&1
+cd /tmp/traders-net/X1w1/T1/w2 && python3 check_li.py --seeds 4 > /tmp/traders-net/X1w1/log_T1_li.txt 2>&1
+cd /tmp/traders-net/X1w1/T1/w1 && for x in a c d; do python3 check_L1.py $x > /tmp/traders-net/X1w1/log_T1_L1$x.txt 2>&1; done; python3 check_L2.py > /tmp/traders-net/X1w1/log_T1_L2.txt 2>&1; python3 check_L3.py > /tmp/traders-net/X1w1/log_T1_L3.txt 2>&1
+cd /tmp/traders-net/X1w1/T1/w3 && python3 check_L6.py --seed 4 > /tmp/traders-net/X1w1/log_T1_L6.txt 2>&1; python3 check_L7.py --seed 4 > /tmp/traders-net/X1w1/log_T1_L7.txt 2>&1

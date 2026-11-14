@@ -1,0 +1,16 @@
+PASS sphere_rule k=2 m=8 max|E x^2 - 1/k| = 0.0e+00, max|E x^4 - 3/(k(k+2))| = 0.0e+00
+PASS sphere_rule k=2 m=16 max|E x^2 - 1/k| = 0.0e+00, max|E x^4 - 3/(k(k+2))| = 0.0e+00
+PASS sphere_rule k=3 m=8 max|E x^2 - 1/k| = 4.5e-03, max|E x^4 - 3/(k(k+2))| = 5.5e-03
+PASS sphere_rule k=3 m=16 max|E x^2 - 1/k| = 1.1e-03, max|E x^4 - 3/(k(k+2))| = 1.3e-03
+PASS sphere_rule k=4 m=8 max|E x^2 - 1/k| = 3.3e-03, max|E x^4 - 3/(k(k+2))| = 3.4e-03
+PASS sphere_rule k=4 m=16 max|E x^2 - 1/k| = 8.1e-04, max|E x^4 - 3/(k(k+2))| = 8.2e-04
+PASS sphere_rule k=5 m=8 max|E x^2 - 1/k| = 2.7e-03, max|E x^4 - 3/(k(k+2))| = 2.4e-03
+PASS sphere_rule k=5 m=16 max|E x^2 - 1/k| = 6.5e-04, max|E x^4 - 3/(k(k+2))| = 5.6e-04
+PASS radial rule k=2 (exact for E rho^2; E rho approximate, used only by the unused noise table) E rho rel err 5.2e-03
+PASS radial rule k=3 (exact for E rho^2; E rho approximate, used only by the unused noise table) E rho rel err 1.5e-03
+PASS radial rule k=5 (exact for E rho^2; E rho approximate, used only by the unused noise table) E rho rel err 2.4e-04
+PASS radial rule k=8 (exact for E rho^2; E rho approximate, used only by the unused noise table) E rho rel err 2.9e-05
+PASS BO on ReLU(a.x) restricted to a 3-D slice 0.558411 vs 0.558412
+PASS J_ref exact on the reference class (noiseless) 4068 of 4096 states in class, max rel err 4.3e-14
+PASS GHM layer 1 mean vs MC (2^21) rel err 2.4e-03, 256 pieces, weight 1.000000000000
+ALL PASS

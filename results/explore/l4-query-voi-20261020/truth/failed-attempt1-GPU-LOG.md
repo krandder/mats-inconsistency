@@ -1,0 +1,7 @@
+- 2026-10-20T23:00Z WATCHDOG vm=soup-gpu-1020224928-16457 age_h=0.17 status=RUNNING action=posted
+- 2026-10-20T22:49Z PENDING-CREATE vm=soup-gpu-1020224928-16457 type=g2-standard-8 rate_usd_h=0.87 reserve_usd=3.13 group=explore-stage1 run=default by=gpu-up.sh
+- 2026-10-20T22:49Z CREATE vm=soup-gpu-1020224928-16457 zone=us-central1-a type=g2-standard-8 gpu=1xnvidia-l4 model=SPOT max_run=6h rate_usd_h=0.87 (UNVERIFIED ceiling: on-demand list price, Billing API disabled; spot is lower) reserve_usd=3.13 spent_before_usd=0 group=explore-stage1 run=default by=gpu-up.sh
+- 2026-10-20T22:51Z READY vm=soup-gpu-1020224928-16457 ip=[ip-removed] gpu=NVIDIA L4, 580.178.04 nvcc=Build cuda_12.9.r12.9/compiler.35813241_0 clang=Ubuntu clang version 18.1.3 (1ubuntu1) bun=1.3.14 bend=v2.0.29@c8691aa 
+- 2026-10-20T22:51Z RUN vm=soup-gpu-1020224928-16457 timeout=10800s cmd="bash -c export\ DEBIAN_FRONTEND=noninteractive\;\ apt-get\ update\ -q\ \>/dev/null\ \&\&\ apt-get\ install\ -y\ -q\ python3-venv\ python3-pip\ \>/dev/null\ \&\&"
+- 2026-10-20T23:00Z RUN-END vm=soup-gpu-1020224928-16457 rc=1
+- 2026-10-20T23:01Z DELETE vm=soup-gpu-1020224928-16457 zone=us-central1-a type=g2-standard-8 age_h=0.18 cost_usd=0.16 (rate ceiling x age) sync=ok(4.0K) reason="gpu-run.sh finished rc=1: bash -c export\ DEBIAN_FRONTEND=noninteractive\;\ apt-get\ update\ -q\ \>/dev/nu"

@@ -1,0 +1,2713 @@
+{
+  "results": [
+    {
+      "schema": "aggbench.result/v1",
+      "run_id": "full-context-transformer-E2-unaligned-none-n20000",
+      "track": "REFERENCE",
+      "smoke": false,
+      "created_utc": "2026-10-21T03:30:16+00:00",
+      "harness": {
+        "version": "0.1.0",
+        "git_commit": "23f3e4be077a9fcd344050207fe976f7fa15d11d",
+        "git_dirty": false,
+        "sha256": "98bb08601c3b8c9317c13dc5d0847c4410e2345ed760ff40ce5f1ea712460e30"
+      },
+      "env": {
+        "name": "E2",
+        "config": {
+          "n_agents": 5,
+          "n_pieces": 12,
+          "pieces_per_agent": [
+            2,
+            6
+          ],
+          "strength_range": [
+            0.1,
+            0.6
+          ],
+          "prior": 0.5,
+          "key_noise": 0.15,
+          "n_sybil": 0,
+          "n_biased": 0,
+          "bias_temp": 3.0,
+          "bias_shift": 1.5,
+          "n_colluders": 0
+        }
+      },
+      "visibility": "none",
+      "splits": {
+        "train": {
+          "split": "train",
+          "first_seed": 0,
+          "n": 20000
+        },
+        "eval": {
+          "split": "dev",
+          "first_seed": 10000000,
+          "n": 2000
+        }
+      },
+      "oracle_check": {
+        "env": "E2",
+        "split": "smoke",
+        "episodes_checked": 24,
+        "max_abs_diff": 2.220446049250313e-16,
+        "tolerance": 1e-08,
+        "verified": true
+      },
+      "methods": {
+        "full_context_transformer": {
+          "logloss": {
+            "mean": 0.3112117798526376,
+            "ci_low": 0.2863508763054065,
+            "ci_high": 0.337593549043416,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.0966996374731073,
+            "ci_low": 0.08801600573356462,
+            "ci_high": 0.10587531670753889,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.05236693168497383,
+            "ci_low": 0.04773447277706951,
+            "ci_high": 0.057479373575475626,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.05106284357687481,
+            "ci_low": 0.037244136121093986,
+            "ci_high": 0.06587030497235362,
+            "n": 2000
+          }
+        },
+        "full_context_transformer:untrained_init": {
+          "logloss": {
+            "mean": 0.6919245087891696,
+            "ci_low": 0.6807598235198844,
+            "ci_high": 0.7028086611904618,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.24889260821734,
+            "ci_low": 0.24354712968034206,
+            "ci_high": 0.25413109496202374,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.4162915650109463,
+            "ci_low": 0.40327437310109226,
+            "ci_high": 0.42859664887182125,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.4317755725134067,
+            "ci_low": 0.40762672890339774,
+            "ci_high": 0.4549377445118402,
+            "n": 2000
+          }
+        },
+        "full_context_transformer:random_network": {
+          "logloss": {
+            "mean": 0.7762192738371541,
+            "ci_low": 0.7608640310582396,
+            "ci_high": 0.7913958714616273,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.2877505414036383,
+            "ci_low": 0.2805572991331486,
+            "ci_high": 0.2948743145348394,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.500835550519401,
+            "ci_low": 0.4840752268822575,
+            "ci_high": 0.5174582641979827,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.5160703375613914,
+            "ci_low": 0.4872502946221652,
+            "ci_high": 0.5429053383056307,
+            "n": 2000
+          }
+        },
+        "bayes": {
+          "logloss": {
+            "mean": 0.2601489362757628,
+            "ci_low": 0.23911524260548284,
+            "ci_high": 0.2826125160798024,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.08080106457429222,
+            "ci_low": 0.07325705985409622,
+            "ci_high": 0.0886744996825241,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.0,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.0,
+            "n": 2000
+          }
+        }
+      },
+      "learned_arms": [
+        "full_context_transformer"
+      ],
+      "controls": {
+        "full_context_transformer": {
+          "random_network": "full_context_transformer:random_network",
+          "untrained_init": "full_context_transformer:untrained_init"
+        }
+      },
+      "extra": {
+        "alignment": "unaligned",
+        "training": {
+          "visibility": "none",
+          "alignment": "unaligned",
+          "n_train": 20000,
+          "seed": 0,
+          "device": "cpu",
+          "width": 64,
+          "layers": 3,
+          "heads": 4,
+          "steps": 3000,
+          "batch": 512,
+          "lr": 0.001,
+          "val_frac": 0.1,
+          "eval_every": 100,
+          "patience": 1000,
+          "dropout": 0.1,
+          "weight_decay": 0.01
+        },
+        "loss_log": [
+          {
+            "step": 500,
+            "loss_ema": 0.2746038845343234,
+            "best_val": 0.3108481466770172,
+            "best_step": 200
+          },
+          {
+            "step": 1000,
+            "loss_ema": 0.18309949486641033,
+            "best_val": 0.3108481466770172,
+            "best_step": 200
+          },
+          {
+            "step": 1200,
+            "stopped_early": true,
+            "best_val": 0.3108481466770172,
+            "best_step": 200
+          }
+        ]
+      }
+    },
+    {
+      "schema": "aggbench.result/v1",
+      "run_id": "full-context-transformer-E2-unaligned-none-n80000",
+      "track": "REFERENCE",
+      "smoke": false,
+      "created_utc": "2026-10-21T03:19:52+00:00",
+      "harness": {
+        "version": "0.1.0",
+        "git_commit": "23f3e4be077a9fcd344050207fe976f7fa15d11d",
+        "git_dirty": false,
+        "sha256": "98bb08601c3b8c9317c13dc5d0847c4410e2345ed760ff40ce5f1ea712460e30"
+      },
+      "env": {
+        "name": "E2",
+        "config": {
+          "n_agents": 5,
+          "n_pieces": 12,
+          "pieces_per_agent": [
+            2,
+            6
+          ],
+          "strength_range": [
+            0.1,
+            0.6
+          ],
+          "prior": 0.5,
+          "key_noise": 0.15,
+          "n_sybil": 0,
+          "n_biased": 0,
+          "bias_temp": 3.0,
+          "bias_shift": 1.5,
+          "n_colluders": 0
+        }
+      },
+      "visibility": "none",
+      "splits": {
+        "train": {
+          "split": "train",
+          "first_seed": 0,
+          "n": 80000
+        },
+        "eval": {
+          "split": "dev",
+          "first_seed": 10000000,
+          "n": 2000
+        }
+      },
+      "oracle_check": {
+        "env": "E2",
+        "split": "smoke",
+        "episodes_checked": 24,
+        "max_abs_diff": 2.220446049250313e-16,
+        "tolerance": 1e-08,
+        "verified": true
+      },
+      "methods": {
+        "full_context_transformer": {
+          "logloss": {
+            "mean": 0.3025730229567728,
+            "ci_low": 0.27938817726468085,
+            "ci_high": 0.3280233025064209,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.09558161109136347,
+            "ci_low": 0.0871474717874725,
+            "ci_high": 0.10437527560667113,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.04339303930597843,
+            "ci_low": 0.03977966867909367,
+            "ci_high": 0.04720013881893694,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.042424086681009984,
+            "ci_low": 0.030103608110651738,
+            "ci_high": 0.054500580244390015,
+            "n": 2000
+          }
+        },
+        "full_context_transformer:untrained_init": {
+          "logloss": {
+            "mean": 0.6919245087891696,
+            "ci_low": 0.6807598235198844,
+            "ci_high": 0.7028086611904618,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.24889260821734,
+            "ci_low": 0.24354712968034206,
+            "ci_high": 0.25413109496202374,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.4162915650109463,
+            "ci_low": 0.40327437310109226,
+            "ci_high": 0.42859664887182125,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.4317755725134067,
+            "ci_low": 0.40762672890339774,
+            "ci_high": 0.4549377445118402,
+            "n": 2000
+          }
+        },
+        "full_context_transformer:random_network": {
+          "logloss": {
+            "mean": 0.7851938432115703,
+            "ci_low": 0.7687336789231883,
+            "ci_high": 0.8014405242060109,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.29135734470774094,
+            "ci_low": 0.28373270724381994,
+            "ci_high": 0.2989363042689858,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.5098190292532909,
+            "ci_low": 0.49234692383823336,
+            "ci_high": 0.5271810799275625,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.5250449069358074,
+            "ci_low": 0.49563230638930167,
+            "ci_high": 0.552746150568262,
+            "n": 2000
+          }
+        },
+        "bayes": {
+          "logloss": {
+            "mean": 0.2601489362757628,
+            "ci_low": 0.23911524260548284,
+            "ci_high": 0.2826125160798024,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.08080106457429222,
+            "ci_low": 0.07325705985409622,
+            "ci_high": 0.0886744996825241,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.0,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.0,
+            "n": 2000
+          }
+        }
+      },
+      "learned_arms": [
+        "full_context_transformer"
+      ],
+      "controls": {
+        "full_context_transformer": {
+          "random_network": "full_context_transformer:random_network",
+          "untrained_init": "full_context_transformer:untrained_init"
+        }
+      },
+      "extra": {
+        "alignment": "unaligned",
+        "training": {
+          "visibility": "none",
+          "alignment": "unaligned",
+          "n_train": 80000,
+          "seed": 0,
+          "device": "cpu",
+          "width": 64,
+          "layers": 3,
+          "heads": 4,
+          "steps": 6000,
+          "batch": 512,
+          "lr": 0.001,
+          "val_frac": 0.1,
+          "eval_every": 100,
+          "patience": 1000,
+          "dropout": 0.1,
+          "weight_decay": 0.01
+        },
+        "loss_log": [
+          {
+            "step": 500,
+            "loss_ema": 0.3142454802614473,
+            "best_val": 0.3167573301792145,
+            "best_step": 400
+          },
+          {
+            "step": 1000,
+            "loss_ema": 0.3035677132932224,
+            "best_val": 0.31562999415397647,
+            "best_step": 700
+          },
+          {
+            "step": 1500,
+            "loss_ema": 0.2970832576493236,
+            "best_val": 0.31562999415397647,
+            "best_step": 700
+          },
+          {
+            "step": 1700,
+            "stopped_early": true,
+            "best_val": 0.31562999415397647,
+            "best_step": 700
+          }
+        ]
+      }
+    },
+    {
+      "schema": "aggbench.result/v1",
+      "run_id": "full-context-transformer-E2-unaligned-none-n320000",
+      "track": "REFERENCE",
+      "smoke": false,
+      "created_utc": "2026-10-21T03:22:08+00:00",
+      "harness": {
+        "version": "0.1.0",
+        "git_commit": "23f3e4be077a9fcd344050207fe976f7fa15d11d",
+        "git_dirty": false,
+        "sha256": "98bb08601c3b8c9317c13dc5d0847c4410e2345ed760ff40ce5f1ea712460e30"
+      },
+      "env": {
+        "name": "E2",
+        "config": {
+          "n_agents": 5,
+          "n_pieces": 12,
+          "pieces_per_agent": [
+            2,
+            6
+          ],
+          "strength_range": [
+            0.1,
+            0.6
+          ],
+          "prior": 0.5,
+          "key_noise": 0.15,
+          "n_sybil": 0,
+          "n_biased": 0,
+          "bias_temp": 3.0,
+          "bias_shift": 1.5,
+          "n_colluders": 0
+        }
+      },
+      "visibility": "none",
+      "splits": {
+        "train": {
+          "split": "train",
+          "first_seed": 0,
+          "n": 320000
+        },
+        "eval": {
+          "split": "dev",
+          "first_seed": 10000000,
+          "n": 2000
+        }
+      },
+      "oracle_check": {
+        "env": "E2",
+        "split": "smoke",
+        "episodes_checked": 24,
+        "max_abs_diff": 2.220446049250313e-16,
+        "tolerance": 1e-08,
+        "verified": true
+      },
+      "methods": {
+        "full_context_transformer": {
+          "logloss": {
+            "mean": 0.2994691647635234,
+            "ci_low": 0.27603772771743157,
+            "ci_high": 0.3249947740635668,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.09386153943918936,
+            "ci_low": 0.08567826194425272,
+            "ci_high": 0.10259396055238597,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.03481650770861373,
+            "ci_low": 0.03174294868268462,
+            "ci_high": 0.037903568964158606,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.039320228487760595,
+            "ci_low": 0.028006212271857116,
+            "ci_high": 0.050140065560315625,
+            "n": 2000
+          }
+        },
+        "full_context_transformer:untrained_init": {
+          "logloss": {
+            "mean": 0.6919245087891696,
+            "ci_low": 0.6807598235198844,
+            "ci_high": 0.7028086611904618,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.24889260821734,
+            "ci_low": 0.24354712968034206,
+            "ci_high": 0.25413109496202374,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.4162915650109463,
+            "ci_low": 0.40327437310109226,
+            "ci_high": 0.42859664887182125,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.4317755725134067,
+            "ci_low": 0.40762672890339774,
+            "ci_high": 0.4549377445118402,
+            "n": 2000
+          }
+        },
+        "full_context_transformer:random_network": {
+          "logloss": {
+            "mean": 0.7965362965932341,
+            "ci_low": 0.7790287506491612,
+            "ci_high": 0.8141488847674626,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.29592659931488274,
+            "ci_low": 0.2879068133691454,
+            "ci_high": 0.3039508566145443,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.5209862709856921,
+            "ci_low": 0.502614862936406,
+            "ci_high": 0.5392620339929187,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.5363873603174711,
+            "ci_low": 0.5058152258721317,
+            "ci_high": 0.5643275319491101,
+            "n": 2000
+          }
+        },
+        "bayes": {
+          "logloss": {
+            "mean": 0.2601489362757628,
+            "ci_low": 0.23911524260548284,
+            "ci_high": 0.2826125160798024,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.08080106457429222,
+            "ci_low": 0.07325705985409622,
+            "ci_high": 0.0886744996825241,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.0,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.0,
+            "n": 2000
+          }
+        }
+      },
+      "learned_arms": [
+        "full_context_transformer"
+      ],
+      "controls": {
+        "full_context_transformer": {
+          "random_network": "full_context_transformer:random_network",
+          "untrained_init": "full_context_transformer:untrained_init"
+        }
+      },
+      "extra": {
+        "alignment": "unaligned",
+        "training": {
+          "visibility": "none",
+          "alignment": "unaligned",
+          "n_train": 320000,
+          "seed": 0,
+          "device": "cpu",
+          "width": 64,
+          "layers": 3,
+          "heads": 4,
+          "steps": 12000,
+          "batch": 512,
+          "lr": 0.001,
+          "val_frac": 0.1,
+          "eval_every": 100,
+          "patience": 1000,
+          "dropout": 0.1,
+          "weight_decay": 0.01
+        },
+        "loss_log": [
+          {
+            "step": 500,
+            "loss_ema": 0.3197542993062519,
+            "best_val": 0.31210167741775513,
+            "best_step": 500
+          },
+          {
+            "step": 1000,
+            "loss_ema": 0.31207010730388013,
+            "best_val": 0.30910710668563846,
+            "best_step": 1000
+          },
+          {
+            "step": 1500,
+            "loss_ema": 0.3084389903601666,
+            "best_val": 0.3073554379940033,
+            "best_step": 1300
+          },
+          {
+            "step": 2000,
+            "loss_ema": 0.31261609625677744,
+            "best_val": 0.3060272946357727,
+            "best_step": 2000
+          },
+          {
+            "step": 2500,
+            "loss_ema": 0.30982624989709995,
+            "best_val": 0.3057817854881287,
+            "best_step": 2100
+          },
+          {
+            "step": 3000,
+            "loss_ema": 0.3098743033062825,
+            "best_val": 0.30535089802742005,
+            "best_step": 2700
+          },
+          {
+            "step": 3500,
+            "loss_ema": 0.3029518858051756,
+            "best_val": 0.30530530190467836,
+            "best_step": 3200
+          },
+          {
+            "step": 4000,
+            "loss_ema": 0.3026845389084994,
+            "best_val": 0.30451264667510985,
+            "best_step": 3700
+          },
+          {
+            "step": 4500,
+            "loss_ema": 0.306633267691644,
+            "best_val": 0.30451264667510985,
+            "best_step": 3700
+          },
+          {
+            "step": 4700,
+            "stopped_early": true,
+            "best_val": 0.30451264667510985,
+            "best_step": 3700
+          }
+        ]
+      }
+    },
+    {
+      "schema": "aggbench.result/v1",
+      "run_id": "full-context-transformer-Z8-unaligned-none-n20000",
+      "track": "REFERENCE",
+      "smoke": false,
+      "created_utc": "2026-10-21T03:49:12+00:00",
+      "harness": {
+        "version": "0.1.0",
+        "git_commit": "23f3e4be077a9fcd344050207fe976f7fa15d11d",
+        "git_dirty": false,
+        "sha256": "98bb08601c3b8c9317c13dc5d0847c4410e2345ed760ff40ce5f1ea712460e30"
+      },
+      "env": {
+        "name": "Z8",
+        "config": {
+          "n_agents": 5,
+          "n_pieces": 12,
+          "pieces_per_agent": [
+            2,
+            6
+          ],
+          "strength_levels": [
+            0.2,
+            0.4,
+            0.6
+          ],
+          "read_noise": 0.5,
+          "prior": 0.5,
+          "key_noise": 0.15
+        }
+      },
+      "visibility": "none",
+      "splits": {
+        "train": {
+          "split": "train",
+          "first_seed": 0,
+          "n": 20000
+        },
+        "eval": {
+          "split": "dev",
+          "first_seed": 10000000,
+          "n": 2000
+        }
+      },
+      "oracle_check": {
+        "env": "Z8",
+        "split": "smoke",
+        "episodes_checked": 24,
+        "max_abs_diff": 1.5543122344752192e-15,
+        "tolerance": 1e-08,
+        "verified": true
+      },
+      "methods": {
+        "full_context_transformer": {
+          "logloss": {
+            "mean": 0.319638007428475,
+            "ci_low": 0.2893041720892648,
+            "ci_high": 0.35309556670738634,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.09606721549357954,
+            "ci_low": 0.08634148258522568,
+            "ci_high": 0.10618002247894627,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.07105140885719254,
+            "ci_low": 0.06378669035225985,
+            "ci_high": 0.07836865908264817,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.08359872723647407,
+            "ci_low": 0.06438661745332881,
+            "ci_high": 0.1036322819627957,
+            "n": 2000
+          }
+        },
+        "full_context_transformer:untrained_init": {
+          "logloss": {
+            "mean": 0.6888737815952247,
+            "ci_low": 0.6776910750136387,
+            "ci_high": 0.6998882342036441,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.24757045752098703,
+            "ci_low": 0.24219605278239056,
+            "ci_high": 0.25283686552310697,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.44696002317228883,
+            "ci_low": 0.4341306456763396,
+            "ci_high": 0.45953379473987715,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.45283450140322373,
+            "ci_low": 0.42842649326977955,
+            "ci_high": 0.4771408424710107,
+            "n": 2000
+          }
+        },
+        "full_context_transformer:random_network": {
+          "logloss": {
+            "mean": 0.7839114734267733,
+            "ci_low": 0.7681552790490123,
+            "ci_high": 0.8003414948389308,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.29079476010096766,
+            "ci_low": 0.28336758541581764,
+            "ci_high": 0.2985001222494994,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.537750997912689,
+            "ci_low": 0.5205085293140689,
+            "ci_high": 0.556038214381094,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.5478721932347723,
+            "ci_low": 0.5195204403876048,
+            "ci_high": 0.5757468123066516,
+            "n": 2000
+          }
+        },
+        "bayes": {
+          "logloss": {
+            "mean": 0.23603928019200088,
+            "ci_low": 0.21332959689088815,
+            "ci_high": 0.2591936204906334,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.07234624637018669,
+            "ci_low": 0.06467448362409102,
+            "ci_high": 0.08036024403425515,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.0,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.0,
+            "n": 2000
+          }
+        }
+      },
+      "learned_arms": [
+        "full_context_transformer"
+      ],
+      "controls": {
+        "full_context_transformer": {
+          "random_network": "full_context_transformer:random_network",
+          "untrained_init": "full_context_transformer:untrained_init"
+        }
+      },
+      "extra": {
+        "alignment": "unaligned",
+        "training": {
+          "visibility": "none",
+          "alignment": "unaligned",
+          "n_train": 20000,
+          "seed": 0,
+          "device": "cpu",
+          "width": 64,
+          "layers": 3,
+          "heads": 4,
+          "steps": 3000,
+          "batch": 512,
+          "lr": 0.001,
+          "val_frac": 0.1,
+          "eval_every": 100,
+          "patience": 1000,
+          "dropout": 0.1,
+          "weight_decay": 0.01
+        },
+        "loss_log": [
+          {
+            "step": 500,
+            "loss_ema": 0.23717857657539373,
+            "best_val": 0.30528637766838074,
+            "best_step": 400
+          },
+          {
+            "step": 1000,
+            "loss_ema": 0.15908865015316628,
+            "best_val": 0.30528637766838074,
+            "best_step": 400
+          },
+          {
+            "step": 1400,
+            "stopped_early": true,
+            "best_val": 0.30528637766838074,
+            "best_step": 400
+          }
+        ]
+      }
+    },
+    {
+      "schema": "aggbench.result/v1",
+      "run_id": "full-context-transformer-Z8-unaligned-none-n80000",
+      "track": "REFERENCE",
+      "smoke": false,
+      "created_utc": "2026-10-21T03:23:25+00:00",
+      "harness": {
+        "version": "0.1.0",
+        "git_commit": "23f3e4be077a9fcd344050207fe976f7fa15d11d",
+        "git_dirty": false,
+        "sha256": "98bb08601c3b8c9317c13dc5d0847c4410e2345ed760ff40ce5f1ea712460e30"
+      },
+      "env": {
+        "name": "Z8",
+        "config": {
+          "n_agents": 5,
+          "n_pieces": 12,
+          "pieces_per_agent": [
+            2,
+            6
+          ],
+          "strength_levels": [
+            0.2,
+            0.4,
+            0.6
+          ],
+          "read_noise": 0.5,
+          "prior": 0.5,
+          "key_noise": 0.15
+        }
+      },
+      "visibility": "none",
+      "splits": {
+        "train": {
+          "split": "train",
+          "first_seed": 0,
+          "n": 80000
+        },
+        "eval": {
+          "split": "dev",
+          "first_seed": 10000000,
+          "n": 2000
+        }
+      },
+      "oracle_check": {
+        "env": "Z8",
+        "split": "smoke",
+        "episodes_checked": 24,
+        "max_abs_diff": 1.5543122344752192e-15,
+        "tolerance": 1e-08,
+        "verified": true
+      },
+      "methods": {
+        "full_context_transformer": {
+          "logloss": {
+            "mean": 0.28725715118356177,
+            "ci_low": 0.260996803063772,
+            "ci_high": 0.3148842123066171,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.08861579275467622,
+            "ci_low": 0.0800070174895867,
+            "ci_high": 0.09779352114208706,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.03729074624150333,
+            "ci_low": 0.03374640556366545,
+            "ci_high": 0.04108771006983635,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.051217870991560846,
+            "ci_low": 0.03790615259387028,
+            "ci_high": 0.06365331087855017,
+            "n": 2000
+          }
+        },
+        "full_context_transformer:untrained_init": {
+          "logloss": {
+            "mean": 0.6888737815952247,
+            "ci_low": 0.6776910750136387,
+            "ci_high": 0.6998882342036441,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.24757045752098703,
+            "ci_low": 0.24219605278239056,
+            "ci_high": 0.25283686552310697,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.44696002317228883,
+            "ci_low": 0.4341306456763396,
+            "ci_high": 0.45953379473987715,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.45283450140322373,
+            "ci_low": 0.42842649326977955,
+            "ci_high": 0.4771408424710107,
+            "n": 2000
+          }
+        },
+        "full_context_transformer:random_network": {
+          "logloss": {
+            "mean": 0.7859511479060766,
+            "ci_low": 0.7697492099867047,
+            "ci_high": 0.8029498706265006,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.2916139050484244,
+            "ci_low": 0.2840715749701445,
+            "ci_high": 0.2995224992654665,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.5396949241036378,
+            "ci_low": 0.5220793207174843,
+            "ci_high": 0.5584031718441045,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.5499118677140757,
+            "ci_low": 0.5214050348844123,
+            "ci_high": 0.5780005822108452,
+            "n": 2000
+          }
+        },
+        "bayes": {
+          "logloss": {
+            "mean": 0.23603928019200088,
+            "ci_low": 0.21332959689088815,
+            "ci_high": 0.2591936204906334,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.07234624637018669,
+            "ci_low": 0.06467448362409102,
+            "ci_high": 0.08036024403425515,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.0,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.0,
+            "n": 2000
+          }
+        }
+      },
+      "learned_arms": [
+        "full_context_transformer"
+      ],
+      "controls": {
+        "full_context_transformer": {
+          "random_network": "full_context_transformer:random_network",
+          "untrained_init": "full_context_transformer:untrained_init"
+        }
+      },
+      "extra": {
+        "alignment": "unaligned",
+        "training": {
+          "visibility": "none",
+          "alignment": "unaligned",
+          "n_train": 80000,
+          "seed": 0,
+          "device": "cpu",
+          "width": 64,
+          "layers": 3,
+          "heads": 4,
+          "steps": 6000,
+          "batch": 512,
+          "lr": 0.001,
+          "val_frac": 0.1,
+          "eval_every": 100,
+          "patience": 1000,
+          "dropout": 0.1,
+          "weight_decay": 0.01
+        },
+        "loss_log": [
+          {
+            "step": 500,
+            "loss_ema": 0.2756663843466474,
+            "best_val": 0.2772216374874115,
+            "best_step": 500
+          },
+          {
+            "step": 1000,
+            "loss_ema": 0.2708738469058439,
+            "best_val": 0.2772216374874115,
+            "best_step": 500
+          },
+          {
+            "step": 1500,
+            "loss_ema": 0.26106365694106376,
+            "best_val": 0.2772216374874115,
+            "best_step": 500
+          },
+          {
+            "step": 1500,
+            "stopped_early": true,
+            "best_val": 0.2772216374874115,
+            "best_step": 500
+          }
+        ]
+      }
+    },
+    {
+      "schema": "aggbench.result/v1",
+      "run_id": "full-context-transformer-Z8-unaligned-none-n320000",
+      "track": "REFERENCE",
+      "smoke": false,
+      "created_utc": "2026-10-21T03:23:34+00:00",
+      "harness": {
+        "version": "0.1.0",
+        "git_commit": "23f3e4be077a9fcd344050207fe976f7fa15d11d",
+        "git_dirty": false,
+        "sha256": "98bb08601c3b8c9317c13dc5d0847c4410e2345ed760ff40ce5f1ea712460e30"
+      },
+      "env": {
+        "name": "Z8",
+        "config": {
+          "n_agents": 5,
+          "n_pieces": 12,
+          "pieces_per_agent": [
+            2,
+            6
+          ],
+          "strength_levels": [
+            0.2,
+            0.4,
+            0.6
+          ],
+          "read_noise": 0.5,
+          "prior": 0.5,
+          "key_noise": 0.15
+        }
+      },
+      "visibility": "none",
+      "splits": {
+        "train": {
+          "split": "train",
+          "first_seed": 0,
+          "n": 320000
+        },
+        "eval": {
+          "split": "dev",
+          "first_seed": 10000000,
+          "n": 2000
+        }
+      },
+      "oracle_check": {
+        "env": "Z8",
+        "split": "smoke",
+        "episodes_checked": 24,
+        "max_abs_diff": 1.5543122344752192e-15,
+        "tolerance": 1e-08,
+        "verified": true
+      },
+      "methods": {
+        "full_context_transformer": {
+          "logloss": {
+            "mean": 0.27654436336175425,
+            "ci_low": 0.2522062463941675,
+            "ci_high": 0.3028598495951938,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.08513368931247803,
+            "ci_low": 0.07704762421672345,
+            "ci_high": 0.0940279605864704,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.03265774626792427,
+            "ci_low": 0.02936578075443199,
+            "ci_high": 0.03609652776347205,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.04050508316975341,
+            "ci_low": 0.0289535907550962,
+            "ci_high": 0.05252484664858802,
+            "n": 2000
+          }
+        },
+        "full_context_transformer:untrained_init": {
+          "logloss": {
+            "mean": 0.6888737815952247,
+            "ci_low": 0.6776910750136387,
+            "ci_high": 0.6998882342036441,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.24757045752098703,
+            "ci_low": 0.24219605278239056,
+            "ci_high": 0.25283686552310697,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.44696002317228883,
+            "ci_low": 0.4341306456763396,
+            "ci_high": 0.45953379473987715,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.45283450140322373,
+            "ci_low": 0.42842649326977955,
+            "ci_high": 0.4771408424710107,
+            "n": 2000
+          }
+        },
+        "full_context_transformer:random_network": {
+          "logloss": {
+            "mean": 0.7874482667655791,
+            "ci_low": 0.7709774168508551,
+            "ci_high": 0.80459585915049,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.2920663857186578,
+            "ci_low": 0.28443246238757697,
+            "ci_high": 0.2999766213079921,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.5405134396129292,
+            "ci_low": 0.5227246271860014,
+            "ci_high": 0.5590905089874075,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.5514089865735782,
+            "ci_low": 0.5221560718508781,
+            "ci_high": 0.5794118056939559,
+            "n": 2000
+          }
+        },
+        "bayes": {
+          "logloss": {
+            "mean": 0.23603928019200088,
+            "ci_low": 0.21332959689088815,
+            "ci_high": 0.2591936204906334,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.07234624637018669,
+            "ci_low": 0.06467448362409102,
+            "ci_high": 0.08036024403425515,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.0,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.0,
+            "n": 2000
+          }
+        }
+      },
+      "learned_arms": [
+        "full_context_transformer"
+      ],
+      "controls": {
+        "full_context_transformer": {
+          "random_network": "full_context_transformer:random_network",
+          "untrained_init": "full_context_transformer:untrained_init"
+        }
+      },
+      "extra": {
+        "alignment": "unaligned",
+        "training": {
+          "visibility": "none",
+          "alignment": "unaligned",
+          "n_train": 320000,
+          "seed": 0,
+          "device": "cpu",
+          "width": 64,
+          "layers": 3,
+          "heads": 4,
+          "steps": 12000,
+          "batch": 512,
+          "lr": 0.001,
+          "val_frac": 0.1,
+          "eval_every": 100,
+          "patience": 1000,
+          "dropout": 0.1,
+          "weight_decay": 0.01
+        },
+        "loss_log": [
+          {
+            "step": 500,
+            "loss_ema": 0.28577772734845297,
+            "best_val": 0.2727100405693054,
+            "best_step": 500
+          },
+          {
+            "step": 1000,
+            "loss_ema": 0.28052808414761976,
+            "best_val": 0.26859996223449706,
+            "best_step": 900
+          },
+          {
+            "step": 1500,
+            "loss_ema": 0.27452686012181204,
+            "best_val": 0.26843620753288266,
+            "best_step": 1400
+          },
+          {
+            "step": 2000,
+            "loss_ema": 0.27642753439783746,
+            "best_val": 0.2683492109775543,
+            "best_step": 1700
+          },
+          {
+            "step": 2500,
+            "loss_ema": 0.27402187671086836,
+            "best_val": 0.2674879367351532,
+            "best_step": 2100
+          },
+          {
+            "step": 3000,
+            "loss_ema": 0.27678270698509816,
+            "best_val": 0.26741608428955077,
+            "best_step": 2700
+          },
+          {
+            "step": 3500,
+            "loss_ema": 0.2741222191624878,
+            "best_val": 0.267368661403656,
+            "best_step": 3400
+          },
+          {
+            "step": 4000,
+            "loss_ema": 0.2710109180305311,
+            "best_val": 0.26720433473587035,
+            "best_step": 3800
+          },
+          {
+            "step": 4500,
+            "loss_ema": 0.26992869556965043,
+            "best_val": 0.26720433473587035,
+            "best_step": 3800
+          },
+          {
+            "step": 4800,
+            "stopped_early": true,
+            "best_val": 0.26720433473587035,
+            "best_step": 3800
+          }
+        ]
+      }
+    },
+    {
+      "schema": "aggbench.result/v1",
+      "run_id": "full-context-transformer-Z1-unaligned-none-n20000",
+      "track": "REFERENCE",
+      "smoke": false,
+      "created_utc": "2026-10-21T03:41:10+00:00",
+      "harness": {
+        "version": "0.1.0",
+        "git_commit": "23f3e4be077a9fcd344050207fe976f7fa15d11d",
+        "git_dirty": false,
+        "sha256": "98bb08601c3b8c9317c13dc5d0847c4410e2345ed760ff40ce5f1ea712460e30"
+      },
+      "env": {
+        "name": "Z1",
+        "config": {
+          "n_agents": 6,
+          "n_groups": 3,
+          "direct_prob": 0.2,
+          "rho_range": [
+            0.6,
+            0.95
+          ],
+          "rho_levels": [],
+          "strength_range": [
+            0.5,
+            2.0
+          ],
+          "obs_edges": [
+            -5.0,
+            5.0,
+            41
+          ],
+          "prior": 0.5,
+          "key_noise": 0.15
+        }
+      },
+      "visibility": "none",
+      "splits": {
+        "train": {
+          "split": "train",
+          "first_seed": 0,
+          "n": 20000
+        },
+        "eval": {
+          "split": "dev",
+          "first_seed": 10000000,
+          "n": 2000
+        }
+      },
+      "oracle_check": {
+        "env": "Z1",
+        "split": "smoke",
+        "episodes_checked": 24,
+        "max_abs_diff": 1.3322676295501878e-15,
+        "tolerance": 1e-08,
+        "verified": true
+      },
+      "methods": {
+        "full_context_transformer": {
+          "logloss": {
+            "mean": 0.18193203078850675,
+            "ci_low": 0.1607422213948059,
+            "ci_high": 0.20346412892919347,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.056272826008994574,
+            "ci_low": 0.0494479002262213,
+            "ci_high": 0.06339066720972629,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.018920299528464538,
+            "ci_low": 0.016403742318295382,
+            "ci_high": 0.021694237797728312,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.022101109166306445,
+            "ci_low": 0.014916224907428317,
+            "ci_high": 0.029956910839204685,
+            "n": 2000
+          }
+        },
+        "full_context_transformer:untrained_init": {
+          "logloss": {
+            "mean": 0.8319998639300799,
+            "ci_low": 0.8191823170010082,
+            "ci_high": 0.8449419997854929,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.31481560973053774,
+            "ci_low": 0.30868108135910205,
+            "ci_high": 0.32099218646590133,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.6574751557043347,
+            "ci_low": 0.6417148410258118,
+            "ci_high": 0.6733049259050936,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.6721689423078796,
+            "ci_low": 0.6482910524266914,
+            "ci_high": 0.6968893511743812,
+            "n": 2000
+          }
+        },
+        "full_context_transformer:random_network": {
+          "logloss": {
+            "mean": 0.8757912856092205,
+            "ci_low": 0.8526380065916186,
+            "ci_high": 0.8991920215019096,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.32686403970573147,
+            "ci_low": 0.316686964893278,
+            "ci_high": 0.33726881224383165,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.7036755439368648,
+            "ci_low": 0.6793103985719049,
+            "ci_high": 0.7286631682610113,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.7159603639870201,
+            "ci_low": 0.6853779982266291,
+            "ci_high": 0.7459880768933256,
+            "n": 2000
+          }
+        },
+        "bayes": {
+          "logloss": {
+            "mean": 0.15983092162220033,
+            "ci_low": 0.14248946112964092,
+            "ci_high": 0.17765915782532904,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.04938352141338636,
+            "ci_low": 0.04349181819937837,
+            "ci_high": 0.055504346972424026,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.0,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.0,
+            "n": 2000
+          }
+        }
+      },
+      "learned_arms": [
+        "full_context_transformer"
+      ],
+      "controls": {
+        "full_context_transformer": {
+          "random_network": "full_context_transformer:random_network",
+          "untrained_init": "full_context_transformer:untrained_init"
+        }
+      },
+      "extra": {
+        "alignment": "unaligned",
+        "training": {
+          "visibility": "none",
+          "alignment": "unaligned",
+          "n_train": 20000,
+          "seed": 0,
+          "device": "cpu",
+          "width": 64,
+          "layers": 3,
+          "heads": 4,
+          "steps": 3000,
+          "batch": 512,
+          "lr": 0.001,
+          "val_frac": 0.1,
+          "eval_every": 100,
+          "patience": 1000,
+          "dropout": 0.1,
+          "weight_decay": 0.01
+        },
+        "loss_log": [
+          {
+            "step": 500,
+            "loss_ema": 0.19166203687272784,
+            "best_val": 0.16844746470451355,
+            "best_step": 200
+          },
+          {
+            "step": 1000,
+            "loss_ema": 0.1833973453109268,
+            "best_val": 0.16560021042823792,
+            "best_step": 600
+          },
+          {
+            "step": 1500,
+            "loss_ema": 0.1821066640796259,
+            "best_val": 0.16482505202293396,
+            "best_step": 1100
+          },
+          {
+            "step": 2000,
+            "loss_ema": 0.17313553629015485,
+            "best_val": 0.16482505202293396,
+            "best_step": 1100
+          },
+          {
+            "step": 2100,
+            "stopped_early": true,
+            "best_val": 0.16482505202293396,
+            "best_step": 1100
+          }
+        ]
+      }
+    },
+    {
+      "schema": "aggbench.result/v1",
+      "run_id": "full-context-transformer-Z1-unaligned-none-n80000",
+      "track": "REFERENCE",
+      "smoke": false,
+      "created_utc": "2026-10-21T03:28:47+00:00",
+      "harness": {
+        "version": "0.1.0",
+        "git_commit": "23f3e4be077a9fcd344050207fe976f7fa15d11d",
+        "git_dirty": false,
+        "sha256": "98bb08601c3b8c9317c13dc5d0847c4410e2345ed760ff40ce5f1ea712460e30"
+      },
+      "env": {
+        "name": "Z1",
+        "config": {
+          "n_agents": 6,
+          "n_groups": 3,
+          "direct_prob": 0.2,
+          "rho_range": [
+            0.6,
+            0.95
+          ],
+          "rho_levels": [],
+          "strength_range": [
+            0.5,
+            2.0
+          ],
+          "obs_edges": [
+            -5.0,
+            5.0,
+            41
+          ],
+          "prior": 0.5,
+          "key_noise": 0.15
+        }
+      },
+      "visibility": "none",
+      "splits": {
+        "train": {
+          "split": "train",
+          "first_seed": 0,
+          "n": 80000
+        },
+        "eval": {
+          "split": "dev",
+          "first_seed": 10000000,
+          "n": 2000
+        }
+      },
+      "oracle_check": {
+        "env": "Z1",
+        "split": "smoke",
+        "episodes_checked": 24,
+        "max_abs_diff": 1.3322676295501878e-15,
+        "tolerance": 1e-08,
+        "verified": true
+      },
+      "methods": {
+        "full_context_transformer": {
+          "logloss": {
+            "mean": 0.17465249855499848,
+            "ci_low": 0.15622098844859295,
+            "ci_high": 0.19423064991949884,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.05412278691774742,
+            "ci_low": 0.047673373751068504,
+            "ci_high": 0.06068930396282971,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.01173745348542371,
+            "ci_low": 0.010259428363035603,
+            "ci_high": 0.013576589396747213,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.014821576932798166,
+            "ci_low": 0.008739014835017298,
+            "ci_high": 0.020878774165641788,
+            "n": 2000
+          }
+        },
+        "full_context_transformer:untrained_init": {
+          "logloss": {
+            "mean": 0.8319998639300799,
+            "ci_low": 0.8191823170010082,
+            "ci_high": 0.8449419997854929,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.31481560973053774,
+            "ci_low": 0.30868108135910205,
+            "ci_high": 0.32099218646590133,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.6574751557043347,
+            "ci_low": 0.6417148410258118,
+            "ci_high": 0.6733049259050936,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.6721689423078796,
+            "ci_low": 0.6482910524266914,
+            "ci_high": 0.6968893511743812,
+            "n": 2000
+          }
+        },
+        "full_context_transformer:random_network": {
+          "logloss": {
+            "mean": 0.8813967940423151,
+            "ci_low": 0.8574798578164105,
+            "ci_high": 0.90562953717323,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.3286822945317826,
+            "ci_low": 0.3182618633455197,
+            "ci_high": 0.33931629636232186,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.7093474896360791,
+            "ci_low": 0.6843298638989013,
+            "ci_high": 0.7349026954455462,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.7215658724201148,
+            "ci_low": 0.6906504675444158,
+            "ci_high": 0.752087109652046,
+            "n": 2000
+          }
+        },
+        "bayes": {
+          "logloss": {
+            "mean": 0.15983092162220033,
+            "ci_low": 0.14248946112964092,
+            "ci_high": 0.17765915782532904,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.04938352141338636,
+            "ci_low": 0.04349181819937837,
+            "ci_high": 0.055504346972424026,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.0,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.0,
+            "n": 2000
+          }
+        }
+      },
+      "learned_arms": [
+        "full_context_transformer"
+      ],
+      "controls": {
+        "full_context_transformer": {
+          "random_network": "full_context_transformer:random_network",
+          "untrained_init": "full_context_transformer:untrained_init"
+        }
+      },
+      "extra": {
+        "alignment": "unaligned",
+        "training": {
+          "visibility": "none",
+          "alignment": "unaligned",
+          "n_train": 80000,
+          "seed": 0,
+          "device": "cpu",
+          "width": 64,
+          "layers": 3,
+          "heads": 4,
+          "steps": 6000,
+          "batch": 512,
+          "lr": 0.001,
+          "val_frac": 0.1,
+          "eval_every": 100,
+          "patience": 1000,
+          "dropout": 0.1,
+          "weight_decay": 0.01
+        },
+        "loss_log": [
+          {
+            "step": 500,
+            "loss_ema": 0.1932872754105862,
+            "best_val": 0.19005347108840942,
+            "best_step": 500
+          },
+          {
+            "step": 1000,
+            "loss_ema": 0.18933267034956472,
+            "best_val": 0.18651973521709442,
+            "best_step": 800
+          },
+          {
+            "step": 1500,
+            "loss_ema": 0.18576481557664912,
+            "best_val": 0.18651973521709442,
+            "best_step": 800
+          },
+          {
+            "step": 2000,
+            "loss_ema": 0.18872245187173697,
+            "best_val": 0.1851791820526123,
+            "best_step": 1600
+          },
+          {
+            "step": 2500,
+            "loss_ema": 0.18853630555177237,
+            "best_val": 0.1851791820526123,
+            "best_step": 1600
+          },
+          {
+            "step": 2600,
+            "stopped_early": true,
+            "best_val": 0.1851791820526123,
+            "best_step": 1600
+          }
+        ]
+      }
+    },
+    {
+      "schema": "aggbench.result/v1",
+      "run_id": "full-context-transformer-Z1-unaligned-none-n320000",
+      "track": "REFERENCE",
+      "smoke": false,
+      "created_utc": "2026-10-21T03:27:15+00:00",
+      "harness": {
+        "version": "0.1.0",
+        "git_commit": "23f3e4be077a9fcd344050207fe976f7fa15d11d",
+        "git_dirty": false,
+        "sha256": "98bb08601c3b8c9317c13dc5d0847c4410e2345ed760ff40ce5f1ea712460e30"
+      },
+      "env": {
+        "name": "Z1",
+        "config": {
+          "n_agents": 6,
+          "n_groups": 3,
+          "direct_prob": 0.2,
+          "rho_range": [
+            0.6,
+            0.95
+          ],
+          "rho_levels": [],
+          "strength_range": [
+            0.5,
+            2.0
+          ],
+          "obs_edges": [
+            -5.0,
+            5.0,
+            41
+          ],
+          "prior": 0.5,
+          "key_noise": 0.15
+        }
+      },
+      "visibility": "none",
+      "splits": {
+        "train": {
+          "split": "train",
+          "first_seed": 0,
+          "n": 320000
+        },
+        "eval": {
+          "split": "dev",
+          "first_seed": 10000000,
+          "n": 2000
+        }
+      },
+      "oracle_check": {
+        "env": "Z1",
+        "split": "smoke",
+        "episodes_checked": 24,
+        "max_abs_diff": 1.3322676295501878e-15,
+        "tolerance": 1e-08,
+        "verified": true
+      },
+      "methods": {
+        "full_context_transformer": {
+          "logloss": {
+            "mean": 0.17214941583781918,
+            "ci_low": 0.15284465741834713,
+            "ci_high": 0.19248631902143662,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.05243785795430084,
+            "ci_low": 0.046307597412539904,
+            "ci_high": 0.05899771763454743,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.009326294049975679,
+            "ci_low": 0.00815841422383241,
+            "ci_high": 0.01066183468852746,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.012318494215618838,
+            "ci_low": 0.006482615697728557,
+            "ci_high": 0.017906544412638184,
+            "n": 2000
+          }
+        },
+        "full_context_transformer:untrained_init": {
+          "logloss": {
+            "mean": 0.8319998639300799,
+            "ci_low": 0.8191823170010082,
+            "ci_high": 0.8449419997854929,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.31481560973053774,
+            "ci_low": 0.30868108135910205,
+            "ci_high": 0.32099218646590133,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.6574751557043347,
+            "ci_low": 0.6417148410258118,
+            "ci_high": 0.6733049259050936,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.6721689423078796,
+            "ci_low": 0.6482910524266914,
+            "ci_high": 0.6968893511743812,
+            "n": 2000
+          }
+        },
+        "full_context_transformer:random_network": {
+          "logloss": {
+            "mean": 0.8649742433216581,
+            "ci_low": 0.8415961935576796,
+            "ci_high": 0.8886997111004229,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.32241844490973937,
+            "ci_low": 0.31209608713436016,
+            "ci_high": 0.33297817430878557,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.6932283072219232,
+            "ci_low": 0.6685069478683069,
+            "ci_high": 0.7182871722466377,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.7051433216994577,
+            "ci_low": 0.6751620106992213,
+            "ci_high": 0.7350405502474971,
+            "n": 2000
+          }
+        },
+        "bayes": {
+          "logloss": {
+            "mean": 0.15983092162220033,
+            "ci_low": 0.14248946112964092,
+            "ci_high": 0.17765915782532904,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.04938352141338636,
+            "ci_low": 0.04349181819937837,
+            "ci_high": 0.055504346972424026,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.0,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.0,
+            "n": 2000
+          }
+        }
+      },
+      "learned_arms": [
+        "full_context_transformer"
+      ],
+      "controls": {
+        "full_context_transformer": {
+          "random_network": "full_context_transformer:random_network",
+          "untrained_init": "full_context_transformer:untrained_init"
+        }
+      },
+      "extra": {
+        "alignment": "unaligned",
+        "training": {
+          "visibility": "none",
+          "alignment": "unaligned",
+          "n_train": 320000,
+          "seed": 0,
+          "device": "cpu",
+          "width": 64,
+          "layers": 3,
+          "heads": 4,
+          "steps": 12000,
+          "batch": 512,
+          "lr": 0.001,
+          "val_frac": 0.1,
+          "eval_every": 100,
+          "patience": 1000,
+          "dropout": 0.1,
+          "weight_decay": 0.01
+        },
+        "loss_log": [
+          {
+            "step": 500,
+            "loss_ema": 0.1938062009593088,
+            "best_val": 0.19187596154212952,
+            "best_step": 500
+          },
+          {
+            "step": 1000,
+            "loss_ema": 0.1905925685284863,
+            "best_val": 0.18816223740577698,
+            "best_step": 1000
+          },
+          {
+            "step": 1500,
+            "loss_ema": 0.1859470987420033,
+            "best_val": 0.18713285195827484,
+            "best_step": 1200
+          },
+          {
+            "step": 2000,
+            "loss_ema": 0.18837767895125462,
+            "best_val": 0.18713285195827484,
+            "best_step": 1200
+          },
+          {
+            "step": 2500,
+            "loss_ema": 0.18992723305807024,
+            "best_val": 0.186762286901474,
+            "best_step": 2200
+          },
+          {
+            "step": 3000,
+            "loss_ema": 0.18419252218050403,
+            "best_val": 0.186762286901474,
+            "best_step": 2200
+          },
+          {
+            "step": 3500,
+            "loss_ema": 0.18453762826653808,
+            "best_val": 0.18546100056171416,
+            "best_step": 3500
+          },
+          {
+            "step": 4000,
+            "loss_ema": 0.1876987216078806,
+            "best_val": 0.18532179856300354,
+            "best_step": 3900
+          },
+          {
+            "step": 4500,
+            "loss_ema": 0.19030608734673604,
+            "best_val": 0.18532179856300354,
+            "best_step": 3900
+          },
+          {
+            "step": 4900,
+            "stopped_early": true,
+            "best_val": 0.18532179856300354,
+            "best_step": 3900
+          }
+        ]
+      }
+    },
+    {
+      "schema": "aggbench.result/v1",
+      "run_id": "full-context-transformer-Z6-unaligned-none-n20000",
+      "track": "REFERENCE",
+      "smoke": false,
+      "created_utc": "2026-10-21T03:50:55+00:00",
+      "harness": {
+        "version": "0.1.0",
+        "git_commit": "23f3e4be077a9fcd344050207fe976f7fa15d11d",
+        "git_dirty": false,
+        "sha256": "98bb08601c3b8c9317c13dc5d0847c4410e2345ed760ff40ce5f1ea712460e30"
+      },
+      "env": {
+        "name": "Z6",
+        "config": {
+          "n_agents": 6,
+          "n_bits": 2,
+          "accuracy_range": [
+            0.65,
+            0.95
+          ],
+          "key_noise": 0.15
+        }
+      },
+      "visibility": "none",
+      "splits": {
+        "train": {
+          "split": "train",
+          "first_seed": 0,
+          "n": 20000
+        },
+        "eval": {
+          "split": "dev",
+          "first_seed": 10000000,
+          "n": 2000
+        }
+      },
+      "oracle_check": {
+        "env": "Z6",
+        "split": "smoke",
+        "episodes_checked": 24,
+        "max_abs_diff": 2.7755575615628914e-16,
+        "tolerance": 1e-08,
+        "verified": true
+      },
+      "methods": {
+        "full_context_transformer": {
+          "logloss": {
+            "mean": 0.45813884211201683,
+            "ci_low": 0.4319214721965961,
+            "ci_high": 0.4837399183062916,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.1484729688277175,
+            "ci_low": 0.13894881056366248,
+            "ci_high": 0.15795947310434735,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.010552840312863033,
+            "ci_low": 0.009824265133249074,
+            "ci_high": 0.0113420217733511,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.011591439086183673,
+            "ci_low": 0.005163896603702761,
+            "ci_high": 0.018225286808902615,
+            "n": 2000
+          }
+        },
+        "full_context_transformer:untrained_init": {
+          "logloss": {
+            "mean": 0.7604968667576981,
+            "ci_low": 0.7452936209445674,
+            "ci_high": 0.774581988299819,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.2817455188026826,
+            "ci_low": 0.2744586584711663,
+            "ci_high": 0.28849812622871684,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.3247745759884028,
+            "ci_low": 0.31143068287451736,
+            "ci_high": 0.3387058202605807,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.31394946373186494,
+            "ci_low": 0.28740501419856246,
+            "ci_high": 0.3411269628312971,
+            "n": 2000
+          }
+        },
+        "full_context_transformer:random_network": {
+          "logloss": {
+            "mean": 0.7636439124557551,
+            "ci_low": 0.7466205365738112,
+            "ci_high": 0.7810587214213294,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.2814930399503261,
+            "ci_low": 0.27363449615340735,
+            "ci_high": 0.2895830572540313,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.33648541710186075,
+            "ci_low": 0.32182691985424294,
+            "ci_high": 0.3512368575650665,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.31709650942992196,
+            "ci_low": 0.2893428322837449,
+            "ci_high": 0.3471375064682039,
+            "n": 2000
+          }
+        },
+        "bayes": {
+          "logloss": {
+            "mean": 0.4465474030258332,
+            "ci_low": 0.4223755031127116,
+            "ci_high": 0.4691726442024169,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.1452427077149733,
+            "ci_low": 0.1363404306678051,
+            "ci_high": 0.1536731986550659,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.0,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.0,
+            "n": 2000
+          }
+        }
+      },
+      "learned_arms": [
+        "full_context_transformer"
+      ],
+      "controls": {
+        "full_context_transformer": {
+          "random_network": "full_context_transformer:random_network",
+          "untrained_init": "full_context_transformer:untrained_init"
+        }
+      },
+      "extra": {
+        "alignment": "unaligned",
+        "training": {
+          "visibility": "none",
+          "alignment": "unaligned",
+          "n_train": 20000,
+          "seed": 0,
+          "device": "cpu",
+          "width": 64,
+          "layers": 3,
+          "heads": 4,
+          "steps": 3000,
+          "batch": 512,
+          "lr": 0.001,
+          "val_frac": 0.1,
+          "eval_every": 100,
+          "patience": 1000,
+          "dropout": 0.1,
+          "weight_decay": 0.01
+        },
+        "loss_log": [
+          {
+            "step": 500,
+            "loss_ema": 0.44850110585259545,
+            "best_val": 0.44815483689308167,
+            "best_step": 200
+          },
+          {
+            "step": 1000,
+            "loss_ema": 0.4372869141612881,
+            "best_val": 0.4467901289463043,
+            "best_step": 600
+          },
+          {
+            "step": 1500,
+            "loss_ema": 0.4328973898233657,
+            "best_val": 0.4464896321296692,
+            "best_step": 1200
+          },
+          {
+            "step": 2000,
+            "loss_ema": 0.4295966511063985,
+            "best_val": 0.4464896321296692,
+            "best_step": 1200
+          },
+          {
+            "step": 2200,
+            "stopped_early": true,
+            "best_val": 0.4464896321296692,
+            "best_step": 1200
+          }
+        ]
+      }
+    },
+    {
+      "schema": "aggbench.result/v1",
+      "run_id": "full-context-transformer-Z6-unaligned-none-n80000",
+      "track": "REFERENCE",
+      "smoke": false,
+      "created_utc": "2026-10-21T03:28:01+00:00",
+      "harness": {
+        "version": "0.1.0",
+        "git_commit": "23f3e4be077a9fcd344050207fe976f7fa15d11d",
+        "git_dirty": false,
+        "sha256": "98bb08601c3b8c9317c13dc5d0847c4410e2345ed760ff40ce5f1ea712460e30"
+      },
+      "env": {
+        "name": "Z6",
+        "config": {
+          "n_agents": 6,
+          "n_bits": 2,
+          "accuracy_range": [
+            0.65,
+            0.95
+          ],
+          "key_noise": 0.15
+        }
+      },
+      "visibility": "none",
+      "splits": {
+        "train": {
+          "split": "train",
+          "first_seed": 0,
+          "n": 80000
+        },
+        "eval": {
+          "split": "dev",
+          "first_seed": 10000000,
+          "n": 2000
+        }
+      },
+      "oracle_check": {
+        "env": "Z6",
+        "split": "smoke",
+        "episodes_checked": 24,
+        "max_abs_diff": 2.7755575615628914e-16,
+        "tolerance": 1e-08,
+        "verified": true
+      },
+      "methods": {
+        "full_context_transformer": {
+          "logloss": {
+            "mean": 0.45455630252732043,
+            "ci_low": 0.4301311741845988,
+            "ci_high": 0.47840089151338744,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.1476165624748163,
+            "ci_low": 0.13855379302524354,
+            "ci_high": 0.15642039135081467,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.006321474383742194,
+            "ci_low": 0.005731325595664632,
+            "ci_high": 0.006939115839393732,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.008008899501487275,
+            "ci_low": 0.0028966111509231055,
+            "ci_high": 0.013109288276846952,
+            "n": 2000
+          }
+        },
+        "full_context_transformer:untrained_init": {
+          "logloss": {
+            "mean": 0.7604968667576981,
+            "ci_low": 0.7452936209445674,
+            "ci_high": 0.774581988299819,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.2817455188026826,
+            "ci_low": 0.2744586584711663,
+            "ci_high": 0.28849812622871684,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.3247745759884028,
+            "ci_low": 0.31143068287451736,
+            "ci_high": 0.3387058202605807,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.31394946373186494,
+            "ci_low": 0.28740501419856246,
+            "ci_high": 0.3411269628312971,
+            "n": 2000
+          }
+        },
+        "full_context_transformer:random_network": {
+          "logloss": {
+            "mean": 0.7659535011581382,
+            "ci_low": 0.7486577578192848,
+            "ci_high": 0.7836504927774187,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.28248516070156476,
+            "ci_low": 0.2745210463605368,
+            "ci_high": 0.29067798902446523,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.33895161304757243,
+            "ci_low": 0.3242007967727258,
+            "ci_high": 0.35377805158641157,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.319406098132305,
+            "ci_low": 0.29143474005819847,
+            "ci_high": 0.3497981865261719,
+            "n": 2000
+          }
+        },
+        "bayes": {
+          "logloss": {
+            "mean": 0.4465474030258332,
+            "ci_low": 0.4223755031127116,
+            "ci_high": 0.4691726442024169,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.1452427077149733,
+            "ci_low": 0.1363404306678051,
+            "ci_high": 0.1536731986550659,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.0,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.0,
+            "n": 2000
+          }
+        }
+      },
+      "learned_arms": [
+        "full_context_transformer"
+      ],
+      "controls": {
+        "full_context_transformer": {
+          "random_network": "full_context_transformer:random_network",
+          "untrained_init": "full_context_transformer:untrained_init"
+        }
+      },
+      "extra": {
+        "alignment": "unaligned",
+        "training": {
+          "visibility": "none",
+          "alignment": "unaligned",
+          "n_train": 80000,
+          "seed": 0,
+          "device": "cpu",
+          "width": 64,
+          "layers": 3,
+          "heads": 4,
+          "steps": 6000,
+          "batch": 512,
+          "lr": 0.001,
+          "val_frac": 0.1,
+          "eval_every": 100,
+          "patience": 1000,
+          "dropout": 0.1,
+          "weight_decay": 0.01
+        },
+        "loss_log": [
+          {
+            "step": 500,
+            "loss_ema": 0.4470943876209852,
+            "best_val": 0.44752886295318606,
+            "best_step": 400
+          },
+          {
+            "step": 1000,
+            "loss_ema": 0.4492065374789509,
+            "best_val": 0.44396323585510256,
+            "best_step": 1000
+          },
+          {
+            "step": 1500,
+            "loss_ema": 0.4425508860908454,
+            "best_val": 0.441655707359314,
+            "best_step": 1100
+          },
+          {
+            "step": 2000,
+            "loss_ema": 0.440134675100824,
+            "best_val": 0.441655707359314,
+            "best_step": 1100
+          },
+          {
+            "step": 2100,
+            "stopped_early": true,
+            "best_val": 0.441655707359314,
+            "best_step": 1100
+          }
+        ]
+      }
+    },
+    {
+      "schema": "aggbench.result/v1",
+      "run_id": "full-context-transformer-Z6-unaligned-none-n320000",
+      "track": "REFERENCE",
+      "smoke": false,
+      "created_utc": "2026-10-21T03:16:23+00:00",
+      "harness": {
+        "version": "0.1.0",
+        "git_commit": "23f3e4be077a9fcd344050207fe976f7fa15d11d",
+        "git_dirty": false,
+        "sha256": "98bb08601c3b8c9317c13dc5d0847c4410e2345ed760ff40ce5f1ea712460e30"
+      },
+      "env": {
+        "name": "Z6",
+        "config": {
+          "n_agents": 6,
+          "n_bits": 2,
+          "accuracy_range": [
+            0.65,
+            0.95
+          ],
+          "key_noise": 0.15
+        }
+      },
+      "visibility": "none",
+      "splits": {
+        "train": {
+          "split": "train",
+          "first_seed": 0,
+          "n": 320000
+        },
+        "eval": {
+          "split": "dev",
+          "first_seed": 10000000,
+          "n": 2000
+        }
+      },
+      "oracle_check": {
+        "env": "Z6",
+        "split": "smoke",
+        "episodes_checked": 24,
+        "max_abs_diff": 2.7755575615628914e-16,
+        "tolerance": 1e-08,
+        "verified": true
+      },
+      "methods": {
+        "full_context_transformer": {
+          "logloss": {
+            "mean": 0.45156087325851135,
+            "ci_low": 0.42721679775909455,
+            "ci_high": 0.4750037550795688,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.14665301188549512,
+            "ci_low": 0.13745861904457293,
+            "ci_high": 0.15548933208487,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.00586080630130478,
+            "ci_low": 0.005476460303598479,
+            "ci_high": 0.006242910284423067,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.005013470232678177,
+            "ci_low": 0.000225161687068853,
+            "ci_high": 0.00939779415366148,
+            "n": 2000
+          }
+        },
+        "full_context_transformer:untrained_init": {
+          "logloss": {
+            "mean": 0.7604968667576981,
+            "ci_low": 0.7452936209445674,
+            "ci_high": 0.774581988299819,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.2817455188026826,
+            "ci_low": 0.2744586584711663,
+            "ci_high": 0.28849812622871684,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.3247745759884028,
+            "ci_low": 0.31143068287451736,
+            "ci_high": 0.3387058202605807,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.31394946373186494,
+            "ci_low": 0.28740501419856246,
+            "ci_high": 0.3411269628312971,
+            "n": 2000
+          }
+        },
+        "full_context_transformer:random_network": {
+          "logloss": {
+            "mean": 0.7732783541743758,
+            "ci_low": 0.7551758798724483,
+            "ci_high": 0.7918010150802908,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.2856072068526828,
+            "ci_low": 0.27728383754850994,
+            "ci_high": 0.29424339277994316,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.3465765356128796,
+            "ci_low": 0.33143051740694157,
+            "ci_high": 0.36177705337171323,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.32673095114854267,
+            "ci_low": 0.2983040294330064,
+            "ci_high": 0.3580160550225747,
+            "n": 2000
+          }
+        },
+        "bayes": {
+          "logloss": {
+            "mean": 0.4465474030258332,
+            "ci_low": 0.4223755031127116,
+            "ci_high": 0.4691726442024169,
+            "n": 2000
+          },
+          "brier": {
+            "mean": 0.1452427077149733,
+            "ci_low": 0.1363404306678051,
+            "ci_high": 0.1536731986550659,
+            "n": 2000
+          },
+          "kl": {
+            "mean": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.0,
+            "n": 2000
+          },
+          "regret": {
+            "mean": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.0,
+            "n": 2000
+          }
+        }
+      },
+      "learned_arms": [
+        "full_context_transformer"
+      ],
+      "controls": {
+        "full_context_transformer": {
+          "random_network": "full_context_transformer:random_network",
+          "untrained_init": "full_context_transformer:untrained_init"
+        }
+      },
+      "extra": {
+        "alignment": "unaligned",
+        "training": {
+          "visibility": "none",
+          "alignment": "unaligned",
+          "n_train": 320000,
+          "seed": 0,
+          "device": "cpu",
+          "width": 64,
+          "layers": 3,
+          "heads": 4,
+          "steps": 12000,
+          "batch": 512,
+          "lr": 0.001,
+          "val_frac": 0.1,
+          "eval_every": 100,
+          "patience": 1000,
+          "dropout": 0.1,
+          "weight_decay": 0.01
+        },
+        "loss_log": [
+          {
+            "step": 500,
+            "loss_ema": 0.4541374562290372,
+            "best_val": 0.44108299565315245,
+            "best_step": 500
+          },
+          {
+            "step": 1000,
+            "loss_ema": 0.4460806928393394,
+            "best_val": 0.44108299565315245,
+            "best_step": 500
+          },
+          {
+            "step": 1500,
+            "loss_ema": 0.44437870936262314,
+            "best_val": 0.44108299565315245,
+            "best_step": 500
+          },
+          {
+            "step": 1500,
+            "stopped_early": true,
+            "best_val": 0.44108299565315245,
+            "best_step": 500
+          }
+        ]
+      }
+    }
+  ]
+}

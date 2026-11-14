@@ -1,0 +1,141 @@
+## 3. Difficulties prong
+
+### 3.1 On random weights, "deterministic" is no restriction (in an idealised arithmetic model)
+- PROVEN UNDER exact-transform primitives [A] (real arithmetic with unit-cost inverse cdfs). QR-reduce three rows of
+  W_1, B_1 = W_1 Q. Then mu(B) = mu(W), and the 3n - 6 angular coordinates removed are uniform and independent of B
+  (Bartlett decomposition of Gaussian rows). Their conditional cdfs give uniforms U, V in [0, 1)^n, and
+  X_i = Phi^{-1}((U + i V) mod 1) are pairwise independent N(0, I_n), because (u, v) -> (u + i v, u + j v) mod 1
+  preserves Haar measure on the torus for i != j. The average of f_B over X_1..X_N has risk exactly V/N. Cost: N
+  forward passes plus O(n^2 + n N). This needs n >= 6 (3n - 6 >= 2n); smaller widths use radius-exact spherical
+  sampling (n >= 4) or the first layer's Frobenius radius as an extra seed (n = 2, 3) [A].
+- PROVEN for Gaussian weights at each fixed size, with floor and inverse-cdf primitives [C, integrability step A].
+  Seeds frac(2^k w) from a few weight entries become uniform and independent of W as k grows (Riemann-Lebesgue), and
+  the wrapped density of the Gaussian combinations used is bounded uniformly in k, so the risk tends to V/N. The same
+  works for the noise variables of noisy nets. For a general weight density the weak convergence holds but the risk
+  convergence needs an integrability assumption: the review gave a density for which it fails.
+- PROVEN UNDER digit-splitting and exact-transform primitives [C, after an objection from A]: any randomized
+  estimator can be simulated deterministically at the same average risk. From the free directions draw a Haar
+  rotation and, from other digits, the estimator's random bits; rotating the canonical first layer gives an instance
+  with the law of W and the same mean, independent of those bits. Extra cost O(n^3) plus the randomness access. With
+  finitely many bits per weight an exact simulation is impossible (it would need H(W', R) = H(W) + H(R) > H(W)); only
+  approximate versions, like the digit seeds, remain.
+- Threshold circuits (only partly). For iid symmetric nonzero weights on uniform +-1 inputs, flipping an input and
+  its weight column preserves the acceptance probability, so canonicalising the signs of one row frees n fair bits
+  independent of the canonical circuit (PROVEN [C]). A pairwise-independent sample of n-bit inputs needs 2n bits, and
+  a free permutation does not supply fair bits exactly, so a deterministic match of MC for random threshold circuits
+  is not established here.
+- Consequences [C+A]. In the idealised model, determinism excludes nothing in ARC's random-MLP instance, uniformly and
+  explicitly; this is typically-correct derandomisation (Goldreich-Wigderson 2002) made exact by the ensemble's
+  symmetry. Neither continuity in W (a fixed design is continuous in W [A]) nor algebraic operations only (iterated
+  Chebyshev polynomials give rapidly oscillating seeds [C, corrected by A]) separates deduction from sampling. A useful
+  restriction must be representational, for example an auditable language with no weight-derived seeds [A], or a
+  bounded interface (the sibling lane). The brief's question therefore becomes: is MC, implemented as well as
+  possible, optimal among all algorithms on average over random critical nets?
+
+### 3.2 The baseline must be the best sampler (PROVEN) [A]
+A batch of N >= n inputs through an n x n layer costs O(ceil(N/n) n^omega) with fast matrix multiplication instead of
+2 N n^2, so batched MC beats serial MC by n^{3 - log2 7} = n^{0.19} (Strassen) at equal arithmetic cost. "Nothing
+beats serial MC by more than a constant" is false. A conjecture must compare with the best implementation of
+sampling, or fix a cost model in which a matrix-vector product costs n^2. Every experiment here uses the latter.
+
+### 3.3 Why no unrestricted impossibility proof is in reach
+- PROVEN (logical) [C+A]. Fix the precision of the weights, an accuracy schedule and a RAM cost model. Then "every
+  algorithm of cost T has risk at least c times that of the best sampler at cost T", for budgets of M^{1+delta}
+  operations (M = n^2 L weights), is a super-linear time lower bound for an explicit distributional problem. It would
+  not by itself imply P != NP or a circuit lower bound [A].
+- HEURISTIC [C, narrowed by the review]. I know of no technique that proves a lower bound of this kind for a natural
+  problem like this one (time-hierarchy arguments give super-linear bounds only for diagonal problems). This is a
+  statement about available techniques, not a theorem.
+- PROVEN (logical). Worst-case barriers do not transfer. IKW (deterministic estimation within +-1/12 for all nets in
+  time 2^{E^{o(1)}} would give NEXP not in P/poly) and the #NSETH bound (deterministic needs time E^{2 - o(1)}) are
+  worst-case results (hardness lane, Cor. 4.2 and 4.3). On random weights derandomisation is free in the idealised
+  model (3.1).
+- PROVEN (logical) [C; narrowed by A and the review]. The polynomial-interpolation route to worst-to-average
+  reductions (Lipton; Ball-Rosen-Sabin-Vasudevan; Gamarnik-Kizildag for the SK partition function) needs an estimand
+  that is a low-degree polynomial in the instance. mu is not one: it is positively 1-homogeneous in each layer, and
+  already mu = |w| / sqrt(2 pi) at L = 1. Other random self-reductions exist (discrete logarithm is one), so this
+  excludes one route, not all.
+- PROVEN (logical) [A]. Natural proofs would need a large, constructive property of truth tables; Gaussian measure on
+  weights is not that largeness condition, so the barrier does not apply as such.
+
+### 3.4 Where the known average-case hard problems sit
+- PROVEN [C+A]. With Z(beta) = E exp(beta f), the mean is (log Z)'(0): the infinite-temperature end.
+- The average-case hardness results I know concern exact computation or relative precision. Exact computation of the
+  SK partition function is hard on average unless P = #P (Gamarnik-Kizildag 2021, verified abstract). Exact output
+  probabilities of random quantum circuits and exact permanents of Gaussian matrices are #P-hard on average; their
+  approximate versions are conjectures (from memory). For convex-body volume, randomised algorithms succeed
+  (Dyer-Frieze-Kannan) and deterministic oracle algorithms fail, a worst-case information bound (from memory). None of
+  these is a hardness result for additive precision at the standard-deviation scale, which MC reaches in polynomial
+  time (hardness lane Prop. 3.1), so none applies to ARC's mean as stated.
+- PROVEN [A, corrected by the review]. Moving between free-energy error and partition-function error loses a factor
+  proportional to the coefficient of variation, exponential only when that is exponential.
+- PROVEN [A]. Tails: under ARC's SD-normalised metric, zero beats N-sample MC on average over nets exactly when
+  E[p^2] < E[p (1 - p)] / N. Tail hardness has to be stated for relative error.
+
+### 3.5 Restricted classes: what provably fails, and by how much
+- **Fixed point sets** (deterministic QMC, designs).
+  - PROVEN [C+A]. The risk of any fixed linear rule is the kernel discrepancy
+    sum_{ij} c_i c_j k(u_i . u_j) - 2 m_n q sum_i c_i + m_n^2 q, with k(t) = E_W <g(u), g(v)> and q = E k(U . V). A fixed rule
+    and its random rotation have the same risk. This does not equate a Sobol set with scrambled Sobol, since
+    scrambling changes the geometry [A].
+  - PROVEN [A]. k(t) = sum_d b_d t^d with b_d >= 0 (Mehler expansion through the first layer). For positive weights
+    summing to one, the gain over RB-MC is at most 2 (1 - q) / sum_{s : tau_{2s} <= 1/(2N)} b_{2s}, where
+    tau_{2s} = E (U . V)^{2s} = (2s - 1)!! / (n (n + 2) ... (n + 2s - 2)). For N <= n^p only even degrees above about 2p
+    count. Designs gain at most the inverse of the high even-degree mass of the kernel.
+  - PROVEN in the infinite-width mean-field limit (infinite width first, then depth) [A]: at L = alpha n that even tail
+    carries half the angular variance, so the bound tends to about 4x. MEASURED at finite width: PENDING.
+  - PROVEN UNDER the Gaussian-process limit at fixed n and L, two-sided spectral bounds (with the parity
+    degeneracies handled) and an applicable cubature theorem [C; hypotheses not checked]: the best N-point rule has
+    squared error of order N^{-1 - 3/(n-1)}, a gain of order N^{3/(n-1)} (N^{0.43} at n = 8, N^{0.012} at n = 256).
+- **Polynomials of degree D in the weights** (instance-independent coefficients).
+  - PROVEN. The best risk is the Hermite tail T_D = sum_{k > D} E_k of mu ([C] planned before astra's run; [A]
+    independently). Noise stability S(rho) = Cov(mu(W), mu(rho W + sqrt(1 - rho^2) W')) = sum_k rho^k E_k ([C] and [A])
+    bounds it from below and above; the explicit bounds are astra's (I wrote my one-sided version after seeing its
+    progress line): T_D >= [(1 + rho^{-D}) F(rho) - rho^{-D} F(rho^2)]_+ with F = S(1) - S, and T_D <= F(rho)/(1 - rho^{D+1}).
+  - PROVEN in the mean-field limit [A, proving my heuristic]. S_L(rho) = m_n^2 (E_T K_{rho,L}(T) - 1/pi), with
+    K_{rho,0}(t) = t and K_{rho,l+1} = kappa(rho K_{rho,l}). At fixed depth the decorrelation is linear in delta = 1 - rho,
+    with slope of order L; for L delta^{1/3} -> infinity, 1 - Corr ~ 3.27 delta^{2/3}, so T_D = Theta(S(1) D^{-2/3}) for
+    1 << D << L^3.
+  - MEASURED (registered M1: 48 net pairs per configuration, 2^14 Sobol points per net). At n = 32 the measured
+    decorrelation matches the mean-field formula within about 5% at L = 4 for every delta from 1e-5 to 0.3. At L = 16
+    and 32, after dividing by the measured value at delta = 1 (post hoc; it should be 1 and is 1.6), it matches within
+    -21% to +29% for delta <= 1e-2 (`logs/nstab_mf_compare.log`). Finite-difference proxies of the mean Hermite
+    degree, D(1e-5)/1e-5: 2.2 at L = 4, 7 at L = 16, 17 at L = 32 (27 before the division).
+  - Plug-in estimates of the class ceiling (registered estimator, against plain MC, relative standard errors of the
+    inputs 20-60%): at n = 32, degree-4 polynomials are worth at most about 2.3 (L = 16) and 1.2 (L = 32) MC samples,
+    degree-8 about 14.5 and 5.7. The post-hoc normalised estimator gives 6.5 and 3.9 for degree 4 and 17 for degree 8
+    at L = 32. At n = 16 and L >= 16 rare high-energy nets dominate the second moments and the estimates are
+    unresolved. These are estimates, not established bounds.
+- **Stable estimators.** PROVEN [C+A]. 2 |A - mu| >= |mu - mu_rho| - |A - A_rho| in L^2, so an accurate estimator must be
+  at least as rough in W as mu, which the previous item quantifies. Overlap-gap arguments do not apply as such: the
+  acceptable estimates for one net form a ball, a connected convex set [A].
+- **Statistical queries.** PROVEN [C+A]. Bounded scalar queries need one query per output coordinate and a truncation
+  of the unbounded ReLU outputs, but with arbitrary expectation queries the mean, or a tail, is answered directly. SQ
+  lower bounds count queries, so they say nothing unless queries are restricted or charged.
+- **Cell selection.** PROVEN [A]. Any K first-layer gate cells, chosen after reading W, cover expected mass at most
+  sqrt(K kappa_n), with kappa_n = E_T (1/2 + arcsin(T)/pi)^n exponentially small. A method that integrates selected
+  cells exactly and drops the rest has risk of order n at L = alpha n for polynomial K.
+- **Partition cubature exact on linear cells.** PROVEN UNDER a mesh hypothesis [A]; these are upper bounds, not
+  limits on all partition methods. M cells give error C_W M^{-2/(n-1)} with coherent cell errors; with centred,
+  uncorrelated cell errors (unproved for our algorithm) the squared error is M^{-1 - 3/(n-1)} [A; my v1 exponent was
+  wrong]. The exponent's advantage over MC, 3/(n-1), vanishes with width; the constants grow with depth.
+- **Exact enumeration of linear cones.** PROVEN UNDER a region-count bound and an integration-cost hypothesis [C]:
+  if E R <= (C n L)^{n-1} and each fixed-dimensional cone integral costs polylog(1/eps), exact integration at fixed width
+  costs a polynomial in L. HEURISTIC: it then beats MC once eps is below about (C n L)^{-(n-1)/2}. The bound on R is
+  an extra hypothesis: Hanin and Rolnick prove a count of order (number of neurons)^(input dimension) for nets with
+  random biases (abstract verified), not this bias-free spherical version. At L = alpha n it is exp(O(n log n)).
+  MEASURED region counts at n = 3: PENDING.
+
+### 3.6 What any estimator would need (PROVEN necessary conditions) [A]
+- Correlation. R(A) >= S (1 - r^2) + |E A - E mu|^2, where S is of order n at L = alpha n and r is the correlation of A
+  with mu across nets. A gain G over N-sample MC needs r^2 >= 1 - V / (N G S).
+- Final row. relu(z) = (z + |z|)/2 makes the odd part of mu_j in the last row w_j exactly (1/2) w_j . m_h, with
+  m_h = E_x h_{L-1}. So R(A) >= (1/(2n)) sum_j E |mhat_j - m_h|^2 with mhat_j = n E_{w_j}[w_j A_j]: an accurate
+  estimator carries the whole penultimate mean vector in its linear response to the last layer.
+- Depth recursion. With B = W_L ... W_{r+1}, E[B^T mu_L | W_1..W_r] = mu_r. Any A therefore induces an estimator of the
+  depth-r mean with risk at most 2^{L-r} R(A). This is informative only a few layers back, and the induced estimator
+  need not be cheap.
+- Control variates. A = E g + mean(f - g) has risk E tr Var(f - g) / M; a growing gain needs a residual variance that
+  shrinks after charging the construction and integration of g.
+- Limitation [A]. None of these forces an estimator to enumerate regions, propagate a summary or have high degree.
+  The missing link from computational cost to such a restriction is the bottleneck (section 5).

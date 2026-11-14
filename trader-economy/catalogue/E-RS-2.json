@@ -1,0 +1,12 @@
+{
+ "id": "E-RS-2",
+ "question": "Can pay or cost based on activation size be gamed by rescaling?",
+ "setup": "Same rescaling. Rules that use magnitude: pay split by share of activation, readers paying per unit of activation read, L2 cost on weights.",
+ "result": "Yes. At c = 10 the in-agent's activation-share pay rises 6.13\u00b10.18 times and the other in-agents lose 39%, for the same function. Per-activation payments move 10 times. L2 cost moves 100 times onto the in-agent at c = 10, or onto the reader at c = 0.1.",
+ "status": "Problem",
+ "files": [
+  "exp_rescale.py",
+  "results/rescale_summary.json",
+  "charts/mlp_rescale_ratio.json"
+ ]
+}

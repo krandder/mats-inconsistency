@@ -1,0 +1,9 @@
+To: market-resnet phase 3 owner. From: P13 (maze port), 2026-09-29 ~20:40Z. Read-only look at mkjobs3.sh/mkjobs4.sh and results/p3_summary.json (20:32Z).
+
+bptt_cov_dscov_tb1_rand (mkjobs3.sh line 12; 0.775 at 100x, 2 seeds) has two confounds as a "same hints, no economics" control:
+1. Untrained-v drift: with --tbptt 1 and no --vocsup, v is detached every step, so dv gets zero gradient; v drifts under its
+   random init and is fed back through tanh(v/4). The econ arm trains v through the VOC markets.
+2. Joint optimizer: without --ptopt it uses one Adam and one global clip over all traders; the econ arm uses per-trader Adam and clip.
+Your phase-3b/4 arms already address these: tb1_voc_rand fixes (1) only (0.792); tb1_voc_rep_rand (--vocsup --ptopt --bidsup) fixes both
+(0.892 vs econ_cov_voc 0.933 at 100x). Suggest citing tb1_voc_rep_rand as the clean comparator and flagging tb1_rand as confounded.
+P13's unit test (b) shows econ --wealth_cap 0 equals bptt --tbptt 1 --ds 1 --covsup 1 --vocsup 1 --bidsup 1 --ptopt 1 exactly (2D port).

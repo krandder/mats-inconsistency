@@ -1,0 +1,72 @@
+# PARKED 2026-10-19 (Kelvin): not frozen, not run
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 64c347d..e608ff2 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1,6 +1,10 @@
+ cmake_minimum_required(VERSION 3.25)
+ set(USE_CUDNN 1)
+ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
++if(NOT DEFINED CMAKE_CUDA_ARCHITECTURES)
++  set(CMAKE_CUDA_ARCHITECTURES 89)
++endif()
++set(TORCH_CUDA_ARCH_LIST "8.9")
+ project(stratego LANGUAGES CUDA CXX)
+ 
+ # Disable response files since they don't play it nicely with `clangd`
+@@ -9,15 +13,18 @@ set(CMAKE_CUDA_USE_RESPONSE_FILE_FOR_LIBRARIES 0)
+ set(CMAKE_CUDA_USE_RESPONSE_FILE_FOR_OBJECTS 0)
+ 
+ add_definitions(-D_GLIBCXX_USE_CXX11_ABI=0)
+-set(CMAKE_CXX_STANDARD 17)
++set(CMAKE_CXX_STANDARD 20)
++set(CMAKE_CXX_STANDARD_REQUIRED ON)
++set(CMAKE_CUDA_STANDARD 20)
++set(CMAKE_CUDA_STANDARD_REQUIRED ON)
+ set(COMPILATION_FLAGS "-fPIC -g -O3 -fopenmp -Wall -Wextra -Wfatal-errors")
+-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${PYBIND_FLAGS} ${COMPILATION_FLAGS}")
+ 
+ # Set pybind flags of pytorch
+ execute_process(
+   COMMAND python ${CMAKE_CURRENT_SOURCE_DIR}/get_pybind_flags.py
+   OUTPUT_VARIABLE PYBIND_FLAGS
+ )
++set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${PYBIND_FLAGS} ${COMPILATION_FLAGS} -std=c++20")
+ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/pybind11)
+ 
+ 
+@@ -33,15 +40,16 @@ find_package(Torch REQUIRED)
+ # So, we need to undo all the work that was done on the nvcc flags.
+ set(CUDA_NVCC_FLAGS " ")
+ # Similarly, we reset the CUDA_FLAGS here to undo the mess that Caffe2 makes
+-set(CMAKE_CUDA_FLAGS "${COMPILATION_FLAGS}")
++set(CMAKE_CUDA_FLAGS "${COMPILATION_FLAGS} -std=c++20 -gencode=arch=compute_89,code=sm_89 -Wno-deprecated-gpu-targets")
+ 
+ set(TORCH_PYTHON_LIBRARIES "${TorchPath}/lib/libtorch_python.so")
++set(CMAKE_BUILD_RPATH "${TorchPath}/lib")
+ 
+ message("---------------------")
+-message(${TorchPath})
+-message(${PYBIND_FLAGS})
+-message(${CMAKE_CXX_FLAGS})
+-message(${TORCH_INCLUDE_DIRS})
++message("${TorchPath}")
++message("${PYBIND_FLAGS}")
++message("${CMAKE_CXX_FLAGS}")
++message("${TORCH_INCLUDE_DIRS}")
+ message("---------------------")
+ 
+ # === New libraries ===
+diff --git a/get_pybind_flags.py b/get_pybind_flags.py
+index fbd96f2..bbb9a59 100644
+--- a/get_pybind_flags.py
++++ b/get_pybind_flags.py
+@@ -2,7 +2,7 @@ import torch._C
+ 
+ cmake_cxx_flags = []
+ for name in ["COMPILER_TYPE", "STDLIB", "BUILD_ABI"]:
+-    val = getattr(torch._C, f"_PYBIND11_{name}")
++    val = getattr(torch._C, f"_PYBIND11_{name}", None)
+     if val is not None:
+         cmake_cxx_flags += [rf"-DPYBIND11_{name}=\"{val}\""]
+ print(" ".join(cmake_cxx_flags), end="")

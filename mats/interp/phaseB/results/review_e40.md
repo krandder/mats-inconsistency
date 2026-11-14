@@ -1,0 +1,13 @@
+Model: GPT-6 (Codex)
+
+Read-only review, checked 2026-10-30 against source, hashes, metadata, evaluation log and JSON; no Python or model execution. Binary NPZ contents were not independently decoded.
+
+1. **High: threshold failure is overstated as failure of amplification to transfer.** Draft lines 22, 57–58; `results/e40.json:D.2.rho_over_c_sign` = 1.49294, with rho = 0.50924 versus the registered threshold 0.51165. P175 correctly fails its point-estimate rule, but the gain remains about 49% larger than the benchmark. This does not establish amplification absent, or sign cost generally nonpredictive. D=1's interval also permits a 14% gain. **Fix:** say “E30's 3.2× magnitude was not reproduced; D=2 narrowly misses the registered 1.5× criterion; D=1 shows no detectable mean gain.” Restrict conclusions to these settings and describe ratios as finite-ensemble benchmarks. For uncertainty at the threshold, bootstrap rho − 1.5*c_sign jointly; marginal interval overlap is insufficient.
+
+2. **Medium: plain-words claim exaggerates individual improvements.** Draft line 5 says inputs “halve the distance … for every” network. `D.2.per_seed_ratio` ranges 0.335–0.813; seed 5 improves only about 19%. **Fix:** “halve the mean estimated KL; all 12 seeds improve.” Both per-seed lists otherwise match JSON; D=1 correctly has five improvements and seven worsenings.
+
+3. **Medium: incompatible estimates support an unwarranted error attribution.** Draft line 57 compares integrated KL on cost episodes with sampled target-NLL gaps on separate test episodes, then concludes canon “brings other errors of its own.” `e40_eval.py:70–89` uses these different estimators; `e26_run.py:94–96` measures reduction from family-average KL, not necessarily the base prediction. **Fix:** label comparisons descriptive, remove causal attribution, and compare canon and averaged ctrl by the same integrated-KL estimator on identical episodes before asserting ordering.
+
+**Claims surviving:** Bayes conditioning/mixture weights and flip invariance are correct (`t2_world.py:43–56`); canonicalization and paired streams match registration almost surely (`:31–40`; `train_t2.py:60–89`). Family grids cover every component ±9 sd; recorded minimum mass is effectively 1. Costs, acquisition, aggregate figures and P174/P175 decisions match registered code and JSON. Source hashes match. Coverage alone does not prove quadrature convergence.
+
+**Need rewording:** cross-world conclusions and plain-language individual gains. **Fail:** universal per-seed halving and the claimed error attribution; P175 fails only its registered numerical rule.

@@ -1,0 +1,122 @@
+- 2026-09-29T22:25:06Z CREATE vm=trader-bxd-p17-1 zone=us-central1-b epoch=1790720706 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=0
+- 2026-09-29T22:28:28Z READY vm=trader-bxd-p17-1 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T22:29:06Z PUSH vm=trader-bxd-p17-1
+- 2026-09-29T22:36:43Z SYNC vm=trader-bxd-p17-1 verified_files=1 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-29T22:42:54Z PUSH vm=trader-bxd-p17-1
+- 2026-09-29T22:43:45Z START vm=trader-bxd-p17-1 plan=A
+- 2026-09-29T22:55:20Z SYNC vm=trader-bxd-p17-1 verified_files=5 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-29T23:11:38Z SYNC vm=trader-bxd-p17-1 verified_files=7 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-29T23:17:04Z WATCHDOG vm=trader-bxd-p17-1 action=delete why="gate failed"
+- 2026-09-29T23:17:16Z SYNC vm=trader-bxd-p17-1 verified_files=11 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-29T23:18:32Z DELETE vm=trader-bxd-p17-1 epoch=1790723912 reason="watchdog: gate failed" leftover_disks="none" spend_now=0.63
+- 2026-09-29T23:48:44Z CREATE vm=trader-bxd-p17-2 zone=us-central1-c epoch=1790725724 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=0.63
+- 2026-09-29T23:50:11Z GONE-DURING-STARTUP vm=trader-bxd-p17-2
+- 2026-09-29T23:59:26Z DELETE vm=trader-bxd-p17-2 epoch=1790726361 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="" spend_now=0.76
+- 2026-09-29T23:59:36Z RESUME plan=A vm=trader-bxd-p17-3
+- 2026-09-29T23:59:54Z CREATE vm=trader-bxd-p17-3 zone=us-central1-a epoch=1790726394 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=0.76
+- 2026-09-30T00:03:52Z READY vm=trader-bxd-p17-3 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-30T00:04:17Z PUSH vm=trader-bxd-p17-3
+- 2026-09-30T00:05:08Z START vm=trader-bxd-p17-3 plan=A
+- 2026-09-30T00:15:38Z SYNC vm=trader-bxd-p17-3 verified_files=13 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T00:31:38Z SYNC vm=trader-bxd-p17-3 verified_files=15 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T00:37:05Z DELETE vm=trader-bxd-p17-3 epoch=1790728619 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="" spend_now=1.20
+- 2026-09-30T00:37:18Z RESUME plan=A vm=trader-bxd-p17-4
+- 2026-09-30T00:38:26Z CREATE vm=trader-bxd-p17-4 zone=us-east1-b epoch=1790728706 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=1.20
+- 2026-09-30T00:42:08Z READY vm=trader-bxd-p17-4 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-30T00:42:33Z PUSH vm=trader-bxd-p17-4
+- 2026-09-30T00:43:27Z START vm=trader-bxd-p17-4 plan=A
+- 2026-09-30T00:53:55Z SYNC vm=trader-bxd-p17-4 verified_files=15 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T00:58:29Z SYNC vm=trader-bxd-p17-4 verified_files=17 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T00:59:10Z GATE-PASSED adding plans: B C D 
+- 2026-09-30T00:59:16Z RESUME plan=B vm=trader-bxd-p17-5
+- 2026-09-30T00:59:32Z CREATE vm=trader-bxd-p17-5 zone=us-central1-a epoch=1790729972 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=1.44
+- 2026-09-30T01:02:13Z GONE-DURING-STARTUP vm=trader-bxd-p17-5
+- 2026-09-30T01:02:13Z RESUME-FAILED vm=trader-bxd-p17-5
+- 2026-09-30T01:02:18Z RESUME plan=C vm=trader-bxd-p17-6
+- 2026-09-30T01:02:49Z CREATE vm=trader-bxd-p17-6 zone=us-central1-c epoch=1790730169 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=1.51
+- 2026-09-30T01:05:28Z GONE-DURING-STARTUP vm=trader-bxd-p17-6
+- 2026-09-30T01:05:28Z RESUME-FAILED vm=trader-bxd-p17-6
+- 2026-09-30T01:05:31Z RESUME plan=D vm=trader-bxd-p17-7
+- 2026-09-30T01:05:51Z CREATE vm=trader-bxd-p17-7 zone=us-central1-a epoch=1790730351 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=1.62
+- 2026-09-30T01:08:31Z GONE-DURING-STARTUP vm=trader-bxd-p17-7
+- 2026-09-30T01:08:31Z RESUME-FAILED vm=trader-bxd-p17-7
+- 2026-09-30T01:14:08Z DELETE vm=trader-bxd-p17-5 epoch=1790730845 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="trader-bxd-p17-4 " spend_now=2.02
+- 2026-09-30T01:14:19Z DELETE vm=trader-bxd-p17-6 epoch=1790730855 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="trader-bxd-p17-4 " spend_now=2.03
+- 2026-09-30T01:14:30Z DELETE vm=trader-bxd-p17-7 epoch=1790730866 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="trader-bxd-p17-4 " spend_now=2.03
+- 2026-09-30T01:14:42Z RESUME plan=B vm=trader-bxd-p17-8
+- 2026-09-30T01:16:38Z CREATE vm=trader-bxd-p17-8 zone=us-west4-c epoch=1790730998 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=2.03
+- 2026-09-30T01:21:47Z READY vm=trader-bxd-p17-8 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-30T01:22:03Z PUSH vm=trader-bxd-p17-8
+- 2026-09-30T01:22:54Z START vm=trader-bxd-p17-8 plan=B
+- 2026-09-30T01:22:58Z RESUME plan=C vm=trader-bxd-p17-9
+- 2026-09-30T01:23:17Z CREATE vm=trader-bxd-p17-9 zone=us-east1-b epoch=1790731397 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=2.21
+- 2026-09-30T01:26:55Z READY vm=trader-bxd-p17-9 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-30T01:27:13Z PUSH vm=trader-bxd-p17-9
+- 2026-09-30T01:28:05Z START vm=trader-bxd-p17-9 plan=C
+- 2026-09-30T01:28:08Z RESUME plan=D vm=trader-bxd-p17-10
+- 2026-09-30T01:28:45Z CREATE vm=trader-bxd-p17-10 zone=us-east1-d epoch=1790731725 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=2.39
+- 2026-09-30T01:32:09Z READY vm=trader-bxd-p17-10 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-30T01:32:27Z PUSH vm=trader-bxd-p17-10
+- 2026-09-30T01:33:18Z START vm=trader-bxd-p17-10 plan=D
+- 2026-09-30T01:44:11Z SYNC vm=trader-bxd-p17-4 verified_files=22 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T01:44:28Z SYNC vm=trader-bxd-p17-9 verified_files=20 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T01:44:44Z SYNC vm=trader-bxd-p17-10 verified_files=19 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T01:44:55Z SYNC vm=trader-bxd-p17-8 verified_files=21 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T02:02:23Z SYNC vm=trader-bxd-p17-4 verified_files=25 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T02:02:36Z SYNC vm=trader-bxd-p17-9 verified_files=22 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T02:02:45Z SYNC vm=trader-bxd-p17-8 verified_files=23 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T02:02:50Z DELETE vm=trader-bxd-p17-10 epoch=1790733768 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="trader-bxd-p17-4 trader-bxd-p17-9 trader-bxd-p17-8 " spend_now=4.02
+- 2026-09-30T02:03:16Z RESUME plan=D vm=trader-bxd-p17-11
+- 2026-09-30T02:03:34Z CREATE vm=trader-bxd-p17-11 zone=us-east1-b epoch=1790733814 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=4.04
+- 2026-09-30T02:07:05Z READY vm=trader-bxd-p17-11 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-30T02:07:20Z PUSH vm=trader-bxd-p17-11
+- 2026-09-30T02:08:12Z START vm=trader-bxd-p17-11 plan=D
+- 2026-09-30T02:25:12Z SYNC vm=trader-bxd-p17-11 verified_files=39 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T02:25:26Z SYNC vm=trader-bxd-p17-4 verified_files=28 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T02:25:45Z SYNC vm=trader-bxd-p17-9 verified_files=25 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T02:25:57Z SYNC vm=trader-bxd-p17-8 verified_files=27 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T02:31:55Z DELETE vm=trader-bxd-p17-8 epoch=1790735512 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="trader-bxd-p17-11 trader-bxd-p17-4 trader-bxd-p17-9 " spend_now=5.39
+- 2026-09-30T02:32:13Z RESUME plan=B vm=trader-bxd-p17-12
+- 2026-09-30T02:32:27Z SYNC vm=trader-bxd-p17-4 verified_files=30 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T02:32:32Z CREATE vm=trader-bxd-p17-12 zone=us-east1-b epoch=1790735552 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=5.40
+- 2026-09-30T02:36:01Z READY vm=trader-bxd-p17-12 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-30T02:36:22Z PUSH vm=trader-bxd-p17-12
+- 2026-09-30T02:37:13Z START vm=trader-bxd-p17-12 plan=B
+- 2026-09-30T02:48:29Z SYNC vm=trader-bxd-p17-11 verified_files=42 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T02:48:44Z SYNC vm=trader-bxd-p17-12 verified_files=51 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T02:48:57Z SYNC vm=trader-bxd-p17-4 verified_files=31 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T02:49:10Z SYNC vm=trader-bxd-p17-9 verified_files=28 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T03:06:34Z SYNC vm=trader-bxd-p17-11 verified_files=44 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T03:06:49Z SYNC vm=trader-bxd-p17-12 verified_files=53 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T03:07:04Z SYNC vm=trader-bxd-p17-4 verified_files=34 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T03:07:21Z SYNC vm=trader-bxd-p17-9 verified_files=31 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T03:24:18Z SYNC vm=trader-bxd-p17-11 verified_files=47 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T03:24:33Z SYNC vm=trader-bxd-p17-12 verified_files=56 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T03:24:47Z SYNC vm=trader-bxd-p17-4 verified_files=36 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T03:24:59Z SYNC vm=trader-bxd-p17-9 verified_files=33 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T03:30:28Z WATCHDOG vm=trader-bxd-p17-4 action=delete why="plan A done"
+- 2026-09-30T03:30:36Z SYNC vm=trader-bxd-p17-4 verified_files=38 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T03:31:38Z DELETE vm=trader-bxd-p17-4 epoch=1790739098 reason="watchdog: plan A done" leftover_disks="trader-bxd-p17-11	us-east1-b
+trader-bxd-p17-12	us-east1-b
+trader-bxd-p17-9	us-east1-b" spend_now=8.21
+- 2026-09-30T03:42:32Z SYNC vm=trader-bxd-p17-11 verified_files=49 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T03:42:45Z SYNC vm=trader-bxd-p17-12 verified_files=59 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T03:42:56Z SYNC vm=trader-bxd-p17-9 verified_files=36 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T03:59:29Z SYNC vm=trader-bxd-p17-11 verified_files=52 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T03:59:46Z SYNC vm=trader-bxd-p17-12 verified_files=61 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T03:59:58Z SYNC vm=trader-bxd-p17-9 verified_files=38 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T04:16:24Z SYNC vm=trader-bxd-p17-11 verified_files=54 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T04:16:44Z SYNC vm=trader-bxd-p17-12 verified_files=63 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T04:16:58Z SYNC vm=trader-bxd-p17-9 verified_files=41 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T04:27:56Z WATCHDOG vm=trader-bxd-p17-9 action=delete why="plan C done"
+- 2026-09-30T04:28:06Z SYNC vm=trader-bxd-p17-9 verified_files=43 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T04:29:13Z DELETE vm=trader-bxd-p17-9 epoch=1790742553 reason="watchdog: plan C done" leftover_disks="trader-bxd-p17-11	us-east1-b
+trader-bxd-p17-12	us-east1-b" spend_now=10.25
+- 2026-09-30T04:34:48Z SYNC vm=trader-bxd-p17-11 verified_files=57 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T04:34:52Z WATCHDOG vm=trader-bxd-p17-12 action=delete why="plan B done"
+- 2026-09-30T04:35:06Z SYNC vm=trader-bxd-p17-12 verified_files=67 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T04:36:18Z DELETE vm=trader-bxd-p17-12 epoch=1790742978 reason="watchdog: plan B done" leftover_disks="trader-bxd-p17-11	us-east1-b" spend_now=10.42
+- 2026-09-30T04:52:43Z SYNC vm=trader-bxd-p17-11 verified_files=59 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T05:03:20Z WATCHDOG vm=trader-bxd-p17-11 action=delete why="plan D done"
+- 2026-09-30T05:03:32Z SYNC vm=trader-bxd-p17-11 verified_files=62 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P17-breadth-depth/results/vm_out
+- 2026-09-30T05:04:46Z DELETE vm=trader-bxd-p17-11 epoch=1790744686 reason="watchdog: plan D done" leftover_disks="none" spend_now=10.76

@@ -1,0 +1,9 @@
+# Stage 0: Gate 0 on Qwen3-0.6B, then on Qwen3-1.7B (each with 5 timed S1 steps), then two identical concurrent
+# 0.6B S1 jobs (same seed, so the same boards and L draws as the 0.6B timing steps) to measure the slowdown of two
+# processes on one L4.
+--mode gate0 --model Qwen/Qwen3-0.6B --seed 0 --out /root/runs/swarm/gate0-q06 --text-out /root/text/gate0-q06 --gate-train-steps 5 --prompt-variants A,B
+---
+--mode gate0 --model Qwen/Qwen3-1.7B --seed 0 --out /root/runs/swarm/gate0-q17 --text-out /root/text/gate0-q17 --gate-train-steps 5 --prompt-variants A,B
+---
+--mode train --sampler S1 --model Qwen/Qwen3-0.6B --seed 0 --steps 5 --small-every 0 --kv-gb 5 --out /root/runs/swarm/stage0-conc-a --text-out /root/text/stage0-conc-a
+--mode train --sampler S1 --model Qwen/Qwen3-0.6B --seed 0 --steps 5 --small-every 0 --kv-gb 5 --out /root/runs/swarm/stage0-conc-b --text-out /root/text/stage0-conc-b

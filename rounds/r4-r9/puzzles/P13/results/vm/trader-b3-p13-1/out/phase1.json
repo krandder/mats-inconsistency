@@ -1,0 +1,86 @@
+{
+ "gpu": "NVIDIA L4",
+ "start": "2026-09-29T20:54:40Z",
+ "solo": {
+  "econ": {
+   "timing": "solo_econ",
+   "steps": 300,
+   "sec": 327.23,
+   "sec_per_1k": 1090.8,
+   "peak_mem_mb": 4723
+  },
+  "econ_nocap": {
+   "timing": "solo_econ_nocap",
+   "steps": 300,
+   "sec": 328.72,
+   "sec_per_1k": 1095.7,
+   "peak_mem_mb": 4723
+  },
+  "econ_insq": {
+   "timing": "solo_econ_insq",
+   "steps": 300,
+   "sec": 326.41,
+   "sec_per_1k": 1088.0,
+   "peak_mem_mb": 4728
+  },
+  "econ_liqsqrt": {
+   "timing": "solo_econ_liqsqrt",
+   "steps": 300,
+   "sec": 329.19,
+   "sec_per_1k": 1097.3,
+   "peak_mem_mb": 4726
+  },
+  "bptt_dscov": {
+   "timing": "solo_bptt_dscov",
+   "steps": 300,
+   "sec": 275.47,
+   "sec_per_1k": 918.2,
+   "peak_mem_mb": 1277
+  },
+  "bptt_progcov": {
+   "timing": "solo_bptt_progcov",
+   "steps": 300,
+   "sec": 375.73,
+   "sec_per_1k": 1252.4,
+   "peak_mem_mb": 1293
+  },
+  "dtr": {
+   "timing": "solo_dtr",
+   "steps": 300,
+   "sec": 106.39,
+   "sec_per_1k": 354.6,
+   "peak_mem_mb": 5637
+  }
+ },
+ "packed": {
+  "econ_x2": {
+   "p2a": {
+    "timing": "p2a",
+    "steps": 300,
+    "sec": 715.75,
+    "sec_per_1k": 2385.8,
+    "peak_mem_mb": 4723
+   },
+   "p2b": {
+    "timing": "p2b",
+    "steps": 300,
+    "sec": 717.03,
+    "sec_per_1k": 2390.1,
+    "peak_mem_mb": 4723
+   },
+   "_wall": 799.1
+  },
+  "econ_x3": {
+   "p3a": {
+    "error": "pick\": \"random\", \"prog\": 0, \"alpha\": 1.0, \"ds\": 0, \"covsup\": 0, \"vocsup\": 0, \"bidsup\": 0, \"ptopt\": 0, \"tbptt\": 0, \"gradckpt\": 0, \"settle_chunk\": 8, \"floor\": 0, \"l2b\": 0, \"bcap\": 0, \"dbcap\": 0, \"liq\": \"\", \"insq\": 0, \"ckpt_every\": 600, \"log_every\": 100, \"diag_every\": 1000, \"time_steps\": 300, \"kill_at\": 0, \"seed\": 0, \"frozen\": \"/home/user/p13/frozen_p0\", \"out\": \"out/p1/p3a\", \"tf32\": 1, \"device\": \"cuda\"}}\n{\"final_nll\": 2.997342824935913, \"profit\": [-0.7745, -0.1318, -1.1954, 0.6575], \"wealth\": [19.23, 19.87, 18.8, 20.66], \"cov_payout\": 1.0717, \"maxb\": 10.21957015991211, \"it\": 0, \"sec\": 39.5, \"respawns\": 0, \"entries\": 0, \"diag\": {\"frac_capped_pix\": 0.0, \"mean_s\": 1.0, \"min_wealth\": 18.804639101028442, \"shares\": [0.2447, 0.2529, 0.2394, 0.263], \"respawns\": 0, \"entries\": 0, \"iters\": 1}}\n"
+   },
+   "p3b": {
+    "error": "ck\": \"random\", \"prog\": 0, \"alpha\": 1.0, \"ds\": 0, \"covsup\": 0, \"vocsup\": 0, \"bidsup\": 0, \"ptopt\": 0, \"tbptt\": 0, \"gradckpt\": 0, \"settle_chunk\": 8, \"floor\": 0, \"l2b\": 0, \"bcap\": 0, \"dbcap\": 0, \"liq\": \"\", \"insq\": 0, \"ckpt_every\": 600, \"log_every\": 100, \"diag_every\": 1000, \"time_steps\": 300, \"kill_at\": 0, \"seed\": 0, \"frozen\": \"/home/user/p13/frozen_p0\", \"out\": \"out/p1/p3b\", \"tf32\": 1, \"device\": \"cuda\"}}\n{\"final_nll\": 2.9973411560058594, \"profit\": [-0.7745, -0.1318, -1.1954, 0.6575], \"wealth\": [19.23, 19.87, 18.8, 20.66], \"cov_payout\": 1.0717, \"maxb\": 10.219551086425781, \"it\": 0, \"sec\": 42.3, \"respawns\": 0, \"entries\": 0, \"diag\": {\"frac_capped_pix\": 0.0, \"mean_s\": 1.0, \"min_wealth\": 18.804622530937195, \"shares\": [0.2447, 0.2529, 0.2394, 0.263], \"respawns\": 0, \"entries\": 0, \"iters\": 1}}\n"
+   },
+   "p3c": {
+    "error": "ck\": \"random\", \"prog\": 0, \"alpha\": 1.0, \"ds\": 0, \"covsup\": 0, \"vocsup\": 0, \"bidsup\": 0, \"ptopt\": 0, \"tbptt\": 0, \"gradckpt\": 0, \"settle_chunk\": 8, \"floor\": 0, \"l2b\": 0, \"bcap\": 0, \"dbcap\": 0, \"liq\": \"\", \"insq\": 0, \"ckpt_every\": 600, \"log_every\": 100, \"diag_every\": 1000, \"time_steps\": 300, \"kill_at\": 0, \"seed\": 0, \"frozen\": \"/home/user/p13/frozen_p0\", \"out\": \"out/p1/p3c\", \"tf32\": 1, \"device\": \"cuda\"}}\n{\"final_nll\": 2.9973411560058594, \"profit\": [-0.7745, -0.1318, -1.1954, 0.6575], \"wealth\": [19.23, 19.87, 18.8, 20.66], \"cov_payout\": 1.0717, \"maxb\": 10.219552040100098, \"it\": 0, \"sec\": 41.7, \"respawns\": 0, \"entries\": 0, \"diag\": {\"frac_capped_pix\": 0.0, \"mean_s\": 1.0, \"min_wealth\": 18.804620623588562, \"shares\": [0.2447, 0.2529, 0.2394, 0.263], \"respawns\": 0, \"entries\": 0, \"iters\": 1}}\n"
+   },
+   "_wall": 285.3
+  }
+ }
+}

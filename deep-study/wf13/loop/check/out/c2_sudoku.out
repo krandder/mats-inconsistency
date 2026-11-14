@@ -1,0 +1,50 @@
+rule table read from M vs my true rules: 0 entries differ (0 of them with i != j)
+fresh puzzles: 120 unique (mean clues 10.1), 60 multi (mean 132.2 solutions); solution grids also in the training file: 0
+A hand_mrv           rho=0.5 eps=0.02 {"intervals": 200298, "out_tol": 0, "out_strict": 0, "float_lo_above_exact": 0, "float_hi_below_exact": 0, "exact_out": 0, "exact_checked": 14436, "not_nested": 0, "closed": 151, "closed_same_set": 151, "wrong_solution": 0, "C_mean_unique_closed": 30.758333333333333} | 2s
+A random             rho=0.5 eps=0.02 {"intervals": 200298, "out_tol": 0, "out_strict": 0, "float_lo_above_exact": 0, "float_hi_below_exact": 0, "exact_out": 0, "exact_checked": 14436, "not_nested": 0, "closed": 119, "closed_same_set": 119, "wrong_solution": 0, "C_mean_unique_closed": 261.93220338983053} | 4s
+A net5_s1            rho=0.5 eps=0.02 {"intervals": 200298, "out_tol": 0, "out_strict": 0, "float_lo_above_exact": 0, "float_hi_below_exact": 0, "exact_out": 0, "exact_checked": 14436, "not_nested": 0, "closed": 136, "closed_same_set": 136, "wrong_solution": 0, "C_mean_unique_closed": 63.916666666666664} | 8s
+A net0_s2            rho=0.5 eps=0.02 {"intervals": 200298, "out_tol": 0, "out_strict": 0, "float_lo_above_exact": 0, "float_hi_below_exact": 0, "exact_out": 0, "exact_checked": 14436, "not_nested": 0, "closed": 34, "closed_same_set": 34, "wrong_solution": 0, "C_mean_unique_closed": 690.9411764705883} | 23s
+A avoid_noguard_s2   rho=0.0 eps=0.00 {"intervals": 200298, "out_tol": 0, "out_strict": 0, "float_lo_above_exact": 0, "float_hi_below_exact": 0, "exact_out": 0, "exact_checked": 14436, "not_nested": 0, "closed": 64, "closed_same_set": 64, "wrong_solution": 0, "C_mean_unique_closed": 65.21666666666667} | 7s
+A perm_s1            rho=0.5 eps=0.02 {"intervals": 200298, "out_tol": 0, "out_strict": 0, "float_lo_above_exact": 0, "float_hi_below_exact": 0, "exact_out": 0, "exact_checked": 14436, "not_nested": 0, "closed": 136, "closed_same_set": 136, "wrong_solution": 0, "C_mean_unique_closed": 63.141666666666666} | 8s
+A anti_noguard       rho=0.0 eps=0.00 {"intervals": 200298, "out_tol": 0, "out_strict": 0, "float_lo_above_exact": 0, "float_hi_below_exact": 0, "exact_out": 0, "exact_checked": 14436, "not_nested": 0, "closed": 14, "closed_same_set": 14, "wrong_solution": 0, "C_mean_unique_closed": 756.3571428571429} | 9s
+A anti_share         rho=0.5 eps=0.00 {"intervals": 200298, "out_tol": 0, "out_strict": 0, "float_lo_above_exact": 0, "float_hi_below_exact": 0, "exact_out": 0, "exact_checked": 14436, "not_nested": 0, "closed": 15, "closed_same_set": 15, "wrong_solution": 0, "C_mean_unique_closed": 733.4666666666667} | 12s
+parts B, C, D: 100 hard wf7 test puzzles outside the registered (150:250) and smoke (0:16) ranges
+B_net5_s1_own_values                         C mean 166.6 median 123.0
+B_net5_s1_same_order_random_values           C mean 165.5 median 121.5
+   per-puzzle C: correlation 0.9957, mean abs difference 7.82, identical on 11 of 100
+B_net5_s2_own_values                         C mean 172.4 median 120.5
+B_net5_s2_same_order_random_values           C mean 173.9 median 123.5
+   per-puzzle C: correlation 0.9963, mean abs difference 9.07, identical on 8 of 100
+C_hand_mrv                                   C mean 44.1 median 41.0
+C_hand_random_order                          C mean 446.7 median 410.0
+C_perfect_value_head_registered_order        C mean 433.3 median 385.5
+C_perfect_value_head_mrv_order               C mean 44.0 median 40.0
+D_seed1_round_0                              C mean 919.3 median 692.5
+      chosen cell is a fewest-candidates cell: 0.436 ; median confidence over empty cells: 0.183
+D_seed1_round_1                              C mean 72.8 median 62.5
+      chosen cell is a fewest-candidates cell: 0.939 ; median confidence over empty cells: 0.917
+D_seed1_round_2                              C mean 140.6 median 115.0
+      chosen cell is a fewest-candidates cell: 0.833 ; median confidence over empty cells: 0.949
+D_seed1_round_3                              C mean 139.2 median 107.0
+      chosen cell is a fewest-candidates cell: 0.773 ; median confidence over empty cells: 0.961
+D_seed1_round_4                              C mean 145.6 median 113.5
+      chosen cell is a fewest-candidates cell: 0.726 ; median confidence over empty cells: 0.968
+D_seed1_round_5                              C mean 166.6 median 123.0
+      chosen cell is a fewest-candidates cell: 0.696 ; median confidence over empty cells: 0.971
+D_seed1_round_oneshot                        C mean 143.7 median 123.0
+      chosen cell is a fewest-candidates cell: 0.651 ; median confidence over empty cells: 0.985
+D_seed2_round_0                              C mean 1795.3 median 2048.0
+      chosen cell is a fewest-candidates cell: 0.141 ; median confidence over empty cells: 0.206
+D_seed2_round_1                              C mean 87.3 median 76.0
+      chosen cell is a fewest-candidates cell: 0.798 ; median confidence over empty cells: 0.998
+D_seed2_round_2                              C mean 94.9 median 83.5
+      chosen cell is a fewest-candidates cell: 0.845 ; median confidence over empty cells: 0.954
+D_seed2_round_3                              C mean 140.9 median 123.5
+      chosen cell is a fewest-candidates cell: 0.725 ; median confidence over empty cells: 0.964
+D_seed2_round_4                              C mean 157.3 median 115.0
+      chosen cell is a fewest-candidates cell: 0.689 ; median confidence over empty cells: 0.968
+D_seed2_round_5                              C mean 172.4 median 120.5
+      chosen cell is a fewest-candidates cell: 0.674 ; median confidence over empty cells: 0.972
+D_seed2_round_oneshot                        C mean 280.6 median 239.0
+      chosen cell is a fewest-candidates cell: 0.527 ; median confidence over empty cells: 1.000
+done

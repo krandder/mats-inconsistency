@@ -1,0 +1,47 @@
+{
+ "id": "split_layers",
+ "kind": "grouped_bar",
+ "title": "Who gets the value: inputs vs layer-1 vs layer-2 units",
+ "unit": "fraction of v(all)",
+ "source": "trader-economy/results/split_summary.json",
+ "groups": [
+  "inputs",
+  "layer 1",
+  "layer 2"
+ ],
+ "series": {
+  "flat Shapley": [
+   0.60941,
+   0.45787,
+   -0.06729
+  ],
+  "flat IG": [
+   0.30867,
+   0.62955,
+   0.06212
+  ],
+  "nested Owen": [
+   0.19155,
+   0.10104,
+   0.70741
+  ]
+ },
+ "ci": {
+  "flat Shapley": [
+   0.06495,
+   0.59135,
+   0.59
+  ],
+  "flat IG": [
+   0.02217,
+   0.30859,
+   0.32341
+  ],
+  "nested Owen": [
+   0.06514,
+   0.34368,
+   0.34356
+  ]
+ },
+ "note": "12-8-4 relu net, backprop-trained, 5 seeds, 95% t-intervals"
+}

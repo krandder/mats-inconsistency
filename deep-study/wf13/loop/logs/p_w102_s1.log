@@ -1,0 +1,32 @@
+[17:19:19] start p_w102_s1 cfg={"R": 5, "n_train": 128, "B_train": 256, "rho": 0.5, "eps": 0.02, "S": 48, "steps": 500, "bs": 256, "lr": 0.002, "order": "greedy1", "n_test": 60, "marks": [16, 32, 64, 128, 256, 512, 1024, 2048], "kmarks": [1, 4, 16, 64, 256], "n_draw": 4096, "d": 32, "T": 3, "tag": "", "stage": "all", "hand": "greedy1", "n_tsamp": 32}
+[17:19:40]     trained 500 steps on 6144 states: running loss 0.2880
+[17:19:40] round 0: books at the training budget: unfound upper bound 0.4442, audit width 0.0963, closed states 1.8; buffer 6144 states; 21s
+[17:19:58]     trained 500 steps on 12288 states: running loss 0.2541
+[17:19:58] round 1: books at the training budget: unfound upper bound 0.3922, audit width 0.0673, closed states 6.2; buffer 12288 states; 19s
+[17:20:16]     trained 500 steps on 18432 states: running loss 0.2465
+[17:20:16] round 2: books at the training budget: unfound upper bound 0.3904, audit width 0.0563, closed states 7.9; buffer 18432 states; 18s
+[17:20:34]     trained 500 steps on 24576 states: running loss 0.2397
+[17:20:34] round 3: books at the training budget: unfound upper bound 0.4280, audit width 0.0665, closed states 8.2; buffer 24576 states; 18s
+[17:20:53]     trained 500 steps on 30720 states: running loss 0.2380
+[17:20:53] round 4: books at the training budget: unfound upper bound 0.4020, audit width 0.0352, closed states 9.2; buffer 30720 states; 19s
+[17:22:14]     trained 2500 steps on 30720 states: running loss 0.2443
+[17:22:14] one-shot control trained on 30720 states; 81s
+[17:23:24] scored round0             rho=0.50 eps=0.02 | width cert/audit @256: 0.531/0.065 @2048: 0.003/0.000 | err audit-pt @256 0.0028 | IS err @256 0.4047 | violations cert 0, Z 0, audit misses 0 | 40s
+[17:23:52] scored round1             rho=0.50 eps=0.02 | width cert/audit @256: 0.447/0.055 @2048: 0.002/0.000 | err audit-pt @256 0.0024 | IS err @256 0.0119 | violations cert 0, Z 0, audit misses 0 | 29s
+[17:24:24] scored round2             rho=0.50 eps=0.02 | width cert/audit @256: 0.415/0.053 @2048: 0.002/0.000 | err audit-pt @256 0.0027 | IS err @256 0.0129 | violations cert 0, Z 0, audit misses 0 | 31s
+[17:24:57] scored round3             rho=0.50 eps=0.02 | width cert/audit @256: 0.441/0.051 @2048: 0.002/0.000 | err audit-pt @256 0.0031 | IS err @256 0.0328 | violations cert 0, Z 0, audit misses 0 | 34s
+[17:25:29] scored round4             rho=0.50 eps=0.02 | width cert/audit @256: 0.434/0.051 @2048: 0.002/0.000 | err audit-pt @256 0.0034 | IS err @256 0.0128 | violations cert 0, Z 0, audit misses 0 | 32s
+[17:26:01] scored round5             rho=0.50 eps=0.02 | width cert/audit @256: 0.436/0.054 @2048: 0.002/0.000 | err audit-pt @256 0.0029 | IS err @256 0.0150 | violations cert 0, Z 0, audit misses 0 | 32s
+[17:26:30] scored oneshot            rho=0.50 eps=0.02 | width cert/audit @256: 0.440/0.050 @2048: 0.002/0.000 | err audit-pt @256 0.0030 | IS err @256 0.0118 | violations cert 0, Z 0, audit misses 1 | 29s
+[17:26:44] scored hand_spec          rho=1.00 eps=0.02 | width cert/audit @256: 0.373/0.042 @2048: 0.001/0.000 | err audit-pt @256 0.0020 | IS err @256 0.0000 | violations cert 0, Z 0, audit misses 2 | 15s
+[17:27:13] scored hand_rho           rho=0.50 eps=0.02 | width cert/audit @256: 0.549/0.065 @2048: 0.003/0.000 | err audit-pt @256 0.0034 | IS err @256 0.0600 | violations cert 0, Z 0, audit misses 0 | 28s
+[17:27:18] scored bad_random         rho=0.50 eps=0.02 | width cert/audit @256: 1.000/0.943 @2048: 0.619/0.148 | err audit-pt @256 0.0500 | IS err @256 0.3957 | violations cert 0, Z 0, audit misses 0 | 5s
+[17:27:46] scored bad_flip           rho=0.50 eps=0.02 | width cert/audit @256: 0.618/0.087 @2048: 0.006/0.000 | err audit-pt @256 0.0034 | IS err @256 0.4125 | violations cert 0, Z 0, audit misses 0 | 28s
+[17:28:14] scored bad_avoid_noguard  rho=0.00 eps=0.00 | width cert/audit @256: 0.995/0.850 @2048: 0.995/0.842 | err audit-pt @256 0.0429 | IS err @256 0.3493 | violations cert 0, Z 0, audit misses 0 | 28s
+[17:28:44] scored bad_avoid_floor    rho=0.00 eps=0.02 | width cert/audit @256: 0.983/0.657 @2048: 0.750/0.169 | err audit-pt @256 0.0252 | IS err @256 0.2270 | violations cert 0, Z 0, audit misses 0 | 29s
+[17:29:05] scored bad_avoid_share    rho=0.50 eps=0.00 | width cert/audit @256: 0.522/0.069 @2048: 0.005/0.000 | err audit-pt @256 0.0034 | IS err @256 0.0000 | violations cert 0, Z 0, audit misses 0 | 21s
+[17:29:24] scored final_rho0         rho=0.00 eps=0.02 | width cert/audit @256: 0.866/0.335 @2048: 0.200/0.005 | err audit-pt @256 0.0084 | IS err @256 0.0000 | violations cert 0, Z 0, audit misses 0 | 19s
+[17:29:49] scored final_rho1         rho=1.00 eps=0.02 | width cert/audit @256: 0.373/0.042 @2048: 0.001/0.000 | err audit-pt @256 0.0020 | IS err @256 0.0000 | violations cert 0, Z 0, audit misses 2 | 25s
+[17:30:28] scored final_eps0         rho=0.50 eps=0.00 | width cert/audit @256: 0.436/0.052 @2048: 0.002/0.000 | err audit-pt @256 0.0036 | IS err @256 0.0221 | violations cert 0, Z 0, audit misses 0 | 39s
+[17:30:59] scored final_conforder    rho=0.50 eps=0.02 | width cert/audit @256: 0.994/0.837 @2048: 0.663/0.111 | err audit-pt @256 0.0712 | IS err @256 0.0095 | violations cert 0, Z 0, audit misses 0 | 31s
+[17:30:59] done

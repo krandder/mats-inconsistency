@@ -1,0 +1,34 @@
+LIR, equal hazards, T=20000, 6 seeds. Time share [dark, noise, struct] per quarter of the run.
+
+=== S1: is the noise room dismissed when its law is not an Occam atom? ===
+   atoms=0.0  uniform noise (= atom)                          [0.129 0.176 0.695]  [0.128 0.176 0.696]  [0.128 0.176 0.696]  [0.127 0.174 0.699]
+   atoms=0.0  biased noise [.4,.3,.2,.1]                      [0.129 0.176 0.695]  [0.128 0.176 0.696]  [0.128 0.176 0.696]  [0.127 0.174 0.699]
+   atoms=0.0  noise law ~ Dirichlet(1) per seed               [0.129 0.176 0.695]  [0.128 0.175 0.697]  [0.128 0.176 0.696]  [0.127 0.174 0.699]
+   atoms=0.5  uniform noise (= atom)                          [0.009 0.012 0.979]  [0.003 0.001 0.995]  [0.002 0.    0.997]  [0.002 0.001 0.997]
+   atoms=0.5  biased noise [.4,.3,.2,.1]                      [0.008 0.2   0.792]  [0.003 0.201 0.796]  [0.002 0.2   0.798]  [0.002 0.199 0.799]
+   atoms=0.5  noise law ~ Dirichlet(1) per seed               [0.008 0.2   0.792]  [0.003 0.201 0.796]  [0.002 0.2   0.798]  [0.002 0.199 0.799]
+
+=== S2: model class = max Markov order (atoms 0.5, uniform noise) ===
+   orders=(0,)                                                [0.522 0.285 0.192]  [0.435 0.405 0.161]  [0.555 0.255 0.19 ]  [0.579 0.224 0.197]
+   orders=(0, 1)                                              [0.01  0.011 0.979]  [0.004 0.001 0.995]  [0.003 0.002 0.996]  [0.002 0.001 0.997]
+   orders=(0, 1, 2)                                           [0.009 0.012 0.979]  [0.003 0.001 0.995]  [0.002 0.    0.997]  [0.002 0.001 0.997]
+   orders=(0, 1, 2, 3)                                        [0.008 0.016 0.976]  [0.003 0.001 0.996]  [0.002 0.001 0.997]  [0.002 0.    0.998]
+   same, flat prior (atoms 0):
+   orders=(0,) atoms=0                                        [0.267 0.366 0.366]  [0.267 0.366 0.366]  [0.267 0.366 0.366]  [0.267 0.366 0.366]
+   orders=(0, 1, 2) atoms=0                                   [0.129 0.176 0.695]  [0.128 0.176 0.696]  [0.128 0.176 0.696]  [0.127 0.174 0.699]
+   orders=(0, 1, 2, 3) atoms=0                                [0.129 0.176 0.695]  [0.128 0.176 0.696]  [0.128 0.176 0.696]  [0.127 0.174 0.699]
+
+=== S3: Dirichlet concentration a0, flat prior (atoms 0), uniform noise ===
+   a0=0.05                                                    [0.048 0.192 0.76 ]  [0.048 0.192 0.76 ]  [0.048 0.191 0.761]  [0.048 0.19  0.762]
+   a0=0.5                                                     [0.129 0.176 0.695]  [0.128 0.176 0.696]  [0.128 0.176 0.696]  [0.127 0.174 0.699]
+   a0=1.0                                                     [0.146 0.173 0.681]  [0.145 0.172 0.683]  [0.145 0.172 0.683]  [0.144 0.171 0.685]
+   a0=4.0                                                     [0.161 0.176 0.663]  [0.162 0.164 0.674]  [0.162 0.169 0.67 ]  [0.158 0.18  0.662]
+   a0=16.0                                                    [0.149 0.26  0.592]  [0.173 0.129 0.698]  [0.162 0.189 0.649]  [0.166 0.162 0.672]
+
+=== S4: O1 (minimise surprisal + beta_phys * hazard), long-run per-step cost, analytic entropy rates ===
+   entropy rate dark                                   0.0000 nats/step
+   entropy rate uniform noise                          1.3863 nats/step
+   entropy rate low-entropy noise [.91,.03,.03,.03]    0.4014 nats/step
+   entropy rate struct                                 0.4349 nats/step
+   -> without the dark room, O1 picks the low-entropy noise room over struct (an environment fact, no parameter).
+   struct hazard 0.01, uniform-noise hazard 0.001: O1 picks white noise over struct iff beta_phys > 105.1

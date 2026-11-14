@@ -1,0 +1,15 @@
+{
+ "id": "E-P4-0",
+ "question": "On exact program tables, does flip-Shapley capture latent worth that reach, LOO and mutual information miss?",
+ "setup": "30 generated boolean circuits (R1 family plus H1 parity-with-copies and H3), exact tables over all inputs; flip, soft and pay games; theorem checks (copies get LOO 0, an epistatic node gets flip-LOO and flip-Shapley 0, H1 I(p;Y)=0, Shapley efficiency) and within-level rank agreement between reach r, marginal, Shapley, MI-Shapley and pay-Shapley on gates.",
+ "result": "All theorem checks pass (efficiency gap 9e-16). On gates, reach agrees with flip-Shapley at within-level Spearman 0.90 (top-1 0.88), with MI-Shapley at only 0.33. H1 level 3: each copy of p has reach 0 and I(p;Y)=0 but flip-Shapley 0.106, so Shapley-type pay is the only rule that sees it.",
+ "status": "Informative",
+ "files": [
+  "puzzles/P4/stage0.py",
+  "puzzles/P4/gen.py",
+  "puzzles/P4/results/stage0.json",
+  "puzzles/P4/RESULTS.md",
+  "puzzles/P4/analyze.py",
+  "puzzles/P4/results/summary.json"
+ ]
+}

@@ -1,0 +1,102 @@
+=== Part A: constitution edge 'Alive=1' plus the agent's physics edge p(Alive)=1-h ===
+hazard h=0.01; -log(1-h) = 0.010050
+A1 degenerate constitution (eps=0): inconsistency vs beta_c (beta_phys=1)
+   beta_c=   0.01: <<M>> = 0.010050
+   beta_c=    0.1: <<M>> = 0.010050
+   beta_c=      1: <<M>> = 0.010050
+   beta_c=     10: <<M>> = 0.010050
+   beta_c= 1000.0: <<M>> = 0.010050
+A2 soft constitution (eps=0.001, 'alive w.p. 0.999'): beta_c now decides the value
+   beta_c=   0.01: <<M>> = 0.000138
+   beta_c=    0.1: <<M>> = 0.001182
+   beta_c=      1: <<M>> = 0.004701
+   beta_c=     10: <<M>> = 0.006478
+   beta_c= 1000.0: <<M>> = 0.006738
+A3 degenerate constitution, physics confidence beta_phys sweep: <<M>> = beta_phys * (-log(1-h))
+   beta_phys=  0.1: <<M>> = 0.001005
+   beta_phys=    1: <<M>> = 0.010050
+   beta_phys=   10: <<M>> = 0.100503
+A4 physics as law (beta_phys=inf) + degenerate constitution: <<M>> = inf (infinite for every h>0: no room can be compared)
+A5 perception PDG {q(O), O=o}: inconsistency = -log q(o) for gamma=0 and gamma=1 (mu forced to delta_o, H=0): ['0.6931', '1.2040', '1.8971', '2.9957']
+
+=== Part B: each room alone, T=2000 steps, 40 seeds, K=4 symbols ===
+columns: total sample inconsistency S=sum E[-log q(o_t)]; law-level reducible inc. R=sum E[KL(law||q_t)];
+         irreducible I=sum E[H(law)]; agent-estimated reducible G=sum E[I(theta;o_t)]; check S-(R+I)
+-- learner: flat (orders 0-2, KT)
+   dark  : S=    12.80  R=   12.80  I=     0.00  G=    8.18  S-(R+I)=   0.00   per-step in 2nd half: s=0.0010 r=1.04e-03 g=7.58e-04
+   noise : S=  2782.96  R=   10.69  I=  2772.59  G=   21.45  S-(R+I)=  -0.32   per-step in 2nd half: s=1.3873 r=1.11e-03 g=1.04e-03
+   struct: S=   891.88  R=   31.14  I=   869.89  G=   30.33  S-(R+I)=  -9.15   per-step in 2nd half: s=0.4306 r=4.45e-03 g=4.08e-03
+   growth of R between T/2 and T, in units of log 2 (0 = bounded, ~d/2 = parametric regret): {'dark': 1.5, 'noise': 1.59, 'struct': 6.42}
+-- learner: occam (flat + uniform/constant atoms, mass 0.5)
+   dark  : S=     2.77  R=    2.77  I=     0.00  G=    2.42  S-(R+I)=   0.00   per-step in 2nd half: s=0.0000 r=4.03e-08 g=4.37e-07
+   noise : S=  2773.97  R=    1.28  I=  2772.59  G=    6.76  S-(R+I)=   0.10   per-step in 2nd half: s=1.3863 r=5.11e-07 g=4.72e-06
+   struct: S=   892.57  R=   31.79  I=   869.89  G=   29.39  S-(R+I)=  -9.11   per-step in 2nd half: s=0.4306 r=4.45e-03 g=4.08e-03
+   growth of R between T/2 and T, in units of log 2 (0 = bounded, ~d/2 = parametric regret): {'dark': 0.0, 'noise': 0.0, 'struct': 6.42}
+-- learner: occam (atom mass 1e-6)
+   dark  : S=    12.76  R=   12.76  I=     0.00  G=    8.19  S-(R+I)=   0.00   per-step in 2nd half: s=0.0010 r=1.01e-03 g=7.65e-04
+   noise : S=  2782.94  R=   10.67  I=  2772.59  G=   21.44  S-(R+I)=  -0.32   per-step in 2nd half: s=1.3873 r=1.09e-03 g=1.03e-03
+   struct: S=   891.88  R=   31.14  I=   869.89  G=   30.33  S-(R+I)=  -9.15   per-step in 2nd half: s=0.4306 r=4.45e-03 g=4.08e-03
+   growth of R between T/2 and T, in units of log 2 (0 = bounded, ~d/2 = parametric regret): {'dark': 1.46, 'noise': 1.57, 'struct': 6.42}
+
+=== Part C1: O1 = free energy of the agent PDG = sample inconsistency + constitution, static room choice ===
+-- learner atom_mass=0.0
+   equal hazard  beta_phys=  0.1: dark=    13.0  noise=  2783.2  struct=   892.1  -> dark
+   equal hazard  beta_phys=  1.0: dark=    14.8  noise=  2785.0  struct=   893.9  -> dark
+   equal hazard  beta_phys= 10.0: dark=    32.8  noise=  2803.0  struct=   911.9  -> dark
+   dark starves  beta_phys=  0.1: dark=    14.8  noise=  2783.2  struct=   892.1  -> dark
+   dark starves  beta_phys=  1.0: dark=    32.9  noise=  2785.0  struct=   893.9  -> dark
+   dark starves  beta_phys= 10.0: dark=   213.8  noise=  2803.0  struct=   911.9  -> dark
+   struct costly beta_phys=  0.1: dark=    13.0  noise=  2783.2  struct=   892.3  -> dark
+   struct costly beta_phys=  1.0: dark=    14.8  noise=  2785.0  struct=   895.9  -> dark
+   struct costly beta_phys= 10.0: dark=    32.8  noise=  2803.0  struct=   931.9  -> dark
+   'dark starves': struct beats dark only if beta_phys > 48.569 (decided by the physics/perception exchange rate)
+-- learner atom_mass=0.5
+   equal hazard  beta_phys=  0.1: dark=     3.0  noise=  2774.2  struct=   892.8  -> dark
+   equal hazard  beta_phys=  1.0: dark=     4.8  noise=  2776.0  struct=   894.6  -> dark
+   equal hazard  beta_phys= 10.0: dark=    22.8  noise=  2794.0  struct=   912.6  -> dark
+   dark starves  beta_phys=  0.1: dark=     4.8  noise=  2774.2  struct=   892.8  -> dark
+   dark starves  beta_phys=  1.0: dark=    22.9  noise=  2776.0  struct=   894.6  -> dark
+   dark starves  beta_phys= 10.0: dark=   203.8  noise=  2794.0  struct=   912.6  -> dark
+   struct costly beta_phys=  0.1: dark=     3.0  noise=  2774.2  struct=   893.0  -> dark
+   struct costly beta_phys=  1.0: dark=     4.8  noise=  2776.0  struct=   896.6  -> dark
+   struct costly beta_phys= 10.0: dark=    22.8  noise=  2794.0  struct=   932.6  -> dark
+   'dark starves': struct beats dark only if beta_phys > 49.161 (decided by the physics/perception exchange rate)
+
+=== Part C2: sequential choice, rooms unlabelled, 10 forced visits each, T=1500, 20 seeds ===
+    share = fraction of time in [dark, noise, struct]; final KL = law-level inconsistency left per room
+   atoms=0.0    O1  hazards=equal         W=1.0   : share=[0.9867 0.0067 0.0067]  final KL=[0.001 0.106 0.365]  sample inc=    38.9
+   atoms=0.0    O1  hazards=dark starves  W=1.0   : share=[0.9867 0.0067 0.0067]  final KL=[0.001 0.106 0.365]  sample inc=    38.9
+   atoms=0.0    O1  hazards=dark starves  W=100.0 : share=[0.0067 0.0072 0.9862]  final KL=[0.138  0.0468 0.0031]  sample inc=   687.6
+   atoms=0.0    O1  hazards=struct costly W=1.0   : share=[0.9867 0.0067 0.0067]  final KL=[0.001 0.106 0.365]  sample inc=    38.9
+   atoms=0.0    O1  hazards=struct costly W=100.0 : share=[0.9867 0.0067 0.0067]  final KL=[0.001 0.106 0.365]  sample inc=    38.9
+   atoms=0.0    LIR hazards=equal         W=1.0   : share=[0.1305 0.1794 0.6902]  final KL=[0.0076 0.0073 0.0054]  sample inc=   863.2
+   atoms=0.0    LIR hazards=dark starves  W=1.0   : share=[0.0507 0.1953 0.754 ]  final KL=[0.0195 0.0069 0.005 ]  sample inc=   941.3
+   atoms=0.0    LIR hazards=dark starves  W=1000.0: share=[0.1303 0.1794 0.6903]  final KL=[0.0076 0.0073 0.0061]  sample inc=   863.2
+   atoms=0.0    LIR hazards=struct costly W=1.0   : share=[0.1483 0.2034 0.6483]  final KL=[0.0067 0.0067 0.0062]  sample inc=   886.0
+   atoms=0.0    LIR hazards=struct costly W=1000.0: share=[0.1305 0.1794 0.6901]  final KL=[0.0076 0.0073 0.0054]  sample inc=   863.1
+   atoms=0.5    O1  hazards=equal         W=1.0   : share=[0.9867 0.0067 0.0067]  final KL=[0.     0.0498 0.4048]  sample inc=    29.9
+   atoms=0.5    O1  hazards=dark starves  W=1.0   : share=[0.9867 0.0067 0.0067]  final KL=[0.     0.0498 0.4048]  sample inc=    29.9
+   atoms=0.5    O1  hazards=dark starves  W=100.0 : share=[0.9867 0.0067 0.0067]  final KL=[0.     0.0498 0.4048]  sample inc=    29.9
+   atoms=0.5    O1  hazards=struct costly W=1.0   : share=[0.9867 0.0067 0.0067]  final KL=[0.     0.0498 0.4048]  sample inc=    29.9
+   atoms=0.5    O1  hazards=struct costly W=100.0 : share=[0.9867 0.0067 0.0067]  final KL=[0.     0.0498 0.4048]  sample inc=    29.9
+   atoms=0.5    LIR hazards=equal         W=1.0   : share=[0.0173 0.0331 0.9496]  final KL=[0.0008 0.     0.0045]  sample inc=   720.7
+   atoms=0.5    LIR hazards=dark starves  W=1.0   : share=[0.01   0.0331 0.9569]  final KL=[0.0028 0.     0.0027]  sample inc=   725.3
+   atoms=0.5    LIR hazards=dark starves  W=1000.0: share=[0.0173 0.0331 0.9496]  final KL=[0.0008 0.     0.0045]  sample inc=   720.7
+   atoms=0.5    LIR hazards=struct costly W=1.0   : share=[0.0197 0.0344 0.9459]  final KL=[0.0006 0.     0.0044]  sample inc=   721.4
+   atoms=0.5    LIR hazards=struct costly W=1000.0: share=[0.0173 0.0331 0.9496]  final KL=[0.0008 0.     0.0045]  sample inc=   720.7
+   atoms=1e-06  O1  hazards=equal         W=1.0   : share=[0.9867 0.0067 0.0067]  final KL=[0.001 0.106 0.365]  sample inc=    38.8
+   atoms=1e-06  O1  hazards=dark starves  W=1.0   : share=[0.9867 0.0067 0.0067]  final KL=[0.001 0.106 0.365]  sample inc=    38.8
+   atoms=1e-06  O1  hazards=dark starves  W=100.0 : share=[0.0067 0.0072 0.9862]  final KL=[0.138  0.0468 0.0031]  sample inc=   687.6
+   atoms=1e-06  O1  hazards=struct costly W=1.0   : share=[0.9867 0.0067 0.0067]  final KL=[0.001 0.106 0.365]  sample inc=    38.8
+   atoms=1e-06  O1  hazards=struct costly W=100.0 : share=[0.9867 0.0067 0.0067]  final KL=[0.001 0.106 0.365]  sample inc=    38.8
+   atoms=1e-06  LIR hazards=equal         W=1.0   : share=[0.1306 0.1792 0.6901]  final KL=[0.0076 0.0073 0.0051]  sample inc=   862.9
+   atoms=1e-06  LIR hazards=dark starves  W=1.0   : share=[0.0507 0.1952 0.7541]  final KL=[0.0195 0.0069 0.0063]  sample inc=   941.1
+   atoms=1e-06  LIR hazards=dark starves  W=1000.0: share=[0.1303 0.1793 0.6904]  final KL=[0.0076 0.0073 0.0066]  sample inc=   863.0
+   atoms=1e-06  LIR hazards=struct costly W=1.0   : share=[0.1484 0.2033 0.6483]  final KL=[0.0067 0.0067 0.0059]  sample inc=   885.8
+   atoms=1e-06  LIR hazards=struct costly W=1000.0: share=[0.1306 0.1792 0.6901]  final KL=[0.0076 0.0073 0.0051]  sample inc=   862.9
+
+=== Part D: long run, LIR equal hazards, T=20000, 4 seeds: time share [dark, noise, struct] in each quarter ===
+   atoms=0.0: [0.1289 0.1765 0.6945]  [0.1274 0.1748 0.6978]  [0.1275 0.1746 0.6979]  [0.1272 0.1743 0.6985]
+   atoms=1e-06: [0.1292 0.1763 0.6944]  [0.1295 0.1716 0.6989]  [0.1319 0.1648 0.7033]  [0.1323 0.1696 0.6981]
+   atoms=0.5: [0.009  0.0099 0.9811]  [0.0034 0.001  0.9956]  [0.0024 0.0008 0.9968]  [0.002  0.0001 0.9979]
+

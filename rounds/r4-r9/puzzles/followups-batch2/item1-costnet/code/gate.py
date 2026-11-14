@@ -1,0 +1,78 @@
+"""Item 1 gates (pre-registered in ../PREREG.md). Blocks until every seed has a gate result or a failure file, then
+writes GATE_<kind>.json in the eval dir and exits 0 (pass) or 1 (fail: no test evaluation runs).
+
+  1a: G1 solver/pipeline gate: control_oracle exact >= 0.99 on every set;
+      G2 training gate: median over seeds of gate_W9 exact (final checkpoint) >= 0.60, failed seeds count as 0,
+      and >= 90% of seeds trained.
+  1b: G1 selftest passed (SELFTEST_OK); G2 median over seeds of held-out val exact >= 0.90, failed seeds count 0,
+      and >= 90% of seeds trained.
+
+  python gate.py 1a --dir EVDIR --seeds 100-131
+  python gate.py 1b --dir EVDIR --seeds 200-219
+"""
+import argparse, glob, json, os, sys, time
+import numpy as np
+
+
+def seeds_of(s):
+    lo, hi = s.split("-")
+    return list(range(int(lo), int(hi) + 1))
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("kind", choices=["1a", "1b"]); ap.add_argument("--dir", required=True); ap.add_argument("--seeds", required=True)
+    ap.add_argument("--timeout", type=float, default=5 * 3600)
+    a = ap.parse_args()
+    seeds = seeds_of(a.seeds); out = os.path.join(a.dir, f"GATE_{a.kind}.json")
+    if os.path.exists(out):
+        g = json.load(open(out)); print(json.dumps(g)); sys.exit(0 if g["ok"] else 1)
+    t0 = time.time()
+
+    def gate_file(s):
+        return (os.path.join(a.dir, f"CostNet+BB_s{s}_gate.json") if a.kind == "1a"
+                else os.path.join(a.dir, "val", f"bansal_s{s}.json"))
+
+    while True:
+        vals, missing = {}, []
+        for s in seeds:
+            f = gate_file(s)
+            if os.path.exists(f):
+                d = json.load(open(f))
+                vals[s] = d["means"]["gate_W9/exact"] if a.kind == "1a" else d["sets"]["val"]["exact"]
+            elif glob.glob(os.path.join(a.dir, f"*FAILED_s{s}")):
+                vals[s] = None
+            else:
+                missing.append(s)
+        pre = os.path.join(a.dir, "control_oracle.json" if a.kind == "1a" else "SELFTEST_OK")
+        pre_fail = os.path.exists(os.path.join(a.dir, "PRE_FAILED"))
+        if (not missing and os.path.exists(pre)) or pre_fail:
+            break
+        if time.time() - t0 > a.timeout:
+            break
+        time.sleep(30)
+    res = {"kind": a.kind, "checked_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), "missing": missing}
+    if a.kind == "1a":
+        orc = json.load(open(pre))["means"] if os.path.exists(pre) else {}
+        ex = {k: v for k, v in orc.items() if k.endswith("/exact")}
+        res["G1_oracle_exact"] = ex
+        g1 = bool(ex) and min(ex.values()) >= 0.99
+        thr = 0.60
+    else:
+        g1 = os.path.exists(pre)
+        res["G1_selftest"] = g1
+        thr = 0.90
+    per = {str(s): vals.get(s) for s in seeds}
+    trained = [v for v in per.values() if v is not None]
+    med = float(np.median([v if v is not None else 0.0 for v in per.values()]))
+    g2 = (not missing) and med >= thr and len(trained) >= 0.9 * len(seeds)
+    res.update({"per_seed": per, "median": med, "threshold": thr, "n_trained": len(trained), "G1": g1, "G2": g2,
+                "ok": bool(g1 and g2)})
+    tmp = out + f".tmp{os.getpid()}"   # per-process tmp: all seeds reach this at once (fixed 23:30Z after a rename race)
+    json.dump(res, open(tmp, "w"), indent=1); os.replace(tmp, out)
+    print(json.dumps(res), flush=True)
+    sys.exit(0 if res["ok"] else 1)
+
+
+if __name__ == "__main__":
+    main()

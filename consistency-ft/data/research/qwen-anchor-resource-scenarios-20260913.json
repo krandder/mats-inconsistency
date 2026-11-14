@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "scope": "Conditional resource arithmetic for complete original own-base collection; no execution or statistical forecast.",
+  "original_training_episodes": 1619,
+  "distinct_training_propositions": 2926,
+  "prompt_tokens": {
+    "sum": 735396,
+    "min": 164,
+    "max": 406,
+    "mean": 251.3315105946685,
+    "nearest_rank_percentiles": {
+      "50": 259,
+      "90": 301,
+      "95": 313,
+      "99": 336
+    }
+  },
+  "prompt_records_sha256": "16edf0064b234d0ab3f6bc294380961ec2057368fb6c22874a0426dfc7db0634",
+  "source_sha256": {
+    "data/episodes/train.jsonl": "71ccc77578c201dc7f51bf06cb9f48f1fecfc1850e3f0472aa349a777924fd2e",
+    "data/research/qwen-tokenizer-preflight-20260913.json": "2488b4a8575efef558ac0d1f7e42c0f19ea81cd655dd8791fba59c0ad55470ff",
+    "data/research/qwen-candidate-execution-20260913/readouts.jsonl": "93e0eb3e46364890aa90279ef35822994fdcb992a930e17505358ccb5275b991",
+    "data/research/qwen-candidate-execution-20260913/token-events.jsonl": "5ef3dc5e95ab5ea6b6b75c2ed780359a6650df524874b23ff1da3c42ff78f7ef",
+    "data/research/qwen-numerical-backward-20260913/phases.jsonl": "84c88382a690ef0870055e8e892bf0b17b2f7db233840310c668251a93554454",
+    "scripts/estimate_qwen_anchor_resources.py": "ea7dfb4d35fcb78f0e519c4a0c9df8b17f1897744d874af7b48ce39b346865bb"
+  },
+  "observations": {
+    "selected_prompts": 3,
+    "token_timings": 13,
+    "cpu_threads": 2,
+    "cache": false,
+    "seconds_per_prefix_token_min": 0.06977830328067895,
+    "seconds_per_prefix_token_max": 0.079521550935893,
+    "separate_combined_integrity_audit_seconds": 15.714420947246253
+  },
+  "scenarios": [
+    {
+      "assumed_completion_tokens_per_proposition_including_eos": 4,
+      "total_generated_tokens": 11704,
+      "total_causal_prefix_tokens_processed_without_cache": 2959140,
+      "generation_hours_at_min_observed_coefficient": 57.35660232499675,
+      "generation_hours_at_max_observed_coefficient": 65.36538951012179
+    },
+    {
+      "assumed_completion_tokens_per_proposition_including_eos": 8,
+      "total_generated_tokens": 23408,
+      "total_causal_prefix_tokens_processed_without_cache": 5965096,
+      "generation_hours_at_min_observed_coefficient": 115.62063271843469,
+      "generation_hours_at_max_observed_coefficient": 131.76491261152543
+    },
+    {
+      "assumed_completion_tokens_per_proposition_including_eos": 16,
+      "total_generated_tokens": 46816,
+      "total_causal_prefix_tokens_processed_without_cache": 12117456,
+      "generation_hours_at_min_observed_coefficient": 234.87097771063412,
+      "generation_hours_at_max_observed_coefficient": 267.6663595881784
+    },
+    {
+      "assumed_completion_tokens_per_proposition_including_eos": 32,
+      "total_generated_tokens": 93632,
+      "total_causal_prefix_tokens_processed_without_cache": 24983968,
+      "generation_hours_at_min_observed_coefficient": 484.2608045163272,
+      "generation_hours_at_max_observed_coefficient": 551.8788566368669
+    }
+  ],
+  "additional_integrity_proxy": {
+    "assumption": "One audit equal to the separate observed combined audit per proposition.",
+    "hours": 12.772332136567371,
+    "measured_collection_overhead": false
+  },
+  "limitations": [
+    "Three selected prompts and 13 tokens do not establish population throughput, error rate or confidence bounds.",
+    "Constant seconds per causal-prefix token is an explicit extrapolation; hardware load and kernels may differ.",
+    "Generation calibration used the frozen base without installed LoRA; collection overhead must be measured.",
+    "Scenarios assume identical completion length for every proposition; 32 is a cap scenario, not valid coverage.",
+    "Process reloads, token/receipt fsync, tokenizer verification, adapter work and retries are excluded.",
+    "No replacement samples are authorized by this arithmetic; invalid or interrupted attempts remain missing anchors.",
+    "The integrity figure is a transferred proxy, not a measured per-readout collector cost.",
+    "No current dollar price, paid resource allowance, scientific treatment selection or training time is inferred."
+  ],
+  "provider_inference_requests": 0,
+  "new_paid_resources_allocated": false
+}

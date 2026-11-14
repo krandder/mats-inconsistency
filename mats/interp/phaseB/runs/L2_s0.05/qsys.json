@@ -1,0 +1,179 @@
+{
+ "run": "runs/L2_s0.05",
+ "n_fit": 65536,
+ "K": 64,
+ "floor": {
+  "mean": 0.9604585626227133,
+  "logsd": 0.9870733407611666,
+  "kl": 0.978961058435988
+ },
+ "n_features": 50,
+ "systematic": {
+  "mean": {
+   "R2": 0.15692141160718986,
+   "fraction": 0.16338176128982215,
+   "model": "HGB lr=0.1 leaves=63 l2=0.0 (val R2 0.187; MLP 0.186)"
+  },
+  "logsd": {
+   "R2": 0.6445902442053087,
+   "fraction": 0.6530317632813817,
+   "model": "MLP (val R2 0.639; best HGB 0.638)"
+  },
+  "kl": {
+   "R2": 0.16813335483313652,
+   "fraction": 0.17174672412583034,
+   "model": "MLP (val R2 0.406; best HGB 0.398)"
+  }
+ },
+ "ceiling": {
+  "mean": {
+   "R2": 0.029197648495700723,
+   "fraction": 0.0303996961784286
+  },
+  "logsd": {
+   "R2": 0.1572587760241051,
+   "fraction": 0.15931822847412472
+  },
+  "kl": {
+   "R2": 0.11649692923782007,
+   "fraction": 0.11900057538952406
+  }
+ },
+ "ceiling_best_epoch": 25,
+ "e2_picks": {
+  "all-MLP-rank-8": {
+   "index": 4,
+   "params": 12896,
+   "moves": [
+    "backward eps=0.0",
+    "sur m2:LR8",
+    "sur m1:LR8",
+    "sur r2:LR8",
+    "sur r1:LR8"
+   ]
+  },
+  "cheapest": {
+   "index": 11,
+   "params": 12512,
+   "moves": [
+    "backward eps=0.0",
+    "sur m2:LR8",
+    "sur m1:LR8",
+    "sur r2:LR8",
+    "sur r1:LR8",
+    "pool m1 lab0",
+    "pool r1 lab0",
+    "pool r1 lab2",
+    "pool m1 lab2",
+    "prune L1 src2<-src1",
+    "prune L1 src1<-src2",
+    "sur m1:LR4"
+   ]
+  }
+ },
+ "descriptions": {
+  "network itself (independent draws, seed 7)": {
+   "mean": {
+    "R2_systematic": -4.104804488356481,
+    "R2_full": 0.9604585626227133,
+    "R2_projected": -0.9844943326310127
+   },
+   "logsd": {
+    "R2_systematic": 0.5112266817119872,
+    "R2_full": 0.9870733407611666,
+    "R2_projected": 0.5646550035788294
+   },
+   "kl": {
+    "R2_systematic": -0.09572441695286948,
+    "R2_full": 0.978961058435988,
+    "R2_projected": 0.404693381485137
+   }
+  },
+  "DAG D1 (real weights)": {
+   "mean": {
+    "R2_systematic": -3.5226953267200827,
+    "R2_full": 0.768470142183217,
+    "R2_projected": -0.9799038868490966
+   },
+   "logsd": {
+    "R2_systematic": 0.5980255321968433,
+    "R2_full": 0.8171906889394949,
+    "R2_projected": 0.5626707581488
+   },
+   "kl": {
+    "R2_systematic": 0.2544284953608854,
+    "R2_full": 0.6439030095385978,
+    "R2_projected": 0.4167221107342818
+   }
+  },
+  "scenario-mechanism regression": {
+   "mean": {
+    "R2_systematic": 0.046010360069356215,
+    "R2_full": 0.009726705062253593,
+    "R2_projected": 0.04450280167010856
+   },
+   "logsd": {
+    "R2_systematic": 0.28681510532029497,
+    "R2_full": 0.16805104924506153,
+    "R2_projected": 0.2639872546971095
+   },
+   "kl": {
+    "R2_systematic": 0.46569527470254823,
+    "R2_full": 0.28944326486486427,
+    "R2_projected": 0.43159957132346205
+   }
+  },
+  "E3a head (h = 64)": {
+   "mean": {
+    "R2_systematic": -0.04158886466743672,
+    "R2_full": 0.02882567943066039,
+    "R2_projected": -0.007242356421542917
+   },
+   "logsd": {
+    "R2_systematic": 0.5279536743684161,
+    "R2_full": 0.33898111268628095,
+    "R2_projected": 0.47247740689373163
+   },
+   "kl": {
+    "R2_systematic": 0.24281390623661903,
+    "R2_full": 0.09819598885086156,
+    "R2_projected": 0.37230749507015193
+   }
+  },
+  "E2 all-MLP-rank-8 (step 4, 12,896 parameters)": {
+   "mean": {
+    "R2_systematic": -4.391160029770139,
+    "R2_full": 0.924309091715541,
+    "R2_projected": -1.0615472931094718
+   },
+   "logsd": {
+    "R2_systematic": 0.4615361700900651,
+    "R2_full": 0.9617090264246954,
+    "R2_projected": 0.5613330617467849
+   },
+   "kl": {
+    "R2_systematic": -0.20752523370175213,
+    "R2_full": 0.8935782361306221,
+    "R2_projected": 0.3332209632805657
+   }
+  },
+  "E2 cheapest (step 11, 12,512 parameters)": {
+   "mean": {
+    "R2_systematic": -5.126454722277067,
+    "R2_full": 0.4883048367803269,
+    "R2_projected": -1.62623255615572
+   },
+   "logsd": {
+    "R2_systematic": 0.36634370767365265,
+    "R2_full": 0.7782428377011668,
+    "R2_projected": 0.5102848714113029
+   },
+   "kl": {
+    "R2_systematic": -0.5736115958229817,
+    "R2_full": 0.2597506850399628,
+    "R2_projected": 0.25051111030555806
+   }
+  }
+ },
+ "seconds": 1531.6865170001984
+}

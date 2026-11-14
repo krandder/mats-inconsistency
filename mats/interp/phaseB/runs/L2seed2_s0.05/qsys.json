@@ -1,0 +1,192 @@
+{
+ "run": "runs/L2seed2_s0.05",
+ "n_fit": 65536,
+ "K": 64,
+ "floor": {
+  "mean": 0.9824139261558595,
+  "logsd": 0.9888983769068576,
+  "kl": 0.9892101991772331
+ },
+ "n_features": 50,
+ "systematic": {
+  "mean": {
+   "R2": 0.12238421014861545,
+   "fraction": 0.12457499521357482,
+   "model": "MLP (val R2 0.124; best HGB 0.104)"
+  },
+  "logsd": {
+   "R2": 0.4777661442635398,
+   "fraction": 0.48312966773990335,
+   "model": "HGB lr=0.03 leaves=63 l2=0.0 (val R2 0.517; MLP 0.508)"
+  },
+  "kl": {
+   "R2": 0.17339890303009542,
+   "fraction": 0.17529024991282788,
+   "model": "HGB lr=0.03 leaves=15 l2=1.0 (val R2 0.239; MLP 0.228)"
+  }
+ },
+ "ceiling": {
+  "mean": {
+   "R2": -0.005084406760005988,
+   "fraction": -0.005175422115503836
+  },
+  "logsd": {
+   "R2": 0.13994970624192593,
+   "fraction": 0.1415208170122293
+  },
+  "kl": {
+   "R2": 0.014403580619670397,
+   "fraction": 0.014560687538048485
+  }
+ },
+ "ceiling_best_epoch": 24,
+ "e2_picks": {
+  "all-MLP-rank-8": {
+   "index": 4,
+   "params": 12896,
+   "moves": [
+    "backward eps=0.0",
+    "sur m1:LR8",
+    "sur m2:LR8",
+    "sur r2:LR8",
+    "sur r1:LR8"
+   ]
+  },
+  "cheapest": {
+   "index": 7,
+   "params": 9814,
+   "moves": [
+    "backward eps=0.0",
+    "sur m1:LR8",
+    "sur m2:LR8",
+    "sur r2:LR8",
+    "sur r1:LR8",
+    "sur r2:LR4",
+    "sur a2:named",
+    "sur emb:LR8"
+   ]
+  }
+ },
+ "descriptions": {
+  "network itself (independent draws, seed 7)": {
+   "mean": {
+    "R2_systematic": -4.330648262062426,
+    "R2_full": 0.9824139261558595,
+    "R2_projected": -0.8333680799285212
+   },
+   "logsd": {
+    "R2_systematic": -0.20979212201479602,
+    "R2_full": 0.9888983769068576,
+    "R2_projected": 0.5898361763422608
+   },
+   "kl": {
+    "R2_systematic": -3.175792597662668,
+    "R2_full": 0.9892101991772331,
+    "R2_projected": -0.18149018257793248
+   }
+  },
+  "DAG D1 (real weights)": {
+   "mean": {
+    "R2_systematic": -14.717305997006731,
+    "R2_full": -1.035347872754846,
+    "R2_projected": -4.995669034241106
+   },
+   "logsd": {
+    "R2_systematic": -4.186303718531735,
+    "R2_full": -1.2537078366844887,
+    "R2_projected": -3.419889468307498
+   },
+   "kl": {
+    "R2_systematic": -39.8127094302326,
+    "R2_full": -7.219117312102437,
+    "R2_projected": -22.876135149664233
+   }
+  },
+  "DAG D1+lat (real weights)": {
+   "mean": {
+    "R2_systematic": -6.474385871302764,
+    "R2_full": 0.3659827217874857,
+    "R2_projected": -1.5550466853277554
+   },
+   "logsd": {
+    "R2_systematic": -1.3022881836612874,
+    "R2_full": 0.3583618113495123,
+    "R2_projected": 0.2672793925719401
+   },
+   "kl": {
+    "R2_systematic": -8.819550409922357,
+    "R2_full": -0.6823008477016397,
+    "R2_projected": -1.566341711298033
+   }
+  },
+  "scenario-mechanism regression": {
+   "mean": {
+    "R2_systematic": 0.01074022863029711,
+    "R2_full": 0.004276372874724599,
+    "R2_projected": 0.011569779259499757
+   },
+   "logsd": {
+    "R2_systematic": 0.37575915054118947,
+    "R2_full": 0.16600251564845503,
+    "R2_projected": 0.36184602909938113
+   },
+   "kl": {
+    "R2_systematic": 0.4737681441522612,
+    "R2_full": 0.12712903501367645,
+    "R2_projected": 0.4473788296211645
+   }
+  },
+  "E3a head (h = 8)": {
+   "mean": {
+    "R2_systematic": 0.2743001735547329,
+    "R2_full": 0.04296845775101177,
+    "R2_projected": 0.21207726169326446
+   },
+   "logsd": {
+    "R2_systematic": 0.307815726493712,
+    "R2_full": 0.1631997408072512,
+    "R2_projected": 0.30034024582761243
+   },
+   "kl": {
+    "R2_systematic": 0.035180492502787875,
+    "R2_full": 0.01476475993764681,
+    "R2_projected": 0.12686038924212484
+   }
+  },
+  "E2 all-MLP-rank-8 (step 4, 12,896 parameters)": {
+   "mean": {
+    "R2_systematic": -5.487689078745392,
+    "R2_full": 0.8490458310442657,
+    "R2_projected": -1.275228151218092
+   },
+   "logsd": {
+    "R2_systematic": -0.3833206576161634,
+    "R2_full": 0.9214210362640006,
+    "R2_projected": 0.5094108414901326
+   },
+   "kl": {
+    "R2_systematic": -4.354989221414354,
+    "R2_full": 0.8484318466421059,
+    "R2_projected": -0.5055459467129397
+   }
+  },
+  "E2 cheapest (step 7, 9,814 parameters)": {
+   "mean": {
+    "R2_systematic": -18.211804902460344,
+    "R2_full": -2.0673641174885193,
+    "R2_projected": -10.691677608244614
+   },
+   "logsd": {
+    "R2_systematic": -11.884660841584457,
+    "R2_full": -4.7602333589054355,
+    "R2_projected": -10.148323541677438
+   },
+   "kl": {
+    "R2_systematic": -175.52631243882965,
+    "R2_full": -34.38421530558763,
+    "R2_projected": -130.54134904329194
+   }
+  }
+ },
+ "seconds": 1531.5813262462616
+}

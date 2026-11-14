@@ -1,0 +1,1201 @@
+{
+"checks": [
+[
+27,
+"clause-1 Pearson",
+"0.9995 0.9994 0.9995"
+],
+[
+27,
+"scaled_mix KL cut",
+"0.6295 0.6195 0.6394"
+],
+[
+28,
+"looped_attn params, share (%)",
+"39428 37.1"
+],
+[
+28,
+"KL ratio to attn_K3",
+"0.967 0.927 1.007"
+],
+[
+28,
+"KL looped_attn",
+"0.0317"
+],
+[
+28,
+"JSD ratios vs scaled_mix, mmd",
+"7.05 7.84"
+],
+[
+29,
+"jacobi params, KL, looped_lin KL, kc_K1 KL",
+"812 0.0408 0.0680 0.0939"
+],
+[
+29,
+"jacobi W8/W1 by tier",
+"1.404 1.823 2.201"
+],
+[
+29,
+"jacobi W16/W1 tau 0.3",
+"1.449 1.392 1.507"
+],
+[
+30,
+"PUCT coverage mixed",
+"0.9863 0.9855 0.9871"
+],
+[
+30,
+"open coverage mixed, wave-1 share",
+"0.830 0.822"
+],
+[
+31,
+"JSD ratio mixed",
+"2.93 2.74 3.12"
+],
+[
+31,
+"JSD ratio clean",
+"5.38 4.58 6.18"
+],
+[
+31,
+"KL cuts mixed, clean (%)",
+"51.3 53.1"
+],
+[
+32,
+"attn W16/W1 tau0.3",
+"1.024"
+],
+[
+32,
+"MSE cuts tau0.3 vs mmd, kc_K1 (%)",
+"38.6 25.1"
+],
+[
+32,
+"attn W8/W1 tau2.5",
+"3.591 3.020 4.162"
+],
+[
+32,
+"attn W16/W1 tau2.5",
+"4.306"
+],
+[
+32,
+"MSE cut tau2.5 vs mmd (%)",
+"22.7"
+],
+[
+32,
+"MSE cut tau2.5 vs kc_K1 (%)",
+"14.8 11.4 18.2"
+],
+[
+34,
+"ckpt size MB, params",
+"2.5 669633"
+],
+[
+39,
+"KL looped_attn, KL attn_K3",
+"0.0317 0.0328"
+],
+[
+39,
+"JSD looped_attn",
+"0.0066"
+],
+[
+40,
+"max |MSE cut attn_K3 vs looped_attn| over tiers (%) <= 0.5",
+"0.5"
+],
+[
+40,
+"CIs of the MSE difference looped_attn - attn_K3 include 0 (1 = yes, all tiers)",
+"1"
+],
+[
+42,
+"jacobi KL, % below looped_lin (ratio of means)",
+"0.0408 40"
+],
+[
+43,
+"jacobi W16/W1 tau0.3",
+"1.45"
+],
+[
+45,
+"lambda cell mean range",
+"1.55 1.61"
+],
+[
+46,
+"beta(tau 0.3) range (fit.beta_by_tau)",
+"3.35 3.62"
+],
+[
+46,
+"closed form range over extreme (lambda, beta) pairs",
+"1.39 1.44"
+],
+[
+46,
+"measured jacobi W16/W1 per-seed range",
+"1.42 1.47"
+],
+[
+46,
+"bar: lambda <= 0.27 beta; 0.27 x beta range",
+"0.27 0.9 1.0"
+],
+[
+47,
+"attribution range low/high (%)",
+"44 80"
+],
+[
+49,
+"kc_K1 -> kc_K3 KL, JSD",
+"0.0939 0.0670 0.0410 0.0136"
+],
+[
+50,
+"MSE gap closed by kc_K3 at tau 0.3 / 2.5 (%)",
+"77 53"
+],
+[
+51,
+"attn_K3 below kc_K3 at tau 2.5 (%)",
+"7.5"
+],
+[
+51,
+"CI > 0 at every tier (1 = yes)",
+"1"
+],
+[
+52,
+"PUCT coverage %",
+"98.6"
+],
+[
+55,
+"union JSD after PUCT (mixed); x below open (mean of per-seed ratios)",
+"0.0007 25"
+],
+[
+57,
+"attn/union x (mixed), attn JSD mixed",
+"12 0.0085"
+],
+[
+58,
+"attn/union x (clean), attn JSD clean",
+"6 0.0039"
+],
+[
+59,
+"mixed/clean attn JSD",
+"2.21"
+],
+[
+62,
+"cost total, VM1, VM2 ($, ledger GPU-LOG lines)",
+"0.98 0.76 0.22"
+],
+[
+110,
+"Pearson",
+"0.9995 0.9994 0.9995"
+],
+[
+111,
+"Pearson per seed",
+"0.9994 0.9995 0.9995"
+],
+[
+113,
+"KL root",
+"0.2797"
+],
+[
+114,
+"alpha per seed",
+"0.2197 0.2230 0.2210"
+],
+[
+115,
+"scaled_mix KL, cut",
+"0.1036 0.6295 0.6195 0.6394"
+],
+[
+116,
+"union KL",
+"0.0022"
+],
+[
+126,
+"P-FullSupport KL, JSD mix",
+"0.1973 0.00384"
+],
+[
+127,
+"P-FullSupport KL, JSD scaled_mix",
+"0.1036 0.04585"
+],
+[
+128,
+"P-FullSupport KL, JSD mmd",
+"0.1183 0.05097"
+],
+[
+129,
+"P-FullSupport KL, JSD kc_K1",
+"0.0939 0.04104"
+],
+[
+130,
+"P-FullSupport KL, JSD kc_K3",
+"0.0670 0.01358"
+],
+[
+131,
+"P-FullSupport KL, JSD kc_K4",
+"0.0734 0.02261"
+],
+[
+132,
+"P-FullSupport KL, JSD econ_K3",
+"0.0457 0.01229"
+],
+[
+133,
+"P-FullSupport KL, JSD looped_lin",
+"0.0680 0.02209"
+],
+[
+134,
+"P-FullSupport KL, JSD jacobi",
+"0.0408 0.01250"
+],
+[
+135,
+"P-FullSupport KL, JSD looped_attn",
+"0.0317 0.00657"
+],
+[
+137,
+"P-FullSupport KL, JSD union",
+"0.0022 0.00000"
+],
+[
+133,
+"params looped_lin, jacobi, looped_attn",
+"2789 812 39428"
+],
+[
+136,
+"attn K1/K3/K4 params, KL, JSD",
+"107652 106180 108228 0.0358 0.0328 0.0332 0.00862 0.00692 0.00770"
+],
+[
+140,
+"params ratio",
+"39428 106180 0.371"
+],
+[
+141,
+"KL ratio + per seed, KL",
+"0.967 0.927 1.007 0.956 0.985 0.959 0.0317"
+],
+[
+143,
+"JSD ratios",
+"7.05 4.84 9.25 7.84 5.14 10.55"
+],
+[
+145,
+"KL diffs scaled_mix, mmd, kc_K1",
+"0.0719 0.0680 0.0758 0.0867 0.0749 0.0984 0.0622 0.0570 0.0674"
+],
+[
+146,
+"KL diff kc_K3",
+"0.0353 0.0336 0.0370"
+],
+[
+147,
+"JSD diffs",
+"0.0393 0.0356 0.0429 0.0444 0.0391 0.0498 0.0345 0.0300 0.0389 0.0070 0.0054 0.0086"
+],
+[
+148,
+"paired KL diff looped_attn - attn_K3",
+"-0.0011 -0.0024 0.0003"
+],
+[
+149,
+"paired JSD diff looped_attn - attn_K3",
+"-0.00036 -0.00179 0.00107"
+],
+[
+150,
+"mix KL",
+"0.1973"
+],
+[
+153,
+"jacobi KL CI, looped_lin KL, diff",
+"0.0408 0.0397 0.0418 0.0680 0.0273 0.0179 0.0366"
+],
+[
+154,
+"kc_K1 KL, diff",
+"0.0939 0.0532 0.0492 0.0572"
+],
+[
+155,
+"R6 looped_lin KL (spec)",
+"0.069"
+],
+[
+156,
+"jacobi W8/W1 by tier",
+"1.404 1.823 2.201"
+],
+[
+157,
+"jacobi W8/W1 tau2.5 CI",
+"2.201 2.113 2.290"
+],
+[
+158,
+"jacobi W16/W1 tau0.3 + per seed",
+"1.449 1.392 1.507 1.454 1.424 1.470"
+],
+[
+160,
+"lambda cell mean per seed",
+"1.583 1.552 1.612"
+],
+[
+161,
+"eta_t x mean_c P_tc, min and max over seeds and steps ('about 0.19')",
+"0.19 0.19"
+],
+[
+162,
+"s_c cell mean, min and max over seeds ('about 2.25')",
+"2.25 2.25"
+],
+[
+168,
+"econ KL; jacobi - econ",
+"0.0457 -0.0049 -0.0065 -0.0033"
+],
+[
+178,
+"P-ActivePUCT mixed open: coverage, attn JSD, attn KL, union JSD",
+"0.8301 0.02500 0.0792 0.01739"
+],
+[
+179,
+"P-ActivePUCT mixed puct: coverage, attn JSD, attn KL, union JSD",
+"0.9863 0.00853 0.0385 0.00069"
+],
+[
+180,
+"P-ActivePUCT mixed greedy: coverage, attn JSD, attn KL, union JSD",
+"0.9934 0.00691 0.0349 0.00016"
+],
+[
+181,
+"P-ActivePUCT mixed open30: coverage, attn JSD, attn KL, union JSD",
+"0.8658 0.02204 0.0701 0.01369"
+],
+[
+182,
+"P-ActivePUCT mixed puct30: coverage, attn JSD, attn KL, union JSD",
+"0.9929 0.00657 0.0343 0.00028"
+],
+[
+183,
+"P-ActivePUCT clean open: coverage, attn JSD, attn KL, union JSD",
+"0.8328 0.02081 0.0650 0.01734"
+],
+[
+184,
+"P-ActivePUCT clean puct: coverage, attn JSD, attn KL, union JSD",
+"0.9870 0.00386 0.0304 0.00064"
+],
+[
+185,
+"P-ActivePUCT clean greedy: coverage, attn JSD, attn KL, union JSD",
+"0.9924 0.00252 0.0284 0.00019"
+],
+[
+186,
+"P-ActivePUCT clean open30: coverage, attn JSD, attn KL, union JSD",
+"0.8666 0.01813 0.0580 0.01375"
+],
+[
+187,
+"P-ActivePUCT clean puct30: coverage, attn JSD, attn KL, union JSD",
+"0.9930 0.00294 0.0294 0.00028"
+],
+[
+190,
+"coverage mixed CI + per seed, clean",
+"0.9863 0.9855 0.9871 0.9867 0.9861 0.9862 0.9870"
+],
+[
+191,
+"coverage by wave mixed U_NW",
+"0.593 0.892 0.967 0.986 0.993"
+],
+[
+192,
+"wave-1 share NW",
+"0.822 0.803 0.842"
+],
+[
+193,
+"wave-1 strict share NW",
+"0.665 0.626 0.704"
+],
+[
+195,
+"mixed ratio, diff",
+"2.93 2.74 3.12 0.0165 0.0139 0.0190"
+],
+[
+196,
+"mixed KL cut",
+"0.513 0.477 0.549"
+],
+[
+197,
+"clean ratio, diff, KL cut",
+"5.38 4.58 6.18 0.0169 0.0129 0.0210 0.531 0.514 0.549"
+],
+[
+200,
+"union JSD cut x mixed (mean of per-seed ratios), open, puct",
+"25.2 0.01739 0.00069"
+],
+[
+201,
+"union JSD cut x clean",
+"27.1"
+],
+[
+202,
+"attn/union mixed CI",
+"12.4 10.3 14.4"
+],
+[
+203,
+"attn/union clean CI",
+"6.0 4.5 7.6"
+],
+[
+204,
+"mixed/clean CI",
+"2.21 2.14 2.27"
+],
+[
+207,
+"greedy coverage, JSD mixed",
+"0.9934 0.00691"
+],
+[
+222,
+"W(N) row attn_K3 tau 0.3",
+"0.884 0.998 0.955 0.912 0.907 1.030 1.024 0.847 1.201"
+],
+[
+223,
+"W(N) row attn_K3 tau 1.5",
+"0.574 0.823 1.035 1.160 1.217 2.023 2.121"
+],
+[
+224,
+"W(N) row attn_K3 tau 2.5",
+"0.361 0.598 0.928 1.291 1.547 3.591 3.020 4.162 4.306 3.413 5.199"
+],
+[
+225,
+"W(N) row jacobi tau 0.3",
+"0.787 0.939 1.042 1.105 1.140 1.404 1.449 1.392 1.507"
+],
+[
+226,
+"W(N) row jacobi tau 1.5",
+"0.663 0.890 1.079 1.209 1.290 1.823 1.945"
+],
+[
+227,
+"W(N) row jacobi tau 2.5",
+"0.556 0.802 1.039 1.224 1.344 2.201 2.113 2.290 2.418"
+],
+[
+228,
+"looped_attn W8/W1, W16/W1 at tau 0.3 / 2.5",
+"1.025 3.657 1.072 4.313"
+],
+[
+229,
+"kc_K1 W8/W1, W16/W1 at tau 0.3 / 2.5",
+"3.329 3.913 4.023 4.971"
+],
+[
+233,
+"MSE attn_K3 by tier",
+"0.03314 0.03615 0.04087"
+],
+[
+234,
+"MSE looped_attn by tier",
+"0.03299 0.03614 0.04092"
+],
+[
+235,
+"MSE jacobi by tier",
+"0.03365 0.03683 0.04233"
+],
+[
+236,
+"MSE econ_K3 by tier",
+"0.03382 0.03683 0.04221"
+],
+[
+237,
+"MSE kc_K3 by tier",
+"0.03573 0.03809 0.04418"
+],
+[
+238,
+"MSE kc_K4 by tier",
+"0.03747 0.03892 0.04479"
+],
+[
+239,
+"MSE kc_K1 by tier",
+"0.04425 0.04294 0.04797"
+],
+[
+240,
+"MSE mmd by tier",
+"0.05395 0.04957 0.05291"
+],
+[
+243,
+"attn W16/W1 tau0.3 CI + per seed",
+"1.024 0.847 1.201 0.995 1.105 0.972"
+],
+[
+244,
+"MSE cuts tau0.3",
+"0.386 0.352 0.419 0.251 0.203 0.298"
+],
+[
+247,
+"W8/W1 2.5 mean, lo; W16/W1",
+"3.591 3.020 4.306"
+],
+[
+248,
+"MSE cut vs mmd 2.5; kc_K3 diff",
+"0.227 0.202 0.253 0.0033 0.0026 0.0040"
+],
+[
+249,
+"MSE cut vs kc_K1 2.5 + per seed",
+"0.148 0.114 0.182 0.152 0.159 0.133"
+],
+[
+250,
+"attn W8/W1 by tier",
+"1.030 2.023 3.591"
+],
+[
+253,
+"MSE gap share by tier (%)",
+"76.6 69.9 83.4 71.3 61.5 81.1 53.3 41.1 65.5"
+],
+[
+254,
+"FullSupport KL / JSD gap share (%)",
+"44.0 37.0 51.0 80.5 79.3 81.6"
+],
+[
+256,
+"range (%)",
+"44 80"
+],
+[
+257,
+"attn below kc_K3 by tier (%)",
+"7.2 5.1 7.5"
+],
+[
+258,
+"attn below econ_K3 by tier (%) and the tau-0.3 CI",
+"2.0 1.8 3.2 -0.1 4.1"
+],
+[
+259,
+"econ CI > 0 at tau 1.5 and 2.5 (1 = yes)",
+"1"
+],
+[
+261,
+"K1 cosine by overlap, min and max",
+"0.72 0.95"
+],
+[
+263,
+"kc_K1 W16/W1 tau2.5, tau0.3",
+"4.97 4.02"
+],
+[
+269,
+"arrays, params",
+"58 669633"
+],
+[
+274,
+"ckpt s101: bytes, final val BCE root/std6/full",
+"2506901 0.5365 0.5011 0.2549"
+],
+[
+274,
+"ckpt s101 sha256 printed = file sha256",
+"1"
+],
+[
+275,
+"ckpt s102: bytes, final val BCE root/std6/full",
+"2506469 0.5365 0.5011 0.2557"
+],
+[
+275,
+"ckpt s102 sha256 printed = file sha256",
+"1"
+],
+[
+276,
+"ckpt s103: bytes, final val BCE root/std6/full",
+"2506226 0.5365 0.5010 0.2560"
+],
+[
+276,
+"ckpt s103 sha256 printed = file sha256",
+"1"
+],
+[
+278,
+"VM reload max |logit diff| per seed (all 0.0)",
+"0.0"
+],
+[
+289,
+"key geometry K1: Pearson, gap",
+"0.387 0.190"
+],
+[
+290,
+"key geometry K3: Pearson, gap",
+"0.880 0.963"
+],
+[
+291,
+"key geometry K4: Pearson, gap",
+"0.866 0.629"
+],
+[
+292,
+"key geometry jacobi: Pearson, gap",
+"0.898 1.040"
+],
+[
+293,
+"key geometry looped_attn: Pearson, gap",
+"0.878 0.976"
+],
+[
+304,
+"theta_real training seconds (min, max)",
+"2550 2556"
+],
+[
+334,
+"training seconds (min, max)",
+"2550 2556"
+],
+[
+335,
+"fit seconds (min, max), test seconds",
+"535 541 108"
+],
+[
+347,
+"params share (%)",
+"37"
+],
+[
+348,
+"coverage (%)",
+"98.6"
+],
+[
+350,
+"attribution range (%)",
+"44 80"
+],
+[
+351,
+"attention margin over kc_K3 range (%), over econ range (%)",
+"5 7.5 2 3"
+],
+[
+353,
+"jacobi KL",
+"0.041"
+],
+[
+354,
+"jacobi W16/W1",
+"1.45"
+],
+[
+355,
+"cut vs kc_K1 tau 2.5 (%)",
+"14.8"
+],
+[
+356,
+"clean coverage (%), attn/union clean x",
+"98.7 6"
+]
+],
+"mismatches": [],
+"uncovered": [
+[
+3,
+"5.5"
+],
+[
+4,
+"2.50"
+],
+[
+16,
+"0.9494"
+],
+[
+27,
+"0.99"
+],
+[
+27,
+"0.40"
+],
+[
+28,
+"1.10"
+],
+[
+29,
+"2.5"
+],
+[
+29,
+"2.0"
+],
+[
+29,
+"1.25"
+],
+[
+30,
+"0.955"
+],
+[
+30,
+"0.950"
+],
+[
+30,
+"0.75"
+],
+[
+32,
+"0.3"
+],
+[
+32,
+"1.25"
+],
+[
+32,
+"2.5"
+],
+[
+32,
+"2.5"
+],
+[
+45,
+"3.35"
+],
+[
+45,
+"3.62"
+],
+[
+50,
+"0.3"
+],
+[
+50,
+"2.5"
+],
+[
+51,
+"2.5"
+],
+[
+52,
+"94.9"
+],
+[
+57,
+"0.0039"
+],
+[
+62,
+"2.50"
+],
+[
+63,
+"0.22"
+],
+[
+68,
+"3.1"
+],
+[
+77,
+"0.15"
+],
+[
+80,
+"0.3"
+],
+[
+80,
+"1.5"
+],
+[
+80,
+"2.5"
+],
+[
+80,
+"0.127"
+],
+[
+80,
+"0.28"
+],
+[
+80,
+"0.239"
+],
+[
+81,
+"0.346"
+],
+[
+99,
+"0.3"
+],
+[
+99,
+"1.5"
+],
+[
+99,
+"0.3"
+],
+[
+102,
+"1.5"
+],
+[
+105,
+"4.303"
+],
+[
+140,
+"0.38"
+],
+[
+141,
+"1.10"
+],
+[
+142,
+"0.038"
+],
+[
+143,
+"4.5"
+],
+[
+154,
+"0.069"
+],
+[
+156,
+"0.3"
+],
+[
+156,
+"1.5"
+],
+[
+156,
+"2.5"
+],
+[
+157,
+"2.5"
+],
+[
+157,
+"2.0"
+],
+[
+158,
+"0.3"
+],
+[
+158,
+"1.25"
+],
+[
+178,
+"0.3"
+],
+[
+178,
+"1.5"
+],
+[
+183,
+"0.3"
+],
+[
+195,
+"0.513"
+],
+[
+201,
+"0.01739"
+],
+[
+201,
+"0.00069"
+],
+[
+202,
+"4.5"
+],
+[
+202,
+"7.6"
+],
+[
+205,
+"1.5"
+],
+[
+209,
+"0.9494"
+],
+[
+222,
+"0.3"
+],
+[
+223,
+"1.5"
+],
+[
+224,
+"2.5"
+],
+[
+225,
+"0.3"
+],
+[
+226,
+"1.5"
+],
+[
+227,
+"2.5"
+],
+[
+228,
+"0.3"
+],
+[
+228,
+"2.5"
+],
+[
+229,
+"0.3"
+],
+[
+229,
+"2.5"
+],
+[
+231,
+"0.3"
+],
+[
+231,
+"1.5"
+],
+[
+231,
+"2.5"
+],
+[
+243,
+"1.25"
+],
+[
+244,
+"0.35"
+],
+[
+244,
+"0.20"
+],
+[
+247,
+"2.20"
+],
+[
+247,
+"1.90"
+],
+[
+247,
+"2.80"
+],
+[
+248,
+"0.20"
+],
+[
+249,
+"0.20"
+],
+[
+253,
+"0.3"
+],
+[
+253,
+"1.5"
+],
+[
+253,
+"2.5"
+],
+[
+258,
+"0.3"
+],
+[
+260,
+"2.5"
+],
+[
+263,
+"2.5"
+],
+[
+263,
+"0.3"
+],
+[
+264,
+"0.3"
+],
+[
+295,
+"0.382"
+],
+[
+295,
+"0.880"
+],
+[
+295,
+"0.863"
+],
+[
+306,
+"0.76"
+],
+[
+323,
+"6.50"
+],
+[
+324,
+"0.87"
+],
+[
+328,
+"0.00"
+],
+[
+329,
+"0.76"
+],
+[
+330,
+"0.22"
+],
+[
+332,
+"0.98"
+],
+[
+332,
+"2.50"
+]
+]
+}

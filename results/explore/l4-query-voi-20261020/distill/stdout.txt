@@ -1,0 +1,41 @@
+start 2026-10-20T23:38:39Z device=cuda args={'out': '/root/runs/l4-query-voi-20261020c/distill', 'envs': 'E2,E3-sybil,E1', 'n_train': 40000, 'n_dev': 2000, 'steps': 6000, 'batch': 512, 'seeds': 3, 'n_boot': 2000, 'threads': 4, 'repo_commit': '1d48a0ada43be6603b43f1e5e3ab94cd38ae0370', 'harness_sha256': 'e50881934b0fe8f82e9343535cce37057fd977b558f02c26c90e4e542fdbbade', 'train_mode': 'distill', 'quick': False}
+[E2] sampled train 40000 dev 2000 N=5 in 12s
+[E2] subset tables in 14s; |view-exact(all) - oracle_clearing| = 0.00e+00
+/root/soup/results/explore/l4-query-voi-20261020/l4_query_voi.py:355: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  self.log.append((step, b, float(loss)))
+[E2] seed 0 trained in 78s; loss log [(5000, 2, 0.35212254524230957), (5500, 5, 0.3279404640197754), (5999, 3, 0.35320037603378296)]
+[E2] seed 1 trained in 71s; loss log [(5000, 2, 0.41848304867744446), (5500, 4, 0.332346647977829), (5999, 1, 0.48844054341316223)]
+[E2] seed 2 trained in 73s; loss log [(5000, 3, 0.3901589810848236), (5500, 5, 0.3044813871383667), (5999, 5, 0.2906537652015686)]
+[E2] metrics in 35s
+[E2] b=1 random+exact=0.224 static_voi+exact=0.110 greedy_voi+exact=0.110 best_subset+exact=0.110 learned_query+exact:s0=0.141 learned_query+learned:s0=0.140 random+learned:s0=0.232 learned_query+learned:s0:control:random_network=0.174
+[E2] b=2 random+exact=0.132 static_voi+exact=0.062 greedy_voi+exact=0.049 best_subset+exact=0.044 learned_query+exact:s0=0.095 learned_query+learned:s0=0.117 random+learned:s0=0.146 learned_query+learned:s0:control:random_network=0.099
+[E2] b=3 random+exact=0.078 static_voi+exact=0.044 greedy_voi+exact=0.025 best_subset+exact=0.024 learned_query+exact:s0=0.062 learned_query+learned:s0=0.082 random+learned:s0=0.109 learned_query+learned:s0:control:random_network=0.081
+[E2] b=4 random+exact=0.038 static_voi+exact=0.026 greedy_voi+exact=0.021 best_subset+exact=0.020 learned_query+exact:s0=0.036 learned_query+learned:s0=0.060 random+learned:s0=0.082 learned_query+learned:s0:control:random_network=0.078
+wrote /root/runs/l4-query-voi-20261020c/distill/result-E2.json
+[E3-sybil] sampled train 40000 dev 2000 N=8 in 14s
+[E3-sybil] subset tables in 121s; |view-exact(all) - oracle_clearing| = 0.00e+00
+[E3-sybil] seed 0 trained in 88s; loss log [(5000, 3, 0.32814350724220276), (5500, 8, 0.355271577835083), (5999, 5, 0.3328980803489685)]
+[E3-sybil] seed 1 trained in 88s; loss log [(5000, 3, 0.39656490087509155), (5500, 7, 0.38966402411460876), (5999, 1, 0.49169090390205383)]
+[E3-sybil] seed 2 trained in 91s; loss log [(5000, 5, 0.3371337652206421), (5500, 8, 0.332955926656723), (5999, 7, 0.30423858761787415)]
+[E3-sybil] metrics in 62s
+[E3-sybil] b=1 random+exact=0.207 static_voi+exact=0.110 greedy_voi+exact=0.110 best_subset+exact=0.110 learned_query+exact:s0=0.179 learned_query+learned:s0=0.194 random+learned:s0=0.280 learned_query+learned:s0:control:random_network=0.172
+[E3-sybil] b=2 random+exact=0.130 static_voi+exact=0.069 greedy_voi+exact=0.049 best_subset+exact=0.044 learned_query+exact:s0=0.098 learned_query+learned:s0=0.117 random+learned:s0=0.179 learned_query+learned:s0:control:random_network=0.130
+[E3-sybil] b=3 random+exact=0.094 static_voi+exact=0.058 greedy_voi+exact=0.025 best_subset+exact=0.024 learned_query+exact:s0=0.069 learned_query+learned:s0=0.095 random+learned:s0=0.145 learned_query+learned:s0:control:random_network=0.143
+[E3-sybil] b=4 random+exact=0.068 static_voi+exact=0.047 greedy_voi+exact=0.021 best_subset+exact=0.020 learned_query+exact:s0=0.059 learned_query+learned:s0=0.082 random+learned:s0=0.111 learned_query+learned:s0:control:random_network=0.177
+[E3-sybil] b=5 random+exact=0.048 static_voi+exact=0.038 greedy_voi+exact=0.017 best_subset+exact=0.017 learned_query+exact:s0=0.047 learned_query+learned:s0=0.073 random+learned:s0=0.084 learned_query+learned:s0:control:random_network=0.219
+[E3-sybil] b=6 random+exact=0.038 static_voi+exact=0.031 greedy_voi+exact=0.017 best_subset+exact=0.017 learned_query+exact:s0=0.040 learned_query+learned:s0=0.070 random+learned:s0=0.079 learned_query+learned:s0:control:random_network=0.266
+[E3-sybil] b=7 random+exact=0.026 static_voi+exact=0.025 greedy_voi+exact=0.017 best_subset+exact=0.017 learned_query+exact:s0=0.030 learned_query+learned:s0=0.072 random+learned:s0=0.067 learned_query+learned:s0:control:random_network=0.311
+wrote /root/runs/l4-query-voi-20261020c/distill/result-E3-sybil.json
+[E1] sampled train 40000 dev 2000 N=5 in 24s
+[E1] subset tables in 14s; |view-exact(all) - oracle_clearing| = 3.19e-15
+[E1] seed 0 trained in 90s; loss log [(5000, 2, -0.5205917358398438), (5500, 5, -1.6772162914276123), (5999, 3, -1.0617260932922363)]
+[E1] seed 1 trained in 88s; loss log [(5000, 2, -0.5799412727355957), (5500, 4, -1.3746941089630127), (5999, 1, 0.47376662492752075)]
+[E1] seed 2 trained in 86s; loss log [(5000, 3, -1.1230027675628662), (5500, 5, -1.6690559387207031), (5999, 5, -1.662449836730957)]
+[E1] metrics in 33s
+[E1] b=1 random+exact=3.399 static_voi+exact=2.734 greedy_voi+exact=2.734 best_subset+exact=2.734 learned_query+exact:s0=2.789 learned_query+learned:s0=2.788 random+learned:s0=3.400 learned_query+learned:s0:control:random_network=3.416
+[E1] b=2 random+exact=2.382 static_voi+exact=1.473 greedy_voi+exact=1.412 best_subset+exact=1.400 learned_query+exact:s0=1.489 learned_query+learned:s0=1.824 random+learned:s0=2.578 learned_query+learned:s0:control:random_network=2.594
+[E1] b=3 random+exact=1.425 static_voi+exact=0.694 greedy_voi+exact=0.556 best_subset+exact=0.543 learned_query+exact:s0=0.672 learned_query+learned:s0=1.291 random+learned:s0=1.869 learned_query+learned:s0:control:random_network=1.939
+[E1] b=4 random+exact=0.640 static_voi+exact=0.235 greedy_voi+exact=0.179 best_subset+exact=0.180 learned_query+exact:s0=0.219 learned_query+learned:s0=0.980 random+learned:s0=1.295 learned_query+learned:s0:control:random_network=1.413
+wrote /root/runs/l4-query-voi-20261020c/distill/result-E1.json
+DONE

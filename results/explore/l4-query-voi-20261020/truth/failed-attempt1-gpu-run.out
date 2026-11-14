@@ -1,0 +1,46 @@
+creating soup-gpu-1020224928-16457 (g2-standard-8 + nvidia-l4, SPOT) in us-central1-a ...
+NAME                       ZONE           MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP   STATUS
+soup-gpu-1020224928-16457  us-central1-a  g2-standard-8  true         [ip-removed]  [ip-removed]  RUNNING
+waiting for soup-gpu-1020224928-16457 ([ip-removed]) startup script (up to 25 min) ...
+gpu=NVIDIA L4, 580.178.04
+nvcc=Build cuda_12.9.r12.9/compiler.35813241_0
+clang=Ubuntu clang version 18.1.3 (1ubuntu1)
+bun=1.3.14
+bend=v2.0.29@c8691aa
+READY: soup-gpu-1020224928-16457 us-central1-a [ip-removed]
+rsync /tmp/l4runs/l4-query-voi-20261020 -> soup-gpu-1020224928-16457:/root/soup
+W: http://packages.cloud.google.com/apt/dists/apt-transport-artifact-registry-stable/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
+W: https://us-apt.pkg.dev/projects/gce-ai-infra/dists/gpudirect-gib-apt/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
+
+Running kernel seems to be up-to-date.
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+start 2026-10-20T22:58:18Z device=cuda args={'out': '/root/runs/l4-query-voi-20261020', 'envs': 'E2,E3-sybil,E1', 'n_train': 40000, 'n_dev': 2000, 'steps': 6000, 'batch': 512, 'seeds': 3, 'n_boot': 2000, 'threads': 8, 'repo_commit': '3de238e94b8025b49897842c4e66a92ad88d2624', 'harness_sha256': '2770245b285e945ad297f6a943b6ef9f5d40e361f3935cf2be647c90617bd8fa', 'quick': False}
+[E2] sampled train 40000 dev 2000 N=5 in 12s
+[E2] subset tables in 14s; |view-exact(all) - oracle_clearing| = 0.00e+00
+/root/soup/results/explore/l4-query-voi-20261020/l4_query_voi.py:272: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  self.log.append((step, b, float(loss)))
+Traceback (most recent call last):
+  File "/root/soup/results/explore/l4-query-voi-20261020/l4_query_voi.py", line 464, in <module>
+    main()
+  File "/root/soup/results/explore/l4-query-voi-20261020/l4_query_voi.py", line 459, in main
+    log(f"wrote {run_env(name, args, device, log)}")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/soup/results/explore/l4-query-voi-20261020/l4_query_voi.py", line 347, in run_env
+    "control:random_network": random_weights(trained, seed + 1)}
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/soup/aggbench/controls.py", line 30, in random_weights
+    p.copy_(mean + sd * torch.randn(p.shape, generator=gen, dtype=p.dtype))
+                   ~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu!
+rsync soup-gpu-1020224928-16457:/root/runs -> /tmp/l4runs/l4-query-voi-20261020/runs
+Warning: Permanently added 'compute.6586338437412572901' (ED25519) to the list of known hosts.
+Deleted [https://www.googleapis.com/compute/v1/projects/GCP_PROJECT/zones/us-central1-a/instances/soup-gpu-1020224928-16457].
+GPU-RUN EXIT 1

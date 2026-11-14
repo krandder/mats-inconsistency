@@ -1,0 +1,142 @@
+- 2026-09-29T20:27:27Z CREATE vm=trader-b3-p16-1 zone=us-central1-b epoch=1790713647 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=0
+- 2026-09-29T20:31:21Z READY vm=trader-b3-p16-1 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T20:32:10Z PUSH vm=trader-b3-p16-1
+- 2026-09-29T20:35:37Z PUSH vm=trader-b3-p16-1
+- 2026-09-29T20:37:57Z SYNC vm=trader-b3-p16-1 verified_files=2 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-29T20:41:19Z PUSH vm=trader-b3-p16-1
+- 2026-09-29T20:55:45Z SYNC vm=trader-b3-p16-1 verified_files=19 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-29T21:00:59Z PUSH vm=trader-b3-p16-1
+- 2026-09-29T21:01:50Z START vm=trader-b3-p16-1 plan=prep
+- 2026-09-29T21:05:18Z PUSH vm=trader-b3-p16-1
+- 2026-09-29T21:06:10Z START vm=trader-b3-p16-1 plan=prep
+- 2026-09-29T21:09:49Z PUSH vm=trader-b3-p16-1
+- 2026-09-29T21:10:40Z START vm=trader-b3-p16-1 plan=prepfix
+- 2026-09-29T21:11:13Z SYNC vm=trader-b3-p16-1 verified_files=38 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-29T21:17:52Z PUSH vm=trader-b3-p16-1
+- 2026-09-29T21:29:14Z SYNC vm=trader-b3-p16-1 verified_files=101 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-29T21:34:59Z DELETE vm=trader-b3-p16-1 epoch=1790717690 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="" spend_now=0.80
+- 2026-09-29T21:35:19Z RESUME plan=prep vm=trader-b3-p16-2
+- 2026-09-29T21:38:01Z CREATE-FAILED vm=trader-b3-p16-2 err="ERROR: (gcloud.compute.instances.create) Could not fetch resource: --- code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS errorDetails: - help:     links:     - description: Troubleshooting documentation       url: https://cloud.google.com/compute/docs/resource-error - localizedMessage:     locale: en-"
+- 2026-09-29T21:38:11Z RESUME-FAILED vm=trader-b3-p16-2
+- 2026-09-29T21:43:38Z RESUME plan=prep vm=trader-b3-p16-2
+- 2026-09-29T21:45:53Z CREATE-FAILED vm=trader-b3-p16-2 err="ERROR: (gcloud.compute.instances.create) Could not fetch resource: --- code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS errorDetails: - help:     links:     - description: Troubleshooting documentation       url: https://cloud.google.com/compute/docs/resource-error - localizedMessage:     locale: en-"
+- 2026-09-29T21:45:58Z RESUME-FAILED vm=trader-b3-p16-2
+- 2026-09-29T21:51:23Z RESUME plan=prep vm=trader-b3-p16-2
+- 2026-09-29T21:52:36Z CREATE vm=trader-b3-p16-2 zone=us-central1-c epoch=1790718756 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=0.80
+- 2026-09-29T22:09:16Z DELETE vm=trader-b3-p16-2 epoch=1790719747 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="" spend_now=0.99
+- 2026-09-29T22:09:48Z RESUME plan=prep vm=trader-b3-p16-3
+- 2026-09-29T22:11:14Z CREATE vm=trader-b3-p16-3 zone=us-central1-c epoch=1790719874 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=0.99
+- 2026-09-29T22:13:10Z GONE-DURING-STARTUP vm=trader-b3-p16-3
+- 2026-09-29T22:13:10Z RESUME-FAILED vm=trader-b3-p16-3
+- 2026-09-29T22:18:26Z DELETE vm=trader-b3-p16-3 epoch=1790720302 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="" spend_now=1.08
+- 2026-09-29T22:18:42Z RESUME plan=prep vm=trader-b3-p16-4
+- 2026-09-29T22:19:25Z CREATE vm=trader-b3-p16-4 zone=us-central1-b epoch=1790720365 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=1.08
+- 2026-09-29T22:22:53Z READY vm=trader-b3-p16-4 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T22:23:22Z PUSH vm=trader-b3-p16-4
+- 2026-09-29T22:24:13Z START vm=trader-b3-p16-4 plan=prep
+- 2026-09-29T22:29:33Z SYNC vm=trader-b3-p16-4 verified_files=106 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-29T22:46:06Z SYNC vm=trader-b3-p16-4 verified_files=124 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-29T23:02:31Z SYNC vm=trader-b3-p16-4 verified_files=140 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-29T23:19:12Z SYNC vm=trader-b3-p16-4 verified_files=154 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-29T23:19:13Z SYNC vm=trader-b3-p16-4 verified_files=154 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-29T23:19:38Z SYNC vm=trader-b3-p16-4 verified_files=154 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-29T23:20:50Z PUSH vm=trader-b3-p16-4
+- 2026-09-29T23:21:42Z START vm=trader-b3-p16-4 plan=trainA
+- 2026-09-29T23:24:53Z RESUME plan=trainB vm=trader-b3-p16-5
+- 2026-09-29T23:25:57Z CREATE vm=trader-b3-p16-5 zone=us-central1-c epoch=1790724357 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=1.85
+- 2026-09-29T23:28:37Z GONE-DURING-STARTUP vm=trader-b3-p16-5
+- 2026-09-29T23:28:37Z RESUME-FAILED vm=trader-b3-p16-5
+- 2026-09-29T23:30:15Z DELETE vm=trader-b3-p16-5 epoch=1790724611 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="trader-b3-p16-4 " spend_now=1.97
+- 2026-09-29T23:30:30Z RESUME plan=trainB vm=trader-b3-p16-6
+- 2026-09-29T23:31:52Z CREATE vm=trader-b3-p16-6 zone=europe-west1-b epoch=1790724712 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=1.97
+- 2026-09-29T23:35:21Z READY vm=trader-b3-p16-6 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T23:35:52Z PUSH vm=trader-b3-p16-6
+- 2026-09-29T23:36:44Z START vm=trader-b3-p16-6 plan=trainB
+- 2026-09-29T23:47:40Z SYNC vm=trader-b3-p16-4 verified_files=170 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-29T23:48:01Z SYNC vm=trader-b3-p16-6 verified_files=163 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T00:05:21Z SYNC vm=trader-b3-p16-4 verified_files=170 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T00:05:52Z SYNC vm=trader-b3-p16-6 verified_files=164 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T00:16:44Z SYNC vm=trader-b3-p16-4 verified_files=184 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T00:17:03Z SYNC vm=trader-b3-p16-6 verified_files=170 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T00:20:34Z NOTE plan trainX added to WANT (exploratory, not pre-registered: FR seed 0 at F_meta 4e16, output tree x/); starts when a VM slot frees (max 2)
+- 2026-09-30T00:22:18Z SYNC vm=trader-b3-p16-4 verified_files=188 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T00:22:45Z SYNC vm=trader-b3-p16-6 verified_files=170 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T00:39:53Z SYNC vm=trader-b3-p16-4 verified_files=196 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T00:40:24Z SYNC vm=trader-b3-p16-6 verified_files=170 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T00:57:24Z SYNC vm=trader-b3-p16-4 verified_files=208 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T00:57:46Z SYNC vm=trader-b3-p16-6 verified_files=176 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T01:14:40Z SYNC vm=trader-b3-p16-4 verified_files=223 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T01:15:09Z SYNC vm=trader-b3-p16-6 verified_files=176 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T01:31:49Z SYNC vm=trader-b3-p16-4 verified_files=234 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T01:32:14Z DELETE vm=trader-b3-p16-6 epoch=1790731932 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="trader-b3-p16-4 " spend_now=4.83
+- 2026-09-30T01:32:24Z RESUME plan=trainB vm=trader-b3-p16-7
+- 2026-09-30T01:32:40Z CREATE vm=trader-b3-p16-7 zone=us-central1-a epoch=1790731960 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=4.83
+- 2026-09-30T01:36:55Z READY vm=trader-b3-p16-7 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-30T01:37:11Z PUSH vm=trader-b3-p16-7
+- 2026-09-30T01:38:03Z START vm=trader-b3-p16-7 plan=trainB
+- 2026-09-30T01:54:54Z SYNC vm=trader-b3-p16-7 verified_files=268 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T01:55:11Z SYNC vm=trader-b3-p16-4 verified_files=237 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T02:10:17Z SYNC vm=trader-b3-p16-4 verified_files=254 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T02:11:23Z DELETE vm=trader-b3-p16-4 epoch=1790734283 reason="plan trainA done" leftover_disks="trader-b3-p16-7	us-central1-a" spend_now=5.75
+- 2026-09-30T02:11:53Z SYNC vm=trader-b3-p16-7 verified_files=273 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T02:12:03Z RESUME plan=trainX vm=trader-b3-p16-8
+- 2026-09-30T02:13:19Z CREATE vm=trader-b3-p16-8 zone=us-central1-c epoch=1790734399 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=5.76
+- 2026-09-30T02:16:26Z GONE-DURING-STARTUP vm=trader-b3-p16-8
+- 2026-09-30T02:16:26Z RESUME-FAILED vm=trader-b3-p16-8
+- 2026-09-30T02:21:41Z DELETE vm=trader-b3-p16-8 epoch=1790734898 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="trader-b3-p16-7 " spend_now=5.98
+- 2026-09-30T02:21:48Z RESUME plan=trainX vm=trader-b3-p16-9
+- 2026-09-30T02:23:01Z CREATE vm=trader-b3-p16-9 zone=us-central1-c epoch=1790734981 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=5.98
+- 2026-09-30T02:26:32Z READY vm=trader-b3-p16-9 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-30T02:26:53Z PUSH vm=trader-b3-p16-9
+- 2026-09-30T02:27:44Z START vm=trader-b3-p16-9 plan=trainX
+- 2026-09-30T02:32:55Z DELETE vm=trader-b3-p16-7 epoch=1790735573 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="" spend_now=6.22
+- 2026-09-30T02:33:04Z DELETE vm=trader-b3-p16-9 epoch=1790735581 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="" spend_now=6.23
+- 2026-09-30T02:33:12Z RESUME plan=trainB vm=trader-b3-p16-10
+- 2026-09-30T02:34:09Z CREATE vm=trader-b3-p16-10 zone=us-west1-b epoch=1790735649 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=6.23
+- 2026-09-30T02:37:28Z READY vm=trader-b3-p16-10 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-30T02:37:48Z PUSH vm=trader-b3-p16-10
+- 2026-09-30T02:38:39Z START vm=trader-b3-p16-10 plan=trainB
+- 2026-09-30T02:38:44Z RESUME plan=trainX vm=trader-b3-p16-11
+- 2026-09-30T02:39:12Z CREATE vm=trader-b3-p16-11 zone=us-central1-b epoch=1790735952 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=6.28
+- 2026-09-30T02:45:04Z READY vm=trader-b3-p16-11 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-30T02:45:30Z PUSH vm=trader-b3-p16-11
+- 2026-09-30T02:46:22Z START vm=trader-b3-p16-11 plan=trainX
+- 2026-09-30T02:52:08Z SYNC vm=trader-b3-p16-11 verified_files=308 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T02:52:54Z SYNC vm=trader-b3-p16-10 verified_files=303 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T03:09:38Z SYNC vm=trader-b3-p16-11 verified_files=310 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T03:10:21Z SYNC-PARTIAL vm=trader-b3-p16-10 (files changing during tar skipped)
+- 2026-09-30T03:10:22Z SYNC vm=trader-b3-p16-10 verified_files=301 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T03:11:35Z PUSH vm=trader-b3-p16-10
+- 2026-09-30T03:26:52Z SYNC-PARTIAL vm=trader-b3-p16-11 (files changing during tar skipped)
+- 2026-09-30T03:26:53Z SYNC vm=trader-b3-p16-11 verified_files=309 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T03:27:42Z SYNC vm=trader-b3-p16-10 verified_files=333 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T03:33:04Z DELETE vm=trader-b3-p16-11 epoch=1790739182 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="trader-b3-p16-10 " spend_now=7.56
+- 2026-09-30T03:33:13Z RESUME plan=trainX vm=trader-b3-p16-12
+- 2026-09-30T03:33:37Z CREATE vm=trader-b3-p16-12 zone=us-central1-b epoch=1790739217 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=7.56
+- 2026-09-30T03:36:57Z READY vm=trader-b3-p16-12 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-30T03:37:15Z PUSH vm=trader-b3-p16-12
+- 2026-09-30T03:38:06Z START vm=trader-b3-p16-12 plan=trainX
+- 2026-09-30T03:49:10Z SYNC vm=trader-b3-p16-12 verified_files=337 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T03:49:54Z SYNC-PARTIAL vm=trader-b3-p16-10 (files changing during tar skipped)
+- 2026-09-30T03:49:54Z SYNC vm=trader-b3-p16-10 verified_files=344 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T04:02:51Z SYNC vm=trader-b3-p16-10 verified_files=360 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T04:03:53Z DELETE vm=trader-b3-p16-10 epoch=1790741033 reason="trainB done (FR-direct x2, L, baselines, CONS); final sync then delete" leftover_disks="trader-b3-p16-12	us-central1-b" spend_now=8.28
+- 2026-09-30T04:06:42Z SYNC-PARTIAL vm=trader-b3-p16-12 (files changing during tar skipped)
+- 2026-09-30T04:06:42Z SYNC vm=trader-b3-p16-12 verified_files=336 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T04:23:03Z SYNC vm=trader-b3-p16-12 verified_files=337 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T04:39:43Z SYNC vm=trader-b3-p16-12 verified_files=337 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T04:56:58Z SYNC vm=trader-b3-p16-12 verified_files=337 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T05:14:58Z SYNC vm=trader-b3-p16-12 verified_files=337 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T05:32:10Z DELETE vm=trader-b3-p16-12 epoch=1790746323 reason="gone (spot preemption or max-run; termination action DELETE)" leftover_disks="" spend_now=9.33
+- 2026-09-30T05:32:25Z RESUME plan=trainX vm=trader-b3-p16-13
+- 2026-09-30T05:34:08Z CREATE-FAILED vm=trader-b3-p16-13 err="ERROR: (gcloud.compute.instances.create) Could not fetch resource: --- code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS errorDetails: - help:     links:     - description: Troubleshooting documentation       url: https://cloud.google.com/compute/docs/resource-error - localizedMessage:     locale: en-"
+- 2026-09-30T05:34:14Z RESUME-FAILED vm=trader-b3-p16-13
+- 2026-09-30T05:39:31Z RESUME plan=trainX vm=trader-b3-p16-13
+- 2026-09-30T05:39:54Z CREATE vm=trader-b3-p16-13 zone=us-central1-a epoch=1790746794 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=9.33
+- 2026-09-30T05:43:40Z READY vm=trader-b3-p16-13 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-30T05:44:27Z PUSH vm=trader-b3-p16-13
+- 2026-09-30T05:45:18Z START vm=trader-b3-p16-13 plan=trainX
+- 2026-09-30T05:57:58Z SYNC vm=trader-b3-p16-13 verified_files=368 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T06:17:21Z SYNC vm=trader-b3-p16-13 verified_files=370 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T06:20:28Z SYNC vm=trader-b3-p16-13 verified_files=376 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P16/results/vm_out
+- 2026-09-30T06:21:40Z DELETE vm=trader-b3-p16-13 epoch=1790749300 reason="trainX done (exploratory FR seed 0 at 4e16 + evals); final sync then delete" leftover_disks="none" spend_now=9.82

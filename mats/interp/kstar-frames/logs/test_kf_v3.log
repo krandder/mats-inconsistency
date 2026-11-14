@@ -1,0 +1,21 @@
+PASS jacobian vs autograd c=1  [max abs err 0.00e+00]
+PASS jacobian vs autograd c=3  [max abs err 0.00e+00]
+PASS jacobian vs autograd c=5  [max abs err 0.00e+00]
+PASS jacobian vs autograd c=8  [max abs err 0.00e+00]
+PASS jacobian vs finite differences c=3  [max rel err 1.34e-08]
+PASS Euler J_c z_c = a_L (sigma=0)  [1.39e-15]
+PASS Euler P_c x = z_c (sigma=0)  [3.55e-15]
+PASS past product vs autograd (noisy)  [3.33e-16]
+PASS scores of true frame
+PASS random frame overlap ~ chance  [O 0.300 chance 0.302]
+PASS true frame lies in range(D_c)
+PASS dual transport inverts backward step (m_c <= m_{c-1})  [50 paths, min O 1.0000000000]
+PASS push-forward lands in range(D_c)
+PASS push-forward zero steps
+PASS batched dual = loop dual (k=4)  [min overlap 1.00000000, paths with rank < k: 0]
+PASS batched dual = loop dual (k=8)  [min overlap 1.00000000, paths with rank < k: 6]
+PASS eigh frames = SVD frames (c=8, k=11)  [max rel sv err 1.4e-15, min overlap 1.000000000]
+PASS eigh frames = SVD frames (c=12, k=14)  [max rel sv err 2.0e-15, min overlap 1.000000000]
+PASS eigh left frame = SVD left frame  [min overlap 1.000000000]
+PASS eigh dual transport = loop dual transport  [min overlap 1.00000000]
+ALL PASS

@@ -1,0 +1,146 @@
+run at 2026-10-17T11:06:02Z
+== verdicts: mine (t=4.303) | mine (t=4.302653) | analysis/results.json
+E1-D0    PASS | PASS | PASS
+E1-D1.1  PASS | PASS | PASS
+E1-D1.2  FAIL | FAIL | FAIL
+E1-D1    FAIL | FAIL | FAIL
+E1-D2.1  PASS | PASS | PASS
+E1-D2.2  PASS | PASS | PASS
+E1-D2    PASS | PASS | PASS
+E1-D3    FAIL | FAIL | FAIL
+== failing clauses (mine): {'E1-D0': [], 'E1-D1.1': [], 'E1-D1.2': ['W16/W1_t0.3<=1.25'], 'E1-D2.1': [], 'E1-D2.2': [], 'E1-D3': ['D3.2 cut_vs_kc_K1>=0.20']}
+== my statistics (3-seed mean [seed-t 95% CI, t=4.303] (per seed))
+  pearson: 0.99946 [0.99938, 0.99953] (0.99942, 0.99948, 0.99946)
+  fs_cut_scaled_mix: 0.62947 [0.61951, 0.63942] (0.63405, 0.62663, 0.62772)
+  params_ratio: 0.37133
+  kl_ratio: 0.96709 [0.92749, 1.00670] (0.95645, 0.98542, 0.95941)
+  kl_looped_attn: 0.03168 [0.03058, 0.03278] (0.03219, 0.03141, 0.03144)
+  jsd_ratio_scaled_mix: 7.04703 [4.84449, 9.24958] (6.20185, 7.96988, 6.96937)
+  jsd_ratio_mmd: 7.84148 [5.13523, 10.54773] (6.83728, 8.99956, 7.68759)
+  kl_diff_scaled_mix: 0.07195 [0.06805, 0.07585] (0.07015, 0.07301, 0.07269)
+  jsd_diff_scaled_mix: 0.03928 [0.03564, 0.04293] (0.03772, 0.04063, 0.03950)
+  kl_diff_mmd: 0.08670 [0.07490, 0.09851] (0.08314, 0.09210, 0.08488)
+  jsd_diff_mmd: 0.04440 [0.03905, 0.04976] (0.04233, 0.04663, 0.04426)
+  kl_diff_kc_K1: 0.06225 [0.05704, 0.06745] (0.05986, 0.06378, 0.06311)
+  jsd_diff_kc_K1: 0.03447 [0.03001, 0.03893] (0.03252, 0.03604, 0.03486)
+  kl_diff_kc_K3: 0.03529 [0.03360, 0.03698] (0.03606, 0.03505, 0.03477)
+  jsd_diff_kc_K3: 0.00701 [0.00539, 0.00864] (0.00634, 0.00765, 0.00705)
+  kl_jacobi: 0.04076 [0.03969, 0.04184] (0.04056, 0.04047, 0.04126)
+  kl_looped_lin: 0.06805 [0.05964, 0.07646] (0.06753, 0.07166, 0.06495)
+  kl_kc_K1: 0.09392 [0.08981, 0.09804] (0.09205, 0.09518, 0.09455)
+  jac_W8/W1_t0.3: 1.40420 [1.35372, 1.45468] (1.40844, 1.38210, 1.42207)
+  jac_W16/W1_t0.3: 1.44919 [1.39163, 1.50674] (1.45370, 1.42409, 1.46977)
+  jac_W8/W1_t1.5: 1.82308 [1.81904, 1.82712] (1.82234, 1.82494, 1.82195)
+  jac_W16/W1_t1.5: 1.94545 [1.94126, 1.94965] (1.94351, 1.94632, 1.94653)
+  jac_W8/W1_t2.5: 2.20126 [2.11278, 2.28975] (2.18735, 2.24174, 2.17470)
+  jac_W16/W1_t2.5: 2.41776 [2.31983, 2.51570] (2.40097, 2.46280, 2.38952)
+  cov_puct_mixed: 0.98631 [0.98552, 0.98709] (0.98667, 0.98608, 0.98617)
+  cov_open_mixed: 0.83011 [0.82487, 0.83536] (0.83189, 0.83067, 0.82778)
+  cov_puct_clean: 0.98703 [0.98435, 0.98970] (0.98825, 0.98661, 0.98622)
+  wave1_NW: 0.82244 [0.80302, 0.84187] (0.81567, 0.82067, 0.83100)
+  wave1_SE: 0.81456 [0.79603, 0.83308] (0.81800, 0.81967, 0.80600)
+  wave1_strict_NW: 0.66500 [0.62571, 0.70429] (0.65333, 0.65867, 0.68300)
+  mixed_jsd_ratio: 2.93026 [2.74349, 3.11704] (2.98840, 2.84536, 2.95702)
+  mixed_jsd_diff: 0.01647 [0.01393, 0.01900] (0.01757, 0.01556, 0.01628)
+  mixed_kl_cut: 0.51319 [0.47720, 0.54919] (0.50649, 0.50327, 0.52982)
+  clean_jsd_ratio: 5.38029 [4.58425, 6.17633] (5.72835, 5.31493, 5.09758)
+  clean_jsd_diff: 0.01694 [0.01292, 0.02096] (0.01876, 0.01640, 0.01566)
+  clean_kl_cut: 0.53145 [0.51439, 0.54851] (0.53836, 0.52463, 0.53134)
+  a3_W8/W1_t0.3: 1.03004 [0.93811, 1.12198] (1.01842, 1.07146, 1.00024)
+  a3_W16/W1_t0.3: 1.02409 [0.84675, 1.20142] (0.99537, 1.10535, 0.97153)
+  cut_mmd_t0.3: 0.38554 [0.35171, 0.41938] (0.38306, 0.40023, 0.37333)
+  diff_mmd_t0.3: 0.02081 [0.01828, 0.02333] (0.02077, 0.02184, 0.01980)
+  cut_kc_K1_t0.3: 0.25075 [0.20338, 0.29813] (0.24510, 0.27201, 0.23515)
+  diff_kc_K1_t0.3: 0.01110 [0.00856, 0.01365] (0.01086, 0.01223, 0.01022)
+  cut_kc_K3_t0.3: 0.07245 [0.05246, 0.09243] (0.07922, 0.07456, 0.06355)
+  diff_kc_K3_t0.3: 0.00259 [0.00181, 0.00337] (0.00288, 0.00264, 0.00226)
+  cut_jacobi_t0.3: 0.01490 [-0.00328, 0.03307] (0.02208, 0.01515, 0.00746)
+  diff_jacobi_t0.3: 0.00050 [-0.00013, 0.00113] (0.00076, 0.00050, 0.00025)
+  a3_W8/W1_t1.5: 2.02259 [1.77609, 2.26909] (2.07630, 1.90810, 2.08339)
+  a3_W16/W1_t1.5: 2.12109 [1.94962, 2.29255] (2.16818, 2.04186, 2.15322)
+  cut_mmd_t1.5: 0.27073 [0.24220, 0.29927] (0.27546, 0.27910, 0.25764)
+  diff_mmd_t1.5: 0.01342 [0.01194, 0.01490] (0.01379, 0.01374, 0.01273)
+  cut_kc_K1_t1.5: 0.15800 [0.11913, 0.19688] (0.15726, 0.17401, 0.14274)
+  diff_kc_K1_t1.5: 0.00679 [0.00508, 0.00849] (0.00677, 0.00748, 0.00611)
+  cut_kc_K3_t1.5: 0.05086 [0.03696, 0.06476] (0.05708, 0.04927, 0.04624)
+  diff_kc_K3_t1.5: 0.00194 [0.00138, 0.00250] (0.00220, 0.00184, 0.00178)
+  cut_jacobi_t1.5: 0.01830 [0.00499, 0.03160] (0.02376, 0.01808, 0.01305)
+  diff_jacobi_t1.5: 0.00067 [0.00018, 0.00117] (0.00088, 0.00065, 0.00049)
+  a3_W8/W1_t2.5: 3.59085 [3.01992, 4.16179] (3.72536, 3.32549, 3.72170)
+  a3_W16/W1_t2.5: 4.30622 [3.41292, 5.19953] (4.59126, 3.90225, 4.42516)
+  cut_mmd_t2.5: 0.22745 [0.20160, 0.25330] (0.23430, 0.23257, 0.21548)
+  diff_mmd_t2.5: 0.01203 [0.01057, 0.01349] (0.01252, 0.01220, 0.01138)
+  cut_kc_K1_t2.5: 0.14796 [0.11377, 0.18215] (0.15189, 0.15932, 0.13266)
+  diff_kc_K1_t2.5: 0.00710 [0.00542, 0.00878] (0.00733, 0.00763, 0.00634)
+  cut_kc_K3_t2.5: 0.07476 [0.05941, 0.09012] (0.08181, 0.07222, 0.07026)
+  diff_kc_K3_t2.5: 0.00330 [0.00257, 0.00404] (0.00365, 0.00313, 0.00313)
+  cut_jacobi_t2.5: 0.03447 [0.02016, 0.04877] (0.04084, 0.02965, 0.03291)
+  diff_jacobi_t2.5: 0.00146 [0.00081, 0.00211] (0.00174, 0.00123, 0.00141)
+== 3-seed comparison with analysis/results.json (max |difference| over mean, lo, hi and per-seed values)
+  pearson                max diff 3.9e-07
+  fs_cut_scaled_mix      max diff 4.1e-06
+  kl_ratio               max diff 6e-06
+  kl_looped_attn         max diff 6.2e-08
+  jsd_ratio_scaled_mix   max diff 0.00018
+  jsd_ratio_mmd          max diff 0.00024
+  kl_diff_scaled_mix     max diff 1.2e-06
+  kl_diff_mmd            max diff 8.6e-05
+  kl_diff_kc_K1          max diff 6.1e-06
+  kl_diff_kc_K3          max diff 1.2e-05
+  jsd_diff_scaled_mix    max diff 3.5e-07
+  jsd_diff_mmd           max diff 5.1e-07
+  jsd_diff_kc_K1         max diff 3.8e-07
+  jsd_diff_kc_K3         max diff 1.8e-07
+  kl_jacobi              max diff 1.7e-07
+  kl_looped_lin          max diff 2.4e-06
+  kl_kc_K1               max diff 6.2e-06
+  jac_W8/W1_t0.3         max diff 4.7e-06
+  jac_W8/W1_t1.5         max diff 4.5e-07
+  jac_W8/W1_t2.5         max diff 7.4e-06
+  jac_W16/W1_t0.3        max diff 4.9e-06
+  jac_W16/W1_t1.5        max diff 4.8e-07
+  jac_W16/W1_t2.5        max diff 6.5e-06
+  cov_puct_mixed         max diff 1.9e-07
+  cov_open_mixed         max diff 4e-07
+  cov_puct_clean         max diff 2.9e-07
+  wave1_NW               max diff 1.6e-06
+  wave1_SE               max diff 1.5e-06
+  wave1_strict_NW        max diff 3.2e-06
+  mixed_jsd_ratio        max diff 2.5e-05
+  clean_jsd_ratio        max diff 9.5e-05
+  mixed_jsd_diff         max diff 2.8e-07
+  clean_jsd_diff         max diff 3.4e-07
+  mixed_kl_cut           max diff 4.4e-06
+  clean_kl_cut           max diff 1.5e-06
+  a3_W8/W1_t0.3          max diff 7.8e-06
+  a3_W8/W1_t1.5          max diff 2.2e-05
+  a3_W8/W1_t2.5          max diff 4.4e-05
+  a3_W16/W1_t0.3         max diff 1.5e-05
+  a3_W16/W1_t1.5         max diff 1.6e-05
+  a3_W16/W1_t2.5         max diff 6.9e-05
+  cut_mmd_t0.3           max diff 2.9e-06
+  cut_mmd_t1.5           max diff 2.9e-06
+  cut_mmd_t2.5           max diff 2.3e-06
+  cut_kc_K1_t0.3         max diff 3.7e-06
+  cut_kc_K1_t1.5         max diff 3.5e-06
+  cut_kc_K1_t2.5         max diff 2.8e-06
+  cut_kc_K3_t0.3         max diff 1.7e-06
+  cut_kc_K3_t1.5         max diff 1e-06
+  cut_kc_K3_t2.5         max diff 1.5e-06
+  cut_jacobi_t0.3        max diff 1.8e-06
+  cut_jacobi_t1.5        max diff 1.6e-06
+  cut_jacobi_t2.5        max diff 1.2e-06
+  diff_mmd_t0.3          max diff 2.2e-07
+  diff_mmd_t1.5          max diff 1.5e-07
+  diff_mmd_t2.5          max diff 1.3e-07
+  diff_kc_K1_t0.3        max diff 2e-07
+  diff_kc_K1_t1.5        max diff 1.5e-07
+  diff_kc_K1_t2.5        max diff 1.3e-07
+  diff_kc_K3_t0.3        max diff 6.6e-08
+  diff_kc_K3_t1.5        max diff 4e-08
+  diff_kc_K3_t2.5        max diff 7e-08
+  diff_jacobi_t0.3       max diff 6.3e-08
+  diff_jacobi_t1.5       max diff 5.9e-08
+  diff_jacobi_t2.5       max diff 5.5e-08
+LARGEST 3-seed-statistic difference vs results.json (t=4.303 vs owner's 4.302653 included): (0.0002370650495588933, 'jsd_ratio_mmd')
+LARGEST 3-seed-statistic difference vs results.json with the owner's t = 4.302653: (8.476891154958477e-05, 'kl_diff_mmd')

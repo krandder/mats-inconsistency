@@ -1,0 +1,17 @@
+You are an adversarial reviewer for a research report draft. Be concrete and skeptical; rank findings by severity.
+
+Files (read them; you may run read-only shell commands and small python checks; do not modify anything):
+- Report draft: /home/agent/workspaces/mats/outbox/scale-free-exp-2026-10-29.md (sections marked TBD are still running; ignore them).
+- Pre-registration with amendments: /home/agent/workspaces/mats/work/scale-free-exp/PREREG.md (hashes in prereg_hashes.txt).
+- Code: work/scale-free-exp/{sfworld.py, sfmodels.py, sftrain.py, sfgpu.py, est5.py, m1prof.py, tokan.py, summ.py, blind_ref.py, e5summ.py}.
+- Results: run directories in work/scale-free-exp/local/sfx-b3, local/sfx-b4, local/sfx-b5 (each run: meta.json with curve, eval_test_model.json; dirs whose eval file says "skipped" are placeholders), and results/{e5.jsonl, m1.jsonl, tokan.jsonl, blind_ref.json}. Run `cd /home/agent/workspaces/mats/work/scale-free-exp && python3 summ.py local/sfx-b3 local/sfx-b4 local/sfx-b5` (use /home/agent/.venvs/aggext/bin/python) to regenerate the tables.
+- Context: theory note /home/agent/workspaces/mats/outbox/scale-free-theory-2026-10-29.md (sections 6.3, 6.5); the question is whether "tangled" dense transformers are necessary or untangled tree/hierarchical nets can match them.
+
+Check in particular:
+1. Does every number in the report's Summary, E1, E3, E5 and the mechanism table match the result files? List any mismatch.
+2. Claims that overreach the evidence (e.g. "routing is what the dense transformer finds hard"; "two rounds are the lever"; "tree-shaped computation inside a dense net"; "tangling earns its cost in W2"). For each, give the strongest alternative explanation and whether the data rule it out. In particular: is the token-net failure at N >= 12 a fixed-budget artifact (plateau length growing with N) rather than a capacity limit, and is the report clear about that? Is the two-pass advantage confounded with parameter count (two-pass trees have about 2x the parameters of one-pass trees; capacity-matched one-pass trees are still running)? Is the comparison tree vs set fair (same features, same budget)?
+3. Is the history-blind identification sound (blind_ref.py sets the labelled-question count to 0 and keeps only the query column; check the implementation)?
+4. Pre-registration hygiene: were amendments made before the affected results, as stated? Any analysis choice that looks post hoc but is presented as pre-registered? Is the scorecard honest (check each row against PREREG.md wording)?
+5. E5 (deduction vs sampling): is the equal-time comparison fair; is the post-hoc fix clearly flagged; are the tail claims supported?
+6. M1/M2/M3/M5/M6 measurements: any implementation error in m1prof.py or tokan.py that would change a reported number (e.g. the class-mean substitution, the label regression, the permutation check)?
+Output: a ranked list (High / Medium / Low), each with the file/line or number concerned and a suggested fix. Keep it under 900 words.

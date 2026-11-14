@@ -1,0 +1,19 @@
+GPT-6 (Codex; the same model family as rounds 1–2).
+
+1. High — C1’s W64 “hit” changes the denominator. results/algrel_W64s001ck.json:dag_rel.targets[tau=0.01] keeps 10,784/36,928 eligible edges, but dag_rel.note says input edges remain kept. Including those 640 edges gives 11,424/37,568 = 30.41%, exceeding 30%. PREREG.md:215 specifies the same edge set as before. review/draft3.md:719–720,799 should report a miss under that definition, or explicitly label the changed criterion.
+
+2. High — W64 advice-transfer failure is asserted without results. review/draft3.md:714–715 says the advice “does not transfer,” but results/algrel_W64s003ck.json and algrel_W64s001ck.json have no bar key: those family comparisons are partial. Moreover, fitting advice on the base model is explicitly allowed by PREREG.md:196–201; it is not inherently “circular under ARC’s rules.” Base-model agreement alone does not demonstrate transfer.
+
+3. High — B1 is already partly falsified, not simply pending. PREREG.md:203 predicts bias ≥10 percentage points. results/algrel_W32s001ck.json:bar.a.bias is 0.0154661, or 1.55 points; results/algrel_T16.json:bar.a also gives about four points. Both lose at equal FLOPs, but the bias clause fails. Split those clauses in draft3.md:793.
+
+4. Medium — Section 6 contradicts the new deductive results. draft3.md:755 says these descriptions “still miss by 2x or more.” W64’s desc_average_base is 0.0444557 at sigma=0.03 and 0.0319869 at sigma=0.01; corresponding estim_*.json:truths[0] values are 0.0499251 and 0.0206828: ratios 0.89 and 1.55. Neither is a twofold miss. Conversely, the ADF at sigma=0.01 predicts 0.906977, approximately 44× truth, outside line 716’s “13–20x.”
+
+5. Medium — Completion and scoring remain inconsistent. draft3.md:546 declares W5 hit, while line 798 says pending; line 546 scores C3 on W32, while line 801 leaves all wide results pending. The absent W64 bar keys justify partial status. Amendment 5 also requires structure and families per seed (PREREG.md:202), whereas only selected seeds were analysed. W3’s W64 evidence comes from lowrank_W64s003ck.json, not the sigma=0.01 model passing the example criterion; identify that qualification explicitly.
+
+6. Medium — Final-training conclusions retain checkpoint numbers. draft3.md:659–663 quotes 0.127/0.183 and says 5.1 bits match the zoo model within half a point of the example. results/gpu_table.json gives final d16 seed-0 losses 0.120072/0.185398. W64 sigma=0.03 seed 0 fails both references and trails the example by 0.6984 points. Line 750’s “5–7 bits … at ARC’s accuracy” needs the reference and seed qualification.
+
+7. Medium — The new shared-mechanism bullet misquotes W64. draft3.md:725 says S4 error is “about 20% … in both.” results/devpred_W64s003ck.json:scenarios.S4.net.rate is 0.294131; W32’s is 0.200662.
+
+8. Low — Several final-table values round incorrectly. In results/gpu_table.json:ex_L_var, d16/sigma=.01/seed0 rounds to .298, and W32/.03/seed0 to .225. ex_A_var rounds to .962 for d16/0/seed0, .914 for W32/.03/seed1, and .976 for W64/.01/seed2. The W64/.03 accuracy-deficit range is 0.233–0.698 points, not 0.25–0.7.
+
+Checked 2026-10-29 03:55 UTC. All 18 GPU rows match their run files, full training length and evaluation counts; pass/fail labels and sigma* survive. No files modified.

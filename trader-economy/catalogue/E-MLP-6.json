@@ -1,0 +1,11 @@
+{
+ "id": "E-MLP-6",
+ "question": "Does unit-level Shapley pay work with two hidden layers?",
+ "setup": "16 + 16 tanh units, 800 rounds, synthetic; all 32 units are players in one game on the network's log score.",
+ "result": "The first layer gets 0.52\u00b10.01 of the Shapley pay against a true share of 0.54\u00b10.02; Spearman(pay, true value) 0.97\u00b10.03. Training on own Shapley pay shows the same over-confidence: 0.593, or 0.449 after one output scale.",
+ "status": "Informative",
+ "files": [
+  "exp_mlp.py",
+  "results/mlp_summary.json"
+ ]
+}

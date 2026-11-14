@@ -1,0 +1,264 @@
+/home/agent/workspaces/mats/work/deep-study/wf12/amplified-gflownet/check/c3_loss.py:120: RuntimeWarning: overflow encountered in exp
+  f = np.clip(1 / (1 + np.exp(-(th[0] * ut + th[1] * vt))), 1e-9, 1 - 1e-9)
+R1 score right (noise 0) 301 19s
+R1 score right (noise 0) 302 39s
+R1 score right (noise 0) 303 62s
+R2 score wrong (noise 1) 301 82s
+R2 score wrong (noise 1) 302 101s
+R2 score wrong (noise 1) 303 118s
+R3 score badly wrong (noise 3) 301 139s
+R3 score badly wrong (noise 3) 302 161s
+R3 score badly wrong (noise 3) 303 180s
+rollouts used per fit at compute K: data only n*K; (i) 4*U*K = 8000K; (ii) U*(3K + 64) = 6000K + 128000; (iii) U*65K = 130000K  (U = 2000 unlabeled questions); 3 worlds x 20 seeds
+
+== R1 score right (noise 0), K = 2: excess log loss against reality, nats
+T itself                               0.0000
+raw (1, 0)                             0.7133
+constant one half (0, 0)               0.1165
+best head of the family (oracle)       0.0752
+oracle alpha                           0.0992
+oracle beta                            0.0375
+alone (i)                              0.1164
+alone (i) max|theta|                   0.0009
+alone (ii)                             0.0860
+alone (ii) max|theta|                  0.1091
+alone (iii)                            0.0812
+alone (iii) max|theta|                 0.1205
+n=8 data only                          1.6933
+n=8 data + (i)                         0.1035
+n=8 data + (ii)                        0.0854
+n=8 data + (iii)                       0.1058
+n=8 data + ridge 0.01                  0.2985
+n=8 data + ridge 0.1                   0.1781
+n=8 data + ridge 1                     0.1118
+n=32 data only                         0.1801
+n=32 data + (i)                        0.1013
+n=32 data + (ii)                       0.0840
+n=32 data + (iii)                      0.0850
+n=32 data + ridge 0.01                 0.1126
+n=32 data + ridge 0.1                  0.0944
+n=32 data + ridge 1                    0.0868
+n=128 data only                        0.0848
+n=128 data + (i)                       0.1008
+n=128 data + (ii)                      0.0835
+n=128 data + (iii)                     0.0786
+n=128 data + ridge 0.01                0.0827
+n=128 data + ridge 0.1                 0.0798
+n=128 data + ridge 1                   0.0813
+n=512 data only                        0.0772
+n=512 data + (i)                       0.1003
+n=512 data + (ii)                      0.0833
+n=512 data + (iii)                     0.0771
+n=512 data + ridge 0.01                0.0770
+n=512 data + ridge 0.1                 0.0770
+n=512 data + ridge 1                   0.0799
+
+== R1 score right (noise 0), K = 8: excess log loss against reality, nats
+T itself                               0.0000
+raw (1, 0)                             0.3081
+constant one half (0, 0)               0.1137
+best head of the family (oracle)       0.0566
+oracle alpha                           0.1682
+oracle beta                            0.0992
+alone (i)                              0.1137
+alone (i) max|theta|                   0.0009
+alone (ii)                             0.0673
+alone (ii) max|theta|                  0.1481
+alone (iii)                            0.0616
+alone (iii) max|theta|                 0.1550
+n=8 data only                          1.3971
+n=8 data + (i)                         0.0958
+n=8 data + (ii)                        0.0673
+n=8 data + (iii)                       0.0900
+n=8 data + ridge 0.01                  0.3342
+n=8 data + ridge 0.1                   0.1376
+n=8 data + ridge 1                     0.0825
+n=32 data only                         0.1125
+n=32 data + (i)                        0.0894
+n=32 data + (ii)                       0.0651
+n=32 data + (iii)                      0.0655
+n=32 data + ridge 0.01                 0.1018
+n=32 data + ridge 0.1                  0.0780
+n=32 data + ridge 1                    0.0723
+n=128 data only                        0.0665
+n=128 data + (i)                       0.0870
+n=128 data + (ii)                      0.0644
+n=128 data + (iii)                     0.0587
+n=128 data + ridge 0.01                0.0653
+n=128 data + ridge 0.1                 0.0609
+n=128 data + ridge 1                   0.0677
+n=512 data only                        0.0585
+n=512 data + (i)                       0.0882
+n=512 data + (ii)                      0.0648
+n=512 data + (iii)                     0.0581
+n=512 data + ridge 0.01                0.0584
+n=512 data + ridge 0.1                 0.0581
+n=512 data + ridge 1                   0.0691
+
+== R2 score wrong (noise 1), K = 2: excess log loss against reality, nats
+T itself                               0.0381
+raw (1, 0)                             0.7458
+constant one half (0, 0)               0.1165
+best head of the family (oracle)       0.0923
+oracle alpha                           0.1211
+oracle beta                           -0.0053
+alone (i)                              0.1164
+alone (i) max|theta|                   0.0009
+alone (ii)                             0.0942
+alone (ii) max|theta|                  0.2077
+alone (iii)                            0.0940
+alone (iii) max|theta|                 0.1689
+n=8 data only                          1.8908
+n=8 data + (i)                         0.1117
+n=8 data + (ii)                        0.0957
+n=8 data + (iii)                       0.1206
+n=8 data + ridge 0.01                  0.2941
+n=8 data + ridge 0.1                   0.1815
+n=8 data + ridge 1                     0.1226
+n=32 data only                         0.1419
+n=32 data + (i)                        0.1119
+n=32 data + (ii)                       0.0942
+n=32 data + (iii)                      0.1017
+n=32 data + ridge 0.01                 0.1277
+n=32 data + ridge 0.1                  0.1095
+n=32 data + ridge 1                    0.1029
+n=128 data only                        0.0992
+n=128 data + (i)                       0.1105
+n=128 data + (ii)                      0.0938
+n=128 data + (iii)                     0.0942
+n=128 data + ridge 0.01                0.0981
+n=128 data + ridge 0.1                 0.0959
+n=128 data + ridge 1                   0.0970
+n=512 data only                        0.0945
+n=512 data + (i)                       0.1105
+n=512 data + (ii)                      0.0937
+n=512 data + (iii)                     0.0933
+n=512 data + ridge 0.01                0.0944
+n=512 data + ridge 0.1                 0.0941
+n=512 data + ridge 1                   0.0962
+
+== R2 score wrong (noise 1), K = 8: excess log loss against reality, nats
+T itself                               0.0379
+raw (1, 0)                             0.3589
+constant one half (0, 0)               0.1137
+best head of the family (oracle)       0.0690
+oracle alpha                           0.1357
+oracle beta                            0.1640
+alone (i)                              0.1137
+alone (i) max|theta|                   0.0009
+alone (ii)                             0.0749
+alone (ii) max|theta|                  0.2474
+alone (iii)                            0.0731
+alone (iii) max|theta|                 0.2171
+n=8 data only                          1.3814
+n=8 data + (i)                         0.0977
+n=8 data + (ii)                        0.0764
+n=8 data + (iii)                       0.1069
+n=8 data + ridge 0.01                  0.3314
+n=8 data + ridge 0.1                   0.1425
+n=8 data + ridge 1                     0.0881
+n=32 data only                         0.1031
+n=32 data + (i)                        0.0963
+n=32 data + (ii)                       0.0743
+n=32 data + (iii)                      0.0775
+n=32 data + ridge 0.01                 0.0973
+n=32 data + ridge 0.1                  0.0838
+n=32 data + ridge 1                    0.0839
+n=128 data only                        0.0796
+n=128 data + (i)                       0.0955
+n=128 data + (ii)                      0.0737
+n=128 data + (iii)                     0.0723
+n=128 data + ridge 0.01                0.0776
+n=128 data + ridge 0.1                 0.0735
+n=128 data + ridge 1                   0.0820
+n=512 data only                        0.0705
+n=512 data + (i)                       0.0962
+n=512 data + (ii)                      0.0736
+n=512 data + (iii)                     0.0704
+n=512 data + ridge 0.01                0.0703
+n=512 data + ridge 0.1                 0.0706
+n=512 data + ridge 1                   0.0826
+
+== R3 score badly wrong (noise 3), K = 2: excess log loss against reality, nats
+T itself                               0.1795
+raw (1, 0)                             0.8198
+constant one half (0, 0)               0.1165
+best head of the family (oracle)       0.0955
+oracle alpha                           0.0980
+oracle beta                            0.0051
+alone (i)                              0.1165
+alone (i) max|theta|                   0.0009
+alone (ii)                             0.1422
+alone (ii) max|theta|                  0.3387
+alone (iii)                            0.1140
+alone (iii) max|theta|                 0.2351
+n=8 data only                          1.7378
+n=8 data + (i)                         0.1128
+n=8 data + (ii)                        0.1345
+n=8 data + (iii)                       0.1330
+n=8 data + ridge 0.01                  0.3142
+n=8 data + ridge 0.1                   0.1944
+n=8 data + ridge 1                     0.1309
+n=32 data only                         0.1811
+n=32 data + (i)                        0.1113
+n=32 data + (ii)                       0.1332
+n=32 data + (iii)                      0.1100
+n=32 data + ridge 0.01                 0.1289
+n=32 data + ridge 0.1                  0.1124
+n=32 data + ridge 1                    0.1057
+n=128 data only                        0.1023
+n=128 data + (i)                       0.1099
+n=128 data + (ii)                      0.1327
+n=128 data + (iii)                     0.1021
+n=128 data + ridge 0.01                0.1013
+n=128 data + ridge 0.1                 0.0993
+n=128 data + ridge 1                   0.0994
+n=512 data only                        0.0972
+n=512 data + (i)                       0.1098
+n=512 data + (ii)                      0.1325
+n=512 data + (iii)                     0.1004
+n=512 data + ridge 0.01                0.0970
+n=512 data + ridge 0.1                 0.0966
+n=512 data + ridge 1                   0.0982
+
+== R3 score badly wrong (noise 3), K = 8: excess log loss against reality, nats
+T itself                               0.1777
+raw (1, 0)                             0.5156
+constant one half (0, 0)               0.1137
+best head of the family (oracle)       0.0831
+oracle alpha                           0.0745
+oracle beta                            0.1306
+alone (i)                              0.1136
+alone (i) max|theta|                   0.0009
+alone (ii)                             0.1510
+alone (ii) max|theta|                  0.3957
+alone (iii)                            0.1261
+alone (iii) max|theta|                 0.3263
+n=8 data only                          1.6503
+n=8 data + (i)                         0.1005
+n=8 data + (ii)                        0.1427
+n=8 data + (iii)                       0.1468
+n=8 data + ridge 0.01                  0.3614
+n=8 data + ridge 0.1                   0.1744
+n=8 data + ridge 1                     0.1024
+n=32 data only                         0.1213
+n=32 data + (i)                        0.1002
+n=32 data + (ii)                       0.1398
+n=32 data + (iii)                      0.1024
+n=32 data + ridge 0.01                 0.1151
+n=32 data + ridge 0.1                  0.1006
+n=32 data + ridge 1                    0.0942
+n=128 data only                        0.0909
+n=128 data + (i)                       0.0992
+n=128 data + (ii)                      0.1392
+n=128 data + (iii)                     0.0947
+n=128 data + ridge 0.01                0.0901
+n=128 data + ridge 0.1                 0.0874
+n=128 data + ridge 1                   0.0908
+n=512 data only                        0.0848
+n=512 data + (i)                       0.0991
+n=512 data + (ii)                      0.1389
+n=512 data + (iii)                     0.0922
+n=512 data + ridge 0.01                0.0845
+n=512 data + ridge 0.1                 0.0845
+n=512 data + ridge 1                   0.0904

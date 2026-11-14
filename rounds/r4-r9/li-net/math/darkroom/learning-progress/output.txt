@@ -1,0 +1,145 @@
+T=8192 seeds=16 max order D=8 eps=0.05 pretrain(S*)=20000
+
+== A. Raw prediction error: mean bits/step of the order-mixture over the last 1024 steps ==
+  D   0.0001
+  N   0.9999
+  S   0.2864
+  S*  0.2855
+
+== C3. Information gained about the true source, cumulative bits up to t ==
+   (= excess code length vs truth; asymptotically (k_eff/2) log2 t, k_eff = parameters the data pin down)
+  learner      room      16      64     256    1024    4096    8192
+  mix0..8    D       2.84    3.83    4.83    5.83    6.83    7.33
+  mix0..8    N       1.17    3.61    6.67    7.42    8.77    9.36
+  mix0..8    S       5.83    9.95   15.75   19.41   24.75   25.93
+  mix0..8    S*     -0.01    0.02    0.15    0.18    0.72    0.94
+  order0     D       2.84    3.83    4.83    5.83    6.83    7.33
+  order0     N       1.96    2.68    3.68    4.64    5.66    6.22
+  order0     S       9.31   39.53  177.80  720.02 2932.96 5880.58
+  order0     S*     10.25   44.90  182.16  723.06 2897.05 5816.55
+  order1     D       2.84    3.83    4.83    5.83    6.83    7.33
+  order1     N       2.49    4.58    6.78    7.85   10.44   11.60
+  order1     S       9.12   37.94  175.75  720.41 2932.19 5879.27
+  order1     S*     10.19   44.89  182.54  724.25 2897.31 5814.25
+  order2     D       2.84    3.83    4.83    5.83    6.83    7.33
+  order2     N       2.89    6.89   11.16   14.38   18.70   20.67
+  order2     S       4.54    7.53   12.86   16.26   21.59   22.76
+  order2     S*     -0.01    0.02    0.15    0.18    0.72    0.94
+  order4     D       2.84    3.83    4.83    5.83    6.83    7.33
+  order4     N       1.53    9.82   26.01   41.21   57.81   66.37
+  order4     S       5.73   10.99   20.86   31.00   44.97   50.58
+  order4     S*     -0.01    0.09    0.35    0.68    3.16    4.87
+  order8     D       2.84    3.83    4.83    5.83    6.83    7.33
+  order8     N       0.54    2.69   17.64  137.25  409.89  541.91
+  order8     S       7.68   19.14   40.83   76.17  134.09  170.71
+  order8     S*     -0.05    0.11    0.96    3.14   14.82   25.76
+
+== C2. Agent-side expected information gain, cumulative bits up to t (computable by the agent) ==
+  learner      room      16      64     256    1024    4096    8192
+  mix0..8    D       1.68    2.40    3.13    3.85    4.58    4.95
+  mix0..8    N       6.02   21.33   39.67   41.01   42.20   42.73
+  mix0..8    S       4.83    9.29   14.47   18.92   22.97   24.98
+  mix0..8    S*      0.00    0.01    0.04    0.14    0.54    0.99
+  order0     D       1.68    2.40    3.13    3.85    4.58    4.95
+  order0     N       1.90    2.87    3.86    4.86    5.86    6.36
+  order0     S       1.88    2.83    3.82    4.82    5.82    6.32
+  order0     S*      0.00    0.00    0.01    0.04    0.13    0.25
+  order1     D       1.68    2.40    3.13    3.85    4.58    4.95
+  order1     N       2.88    4.75    6.73    8.72   10.72   11.72
+  order1     S       2.73    4.57    6.61    8.62   10.62   11.62
+  order1     S*      0.00    0.00    0.02    0.07    0.27    0.50
+  order2     D       1.68    2.40    3.13    3.85    4.58    4.95
+  order2     N       4.06    7.56   11.47   15.44   19.44   21.44
+  order2     S       3.67    6.70   10.59   14.57   18.55   20.55
+  order2     S*      0.00    0.01    0.04    0.14    0.54    0.99
+  order4     D       1.68    2.40    3.13    3.85    4.58    4.95
+  order4     N       6.01   15.80   30.17   45.80   61.73   69.72
+  order4     S       4.62    9.57   17.53   28.20   40.51   47.59
+  order4     S*      0.01    0.04    0.14    0.57    2.15    3.90
+  order8     D       1.68    2.40    3.13    3.85    4.58    4.95
+  order8     N       6.85   26.73   93.25  249.92  480.87  605.58
+  order8     S       5.78   14.53   32.34   64.68  114.17  150.77
+  order8     S*      0.06    0.19    0.93    3.66   14.48   26.59
+  per-step rate x t at t=T (approaches k_eff/(2 ln2)=0.72*k_eff for a Bayesian learner):
+   mix0..8  D:0.54  N:0.78  S:2.98  S*:0.85
+   order8  D:0.54  N:188.18  S:55.09  S*:22.92
+
+== C1. Schmidhuber compression progress (plug-in, fixed order), cumulative bits up to t ==
+  learner      room      16      64     256    1024    4096    8192
+  order0     D       2.15    3.12    4.11    5.11    6.10    6.60
+  order0     N       2.35    3.33    4.33    5.33    6.33    6.83
+  order0     S       2.33    3.33    4.33    5.33    6.33    6.83
+  order0     S*      0.00    0.00    0.01    0.04    0.13    0.25
+  order1     D       2.15    3.12    4.11    5.11    6.10    6.60
+  order1     N       3.71    5.66    7.65    9.65   11.65   12.65
+  order1     S       3.49    5.53    7.63    9.65   11.65   12.65
+  order1     S*      0.00    0.00    0.02    0.07    0.27    0.50
+  order2     D       2.15    3.12    4.11    5.11    6.10    6.60
+  order2     N       5.41    9.33   13.31   17.30   21.30   23.30
+  order2     S       4.77    8.55   13.04   17.25   21.29   23.29
+  order2     S*      0.00    0.01    0.04    0.14    0.54    0.99
+  order4     D       2.15    3.12    4.11    5.11    6.10    6.60
+  order4     N       8.08   21.04   37.27   53.21   69.22   77.21
+  order4     S       6.05   12.41   22.14   34.94   49.38   57.31
+  order4     S*      0.01    0.04    0.15    0.60    2.34    4.21
+  order8     D       2.15    3.12    4.11    5.11    6.10    6.60
+  order8     N       9.09   35.58  124.79  332.09  595.08  723.47
+  order8     S       7.63   19.03   41.53   82.24  144.07  188.98
+  order8     S*      0.08    0.22    1.12    4.46   17.71   32.52
+
+== B. Oudeyer-Kaplan error-drop LP(t) = mean loss in [t-theta-tau, t-theta) - mean loss in [t-tau, t) ==
+   per run, then averaged; order-mixture learner; bits/step (x1000)
+  tau=   8 theta=   8 | t=64,256,1024,4096,8192 ; each cell D N S S*
+     t=   64:    1.8  -62.8   66.3   -4.6
+     t=  256:    0.1  -22.1  187.4  -66.1
+     t= 1024:    0.0    4.8  -60.2  -31.9
+     t= 4096:    0.0    1.8  -70.5   68.2
+     t= 8192:    0.0    0.3  123.1    8.2
+  tau=  32 theta=  32 | t=64,256,1024,4096,8192 ; each cell D N S S*
+     t=   64:   88.6   -1.3  184.8  -16.7
+     t=  256:    0.5   10.9  -22.1  115.8
+     t= 1024:    0.0   -6.4   77.6  -30.9
+     t= 4096:    0.0   -1.9   84.1   34.0
+     t= 8192:    0.0   -0.6  -59.2  -39.9
+  tau= 128 theta= 128 | t=64,256,1024,4096,8192 ; each cell D N S S*
+     t=   64:    n/a   n/a   n/a   n/a
+     t=  256:   29.9   25.6  107.9  -50.8
+     t= 1024:    0.1   -0.6  -18.7  -32.9
+     t= 4096:    0.0   -0.2  -35.8  -50.0
+     t= 8192:    0.0   -0.1   41.8 -100.0
+  tau=  32 theta= 512 | t=64,256,1024,4096,8192 ; each cell D N S S*
+     t=   64:    n/a   n/a   n/a   n/a
+     t=  256:    n/a   n/a   n/a   n/a
+     t= 1024:    0.7   -3.9   -1.7    9.2
+     t= 4096:    0.0    0.7  -50.0   66.3
+     t= 8192:    0.0   -0.5  -50.4 -108.3
+  cumulative error drop from step 1 to the end (first-16 mean minus last-1024 mean):
+     D   +0.177 bits/step
+     N   +0.074 bits/step
+     S   +0.483 bits/step
+     S*  +0.070 bits/step
+
+== E. Excess entropy E = I(past; future) of the ergodic source (Bialek et al. 2001; Crutchfield-Feldman) ==
+  exact: D 0.000   N 0.000   S 1.427   S* 1.427 (already learned: unchanged)   entropy rate S 0.286
+  plug-in estimate E_L = L*H(L-1) - (L-1)*H(L) from one run of length n (mean over seeds):
+   n=   256 L= 3:  D  0.000   N  0.016   S  1.449
+   n=   256 L= 6:  D  0.000   N  0.460   S  1.502
+   n=   256 L=10:  D  0.000   N  5.726   S  1.754
+   n=  4096 L= 3:  D  0.000   N  0.001   S  1.428
+   n=  4096 L= 6:  D  0.000   N  0.021   S  1.442
+   n=  4096 L=10:  D  0.000   N  0.790   S  1.518
+   n= 65536 L= 3:  D  0.000   N  0.000   S  1.429
+   n= 65536 L= 6:  D  0.000   N  0.001   S  1.430
+   n= 65536 L=10:  D  0.000   N  0.046   S  1.443
+
+== Costs. Choose a room for a horizon t; J = (cumulative info gain, C2 mixture) - lam * cost * t ==
+   costs: D 0, N 1, S 1 (units arbitrary). Critical lam* above which D beats S:
+   t=   16  infoS-infoD=  3.15  lam*=0.19698   (S* vs D: -0.104948)
+   t=   64  infoS-infoD=  6.89  lam*=0.10763   (S* vs D: -0.037338)
+   t=  256  infoS-infoD= 11.35  lam*=0.04433   (S* vs D: -0.012065)
+   t= 1024  infoS-infoD= 15.06  lam*=0.01471   (S* vs D: -0.003623)
+   t= 4096  infoS-infoD= 18.38  lam*=0.00449   (S* vs D: -0.000988)
+   t= 8192  infoS-infoD= 20.03  lam*=0.00245   (S* vs D: -0.000483)
+   continuation value after t: E-gain over the next t steps, per step (all -> 0):
+    D:0.00036  N:0.00063  S:0.00198  S*:0.00013   (window 1024..2048)
+    D:0.00009  N:0.00013  S:0.00049  S*:0.00011   (window 4096..8192)

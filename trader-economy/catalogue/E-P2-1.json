@@ -1,0 +1,12 @@
+{
+ "id": "E-P2-1",
+ "question": "Are the P2 maze sets, decoders and training recipe valid (unit tests, decoder trap, U-canon gate, floor rule)?",
+ "setup": "Frozen test/dev/ext sets (maze-dataset lattices, percolation p in {0, 0.05, 0.1}), n=9 training pool with no hash overlap; exact DAG and tree dynamic programs checked against enumeration; every decoder on constant beliefs and random nets must stay <= 1% VSP; U-canon s0 gate >= 95% at n=9 and >= 80% at n=19 (p=0, T <= 300); floor rule: U-canon dev no-tie VSP >= 50% at T=300.",
+ "result": "Unit tests pass: True; trap test incomplete (spot preemption): 26/30 cells, max VSP 1.0% in those, missing n33_p0.05_de1, n33_p0.05_de0, n33_p0.1_de1, n33_p0.1_de0; counted as not passed; gate {'n9': 1.0, 'n19': 0.97} pass True; floor sizes [13] ({'13': 0.805, '19': 0.439, '25': 0.243, '33': 0.14}); GPU utilisation in the pilot 93.09803921568627%.",
+ "status": "Problem",
+ "files": [
+  "puzzles/P2/tests.py",
+  "puzzles/P2/gen.py",
+  "puzzles/P2/results/p2_results.json"
+ ]
+}

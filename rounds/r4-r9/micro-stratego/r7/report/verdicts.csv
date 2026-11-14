@@ -1,0 +1,28 @@
+rule,criterion,per_seed,mean,ci95,threshold,pass,note
+E3-D0 (0),"anchor KL(P*_full ‖ P_anchor) per hidden slot, calibration","0.1859, 0.1856, 0.1841",0.1852,"[0.1828, 0.1876]",>= 0.12,True,
+E3-D0 (1),"battle accuracy (ply-0 battles, Z materialised), test","0.9999, 1.0000, 0.9999",0.9999,"[0.9998, 1.0001]",>= 0.99,True,
+E3-D0 (1),"7-known-slot NLL (nats), test","0.0001, 0.0002, 0.0001",0.0001,"[0.0000, 0.0002]",<= 0.01,True,
+E3-D0 (2),"16 marginal cone rollouts (union call): KL cut vs the t-4 anchor, calibration","0.4805, 0.4779, 0.4880",0.4821,"[0.4690, 0.4952]",>= 0.40,True,"KL anchor -> pooled: 0.1859->0.0966, 0.1856->0.0969, 0.1841->0.0943; one pass at t: 0.0470, 0.0475, 0.0455"
+E3-D0 gate,(0) and (1) and (2),,,,all,True,
+E3-D1 (1),K3 key cosine within-flank minus across-flank,"0.2258, 0.2409, 0.2362",0.2343,"[0.2151, 0.2535]",">= 0.28, CI low > 0.25",False,"within 0.8693, across 0.6351; calibration gap 0.2485"
+E3-D1 (1),K3c key cosine within-flank minus across-flank,"0.6521, 0.6659, 0.6637",0.6606,"[0.6421, 0.6790]",">= 0.28, CI low > 0.25",True,"within 0.5255, across -0.1332; calibration gap 0.6739"
+E3-D1 (1),K3 or K3c,,,,all,True,
+E3-D1 (2),belief JSD ratio scaled_mix / attn_L3 (K3c),"11.2604, 8.3163, 12.9242",10.8336,"[5.0371, 16.6301]",">= 5.0, CI(diff) > 0",True,"JSD diff 0.002109 [0.001856, 0.002361]"
+E3-D1 (2),belief JSD ratio ataraxos_mmd / attn_L3 (K3c),"9.9713, 7.1988, 13.3135",10.1612,"[2.5553, 17.7671]",">= 5.0, CI(diff) > 0",True,"JSD diff 0.001941 [0.001220, 0.002662]"
+E3-D1 (2),8-slot belief KL to P*_full: scaled_mix - attn_L3 (K3c),"0.0074, 0.0069, 0.0070",0.0071,"[0.0064, 0.0078]","> 0, CI > 0",True,
+E3-D1 (2),8-slot belief KL to P*_full: ataraxos_mmd - attn_L3 (K3c),"0.0216, 0.0226, 0.0175",0.0206,"[0.0138, 0.0273]","> 0, CI > 0",True,
+E3-D1 (2),8-slot belief KL to P*_full: kc_dedup_K3c - attn_L3 (K3c),"0.0181, 0.0215, 0.0148",0.0181,"[0.0099, 0.0264]","> 0, CI > 0",True,
+E3-D1,(1) and all five of (2); key head for (2): K3c (the head that passes (1)),,,,all,True,
+E3-D2 (1),"Spearman(beta_trust, -KL(Q* ‖ q_r)) overall, mixed bags","0.3276, 0.3807, 0.3337",0.3473,"[0.2751, 0.4195]",">= 0.30, CI > 0",True,"Spearman(-H) -0.4104, -0.3994, -0.3757"
+E3-D2 (1),"same, within (s, a) pairs (mean of per-pair Spearman)","0.3617, 0.3959, 0.3498",0.3691,"[0.3096, 0.4287]",">= 0.25, CI > 0",True,"-H within pairs -0.5475, -0.5632, -0.5419"
+E3-D2 (1),Spearman(beta) - Spearman(-H) overall,"0.7380, 0.7801, 0.7093",0.7425,"[0.6541, 0.8309]",">= 0.55, CI > 0",True,
+E3-D2 (1),"same, mean within 10 equal-count entropy strata","0.2323, 0.2628, 0.2540",0.2497,"[0.2107, 0.2887]",">= 0.20, CI > 0",True,"beta 0.1961, 0.2224, 0.2265; -H -0.0362, -0.0404, -0.0275"
+E3-D2 (1),all four,,,,all,True,
+E3-D2 (2),relative MSE reduction trust_gate vs stiff_pool (gamma = 2),"0.6235, 0.5976, 0.6968",0.6393,"[0.5114, 0.7672]",">= 0.20, CI(diff) > 0",True,"MSE 0.01394 vs 0.03875; diff 0.02481 [0.01800, 0.03161]"
+E3-D2 (2),MSE(unif_pool) - MSE(trust_gate),"-0.0005, -0.0002, -0.0002",-0.0003,"[-0.0008, 0.0002]","> 0, CI > 0",False,MSE unif 0.01366
+E3-D2 (2),relative MSE reduction trust_pool vs stiff_pool (gamma = 2),"0.6233, 0.5837, 0.6961",0.6344,"[0.4927, 0.7761]",">= 0.20, CI(diff) > 0",True,"MSE 0.01412 vs 0.03875; diff 0.02462 [0.01722, 0.03202]"
+E3-D2 (2),MSE(unif_pool) - MSE(trust_pool),"-0.0005, -0.0007, -0.0002",-0.0005,"[-0.0011, 0.0001]","> 0, CI > 0",False,MSE unif 0.01366
+E3-D2 (2),relative MSE reduction trust_resample vs stiff_pool (gamma = 2),"0.6156, 0.5831, 0.6902",0.6296,"[0.4932, 0.7660]",">= 0.20, CI(diff) > 0",True,"MSE 0.01431 vs 0.03875; diff 0.02443 [0.01730, 0.03157]"
+E3-D2 (2),MSE(unif_pool) - MSE(trust_resample),"-0.0008, -0.0007, -0.0004",-0.0006,"[-0.0011, -0.0002]","> 0, CI > 0",False,MSE unif 0.01366
+E3-D2 (2),"(trust_gate or trust_pool) and trust_resample, each vs stiff_pool and unif_pool",,,,all,False,
+E3-D2,(1) and (2),,,,all,False,

@@ -1,0 +1,15 @@
+{
+ "id": "P0-2",
+ "question": "Does a width-64 DT-Recall retrain reach the maze bar (>= 0.90 on 33x33 at 300 iterations)?",
+ "setup": "M1: w=64, bansal progressive loss alpha 0.01, 15k steps, 3 seeds; M1-long: 30k steps, 1 seed; M-ref: published w=128 checkpoint. Strict-fp32 eval on frozen 33x33 (500) and 59x59 (100) sets.",
+ "result": "No. M1 scores 0.0/0.0/0.0 on 33x33@300 (best val 9x9 <= 0.042; one seed collapses to loss ln 2). M1-long learns 9x9 after 15k steps (val 0.996, 13x13 0.883) but scores 0.086 on 33x33@300 and 0.06 on 59x59@3000. M-ref scores 1.0 on 33x33@300 and on 59x59@3000. Falsify branch (b): the maze bar becomes M-ref and maze economy experiments should run at w=128 (caveat: M-ref's schedule is longer than ours, so width and training length are not separated).",
+ "status": "Informative",
+ "files": [
+  "puzzles/P0/train.py",
+  "puzzles/P0/dtnet.py",
+  "puzzles/P0/vm/plan.py",
+  "puzzles/P0/RESULTS.md",
+  "puzzles/P0/results/p0_results.json",
+  "puzzles/P0/results/chart_p0.json"
+ ]
+}

@@ -1,0 +1,78 @@
+{
+ "exact12n": {
+  "P13 DTR-eq (DT-Recall alpha 0.01, 30456 steps, ~3.1 L4-h, 4 seeds)": {
+   "e19": 0.7012499999999999,
+   "e33": 0.5458333333333333,
+   "e59": 0.3075
+  },
+  "Official DT-Recall 50-epoch reproduction (dt-baseline, ~7.1 L4-h per seed; seeds with evals: e19 3, e33 2, e59 2)": {
+   "e19": 0.945,
+   "e33": 0.9650000000000001,
+   "e59": 0.915
+  }
+ },
+ "notes": {
+  "p13_dtr_eq": {
+   "per_seed_s0_s3": {
+    "e19": [
+     0.925,
+     0.995,
+     0.885,
+     0.0
+    ],
+    "e33": [
+     0.5066666666666667,
+     0.97,
+     0.7066666666666667,
+     0.0
+    ],
+    "e59": [
+     0.075,
+     0.925,
+     0.23,
+     0.0
+    ]
+   },
+   "train_hours": [
+    3.13,
+    3.06,
+    3.11,
+    3.1
+   ],
+   "alpha": 0.01,
+   "steps": 30456,
+   "files": [
+    "puzzles/P13/results/vm/trader-b3-p13-9/out/evT_m_dtr_s0.json",
+    "puzzles/P13/results/vm/trader-b3-p13-10/out/evT_m_dtr_s1.json",
+    "puzzles/P13/results/vm/trader-b3-p13-11/out/evT_m_dtr_s2.json",
+    "puzzles/P13/results/vm/trader-b3-p13-12/out/evT_m_dtr_s3.json"
+   ],
+   "checked": "read by P18 at 05:41Z 2026-09-30 from P13 evT_m_dtr_s*.json (exact@12n, same e19/e33/e59 mazes)"
+  },
+  "dt_baseline": {
+   "per_seed_exact_at_T12n": {
+    "m0": {
+     "e19": 0.845
+    },
+    "m1": {
+     "e19": 1.0,
+     "e33": 1.0,
+     "e59": 0.99
+    },
+    "m2": {
+     "e19": 0.99,
+     "e33": 0.93,
+     "e59": 0.84
+    }
+   },
+   "train_hours_50_epochs": {
+    "m0": 7.08,
+    "m1": 7.13,
+    "m2": 7.25
+   },
+   "maze_identity": "code sha256 equals P18 frozen manifest; packed sol sha256 equals P13/frozen/p13_eval.npz",
+   "source": "trader-economy/dt-baseline/results/vm/trader-dt-m{0,1,2}/eval/trained/p13_{e19,e33,e59}.json, value at['T'] (T = 12n)",
+   "checked": "2026-09-30T07:27Z (m0 e33/e59 evals not yet present then; dt-baseline lane still running)"
+  }
+ }
+}

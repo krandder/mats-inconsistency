@@ -1,0 +1,9 @@
+pil_nocap_TR2 econ_maze.py --mode econ --W0 20 --frac 0.5 --wealth_cap 0 --lam_c 1 --lam_v 0.3 --train_pick random --D 30 --lr 1e-3 --bs 50 --diag_every 100 --liq sqrt --final_ckpt 1 --iters 1633 --seed 100 --out out/pil_nocap_TR2
+ev_pil_nocap_TR2@pil_nocap_TR2 eval_maze.py --kind trader --ckpt out/pil_nocap_TR2.pt --sets v9,m13,v33,m59 --jopt none --mult 12  --out out/ev_pil_nocap_TR2
+pil_econ_IN econ_maze.py --mode econ --W0 20 --frac 0.5 --wealth_cap 1 --lam_c 1 --lam_v 0.3 --train_pick random --D 30 --lr 1e-3 --bs 50 --diag_every 100 --insq 1 --final_ckpt 1 --iters 1654 --seed 100 --out out/pil_econ_IN
+ev_pil_econ_IN@pil_econ_IN eval_maze.py --kind trader --ckpt out/pil_econ_IN.pt --sets v9,m13,v33,m59 --jopt none --mult 12  --out out/ev_pil_econ_IN
+pil_nocap_TR2_x@ev_pil_nocap_TR2 econ_maze.py --mode econ --W0 20 --frac 0.5 --wealth_cap 0 --lam_c 1 --lam_v 0.3 --train_pick random --D 30 --lr 1e-3 --bs 50 --diag_every 100 --liq sqrt --final_ckpt 1 --ckpt_every 300 --iters 3266 --seed 100 --out out/pil_nocap_TR2
+ev_pil_nocap_TR2_x@pil_nocap_TR2_x eval_maze.py --kind trader --ckpt out/pil_nocap_TR2.pt --sets v9,m13,v33,m59 --jopt none --mult 12  --out out/ev_pil_nocap_TR2_x
+pil_econ_IN_x@ev_pil_econ_IN econ_maze.py --mode econ --W0 20 --frac 0.5 --wealth_cap 1 --lam_c 1 --lam_v 0.3 --train_pick random --D 30 --lr 1e-3 --bs 50 --diag_every 100 --insq 1 --final_ckpt 1 --ckpt_every 300 --iters 3308 --seed 100 --out out/pil_econ_IN
+ev_pil_econ_IN_x@pil_econ_IN_x eval_maze.py --kind trader --ckpt out/pil_econ_IN.pt --sets v9,m13,v33,m59 --jopt none --mult 12  --out out/ev_pil_econ_IN_x
+END

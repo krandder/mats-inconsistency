@@ -1,0 +1,11 @@
+{
+ "id": "E-P2-3",
+ "question": "Does the M-tree code carry the route choice, and do independent per-tile mixtures (M-tile) suffice?",
+ "setup": "256 ancestral samples of (codes, pixels) per primary tie maze; branch = which tied route the sample's best path takes; I(code at the lowest node covering the contested region; branch) / H(branch). M-tile: same model without cross-tile transitions.",
+ "result": "M-tree I/H 0.32 [0.22, 0.42] (pooled 0.26 [0.18, 0.34]; pass >= 0.8: False). M-tile I/H 0.73 [0.64, 0.82] on the 23% of tie mazes whose contested region fits one tile. Contested > 32 px: M-tree - M-tile 5.0 [-25.2, 35.2] points (Holm p 1). Share of tie mazes with the contested region inside one tile: 23%.",
+ "status": "Informative",
+ "files": [
+  "puzzles/P2/eval.py",
+  "puzzles/P2/results/p2_results.json"
+ ]
+}

@@ -1,0 +1,49 @@
+{
+ "n_episodes": 4,
+ "model": "Qwen/Qwen3-0.6B frozen",
+ "preset": "easy, goal alternating hit/avoid",
+ "teacher_forced": "true occupancy (later slots can read earlier truth; same in every arm)",
+ "secs": 238.7,
+ "arms": {
+  "nomask_true": {
+   "brier_vs_truth": 0.24009275285663967,
+   "brier_vs_truth_sd_over_eps": 0.061982612052669375,
+   "mae_vs_bayes": 0.21474662474332828,
+   "mean_p_occ": 0.31422734349810827,
+   "kl_from_nomask_true": 0.0,
+   "first_slot_mae_vs_bayes": 0.6734487768784216
+  },
+  "nomask_swapped": {
+   "brier_vs_truth": 0.23553215470861835,
+   "brier_vs_truth_sd_over_eps": 0.05855058331916349,
+   "mae_vs_bayes": 0.21572882583864514,
+   "mean_p_occ": 0.3231382481753826,
+   "kl_from_nomask_true": 0.03428270226530868,
+   "first_slot_mae_vs_bayes": 0.6181978639736823
+  },
+  "mask_as_typed": {
+   "brier_vs_truth": 0.21721573691030352,
+   "brier_vs_truth_sd_over_eps": 0.014974280363998742,
+   "mae_vs_bayes": 0.22761479823485167,
+   "mean_p_occ": 0.26848319564790774,
+   "kl_from_nomask_true": 0.17153996028776375,
+   "first_slot_mae_vs_bayes": 0.7735663857832602
+  },
+  "mask_instr_content": {
+   "brier_vs_truth": 0.2354794486943311,
+   "brier_vs_truth_sd_over_eps": 0.05724270648920492,
+   "mae_vs_bayes": 0.2123499489365084,
+   "mean_p_occ": 0.29814071898969513,
+   "kl_from_nomask_true": 0.00925641672532783,
+   "first_slot_mae_vs_bayes": 0.623386910237377
+  },
+  "mask_instr_content_swapped": {
+   "brier_vs_truth": 0.2354794486943311,
+   "brier_vs_truth_sd_over_eps": 0.05724270648920492,
+   "mae_vs_bayes": 0.2123499489365084,
+   "mean_p_occ": 0.29814071898969513,
+   "kl_from_nomask_true": 0.00925641672532783,
+   "first_slot_mae_vs_bayes": 0.623386910237377
+  }
+ }
+}

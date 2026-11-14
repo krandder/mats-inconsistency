@@ -1,0 +1,19 @@
+(4a) fixed point of fix_delta vs formula p/(1+delta):
+   delta=0.1     x*=0.7272727273  p/(1+delta)=0.7272727273  |x*-p|=7.27e-02  chi true at x*: True
+   delta=0.01    x*=0.7920792079  p/(1+delta)=0.7920792079  |x*-p|=7.92e-03  chi true at x*: True
+   delta=0.001   x*=0.7992007992  p/(1+delta)=0.7992007992  |x*-p|=7.99e-04  chi true at x*: True
+   delta=1e-06   x*=0.7999992000  p/(1+delta)=0.7999992000  |x*-p|=8.00e-07  chi true at x*: True
+(4b) delta=0: min_x |fix(x)-x| over grid = 0.2000 (>0: no fixed point); inf_x |T(x)| = 0.2000
+     delta=0 block iteration orbit: [1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0]
+(4c) block dynamics, delta=0.01, threshold eta_c = 2d/(1+d) = 0.019802
+   eta=0.005  slope=+0.495  final |x-x*|=0.00e+00  last-100 spread=0.00e+00  blocks until it stays within 1e-6: 251
+   eta=0.015  slope=-0.515  final |x-x*|=0.00e+00  last-100 spread=0.00e+00  blocks until it stays within 1e-6: 90
+   eta=0.025  slope=-1.525  final |x-x*|=1.27e-03  last-100 spread=7.90e-03  blocks until it stays within 1e-6: None
+   eta=0.05   slope=-4.050  final |x-x*|=1.99e-02  last-100 spread=4.03e-02  blocks until it stays within 1e-6: None
+(4d) static equal weights over deltas [0.5   0.1   0.01  0.001]: x* = 0.72500 (p - x* = 0.075); every delta-truth-seeking pop has x* in [p - max delta, p)
+   day    1: x* = 0.725000  p-x* = 7.50e-02  wealth shares = [0.2302 0.2509 0.2595 0.2595]
+   day   10: x* = 0.761839  p-x* = 3.82e-02  wealth shares = [0.1078 0.2002 0.346  0.346 ]
+   day  100: x* = 0.799197  p-x* = 8.03e-04  wealth shares = [1.000e-04 1.000e-04 4.200e-03 9.956e-01]
+   day 1000: x* = 0.799201  p-x* = 7.99e-04  wealth shares = [0. 0. 0. 1.]
+   day 2000: x* = 0.799201  p-x* = 7.99e-04  wealth shares = [0. 0. 0. 1.]
+(4f) random continuous traders with positive value both at p and at p-1e-9: 0 / 10000 (lemma: 0)

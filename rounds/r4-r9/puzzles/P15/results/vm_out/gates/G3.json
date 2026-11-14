@@ -1,0 +1,83 @@
+{
+ "prefix_true": {
+  "exact_at_L1024": 1.0,
+  "mean_KL_q_p": 2.664302536049332e-06
+ },
+ "prefix_flip0": {
+  "pattern_x_zl": [
+   1,
+   1
+  ],
+  "mean_KL_q_p": 0.3943804106897481,
+  "logp_true_before": -12.000006144193478,
+  "logp_true_after": -11.964727398542545,
+  "adam_M2_logp_true_before": -2.126928011042974,
+  "adam_M2_logp_true_after": -1.7883758830140826,
+  "n_windows": 5061
+ },
+ "prefix_flip1": {
+  "pattern_x_zl": [
+   1,
+   0
+  ],
+  "mean_KL_q_p": 0.47507170901369117,
+  "logp_true_before": -12.000006144193481,
+  "logp_true_after": -11.999954402167306,
+  "adam_M2_logp_true_before": -2.126928011042973,
+  "adam_M2_logp_true_after": -2.091781018805988,
+  "n_windows": 6704
+ },
+ "prefix_flip2": {
+  "pattern_x_zl": [
+   0,
+   1
+  ],
+  "mean_KL_q_p": 0.37267315890924974,
+  "logp_true_before": -12.000006144193478,
+  "logp_true_after": -11.999973743085441,
+  "adam_M2_logp_true_before": -2.1269280110429722,
+  "adam_M2_logp_true_after": -2.0917810694970598,
+  "n_windows": 1788
+ },
+ "maze_true": {
+  "exact_at_n59": 1.0,
+  "fp_frac": 1.0,
+  "mean_KL_q_p": 6.31865858248162e-15
+ },
+ "maze_corridor_fill": {
+  "mean_KL_q_p": 8.642746742515486e-29,
+  "logp_true_before": -32.00000000000001,
+  "logp_true_after": -32.00000000000001,
+  "adam_M2_logp_true_before": -1.3132616875182233,
+  "adam_M2_logp_true_after": -0.013935694383636307,
+  "n_windows": 822
+ },
+ "maze_deadend_keep": {
+  "mean_KL_q_p": 7.210309158341356,
+  "logp_true_before": -32.00000000000001,
+  "logp_true_after": -31.54899894433723,
+  "adam_M2_logp_true_before": -1.3132616875182233,
+  "adam_M2_logp_true_after": -6.832673958400227,
+  "n_windows": 4832
+ },
+ "maze_corridorNS_fill": {
+  "mean_KL_q_p": 1.7288699981474109e-28,
+  "logp_true_before": -32.00000000000001,
+  "logp_true_after": -32.00000000000001,
+  "adam_M2_logp_true_before": -1.313261687518223,
+  "adam_M2_logp_true_after": -0.014444841750050607,
+  "n_windows": 802
+ },
+ "maze_true_margin12": {
+  "mean_KL_q_p": 0.0377052424422929,
+  "per_maze_KL_top3": [
+   1.2877422008182002,
+   1.1251971530306597,
+   4.904450440362615e-06
+  ],
+  "n_mazes_KL_gt_1e-3": 2,
+  "n_mazes": 64
+ },
+ "pass": false,
+ "note": "True rules: prefix level margin 12, head margin 16; maze level margin 32 (M=64, margin M/2), head margin 40. A flipped entry has the same margin with the opposite sign. Run 1 (margins 10/8, maze flips at margin 40) failed: when the level margin exceeds the head margin the settlement cannot see a flipped entry. Run 2 (maze margin 12, head 16) failed: the true maze rule was not a settlement fixed point (mean KL 0.038, all of it in 2/64 mazes with long late-filling dead-end regions): one-site loopy messages add up over neighbours and levels and amplify the e^-12 sampling seeds until q fills late cells early (see maze_true_margin12); at margin 32 the seeds are e^-32 and KL is 6e-15. Run 2's one-step check (one Adam step at M=2) also moved deadend_keep the wrong way; Adam's first step is about lr*sign(grad) per entry, not the Bl direction, so the pass criterion is now the direction of one Bl gradient step (length 1e-3) at the gate margin, and the Adam step at M=2 is reported next to it. Batch 64."
+}

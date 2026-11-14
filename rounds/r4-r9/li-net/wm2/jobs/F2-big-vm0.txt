@@ -1,0 +1,8 @@
+# final part 2 (WMr-D-rbtd8): 7 jobs
+--task t1 wm --n 10000 --seed 0 --wmtag F-WMr --set wm_split=1 wm_board=rbtd wm_rbtd=8 es_boards=3000 max_steps=40000 patience=40 --ckpt /root/ckpt/F-t1-F-WMr-n10000-s0.pt --out /root/runs/wm2/F/t1/F-WMr/F-WMr-n10000-s0.json
+--task t2 wm --n 10000 --seed 0 --wmtag F-WMr --set wm_split=1 wm_board=rbtd wm_rbtd=8 wm_twin=1 es_boards=3000 max_steps=40000 patience=40 --ckpt /root/ckpt/F-t2-F-WMr-n10000-s0.pt --out /root/runs/wm2/F/t2/F-WMr/F-WMr-n10000-s0.json
+--task t1 fc --n 10000 --seed 0 --arm D-rbtd8 --tag F-WMr-D-rbtd8 --wm-ckpt /root/ckpt/F-t1-F-WMr-n10000-s0.pt --set es_boards=3000 max_steps=40000 patience=40 --test --out /root/runs/wm2/F/t1/F-WMr-D-rbtd8/F-WMr-D-rbtd8-n10000-s0.json
+--task t2 fc --n 10000 --seed 0 --arm D-rbtd8 --tag F-WMr-D-rbtd8 --wm-ckpt /root/ckpt/F-t2-F-WMr-n10000-s0.pt --set es_boards=3000 max_steps=40000 patience=40 --test --out /root/runs/wm2/F/t2/F-WMr-D-rbtd8/F-WMr-D-rbtd8-n10000-s0.json
+--task t2 fc --n 10000 --seed 0 --arm D-rbtd8 --tag F-WMrb-D-rbtd8 --wm-ckpt /root/ckpt/F-t2-F-WMr-n10000-s0.pt.blind.pt --set es_boards=3000 max_steps=40000 patience=40 --test --out /root/runs/wm2/F/t2/F-WMrb-D-rbtd8/F-WMrb-D-rbtd8-n10000-s0.json
+--task t2 fc --n 10000 --seed 0 --arm D-only --tag F-WMr-D-only --wm-ckpt /root/ckpt/F-t2-F-WMr-n10000-s0.pt --set es_boards=3000 max_steps=40000 patience=40 --test --out /root/runs/wm2/F/t2/F-WMr-D-only/F-WMr-D-only-n10000-s0.json
+--task t2 fc --n 10000 --seed 0 --arm D-only --tag F-WMrb-D-only --wm-ckpt /root/ckpt/F-t2-F-WMr-n10000-s0.pt.blind.pt --set es_boards=3000 max_steps=40000 patience=40 --test --out /root/runs/wm2/F/t2/F-WMrb-D-only/F-WMrb-D-only-n10000-s0.json

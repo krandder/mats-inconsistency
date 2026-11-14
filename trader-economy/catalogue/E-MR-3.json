@@ -1,0 +1,14 @@
+{
+ "id": "E-MR-3",
+ "question": "When training halts examples, how must the halted steps be settled (the decision-market bug)?",
+ "status": "Problem",
+ "setup": "Phase 1: Ctt trained with halting at cost 0.05 after 20% of training, settled four ways: counterfactual pay, epsilon-continuation (eps = 0.1, weights 1/eps; Chen et al. 2014), realized pay (0 after a halt, self-fulfilling) and executed steps only; 3 seeds; tested at L64. Phase 2: the trader economy trained with VOC halting at 0.002, settled on realized value (haltreal) or with epsilon-continuation (halteps), 2 seeds.",
+ "result": "Settling only executed steps is a Problem: at L64 it halts too early (c = 0.05: 0.970 +- 0.055 accuracy, post-halt gain 0.040 nats; c = 0.2: 0.948, 0.090), because the gain head never sees what happens after a halt. Counterfactual and epsilon settlement fix it (1.000, post-halt gain 0.000). The self-fulfilling realized-pay version showed no harm in either phase (phase 1 1.000; phase 2 haltreal 7.8 steps at 1.000 against halteps 14.1 steps at 0.992 at c = 0.001). Also found and fixed: a double-counted compute cost in econ.py/econ2.py halting (no reported result affected: all earlier runs used cost 0) and cost charged on halted steps in econ2.py (fixed before use).",
+ "files": [
+  "market-resnet/RESULTS.md",
+  "market-resnet/mresnet.py",
+  "market-resnet/econ2.py",
+  "market-resnet/charts/p1_post_halt_gain.json",
+  "market-resnet/results/summary.json"
+ ]
+}

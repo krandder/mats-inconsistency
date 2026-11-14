@@ -1,0 +1,14 @@
+Second review pass. The report /home/agent/workspaces/mats/outbox/scale-free-exp-2026-10-29.md was revised after your
+first review (/home/agent/workspaces/mats/work/scale-free-exp/results/review1.md). A few placeholders ({{...}}) remain
+for runs still finishing; ignore them.
+
+Do three things, read-only (you may run python with /home/agent/.venvs/aggext/bin/python):
+1. For each item in review1.md, say whether the revision addresses it adequately (yes / partly / no, one line each).
+2. Check the numbers in the Summary, the scorecard and the E3/E4/E5/M-measurement text against the result files:
+   regenerate tables with `cd /home/agent/workspaces/mats/work/scale-free-exp && python mktables.py /tmp/l4runs/sfx-b3/runs/sfx-b3 local/sfx-b4 /tmp/l4runs/sfx-b5/runs/sfx-b5`
+   (results/tables.md is the snapshot used), results/e5.jsonl (e5summ.py), results/tokan.jsonl and m1.jsonl
+   (tokan_summ.py), results/blind_cmp.json, and runs_local/a11_*/eval_test_model.json. List every mismatch.
+3. New claims since the first review (two-pass controls: capacity-matched one-pass trees a6_tree*h96 and the
+   no-auxiliary-loss ablation a10_*; the exploratory 4x-budget check a11_*; E4 results e4r_*; E2/M4 readings):
+   are they stated with the right strength? Anything overreaching or under-qualified?
+Output a ranked list (High / Medium / Low), under 600 words.

@@ -1,0 +1,105 @@
+CUDA_VISIBLE_DEVICES 3
+0, 46746 MiB, 100 %
+1, 41614 MiB, 100 %
+2, 46740 MiB, 100 %
+3, 0 MiB, 0 %
+4, 41614 MiB, 100 %
+5, 41614 MiB, 100 %
+6, 41614 MiB, 100 %
+7, 0 MiB, 0 %
+
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 4289.91it/s]
+prompt tokens [316, 316, 314, 314]
+sample K=16: 3.08s
+sample K=64: 4.84s
+per step ms (B=256): {'fwd': 92.6, 'lsm': 1.1, 'mult': 2.1, 'stop': 0.2, 'cat': 0.0}
+gumbel ms 3.6
+abs(logq - score): mean 0.0092 max 0.3260 n 62
+0, 46746 MiB, 100 %
+1, 41614 MiB, 100 %
+2, 46740 MiB, 100 %
+3, 20518 MiB, 78 %
+4, 41614 MiB, 100 %
+5, 41614 MiB, 100 %
+6, 41614 MiB, 100 %
+7, 0 MiB, 0 %
+
+CUDA_VISIBLE_DEVICES 3
+0, 46746 MiB, 100 %
+1, 41614 MiB, 100 %
+2, 46740 MiB, 99 %
+3, 0 MiB, 0 %
+4, 41614 MiB, 100 %
+5, 41614 MiB, 100 %
+6, 41614 MiB, 100 %
+7, 0 MiB, 0 %
+
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights:   0%|          | 1/310 [00:00<00:57,  5.40it/s]Loading weights:  33%|███▎      | 103/310 [00:00<00:00, 439.75it/s]Loading weights:  52%|█████▏    | 162/310 [00:00<00:00, 428.86it/s]Loading weights:  69%|██████▊   | 213/310 [00:00<00:00, 424.78it/s]Loading weights:  84%|████████▍ | 261/310 [00:00<00:00, 423.54it/s]Loading weights:  99%|█████████▉| 307/310 [00:00<00:00, 422.20it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 398.94it/s]
+prompt tokens [316, 316, 314, 314]
+Traceback (most recent call last):
+  File "/cluster/home/user/wave13/llm-pilot/code2/prof.py", line 16, in <module>
+    t = sync(); outs = lm.sample(prompts, K, 1.0, 50, gen); t1 = sync()
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/cluster/home/user/grpo-pilot/venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/cluster/home/user/wave13/llm-pilot/code2/lm.py", line 104, in sample
+    out = self._fwd(adapter, input_ids=nxt[:, None], attention_mask=att, past_key_values=past, use_cache=True)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/cluster/home/user/wave13/llm-pilot/code2/lm.py", line 50, in _fwd
+    return self.base(**kw)
+           ^^^^^^^^^^^^^^^
+  File "/cluster/home/user/grpo-pilot/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/cluster/home/user/grpo-pilot/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/cluster/home/user/grpo-pilot/venv/lib/python3.12/site-packages/transformers/utils/generic.py", line 939, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/cluster/home/user/grpo-pilot/venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py", line 482, in forward
+    outputs: BaseModelOutputWithPast = self.model(
+                                       ^^^^^^^^^^^
+  File "/cluster/home/user/grpo-pilot/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/cluster/home/user/grpo-pilot/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/cluster/home/user/grpo-pilot/venv/lib/python3.12/site-packages/transformers/utils/generic.py", line 1068, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/cluster/home/user/grpo-pilot/venv/lib/python3.12/site-packages/transformers/utils/output_capturing.py", line 262, in wrapper
+    outputs = func(self, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/cluster/home/user/grpo-pilot/venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py", line 413, in forward
+    hidden_states = decoder_layer(
+                    ^^^^^^^^^^^^^^
+  File "/cluster/home/user/grpo-pilot/venv/lib/python3.12/site-packages/transformers/modeling_layers.py", line 114, in __call__
+    return super().__call__(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/cluster/home/user/grpo-pilot/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/cluster/home/user/grpo-pilot/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/cluster/home/user/grpo-pilot/venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py", line 307, in forward
+    hidden_states, _ = self.self_attn(
+                       ^^^^^^^^^^^^^^^
+  File "/cluster/home/user/grpo-pilot/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/cluster/home/user/grpo-pilot/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/cluster/home/user/grpo-pilot/venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py", line 260, in forward
+    key_states, value_states = past_key_values.update(key_states, value_states, self.layer_idx)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/cluster/home/user/grpo-pilot/venv/lib/python3.12/site-packages/transformers/cache_utils.py", line 1383, in update
+    keys, values = self.layers[layer_idx].update(key_states, value_states, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/cluster/home/user/grpo-pilot/venv/lib/python3.12/site-packages/transformers/cache_utils.py", line 481, in update
+    self.values.index_copy_(2, cache_position, value_states)
+RuntimeError: index_copy_(): self and source expected to have the same dtype, but got (self) Float and (source) BFloat16

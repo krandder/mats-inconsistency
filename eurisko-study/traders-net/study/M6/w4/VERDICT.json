@@ -1,0 +1,43 @@
+{
+ "source": "results/*.json via summarize.py",
+ "rule_drop": "arm M1 >= plain M1 * 1.01 in 3/3 seeds",
+ "rule_keep_fp": "fp M3 <= 0.5 * pass2 M3 (mean) and in >= 2/3 seeds",
+ "drop_pass1": false,
+ "pass1_vs_plain_rel": [
+  0.011402983004654255,
+  0.4932122667258718,
+  0.0036313546563693233
+ ],
+ "drop_pass2": false,
+ "pass2_vs_plain_rel": [
+  0.009264272183076017,
+  0.49954946754162277,
+  0.0023815761103729294
+ ],
+ "drop_fp": false,
+ "fp_vs_plain_rel": [
+  0.007550176164286659,
+  0.49283763881043585,
+  0.00016747791045701454
+ ],
+ "drop_boost": true,
+ "boost_vs_plain_rel": [
+  0.03104352706999225,
+  0.5416145757671187,
+  0.024916032021886858
+ ],
+ "drop_plain_wd": false,
+ "plain_wd_vs_plain_rel": [
+  0.0018801126334861973,
+  0.5017854062077101,
+  0.0007536228380899956
+ ],
+ "fp_vs_pass2_M3_rel": [
+  0.0016580873861067325,
+  0.0012143830036852599,
+  -0.0008212613904159394
+ ],
+ "keep_fp": false,
+ "base_arms_survive_g": true,
+ "n_results": 36
+}

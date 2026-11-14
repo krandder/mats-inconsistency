@@ -1,0 +1,13 @@
+{
+ "id": "E-MR-10",
+ "question": "If traders must fund the covariance markets themselves by voluntary contributions, does the economy still learn?",
+ "status": "Problem",
+ "setup": "Phase 2b: the cov markets' LMSR payout is charged to traders; each trader decides per episode whether to fund (Bernoulli, REINFORCE on its own profit), unfunded episodes settle no cov market, funders split the payout; 2 seeds.",
+ "result": "No: free riding (Samuelson 1954). Funders pay 0.125 per episode (Lindahl: 2.23), most cov markets go unsettled, and round-robin accuracy falls to 0.98 at L32, 0.21 at L320 and 0.00 at L3200 (house-funded: 1.00, 1.00, 0.93); training loss spikes above 0.1 nats per bit 3-4 times after iteration 1000.",
+ "files": [
+  "market-resnet/RESULTS.md",
+  "market-resnet/econ2.py",
+  "market-resnet/run_p2b_vm6.sh",
+  "market-resnet/results/summary.json"
+ ]
+}

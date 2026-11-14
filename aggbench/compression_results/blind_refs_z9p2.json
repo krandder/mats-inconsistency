@@ -1,0 +1,297 @@
+{
+"schema": "aggbench.parity-blind-refs/v2",
+"decoder_access": "blind: messages + public constants + structure prior; 'tabulated' = joint-prior decoder P(Y | symbol multiset) from 2M fresh episodes (<= 4-8 symbols); 'per-agent decoder' ignores coupling between agents",
+"harness": {
+"git_commit": "69eff2a347f28305253aea4092f6c019199db4b5",
+"git_dirty": false,
+"note": "computed on CPU with aggbench.parity_learn at this commit (functions unchanged since ece51b7)"
+},
+"specs": {
+"fixed": "Z9Spec()",
+"readers_random": "Z9Spec(readers_random=True)",
+"leak_reduced": "Z9Spec(readers_random=True, readers_alpha=1.0, readers_per_bit=6)"
+},
+"results": {
+"fixed": [
+{
+"code": "raw (2 bits, no identity)",
+"bits": 2.0,
+"regret": {
+"mean": 0.31627992094122953,
+"ci_low": 0.3070672726660034,
+"ci_high": 0.32522022537700135,
+"n": 4000
+},
+"symbol_entropy_bits": 1.9931973019412266,
+"tab_coverage": 1.0
+},
+{
+"code": "count of parity 1-readings (log2 3 bits)",
+"bits": 1.58,
+"regret": {
+"mean": 0.16226802565767637,
+"ci_low": 0.15360373031097732,
+"ci_high": 0.17090190750762174,
+"n": 4000
+},
+"symbol_entropy_bits": 1.5161096861005439,
+"tab_coverage": 1.0
+},
+{
+"code": "bit identity + reading, unordered pair",
+"bits": 5.49,
+"regret": {
+"mean": 0.01512545270994901,
+"ci_low": 0.01421718524583397,
+"ci_high": 0.016124984731275133,
+"n": 4000
+},
+"symbol_entropy_bits": 5.37867374204936,
+"tab_coverage": null
+},
+{
+"code": "searched 1-bit code (coordinate search, tabulated decoder)",
+"bits": 1,
+"regret": {
+"mean": 0.3503608753954761,
+"ci_low": 0.34081101713577616,
+"ci_high": 0.3595591531723489,
+"n": 4000
+},
+"symbol_entropy_bits": 0.9301493265037217,
+"tab_coverage": 1.0
+},
+{
+"code": "searched 2-bit code (coordinate search, tabulated decoder)",
+"bits": 2,
+"regret": {
+"mean": 0.15919625037369647,
+"ci_low": 0.15091020433217844,
+"ci_high": 0.16766405645505766,
+"n": 4000
+},
+"symbol_entropy_bits": 1.8586930816539007,
+"tab_coverage": 1.0
+},
+{
+"code": "searched 3-bit code (coordinate search, tabulated decoder)",
+"bits": 3,
+"regret": {
+"mean": 0.13000039588717202,
+"ci_low": 0.12198398423418241,
+"ci_high": 0.13742308537397271,
+"n": 4000
+},
+"symbol_entropy_bits": 2.724183132290655,
+"tab_coverage": 1.0
+}
+],
+"readers_random": [
+{
+"code": "raw (2 bits, no identity)",
+"bits": 2.0,
+"regret": {
+"mean": 0.28151430721001086,
+"ci_low": 0.2742858936570133,
+"ci_high": 0.2886816424993192,
+"n": 4000
+},
+"symbol_entropy_bits": 1.9896657388785637,
+"tab_coverage": 1.0
+},
+{
+"code": "count of parity 1-readings (log2 3 bits)",
+"bits": 1.58,
+"regret": {
+"mean": 0.25554557689140733,
+"ci_low": 0.2488897857863968,
+"ci_high": 0.2626772924066403,
+"n": 4000
+},
+"symbol_entropy_bits": 1.527129145821925,
+"tab_coverage": 1.0
+},
+{
+"code": "bit identity + reading, unordered pair",
+"bits": 5.49,
+"regret": {
+"mean": 0.012751634556179144,
+"ci_low": 0.011811270528598495,
+"ci_high": 0.013843495243882974,
+"n": 4000
+},
+"symbol_entropy_bits": 5.421783799273044,
+"tab_coverage": null
+},
+{
+"code": "searched 1-bit code (coordinate search, tabulated decoder)",
+"bits": 1,
+"regret": {
+"mean": 0.290028031524842,
+"ci_low": 0.2829965854054546,
+"ci_high": 0.2969440230323184,
+"n": 4000
+},
+"symbol_entropy_bits": 0.9422078381300019,
+"tab_coverage": 1.0
+},
+{
+"code": "searched 2-bit code (coordinate search, tabulated decoder)",
+"bits": 2,
+"regret": {
+"mean": 0.2532687540015854,
+"ci_low": 0.24672729103225516,
+"ci_high": 0.2604043021493462,
+"n": 4000
+},
+"symbol_entropy_bits": 1.8674133585904364,
+"tab_coverage": 1.0
+},
+{
+"code": "searched 3-bit code (coordinate search, tabulated decoder)",
+"bits": 3,
+"regret": {
+"mean": 0.21883841465490947,
+"ci_low": 0.21224425286611376,
+"ci_high": 0.2252200805739562,
+"n": 4000
+},
+"symbol_entropy_bits": 2.8583895809036397,
+"tab_coverage": 1.0
+},
+{
+"code": "searched 2-bit code (per-agent decoder)",
+"bits": 2,
+"regret": {
+"mean": 0.265026703201955,
+"ci_low": 0.25791059300895686,
+"ci_high": 0.2721162199570725,
+"n": 4000
+},
+"symbol_entropy_bits": 1.9249495018023395
+},
+{
+"code": "searched 3-bit code (per-agent decoder)",
+"bits": 3,
+"regret": {
+"mean": 0.23675794667071498,
+"ci_low": 0.2299641313412129,
+"ci_high": 0.2439919465108028,
+"n": 4000
+},
+"symbol_entropy_bits": 2.805588298734489
+},
+{
+"code": "searched 4-bit code (per-agent decoder)",
+"bits": 4,
+"regret": {
+"mean": 0.1346679263828372,
+"ci_low": 0.12878757959535977,
+"ci_high": 0.14098108378874366,
+"n": 4000
+},
+"symbol_entropy_bits": 3.8273671630712514
+},
+{
+"code": "bit identity + reading, unordered pair (fits b = 6)",
+"bits": 5.49,
+"regret": {
+"mean": 0.012751634556179144,
+"ci_low": 0.011811270528598495,
+"ci_high": 0.013843495243882974,
+"n": 4000
+},
+"symbol_entropy_bits": 5.421783799273044
+}
+],
+"leak_reduced": [
+{
+"code": "raw (2 bits, no identity)",
+"bits": 2.0,
+"regret": {
+"mean": 0.2630057394798352,
+"ci_low": 0.25524221077648007,
+"ci_high": 0.27161205304955677,
+"n": 4000
+},
+"symbol_entropy_bits": 1.9611184067898302,
+"tab_coverage": 1.0
+},
+{
+"code": "count of parity 1-readings (log2 3 bits)",
+"bits": 1.58,
+"regret": {
+"mean": 0.2595267976454117,
+"ci_low": 0.2517964242574216,
+"ci_high": 0.26805585719645353,
+"n": 4000
+},
+"symbol_entropy_bits": 1.5662850202504324,
+"tab_coverage": 1.0
+},
+{
+"code": "bit identity + reading, unordered pair",
+"bits": 5.49,
+"regret": {
+"mean": 0.006014347575763256,
+"ci_low": 0.005392708249227279,
+"ci_high": 0.0066580955782976625,
+"n": 4000
+},
+"symbol_entropy_bits": 5.4184519932668005,
+"tab_coverage": null
+},
+{
+"code": "searched 1-bit code (coordinate search, tabulated decoder)",
+"bits": 1,
+"regret": {
+"mean": 0.26653117573171575,
+"ci_low": 0.2584800533424437,
+"ci_high": 0.275275184940145,
+"n": 4000
+},
+"symbol_entropy_bits": 0.9951259506850033,
+"tab_coverage": 1.0
+},
+{
+"code": "searched 2-bit code (coordinate search, tabulated decoder)",
+"bits": 2,
+"regret": {
+"mean": 0.25382968733360683,
+"ci_low": 0.246182392395802,
+"ci_high": 0.2621654668995534,
+"n": 4000
+},
+"symbol_entropy_bits": 1.9081642448638296,
+"tab_coverage": 1.0
+},
+{
+"code": "searched 3-bit code (per-agent decoder)",
+"bits": 3,
+"regret": {
+"mean": 0.2580758396635306,
+"ci_low": 0.2492011198187354,
+"ci_high": 0.26826808983558775,
+"n": 4000
+},
+"symbol_entropy_bits": 2.5047794316949736
+},
+{
+"code": "searched 4-bit code (per-agent decoder)",
+"bits": 4,
+"regret": {
+"mean": 0.21617831965658135,
+"ci_low": 0.20647797648723873,
+"ci_high": 0.22663103944689736,
+"n": 4000
+},
+"symbol_entropy_bits": 3.6129009608652534
+}
+]
+},
+"prior_kl": {
+"fixed": 0.449,
+"readers_random": 0.308,
+"leak_reduced": 0.2702278882388906
+}
+}

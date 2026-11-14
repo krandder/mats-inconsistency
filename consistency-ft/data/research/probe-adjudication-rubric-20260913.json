@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "rubric_id": "source-grounded-core-answer-review-v1",
+  "frozen_at": "2026-09-13T08:35:09.723745+00:00",
+  "study_sha256": "c660a9cdbf8a8d9816743a09dcbde88b4594fadd5e16f7f7aa73bda5e7bd4587",
+  "source_audit_sha256": "9d9b2700142adb8d5f609e333fcd7437881b7cdea0feb8d48bfb0431634c6ba9",
+  "catalog_sha256": "926436aee906283794c0f97bfd8e8432f97e9fdcd9bb6f7d4ae46fdb3ef6c40b",
+  "unit": "One distinct pair of canonical probe ID and exact raw response. Identical pairs receive the same adjudication across settings.",
+  "blinding": "Review packets omit provider, model, reasoning setting, original response grade and frequency. Response text itself is unredacted and may reveal identity. Reviewers must not consult the unblinded native study during independent review.",
+  "mechanical_rule": "Only response.strip().upper() == UNKNOWN is mechanically abstained. All other distinct pairs require independent review.",
+  "verdicts": {
+    "supported_core_answer": "Unequivocally supplies the complete requested identity or result, consistent with cited inspected evidence. Unambiguous surname, accents, ordinary translation or team-name variants are allowed when they identify the same requested entity.",
+    "contradicted_core_answer": "Supplies a requested identity or result incompatible with cited inspected evidence.",
+    "incomplete_core_answer": "Gives a supported part but omits a required component or specificity; includes wrong entity types such as a person where a party or film was requested.",
+    "abstained": "Offers no substantive answer, refuses, or says it does not know. Do not invent a answer from narrative about the task.",
+    "unresolved": "Evidence, ambiguous wording, mutually competing answers or unsupported specificity prevents defensible classification."
+  },
+  "rules": [
+    "Judge the full raw response against the full question and source evidence; a name occurring only in a negation, rejected alternative or list is not automatically an answer.",
+    "Do not use the original alias key as the adjudicated criterion. Preserve it unchanged as a separate measurement.",
+    "For a compound question, all explicitly requested components are required. Distinguish partial answers from contradicted answers.",
+    "A caveat such as I think does not invalidate an otherwise single clear answer. Competing alternatives without a chosen answer remain unresolved.",
+    "Question/date/premise defects remain flagged separately. Core-identity support does not validate those defects or every incidental response claim. Record qualifications explicitly.",
+    "Assess only the requested historical factual identity/result. Do not predict political outcomes, rate political actors or policies, or infer a training cutoff.",
+    "Every non-abstention verdict requires at least one retained source capture ID and a concise factual rationale. Unresolved can cite an inadequate existing source and explain the gap.",
+    "Record material extra claims as qualifications rather than silently treating core-answer support as whole-response truth.",
+    "Two independent agent reviews are preserved. Disagreements require a separate documented resolution; agreement is not independent factual verification beyond the cited sources.",
+    "This is agent-reviewed source alignment, not human adjudication, a certified accuracy estimate, verified knowledge cutoff, or proof of training contamination."
+  ],
+  "required_review_fields": [
+    "item_id",
+    "verdict",
+    "evidence_capture_ids",
+    "rationale",
+    "qualifications"
+  ],
+  "allowed_verdicts": [
+    "supported_core_answer",
+    "contradicted_core_answer",
+    "incomplete_core_answer",
+    "abstained",
+    "unresolved"
+  ]
+}

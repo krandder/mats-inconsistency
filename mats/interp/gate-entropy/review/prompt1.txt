@@ -1,0 +1,28 @@
+You are an adversarial reviewer from a different model family. State your model name in the first line.
+
+Review a measurement in /home/agent/workspaces/mats/work/gate-entropy. It is the census of gate entropies in noisy networks: how big the discrete part of a "boundary-exact" family must be. Read:
+- PREREG.md: definitions and predictions, Amendment 1. Times and hashes are in prereg_hashes.txt.
+- The code: ent.py (estimators), nets.py (adapters and gate/flip definitions), analyze.py (flips, merging tree, subspace, capacity), run.py (driver), e3_rerun.py, exact_check.py, layer1_bound.py, summarize.py, scaling.py.
+- The results: results/*.json (main runs), results/tables.md, results/scaling.md, results/exact_check_T16.json, results/layer1_bound.json.
+- The draft report: review/draft2.md.
+
+Check:
+1. Does the code implement the registered definitions? In particular:
+   - gate and flip semantics for ReLU, tanh (hardtanh kinks) and GELU;
+   - common random numbers;
+   - the merging tree's held-out verification. Is E3 really an achieved, verified rate?
+   - the bracket rule (which numbers are lower bounds and which are upper bounds, and whether that holds);
+   - the layer-1 Gaussian chain-rule lower bound;
+   - the capacity bounds.
+2. Are the estimators valid as used? The plug-in as a lower bound in expectation; the collision/Renyi-2 bound, including the zero-collision rule-of-three approximation; NSB; FVSBN/MADE held-out cross-entropy as an upper bound; the Fano-type heuristic in the draft.
+3. Check every number in the summary of review/draft2.md against the JSON files and tables.
+4. Check the prediction scoring against PREREG.md's exact wording.
+5. Find overstatements and missing caveats. Especially:
+   - what E3 does and does not bound;
+   - whether the linear-extension flip makes D meaningful (far-from-threshold flips);
+   - whether the per-sample tolerance is the right one for the output-mean question;
+   - the extrapolations to width 256 and the claims about tractability at scale for targets M1/M3 (a sample-free estimator matching sampling on deep random MLPs and AlgZoo; certified rare-event bounds).
+
+Rules for checks: small read-only checks only, with /home/agent/.venvs/aggext/bin/python under nice -n 10 and OMP_NUM_THREADS=1. At most 1 process, each under 3 CPU-minutes. The host is loaded and 3 jobs of this study are running. Do not modify any file except review/review1.md.
+
+Output: write review/review1.md. Give numbered findings by severity (high, medium, low), each with the file and the JSON key or line, and the exact fix. Then say briefly what you checked. At most 900 words.

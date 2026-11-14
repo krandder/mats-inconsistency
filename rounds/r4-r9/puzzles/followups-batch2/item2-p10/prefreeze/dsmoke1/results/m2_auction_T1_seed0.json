@@ -1,0 +1,281 @@
+{
+ "arm": "auction",
+ "T": 1,
+ "seed": 0,
+ "steps": 300,
+ "fee": 0.005,
+ "train_time_s": 31.686034679412842,
+ "planted": [
+  "naked",
+  15,
+  3
+ ],
+ "flags": {
+  "base": "auction",
+  "fix": null,
+  "grace": 1000,
+  "init": false,
+  "warm": false,
+  "norate": false
+ },
+ "warm_steps": 4000,
+ "ramp_steps": 2000,
+ "grace_learn": 1000,
+ "p1_trace_val": [
+  [
+   0,
+   1.0,
+   0.13671875,
+   1.0
+  ],
+  [
+   50,
+   1.0,
+   0.0,
+   1.0
+  ],
+  [
+   100,
+   1.0,
+   0.0,
+   1.0
+  ],
+  [
+   150,
+   1.0,
+   0.0,
+   1.0
+  ],
+  [
+   200,
+   1.0,
+   0.0,
+   1.0
+  ],
+  [
+   250,
+   1.0,
+   0.0,
+   1.0
+  ]
+ ],
+ "resumed_from": 0,
+ "eval_split": "val",
+ "test_royalty": {
+  "learned0": {
+   "G": -0.0004230272542271349,
+   "gain_resample": -2.3831218480078555e-09,
+   "gain_vs_const": 4.136418851885537e-08,
+   "rate": 0.00042302487418055534,
+   "p1": 1.0,
+   "G_ci": {
+    "mean": -0.000423027241245346,
+    "lo": -0.0004232082838271127,
+    "hi": -0.0004228539549752399,
+    "n": 1245
+   }
+  },
+  "learned1": {
+   "G": -0.0003643351762245099,
+   "gain_resample": 1.4468954429642307e-09,
+   "gain_vs_const": 2.941453405785271e-07,
+   "rate": 0.00036433662494851486,
+   "p1": 0.0,
+   "G_ci": {
+    "mean": -0.0003643351759673676,
+    "lo": -0.00036453416644949483,
+    "hi": -0.00036414474614670996,
+    "n": 1245
+   }
+  },
+  "learned2": {
+   "G": -0.00040868894817928475,
+   "gain_resample": 2.3831218480078555e-09,
+   "gain_vs_const": 3.140614366101444e-08,
+   "rate": 0.00040869132822586433,
+   "p1": 1.0,
+   "G_ci": {
+    "mean": -0.00040868896028834834,
+    "lo": -0.0004089072159750726,
+    "hi": -0.00040848110289005263,
+    "n": 1245
+   }
+  },
+  "planted": {
+   "G": -0.005768183618783951,
+   "gain_resample": 1.0043156824697993e-08,
+   "gain_vs_const": -2.0673582589046822e-07,
+   "rate": 0.0057681939668125575,
+   "p1": 0.053012046962976456,
+   "G_ci": {
+    "mean": -0.005768183906970314,
+    "lo": -0.006744696224612337,
+    "hi": -0.00484832406693875,
+    "n": 1245
+   }
+  },
+  "cellbit": {
+   "G": -0.018450609511799283,
+   "gain_resample": 9.02181874885678e-09,
+   "gain_vs_const": 4.8513552681268066e-08,
+   "rate": 0.018450617790222168,
+   "p1": 0.4803212881088257,
+   "G_ci": {
+    "mean": -0.01845060809698689,
+    "lo": -0.018761515210412562,
+    "hi": -0.01814570137725986,
+    "n": 1245
+   }
+  },
+  "trivial": {
+   "G": -0.01792830725510915,
+   "gain_resample": -2.7405901745522797e-08,
+   "gain_vs_const": 9.132463674177416e-08,
+   "rate": 0.017928282419840496,
+   "p1": 0.35180723667144775,
+   "G_ci": {
+    "mean": -0.017928308750461624,
+    "lo": -0.01840299378590561,
+    "hi": -0.017437153157056216,
+    "n": 1245
+   }
+  },
+  "random": {
+   "G": -0.019286182191636827,
+   "gain_resample": 1.1915609240039278e-09,
+   "gain_vs_const": -3.591705106171301e-08,
+   "rate": 0.019286183847321406,
+   "p1": 0.49236947298049927,
+   "G_ci": {
+    "mean": -0.01928618260356317,
+    "lo": -0.019338390207681133,
+    "hi": -0.019233666017584236,
+    "n": 1245
+   }
+  },
+  "copyhash": {
+   "G": -0.019259265727467008,
+   "gain_resample": 1.2596501619555056e-08,
+   "gain_vs_const": 8.817551133688539e-08,
+   "rate": 0.0192592806286282,
+   "p1": 0.49558234214782715,
+   "G_ci": {
+    "mean": -0.019259266770747772,
+    "lo": -0.01928616643587808,
+    "hi": -0.019232644050804725,
+    "n": 1245
+   }
+  }
+ },
+ "listed_final": {
+  "learned0": true,
+  "learned1": true,
+  "learned2": true,
+  "planted": true,
+  "cellbit": true,
+  "trivial": true,
+  "random": true,
+  "copyhash": true
+ },
+ "surviving_G_total": -0.08188859968342715,
+ "test_nll_ehat_per_cell": 1.1551624536514282,
+ "test_nll_teacher_per_cell": 1.1551624536514282,
+ "nmi": {
+  "live": [
+   {
+    "p1": 1.0,
+    "max_nmi_noncell": 0.0,
+    "argmax_noncell": 0,
+    "max_nmi_cell": 0.0,
+    "argmax_cell": 468,
+    "slot": "learned0",
+    "listed": true,
+    "G": -0.0004230272542271349
+   },
+   {
+    "p1": 0.0,
+    "max_nmi_noncell": 0.0,
+    "argmax_noncell": 0,
+    "max_nmi_cell": 0.0,
+    "argmax_cell": 468,
+    "slot": "learned1",
+    "listed": true,
+    "G": -0.0003643351762245099
+   },
+   {
+    "p1": 1.0,
+    "max_nmi_noncell": 0.0,
+    "argmax_noncell": 0,
+    "max_nmi_cell": 0.0,
+    "argmax_cell": 468,
+    "slot": "learned2",
+    "listed": true,
+    "G": -0.00040868894817928475
+   }
+  ],
+  "dead": [],
+  "init": [
+   {
+    "p1": 1.0,
+    "max_nmi_noncell": 0.0,
+    "argmax_noncell": 0,
+    "max_nmi_cell": 0.0,
+    "argmax_cell": 468
+   },
+   {
+    "p1": 0.11244979919678715,
+    "max_nmi_noncell": 0.031146267425074193,
+    "argmax_noncell": 0,
+    "max_nmi_cell": 0.03485062992768871,
+    "argmax_cell": 692
+   },
+   {
+    "p1": 1.0,
+    "max_nmi_noncell": 0.0,
+    "argmax_noncell": 0,
+    "max_nmi_cell": 0.0,
+    "argmax_cell": 468
+   }
+  ]
+ },
+ "log": {
+  "auctions": [],
+  "respawns": [],
+  "delist": []
+ },
+ "books": {
+  "fee": 0.005,
+  "earned": {
+   "learned0": 0.0,
+   "learned1": 0.0,
+   "learned2": 0.0,
+   "planted": 0.0,
+   "cellbit": 0.0,
+   "trivial": 0.0,
+   "random": 0.0,
+   "copyhash": 0.0
+  },
+  "fees_paid": {
+   "learned0": 0.0,
+   "learned1": 0.0,
+   "learned2": 0.0,
+   "planted": 0.0,
+   "cellbit": 0.0,
+   "trivial": 0.0,
+   "random": 0.0,
+   "copyhash": 0.0
+  },
+  "fee_pot": 0.0,
+  "listed": {
+   "learned0": true,
+   "learned1": true,
+   "learned2": true,
+   "planted": true,
+   "cellbit": true,
+   "trivial": true,
+   "random": true,
+   "copyhash": true
+  }
+ },
+ "grace": 1000
+}

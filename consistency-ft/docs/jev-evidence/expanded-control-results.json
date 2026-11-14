@@ -1,0 +1,245 @@
+[
+  {
+    "name": "expanded",
+    "repeat": 0,
+    "request": {
+      "model": "jev-latest",
+      "state": "An integer is sampled uniformly at random from 1 through 10 inclusive.",
+      "questions": {
+        "a": {
+          "type": "noul",
+          "instructions": "Is the sampled integer either 1 or 2?"
+        },
+        "not_a": {
+          "type": "noul",
+          "instructions": "Is the sampled integer neither 1 nor 2?"
+        },
+        "b": {
+          "type": "noul",
+          "instructions": "Is the sampled integer at most 5?"
+        },
+        "and": {
+          "type": "noul",
+          "instructions": "Is the sampled integer both (either 1 or 2) and (at most 5)?"
+        },
+        "or": {
+          "type": "noul",
+          "instructions": "Is the sampled integer either (1 or 2) or (at most 5), including cases where both conditions hold?"
+        },
+        "joint": {
+          "type": "choice",
+          "instructions": "Which mutually exclusive category contains the sampled integer?",
+          "criteria": {
+            "both": "Integer is 1 or 2",
+            "a_only": "Integer is 1 or 2 and is greater than 5 (impossible)",
+            "b_only": "Integer is 3, 4, or 5",
+            "neither": "Integer is 6, 7, 8, 9, or 10"
+          }
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "a": {
+          "type": "noul",
+          "noul": 0.18
+        },
+        "not_a": {
+          "type": "noul",
+          "noul": 0.82
+        },
+        "b": {
+          "type": "noul",
+          "noul": 0.47
+        },
+        "and": {
+          "type": "noul",
+          "noul": 0.3
+        },
+        "or": {
+          "type": "noul",
+          "noul": 0.85
+        },
+        "joint": {
+          "type": "choice",
+          "choice": "neither",
+          "confidence": 0.43,
+          "probabilities": {
+            "a_only": 0.01,
+            "neither": 0.57,
+            "b_only": 0.23,
+            "both": 0.19
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 513,
+        "output_tokens": 130
+      }
+    },
+    "seconds": 0.651123255956918
+  },
+  {
+    "name": "expanded",
+    "repeat": 1,
+    "request": {
+      "model": "jev-latest",
+      "state": "An integer is sampled uniformly at random from 1 through 10 inclusive.",
+      "questions": {
+        "a": {
+          "type": "noul",
+          "instructions": "Is the sampled integer either 1 or 2?"
+        },
+        "not_a": {
+          "type": "noul",
+          "instructions": "Is the sampled integer neither 1 nor 2?"
+        },
+        "b": {
+          "type": "noul",
+          "instructions": "Is the sampled integer at most 5?"
+        },
+        "and": {
+          "type": "noul",
+          "instructions": "Is the sampled integer both (either 1 or 2) and (at most 5)?"
+        },
+        "or": {
+          "type": "noul",
+          "instructions": "Is the sampled integer either (1 or 2) or (at most 5), including cases where both conditions hold?"
+        },
+        "joint": {
+          "type": "choice",
+          "instructions": "Which mutually exclusive category contains the sampled integer?",
+          "criteria": {
+            "both": "Integer is 1 or 2",
+            "a_only": "Integer is 1 or 2 and is greater than 5 (impossible)",
+            "b_only": "Integer is 3, 4, or 5",
+            "neither": "Integer is 6, 7, 8, 9, or 10"
+          }
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "a": {
+          "type": "noul",
+          "noul": 0.18
+        },
+        "not_a": {
+          "type": "noul",
+          "noul": 0.82
+        },
+        "b": {
+          "type": "noul",
+          "noul": 0.46
+        },
+        "and": {
+          "type": "noul",
+          "noul": 0.28
+        },
+        "or": {
+          "type": "noul",
+          "noul": 0.85
+        },
+        "joint": {
+          "type": "choice",
+          "choice": "neither",
+          "confidence": 0.38,
+          "probabilities": {
+            "both": 0.22,
+            "neither": 0.54,
+            "b_only": 0.23,
+            "a_only": 0.01
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 513,
+        "output_tokens": 130
+      }
+    },
+    "seconds": 0.6704293109942228
+  },
+  {
+    "name": "expanded",
+    "repeat": 2,
+    "request": {
+      "model": "jev-latest",
+      "state": "An integer is sampled uniformly at random from 1 through 10 inclusive.",
+      "questions": {
+        "a": {
+          "type": "noul",
+          "instructions": "Is the sampled integer either 1 or 2?"
+        },
+        "not_a": {
+          "type": "noul",
+          "instructions": "Is the sampled integer neither 1 nor 2?"
+        },
+        "b": {
+          "type": "noul",
+          "instructions": "Is the sampled integer at most 5?"
+        },
+        "and": {
+          "type": "noul",
+          "instructions": "Is the sampled integer both (either 1 or 2) and (at most 5)?"
+        },
+        "or": {
+          "type": "noul",
+          "instructions": "Is the sampled integer either (1 or 2) or (at most 5), including cases where both conditions hold?"
+        },
+        "joint": {
+          "type": "choice",
+          "instructions": "Which mutually exclusive category contains the sampled integer?",
+          "criteria": {
+            "both": "Integer is 1 or 2",
+            "a_only": "Integer is 1 or 2 and is greater than 5 (impossible)",
+            "b_only": "Integer is 3, 4, or 5",
+            "neither": "Integer is 6, 7, 8, 9, or 10"
+          }
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "a": {
+          "type": "noul",
+          "noul": 0.17
+        },
+        "not_a": {
+          "type": "noul",
+          "noul": 0.82
+        },
+        "b": {
+          "type": "noul",
+          "noul": 0.47
+        },
+        "and": {
+          "type": "noul",
+          "noul": 0.28
+        },
+        "or": {
+          "type": "noul",
+          "noul": 0.86
+        },
+        "joint": {
+          "type": "choice",
+          "choice": "neither",
+          "confidence": 0.36,
+          "probabilities": {
+            "b_only": 0.25,
+            "both": 0.22,
+            "a_only": 0.01,
+            "neither": 0.52
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 513,
+        "output_tokens": 130
+      }
+    },
+    "seconds": 0.6540590559598058
+  }
+]

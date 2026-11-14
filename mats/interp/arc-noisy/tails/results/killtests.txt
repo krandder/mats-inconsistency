@@ -1,0 +1,49 @@
+truth for [102, 103, 104, 105]
+
+== U2 (saddlepoint on the K3f description) vs C-K3f (heaviside), fraction of events within 50%
+  L= 4     C-K3f: within50 0.97 0.53 0.19 0.16 0.12 | median rel err 0.10 0.47 0.82 0.96 0.99  (n=32)
+  L= 4    U2 sp4: within50 1.00 0.84 0.66 0.66 0.47 | median rel err 0.10 0.19 0.27 0.37 0.53  (n=32)
+  L= 4  U2r rad4: within50 1.00 0.78 0.66 0.41 0.28 | median rel err 0.10 0.22 0.39 0.62 0.90  (n=32)
+  L= 8     C-K3f: within50 0.69 0.25 0.19 0.16 0.12 | median rel err 0.41 0.85 0.98 1.00 1.00  (n=32)
+  L= 8    U2 sp4: within50 0.91 0.47 0.31 0.31 0.22 | median rel err 0.25 0.52 0.73 0.85 0.92  (n=32)
+  L= 8  U2r rad4: within50 0.97 0.59 0.34 0.28 0.25 | median rel err 0.23 0.48 0.69 0.83 0.91  (n=32)
+  L=32     C-K3f: within50 0.00 0.00 0.00 0.00 0.00 | median rel err 1.32 1.00 1.00 1.00 1.00  (n=32)
+  L=32    U2 sp4: within50 0.03 0.06 0.06 0.00 0.03 | median rel err 0.96 1.00 1.00 1.00 1.00  (n=32)
+  L=32  U2r rad4: within50 0.00 0.00 0.00 0.00 0.00 | median rel err inf inf inf inf inf  (n=32)
+
+== U3 (MC moments 2^22 + saddlepoint)
+  L= 4: within50 1.00 0.91 0.81 0.72 0.53
+  L= 8: within50 0.94 0.72 0.53 0.41 0.28
+  L=32: within50 0.56 0.19 0.16 0.06 0.09
+
+== U1 (mode splitting), L = 32
+  k= 4: frac events amortised U1 B50 < C-GS B50: 0.69 (rMSE <= 1), 0.66 (rMSE < 1, amendment 2-3), 0.62 (rel RMSE <= 0.9); median rMSE 0.25; frac rMSE<=1 0.69
+  k= 6: frac events amortised U1 B50 < C-GS B50: 0.78 (rMSE <= 1), 0.53 (rMSE < 1, amendment 2-3), 0.44 (rel RMSE <= 0.9); median rMSE 1.00; frac rMSE<=1 0.78
+  k= 8: frac events amortised U1 B50 < C-GS B50: 0.84 (rMSE <= 1), 0.53 (rMSE < 1, amendment 2-3), 0.41 (rel RMSE <= 0.9); median rMSE 1.00; frac rMSE<=1 0.84
+  k=10: frac events amortised U1 B50 < C-GS B50: 0.81 (rMSE <= 1), 0.44 (rMSE < 1, amendment 2-3), 0.31 (rel RMSE <= 0.9); median rMSE 1.00; frac rMSE<=1 0.81
+  k=12: frac events amortised U1 B50 < C-GS B50: 0.78 (rMSE <= 1), 0.38 (rMSE < 1, amendment 2-3), 0.19 (rel RMSE <= 0.9); median rMSE 1.00; frac rMSE<=1 0.78
+
+== U4 (Gaussian IS fitted to splitting particles), L = 4, k = 8
+  top-0 directions: median relative variance per sample 3.65e+03 (n=32)
+  top-3 directions: median relative variance per sample 873 (n=32)
+  top-10 directions: median relative variance per sample 656 (n=32)
+
+== U5 (layer-wise twisted SMC): r = P(A and A') / P(A) at k = 8
+  x2_102_L32.json sigma 0.001: median r 0.742 [min 0.393]
+  x2_102_L32.json sigma 0.003: median r 0.766 [min 0.222]
+  x2_102_L32.json sigma 0.01: median r 0.455 [min 0.102]
+  x2_102_L4.json sigma 0.001: median r 1.046 [min 0.815]
+  x2_102_L4.json sigma 0.003: median r 1.008 [min 0.825]
+  x2_102_L4.json sigma 0.01: median r 0.819 [min 0.636]
+  x2_102_L8.json sigma 0.001: median r 0.905 [min 0.494]
+  x2_102_L8.json sigma 0.003: median r 0.867 [min 0.564]
+  x2_102_L8.json sigma 0.01: median r 0.868 [min 0.622]
+  x2_103_L32.json sigma 0.001: median r 0.908 [min 0.396]
+  x2_103_L32.json sigma 0.003: median r 1.009 [min 0.608]
+  x2_103_L32.json sigma 0.01: median r 0.806 [min 0.425]
+  x2_103_L4.json sigma 0.001: median r 1.086 [min 0.748]
+  x2_103_L4.json sigma 0.003: median r 0.966 [min 0.625]
+  x2_103_L4.json sigma 0.01: median r 0.976 [min 0.704]
+  x2_103_L8.json sigma 0.001: median r 1.110 [min 0.739]
+  x2_103_L8.json sigma 0.003: median r 1.104 [min 0.714]
+  x2_103_L8.json sigma 0.01: median r 0.717 [min 0.616]

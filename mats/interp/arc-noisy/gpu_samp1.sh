@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -x
+RID=$1; PY=/root/venv/bin/python; O=/root/runs/$RID/samp
+nvidia-smi -L
+$PY -c "import scipy" 2>/dev/null || /root/venv/bin/pip install -q scipy
+E=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23
+$PY gpu_samplers.py $O 100,101,102,103 0.001 mc,sobol,mub 8
+$PY gpu_samplers.py $O $E 0.001,0.003 mub,sobol 12
+$PY gpu_samplers.py $O $E 0.01,0.03,0.1 mub,sobol 8
+# mc done in arcn-samp1
+echo SAMP1-DONE

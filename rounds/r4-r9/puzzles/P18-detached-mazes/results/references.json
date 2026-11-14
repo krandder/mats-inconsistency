@@ -1,0 +1,171 @@
+{
+ "exact12n": {
+  "M-ref (released official DT-Recall checkpoint)": {
+   "v9": 1.0,
+   "m13": 1.0,
+   "m59": 1.0,
+   "e19": 1.0,
+   "e33": 1.0,
+   "e59": 0.995
+  },
+  "CostNet+BB (20 seeds, same mazes; not a DT step count)": {
+   "e33": 0.5795000000000001,
+   "e59": 0.23399999999999999
+  },
+  "P13 DTR-eq (DT-Recall alpha 0.01, 30456 steps, ~3.1 L4-h, 4 seeds)": {
+   "e19": 0.7012499999999999,
+   "e33": 0.5458333333333333,
+   "e59": 0.3075
+  },
+  "Official DT-Recall 50-epoch reproduction (dt-baseline, ~7.1 L4-h per seed; seeds with evals: e19 3, e33 2, e59 2)": {
+   "e19": 0.945,
+   "e33": 0.9650000000000001,
+   "e59": 0.915
+  }
+ },
+ "notes": {
+  "costnet": {
+   "seeds": [
+    200,
+    201,
+    202,
+    203,
+    204,
+    205,
+    206,
+    207,
+    208,
+    209,
+    210,
+    211,
+    212,
+    213,
+    214,
+    215,
+    216,
+    217,
+    218,
+    219
+   ],
+   "per_seed": {
+    "e33": [
+     0.5466666666666666,
+     0.6433333333333333,
+     0.5766666666666667,
+     0.4766666666666667,
+     0.57,
+     0.6933333333333334,
+     0.5466666666666666,
+     0.6633333333333333,
+     0.5966666666666667,
+     0.59,
+     0.55,
+     0.61,
+     0.5666666666666667,
+     0.4633333333333333,
+     0.49333333333333335,
+     0.69,
+     0.6233333333333333,
+     0.4766666666666667,
+     0.5733333333333334,
+     0.64
+    ],
+    "e59": [
+     0.205,
+     0.25,
+     0.225,
+     0.18,
+     0.215,
+     0.31,
+     0.205,
+     0.275,
+     0.25,
+     0.23,
+     0.2,
+     0.27,
+     0.24,
+     0.185,
+     0.18,
+     0.32,
+     0.265,
+     0.17,
+     0.22,
+     0.285
+    ]
+   },
+   "ci95": {
+    "e33": [
+     0.5475434569752365,
+     0.6114565430247637
+    ],
+    "e59": [
+     0.21360537681156525,
+     0.2543946231884347
+    ]
+   },
+   "source": "followups-batch2/item1-costnet/vmout/eval1b/test/bansal_s200..219.npz"
+  },
+  "p13_dtr_eq": {
+   "per_seed_s0_s3": {
+    "e19": [
+     0.925,
+     0.995,
+     0.885,
+     0.0
+    ],
+    "e33": [
+     0.5066666666666667,
+     0.97,
+     0.7066666666666667,
+     0.0
+    ],
+    "e59": [
+     0.075,
+     0.925,
+     0.23,
+     0.0
+    ]
+   },
+   "train_hours": [
+    3.13,
+    3.06,
+    3.11,
+    3.1
+   ],
+   "alpha": 0.01,
+   "steps": 30456,
+   "files": [
+    "puzzles/P13/results/vm/trader-b3-p13-9/out/evT_m_dtr_s0.json",
+    "puzzles/P13/results/vm/trader-b3-p13-10/out/evT_m_dtr_s1.json",
+    "puzzles/P13/results/vm/trader-b3-p13-11/out/evT_m_dtr_s2.json",
+    "puzzles/P13/results/vm/trader-b3-p13-12/out/evT_m_dtr_s3.json"
+   ],
+   "checked": "read by P18 at 05:41Z 2026-09-30 from P13 evT_m_dtr_s*.json (exact@12n, same e19/e33/e59 mazes)"
+  },
+  "dt_baseline": {
+   "per_seed_exact_at_T12n": {
+    "m0": {
+     "e19": 0.845
+    },
+    "m1": {
+     "e19": 1.0,
+     "e33": 1.0,
+     "e59": 0.99
+    },
+    "m2": {
+     "e19": 0.99,
+     "e33": 0.93,
+     "e59": 0.84
+    }
+   },
+   "train_hours_50_epochs": {
+    "m0": 7.08,
+    "m1": 7.13,
+    "m2": 7.25
+   },
+   "maze_identity": "code sha256 equals P18 frozen manifest; packed sol sha256 equals P13/frozen/p13_eval.npz",
+   "source": "trader-economy/dt-baseline/results/vm/trader-dt-m{0,1,2}/eval/trained/p13_{e19,e33,e59}.json, value at['T'] (T = 12n)",
+   "checked": "2026-09-30T07:27Z (m0 e33/e59 evals not yet present then; dt-baseline lane still running)"
+  }
+ }
+}

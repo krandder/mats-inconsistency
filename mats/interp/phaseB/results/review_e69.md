@@ -1,0 +1,13 @@
+Model: GPT-6 (Codex)
+
+Checked 2026-10-31 07:37 UTC using source reads, sha256sum, JSON and NPZ scalar inspection; no Python or training executed. Registered file hashes match. Draft references below mean `/tmp/qwrev/update79_draft.md`.
+
+1. **High — causal attribution exceeds the intervention.** Draft:20,55-58 and plain words:7 attribute B to block-1 head scarcity and describe two separate costs as removed. Amendment 77 (`PREREG-B.md:3882,3912`) changes BOTH blocks and explicitly retains the head-dimension confound; `pfn2.py:50` also changes attention scaling through sqrt(dh). Passing the registered predictions and avoiding refutations supports the account without excluding other mechanisms. Update 78 already qualifies E64b as bundled. **Fix:** say “the four-head architecture produced the predicted allocation and A outcomes in all 12 seeds, consistent with the budget account”; reserve block-1-specific attribution for layer-specific and head-width controls.
+
+2. **Medium — diagnostics become functional claims.** Draft:3-6,56-57 says heads do both jobs and routing lowers large errors’ weights “by more.” `e69_heads.py:24-39` measures mean attention mass and mean signed coefficients; `e63_run.py:125-144` isolates one norm-logit contribution. These establish neither useful consensus computation, cancellation through value/output maps, nor total weight suppression. **Fix:** describe attention destinations, opposite mean coefficients, and the negative norm contribution; qualify functional interpretations. The binary two-head story also needs “typically”: `results/e63/ctrl.json:e37_ctrl_s8.n_pool` is 0.
+
+3. **Medium — sign dependence is reduced, not removed.** Draft:58 contradicts `results/e69.json:predictions.P269.h4[0] = 0.0737896`. **Fix:** “reduces sign share to about 7.4%, near the two-head A level.”
+
+**Survive:** P267–P270, all twelve observed A outcomes, registered mass-based roles, opposite coefficients, and no triggered registered refutation. JSON, tables and per-seed scalar results agree. Source/metadata support identical initialization draws and episodes (`train_h4.py:16`; `train_sw.py:54,96-97`), GPU/GPU comparison and four-head-aware evaluation; checkpoint tensors were not independently compared. P270 is the ratio of paired means on eleven jointly acquired seeds, excluding ctrl s3.
+
+**Need rewording:** causal and functional interpretations, plain-words generalizations, and separate-cost attribution. **Fail:** elimination of sign dependence and identification of block-1 scarcity as the uniquely established cause; no registered numerical prediction fails.

@@ -1,0 +1,12 @@
+{
+ "id": "E-IG-1",
+ "question": "Can Aumann-Shapley pricing (integrated gradients) replace Shapley pay at scale?",
+ "setup": "Designed agents with additive logits (informative, substitutes, complements, noise, harmful), binary and 3-class, n = 10, 100, 1000; 3 seeds. IG with m midpoint steps vs exact Shapley (n=10) or 400-1000 sampled orders.",
+ "result": "IG with m=20 is off from Shapley by 0.21\u00b10.08 (n=10), 0.25\u00b10.04 (n=100), 0.14\u00b10.02 (n=1000) relative L1; Spearman 0.94-0.98. Sampled Shapley needs K=64 orders to match: 704 / 6,464 / 64,064 passes against IG's 20. Budget gap of IG: 0.15-1.1% at m=20, at most 0.2% at m=50.",
+ "status": "Gain",
+ "files": [
+  "exp_ig.py",
+  "results/ig_summary.json",
+  "charts/ig_error_vs_shapley.json"
+ ]
+}

@@ -1,0 +1,719 @@
+{
+ "checked_at": "2026-09-28T12:38:46Z",
+ "n_vm_names": 23,
+ "n_audited": 23,
+ "max_abs_diff_recomputed_vs_ledger": 0.0,
+ "total_ledger": 6.0673,
+ "by_ws": {
+  "G1": 0.4284,
+  "M1": 1.2709,
+  "M6": 2.2074,
+  "M7": 1.4087,
+  "M9": 0.3001,
+  "X1": 0.4518
+ },
+ "smoke_G1": [
+  0.2194,
+  0.0582,
+  0.0492,
+  0.1016
+ ],
+ "cost_md_total_line": [
+  "- **Total (ceiling): $6.07 of $45.00 cap; remaining $38.93.**"
+ ],
+ "caps": {
+  "G1": 1.0,
+  "M1": 3.0,
+  "M6": 7.0,
+  "M7": 22.0,
+  "M8": 5.0,
+  "M9": 4.0,
+  "X1": 4.0
+ },
+ "caps_sum": 46.0,
+ "max_concurrent_vms_from_receipts": 2,
+ "overlapping_pairs": 5,
+ "triples_over_cap": [],
+ "op_types_seen": {
+  "insert": 35,
+  "delete": 14,
+  "compute.instances.preempted": 5
+ },
+ "preempted_vms": [
+  [
+   "tn-gpu-g1-smoke2-09272232-25494",
+   false
+  ],
+  [
+   "tn-gpu-g1-smoke3-09272244-11541",
+   false
+  ],
+  [
+   "tn-gpu-m7-w4-globalprior-09280720-10852",
+   false
+  ],
+  [
+   "tn-gpu-m7-w2-famwealth-09280746-22968",
+   false
+  ],
+  [
+   "tn-gpu-m6-s2-noise2-09281006-32495",
+   false
+  ]
+ ],
+ "create_to_ready_min": {
+  "n": 17,
+  "min": 3.07,
+  "max": 12.55,
+  "median": 3.63,
+  "values": [
+   3.72,
+   3.57,
+   3.47,
+   3.63,
+   3.22,
+   3.22,
+   9.02,
+   5.7,
+   3.15,
+   3.55,
+   5.32,
+   3.07,
+   3.83,
+   6.17,
+   3.7,
+   12.55,
+   3.15
+  ]
+ },
+ "zone_orders_in_create_failed": [
+  "us-central1-b us-central1-c us-central1-a",
+  "us-central1-a us-central1-b us-central1-c",
+  "us-central1-a us-central1-b us-central1-c",
+  "us-central1-b us-central1-c us-central1-a"
+ ],
+ "zones_created": {
+  "us-central1-a": 11,
+  "us-central1-c": 3,
+  "us-central1-b": 5
+ },
+ "refused_jobs": [],
+ "rows": [
+  {
+   "vm": "tn-gpu-g1-smoke-09272216-331",
+   "ws": "G1",
+   "events": [
+    "PENDING-CREATE",
+    "CREATE",
+    "READY",
+    "RUN",
+    "DELETE",
+    "COST-AUDIT"
+   ],
+   "create_log": "2026-09-27T22:16:23Z",
+   "zone": "us-central1-a",
+   "ready_log": "2026-09-27T22:20:06Z",
+   "ledger_cost": 0.219372,
+   "basis": "insert-to-delete-receipt",
+   "recomputed_cost": 0.219372,
+   "alive_from": "2026-09-27T15:16:13.881000-07:00",
+   "alive_to": "2026-09-27T15:31:21.628000-07:00",
+   "end_kind": "delete",
+   "op_types": [
+    "delete",
+    "insert"
+   ],
+   "create_to_ready_min": 3.72,
+   "diff": 0.0,
+   "preempted": false,
+   "run_end_logged": false
+  },
+  {
+   "vm": "tn-gpu-g1-smoke2-09272232-25494",
+   "ws": "G1",
+   "events": [
+    "PENDING-CREATE",
+    "CREATE",
+    "COST-AUDIT"
+   ],
+   "create_log": "2026-09-27T22:32:23Z",
+   "zone": "us-central1-a",
+   "ledger_cost": 0.058229,
+   "basis": "insert-to-delete-receipt",
+   "recomputed_cost": 0.058229,
+   "alive_from": "2026-09-27T15:32:13.928000-07:00",
+   "alive_to": "2026-09-27T15:36:14.876000-07:00",
+   "end_kind": "compute.instances.preempted",
+   "op_types": [
+    "compute.instances.preempted",
+    "insert"
+   ],
+   "diff": 0.0,
+   "preempted": true,
+   "run_end_logged": false
+  },
+  {
+   "vm": "tn-gpu-g1-smoke3-09272244-11541",
+   "ws": "G1",
+   "events": [
+    "PENDING-CREATE",
+    "CREATE",
+    "PREEMPTED-AT-STARTUP",
+    "COST-AUDIT"
+   ],
+   "create_log": "2026-09-27T22:44:23Z",
+   "zone": "us-central1-a",
+   "ledger_cost": 0.049197,
+   "basis": "insert-to-delete-receipt",
+   "recomputed_cost": 0.049197,
+   "alive_from": "2026-09-27T15:44:14.036000-07:00",
+   "alive_to": "2026-09-27T15:47:37.609000-07:00",
+   "end_kind": "compute.instances.preempted",
+   "op_types": [
+    "compute.instances.preempted",
+    "insert"
+   ],
+   "diff": 0.0,
+   "preempted": true,
+   "run_end_logged": false
+  },
+  {
+   "vm": "tn-gpu-g1-smoke3-09272250-1818",
+   "ws": "G1",
+   "events": [
+    "PENDING-CREATE",
+    "CREATE",
+    "READY",
+    "RUN",
+    "RUN-END",
+    "DELETE",
+    "COST-AUDIT"
+   ],
+   "create_log": "2026-09-27T22:50:24Z",
+   "zone": "us-central1-a",
+   "ready_log": "2026-09-27T22:53:58Z",
+   "ledger_cost": 0.101635,
+   "basis": "insert-to-delete-receipt",
+   "recomputed_cost": 0.101635,
+   "alive_from": "2026-09-27T15:50:15.022000-07:00",
+   "alive_to": "2026-09-27T15:57:15.580000-07:00",
+   "end_kind": "delete",
+   "op_types": [
+    "delete",
+    "insert"
+   ],
+   "create_to_ready_min": 3.57,
+   "diff": 0.0,
+   "preempted": false,
+   "run_end_logged": true
+  },
+  {
+   "vm": "tn-gpu-m1-b-sgd-adam-09272325-23565",
+   "ws": "M1",
+   "events": [
+    "PENDING-CREATE",
+    "CREATE",
+    "READY",
+    "RUN",
+    "RUN-END",
+    "DELETE",
+    "COST-AUDIT"
+   ],
+   "create_log": "2026-09-27T23:25:32Z",
+   "zone": "us-central1-c",
+   "ready_log": "2026-09-27T23:29:00Z",
+   "ledger_cost": 0.751039,
+   "basis": "insert-to-delete-receipt",
+   "recomputed_cost": 0.751039,
+   "alive_from": "2026-09-27T16:25:22.185000-07:00",
+   "alive_to": "2026-09-27T17:17:09.933000-07:00",
+   "end_kind": "delete",
+   "op_types": [
+    "delete",
+    "insert"
+   ],
+   "create_to_ready_min": 3.47,
+   "diff": 0.0,
+   "preempted": false,
+   "run_end_logged": true
+  },
+  {
+   "vm": "tn-gpu-m1-b-eta03-09280025-30843",
+   "ws": "M1",
+   "events": [
+    "PENDING-CREATE",
+    "CREATE",
+    "READY",
+    "RUN",
+    "RUN-END",
+    "DELETE",
+    "COST-AUDIT"
+   ],
+   "create_log": "2026-09-28T00:26:21Z",
+   "zone": "us-central1-a",
+   "ready_log": "2026-09-28T00:29:59Z",
+   "ledger_cost": 0.519876,
+   "basis": "insert-to-delete-receipt",
+   "recomputed_cost": 0.519876,
+   "alive_from": "2026-09-27T17:26:08.844000-07:00",
+   "alive_to": "2026-09-27T18:02:00.055000-07:00",
+   "end_kind": "delete",
+   "op_types": [
+    "delete",
+    "insert"
+   ],
+   "create_to_ready_min": 3.63,
+   "diff": 0.0,
+   "preempted": false,
+   "run_end_logged": true
+  },
+  {
+   "vm": "tn-gpu-m6-w4-fp-base-09280636-15746",
+   "ws": "M6",
+   "events": [
+    "PENDING-CREATE",
+    "CREATE",
+    "READY",
+    "RUN",
+    "RUN-END",
+    "DELETE",
+    "COST-AUDIT"
+   ],
+   "create_log": "2026-09-28T06:36:38Z",
+   "zone": "us-central1-c",
+   "ready_log": "2026-09-28T06:39:51Z",
+   "ledger_cost": 0.315851,
+   "basis": "insert-to-delete-receipt",
+   "recomputed_cost": 0.315851,
+   "alive_from": "2026-09-27T23:36:26.177000-07:00",
+   "alive_to": "2026-09-27T23:58:13.145000-07:00",
+   "end_kind": "delete",
+   "op_types": [
+    "delete",
+    "insert"
+   ],
+   "create_to_ready_min": 3.22,
+   "diff": 0.0,
+   "preempted": false,
+   "run_end_logged": true
+  },
+  {
+   "vm": "tn-gpu-m7-w1-controls-09280654-3493",
+   "ws": "M7",
+   "events": [
+    "PENDING-CREATE",
+    "CREATE",
+    "READY",
+    "RUN",
+    "RUN-END",
+    "DELETE",
+    "COST-AUDIT"
+   ],
+   "create_log": "2026-09-28T06:55:00Z",
+   "zone": "us-central1-b",
+   "ready_log": "2026-09-28T06:58:13Z",
+   "ledger_cost": 0.212485,
+   "basis": "insert-to-delete-receipt",
+   "recomputed_cost": 0.212485,
+   "alive_from": "2026-09-27T23:54:51.009000-07:00",
+   "alive_to": "2026-09-28T00:09:30.257000-07:00",
+   "end_kind": "delete",
+   "op_types": [
+    "delete",
+    "insert"
+   ],
+   "create_to_ready_min": 3.22,
+   "diff": 0.0,
+   "preempted": false,
+   "run_end_logged": true
+  },
+  {
+   "vm": "tn-gpu-m7-w3-exp3-09280700-23203",
+   "ws": "M7",
+   "events": [
+    "PENDING-CREATE",
+    "CREATE",
+    "READY",
+    "RUN",
+    "RUN-END",
+    "DELETE",
+    "COST-AUDIT"
+   ],
+   "create_log": "2026-09-28T07:00:33Z",
+   "zone": "us-central1-b",
+   "ready_log": "2026-09-28T07:09:34Z",
+   "ledger_cost": 0.267783,
+   "basis": "insert-to-delete-receipt",
+   "recomputed_cost": 0.267783,
+   "alive_from": "2026-09-28T00:00:23.991000-07:00",
+   "alive_to": "2026-09-28T00:18:52.058000-07:00",
+   "end_kind": "delete",
+   "op_types": [
+    "delete",
+    "insert"
+   ],
+   "create_to_ready_min": 9.02,
+   "diff": 0.0,
+   "preempted": false,
+   "run_end_logged": true
+  },
+  {
+   "vm": "tn-gpu-m7-w5-bb-09280710-887",
+   "ws": "M7",
+   "events": [
+    "PENDING-CREATE",
+    "CREATE",
+    "READY",
+    "RUN",
+    "RUN-END",
+    "DELETE",
+    "COST-AUDIT"
+   ],
+   "create_log": "2026-09-28T07:10:53Z",
+   "zone": "us-central1-b",
+   "ready_log": "2026-09-28T07:16:35Z",
+   "ledger_cost": 0.278688,
+   "basis": "insert-to-delete-receipt",
+   "recomputed_cost": 0.278688,
+   "alive_from": "2026-09-28T00:10:43.938000-07:00",
+   "alive_to": "2026-09-28T00:29:57.131000-07:00",
+   "end_kind": "delete",
+   "op_types": [
+    "delete",
+    "insert"
+   ],
+   "create_to_ready_min": 5.7,
+   "diff": 0.0,
+   "preempted": false,
+   "run_end_logged": true
+  },
+  {
+   "vm": "tn-gpu-m7-w4-globalprior-09280720-10852",
+   "ws": "M7",
+   "events": [
+    "PENDING-CREATE",
+    "CREATE",
+    "READY",
+    "RUN",
+    "COST-AUDIT"
+   ],
+   "create_log": "2026-09-28T07:20:30Z",
+   "zone": "us-central1-a",
+   "ready_log": "2026-09-28T07:23:39Z",
+   "ledger_cost": 0.163592,
+   "basis": "insert-to-delete-receipt",
+   "recomputed_cost": 0.163592,
+   "alive_from": "2026-09-28T00:20:19.847000-07:00",
+   "alive_to": "2026-09-28T00:31:36.781000-07:00",
+   "end_kind": "compute.instances.preempted",
+   "op_types": [
+    "compute.instances.preempted",
+    "insert"
+   ],
+   "create_to_ready_min": 3.15,
+   "diff": 0.0,
+   "preempted": true,
+   "run_end_logged": false
+  },
+  {
+   "vm": "tn-gpu-m7-w2-famwealth-09280731-5657",
+   "ws": "M7",
+   "events": [
+    "PENDING-CREATE",
+    "CREATE-FAILED",
+    "COST-AUDIT"
+   ],
+   "zones_tried": "us-central1-b us-central1-c us-central1-a",
+   "ledger_cost": 0.0,
+   "basis": "create-failed-no-insert",
+   "recomputed_cost": 0.0,
+   "diff": 0.0,
+   "preempted": false,
+   "run_end_logged": false
+  },
+  {
+   "vm": "tn-gpu-m7-w4-globalprior-09280738-16860",
+   "ws": "M7",
+   "events": [
+    "PENDING-CREATE",
+    "CREATE-FAILED",
+    "COST-AUDIT"
+   ],
+   "zones_tried": "us-central1-a us-central1-b us-central1-c",
+   "ledger_cost": 0.0,
+   "basis": "create-failed-no-insert",
+   "recomputed_cost": 0.0,
+   "diff": 0.0,
+   "preempted": false,
+   "run_end_logged": false
+  },
+  {
+   "vm": "tn-gpu-m7-w2-famwealth-09280738-7160",
+   "ws": "M7",
+   "events": [
+    "PENDING-CREATE",
+    "CREATE-FAILED",
+    "COST-AUDIT"
+   ],
+   "zones_tried": "us-central1-a us-central1-b us-central1-c",
+   "ledger_cost": 0.0,
+   "basis": "create-failed-no-insert",
+   "recomputed_cost": 0.0,
+   "diff": 0.0,
+   "preempted": false,
+   "run_end_logged": false
+  },
+  {
+   "vm": "tn-gpu-m7-w2-famwealth-09280746-22968",
+   "ws": "M7",
+   "events": [
+    "PENDING-CREATE",
+    "CREATE",
+    "READY",
+    "RUN",
+    "COST-AUDIT"
+   ],
+   "create_log": "2026-09-28T07:46:31Z",
+   "zone": "us-central1-a",
+   "ready_log": "2026-09-28T07:50:04Z",
+   "ledger_cost": 0.22591,
+   "basis": "insert-to-delete-receipt",
+   "recomputed_cost": 0.22591,
+   "alive_from": "2026-09-28T00:46:21.631000-07:00",
+   "alive_to": "2026-09-28T01:01:56.429000-07:00",
+   "end_kind": "compute.instances.preempted",
+   "op_types": [
+    "compute.instances.preempted",
+    "insert"
+   ],
+   "create_to_ready_min": 3.55,
+   "diff": 0.0,
+   "preempted": true,
+   "run_end_logged": false
+  },
+  {
+   "vm": "tn-gpu-m7-w2-famwealth-09280810-8454",
+   "ws": "M7",
+   "events": [
+    "PENDING-CREATE",
+    "CREATE-FAILED",
+    "COST-AUDIT"
+   ],
+   "zones_tried": "us-central1-b us-central1-c us-central1-a",
+   "ledger_cost": 0.0,
+   "basis": "create-failed-no-insert",
+   "recomputed_cost": 0.0,
+   "diff": 0.0,
+   "preempted": false,
+   "run_end_logged": false
+  },
+  {
+   "vm": "tn-gpu-m7-w2-famwealth-09280818-29046",
+   "ws": "M7",
+   "events": [
+    "PENDING-CREATE",
+    "CREATE",
+    "READY",
+    "RUN",
+    "RUN-END",
+    "DELETE",
+    "COST-AUDIT"
+   ],
+   "create_log": "2026-09-28T08:18:41Z",
+   "zone": "us-central1-b",
+   "ready_log": "2026-09-28T08:24:00Z",
+   "ledger_cost": 0.260288,
+   "basis": "insert-to-delete-receipt",
+   "recomputed_cost": 0.260288,
+   "alive_from": "2026-09-28T01:18:32.297000-07:00",
+   "alive_to": "2026-09-28T01:36:29.350000-07:00",
+   "end_kind": "delete",
+   "op_types": [
+    "delete",
+    "insert"
+   ],
+   "create_to_ready_min": 5.32,
+   "diff": 0.0,
+   "preempted": false,
+   "run_end_logged": true
+  },
+  {
+   "vm": "tn-gpu-m9-w3-kq-sweep-09280909-17599",
+   "ws": "M9",
+   "events": [
+    "PENDING-CREATE",
+    "CREATE",
+    "READY",
+    "RUN",
+    "RUN-END",
+    "DELETE",
+    "COST-AUDIT"
+   ],
+   "create_log": "2026-09-28T09:10:09Z",
+   "zone": "us-central1-a",
+   "ready_log": "2026-09-28T09:13:13Z",
+   "ledger_cost": 0.300079,
+   "basis": "insert-to-delete-receipt",
+   "recomputed_cost": 0.300079,
+   "alive_from": "2026-09-28T02:09:59.488000-07:00",
+   "alive_to": "2026-09-28T02:30:41.195000-07:00",
+   "end_kind": "delete",
+   "op_types": [
+    "delete",
+    "insert"
+   ],
+   "create_to_ready_min": 3.07,
+   "diff": 0.0,
+   "preempted": false,
+   "run_end_logged": true
+  },
+  {
+   "vm": "tn-gpu-m6-s1-stress-09280942-11535",
+   "ws": "M6",
+   "events": [
+    "PENDING-CREATE",
+    "CREATE",
+    "READY",
+    "RUN",
+    "RUN-END",
+    "DELETE",
+    "COST-AUDIT"
+   ],
+   "create_log": "2026-09-28T09:42:47Z",
+   "zone": "us-central1-a",
+   "ready_log": "2026-09-28T09:46:37Z",
+   "ledger_cost": 0.265675,
+   "basis": "insert-to-delete-receipt",
+   "recomputed_cost": 0.265675,
+   "alive_from": "2026-09-28T02:42:36.191000-07:00",
+   "alive_to": "2026-09-28T03:00:55.535000-07:00",
+   "end_kind": "delete",
+   "op_types": [
+    "delete",
+    "insert"
+   ],
+   "create_to_ready_min": 3.83,
+   "diff": 0.0,
+   "preempted": false,
+   "run_end_logged": true
+  },
+  {
+   "vm": "tn-gpu-m6-s2-noise-09280956-2801",
+   "ws": "M6",
+   "events": [
+    "PENDING-CREATE",
+    "CREATE",
+    "READY",
+    "RUN",
+    "RUN-END",
+    "DELETE",
+    "COST-AUDIT"
+   ],
+   "create_log": "2026-09-28T09:56:47Z",
+   "zone": "us-central1-c",
+   "ready_log": "2026-09-28T10:02:57Z",
+   "ledger_cost": 0.125769,
+   "basis": "insert-to-delete-receipt",
+   "recomputed_cost": 0.125769,
+   "alive_from": "2026-09-28T02:56:36.173000-07:00",
+   "alive_to": "2026-09-28T03:05:16.597000-07:00",
+   "end_kind": "delete",
+   "op_types": [
+    "delete",
+    "insert"
+   ],
+   "create_to_ready_min": 6.17,
+   "diff": 0.0,
+   "preempted": false,
+   "run_end_logged": true
+  },
+  {
+   "vm": "tn-gpu-m6-s2-noise2-09281006-32495",
+   "ws": "M6",
+   "events": [
+    "PENDING-CREATE",
+    "CREATE",
+    "READY",
+    "RUN",
+    "COST-AUDIT"
+   ],
+   "create_log": "2026-09-28T10:07:06Z",
+   "zone": "us-central1-a",
+   "ready_log": "2026-09-28T10:10:48Z",
+   "ledger_cost": 0.796401,
+   "basis": "insert-to-delete-receipt",
+   "recomputed_cost": 0.796401,
+   "alive_from": "2026-09-28T03:06:56.366000-07:00",
+   "alive_to": "2026-09-28T04:01:51.818000-07:00",
+   "end_kind": "compute.instances.preempted",
+   "op_types": [
+    "compute.instances.preempted",
+    "insert"
+   ],
+   "create_to_ready_min": 3.7,
+   "diff": 0.0,
+   "preempted": true,
+   "run_end_logged": false
+  },
+  {
+   "vm": "tn-gpu-m6-s2-noise2-09281108-22713",
+   "ws": "M6",
+   "events": [
+    "PENDING-CREATE",
+    "CREATE",
+    "READY",
+    "RUN",
+    "RUN-END",
+    "DELETE",
+    "COST-AUDIT"
+   ],
+   "create_log": "2026-09-28T11:08:18Z",
+   "zone": "us-central1-a",
+   "ready_log": "2026-09-28T11:20:51Z",
+   "ledger_cost": 0.70367,
+   "basis": "insert-to-delete-receipt",
+   "recomputed_cost": 0.70367,
+   "alive_from": "2026-09-28T04:08:09.813000-07:00",
+   "alive_to": "2026-09-28T04:56:41.549000-07:00",
+   "end_kind": "delete",
+   "op_types": [
+    "delete",
+    "insert"
+   ],
+   "create_to_ready_min": 12.55,
+   "diff": 0.0,
+   "preempted": false,
+   "run_end_logged": true
+  },
+  {
+   "vm": "tn-gpu-x1-w5-wn45-09281206-4455",
+   "ws": "X1",
+   "events": [
+    "PENDING-CREATE",
+    "CREATE",
+    "READY",
+    "RUN",
+    "RUN-END",
+    "DELETE",
+    "COST-AUDIT"
+   ],
+   "create_log": "2026-09-28T12:06:34Z",
+   "zone": "us-central1-b",
+   "ready_log": "2026-09-28T12:09:43Z",
+   "ledger_cost": 0.451783,
+   "basis": "insert-to-delete-receipt",
+   "recomputed_cost": 0.451783,
+   "alive_from": "2026-09-28T05:06:24.467000-07:00",
+   "alive_to": "2026-09-28T05:37:33.912000-07:00",
+   "end_kind": "delete",
+   "op_types": [
+    "delete",
+    "insert"
+   ],
+   "create_to_ready_min": 3.15,
+   "diff": 0.0,
+   "preempted": false,
+   "run_end_logged": true
+  }
+ ]
+}

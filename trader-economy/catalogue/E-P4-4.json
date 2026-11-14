@@ -1,0 +1,12 @@
+{
+ "id": "E-P4-4",
+ "question": "On naturally trained nets (no SIIT), does AS rank aligned codes better than LOO, above a random-init null?",
+ "setup": "R2: 10 natural nets with 24 sign units vs 10 random-init null nets; codes aligned to circuit gates by kappa; four-curve AUC (deletion/insertion x flip/pay) per pay rule.",
+ "result": "Yes, AS beats LOO. Alignment is above the null but weak (best code kappa 0.42 vs 0.21, 1.3% of codes aligned, 2.6% of gates recovered). Four-curve AUC: AS-SOFT-m50 0.953 vs FLIP-LOO 0.832, difference +0.12 [0.045, 0.198], so the expected +0.05 holds and falsifier 5 is not triggered. AS agrees with a flip-Shapley reference at 0.983 (LOO 0.83); sampled Shapley K=8 gets 0.989.",
+ "status": "Informative",
+ "files": [
+  "puzzles/P4/RESULTS.md",
+  "puzzles/P4/analyze.py",
+  "puzzles/P4/results/summary.json"
+ ]
+}

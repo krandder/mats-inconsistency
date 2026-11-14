@@ -1,0 +1,41 @@
+start 2026-10-20T23:38:39Z device=cuda args={'out': '/root/runs/l4-query-voi-20261020c/imitate', 'envs': 'E2,E3-sybil,E1', 'n_train': 40000, 'n_dev': 2000, 'steps': 6000, 'batch': 512, 'seeds': 3, 'n_boot': 2000, 'threads': 4, 'repo_commit': '1d48a0ada43be6603b43f1e5e3ab94cd38ae0370', 'harness_sha256': 'e50881934b0fe8f82e9343535cce37057fd977b558f02c26c90e4e542fdbbade', 'train_mode': 'imitate', 'quick': False}
+[E2] sampled train 40000 dev 2000 N=5 in 12s
+[E2] subset tables in 14s; |view-exact(all) - oracle_clearing| = 0.00e+00
+[E2] greedy teacher in 5s; dev max |info(teacher set) - info(greedy set)| {'b1': 0.0, 'b2': 2.220446049250313e-16, 'b3': 1.7763568394002505e-15, 'b4': 1.7763568394002505e-15}
+[E2] seed 0 trained in 118s; loss log [(5000, 2, 1.1583478450775146), (5500, 5, 0.9833595752716064), (5999, 3, 1.23702073097229)]
+[E2] seed 1 trained in 114s; loss log [(5000, 2, 1.1466443538665771), (5500, 4, 1.2013006210327148), (5999, 1, 0.5644011497497559)]
+[E2] seed 2 trained in 112s; loss log [(5000, 3, 1.2514365911483765), (5500, 5, 0.9750522971153259), (5999, 5, 1.011308193206787)]
+[E2] metrics in 36s
+[E2] b=1 random+exact=0.224 static_voi+exact=0.110 greedy_voi+exact=0.110 best_subset+exact=0.110 learned_query+exact:s0=0.111 learned_query+learned:s0=0.116 random+learned:s0=0.242 learned_query+learned:s0:control:random_network=0.192
+[E2] b=2 random+exact=0.132 static_voi+exact=0.062 greedy_voi+exact=0.049 best_subset+exact=0.044 learned_query+exact:s0=0.075 learned_query+learned:s0=0.109 random+learned:s0=0.156 learned_query+learned:s0:control:random_network=0.124
+[E2] b=3 random+exact=0.078 static_voi+exact=0.044 greedy_voi+exact=0.025 best_subset+exact=0.024 learned_query+exact:s0=0.052 learned_query+learned:s0=0.072 random+learned:s0=0.108 learned_query+learned:s0:control:random_network=0.091
+[E2] b=4 random+exact=0.038 static_voi+exact=0.026 greedy_voi+exact=0.021 best_subset+exact=0.020 learned_query+exact:s0=0.032 learned_query+learned:s0=0.052 random+learned:s0=0.070 learned_query+learned:s0:control:random_network=0.078
+wrote /root/runs/l4-query-voi-20261020c/imitate/result-E2.json
+[E3-sybil] sampled train 40000 dev 2000 N=8 in 14s
+[E3-sybil] subset tables in 126s; |view-exact(all) - oracle_clearing| = 0.00e+00
+[E3-sybil] greedy teacher in 24s; dev max |info(teacher set) - info(greedy set)| {'b1': 0.0, 'b2': 8.881784197001252e-16, 'b3': 3.552713678800501e-15, 'b4': 7.993605777301127e-15, 'b5': 8.881784197001252e-15, 'b6': 2.1538326677728037e-14, 'b7': 2.1316282072803006e-14}
+[E3-sybil] seed 0 trained in 151s; loss log [(5000, 3, 2.197389841079712), (5500, 8, 1.7965162992477417), (5999, 5, 2.1335811614990234)]
+[E3-sybil] seed 1 trained in 147s; loss log [(5000, 3, 1.8481855392456055), (5500, 7, 1.6549842357635498), (5999, 1, 0.8722777962684631)]
+[E3-sybil] seed 2 trained in 150s; loss log [(5000, 5, 1.6256072521209717), (5500, 8, 1.3196040391921997), (5999, 7, 1.5001716613769531)]
+[E3-sybil] metrics in 62s
+[E3-sybil] b=1 random+exact=0.207 static_voi+exact=0.110 greedy_voi+exact=0.110 best_subset+exact=0.110 learned_query+exact:s0=0.111 learned_query+learned:s0=0.125 random+learned:s0=0.248 learned_query+learned:s0:control:random_network=0.170
+[E3-sybil] b=2 random+exact=0.130 static_voi+exact=0.069 greedy_voi+exact=0.049 best_subset+exact=0.044 learned_query+exact:s0=0.069 learned_query+learned:s0=0.086 random+learned:s0=0.197 learned_query+learned:s0:control:random_network=0.113
+[E3-sybil] b=3 random+exact=0.094 static_voi+exact=0.058 greedy_voi+exact=0.025 best_subset+exact=0.024 learned_query+exact:s0=0.054 learned_query+learned:s0=0.105 random+learned:s0=0.170 learned_query+learned:s0:control:random_network=0.115
+[E3-sybil] b=4 random+exact=0.068 static_voi+exact=0.047 greedy_voi+exact=0.021 best_subset+exact=0.020 learned_query+exact:s0=0.053 learned_query+learned:s0=0.111 random+learned:s0=0.144 learned_query+learned:s0:control:random_network=0.151
+[E3-sybil] b=5 random+exact=0.048 static_voi+exact=0.038 greedy_voi+exact=0.017 best_subset+exact=0.017 learned_query+exact:s0=0.049 learned_query+learned:s0=0.118 random+learned:s0=0.123 learned_query+learned:s0:control:random_network=0.185
+[E3-sybil] b=6 random+exact=0.038 static_voi+exact=0.031 greedy_voi+exact=0.017 best_subset+exact=0.017 learned_query+exact:s0=0.045 learned_query+learned:s0=0.113 random+learned:s0=0.110 learned_query+learned:s0:control:random_network=0.220
+[E3-sybil] b=7 random+exact=0.026 static_voi+exact=0.025 greedy_voi+exact=0.017 best_subset+exact=0.017 learned_query+exact:s0=0.033 learned_query+learned:s0=0.106 random+learned:s0=0.098 learned_query+learned:s0:control:random_network=0.266
+wrote /root/runs/l4-query-voi-20261020c/imitate/result-E3-sybil.json
+[E1] sampled train 40000 dev 2000 N=5 in 24s
+[E1] subset tables in 14s; |view-exact(all) - oracle_clearing| = 3.19e-15
+[E1] greedy teacher in 16s; dev max |info(teacher set) - info(greedy set)| {'b1': 0.0, 'b2': 0.0, 'b3': 0.0, 'b4': 0.0}
+[E1] seed 0 trained in 125s; loss log [(5000, 2, 0.06550362706184387), (5500, 5, -1.179567813873291), (5999, 3, -0.550209105014801)]
+[E1] seed 1 trained in 124s; loss log [(5000, 2, -0.1608877182006836), (5500, 4, -0.792229413986206), (5999, 1, 1.0980315208435059)]
+[E1] seed 2 trained in 125s; loss log [(5000, 3, -0.5018408298492432), (5500, 5, -1.1629292964935303), (5999, 5, -1.2889877557754517)]
+[E1] metrics in 33s
+[E1] b=1 random+exact=3.399 static_voi+exact=2.734 greedy_voi+exact=2.734 best_subset+exact=2.734 learned_query+exact:s0=2.753 learned_query+learned:s0=2.754 random+learned:s0=3.399 learned_query+learned:s0:control:random_network=3.447
+[E1] b=2 random+exact=2.382 static_voi+exact=1.473 greedy_voi+exact=1.412 best_subset+exact=1.400 learned_query+exact:s0=1.474 learned_query+learned:s0=1.818 random+learned:s0=2.578 learned_query+learned:s0:control:random_network=2.636
+[E1] b=3 random+exact=1.425 static_voi+exact=0.694 greedy_voi+exact=0.556 best_subset+exact=0.543 learned_query+exact:s0=0.642 learned_query+learned:s0=1.275 random+learned:s0=1.869 learned_query+learned:s0:control:random_network=1.987
+[E1] b=4 random+exact=0.640 static_voi+exact=0.235 greedy_voi+exact=0.179 best_subset+exact=0.180 learned_query+exact:s0=0.202 learned_query+learned:s0=0.975 random+learned:s0=1.295 learned_query+learned:s0:control:random_network=1.428
+wrote /root/runs/l4-query-voi-20261020c/imitate/result-E1.json
+DONE

@@ -1,0 +1,11 @@
+{
+ "id": "E-T1-1",
+ "question": "Does an unregulated Kelly market of trader agents keep many agents alive?",
+ "setup": "10 agents, each reads 1-3 of 12 synthetic features, trains an online logistic model on its own log loss and bets half its wealth in an LMSR (b=0.5). Fees per feature read and compute cost; bankrupt agents are replaced.",
+ "result": "No. Wealth concentrates on one agent: 1.8\u00b11.0 alive at the end, effective number of agents 1.2\u00b10.6. Output log loss 0.543\u00b10.018 vs 0.459 for logistic regression on all features (Bayes 0.436). Pay vs true value: Spearman 0.12\u00b10.14.",
+ "status": "Problem",
+ "files": [
+  "econ.py",
+  "results/summary.json"
+ ]
+}

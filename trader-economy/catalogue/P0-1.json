@@ -1,0 +1,17 @@
+{
+ "id": "P0-1",
+ "question": "Does the P0 harness reproduce DT-Recall and give trustworthy strict-fp32 numbers?",
+ "setup": "Unit tests against the published DTNet code, kill-and-resume from .partial, pretrained M-ref (w=128) on 59x59 and on the n9 shift cell, lattice checker vs exact match, market-resnet pilot reload, bitwise repeat, TF32 vs fp32.",
+ "result": "Yes, with one data caveat. DTNet max abs diff 0.0; resume gives identical weights and logs; M-ref 59x59@3000 = 1.0; shift n9 de0 = 0.72 (target 0.72\u00b10.08); checker 0 disagreements in 80 evals; pilot reload max diff 0.002; bitwise repeat identical; TF32 matches fp32 (1.0 both, 115 s vs 181 s). The easy-to-hard and maze-dataset 33x33 generators differ in maze depth (curves up to 0.19 apart at 75-100 iterations) but agree per dead-end round (0.604 vs 0.599), so compare arms only on the same frozen sets.",
+ "status": "Informative",
+ "files": [
+  "puzzles/P0/tests.py",
+  "puzzles/P0/evalrun.py",
+  "puzzles/P0/p0eval.py",
+  "puzzles/P0/check.py",
+  "puzzles/P0/frozen/manifest.json",
+  "puzzles/P0/RESULTS.md",
+  "puzzles/P0/results/p0_results.json",
+  "puzzles/P0/results/chart_p0.json"
+ ]
+}

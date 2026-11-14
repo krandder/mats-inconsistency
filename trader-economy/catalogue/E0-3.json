@@ -1,0 +1,12 @@
+{
+ "id": "E0-3",
+ "question": "When agents are weights, does their pay follow their true value?",
+ "setup": "True value = Shapley of the refit game (best log score using only the coalition's weights). Pay averaged over the second half of training.",
+ "result": "Shapley-trained column agents: Spearman 0.92\u00b10.02. Shapley pay evaluated at the backprop solution: 0.80\u00b10.05; IG pay there: 0.82\u00b10.03. LOO pays 2.1 times the pot and gives each complement 0.52, the value of the whole pair; for class-row agents it pays only 0.85.",
+ "status": "Informative",
+ "files": [
+  "exp0.py",
+  "results/exp0_summary.json",
+  "charts/exp0_pay_vs_truth.json"
+ ]
+}

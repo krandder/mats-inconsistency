@@ -1,0 +1,81 @@
+{
+ "model": "Claude Fable 5.2 (claude-fable-5-2[1m])",
+ "plain_words": "Model: Claude Fable 5.2.\nContext: on 10 Nov you said your consistency requirement is on the amplified predictions (amplified P(X) times P(Y|X) should agree with P(Y) times P(X|Y); variance over orders is a signal; the point is data efficiency). I tested that on the parity world's trained network, with the learned aggregator as the amplified predictor, extended to \"any check given any subset of the others\" and trained on 64 to 20,480 real check vectors. No L40 was free, so this ran on CPU: only 1 and 4 trajectories per forecast, two worlds. \"The limit of more compute\" is not tested.\n1. Your cross-order form did not buy data efficiency here. On pairs or whole orders it moved accuracy by +15% to -23% with 64 or 256 real vectors, nothing that held in both worlds, and cost 6-30% at a strong weight once data were plentiful.\n2. Anchored to the simple world model's score it helped a little, only where data were fewest: 6-17% less error at 64 and 256 real vectors, nothing from 1,024. Training on outcomes sampled from M does about the same and, with no real outcome at all, matches about 1,000 real vectors. With that little real data every version is still worse than one pass of M.\n3. At this compute the variance over orders is sampling noise: two orders disagree about as much as two draws of one order. It did not fall from 1 to 4 trajectories. M itself is nearly consistent, because it says little.\n4. The October failure reappears. The loss removes the variance by making the forecast stop reading its trajectories; error returns to one pass of M. Anchoring to the score does not prevent it; a small weight does.\n5. Where your idea does work (found afterwards, both worlds): when real outcomes score only one kind of question (25+ checks revealed), error on all questions was 0.071 / 0.283; either cross-order term brings it to 0.032-0.040, against 0.029 with real outcomes everywhere.\nI don't know: 64 or 256 trajectories; a predictor with many free numbers per question; how to measure order variance without the sampling noise (my one attempt failed).\nOne accident to know about: my first CPU-only cluster job ran for about a minute on a GPU it had not requested; I cancelled it and no result uses it.",
+ "note_path": "/home/agent/workspaces/mats/work/deep-study/wf13/consistency/NOTE.md",
+ "claims": [
+  {
+   "claim": "Cross-order consistency as a loss on the amplified predictor, on pairs (i) or whole orders (ii-o), gives no data-efficiency gain that holds in both worlds: +5%/-7%* and -3%/+4% (pairs, weight 1), +15%/-2% and +4%/+6% (orders, weight 1) at n = 64, 256; at weight 10 it costs 6-30% from n = 1,024.",
+   "status": "CHECKED",
+   "evidence": "NOTE.md Tables A, B; out/tables.md; out/w101/summary.json, out/w102/summary.json (creport.py). Registered H1: closest bin NULL. Depends on Q6 reading (b); K = 1 and 4 only."
+  },
+  {
+   "claim": "Anchored to the score (ii-s, weight 1) the gain is +17%*/+6% at n = 64 and +15%*/+6%* at n = 256, nothing from 1,024, and a loss of 21-56% at weight 10. Largest when data are fewest in direction in both worlds; by the registered margin only in world 101.",
+   "status": "CHECKED",
+   "evidence": "NOTE.md Tables A, B; H1 table in out/tables.md. Registered bin MINOR; my prediction of MAJOR was wrong."
+  },
+  {
+   "claim": "The anchored term adds nothing over training on outcomes sampled from M (+15%*/+12%*, +18%*/+7%); with no real outcome that arm scores 0.035/0.034, about the level of 1,000 real vectors. With n <= 256 every arm is at or above one pass of M (0.034/0.036).",
+   "status": "CHECKED",
+   "evidence": "NOTE.md Table A and section 2b; summary.json of both worlds."
+  },
+  {
+   "claim": "At K = 1 and 4 the amplified predictor's pair mismatch is 8-30 times M's own and equals its trajectory-sampling noise floor to within 0.03; it does not fall from K = 1 to K = 4 (rises in 5 of 6 cells). M itself: D 0.005/0.007, V_ord 0.55/0.54.",
+   "status": "CHECKED",
+   "evidence": "NOTE.md Table C; t2/t3 metrics in summary.json. Registered H2 (falls with K): wrong. Larger K: UNKNOWN."
+  },
+  {
+   "claim": "The consistency losses do remove the measured variance: pairs term at weight 10 cuts D 20-40 times (below M's own), order term cuts V_ord 2-10 times, at every n.",
+   "status": "CHECKED",
+   "evidence": "NOTE.md Table C; registered H3 holds at every n (D to 2-4%, V_ord to 12-55% of the real-outcomes-only value)."
+  },
+  {
+   "claim": "The October failure reappears on the amplified predictor: with (i) or (ii-o) at weight 10 the more accurate order gets worse by 0.03-0.10 KL (placebo-adjusted) at n >= 1,024 in both worlds, while the mismatch falls 20-fold. The forecast stops depending on its trajectories (moves 0.003 instead of 0.05 between draws) and error on large contexts returns to one pass of M.",
+   "status": "CHECKED",
+   "evidence": "NOTE.md Table D (registered measure; the registered rule is one cell short, world 101 at n = 64); mechanism numbers post hoc: cmech.py, out/mechanism_w101.json, out/mechanism_w102.json."
+  },
+  {
+   "claim": "Anchoring to the score does not by itself prevent the drag: at weight 10 it drags as much, also in world 102 where the score is right; at weights 0.1 and 1 there is none up to n = 1,024.",
+   "status": "CHECKED",
+   "evidence": "NOTE.md Table D. My registered prediction (anchor prevents it) was wrong at weight 10."
+  },
+  {
+   "claim": "When real outcomes score only questions with at least 25 revealed checks, either cross-order term brings all-question excess from 0.071/0.283 to 0.032-0.040 (0.029 with real outcomes everywhere); the over-compute form cannot. On never-scored questions the result is about one pass of M, not the amplified level.",
+   "status": "CHECKED",
+   "evidence": "Post hoc, one run per cell, two worlds: NOTE.md Table E; ctrain_ph.py; out/w101_ph25, out/w102_ph25."
+  },
+  {
+   "claim": "An order-against-order condition carries knowledge from larger contexts down to smaller ones and not the reverse.",
+   "status": "PROVEN",
+   "evidence": "NOTE.md section 3, first bullet (two-variable identity)."
+  },
+  {
+   "claim": "A pair term with the sampling noise removed (product of two independent draws) works as a loss.",
+   "status": "REFUTED",
+   "evidence": "As implemented, post hoc, world 101 only: worse than real-outcomes-only at every n and weight (+0.012 to +0.031 excess); out/w101_phdb; NOTE.md 2f."
+  },
+  {
+   "claim": "At K = 64 or 256 the order variance falls below the sampling noise and the cross-order loss starts to carry information.",
+   "status": "UNKNOWN",
+   "evidence": "Not run: CPU only, K = 1 and 4."
+  },
+  {
+   "claim": "Cross-order consistency helps data efficiency when the amplified predictor has many free numbers per question, or when the variables are strongly dependent given typical contexts.",
+   "status": "CONJECTURE",
+   "evidence": "NOTE.md section 3; not tested."
+  },
+  {
+   "claim": "Arm-side code that ran on the cluster is the registered code.",
+   "status": "CHECKED",
+   "evidence": "cgen.py, cmodel.py, ctrain.py, mkjobs.py, PREREG.md hashes printed in logs/cluster/task_t211_train101.log and task_t221_train102.log match PREREG.sha256. The amendment's hash entry is incomplete (a cut pipe left only PREREG.md and cgen.py); disclosed in NOTE.md section 5."
+  }
+ ],
+ "open_questions": [
+  "Does the order variance fall below the sampling noise at K = 16, 64 or 256? Needs the L40 (about 140 million network calls per world); only K = 1 and 4 ran.",
+  "How to estimate the order variance of the EXPECTED amplified prediction without penalising sampling noise; my product-of-two-draws loss failed.",
+  "Does a predictor with many free numbers per question (the distilled one-pass head) gain where this 124k-parameter head did not?",
+  "Worlds 103 and 311, more than one initialisation per arm, and consistency contexts drawn from real check vectors were not run.",
+  "The weights were chosen on a dev world where the amplifier did not work; they are scale guesses, not tuned.",
+  "Was a CPU-only Slurm job on the cluster account within what you intended by 'fall back to CPU'? I read the one-job, one-L40 limit as an upper bound and kept the same 10 cores."
+ ],
+ "compute_used": "No L40: queue estimate was 2 h 40 min at 16:50Z (jobs 57879, 57880 cancelled unstarted). CPU-only Slurm jobs on the cluster account, 10 cores, one at a time: 57881 (benchmark), 57885 (cancelled after about a minute: it ran on a GPU it had not requested; outputs set aside, unused), 57886 (dev world; cancelled during size-S generation), 57889 (world 101), 57904 (world 102). 4.2 million network calls per world; 114 registered runs per world. Exact references and post hoc runs on this host at nice 19, at most 3 processes."
+}

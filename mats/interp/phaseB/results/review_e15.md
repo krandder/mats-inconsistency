@@ -1,0 +1,15 @@
+Model: GPT-6 (Codex)
+
+Read-only audit, checked 2026-10-29 14:06Z; no Python or model execution.
+
+1. **High: binding necessity is unsupported.** `update25_draft.md:107` salvages “binding is needed” despite `e15.json:predictions.P103` failing (18/66). `e15_summ.py:43–49` divides both changes by the modified source’s Bayes weight; negative spec means larger absolute changes elsewhere, not absence of source dependence. A common proportional gain can produce negative spec when other sources have larger weights. Classes are gap/depth proxies, not new binding tests. **Fix:** report sensitivity in non-acquired nets; leave necessity and pre-binding localisation unresolved. “All readings” also exceeds evidence about their sum.
+
+2. **High: signature inheritance becomes group/mechanism inheritance.** `update25_draft.md:5,106`; `e15.json:predictions.P102` tests middle-range signs, not the DAG classifier defining A/B. Pearson 0.993 establishes association, not unchanged magnitude (B increases by 0.012–0.042). **Fix:** “The error-spread signature associated with the noisy groups already exists in their bases”; remove “split is decided” and qualify “almost the same size,” including point 6.
+
+3. **Medium: the normalised measure is a surrogate.** `e15_gsph.py:24–28` differentiates uncentred sphere(h1). Actual layer-2 inputs use learned, centred LayerNorm; raw h1 also continues through the residual (`tiny-pfn/pfn.py:30,39,45–47`). **Fix:** retain the post-hoc geometric comparison with E13, but remove “raw residual … never reads directly” and “understated.” Measuring the actual LayerNorm/value input would support a functional analogue; this result alone does not.
+
+4. **Medium: causal and scaling headlines exceed the design.** `update25_draft.md:3,7,105–109`; `e15.json:predictions.P105` contains three directional comparisons each, with selected acquired seeds. **Fix:** noise/sphere are *unnecessary* in this cohort; fine-tuning jointly changes architecture, noise and training. Say effects are smaller in these width/training comparisons, not “shrink slowly”; report the paired cooldown ratio 0.821 separately. Avoid universal “transformers” and “never comes close.”
+
+5. **Low: reporting/provenance gaps.** P103’s stated configuration range omits near-zero ds4 configurations (`e15_tables.md`). The post-hoc 5%/59-of-66 total-weight statistic (`draft:80`) has no corresponding summary key or calculation in supplied scripts. **Fix:** correct the range and save its formula/results. Hash matches; data mtimes start 13:45:45, measurements 13:46:16, after 13:45:26. These support chronology, not proof nobody inspected results before analysis-script creation.
+
+**Disposition:** Registered nets, classes, rom/spec, slope and clustered bootstrap match code; no substantive undisclosed registered deviation found. P100–P102, P104 and exploratory P105 survive; tables/primary numbers agree. Post-hoc additions are labelled. Group inheritance, binding necessity, normalisation and scaling readings need rewording. P103 fails.

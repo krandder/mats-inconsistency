@@ -1,0 +1,27 @@
+init from /root/runs/sfx-b4/e1w0_tok_N24_s1 new params: ['blocks.0.kd', 'blocks.0.ku', 'blocks.0.vd', 'blocks.0.vu', 'blocks.1.kd', 'blocks.1.ku', 'blocks.1.vd', 'blocks.1.vu']
+init val gap (0.20664479907392824, 0.009484255544292618)
+Traceback (most recent call last):
+  File "/root/soup/sftrain.py", line 299, in <module>
+    {'mkdata': mkdata, 'train': train, 'eval': evaluate}[a.cmd](a)
+  File "/root/soup/sftrain.py", line 231, in train
+    loss = M.head_nll(model(**inp), y).mean()
+                      ^^^^^^^^^^^^
+  File "/root/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1798, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/soup/sfmodels.py", line 253, in forward
+    r = b(x, allows[self.maskt[l]], cut, idx, want)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1798, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/soup/sfmodels.py", line 130, in forward
+    ac = a * cut[:, None]
+         ~~^~~~~~~~~~~~~~
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 116.00 MiB. GPU 0 has a total capacity of 22.03 GiB of which 31.44 MiB is free. Process 4660 has 30.00 MiB memory in use. Process 26060 has 1.57 GiB memory in use. Process 26102 has 1.57 GiB memory in use. Process 40763 has 2.11 GiB memory in use. Process 41125 has 2.11 GiB memory in use. Process 44073 has 2.11 GiB memory in use. Process 44084 has 1.57 GiB memory in use. Process 44199 has 2.11 GiB memory in use. Process 44268 has 2.11 GiB memory in use. Process 44313 has 2.11 GiB memory in use. Process 44459 has 1.34 GiB memory in use. Process 44514 has 1.57 GiB memory in use. Including non-PyTorch memory, this process has 1.68 GiB memory in use. Of the allocated memory 1.33 GiB is allocated by PyTorch, and 124.37 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)

@@ -1,0 +1,218 @@
+{
+ "tasks": {
+  "prefix_D8_mod2": {
+   "baselines": {
+    "base_rate_y1": 0.5038384512683578,
+    "exact_all_0": 0.025,
+    "exact_all_1": 0.026,
+    "majority_exact": 0.026
+   },
+   "t1_lookup": {
+    "exact": 0.087,
+    "cellacc": 0.6688918471336365,
+    "unseen_window_frac": 0.251,
+    "n_windows_train": 16
+   },
+   "distinct_train_instances": 496,
+   "distinct_note": "all binary strings of length 4..8",
+   "pass_t1": true
+  },
+  "prefix_D16_mod2": {
+   "baselines": {
+    "base_rate_y1": 0.49810449975276083,
+    "exact_all_0": 0.002,
+    "exact_all_1": 0.0,
+    "majority_exact": 0.002
+   },
+   "t1_lookup": {
+    "exact": 0.004,
+    "cellacc": 0.5834020376205444,
+    "unseen_window_frac": 0.24162499999999998,
+    "n_windows_train": 16
+   },
+   "pass_t1": true
+  },
+  "prefix_D32_mod2": {
+   "baselines": {
+    "base_rate_y1": 0.5021844963175633,
+    "exact_all_0": 0.0,
+    "exact_all_1": 0.0,
+    "majority_exact": 0.0
+   },
+   "t1_lookup": {
+    "exact": 0.0,
+    "cellacc": 0.5421711802482605,
+    "unseen_window_frac": 0.24896874999999996,
+    "n_windows_train": 16
+   },
+   "pass_t1": true
+  },
+  "prefix_D16_mod3": {
+   "baselines": {
+    "base_rate_y1": 0.9746052961323197,
+    "exact_all_0": 0.0,
+    "exact_all_1": 0.001,
+    "exact_all_2": 0.0,
+    "majority_exact": 0.001
+   },
+   "t1_lookup": {
+    "exact": 0.002,
+    "cellacc": 0.44791579246520996,
+    "unseen_window_frac": 0.2518125,
+    "n_windows_train": 16
+   },
+   "pass_t1": true
+  },
+  "maze_D8_mod2": {
+   "baselines": {
+    "base_rate_y1": 0.602625,
+    "exact_all_0": 0.0,
+    "exact_all_1": 0.014,
+    "majority_exact": 0.014
+   },
+   "t1_lookup": {
+    "exact": 0.374,
+    "cellacc": 0.9167500138282776,
+    "unseen_window_frac": 0.03762500000000002,
+    "n_windows_train": 86903
+   },
+   "indist_tau_mean": 4.548,
+   "pool_tau_hist": [
+    560,
+    3611,
+    8481,
+    5440,
+    8180,
+    6621,
+    5923,
+    5507,
+    5677
+   ],
+   "distinct_train_instances": 29615,
+   "distinct_note": "unique mazes (walls+start+goal) in the 50000-maze training pool",
+   "pass_t1": true
+  },
+  "maze_D16_mod2": {
+   "baselines": {
+    "base_rate_y1": 0.5625,
+    "exact_all_0": 0.0,
+    "exact_all_1": 0.0,
+    "majority_exact": 0.0
+   },
+   "t1_lookup": {
+    "exact": 0.01,
+    "cellacc": 0.8088333606719971,
+    "unseen_window_frac": 0.14055555555555554,
+    "n_windows_train": 388134
+   },
+   "indist_tau_mean": 8.9,
+   "pool_tau_hist": [
+    3,
+    252,
+    1422,
+    2337,
+    4112,
+    3287,
+    4617,
+    3678,
+    3972,
+    3757,
+    3738,
+    3454,
+    3486,
+    3094,
+    3080,
+    2849,
+    2862
+   ],
+   "pass_t1": true
+  },
+  "maze_D32_mod2": {
+   "baselines": {
+    "base_rate_y1": 0.5123950617283951,
+    "exact_all_0": 0.0,
+    "exact_all_1": 0.0,
+    "majority_exact": 0.0
+   },
+   "t1_lookup": {
+    "exact": 0.0,
+    "cellacc": 0.7546419501304626,
+    "unseen_window_frac": 0.09530864197530864,
+    "n_windows_train": 646633
+   },
+   "indist_tau_mean": 18.094,
+   "pool_tau_hist": [
+    0,
+    0,
+    34,
+    141,
+    495,
+    656,
+    1270,
+    1390,
+    1819,
+    1871,
+    2097,
+    2003,
+    2222,
+    1986,
+    2185,
+    2043,
+    2074,
+    2036,
+    2073,
+    1942,
+    1960,
+    1835,
+    1949,
+    1794,
+    1779,
+    1622,
+    1647,
+    1586,
+    1525,
+    1627,
+    1514,
+    1443,
+    1382
+   ],
+   "pass_t1": true
+  }
+ },
+ "roundtrip": {
+  "maze_data_test_9": {
+   "mazes": 10000,
+   "n_cells": 5,
+   "pixel_roundtrip_fail": 0,
+   "solution_roundtrip_fail": 0,
+   "label_ne_dead_end_fill": 0
+  },
+  "maze_data_test_59": {
+   "mazes": 10000,
+   "n_cells": 30,
+   "pixel_roundtrip_fail": 0,
+   "solution_roundtrip_fail": 0,
+   "label_ne_dead_end_fill": 0
+  }
+ },
+ "pass_roundtrip": true,
+ "ks_vs_e2h_9": {
+  "n_cells": 5,
+  "ours": 10000,
+  "e2h": 10000,
+  "tau": {
+   "D": 0.00990000000000002,
+   "p": 0.7112026399498019,
+   "mean_ours": 9.4758,
+   "mean_e2h": 9.4225
+  },
+  "path_len": {
+   "D": 0.014600000000000002,
+   "p": 0.2369059200442076,
+   "mean_ours": 11.6506,
+   "mean_e2h": 11.7382
+  }
+ },
+ "pass_ks": true,
+ "wall_s": 206.29483437538147
+}

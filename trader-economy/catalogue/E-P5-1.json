@@ -1,0 +1,18 @@
+{
+ "id": "E-P5-1",
+ "question": "Can an online market for private per-cell memory (owners post TD-learned prices, writers paid at write time) learn maze path-parity answered only at T?",
+ "setup": "P5 as specified: perfect DFS 9x9 mazes; y = XOR of Bernoulli tokens on the S->T path, one belief market at T. Four conv traders with private banks, D = 64, Adam, batch 64. Pre-registered gate G0: tuned A1 (DT-Recall) or A2 (same traders, full BPTT) must reach 90% on 9x9 validation, falling back to a curriculum (S-T distance uniform over 1..L_train) and 12k iterations. The dense check requires A1 to reach 95% exact-maze accuracy on MP-dense at iteration 128. Phase 0 tests all pass: the adjoint equivalence of A5 and A6 with A2t holds to 2e-16; the neighbourhood logistic is 0.503; caps were made label-free after a leak was found.",
+ "result": "No P5 verdict: gate G0 failed. val9 (seed 0, 1000 mazes, Wilson 95% CI): A1 0.528 (0.50-0.56) and A2 0.484 (0.45-0.52) at 4000 iterations; with the curriculum and 12k iterations, A1 0.517 and A2 0.533. Only d=1 (T's own token) is learned; every path of two or more cells is at chance. All 12 tuning configs are at chance. The dense validity bar also fails: A1 exact-maze 0.000 at 4000 iterations (per-cell 0.62), 0.047 at 12k (diagnostic). Diagnostic outside the spec: an incremental length curriculum at 12k iterations gives A1w 0.603, which is 0.92 at d 4-5 and chance beyond d 10. Task finding: parity over a 2D path supervised only at the end is too hard for the baselines at this scale. The market arms (A5, A6, A7) were not run. GPU: 2.33 VM-h, est. $0.93.",
+ "status": "Problem",
+ "files": [
+  "puzzles/P5/RESULTS.md",
+  "puzzles/P5/results/summary.json",
+  "puzzles/P5/results/chart.json",
+  "puzzles/P5/results/gate_diag.json",
+  "puzzles/P5/results/tests.json",
+  "puzzles/P5/p5.py",
+  "puzzles/P5/mazes.py",
+  "puzzles/P5/driver.py",
+  "puzzles/P5/gpu.sh"
+ ]
+}

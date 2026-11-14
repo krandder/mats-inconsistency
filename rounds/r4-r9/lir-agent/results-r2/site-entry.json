@@ -1,0 +1,50 @@
+{
+ "date": "16 Oct",
+ "name": "Walling reward off from beliefs while RL runs (R4-E3a, Qwen3-1.7B, 7x7 ShipHunt)",
+ "status": "problem",
+ "oneline": "Stopped at the pre-registered reward gate. The warm-started belief passed the forecaster gate in all 9 runs (correlation with exact Bayes 0.60–0.84), but GRPO collapsed the action side to one goal-blind choice in every run, so env reward ended at exactly 0.500 (Fused −13%, LIR −0.3%; bar +15%). Descriptive: the LIR mask kept the belief bit-identical (drift 0.000; reward gradient 0.0 at every step), while shared adapters lost it (Fused correlation 0.68 → −0.03; one Fused seed gamed the rater with a constant 0.55 belief that “agrees” with every note). The alpha dose fix works. 9 runs, 3 seeds; $9.04.",
+ "led_to": [],
+ "page": {
+  "why": "Round 1 ([[lir-e1-control-masks|LIR E1]], [[lir-e2-drori-truth-mind|E2]], [[lir-e3-goal-blind-forecaster|E3]]) showed that a reward-only action adapter keeps the belief the rater reads honest at 0.6B. It could not test the main claim, because reward never rose and the separate forecaster collapsed to a constant. gemini's round-4 spec asked for an informative forecaster, a reward that rises, a real alpha dose, and a test-time swap of the goal.",
+  "what": "7x7 ShipHunt with three ships, 10 noisy probes and a commander's note that is right 35% of the time. The rater pays 0.5 for stating at least 0.5 on the note cell. Qwen3-1.7B with four LoRA roles: belief and self-trust (goal-blind), and a candidate proposer and an action picker (they see the goal: find a ship, or avoid ships). Three arms: one shared adapter with reward on every token (Fused); a shared adapter with reward on action tokens only (Token-Masked); and four adapters where reward reaches only the proposer and the action (LIR-Masked). First a truth-only warm start and a gate on the belief's correlation with exact Bayes (at least 0.30), then 350 GRPO steps with one optimizer step on truth loss + alpha x reward loss. 3 seeds, pre-registered.",
+  "result": "The forecaster gate passed in all 9 runs (0.60–0.84), after a fix: the registered decile loss stops learning once its softmax saturates. Reward did not rise in any arm: the action side became deterministic and ignored the goal, which pays exactly 0.5 averaged over the two goals (Fused −13.3% [−49, +23], LIR −0.3%; bar +15%). So the pre-registered stop applied. Descriptive only: LIR's belief was bit-identical after RL, with reward gradient 0.0 at all 350 steps and sycophancy unchanged at 0.008. The shared-adapter arms lost the belief (Fused correlation with Bayes 0.68 → −0.03; Token-Masked 0.66 → 0.36). One Fused seed gamed the rater: its belief became a constant 0.55 on every cell, which “agrees” with every note, and its rater reward doubled while env reward stayed flat. Faith swap: 0% flips in every arm, because the decisions no longer depended on the goal.",
+  "sowhat": "The parameter mask's guarantee holds exactly in a 1.7B LLM: no reward gradient reaches the belief, and the belief cannot move. Reward through shared weights wiped out an informative belief without buying any reward. The main claim, honest beliefs while reward rises, is still untested here, because this RL setup collapsed before reward could rise.",
+  "decided": "Recorded E3-D0 as failed (gate passed, reward rise failed) and stopped, as pre-registered; E3-D1 and E3-D2 are reported as descriptive and fail as written. Not run: the same harness with a policy that cannot collapse (an entropy bonus or KL to the starting policy, lower lr, more samples per group), which would need a new pre-registration.",
+  "chart": {
+   "bars": [
+    {
+     "label": "Fused, belief vs Bayes before RL",
+     "value": 0.68,
+     "text": "0.68"
+    },
+    {
+     "label": "Fused, after RL",
+     "value": 0.0,
+     "text": "−0.03"
+    },
+    {
+     "label": "Token-Masked, after RL",
+     "value": 0.362,
+     "text": "0.36"
+    },
+    {
+     "label": "LIR-Masked, after RL",
+     "value": 0.768,
+     "text": "0.77 (unchanged)",
+     "good": true
+    }
+   ],
+   "caption": "Correlation of the belief's mean claim with exact Bayes over 64 held-out boards x 49 cells, 3-seed means; LIR-Masked's belief was bit-identical before and after RL (its pre-RL value is also 0.77). Reward did not rise in any arm.",
+   "aria": "Reward through shared weights destroyed the belief's correlation with Bayes in the fused arm and mostly in the token-masked arm; the LIR-masked belief was unchanged"
+  },
+  "details": {
+   "methods": [
+    "7x7 ShipHunt, ships of length 4, 3, 2 (192,936 placements); 10 probes flipped with probability 0.1; commander's note names a ship with probability 0.35; one shot per episode; goals find-a-ship / avoid-ships drawn 50/50 per GRPO group; rater bonus 0.5 for agreeing with the note.",
+    "Qwen3-1.7B, frozen bf16 base, LoRA rank 8; four role passes per episode, each claim one token; exact Bayes by enumeration for evaluation and the gate only.",
+    "Warm start: 200 steps x 16 boards of truth losses (expected Brier minus 0.003 x entropy, see the write-up's deviations); gate: Pearson(belief, exact Bayes) >= 0.30 on 64 held-out boards.",
+    "RL: 350 GRPO steps, 4 groups x 4 samples, lr 3e-4, alpha 1, one AdamW step per RL step on truth loss + alpha x reward loss; evaluation at steps 0, 100, 200, 300, 350 under both goals on the same boards.",
+    "Pre-registered in PREREG-R2.md (18:52Z) before the first launch; 6 logged deviations; independent audit in AUDIT-R2.md; $9.04 of GPU at the ceiling rate."
+   ]
+  }
+ }
+}

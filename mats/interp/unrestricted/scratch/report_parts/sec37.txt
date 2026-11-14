@@ -1,0 +1,42 @@
+### 3.7 Red-team result: plain MC is not optimal at depth proportional to width
+- **Construction** [A, round 3]. Run one reference direction Q through the net, keeping its normalised path q_l and
+  the per-layer norms nu_l; let s_r be the product of nu_l over the layers after r. For an input direction U, the
+  control G_r(U) = m_n s_r |h_r(U)| q_L runs U through the first r layers only and then treats it as merged with the
+  reference. The telescoping sum mu = G_0 + sum_j E_U(G_{r_j} - G_{r_{j-1}}) + E_U(Y - G_L), Y(U) = m_n h_L(U), with
+  independent samples at each level, is unbiased.
+- **Why it works** (PROVEN UNDER layerwise batching costs and m(cT) = O(m(T)), which schoolbook costs satisfy [A]).
+  Input directions merge with depth (the cosine deficit 1 - kappa^{(l)}(0) decays like 9 pi^2 / (2 l^2)), while the
+  per-net variance V_sph stays of order 1 at L = alpha n because of amplitude variation set in the first layers. Astra
+  proves E |Y - G_r|^2 <= (4 m_n^2 / n) sum_{l >= r} delta_l + 2 m_n^2 delta_L = O(1/r + n/L^2), so dyadic levels give
+  risk O(log^2 L / (L N)) at the cost of N full passes: a gain of order n / log^2 n over radius-exact MC at
+  L = alpha n.
+- **MEASURED** (post hoc, `scratch/mlmc_check.py`, `logs/mlmc_check.log`; 4 fresh nets per cell, seeds 9100-9103;
+  ideal variance x cost relative to RB-MC, setup excluded, so below 1 is a gain). Two-level version with the best
+  dyadic prefix depth:
+
+  | width n | L = n/8 | L = n/4 | L = n | L = 4n | L = 16n | L = 32n |
+  |---|---|---|---|---|---|---|
+  | 8 | - | - | - | 0.37 | - | 0.065 (12 live nets of 32 seeds) |
+  | 16 | - | 1.29 | 1.04 | 0.33 | 0.14 | - |
+  | 32 | - | 1.11 | 0.94 | 0.60 | - | - |
+  | 64 | - | 1.07 | 0.89 | 0.34 | - | - |
+  | 128 | - | 0.96 | 0.66 | - | - | - |
+  | 256 | 1.01 (ARC's 256 x 32) | 0.91 | - | - | - | - |
+
+  The full dyadic multilevel version is worse than two levels at these sizes (1.1-2.2 at L <= n). The residual
+  fraction D_r / V_sph falls with the prefix depth as the bound says (1.17, 0.73, 0.33, 0.06, 0.02 at r = 0, 4, 16, 64,
+  128 for n = L = 128). Astra's own pilot at L = n/4 found no gain up to n = 512 either.
+- **Consequences.** C0 as I stated it is false, asymptotically. With the symmetric derandomisation of 3.1 the
+  estimator becomes deterministic, so an unrestricted deterministic estimator does beat plain sampling by a factor
+  that grows at depth proportional to width; it does so by better sampling, not by deduction, and only where the net
+  is several times deeper than wide at the sizes we can test (no gain at ARC's 256 x 32, L = n/8). The baseline for
+  ARC's question at depth should be this structured sampler, and matching it without sampling is the open question.
+  At width 8 and depth 256, the narrow-deep-m1 setting, the two-level sampler is about 15x better than radius-exact
+  MC (noiseless; median over 12 live nets), comparable with the 3-27x that lane measured for RQMC over plain MC, and
+  the two can be combined. That lane's sampled-prefix arm beat RQMC 4.6-6x at small budgets but carried a bias, which
+  the multilevel corrections remove. All of this is for sigma = 0.
+- **Partition certificates** [A, round 3]. Bounded aspect ratio alone gives no lower bound (a hinge can be aligned
+  with the cells). Under explicit nonalignment, isolation and capture hypotheses, a certificate of width eps sqrt(V)
+  needs K >~ (n^3 / eps)^{(n-2)/2} cells, using the exact expected kink area Theta(n^{3/2} L) of the regular kink set. Not
+  checked numerically; the hypotheses are unproved for coarse cells.
+

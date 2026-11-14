@@ -1,0 +1,16 @@
+# wm2 GPU smoke (2026-10-11): timings, functional check of every arm, first signal at N=300/1000 (seed 0; validation only)
+--task t1 wm --n 300 --seed 0 --wmtag WMc --set es_boards=3000 max_steps=40000 patience=25 --ckpt /root/ckpt/S-t1-WMc-n300-s0.pt --out /root/runs/wm2/S/t1/WMc/WMc-n300-s0.json
+--task t1 wm --n 1000 --seed 0 --wmtag WMc --set es_boards=3000 max_steps=40000 patience=25 --ckpt /root/ckpt/S-t1-WMc-n1000-s0.pt --out /root/runs/wm2/S/t1/WMc/WMc-n1000-s0.json
+--task t1 wm --n 10000 --seed 0 --wmtag WMc --set es_boards=3000 max_steps=40000 patience=40 --max-minutes 25 --ckpt /root/ckpt/S-t1-WMc-n10000-s0.pt --out /root/runs/wm2/S/t1/WMc/WMc-n10000-s0.json
+--task t2 wm --n 300 --seed 0 --wmtag WMc --set es_boards=3000 max_steps=40000 patience=25 --ckpt /root/ckpt/S-t2-WMc-n300-s0.pt --out /root/runs/wm2/S/t2/WMc/WMc-n300-s0.json
+--task t1 sn --arm k0 --n 1000 --seed 0 --tag B-k0 --set es_boards=3000 max_steps=40000 patience=25 --out /root/runs/wm2/S/t1/B-k0/B-k0-n1000-s0.json
+--task t1 sn --arm rbtd --n 300 --seed 0 --tag B-rbtd8 --set rbtd=8 es_boards=3000 max_steps=40000 patience=25 --max-minutes 20 --out /root/runs/wm2/S/t1/B-rbtd8/B-rbtd8-n300-s0.json
+--task t1 fc --n 300 --seed 0 --arm D-only --tag WMc-D-only --wm-ckpt /root/ckpt/S-t1-WMc-n300-s0.pt --set es_boards=3000 max_steps=40000 patience=25 --max-minutes 30 --out /root/runs/wm2/S/t1/WMc-D-only/WMc-D-only-n300-s0.json
+--task t1 fc --n 300 --seed 0 --arm D-mix50 --tag WMc-D-mix50 --wm-ckpt /root/ckpt/S-t1-WMc-n300-s0.pt --set es_boards=3000 max_steps=40000 patience=25 --max-minutes 30 --out /root/runs/wm2/S/t1/WMc-D-mix50/WMc-D-mix50-n300-s0.json
+--task t1 fc --n 300 --seed 0 --arm D-post --tag WMc-D-post --wm-ckpt /root/ckpt/S-t1-WMc-n300-s0.pt --set es_boards=3000 max_steps=40000 patience=25 --max-minutes 30 --out /root/runs/wm2/S/t1/WMc-D-post/WMc-D-post-n300-s0.json
+--task t1 fc --n 300 --seed 0 --arm S-only --tag WMc-S-only --wm-ckpt /root/ckpt/S-t1-WMc-n300-s0.pt --set es_boards=3000 max_steps=40000 patience=25 --max-minutes 30 --out /root/runs/wm2/S/t1/WMc-S-only/WMc-S-only-n300-s0.json
+--task t1 fc --n 300 --seed 0 --arm D-rbtd8 --tag WMc-D-rbtd8 --wm-ckpt /root/ckpt/S-t1-WMc-n300-s0.pt --set es_boards=3000 max_steps=40000 patience=25 --max-minutes 25 --out /root/runs/wm2/S/t1/WMc-D-rbtd8/WMc-D-rbtd8-n300-s0.json
+--task t1 fc --n 300 --seed 0 --arm D-init --tag WMc-D-init --wm-ckpt /root/ckpt/S-t1-WMc-n300-s0.pt --set es_boards=3000 max_steps=40000 patience=25 --max-minutes 30 --out /root/runs/wm2/S/t1/WMc-D-init/WMc-D-init-n300-s0.json
+--task t2 fc --n 300 --seed 0 --arm D-only --tag WMc-D-only --wm-ckpt /root/ckpt/S-t2-WMc-n300-s0.pt --set es_boards=3000 max_steps=40000 patience=25 --max-minutes 30 --out /root/runs/wm2/S/t2/WMc-D-only/WMc-D-only-n300-s0.json
+--task t1 fc --n 1000 --seed 0 --arm D-only --tag WMc-D-only --wm-ckpt /root/ckpt/S-t1-WMc-n1000-s0.pt --set es_boards=3000 max_steps=40000 patience=25 --max-minutes 30 --out /root/runs/wm2/S/t1/WMc-D-only/WMc-D-only-n1000-s0.json
+--task t1 fc --n 1000 --seed 0 --arm D-post --tag WMc-D-post --wm-ckpt /root/ckpt/S-t1-WMc-n1000-s0.pt --set es_boards=3000 max_steps=40000 patience=25 --max-minutes 30 --out /root/runs/wm2/S/t1/WMc-D-post/WMc-D-post-n1000-s0.json

@@ -1,0 +1,66 @@
+- 2026-09-29T12:39:41Z CREATE vm=trader-cat-p1-1 zone=us-central1-a epoch=1790685581 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=0
+- 2026-09-29T12:43:32Z READY vm=trader-cat-p1-1 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T12:44:11Z PUSH vm=trader-cat-p1-1
+- 2026-09-29T12:46:59Z PUSH vm=trader-cat-p1-1
+- 2026-09-29T12:49:08Z START vm=trader-cat-p1-1 plan=run_vm.sh
+- 2026-09-29T12:55:00Z PUSH vm=trader-cat-p1-1
+- 2026-09-29T13:06:42Z SYNC vm=trader-cat-p1-1 verified_files=41 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P1/results/vm/trader-cat-p1-1
+- 2026-09-29T13:22:39Z SYNC vm=trader-cat-p1-1 verified_files=43 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P1/results/vm/trader-cat-p1-1
+- 2026-09-29T13:33:08Z PUSH vm=trader-cat-p1-1
+- 2026-09-29T13:38:42Z PUSH vm=trader-cat-p1-1
+- 2026-09-29T13:54:17Z SYNC vm=trader-cat-p1-1 verified_files=70 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P1/results/vm/trader-cat-p1-1
+- 2026-09-29T14:10:12Z SYNC vm=trader-cat-p1-1 verified_files=80 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P1/results/vm/trader-cat-p1-1
+- 2026-09-29T14:25:57Z SYNC vm=trader-cat-p1-1 verified_files=80 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P1/results/vm/trader-cat-p1-1
+- 2026-09-29T14:42:34Z DELETE vm=trader-cat-p1-1 epoch=1790692347 reason="spot preemption at 14:32:14Z (GCE systemevent compute.instances.preempted; termination action DELETE)" leftover_disks="none" spend_now=1.33
+- 2026-09-29T14:44:09Z CREATE vm=trader-cat-p1-2 zone=us-central1-c epoch=1790693049 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=1.33
+- 2026-09-29T14:47:13Z READY vm=trader-cat-p1-2 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T14:50:00Z PUSH vm=trader-cat-p1-2 (manual: code + ckpts + p1-1 sync, minus data markers and FAILED_STEPS)
+- 2026-09-29T14:50:00Z START vm=trader-cat-p1-2 plan=resume_run_vm.sh (started 14:47:45Z)
+- 2026-09-29T14:57:15Z SYNC vm=trader-cat-p1-2 verified_files=86 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P1/results/vm/trader-cat-p1-2
+- 2026-09-29T15:13:48Z SYNC vm=trader-cat-p1-2 verified_files=86 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P1/results/vm/trader-cat-p1-2
+- 2026-09-29T15:29:40Z SYNC vm=trader-cat-p1-2 verified_files=97 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P1/results/vm/trader-cat-p1-2
+- 2026-09-29T15:38:30Z DELETE vm=trader-cat-p1-2 epoch=1790695947 reason="spot preemption at 15:32:27Z (compute.instances.preempted; termination action DELETE, boot disk auto-deleted; no trader-cat-p1- disk listed at 15:37Z)" leftover_disks="none" spend_now=1.90
+- 2026-09-29T15:47:53Z CREATE vm=trader-cat-p1-3 zone=us-central1-b epoch=1790696873 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=1.91
+- 2026-09-29T16:07:24Z READY vm=trader-cat-p1-3 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T16:08:34Z PUSH vm=trader-cat-p1-3 (code + inputs + results/vm/trader-cat-p1-2; sha256 of eval.py, train_heads.py, scripts, ckpt, pilot verified both sides)
+- 2026-09-29T16:08:34Z START vm=trader-cat-p1-3 plan=resume3_run_vm.sh
+- 2026-09-29T16:13:01Z SYNC vm=trader-cat-p1-3 verified_files=107 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P1/results/vm/trader-cat-p1-3
+- 2026-09-29T16:29:05Z SYNC-PARTIAL vm=trader-cat-p1-3 (files changing during tar skipped)
+- 2026-09-29T16:29:05Z SYNC vm=trader-cat-p1-3 verified_files=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P1/results/vm/trader-cat-p1-3
+- 2026-09-29T16:29:13Z SYNC vm=trader-cat-p1-3 verified_files=143 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P1/results/vm/trader-cat-p1-3
+- 2026-09-29T16:33:12Z DELETE vm=trader-cat-p1-3 epoch=1790699514 reason="spot preemption at 16:31:54Z (compute.instances.preempted; termination action DELETE, boot disk auto-deleted; no trader-cat-p1- instance or disk listed at 16:33Z)" leftover_disks="none" spend_now=2.42
+- 2026-09-29T16:37:46Z CREATE-FAILED vm=trader-cat-p1-4 err="ERROR: (gcloud.compute.instances.create) Could not fetch resource: --- code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS errorDetails: - help:     links:     - description: Troubleshooting documentation"
+- 2026-09-29T16:40:41Z CREATE vm=trader-cat-p1-4 zone=us-east1-b epoch=1790700041 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=2.43
+- 2026-09-29T16:44:06Z READY vm=trader-cat-p1-4 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T16:45:37Z PUSH vm=trader-cat-p1-4 code+ckpt+pilot+results/vm/trader-cat-p1-3 (incl. maze/heads_tt_n59.pt.partial) sha256 verified
+- 2026-09-29T16:45:37Z START vm=trader-cat-p1-4 plan=resume4_run_vm.sh
+- 2026-09-29T16:51:38Z DELETE vm=trader-cat-p1-4 epoch=1790700604 reason="spot preemption at 16:50:04Z (instances.preempted; disk auto-deleted); last sync none (TT 59 batches 7-9 lost, ~5 min)" leftover_disks="none"
+- 2026-09-29T16:51:38Z SPEND after p1-4 spend_now=2.54
+- 2026-09-29T16:52:08Z CREATE vm=trader-cat-p1-5 zone=us-east1-b epoch=1790700728 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=2.54
+- 2026-09-29T16:55:17Z READY vm=trader-cat-p1-5 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T16:56:32Z PUSH vm=trader-cat-p1-5 code+ckpt+pilot+results/vm/trader-cat-p1-3 (maze TT partial at batch 6) sha256 verified
+- 2026-09-29T16:56:32Z START vm=trader-cat-p1-5 plan=resume4_run_vm.sh
+- 2026-09-29T17:00:24Z SYNC vm=trader-cat-p1-5 verified_files=149 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P1/results/vm/trader-cat-p1-5
+- 2026-09-29T17:16:14Z SYNC vm=trader-cat-p1-5 verified_files=153 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P1/results/vm/trader-cat-p1-5
+- 2026-09-29T17:32:13Z SYNC vm=trader-cat-p1-5 verified_files=154 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P1/results/vm/trader-cat-p1-5
+- 2026-09-29T17:48:26Z SYNC vm=trader-cat-p1-5 verified_files=156 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P1/results/vm/trader-cat-p1-5
+- 2026-09-29T18:04:40Z SYNC vm=trader-cat-p1-5 verified_files=159 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P1/results/vm/trader-cat-p1-5
+- 2026-09-29T18:20:41Z SYNC vm=trader-cat-p1-5 verified_files=160 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P1/results/vm/trader-cat-p1-5
+- 2026-09-29T18:33:03Z DELETE vm=trader-cat-p1-5 epoch=1790706702 reason="spot preemption at 18:31:42Z (instances.preempted; disk auto-deleted); last watchdog sync 18:20:41Z, last pull 18:30:09Z (TT 99 done, dev_n99 chunk 0 kept)" leftover_disks="none"
+- 2026-09-29T18:33:03Z SPEND after p1-5 spend_now=3.72
+- 2026-09-29T18:33:55Z CREATE vm=trader-cat-p1-6 zone=us-east1-d epoch=1790706834 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=3.72
+- 2026-09-29T18:36:57Z READY vm=trader-cat-p1-6 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T18:39:15Z PUSH vm=trader-cat-p1-6 code+ckpt+pilot+results/vm/trader-cat-p1-3 + p1-5 pull overlay (59 done; TT 99 done; dev_n99 chunk 0) sha256 verified (14 files)
+- 2026-09-29T18:39:15Z START vm=trader-cat-p1-6 plan=resume4_run_vm.sh
+- 2026-09-29T18:51:56Z SYNC vm=trader-cat-p1-6 verified_files=163 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P1/results/vm/trader-cat-p1-6
+- 2026-09-29T19:05:18Z DELETE vm=trader-cat-p1-6 epoch=1790708573 reason="spot preemption at 19:02:41Z (instances.preempted; disk auto-deleted); last watchdog sync 18:51:56Z, last pull 18:59:42Z (dev_n99 done, eval_n99 chunk 0 kept)" leftover_disks="none"
+- 2026-09-29T19:05:29Z SPEND after p1-6 spend_now=4.06
+- 2026-09-29T19:06:56Z CREATE vm=trader-cat-p1-7 zone=us-central1-b epoch=1790708816 type=g2-standard-4+L4 spot max_run=6h rate_ceiling=0.71 spend_before=4.06
+- 2026-09-29T19:10:33Z READY vm=trader-cat-p1-7 ip=[ip-removed] gpu=NVIDIA L4, 580.173.02 torch=2.14.0+cu130 13.0 
+- 2026-09-29T19:11:30Z PUSH vm=trader-cat-p1-7 code+ckpt+pilot+results/vm/trader-cat-p1-3 + p1-6 pull overlay (59 done; TT 99 done; dev_n99 done; eval_n99 chunk 0) sha256 verified (13 files)
+- 2026-09-29T19:11:30Z START vm=trader-cat-p1-7 plan=resume4_run_vm.sh
+- 2026-09-29T19:25:05Z SYNC vm=trader-cat-p1-7 verified_files=165 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P1/results/vm/trader-cat-p1-7
+- 2026-09-29T19:41:47Z SYNC vm=trader-cat-p1-7 verified_files=166 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P1/results/vm/trader-cat-p1-7
+- 2026-09-29T19:58:07Z SYNC vm=trader-cat-p1-7 verified_files=167 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P1/results/vm/trader-cat-p1-7
+- 2026-09-29T20:16:33Z SYNC vm=trader-cat-p1-7 verified_files=168 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P1/results/vm/trader-cat-p1-7
+- 2026-09-29T20:18:24Z DELETE vm=trader-cat-p1-7 epoch=1790713104 reason="down" leftover_disks="none" spend_now=4.90

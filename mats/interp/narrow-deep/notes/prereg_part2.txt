@@ -1,0 +1,43 @@
+
+
+# Part 2: follow-up on trained nets (coordinator, 2026-10-30 ~01:05Z), written ~01:20Z before any trained-net result
+# of these analyses was seen (smoke tests ran only on the barely trained pilot models in train/pilot/)
+
+Question: why does K2 fail on trained narrow nets, and is the failure concentrated (a few neurons or layers: a
+scalable fix) or spread out (a blocker for Gaussian-plus-corrections families)? CPU only.
+
+Nets: the four trained nets of section 4: residual sorters width 16, depth 64 (mlp_res_L64_s0, sigma = 0 and 0.01)
+and RNNs width 16, T = 64 (rnn_T64_s0 sigma = 0, rnn_T64_s1 sigma = 0.01). Code: lib/k2mix.py, scratch/p5_*.py.
+
+Step 1 (p5_locate.py, 2^20 sampled paths per net). Per (layer or step, unit): K2's predicted pre-activation mean,
+variance and gate-on probability against sampled truth, (a) accumulated (K2 from the input) and (b) one-step (K2
+from the exact moments of the previous state; its gate error is the non-Gaussianity of z). Concentration: share of
+the summed |gate error| in the worst k pairs (k = 1, 2, 4, 8, ..., 128 of 1,024), per-layer and per-unit sums.
+Where the output error arises: suffix nMSE E_out(l0) of K2 started from the exact Gaussian moment-match at l0.
+P11 (sorters): spread. The worst 8 of 1,024 pairs carry < 20% of the summed accumulated |gate error|, no layer
+carries > 20%, and E_out(l0) falls gradually (no single gap between grid points accounts for > 50% of the drop in
+log E_out from l0 = 0 to the last grid point).
+P12 (RNNs): concentrated in units, spread in time: the worst 4 units (summed over steps) carry > 50% of the summed
+|gate error|, while the worst 8 (step, unit) pairs carry < 20%.
+
+Step 2 (p5_split.py). Mixture closure: at each selected (layer, unit) pair every component splits into its on and
+off pieces (exact truncated first two moments, gate fixed in each piece), never merged (up to 2^k components).
+Selection: S1 = worst k pairs by accumulated gate error (primary), S2 = by one-step error, S0 = k random pairs
+(control); k = 1, 2, 4, 8; exact ReLU moments (primary) and Stein. Scored on E[output] nMSE against an independent
+2^21-path truth, on P(|output| > t) at q = 1e-3 and 1e-4 (Imhof per component), and against MC and RQMC at equal
+FLOPs (R = 16).
+P13 (the coordinator's criterion): refuted if no k <= 8 gives at least a 3x lower nMSE than K2. Prediction: refuted
+on both sorters and both RNNs. Predicted k for a 10x gain: more than 8 on every net (none of k <= 8 reaches 10x).
+Alternative we would not be surprised by: a 3x gain on an RNN at k = 8 if P12 holds strongly.
+P14: at equal FLOPs every split closure with k <= 8 loses to RQMC by >= 30x in nMSE on every net.
+P15: the split closure's tail estimate stays wrong by more than 2x (relative error^2 > 0.25) at q = 1e-4 for every
+k <= 8 on every net.
+Control: random splits (S0) give <= 1.5x over K2.
+
+Step 3 (p5_rb.py, 2^22-path truth). Exact radius integration (positive homogeneity) for P(|output| > t), the
+sorters' P(max_i |out_i - sort(x)_i| > t) and the RNNs' P(max_{j != y} logit_j - logit_y > t), q = 1e-3, 1e-4,
+against MC and RQMC at equal FLOPs (1,024-16,384 paths, R = 16).
+P16: on the two noiseless nets RB lowers the relative MSE by >= 3x against MC at 16,384 paths for every event at
+q = 1e-4. On the noisy nets (sigma = 0.01, where RB is approximate) RB's large-N estimate is within 10% of the truth
+at q = 1e-3, and its gain over MC is >= 3x.
+Review: one GPT-6 review of the new report section before it is final.

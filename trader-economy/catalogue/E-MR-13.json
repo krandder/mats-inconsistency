@@ -1,0 +1,13 @@
+{
+ "id": "E-MR-13",
+ "question": "Does the trader economy show the predicted risks: bubbles, fixed-point stall, TD divergence?",
+ "status": "Informative",
+ "setup": "All phase-2 runs of E-MR-5 to E-MR-11: wealth shares, bid and VOC calibration, belief log loss vs depth past the training length, training-loss spikes (> 0.1 nats per bit) after iteration 1000.",
+ "result": "Runaway confidence, yes: past the training length belief logits grow without check (mean log loss 501 nats per bit at L3200 and 3200 steps with 93% of examples exactly right; 8,429 at L32000), and auction bids are 23 times too high; wealth does not concentrate (largest share <= 0.32). Stall only without stream 3: the b-only economy stays at 0.25-0.31 nats per bit with 0 accuracy and the slots economy near chance; the cov economy keeps improving with depth. No TD divergence: the markets settle on realized outcomes, not later prices, and none of the 19 house- or Lindahl-funded cov runs logged a loss spike after iteration 1000 (bptt_cov_prog: 4 and 7; voluntary bounty: 3 and 4).",
+ "files": [
+  "market-resnet/RESULTS.md",
+  "market-resnet/econ2.py",
+  "market-resnet/charts/p2_wealth.json",
+  "market-resnet/results/summary.json"
+ ]
+}

@@ -1,0 +1,11 @@
+{
+ "id": "E-MLP-4",
+ "question": "Do useless hidden units go bankrupt?",
+ "setup": "4 unit slots wired only to noise; bankrupt units respawn with fresh weights.",
+ "result": "Yes under Shapley pay: at any cost above zero every noise slot went bankrupt and stayed dead after respawn (4.8-5 bankruptcies per run over the 4 slots) and ended with zero outgoing weight. Backprop only shrinks them (|outgoing weight| 0.016 vs 0.24 for useful units).",
+ "status": "Gain",
+ "files": [
+  "exp_mlp.py",
+  "results/mlp_summary.json"
+ ]
+}

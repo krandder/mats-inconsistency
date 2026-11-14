@@ -1,0 +1,23 @@
+run at 2026-10-17T11:16:48Z
+== (1) share of the kc_K1 -> attn_L3-K3 gap credited to the keys, two decomposition orders
+  FS KL      keys share, kc order (RESULTS): 0.440 [0.370, 0.510] (0.408 / 0.454 / 0.459) | keys share, attention order (attn_K1 -> attn_K3): 0.049 [0.035, 0.064] (0.051 / 0.043 / 0.055)
+  FS JSD     keys share, kc order (RESULTS): 0.805 [0.793, 0.816] (0.802 / 0.810 / 0.803) | keys share, attention order (attn_K1 -> attn_K3): 0.050 [0.002, 0.099] (0.069 / 0.030 / 0.052)
+  MSE tau 0.3 keys share, kc order (RESULTS): 0.766 [0.699, 0.834] (0.735 / 0.784 / 0.779) | keys share, attention order (attn_K1 -> attn_K3): 0.081 [0.019, 0.144] (0.054 / 0.104 / 0.086)
+  MSE tau 1.5 keys share, kc order (RESULTS): 0.713 [0.615, 0.811] (0.676 / 0.754 / 0.709) | keys share, attention order (attn_K1 -> attn_K3): 0.094 [0.021, 0.167] (0.060 / 0.112 / 0.109)
+  MSE tau 2.5 keys share, kc order (RESULTS): 0.533 [0.411, 0.655] (0.503 / 0.589 / 0.506) | keys share, attention order (attn_K1 -> attn_K3): 0.053 [-0.016, 0.122] (0.034 / 0.041 / 0.085)
+== (2) looped_attn_T3 weight law per seed (E1-D3 bars: W16/W1<=1.25 at 0.3; W8/W1>=2.20, CI lo>1.90, W16/W1>=2.80 at 2.5; monotone)
+  tau 0.3: W8/W1 1.025 [0.913, 1.138] (1.045 / 0.973 / 1.057); W16/W1 1.072 [0.944, 1.200] (1.075 / 1.019 / 1.122)
+  tau 1.5: W8/W1 1.985 [1.639, 2.330] (2.029 / 1.829 / 2.096); W16/W1 2.112 [1.592, 2.631] (2.178 / 1.877 / 2.280)
+  tau 2.5: W8/W1 3.657 [2.978, 4.336] (3.740 / 3.352 / 3.880); W16/W1 4.313 [3.149, 5.476] (4.570 / 3.772 / 4.596)
+  monotone per seed: [True, True, True]
+  looped_attn MSE cut vs kc_K1 at tau 2.5: 0.147 [0.115, 0.178] (0.153 / 0.155 / 0.132)
+== (3) W(N) keys present for looped_lin: False ; W keys: ['W_attn_K1', 'W_attn_K3', 'W_attn_K4', 'W_econ_K3', 'W_jacobi', 'W_kc_K1', 'W_kc_K3', 'W_kc_K4', 'W_looped_attn', 'W_mmd']
+== (4) kc pool MSE ranking per tier (3-seed means)
+  tau 0.3: attn_K3 0.03314, kc_K3 0.03573, kc_K4 0.03747, kc_K1 0.04425
+  tau 1.5: attn_K3 0.03615, kc_K3 0.03809, kc_K4 0.03892, kc_K1 0.04294
+  tau 2.5: attn_K3 0.04087, kc_K3 0.04418, kc_K4 0.04479, kc_K1 0.04797
+== (5) jacobi vs looped_lin vs econ: key heads differ (jacobi own K3, looped_lin own K4, econ frozen attn_L3-K3 K3)
+== (6) econ_K3 W ratios (one precision-crowding step), for context
+  tau 0.3: econ W16/W1 1.553 [1.409, 1.697] (1.582 / 1.487 / 1.591)
+  tau 1.5: econ W16/W1 2.152 [2.011, 2.294] (2.201 / 2.089 / 2.167)
+  tau 2.5: econ W16/W1 2.748 [2.606, 2.890] (2.811 / 2.699 / 2.733)

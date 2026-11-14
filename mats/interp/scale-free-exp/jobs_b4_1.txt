@@ -1,0 +1,54 @@
+e4_flat_s0 e4fa.py --attn dense:all,dense:all,dense:all,dense:all --seed 0
+e4_flat1_s0 e4fa.py --attn dense:self,dense:all,dense:all,dense:all --seed 0
+e4_told_s0 e4fa.py --attn dense:self,dense:src,dense:all,dense:all --seed 0
+e4_toldu_s0 e4fa.py --attn dense:self,uniform:src,dense:all,dense:all --seed 0
+e4_learned_s0 e4fa.py --attn dense:self,idroute:all,dense:all,dense:all --seed 0
+e4_flat_s1 e4fa.py --attn dense:all,dense:all,dense:all,dense:all --seed 1
+e4_flat1_s1 e4fa.py --attn dense:self,dense:all,dense:all,dense:all --seed 1
+e4_told_s1 e4fa.py --attn dense:self,dense:src,dense:all,dense:all --seed 1
+e4_toldu_s1 e4fa.py --attn dense:self,uniform:src,dense:all,dense:all --seed 1
+e4_learned_s1 e4fa.py --attn dense:self,idroute:all,dense:all,dense:all --seed 1
+e1w0_set_N256_s0 sftrain.py --arch set --world indep --N 256 --seed 0
+e1w0_set_N256_s1 sftrain.py --arch set --world indep --N 256 --seed 1
+e1w0_set_N64_s0 sftrain.py --arch set --world indep --N 64 --seed 0
+e1w0_set_N64_s1 sftrain.py --arch set --world indep --N 64 --seed 1
+a3_tree2m2_N256_s0 sftrain.py --arch tree2 --m1 3 --m 2 --world indep --N 256 --seed 0
+a3_tree2m4_N256_s0 sftrain.py --arch tree2 --m1 3 --m 4 --world indep --N 256 --seed 0
+a3_tree2m8_N256_s0 sftrain.py --arch tree2 --m1 3 --m 8 --world indep --N 256 --seed 0
+a3_tree2m2_N256_s1 sftrain.py --arch tree2 --m1 3 --m 2 --world indep --N 256 --seed 1
+a3_tree2m4_N256_s1 sftrain.py --arch tree2 --m1 3 --m 4 --world indep --N 256 --seed 1
+a3_tree2m8_N256_s1 sftrain.py --arch tree2 --m1 3 --m 8 --world indep --N 256 --seed 1
+a3_tree2m2_N64_s0 sftrain.py --arch tree2 --m1 3 --m 2 --world indep --N 64 --seed 0
+a3_tree2m4_N64_s0 sftrain.py --arch tree2 --m1 3 --m 4 --world indep --N 64 --seed 0
+a3_tree2m8_N64_s0 sftrain.py --arch tree2 --m1 3 --m 8 --world indep --N 64 --seed 0
+a3_tree2m2_N64_s1 sftrain.py --arch tree2 --m1 3 --m 2 --world indep --N 64 --seed 1
+a3_tree2m4_N64_s1 sftrain.py --arch tree2 --m1 3 --m 4 --world indep --N 64 --seed 1
+a3_tree2m8_N64_s1 sftrain.py --arch tree2 --m1 3 --m 8 --world indep --N 64 --seed 1
+a3_tree2m2_N24_s0 sftrain.py --arch tree2 --m1 3 --m 2 --world indep --N 24 --seed 0
+a3_tree2m4_N24_s0 sftrain.py --arch tree2 --m1 3 --m 4 --world indep --N 24 --seed 0
+a3_tree2m8_N24_s0 sftrain.py --arch tree2 --m1 3 --m 8 --world indep --N 24 --seed 0
+a3_tree2m2_N24_s1 sftrain.py --arch tree2 --m1 3 --m 2 --world indep --N 24 --seed 1
+a3_tree2m4_N24_s1 sftrain.py --arch tree2 --m1 3 --m 4 --world indep --N 24 --seed 1
+a3_tree2m8_N24_s1 sftrain.py --arch tree2 --m1 3 --m 8 --world indep --N 24 --seed 1
+a3_tree2m2_N3_s0 sftrain.py --arch tree2 --m1 3 --m 2 --world indep --N 3 --seed 0
+a3_tree2m4_N3_s0 sftrain.py --arch tree2 --m1 3 --m 4 --world indep --N 3 --seed 0
+a3_tree2m8_N3_s0 sftrain.py --arch tree2 --m1 3 --m 8 --world indep --N 3 --seed 0
+a3_tree2m2_N3_s1 sftrain.py --arch tree2 --m1 3 --m 2 --world indep --N 3 --seed 1
+a3_tree2m4_N3_s1 sftrain.py --arch tree2 --m1 3 --m 4 --world indep --N 3 --seed 1
+a3_tree2m8_N3_s1 sftrain.py --arch tree2 --m1 3 --m 8 --world indep --N 3 --seed 1
+e1w0_tree4_N256_s0 sftrain.py --arch tree --m 4 --world indep --N 256 --seed 0
+e1w0_tree8_N256_s0 sftrain.py --arch tree --m 8 --world indep --N 256 --seed 0
+e1w0_tree16_N256_s0 sftrain.py --arch tree --m 16 --world indep --N 256 --seed 0
+e1w0_tree32_N256_s0 sftrain.py --arch tree --m 32 --world indep --N 256 --seed 0
+e1w0_tree4_N256_s1 sftrain.py --arch tree --m 4 --world indep --N 256 --seed 1
+e1w0_tree8_N256_s1 sftrain.py --arch tree --m 8 --world indep --N 256 --seed 1
+e1w0_tree16_N256_s1 sftrain.py --arch tree --m 16 --world indep --N 256 --seed 1
+e1w0_tree32_N256_s1 sftrain.py --arch tree --m 32 --world indep --N 256 --seed 1
+e1w0_tree4_N64_s0 sftrain.py --arch tree --m 4 --world indep --N 64 --seed 0
+e1w0_tree8_N64_s0 sftrain.py --arch tree --m 8 --world indep --N 64 --seed 0
+e1w0_tree16_N64_s0 sftrain.py --arch tree --m 16 --world indep --N 64 --seed 0
+e1w0_tree32_N64_s0 sftrain.py --arch tree --m 32 --world indep --N 64 --seed 0
+e1w0_tree4_N64_s1 sftrain.py --arch tree --m 4 --world indep --N 64 --seed 1
+e1w0_tree8_N64_s1 sftrain.py --arch tree --m 8 --world indep --N 64 --seed 1
+e1w0_tree16_N64_s1 sftrain.py --arch tree --m 16 --world indep --N 64 --seed 1
+e1w0_tree32_N64_s1 sftrain.py --arch tree --m 32 --world indep --N 64 --seed 1

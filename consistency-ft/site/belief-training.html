@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A training design for LLMs that state explicit probabilistic models of their beliefs: scored on outcomes, on agreement between sessions, on Bayesian updating over time and reasoning effort, and on their own predicted movement.">
+<meta name="theme-color" content="#f6f7f9">
+<link rel="canonical" href="https://consistency.futarchy.ai/belief-training.html">
+<title>Explicit beliefs, scored · consistency-ft</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#f6f7f9; --paper:#ffffff; --grid:#e3e7ec; --line:#cfd6de; --soft:#eceff3;
+  --ink:#161b22; --ink2:#4d5866; --ink3:#7d8794;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#4a3aa7; --s5:#b06d00;
+  --heat0:241,243,246; --heat1:40,46,56;
+  --shadow:0 1px 2px rgba(20,27,34,.06),0 6px 20px rgba(20,27,34,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#12161c; --paper:#1a2029; --grid:#242c37; --line:#334051; --soft:#232b36;
+    --ink:#eef1f5; --ink2:#b7c0cc; --ink3:#7f8a98;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#9085e9; --s5:#c98500;
+    --heat0:32,38,46; --heat1:200,206,214;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#12161c; --paper:#1a2029; --grid:#242c37; --line:#334051; --soft:#232b36;
+  --ink:#eef1f5; --ink2:#b7c0cc; --ink3:#7f8a98;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#9085e9; --s5:#c98500;
+  --heat0:32,38,46; --heat1:200,206,214;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Source Serif 4",Georgia,"Times New Roman",serif;font-size:17px;line-height:1.55;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:32px 32px}
+.wrap{max-width:1040px;margin:0 auto;padding-block:32px 80px;padding-inline:20px}
+h1,h2,h3{font-family:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;text-wrap:balance;line-height:1.08;margin:0}
+h1{font-size:clamp(40px,7vw,72px);font-weight:700;letter-spacing:-.02em}
+h2{font-size:clamp(28px,4vw,40px);font-weight:700;letter-spacing:-.015em}
+h3{font-size:19px;font-weight:700}
+p{max-width:66ch;margin:0}
+a{color:var(--ink)}
+.eyebrow{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
+.lede{font-size:21px;color:var(--ink2);max-width:60ch}
+.m{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace;font-size:.92em}
+.formula{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace;font-size:15px;line-height:1.8;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:14px 18px;overflow-x:auto;white-space:nowrap}
+.formula b{font-weight:600}
+.S1{color:var(--s1)} .S2{color:var(--s2)} .S3{color:var(--s3)} .S4{color:var(--s4)} .S5{color:var(--s5)}
+hr.sep{border:0;border-top:1px solid var(--line);margin:72px 0 40px}
+.topnav{display:flex;gap:18px;flex-wrap:wrap;font-family:"Bricolage Grotesque",sans-serif;font-size:13px;font-weight:700;letter-spacing:.02em;margin-bottom:28px}
+.topnav a{color:var(--ink2);text-decoration:none;border-bottom:2px solid transparent;padding-bottom:2px}
+.topnav a[aria-current]{color:var(--ink);border-color:var(--ink)} .topnav a:hover{color:var(--ink)}
+header{display:grid;gap:22px;margin-bottom:56px}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:start}
+@media(max-width:760px){.hero{grid-template-columns:1fr}}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);padding:20px}
+.chapter{display:grid;gap:24px;margin-bottom:24px}
+.chapter-head{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start}
+.deg{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);border:1px solid var(--line);border-radius:999px;padding:6px 12px;white-space:nowrap;margin-top:8px;background:var(--paper)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:760px){.two{grid-template-columns:1fr}}
+.controls{display:grid;gap:12px}
+.ctl{display:grid;grid-template-columns:150px 1fr 58px;gap:12px;align-items:center;font-family:"JetBrains Mono",monospace;font-size:13px}
+.ctl label{font-weight:600}
+.ctl output{text-align:right;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--ink);height:24px}
+input[type=range]:focus-visible{outline:2px solid var(--ink3);outline-offset:2px;border-radius:4px}
+.score{display:flex;gap:22px;flex-wrap:wrap;align-items:baseline;margin-top:10px}
+.stat{display:grid;gap:2px}
+.stat .k{font-size:12px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;font-family:"JetBrains Mono",monospace}
+.stat .v{font-family:"JetBrains Mono",monospace;font-size:26px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1}
+.pill{display:inline-flex;align-items:center;gap:6px;font-family:"JetBrains Mono",monospace;font-size:12px;padding:3px 9px;border-radius:999px;border:1px solid var(--line)}
+.pill i{width:14px;height:0;border-top:2px solid var(--ink);display:inline-block}
+.pill i.dash{border-top-style:dashed;border-color:var(--ink3)}
+.pill i.dot{width:8px;height:8px;border:0;border-radius:50%;background:var(--ink)}
+.pill.warn{border-color:var(--ink);background:var(--soft)}
+svg{display:block;max-width:100%;height:auto}
+.axis{stroke:var(--line);stroke-width:1} .gridl{stroke:var(--grid);stroke-width:1}
+.lbl{font-family:"JetBrains Mono",monospace;font-size:11px;fill:var(--ink3)}
+.lbl2{font-family:"JetBrains Mono",monospace;font-size:12px;fill:var(--ink2)}
+.lbl3{font-family:"Bricolage Grotesque",sans-serif;font-size:13px;font-weight:700;fill:var(--ink)}
+.cap{font-size:14px;color:var(--ink2);margin-top:10px;max-width:none}
+.tablewrap{overflow-x:auto}
+table.cmp{border-collapse:collapse;width:100%;font-size:15px}
+table.cmp th{font-family:"Bricolage Grotesque",sans-serif;text-align:left;padding:10px 12px;border-bottom:2px solid var(--ink);font-size:14px}
+table.cmp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+table.cmp td.m{font-size:13.5px}
+.note{border-left:3px solid var(--ink);padding:8px 16px;background:var(--soft);border-radius:0 6px 6px 0;font-size:15.5px;max-width:none}
+.note p{max-width:none}
+.steps{counter-reset:s;display:grid;gap:12px;margin:0;padding:0;list-style:none}
+.steps li{display:grid;grid-template-columns:34px 1fr;gap:12px;font-size:15.5px;color:var(--ink2)}
+.steps li::before{counter-increment:s;content:counter(s);font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:14px;color:var(--paper);background:var(--ink);border-radius:50%;width:26px;height:26px;display:grid;place-items:center;margin-top:2px}
+.steps b{color:var(--ink)}
+.sess{display:grid;gap:8px;margin-top:12px}
+.sess-row{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;font-family:"JetBrains Mono",monospace;font-size:12.5px;padding:7px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg)}
+.sess-row .n{font-weight:600}
+.sess-row .vars span{display:inline-block;padding:0 6px;border-radius:4px;border:1px solid var(--line);margin-right:4px;background:var(--paper)}
+.sess-row .vars span.shared{border-color:var(--ink);font-weight:600}
+.footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);font-size:14px;color:var(--ink3);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="topnav" aria-label="Site"><a href="/">Benchmark</a><a href="/open-agency.html">Open Agency</a><a href="/compiled-rewards.html">Compiled rewards</a><a href="/belief-training.html" aria-current="page">Explicit beliefs</a><a href="https://github.com/futarchy-fi/consistency-ft">Repository ↗</a></nav>
+
+<header>
+  <div class="eyebrow">consistency-ft · training design</div>
+  <h1>Explicit beliefs, scored</h1>
+  <p class="lede">Ask a model for an explicit probabilistic model of a few propositions, in a fresh session each time. Score what it wrote in three ways: against what happened, against what it wrote in other sessions, and against what it will write later, after more time or more reasoning. Every score is a proper scoring rule on stated numbers. Nothing is sampled.</p>
+  <div class="hero">
+    <div class="panel">
+      <div class="eyebrow" style="margin-bottom:10px">Sessions, tuples, overlaps</div>
+      <svg id="hyper" viewBox="0 0 520 330" role="img" aria-label="Five sessions as sets over eight propositions, with overlapping propositions highlighted"></svg>
+      <p class="cap">Five sessions, each handed a tuple of propositions and returning a model over them. Wherever two tuples share a proposition, the two models can disagree. Those overlaps are the coherence loss. Each session is also scored on outcomes when its propositions resolve.</p>
+    </div>
+    <div style="display:grid;gap:16px">
+      <div class="note"><p><b>Three families of forecasts, one machinery.</b> Beliefs about the world. Agreement between beliefs stated in different sessions. Beliefs about how the beliefs will change. All three are scored by proper rules, so honesty is the optimum at every level.</p></div>
+      <ol class="steps">
+        <li><span><b>Accuracy.</b> Log-score of the emitted model on settled outcomes, or on the market price at a later date.</span></li>
+        <li><span><b>Coherence.</b> Squared disagreement between two sessions' models on the propositions they share. Needs no outcome.</span></li>
+        <li><span><b>Updating.</b> An earlier belief is scored against a later one, over calendar time or reasoning budget. Makes beliefs a martingale.</span></li>
+        <li><span><b>Self-knowledge.</b> The model states how much it expects to move per horizon, and is scored on that too.</span></li>
+      </ol>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 1 · two losses ============ -->
+<section class="chapter" id="losses">
+  <div class="chapter-head"><div class="deg">Losses 1 and 2</div><div>
+    <h2>1 · Accuracy on outcomes, coherence on overlaps</h2>
+    <p style="margin-top:10px">Inside one emitted model everything adds up by construction. Between two sessions nothing does. So the whole coherence loss is agreement on shared propositions, and the accuracy loss is the ordinary proper score of each session's model on reality. Edit session 3 below and watch both.</p>
+  </div></div>
+  <div class="two">
+    <div class="panel">
+      <div class="controls">
+        <div class="ctl"><label for="ov-c">session 3 · p(C)</label><input type="range" id="ov-c" min="0" max="1" step="0.01" value="0.55"><output id="ov-co">0.55</output></div>
+        <div class="ctl"><label for="ov-e">session 3 · p(E)</label><input type="range" id="ov-e" min="0" max="1" step="0.01" value="0.30"><output id="ov-eo">0.30</output></div>
+        <div class="ctl"><label for="ov-f">session 3 · p(F)</label><input type="range" id="ov-f" min="0" max="1" step="0.01" value="0.72"><output id="ov-fo">0.72</output></div>
+      </div>
+      <div class="score">
+        <div class="stat"><div class="k">coherence loss (all pairs)</div><div class="v" id="ov-loss">0</div></div>
+        <div class="stat"><div class="k">session 3 log-score</div><div class="v" id="ov-acc">0</div></div>
+      </div>
+      <div class="sess" id="sess"></div>
+      <p class="cap">Bold propositions are shared with another session. Outcomes so far: C resolved true, F resolved false, the rest open. The log-score uses only resolved ones; the coherence loss uses all overlaps.</p>
+    </div>
+    <div class="panel">
+      <div class="eyebrow" style="margin-bottom:10px">Disagreement per shared proposition</div>
+      <svg id="ovbars" viewBox="0 0 480 300" role="img" aria-label="Bar chart of squared disagreement on each shared proposition"></svg>
+      <div class="formula" style="margin-top:12px">L<sub>coh</sub> = Σ<sub>pairs (i,j)</sub> Σ<sub>X ∈ U<sub>i</sub>∩U<sub>j</sub></sub> ( p<sub>i</sub>(X) − p<sub>j</sub>(X) )²<br>L<sub>acc</sub> = − Σ<sub>resolved X</sub> log p<sub>i</sub>(X = outcome)</div>
+      <p class="cap">With network fragments the shared object is the marginal on the overlap, computed by exact inference, and the disagreement is the squared distance between two small probability tables instead of two numbers. Same loss.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ 2 · structures ============ -->
+<section class="chapter" id="structures">
+  <div class="chapter-head"><div class="deg">Representation</div><div>
+    <h2>2 · What the model can write down</h2>
+    <p style="margin-top:10px">A list of numbers has no built-in coherence; everything must be trained. A structured object has coherence inside it for free and leaves only cross-session agreement to train. The useful axis is how easy it is to ask for a part and compare parts.</p>
+  </div></div>
+  <div class="panel tablewrap">
+    <table class="cmp">
+      <thead><tr><th>Structure</th><th>Coherent by itself</th><th>Asking for parts</th><th>Marginalising</th><th>When to use</th></tr></thead>
+      <tbody>
+        <tr><td>List of (proposition, probability)</td><td>No</td><td>Trivial</td><td>None needed</td><td>Baseline; the current benchmark format.</td></tr>
+        <tr><td>Bayesian network fragment</td><td>Yes</td><td>Natural</td><td>Exact, cheap for small parts</td><td>Default. Structure is not compared across parts, only the distribution it induces.</td></tr>
+        <tr><td>Clique marginals on a junction tree</td><td>Yes iff separators agree</td><td>The cliques are the parts</td><td>Free</td><td>Best fit for "different parts each time": local agreement implies a global joint.</td></tr>
+        <tr><td>Weighted scenarios (K complete worlds)</td><td>Yes</td><td>Natural</td><td>Free</td><td>Most LLM-friendly to elicit; expressiveness capped at K.</td></tr>
+        <tr><td>Credal sets (intervals)</td><td>Yes if non-empty</td><td>Natural</td><td>LP</td><td>When the model should be allowed to say "0.4 to 0.6".</td></tr>
+        <tr><td>Probabilistic circuits</td><td>Yes, logic exact</td><td>Natural</td><td>Linear time</td><td>Strongest for checking, hardest to verbalise.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note"><p><b>Local is not global.</b> Three pairwise-consistent marginals over {A,B}, {B,C}, {C,A} can admit no joint over {A,B,C}. Pairwise overlap agreement certifies a global joint only when the tuple cover has the running-intersection property (a junction tree). Otherwise add occasional larger "glue" tuples, and report the projection loss, min over one joint Q of Σ D(P<sub>i</sub>, Q(U<sub>i</sub>)), on a held-out set small enough to solve exactly.</p></div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ 3 · martingale ============ -->
+<section class="chapter" id="updating">
+  <div class="chapter-head"><div class="deg">Loss 3</div><div>
+    <h2>3 · Updating: score the earlier belief against the later one</h2>
+    <p style="margin-top:10px">A rational belief path is a martingale: today's belief equals the expectation of tomorrow's. That is not an extra output. It is enforced by scoring the belief at t₁ against the belief at t₂ with a proper rule, as if t₂ were the outcome. Proper rules are minimised by the conditional mean, so t₁ moves toward the average of t₂, not toward any single t₂. Spread is allowed. Bias is not. The simulator below runs 400 synthetic markets through a forecaster with adjustable flaws.</p>
+  </div></div>
+  <div class="two">
+    <div class="panel">
+      <div class="controls">
+        <div class="ctl"><label for="mg-drift">hedging at t₁</label><input type="range" id="mg-drift" min="0" max="0.8" step="0.01" value="0.35"><output id="mg-drifto">0.35</output></div>
+        <div class="ctl"><label for="mg-over">reaction at t₂</label><input type="range" id="mg-over" min="0.2" max="2.5" step="0.05" value="1.0"><output id="mg-overo">1.00</output></div>
+        <div class="ctl"><label for="mg-seed">reshuffle markets</label><input type="range" id="mg-seed" min="1" max="20" step="1" value="3"><output id="mg-seedo">3</output></div>
+      </div>
+      <div class="score">
+        <div class="stat"><div class="k">updating loss E[(b₁−b₂)²]</div><div class="v" id="mg-loss">0</div></div>
+        <div class="stat"><div class="k">movement / resolved</div><div class="v" id="mg-ratio">1.0</div></div>
+      </div>
+      <svg id="mgscatter" viewBox="0 0 480 330" role="img" aria-label="Scatter of belief at time one against belief at time two, with binned means and the diagonal"></svg>
+      <p class="cap"><span class="pill"><i class="dot"></i>one market</span> <span class="pill"><i></i>mean of b₂ given b₁</span> <span class="pill"><i class="dash"></i>martingale line</span>. Hedging pulls the t₁ belief toward 0.5, so the binned mean leaves the diagonal: t₂ beliefs are predictably more extreme than t₁. The loss sees that and pushes t₁ out. Set hedging to 0 and the curve sits on the line no matter how wide the scatter.</p>
+    </div>
+    <div class="panel">
+      <div class="eyebrow" style="margin-bottom:10px">Movement versus uncertainty resolved</div>
+      <svg id="mgbars" viewBox="0 0 480 200" role="img" aria-label="Two bars comparing total squared belief movement to the martingale bound"></svg>
+      <div class="formula" style="margin-top:12px">martingale:  Σ E[(b<sub>t+1</sub> − b<sub>t</sub>)²]  =  E[b<sub>T</sub>²] − b<sub>0</sub>²</div>
+      <p class="cap">For a martingale, total squared movement equals uncertainty resolved. Movement above the bound is over-reaction, below it is sluggishness (Augenblick and Rabin's test). The reaction slider scales the t₂ update. Hedging at t₁ also shows up here, as sluggishness, because the later beliefs are more extreme than the earlier ones. With both sliders neutral the bars match. Neither bar needs a resolution; both come from the model’s own belief paths.</p>
+      <h3 style="margin-top:18px">Three targets, one rule</h3>
+      <div class="tablewrap"><table class="cmp" style="font-size:14px">
+        <thead><tr><th>Target for b(t₁)</th><th>Available</th><th>Teaches</th></tr></thead>
+        <tbody>
+          <tr><td>resolution</td><td>months later, some markets</td><td>calibration</td></tr>
+          <tr><td>price or own belief at t₂</td><td>immediately, all markets</td><td>calibration and no predictable drift</td></tr>
+          <tr><td>own belief at higher effort</td><td>immediately, no data needed</td><td>the same across reasoning instead of time</td></tr>
+        </tbody></table></div>
+    </div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ 4 · effort ladder ============ -->
+<section class="chapter" id="effort">
+  <div class="chapter-head"><div class="deg">Loss 4</div><div>
+    <h2>4 · More reasoning should mean better beliefs</h2>
+    <p style="margin-top:10px">Train the property, not the length. The model emits its structure at several effort levels. Each level is scored against the mean of the next level up, using a frozen teacher copy and no gradient through the target. The top level alone touches reality, coherence and the anchor. Low-effort answers become unbiased previews of high-effort answers, and the slope of accuracy against budget becomes a measured quantity.</p>
+  </div></div>
+  <div class="two">
+    <div class="panel">
+      <div class="eyebrow" style="margin-bottom:10px">The self-distillation ladder</div>
+      <svg id="ladder" viewBox="0 0 480 300" role="img" aria-label="Diagram of effort levels, each scored against the mean of the next level, with the top level scored against reality, coherence and anchor"></svg>
+      <p class="cap">Arrows are rewards, pointing from the target to the level being trained. Nothing pulls the top level toward the bottom; the asymmetry is what makes reasoning worth doing. Without the top row the ladder collapses to a constant.</p>
+    </div>
+    <div class="panel">
+      <div class="controls">
+        <div class="ctl"><label for="ld-low">low-effort answer</label><input type="range" id="ld-low" min="0" max="1" step="0.01" value="0.40"><output id="ld-lowo">0.40</output></div>
+        <div class="ctl"><label for="ld-spread">high-effort spread</label><input type="range" id="ld-spread" min="0" max="0.25" step="0.01" value="0.06"><output id="ld-spreado">0.06</output></div>
+      </div>
+      <div class="score">
+        <div class="stat"><div class="k">mean of 8 high-effort runs</div><div class="v" id="ld-mean">0.65</div></div>
+        <div class="stat"><div class="k">reward for low effort</div><div class="v" id="ld-r">0</div></div>
+      </div>
+      <svg id="ldstrip" viewBox="0 0 480 130" role="img" aria-label="Strip plot of eight high-effort beliefs, their mean, and the low-effort answer"></svg>
+      <p class="cap">Eight high-effort runs on the same tuple, their mean, and the low-effort answer. The reward is −(low − mean)². Widen the spread: the reward does not change. Only the gap to the mean matters, which is exactly the martingale condition from Chapter 3 with reasoning tokens in place of calendar time.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ 5 · predicted movement ============ -->
+<section class="chapter" id="movement">
+  <div class="chapter-head"><div class="deg">Self-knowledge</div><div>
+    <h2>5 · Predicting your own movement</h2>
+    <p style="margin-top:10px">"How much will I move after a day?" and "how much more accurate will I be after a day?" are the same number. For a martingale, expected squared movement equals expected Brier improvement. So the model states, per horizon, its expected squared change, and is scored on it once the horizon passes. The curve must be non-decreasing and can never exceed the uncertainty left, b(1 − b).</p>
+  </div></div>
+  <div class="formula">E[ (b(t+Δ) − b(t))² ]  =  Brier(t) − E[ Brier(t+Δ) ]        ·        0 ≤ m(Δ₁) ≤ m(Δ₂) ≤ m(Δ₃) ≤ b(1 − b)</div>
+  <div class="two">
+    <div class="panel">
+      <div class="controls">
+        <div class="ctl"><label for="mv-b">belief b now</label><input type="range" id="mv-b" min="0.01" max="0.99" step="0.01" value="0.62"><output id="mv-bo">0.62</output></div>
+        <div class="ctl"><label for="mv-1">m · after 1 day</label><input type="range" id="mv-1" min="0" max="0.25" step="0.005" value="0.01"><output id="mv-1o">0.010</output></div>
+        <div class="ctl"><label for="mv-2">m · after 1 week</label><input type="range" id="mv-2" min="0" max="0.25" step="0.005" value="0.035"><output id="mv-2o">0.035</output></div>
+        <div class="ctl"><label for="mv-3">m · at resolution</label><input type="range" id="mv-3" min="0" max="0.25" step="0.005" value="0.12"><output id="mv-3o">0.120</output></div>
+      </div>
+      <div class="score">
+        <div class="stat"><div class="k">uncertainty left b(1−b)</div><div class="v" id="mv-bound">0</div></div>
+        <div class="stat"><div class="k">expected Brier after 1 week</div><div class="v" id="mv-brier">0</div></div>
+        <div class="stat"><div class="k">curve</div><div class="v" id="mv-ok" style="font-size:16px;padding-top:6px"></div></div>
+      </div>
+      <p class="cap" style="margin-top:14px">At resolution all remaining uncertainty is resolved, so the last point should sit on the bound. Typical move after a horizon is √m: at m = 0.01 the model expects to be within about ±0.10 tomorrow.</p>
+    </div>
+    <div class="panel">
+      <div class="eyebrow" style="margin-bottom:10px">Predicted movement curve</div>
+      <svg id="mvcurve" viewBox="0 0 480 300" role="img" aria-label="Predicted squared movement at three horizons against the uncertainty bound"></svg>
+      <p class="cap"><span class="pill"><i></i>stated m(Δ)</span> <span class="pill"><i class="dash"></i>bound b(1−b)</span>. Scored later with −(m − realised Δb²)², a proper rule for an expectation. On the effort axis the model controls its own later belief, so the later output must receive only its own accuracy and coherence rewards, never a reward for matching the prediction. On the time axis, score against the market price and the issue disappears.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ 6 · market data ============ -->
+<section class="chapter" id="markets">
+  <div class="chapter-head"><div class="deg">Data</div><div>
+    <h2>6 · What a prediction market gives you</h2>
+    <p style="margin-top:10px">Hundreds of open markets at any time t are one large coherence problem with real structure, a proxy resolution at every later date, and a baseline to beat: the price vector's own arbitrage gaps.</p>
+  </div></div>
+  <div class="two">
+    <div class="panel tablewrap">
+      <table class="cmp">
+        <thead><tr><th>Market pattern</th><th>Constraint it yields</th></tr></thead>
+        <tbody>
+          <tr><td>Multi-outcome market</td><td class="m">Σ p = 1</td></tr>
+          <tr><td>Same event, two platforms or phrasings</td><td class="m">p₁ = p₂</td></tr>
+          <tr><td>"By date D" family</td><td class="m">p(D₁) ≤ p(D₂)</td></tr>
+          <tr><td>Threshold family (above X)</td><td class="m">monotone in X</td></tr>
+          <tr><td>Nested events (primary, general)</td><td class="m">p(general) ≤ p(primary)</td></tr>
+          <tr><td>Conditional market</td><td class="m">p(Y∧X) = p(Y|X)·p(X)</td></tr>
+          <tr><td>Mutually exclusive pair</td><td class="m">p(A∧B) = 0</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="panel">
+      <h3>Uses</h3>
+      <ol class="steps" style="margin-top:12px">
+        <li><span><b>Reality.</b> Log-score on resolutions; proper score on the price at t + Δ for everything still open, liquidity-weighted.</span></li>
+        <li><span><b>Tuples.</b> The table's families are the overlaps for the coherence loss, with the market's own gaps as the baseline.</span></li>
+        <li><span><b>Paths.</b> Query the same market at t₁ &lt; t₂ &lt; t₃ for the updating loss and the movement statistics.</span></li>
+        <li><span><b>Anchor.</b> KL to the current price on propositions with no other signal, with the caveat that it teaches market-following unless reality carries enough weight.</span></li>
+      </ol>
+      <div class="note" style="margin-top:14px"><p><b>Remembered and new events both belong in training.</b> A proper score elicits honest credence either way, including half-remembered outcomes, and a mixed set with the date in the prompt fits the confidence habit on the right distribution. Two rules still hold: report two accuracy numbers, recall on pre-cutoff markets and forecasting on post-cutoff ones, since both matter and they measure different things; and watch survivorship (fast-resolving markets over-represented), thin markets with stale prices, and ambiguous resolution criteria.</p></div>
+    </div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ 7 · summary ============ -->
+<section class="chapter" id="summary">
+  <div class="chapter-head"><div class="deg">Summary</div><div>
+    <h2>The reward table</h2>
+    <p style="margin-top:10px">Every row is a proper score on the marginals of the emitted structure. Rows 1 and 2 are the two losses you started with. Rows 3 to 6 need no outcomes at all.</p>
+  </div></div>
+  <div class="panel tablewrap">
+    <table class="cmp">
+      <thead><tr><th>#</th><th>Reward</th><th>Target</th><th>Needs outcomes</th><th>Trains</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="m">log p(outcome)</td><td>resolution</td><td>yes</td><td>accuracy, calibration</td></tr>
+        <tr><td>2</td><td class="m">−‖P<sub>i</sub>(I) − P<sub>j</sub>(I)‖²</td><td>another session</td><td>no</td><td>coherence</td></tr>
+        <tr><td>3</td><td class="m">−(b(t₁) − b(t₂))²</td><td>later price or belief</td><td>no</td><td>martingale updating</td></tr>
+        <tr><td>4</td><td class="m">−(b<sub>low</sub> − mean b<sub>high</sub>)²</td><td>frozen higher-effort teacher</td><td>no</td><td>anytime improvement</td></tr>
+        <tr><td>5</td><td class="m">−(m(Δ) − realised Δb²)²</td><td>own later belief or price</td><td>no</td><td>self-knowledge</td></tr>
+        <tr><td>6</td><td class="m">−λ·KL(prev ‖ now)</td><td>previous checkpoint</td><td>no</td><td>anchor against collapse</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note"><p><b>Failure modes to design against.</b> Collapse: rows 2 to 5 alone are satisfied by constant beliefs; row 1 or 6 must always be present. Self-fulfilment: stop-gradient on every later output used as a target. Goodhart on effort: never reward tokens, edge counts or structure size directly; richer structures must win through rows 1 and 2. Degenerate coherence: all-0.5 passes many checks; row 1 breaks the tie.</p></div>
+</section>
+
+<footer class="footer"><span>consistency-ft · explicit beliefs, scored · companion to <a href="/compiled-rewards.html">compiled rewards</a></span><a href="https://github.com/futarchy-fi/consistency-ft/blob/main/site/belief-training.html">Page source ↗</a></footer>
+</div>
+
+<script>
+(function(){
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const fmt=(x,d=4)=>{const s=Math.abs(+x.toFixed(d)).toFixed(d);return (x<0&&+s!==0?'−':'')+s;};
+const el=id=>document.getElementById(id);
+const svgNS='http://www.w3.org/2000/svg';
+function S(tag,attrs,parent){const n=document.createElementNS(svgNS,tag);for(const k in attrs)n.setAttribute(k,attrs[k]);if(parent)parent.appendChild(n);return n;}
+function clear(n){while(n.firstChild)n.removeChild(n.firstChild);}
+const SC=['--s1','--s2','--s3','--s4','--s5'];
+
+/* ============ SESSIONS & OVERLAPS ============ */
+const VARS=['A','B','C','D','E','F','G','H'];
+const sessions=[
+  {name:'session 1',vars:{A:.20,B:.65,C:.48}},
+  {name:'session 2',vars:{B:.60,D:.35,E:.42}},
+  {name:'session 3',vars:{C:.55,E:.30,F:.72}},
+  {name:'session 4',vars:{F:.70,G:.15,H:.88}},
+  {name:'session 5',vars:{A:.25,H:.80,D:.35}},
+];
+const resolved={C:1,F:0};
+function overlapTerms(){const t=[];for(let i=0;i<sessions.length;i++)for(let j=i+1;j<sessions.length;j++)for(const v in sessions[i].vars)if(v in sessions[j].vars)t.push({i,j,v,d:sessions[i].vars[v]-sessions[j].vars[v]});return t;}
+function drawHyper(){const svg=el('hyper');clear(svg);const W=520,H=330;
+  const vx=i=>60+i*57,vy=250;const sy=[70,70,70,70,70],sx=i=>70+i*95;
+  const terms=overlapTerms();const shared=new Set(terms.map(t=>t.v));
+  sessions.forEach((s,i)=>{Object.keys(s.vars).forEach(v=>{const k=VARS.indexOf(v);S('line',{x1:sx(i),y1:sy[i]+18,x2:vx(k),y2:vy-16,stroke:css(SC[i]),'stroke-width':2,opacity:.8},svg);});});
+  sessions.forEach((s,i)=>{S('rect',{x:sx(i)-40,y:sy[i]-18,width:80,height:36,rx:6,fill:css('--paper'),stroke:css(SC[i]),'stroke-width':2},svg);
+    S('text',{x:sx(i),y:sy[i]-2,'text-anchor':'middle',class:'lbl3'},svg).textContent=s.name;
+    S('text',{x:sx(i),y:sy[i]+12,'text-anchor':'middle',class:'lbl'},svg).textContent=Object.keys(s.vars).join(' ');});
+  VARS.forEach((v,k)=>{const sh=shared.has(v);S('circle',{cx:vx(k),cy:vy,r:16,fill:sh?css('--ink'):css('--paper'),stroke:css('--ink'),'stroke-width':sh?0:1.5},svg);
+    S('text',{x:vx(k),y:vy+5,'text-anchor':'middle',style:'font:700 14px Bricolage Grotesque,sans-serif',fill:sh?css('--paper'):css('--ink')},svg).textContent=v;
+    if(v in resolved)S('text',{x:vx(k),y:vy+36,'text-anchor':'middle',class:'lbl2'},svg).textContent=resolved[v]?'true':'false';});
+  S('text',{x:W/2,y:H-12,'text-anchor':'middle',class:'lbl'},svg).textContent='filled = shared by two sessions · labelled = resolved';
+  S('text',{x:W/2,y:22,'text-anchor':'middle',class:'lbl'},svg).textContent='each session emits a model over its tuple, in a fresh context';}
+function updOverlap(){const s3=sessions[2].vars;s3.C=+el('ov-c').value;s3.E=+el('ov-e').value;s3.F=+el('ov-f').value;
+  el('ov-co').textContent=s3.C.toFixed(2);el('ov-eo').textContent=s3.E.toFixed(2);el('ov-fo').textContent=s3.F.toFixed(2);
+  const terms=overlapTerms();const Lc=terms.reduce((a,t)=>a+t.d*t.d,0);el('ov-loss').textContent=fmt(Lc,4);
+  let acc=0;for(const v in resolved)if(v in s3){const p=s3[v];acc+=-Math.log(Math.max(1e-6,resolved[v]?p:1-p));}el('ov-acc').textContent=fmt(-acc,3);
+  const box=el('sess');clear(box);const shared=new Set(terms.map(t=>t.v));
+  sessions.forEach((s,i)=>{const d=document.createElement('div');d.className='sess-row';
+    d.innerHTML=`<span class="n" style="color:var(${SC[i]})">${s.name}</span><span class="vars">${Object.entries(s.vars).map(([v,p])=>`<span class="${shared.has(v)?'shared':''}">${v} ${p.toFixed(2)}</span>`).join('')}</span><span class="n">${Object.keys(s.vars).filter(v=>v in resolved).map(v=>v+(resolved[v]?'✓':'✗')).join(' ')||'open'}</span>`;box.appendChild(d);});
+  const svg=el('ovbars');clear(svg);const W=480,H=300,L=110,R=20,T=16,B=30;const mx=Math.max(.05,...terms.map(t=>t.d*t.d));
+  const bh=Math.min(28,(H-T-B)/terms.length-6);
+  terms.forEach((t,k)=>{const y=T+k*((H-T-B)/terms.length);const w=(W-L-R)*t.d*t.d/mx;
+    S('text',{x:L-8,y:y+bh/2+4,'text-anchor':'end',class:'lbl2'},svg).textContent=`${t.v} · s${t.i+1} vs s${t.j+1}`;
+    S('rect',{x:L,y,width:Math.max(1,w),height:bh,rx:3,fill:(t.i===2||t.j===2)?css('--ink'):css('--ink3')},svg);
+    S('text',{x:L+w+6,y:y+bh/2+4,class:'lbl2'},svg).textContent=fmt(t.d*t.d,4)+'  ('+(t.d>0?'+':'')+t.d.toFixed(2)+')';});
+  S('text',{x:L,y:H-8,class:'lbl'},svg).textContent='dark bars involve session 3';
+  drawHyper();}
+['ov-c','ov-e','ov-f'].forEach(id=>el(id).addEventListener('input',updOverlap));
+
+/* ============ MARTINGALE SIMULATOR ============ */
+function rng(seed){let s=seed*9301+49297;return()=>{s=(s*9301+49297)%233280;return s/233280;};}
+function gauss(r){return Math.sqrt(-2*Math.log(1-r()))*Math.cos(2*Math.PI*r());}
+function simMarkets(){const drift=+el('mg-drift').value,over=+el('mg-over').value,seed=+el('mg-seed').value;
+  el('mg-drifto').textContent=drift.toFixed(2);el('mg-overo').textContent=over.toFixed(2);el('mg-seedo').textContent=seed;
+  const r=rng(seed);const rows=[];
+  for(let i=0;i<400;i++){const b1=Math.min(.97,Math.max(.03,r()));// honest belief at t1
+    const sd=0.35*Math.sqrt(b1*(1-b1));const eps=gauss(r)*sd;// information shock, mean 0
+    const b2h=Math.min(.99,Math.max(.01,b1+eps));// honest t2
+    const b1r=b1+drift*(0.5-b1);// hedged report
+    const b2r=Math.min(.99,Math.max(.01,b1+over*(b2h-b1)));// over/under-reacting report
+    rows.push({b1:b1r,b2:b2r,b1h:b1,b2h});}
+  return rows;}
+function drawMart(){const rows=simMarkets();
+  const loss=rows.reduce((a,x)=>a+((x.b1-x.b2)**2),0)/rows.length;el('mg-loss').textContent=fmt(loss,4);
+  const move=rows.reduce((a,x)=>a+((x.b2-x.b1)**2),0)/rows.length;
+  const resolvedU=rows.reduce((a,x)=>a+x.b2*x.b2-x.b1*x.b1,0)/rows.length;
+  const ratio=resolvedU>1e-6?move/resolvedU:NaN;el('mg-ratio').textContent=isFinite(ratio)?ratio.toFixed(2)+'×':'—';
+  const svg=el('mgscatter');clear(svg);const W=480,H=330,L=48,R=16,T=16,B=36;
+  const x=v=>L+(W-L-R)*v,y=v=>T+(H-T-B)*(1-v);
+  [0,.25,.5,.75,1].forEach(v=>{S('line',{x1:L,x2:W-R,y1:y(v),y2:y(v),class:'gridl'},svg);S('line',{y1:T,y2:H-B,x1:x(v),x2:x(v),class:'gridl'},svg);S('text',{x:L-6,y:y(v)+4,'text-anchor':'end',class:'lbl'},svg).textContent=v;S('text',{x:x(v),y:H-12,'text-anchor':'middle',class:'lbl'},svg).textContent=v;});
+  S('text',{x:W-R,y:H-12,'text-anchor':'end',class:'lbl2'},svg).textContent='belief at t₁';S('text',{x:L+4,y:T+12,class:'lbl2'},svg).textContent='belief at t₂';
+  S('line',{x1:x(0),y1:y(0),x2:x(1),y2:y(1),stroke:css('--ink3'),'stroke-width':1.5,'stroke-dasharray':'5 4'},svg);
+  rows.forEach(p=>S('circle',{cx:x(p.b1),cy:y(p.b2),r:2.6,fill:css('--ink'),opacity:.28},svg));
+  const bins=10,sum=Array(bins).fill(0),cnt=Array(bins).fill(0),sx=Array(bins).fill(0);
+  rows.forEach(p=>{const k=Math.min(bins-1,Math.floor(p.b1*bins));sum[k]+=p.b2;cnt[k]++;sx[k]+=p.b1;});
+  let d='';let first=true;for(let k=0;k<bins;k++)if(cnt[k]>=5){d+=(first?'M':'L')+x(sx[k]/cnt[k]).toFixed(1)+' '+y(sum[k]/cnt[k]).toFixed(1);first=false;}
+  S('path',{d,fill:'none',stroke:css('--ink'),'stroke-width':3,'stroke-linejoin':'round'},svg);
+  for(let k=0;k<bins;k++)if(cnt[k]>=5)S('circle',{cx:x(sx[k]/cnt[k]),cy:y(sum[k]/cnt[k]),r:4.5,fill:css('--paper'),stroke:css('--ink'),'stroke-width':2.5},svg);
+  const b=el('mgbars');clear(b);const W2=480,L2=170,R2=20;const mx=Math.max(.02,move,resolvedU)*1.15;const w=v=>(W2-L2-R2)*Math.max(0,v)/mx;
+  [['squared movement',move,css('--ink')],['uncertainty resolved',resolvedU,css('--ink3')]].forEach((row,i)=>{const yy=40+i*60;
+    S('text',{x:L2-10,y:yy+17,'text-anchor':'end',class:'lbl2'},b).textContent=row[0];
+    S('rect',{x:L2,y:yy,width:Math.max(1,w(row[1])),height:26,rx:4,fill:row[2]},b);
+    S('text',{x:L2+w(row[1])+8,y:yy+17,class:'lbl2'},b).textContent=fmt(row[1],4);});
+  S('text',{x:L2,y:24,class:'lbl'},b).textContent=ratio>1.15?'over-reacting: moves more than it resolves':ratio<0.85?'sluggish: resolves more than it moves':'consistent with a martingale';}
+['mg-drift','mg-over','mg-seed'].forEach(id=>el(id).addEventListener('input',drawMart));
+
+/* ============ LADDER ============ */
+function drawLadder(){const svg=el('ladder');clear(svg);const W=480,H=300;
+  const levels=[['effort e₀','short answer'],['effort e₁','some reasoning'],['effort e₂','long reasoning'],['effort e₃','full budget']];
+  const bx=60,bw=180,bh=44,gap=18;const by=i=>H-30-(i+1)*(bh+gap)+gap;
+  levels.forEach((lv,i)=>{S('rect',{x:bx,y:by(i),width:bw,height:bh,rx:6,fill:css('--paper'),stroke:css('--ink'),'stroke-width':i===3?2.5:1.5},svg);
+    S('text',{x:bx+12,y:by(i)+18,class:'lbl3'},svg).textContent=lv[0];S('text',{x:bx+12,y:by(i)+34,class:'lbl'},svg).textContent=lv[1];
+    if(i<3){const x0=bx+bw+14;S('path',{d:`M${x0+26} ${by(i+1)+bh/2} L${x0+26} ${by(i)+bh/2} L${x0+4} ${by(i)+bh/2}`,fill:'none',stroke:css('--ink'),'stroke-width':2},svg);
+      S('polygon',{points:`${x0+4},${by(i)+bh/2} ${x0+12},${by(i)+bh/2-5} ${x0+12},${by(i)+bh/2+5}`,fill:css('--ink')},svg);
+      S('text',{x:x0+34,y:by(i)+bh/2+4,class:'lbl2'},svg).textContent='−(b'+'₀₁₂'[i]+' − mean b'+'₁₂₃'[i]+')²';
+      S('text',{x:x0+34,y:by(i)+bh/2+18,class:'lbl'},svg).textContent='frozen teacher · stop-grad';}});
+  const tx=bx+bw+40,ty=by(3)+bh/2;
+  S('path',{d:`M${tx+200} ${ty} L${tx+4} ${ty}`,fill:'none',stroke:css('--ink'),'stroke-width':2.5},svg);
+  S('polygon',{points:`${tx+4},${ty} ${tx+12},${ty-5} ${tx+12},${ty+5}`,fill:css('--ink')},svg);
+  S('text',{x:tx+34,y:ty-6,class:'lbl3'},svg).textContent='reality · coherence · anchor';
+  S('text',{x:tx+34,y:ty+12,class:'lbl'},svg).textContent='the only rewards that touch the top';
+  S('text',{x:W/2,y:H-8,'text-anchor':'middle',class:'lbl'},svg).textContent='every level emits the same kind of object; targets are marginals on the tuple';}
+function updLadder(){const low=+el('ld-low').value,sp=+el('ld-spread').value;el('ld-lowo').textContent=low.toFixed(2);el('ld-spreado').textContent=sp.toFixed(2);
+  const base=[-.06,.09,.04,-.08,.07,.02,-.04,.05];const runs=base.map(z=>Math.min(.99,Math.max(.01,.65+z*sp/0.06)));
+  const mean=runs.reduce((a,b)=>a+b,0)/runs.length;const r=-((low-mean)**2);el('ld-mean').textContent=mean.toFixed(3);el('ld-r').textContent=fmt(r,4);
+  const svg=el('ldstrip');clear(svg);const W=480,L=30,R=30;const x=v=>L+(W-L-R)*v;
+  S('line',{x1:L,x2:W-R,y1:60,y2:60,class:'axis'},svg);[0,.25,.5,.75,1].forEach(v=>S('text',{x:x(v),y:80,'text-anchor':'middle',class:'lbl'},svg).textContent=v);
+  runs.forEach(v=>S('circle',{cx:x(v),cy:60,r:6,fill:css('--ink'),opacity:.35},svg));
+  S('line',{x1:x(mean),x2:x(mean),y1:38,y2:82,stroke:css('--ink'),'stroke-width':2.5},svg);S('text',{x:x(mean),y:30,'text-anchor':'middle',class:'lbl2'},svg).textContent='mean '+mean.toFixed(3);
+  S('circle',{cx:x(low),cy:60,r:7,fill:css('--paper'),stroke:css('--ink'),'stroke-width':2.5},svg);S('text',{x:x(low),y:105,'text-anchor':'middle',class:'lbl2'},svg).textContent='low effort '+low.toFixed(2);
+  S('line',{x1:x(low),x2:x(mean),y1:60,y2:60,stroke:css('--ink'),'stroke-width':1,'stroke-dasharray':'3 3'},svg);
+  S('text',{x:W-R,y:122,'text-anchor':'end',class:'lbl'},svg).textContent='filled dots: 8 high-effort runs';}
+['ld-low','ld-spread'].forEach(id=>el(id).addEventListener('input',updLadder));
+
+/* ============ MOVEMENT ============ */
+function updMove(){const b=+el('mv-b').value,m=[+el('mv-1').value,+el('mv-2').value,+el('mv-3').value];
+  el('mv-bo').textContent=b.toFixed(2);['mv-1o','mv-2o','mv-3o'].forEach((id,i)=>el(id).textContent=m[i].toFixed(3));
+  const bound=b*(1-b);el('mv-bound').textContent=bound.toFixed(4);el('mv-brier').textContent=fmt(bound-m[1],4);
+  const mono=m[0]<=m[1]&&m[1]<=m[2],within=m[2]<=bound+1e-9;
+  el('mv-ok').innerHTML=(mono&&within)?'<span class="pill">valid</span>':'<span class="pill warn">'+(!mono?'not monotone':'exceeds b(1−b)')+'</span>';
+  const svg=el('mvcurve');clear(svg);const W=480,H=300,L=52,R=20,T=18,B=40;const ymax=Math.max(.26,bound*1.1);
+  const xs=[0,1,2,3],labels=['now','1 day','1 week','resolution'];const x=i=>L+(W-L-R)*i/3,y=v=>T+(H-T-B)*(1-v/ymax);
+  for(let k=0;k<=4;k++){const v=ymax*k/4;S('line',{x1:L,x2:W-R,y1:y(v),y2:y(v),class:'gridl'},svg);S('text',{x:L-6,y:y(v)+4,'text-anchor':'end',class:'lbl'},svg).textContent=v.toFixed(2);}
+  labels.forEach((lb,i)=>S('text',{x:x(i),y:H-14,'text-anchor':'middle',class:'lbl'},svg).textContent=lb);
+  S('line',{x1:L,x2:W-R,y1:y(bound),y2:y(bound),stroke:css('--ink3'),'stroke-width':1.5,'stroke-dasharray':'5 4'},svg);S('text',{x:W-R,y:y(bound)-6,'text-anchor':'end',class:'lbl2'},svg).textContent='b(1−b) = '+bound.toFixed(3);
+  const pts=[0,...m];let d='';pts.forEach((v,i)=>d+=(i?'L':'M')+x(i)+' '+y(Math.min(ymax,v)));
+  S('path',{d,fill:'none',stroke:css('--ink'),'stroke-width':2.5},svg);
+  pts.forEach((v,i)=>{const bad=(i>0&&v<pts[i-1])||v>bound+1e-9;S('circle',{cx:x(i),cy:y(Math.min(ymax,v)),r:5.5,fill:bad?css('--paper'):css('--ink'),stroke:css('--ink'),'stroke-width':2.5},svg);
+    if(i>0)S('text',{x:x(i),y:y(Math.min(ymax,v))-12,'text-anchor':'middle',class:'lbl2'},svg).textContent='±'+Math.sqrt(v).toFixed(2);});
+  S('text',{x:L+4,y:T+2,class:'lbl'},svg).textContent='expected squared movement m(Δ) · labels show typical move √m';}
+['mv-b','mv-1','mv-2','mv-3'].forEach(id=>el(id).addEventListener('input',updMove));
+
+function all(){updOverlap();drawMart();drawLadder();updLadder();updMove();}
+all();
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',all);
+new MutationObserver(all).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+})();
+</script>
+</body>
+</html>

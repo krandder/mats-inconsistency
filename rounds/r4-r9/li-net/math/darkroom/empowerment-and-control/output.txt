@@ -1,0 +1,69 @@
+A. n-step empowerment E_n (bits), exact channel, |A|=3, open loop
+room                                                     n=1  n=2  n=3  n=4  n=5  n=6
+dark (sensor constant)                                   0.00  0.00  0.00  0.00  0.00  0.00
+dark + proprioception                                    1.58  2.32  2.81  3.00  3.00  3.00
+white noise (iid, action-independent)                    0.00  0.00  0.00  0.00  0.00  0.00
+passive periodic stream                                  0.00  0.00  0.00  0.00  0.00  0.00
+lit ring (controllable)                                  1.58  2.32  2.81  3.00  3.00  3.00
+lit ring + noise eps=0.25                                0.95  1.33  1.55  1.63  1.63  1.63
+lit ring + noise eps=0.75                                0.16  0.20  0.22  0.23  0.23  0.23
+hash TV (sensor = random hash of action history)         1.58  3.17  4.32  5.49  5.95  6.00
+dark corridor (exit 3 steps, first new sensation 4) -> lit ring  0.00  0.00  0.00  1.58  2.32  2.81
+  upper bound n*log2(3): 1.58 3.17 4.75 6.34 7.92 9.51
+
+B. external room costs: J = E_n - lam * cost; which room wins? (n=3)
+  lam= 0.0: winners = ['lit ring (controllable)']
+  lam= 0.5: winners = ['lit ring (controllable)']
+  lam= 1.0: winners = ['lit ring (controllable)']
+  lam= 2.0: winners = ['lit ring (controllable)']
+  lam= 2.5: winners = ['lit ring (controllable)']
+  lam= 3.0: winners = ['dark (sensor constant)']
+  lam= 5.0: winners = ['dark (sensor constant)']
+  switch point lam* = E_3(lit)/(c_lit - c_dark) = 2.807: above it the dark room wins.
+  passive stream never wins: it ties dark at E=0 and costs more.
+
+C. endogenous cost: lit ring drains 1 energy/step, energy e0=3, at 0 the agent is dead
+   (absorbing, sensor constant). Dark room: no drain, sensor constant.
+  n=1: E(lit, e0=3)=1.58  E(dark)=0.00  -> lit
+  n=2: E(lit, e0=3)=2.32  E(dark)=0.00  -> lit
+  n=3: E(lit, e0=3)=0.00  E(dark)=0.00  -> tie (indifferent between death and the dark room)
+  n=4: E(lit, e0=3)=0.00  E(dark)=0.00  -> tie (indifferent between death and the dark room)
+  n=5: E(lit, e0=3)=0.00  E(dark)=0.00  -> tie (indifferent between death and the dark room)
+  n=6: E(lit, e0=3)=0.00  E(dark)=0.00  -> tie (indifferent between death and the dark room)
+
+D. empowerment estimated from data: plug-in channel from N samples per action, n=1
+   true values: white noise 0.00, lit ring log2(3)=1.585
+  noise K=    8 N=   10: plug-in=0.342  Dirichlet a0=1=0.077  Dirichlet a0=1/K=0.241
+  ctrl  K=    8 N=   10: plug-in=1.585  Dirichlet a0=1=0.586  Dirichlet a0=1/K=1.318
+  noise K=    8 N=  100: plug-in=0.019  Dirichlet a0=1=0.016  Dirichlet a0=1/K=0.018
+  ctrl  K=    8 N=  100: plug-in=1.585  Dirichlet a0=1=1.361  Dirichlet a0=1/K=1.548
+  noise K=    8 N= 1000: plug-in=0.004  Dirichlet a0=1=0.004  Dirichlet a0=1/K=0.004
+  ctrl  K=    8 N= 1000: plug-in=1.585  Dirichlet a0=1=1.554  Dirichlet a0=1/K=1.580
+  noise K=   64 N=   10: plug-in=1.519  Dirichlet a0=1=0.053  Dirichlet a0=1/K=1.262
+  ctrl  K=   64 N=   10: plug-in=1.585  Dirichlet a0=1=0.143  Dirichlet a0=1/K=1.417
+  noise K=   64 N=  100: plug-in=0.376  Dirichlet a0=1=0.111  Dirichlet a0=1/K=0.359
+  ctrl  K=   64 N=  100: plug-in=1.585  Dirichlet a0=1=0.896  Dirichlet a0=1/K=1.566
+  noise K=   64 N= 1000: plug-in=0.029  Dirichlet a0=1=0.026  Dirichlet a0=1/K=0.029
+  ctrl  K=   64 N= 1000: plug-in=1.585  Dirichlet a0=1=1.473  Dirichlet a0=1/K=1.583
+  noise K= 1024 N=   10: plug-in=1.585  Dirichlet a0=1=0.003  Dirichlet a0=1/K=1.425
+  ctrl  K= 1024 N=   10: plug-in=1.585  Dirichlet a0=1=0.010  Dirichlet a0=1/K=1.439
+  noise K= 1024 N=  100: plug-in=1.452  Dirichlet a0=1=0.030  Dirichlet a0=1/K=1.423
+  ctrl  K= 1024 N=  100: plug-in=1.585  Dirichlet a0=1=0.131  Dirichlet a0=1/K=1.569
+  noise K= 1024 N= 1000: plug-in=0.574  Dirichlet a0=1=0.111  Dirichlet a0=1/K=0.570
+  ctrl  K= 1024 N= 1000: plug-in=1.585  Dirichlet a0=1=0.774  Dirichlet a0=1/K=1.583
+
+E. min-max (redundancy = capacity) check: E = min_q max_a KL(p(S|a) || q)
+   = inconsistency control over A can force on the PDG {tau(S|A) beta=inf, q(S) beta=1}
+  dark (sensor constant)                             C=0.0000  max_a KL(.||q*)=0.0000  max_a KL(.||uniform)=3.0000
+  white noise (iid, action-independent)              C=0.0000  max_a KL(.||q*)=0.0000  max_a KL(.||uniform)=0.0000
+  passive periodic stream                            C=0.0000  max_a KL(.||q*)=0.0000  max_a KL(.||uniform)=3.0000
+  lit ring (controllable)                            C=2.8074  max_a KL(.||q*)=2.8074  max_a KL(.||uniform)=3.0000
+  lit ring + noise eps=0.25                          C=1.5483  max_a KL(.||q*)=1.5483  max_a KL(.||uniform)=1.6280
+  dark corridor (exit 3 steps, first new sensation 4) -> lit ring C=0.0000  max_a KL(.||q*)=0.0000  max_a KL(.||uniform)=3.0000
+
+F. belief control instead of world control (LIR control over parameters, passive rooms)
+   learner: order-1 Markov predictor with KT (add-1/2) counts, prior = uniform over K.
+   reducible = T*log2(K) - cumulative log-loss (bits); final = log-loss rate in last 200 steps.
+  dark        : reducible total=  11959.9 bits  final rate=0.001  steps until rate<0.1 bit: 28
+  white noise : reducible total=   -178.8 bits  final rate=3.007  steps until rate<0.1 bit: never
+  periodic    : reducible total=  11752.9 bits  final rate=0.011  steps until rate<0.1 bit: 381

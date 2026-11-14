@@ -1,0 +1,75 @@
+{
+ "model": "Claude Fable 5.2 (claude-fable-5-2[1m])",
+ "plain_words": "The context first. On 10 Nov you said the GFlowNet is the rollout policy (like AlphaZero's policy network), and the search you want is an amplification on top of many rollouts, distilled back into it. You said you did not know how to do it, and asked whether your consistency requirement needs \"an amplified version of a GFlowNet\".\nThe pieces exist, but nobody has written your condition. A 2024 workshop paper puts a soft tree search on a GFlowNet and distils it back. It proves nothing, and in its experiments the search never reads the score, so its limit is not the target (0.11 to 0.48 away in my toy).\nI built your two-level design as a small exact world: a demonstration is an order plus values, scored step by step, and the rollout policy carries an alien bit that is dropped at submission. Nothing here is a trained network.\nThree amplifications (reweighting rollouts by the score, a soft tree, backtrack-and-rebuild) all reach \"in proportion to the score\" with enough compute, whatever the rollout policy's errors, provided they read the score at terminal states. Reweighting and backtracking also need the policy to be able to produce every demonstration. The tree does not, but only because it ends up visiting every terminal state.\nDistilling back works and the rounds compound: with K rollouts per amplification the policy's error falls by about 1/K per round. With K = 1 nothing is learned and the policy drifts away.\nOn your consistency requirement: order-against-order agreement has no anchor. Answering every question from one shared set of rollouts satisfies it exactly, right or wrong, and used alone as a loss it collapsed to \"always one half\".\nWhat I would use is the variance, over trajectories, of the gap between the amplified step predictions and the score of the terminal demonstration. It needs no enumeration of orders and is zero only when the amplified sampler is exactly score-proportional. That is a GFlowNet loss applied to the amplified predictor, so yes: an amplified GFlowNet. In the toy it was worth about 500 real examples.\nOn trust, the coordinator's split holds in the limit: trust in kinds of demonstration sits inside the score; trust in the search effort must fade with compute. One trap: if the first is fitted through a few rollouts it copies the rollout policy's preferences (with one rollout, exactly).\nI don't know whether any of this survives a trained network or a size where enumeration is impossible, and I did not touch decisions.",
+ "note_path": "/home/agent/workspaces/mats/work/deep-study/wf12/amplified-gflownet/NOTE.md",
+ "claims": [
+  {
+   "claim": "No source read proves that amplify-then-distil converges to a score-proportional sampler, and none puts a consistency condition on amplified predictions. Morozov et al. (2406.13655) state no theorem, and their experiments never read the score inside the search.",
+   "status": "SOURCE",
+   "evidence": "NOTE section 1 with file and line locators (2406.13655 main.tex l.249, l.256-258, l.299; Tiapkin Thm 1; MENTS Thm 4-5; 2310.02710 section 4; Scientist AI plan.tex l.226, l.269-271). Search was by known titles and ids, not exhaustive. Depends on no FRAME question."
+  },
+  {
+   "claim": "Self-normalised weighting of K rollouts converges to the target for every full-support rollout policy and any normalised backward law over the alien coordinate; without full support it converges to the target restricted to what the policy shows.",
+   "status": "PROVEN",
+   "evidence": "Two-line proof in NOTE section 2; checked in out/e1_limits.out: TV 0.003 / 0.008 at K = 1,024 for policies A / B, and 0.151 (the hidden mass 0.1505) for the selective policy. Uses Q5 as answered (alien coordinates dropped at submission)."
+  },
+  {
+   "claim": "The soft tree with sum backups converges to the target whatever the rollout policy, even without full support, if it reads the score at terminal leaves; if it never reads the score its limit is the network's own terminal numbers.",
+   "status": "PROVEN",
+   "evidence": "Proof by backward induction on a finite tree (NOTE section 2); out/e1_limits.out: 0.002 / 0.019 at K = 1,024 against exact limits 0.114 / 0.435 without score reads; out/e1b_extra.out: selective policy 0.011 at K = 16,384. The guarantee is exhaustive reading of terminal states."
+  },
+  {
+   "claim": "Back-and-forth refinement reaches the target only with the Metropolis-Hastings filter in reverse-over-forward form; the greedy default of 2310.02710 collapses to the top demonstration, and the ratio as printed there does not target T.",
+   "status": "CHECKED",
+   "evidence": "Exact transition matrices, out/e1_limits.out: limits 0.0000 (MH), 0.49-0.78 (as printed), 0.91 (greedy). My construction only; their code was not read."
+  },
+  {
+   "claim": "One round of amplify-then-distil with K weighted rollouts cuts the policy's relative error to about 1/K near the target; rounds compound geometrically; K = 1 is the identity in expectation and drifts with finite batches; a refinement round never increases the error.",
+   "status": "PROVEN",
+   "evidence": "First-order expansion and total-variation contraction (NOTE section 2); out/e2_distill.out: K = 2 ratios 0.50-0.57; K = 1 with 64 sets 0.48 to 0.71; finite-batch floor and its removal by a quarter step in out/e1b_extra.out (post hoc). Exact tabular distillation, in expectation."
+  },
+  {
+   "claim": "Alien coordinates: the weight must count each demonstration once (or use a backward law over the alien coordinate); a fixed uniform backward law makes distillation erase what the alien bit carries.",
+   "status": "CHECKED",
+   "evidence": "out/e2_distill.out: information between alien bit and demonstration 0.336 to 0.001 nats with the fixed backward law, 0.31 kept when counted once; same target. Depends on Q5 as answered."
+  },
+  {
+   "claim": "Order-against-order agreement has no anchor: it holds exactly at any compute for answers read from one shared set, also for unweighted (wrong) answers, and as a loss alone it collapses to a constant one half.",
+   "status": "CHECKED",
+   "evidence": "out/e3a_objects.out (shared unweighted: mismatch 0.0000 with error 0.16); out/e3b_loss.out (alpha = beta = 0 within 0.0009 in 120 runs). Q6 as answered (b). My registered H1 criterion was wrong: the constant beats the raw two-rollout amplifier."
+  },
+  {
+   "claim": "The variance over trajectories of (log amplified step predictions minus log score of the terminal demonstration) is zero only if the amplified sampler is exactly the target, and can be estimated from samples without enumerating orders.",
+   "status": "PROVEN",
+   "evidence": "NOTE section 3 (the log-variance loss of VarGrad 2010.10436 with the amplified predictor as q); out/e3a_objects.out: 22, 5.6, 1.6, 0.50, 0.13 for weighting, stuck at 1.2-1.4 for unweighted counting."
+  },
+  {
+   "claim": "As an extra loss with few real data, the anchored forms (residual variance; agreement with larger compute) alone match 512 real examples for a two-parameter search-side head; order agreement only acts as a pull to a constant.",
+   "status": "CHECKED",
+   "evidence": "Registered run, 3 worlds x 20 seeds, out/e3b_loss.out: 0.067 against 0.069 nats at K = 2, 0.049 against 0.051 at K = 8; order loss costs 7-41 % from n = 128. Two of my four registered predictions were wrong (NOTE section 5)."
+  },
+  {
+   "claim": "The coordinator's split holds in the limit: trust in kinds of demonstration inside the score, plus a search-effort trust constrained to fade, has the same limit under both full-support policies; a free head on search statistics does not.",
+   "status": "CHECKED",
+   "evidence": "Registered run, out/e4_trust.out: fading head 0.0000 between policies A and B; free head differs by 0.03-0.05 and sits 0.24-0.31 from the target; under the selective policy every form that reads rollouts moves 0.20-0.82. Q1 as answered (two things are learned)."
+  },
+  {
+   "claim": "Trust in kinds of demonstration fitted through K rollouts carries the rollout policy into the target: at K = 1 the fitted weights equal the policy's own order frequencies.",
+   "status": "PROVEN",
+   "evidence": "One-line proof in NOTE section 4; out/e4_trust.out: TV 0.02-0.03 to those frequencies, 0.55-0.81 from the exact fit; still 0.13-0.28 apart between policies at K = 256 (my registered 'below 0.02' was wrong)."
+  },
+  {
+   "claim": "The 1/K rate, the worth of the anchored losses and the trust split carry over to a trained network at a size where terminal states cannot be enumerated.",
+   "status": "UNKNOWN",
+   "evidence": "Not run. Everything is an exact table on 3 binary variables, 48 demonstrations and one alien bit; CPU only, no cluster job."
+  }
+ ],
+ "open_questions": [
+  "When you ask for amplified P(X), do you mean the share of submitted demonstrations with that value, summed over the demonstration's order? With a soft world model the score depends on the order, and the order-by-order reading stays inconsistent even at infinite compute (up to 0.27 in the toy).",
+  "May the trust in kinds of demonstration be fitted by an exact or debiased sum over routes, with no rollout policy in the loop? If it must be fitted through the search, how much compute is that fit allowed?",
+  "Does the residual-variance loss help a free-form learned aggregator on the trained parity-world network? wf10 found no gain there from the consistency-over-compute loss; the residual form was not tested.",
+  "What replaces 'the tree reads every terminal state' and 'the rollout policy can produce every demonstration' at real size? wf11's specification share and interval is the only candidate I know.",
+  "Decisions (your Q4) are untouched: the goal factor here multiplies whole histories.",
+  "Not built: alien coordinates that change along the route, a search state shared across rollouts, and SMC with resampling."
+ ]
+}

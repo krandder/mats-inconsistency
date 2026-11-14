@@ -1,0 +1,19 @@
+models (a,b,c): [(0, 0, 0), (0, 0, 1), (0, 1, 1), (1, 1, 1)]
+(1a) min over 300 random P and all models of [profit - dist^2] = -4e-08 (theorem: >= 0)
+(1a) after 30 blocks eta=0.5: dist to C = 1.3e-09
+     P(a->c) [entailed] = 1.0  P(a&~c) [refuted] = 0.0
+(1b) affine trader: min [profit - gap^2] = -0.0 (theorem: >= 0)
+(1c) weak-book value at uniform-over-models P = -0.0  at boundary P = 7.0
+(1d) m* (conditioned)        = [0.1552 0.5172 0.7586 1.     0.1552 0.4828 0.7586 0.     0.3966]
+     fixed point coh+prior(m*) = [0.1552 0.5172 0.7586 1.     0.1552 0.4828 0.7586 0.     0.3966]  |V-m*| = 0.0
+     Euclid proj of m0 onto C = [0.2438 0.6    0.6313 1.     0.2438 0.4    0.6313 0.     0.6125]  |pi(m0)-m*| = 0.3293 (refutes: projection of prices == conditioning)
+     weights coh=  1, prior(m0)=1: dist(V,C) = 0.1613
+     weights coh= 10, prior(m0)=1: dist(V,C) = 0.0293
+     weights coh=100, prior(m0)=1: dist(V,C) = 0.0032
+     binary-KL proj of m0 onto C = [0.236  0.6    0.6404 1.     0.236  0.4    0.6404 0.     0.5956]  |.-m*| = 0.3071
+     joint I-projection marginals = [0.1552 0.5172 0.7586 1.     0.1552 0.4828 0.7586 0.     0.3966]  |.-m*| = 0.0  KL = 0.544727  -log mu0(Gamma) = 0.544727
+(1e) K=   10 model-traders: |V-m*| = 0.4647, dist(V,C) = 2.80e-09
+(1e) K=  100 model-traders: |V-m*| = 0.1144, dist(V,C) = 0.00e+00
+(1e) K=10000 model-traders: |V-m*| = 0.0241, dist(V,C) = 2.87e-10
+     dist(m0,C) = 0.3226 -> predicted dist(V,C) = dist(m0,C)/(1+w_c): [np.float64(0.1613), np.float64(0.0293), np.float64(0.0032)]
+(1f) Bregman/logit coherence trader: min over 100 P and models of [profit - symKL(pi,P)] = -3e-06 (theorem: >= 0)

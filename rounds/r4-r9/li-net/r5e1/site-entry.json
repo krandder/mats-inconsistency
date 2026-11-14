@@ -1,0 +1,56 @@
+{
+ "slug": "r5-e1-einfo",
+ "title": "Round 5 E1: preference-driven search, pooled patch reads and small-net LIR-RL (6x6 ShipHunt)",
+ "date": "17 Oct",
+ "status": "informative",
+ "oneline": "6 of 10 pre-registered rules pass. Each rollout reads the sonar readings of one patch (gemini's amendment); a learned 3-layer attention pool of 24 reads cuts KL to exact Bayes by 74% vs the root belief and beats every one-step pool, and 16 identical reads weigh about as one. It fails policy independence (its two preference-steered beliefs differ 6.8x more than the plain average's, which barely uses the reads), key-overlap correlation (0.38) and mutual support (1.91x vs 2x). LIR-RL: reward rose 0.50 to 0.80 with the belief bit-identical and a 100% goal-swap flip; the fused arm gamed the rater (83% false-note agreement). 3 seeds, audited; $2.62.",
+ "led_to": [],
+ "page": {
+  "why": "Round 4 left gemini's core inference-time claim untested: a preference edge U should be able to steer where search spends its rollouts while the merged belief stays the same and gets closer to the truth. Round 4's learned keys had also collapsed (cosine 0.99), and its LLM RL never raised reward. Round 5 moved to small networks trained from scratch, with an exact Bayes oracle used only for scoring.",
+  "what": "A 6x6 grid with three ships, 669k-parameter any-order world model, 3 seeds. Part A: two opposing preference edges send 80% of 24 rollouts to one half of the board; four pools merge them (plain average, a fitted log-linear pool, a key-crowding pool and a learned 3-layer attention pool, trained on calibration boards against the model's own unskewed 128-rollout belief). Following gemini's amendment, a rollout reads the real sonar readings of one 2x3 patch (clean or corrupted); the pre-registered design, where rollouts sample hypothetical cells from the model, ran too. Part B: 400 steps of GRPO with an action-entropy bonus and a rater that pays for agreeing with a commander's note, under three parameter masks (shared, token-masked, separate LIR blocks).",
+  "result": "Gates passed. The attention pool cut KL to exact Bayes from 0.280 (root belief) to 0.073 nats per cell, vs 0.113-0.207 for the other pools. It gave 16 identical reads the weight of one, and its disagreement between the two searches, on cells both read, did not grow with how unequally they were repeated (every other pool's did). It failed policy independence (6.8x the plain average's JSD, bar 1/3): half of its disagreement sits on the 24% of cells only one search read, it would also fail on the shared cells, and the plain average looks stable only because it barely uses the readings. Keys: overlap correlation 0.38 (bar 0.55); mutual support 1.91x (bar 2x). Part B: reward rose to 0.79-0.81 in every RL arm; the LIR belief stayed bit-identical, earned 101% of the fused arm's reward and flipped its action on 100% of goal swaps; the fused arm agreed with false notes 83% of the time. The LIR sycophancy rule failed only because its 0.03 bar is below exact Bayes's own 0.055 on these boards. The gate passed under the amendment's clause 1; read literally it would fail (Pearson 0.30). With hypothetical-sample rollouts the converged model was already exact (KL 8e-5), so search only added noise.",
+  "sowhat": "When rollouts carry real evidence, a learned attention pool merges them far better than averaging or one-step weighting, and it does not over-count repeated reads. But the beliefs of two differently steered searches still differ, partly because they read different cells; a policy-independence rule needs an evidence-aware yardstick. The LIR mask keeps beliefs exactly fixed while reward rises in a small net; in this run shared weights let reward game the rater (Fused) or bend beliefs toward the goals (Token-Masked).",
+  "decided": "Recorded 6 PASS and 4 FAIL as written: E1-D1.1, E1-D2.1, E1-D2.2 (mutual support 1.91 vs 2.0) and E1-D3.1 (sycophancy bar below the Bayes rate). Not run, for gemini's next round: score policy independence against the evidence floor or make both searches read every cell; remove the keys' shared component; score unwarranted agreement.",
+  "chart": {
+   "bars": [
+    {
+     "label": "root belief (P0)",
+     "value": 0.2797,
+     "text": "0.280"
+    },
+    {
+     "label": "plain average (mix)",
+     "value": 0.2068,
+     "text": "0.207"
+    },
+    {
+     "label": "fitted log-linear pool (ataraxos_mmd)",
+     "value": 0.1172,
+     "text": "0.117"
+    },
+    {
+     "label": "key-crowding pool (kc_dedup)",
+     "value": 0.1129,
+     "text": "0.113"
+    },
+    {
+     "label": "attention pool (attn_L3)",
+     "value": 0.0726,
+     "text": "0.073",
+     "good": true
+    }
+   ],
+   "caption": "KL to the exact posterior given all 36 sonar readings (nats per cell), 500 test boards, 3-seed means, when each search reads 24 patches with 80% in one half of the board.",
+   "aria": "The learned attention pool is closest to the exact posterior; the plain average barely improves on the root belief"
+  },
+  "details": {
+   "methods": [
+    "Pre-registered in PREREG.md (03:11Z, before the first launch); gemini's amendment (bounded-context patch reads) registered in PREREG-AMENDMENTS.md (03:37Z) before its run; 5 logged deviations (descriptive metrics, a wider gap ladder, a spot preemption rerun).",
+    "World model: 4-layer transformer (d 128, 669,633 parameters) trained 40,000 steps x 512 real boards; exact Bayes over 49,504 ship patterns used only for scoring and the gates.",
+    "Pools trained on 4,000 calibration boards against the model's own unskewed 128-rollout belief; trust from real excess surprise; tests on 500 held-out boards.",
+    "Part B: 400 GRPO steps, 16 groups x 8, lr 1e-4, entropy bonus 0.02; arms Fused, Token-Masked, LIR-Masked, plus a truth-loss-only control.",
+    "3 seeds, seed-t 95% intervals; independent audit in AUDIT-R5-E1.md; $2.62 of GPU at the list-price ceiling."
+   ]
+  }
+ }
+}

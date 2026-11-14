@@ -1,0 +1,34 @@
+- 2026-09-30T01:20:52Z CREATE vm=trader-p19-1 zone=us-central1-c epoch=1790731252 type=c2d-highcpu-32 spot max_run=4h rate_ceiling=1.20 spend_before=0.00
+- 2026-09-30T01:22:28Z READY vm=trader-p19-1 ip=[ip-removed] cpus=32 torch=2.14.0+cpu 
+- 2026-09-30T01:23:45Z START vm=trader-p19-1 queue=pilot.txt jobs=5 parallel=5
+- 2026-09-30T01:26:29Z SYNC vm=trader-p19-1 verified_files=10 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P19-fast-reader/results/vmout
+- 2026-09-30T01:30:48Z START vm=trader-p19-1 queue=main.txt jobs=115 parallel=28
+- 2026-09-30T01:31:43Z SYNC vm=trader-p19-1 verified_files=42 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P19-fast-reader/results/vmout
+- 2026-09-30T01:36:55Z SYNC vm=trader-p19-1 verified_files=42 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P19-fast-reader/results/vmout
+- 2026-09-30T01:42:10Z SYNC vm=trader-p19-1 verified_files=42 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P19-fast-reader/results/vmout
+- 2026-09-30T01:47:31Z SYNC vm=trader-p19-1 verified_files=44 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P19-fast-reader/results/vmout
+- 2026-09-30T01:52:55Z SYNC vm=trader-p19-1 verified_files=105 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P19-fast-reader/results/vmout
+- 2026-09-30T02:03:23Z DELETE vm=trader-p19-1 epoch=1790733802 reason="gone without delete (preempted or max-run)" spend_now=0.85
+- 2026-09-30T02:08:56Z CREATE vm=trader-p19-2 zone=us-east1-b epoch=1790734136 type=c2d-highcpu-32 prov=on-demand max_run=3h rate_ceiling=1.20 spend_before=0.85
+- 2026-09-30T02:10:33Z READY vm=trader-p19-2 ip=[ip-removed] cpus=32 torch=2.14.0+cpu 
+- 2026-09-30T02:11:19Z START vm=trader-p19-2 queue=main2.txt jobs=45 parallel=16
+- 2026-09-30T02:16:03Z SYNC vm=trader-p19-2 verified_files=111 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P19-fast-reader/results/vmout
+- 2026-09-30T02:21:22Z SYNC vm=trader-p19-2 verified_files=111 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P19-fast-reader/results/vmout
+- 2026-09-30T02:26:40Z SYNC vm=trader-p19-2 verified_files=111 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P19-fast-reader/results/vmout
+- 2026-09-30T02:32:03Z SYNC vm=trader-p19-2 verified_files=111 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P19-fast-reader/results/vmout
+- 2026-09-30T02:37:25Z SYNC vm=trader-p19-2 verified_files=111 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P19-fast-reader/results/vmout
+- 2026-09-30T02:42:47Z SYNC vm=trader-p19-2 verified_files=111 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P19-fast-reader/results/vmout
+- 2026-09-30T02:48:10Z SYNC vm=trader-p19-2 verified_files=111 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P19-fast-reader/results/vmout
+- 2026-09-30T02:53:31Z SYNC vm=trader-p19-2 verified_files=117 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P19-fast-reader/results/vmout
+- 2026-09-30T02:58:48Z SYNC vm=trader-p19-2 verified_files=137 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P19-fast-reader/results/vmout
+- 2026-09-30T03:04:06Z SYNC vm=trader-p19-2 verified_files=137 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P19-fast-reader/results/vmout
+- 2026-09-30T03:09:23Z SYNC vm=trader-p19-2 verified_files=142 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P19-fast-reader/results/vmout
+- 2026-09-30T03:14:38Z SYNC vm=trader-p19-2 verified_files=163 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P19-fast-reader/results/vmout
+- 2026-09-30T03:19:53Z SYNC vm=trader-p19-2 verified_files=172 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P19-fast-reader/results/vmout
+- 2026-09-30T03:25:07Z SYNC vm=trader-p19-2 verified_files=175 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P19-fast-reader/results/vmout
+- 2026-09-30T03:30:21Z SYNC vm=trader-p19-2 verified_files=196 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P19-fast-reader/results/vmout
+- 2026-09-30T03:35:34Z SYNC vm=trader-p19-2 verified_files=212 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P19-fast-reader/results/vmout
+- 2026-09-30T03:40:48Z SYNC vm=trader-p19-2 verified_files=214 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P19-fast-reader/results/vmout
+- 2026-09-30T03:46:01Z SYNC vm=trader-p19-2 verified_files=220 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P19-fast-reader/results/vmout
+- 2026-09-30T03:48:00Z SYNC vm=trader-p19-2 verified_files=221 sha256_mismatch_skipped=0 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P19-fast-reader/results/vmout
+- 2026-09-30T03:49:00Z DELETE vm=trader-p19-2 epoch=1790740140 reason="done" leftover_disks="none" spend_now=2.85

@@ -1,0 +1,16 @@
+{
+ "id": "E-MR-17",
+ "question": "Does belief liquidity that grows with depth (b_t = t or sqrt(t), positions carried over, each step settled at its own liquidity) stop the runaway and keep the 100x accuracy?",
+ "status": "No gain",
+ "setup": "Kelvin's arms: at step t the belief LMSR has liquidity b_t = t (liqt) or sqrt(t) (liqsqrt), b_1 = 1; positions q carry over, so the opening price is softmax(q_(t-1) / b_t) and relaxes toward the middle without trades; the logit is the running average of trades (step size 1/t); settlement is each step's log-score change at its own b. Otherwise the economy (econ_cov_voc). Exact-string accuracy (every output bit right) at L320 with 320 steps (10x) and L3200 with 3200 steps (100x), 3 seeds, t-intervals, on the phase-2 sets (40 strings per seed at L3200); 'fresh' = 200 new strings per seed at L3200 (seed 777 + L), k/n pooled with a 95% Wilson interval. Every arm: 3000 iterations, batch 64, D = 24, lengths 8 to 32. Early steps: accuracy against depth at L32, L320, L3200.",
+ "result": "The logits stay bounded as designed, but accuracy falls at long lengths. b_t = t: 0.89 +- 0.19 / 0.34 +- 0.26, log loss 0.608 / 12.6 nats per bit; fresh 214/600 [0.32, 0.40], log loss 12.1; sqrt(t): 1.00 +- 0.01 / 0.71 +- 0.18, log loss 0.001 / 91.9 nats per bit; fresh 454/600 [0.72, 0.79], log loss 64.2; against unregularized 1.00 / 0.93 +- 0.14, log loss 0.000 / 501 nats per bit; fresh 557/600 [0.90, 0.95], log loss 341. Median |logit| of wrong bits 41.5 against 17,112. Early information is not diluted in the training range (L32: 0.58 at 6 steps against 0.53) but is at long lengths (L320: 0.55 against 0.79 at 16 steps; L3200: 0.25 against 0.78 at 320 steps). More steps make up for it at L320 (0.84 at 320, 0.97 at 3,200, 1.00 at 32,000 steps). Neither variant beats the unregularized accuracy or the logit cap's log loss (E-MR-16).",
+ "files": [
+  "market-resnet/RESULTS.md",
+  "market-resnet/econ2.py",
+  "market-resnet/mkregjobs3.sh",
+  "market-resnet/reeval.py",
+  "market-resnet/results/p3_summary.json",
+  "market-resnet/charts/p3_depth_L3200_reg.json",
+  "market-resnet/charts/p3_depth_L32_reg.json"
+ ]
+}

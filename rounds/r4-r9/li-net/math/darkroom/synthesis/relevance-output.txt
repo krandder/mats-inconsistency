@@ -1,0 +1,43 @@
+E=2000 episodes x 3 looks, 16 seeds. Rooms ['D', 'N', 'TV', 'S'], K=[2, 2, 64, 2]. Success: S only 0.84, nothing 0.50.
+last-qtr = share of looks in the last quarter; cum looks = cumulative looks, averaged over seeds
+
+== 1. slab prior Dir(1): every room a priori relevant
+slab a0=1                          goal-greedy   last-qtr D:0.188 N:0.000 TV:0.438 S:0.375 | succ 0.622 | not-in-S 10/16 | cum looks D+N 88/298/1142  TV 148/640/2609  (at E=125/500/2000)
+slab a0=1                          goal-thompson last-qtr D:0.001 N:0.001 TV:0.004 S:0.994 | succ 0.842 | not-in-S 0/16 | cum looks D+N 43/75/92  TV 246/472/501  (at E=125/500/2000)
+slab a0=1                          curiosity     last-qtr D:0.000 N:0.000 TV:0.010 S:0.990 | succ 0.845 | not-in-S 0/16 | cum looks D+N 6/29/38  TV 358/1059/1427  (at E=125/500/2000)
+slab a0=1                          surprise-min  last-qtr D:0.812 N:0.000 TV:0.000 S:0.188 | succ 0.561 | not-in-S 13/16 | cum looks D+N 305/1219/4874  TV 0/0/0  (at E=125/500/2000)
+slab a0=1                          random        last-qtr D:0.249 N:0.249 TV:0.251 S:0.250 | succ 0.638 | not-in-S 16/16 | cum looks D+N 188/750/2989  TV 93/376/1507  (at E=125/500/2000)
+
+== 2. forced dark start: first 5 episodes look only at D, N, TV
+slab a0=1 forced                   goal-greedy   last-qtr D:0.000 N:0.000 TV:0.999 S:0.000 | succ 0.502 | not-in-S 16/16 | cum looks D+N 23/23/25  TV 352/1477/5975  (at E=125/500/2000)
+slab a0=1 forced                   goal-thompson last-qtr D:0.001 N:0.002 TV:0.005 S:0.991 | succ 0.841 | not-in-S 0/16 | cum looks D+N 35/62/84  TV 232/449/491  (at E=125/500/2000)
+slab a0=1 forced                   curiosity     last-qtr D:0.000 N:0.000 TV:0.014 S:0.986 | succ 0.849 | not-in-S 0/16 | cum looks D+N 11/25/37  TV 350/977/1483  (at E=125/500/2000)
+
+== 3. spike prior: P(room irrelevant to the goal) = rho
+spike rho=0.5 a0=1                 goal-greedy   last-qtr D:0.020 N:0.165 TV:0.003 S:0.813 | succ 0.774 | not-in-S 3/16 | cum looks D+N 172/547/1390  TV 62/75/80  (at E=125/500/2000)
+spike rho=0.5 a0=1                 goal-thompson last-qtr D:0.000 N:0.002 TV:0.003 S:0.996 | succ 0.838 | not-in-S 0/16 | cum looks D+N 48/60/74  TV 64/92/113  (at E=125/500/2000)
+spike rho=0.5 a0=1                 curiosity     last-qtr D:0.000 N:0.000 TV:0.001 S:0.999 | succ 0.844 | not-in-S 0/16 | cum looks D+N 12/26/29  TV 306/588/647  (at E=125/500/2000)
+spike rho=0.1 a0=1                 goal-greedy   last-qtr D:0.062 N:0.125 TV:0.000 S:0.812 | succ 0.783 | not-in-S 3/16 | cum looks D+N 138/598/1599  TV 69/102/103  (at E=125/500/2000)
+spike rho=0.1 a0=1                 goal-thompson last-qtr D:0.001 N:0.001 TV:0.003 S:0.995 | succ 0.847 | not-in-S 0/16 | cum looks D+N 52/71/86  TV 85/104/123  (at E=125/500/2000)
+spike rho=0.1 a0=1                 curiosity     last-qtr D:0.000 N:0.000 TV:0.000 S:1.000 | succ 0.843 | not-in-S 0/16 | cum looks D+N 18/37/40  TV 297/614/672  (at E=125/500/2000)
+spike rho=0.9 a0=1                 goal-greedy   last-qtr D:0.022 N:0.039 TV:0.001 S:0.938 | succ 0.819 | not-in-S 1/16 | cum looks D+N 165/521/1157  TV 59/71/77  (at E=125/500/2000)
+spike rho=0.9 a0=1                 goal-thompson last-qtr D:0.000 N:0.000 TV:0.004 S:0.996 | succ 0.851 | not-in-S 0/16 | cum looks D+N 50/53/58  TV 40/74/100  (at E=125/500/2000)
+spike rho=0.9 a0=1                 curiosity     last-qtr D:0.000 N:0.000 TV:0.000 S:1.000 | succ 0.841 | not-in-S 0/16 | cum looks D+N 10/28/29  TV 346/823/874  (at E=125/500/2000)
+
+== 4. Dirichlet concentration a0 (the knob that flipped other candidates)
+slab a0=0.1                        goal-thompson last-qtr D:0.002 N:0.001 TV:0.005 S:0.992 | succ 0.842 | not-in-S 0/16 | cum looks D+N 28/60/80  TV 279/615/670  (at E=125/500/2000)
+slab a0=0.1                        curiosity     last-qtr D:0.000 N:0.000 TV:0.017 S:0.983 | succ 0.845 | not-in-S 0/16 | cum looks D+N 10/22/34  TV 347/1001/1520  (at E=125/500/2000)
+spike a0=0.1                       goal-thompson last-qtr D:0.001 N:0.001 TV:0.001 S:0.998 | succ 0.844 | not-in-S 0/16 | cum looks D+N 49/59/69  TV 69/79/87  (at E=125/500/2000)
+spike a0=0.1                       curiosity     last-qtr D:0.000 N:0.000 TV:0.000 S:1.000 | succ 0.845 | not-in-S 0/16 | cum looks D+N 13/29/32  TV 329/948/1071  (at E=125/500/2000)
+slab a0=0.5                        goal-thompson last-qtr D:0.001 N:0.002 TV:0.005 S:0.991 | succ 0.845 | not-in-S 0/16 | cum looks D+N 38/72/95  TV 266/531/588  (at E=125/500/2000)
+slab a0=0.5                        curiosity     last-qtr D:0.000 N:0.000 TV:0.006 S:0.993 | succ 0.845 | not-in-S 0/16 | cum looks D+N 10/30/39  TV 354/1075/1477  (at E=125/500/2000)
+spike a0=0.5                       goal-thompson last-qtr D:0.002 N:0.001 TV:0.003 S:0.994 | succ 0.849 | not-in-S 0/16 | cum looks D+N 44/63/79  TV 50/81/108  (at E=125/500/2000)
+spike a0=0.5                       curiosity     last-qtr D:0.000 N:0.000 TV:0.001 S:0.999 | succ 0.845 | not-in-S 0/16 | cum looks D+N 15/30/33  TV 325/734/772  (at E=125/500/2000)
+slab a0=4.0                        goal-thompson last-qtr D:0.001 N:0.001 TV:0.000 S:0.998 | succ 0.848 | not-in-S 0/16 | cum looks D+N 54/71/80  TV 148/193/193  (at E=125/500/2000)
+slab a0=4.0                        curiosity     last-qtr D:0.000 N:0.000 TV:0.001 S:0.999 | succ 0.843 | not-in-S 0/16 | cum looks D+N 0/19/23  TV 375/1164/1350  (at E=125/500/2000)
+spike a0=4.0                       goal-thompson last-qtr D:0.000 N:0.001 TV:0.000 S:0.999 | succ 0.849 | not-in-S 0/16 | cum looks D+N 35/42/52  TV 41/44/44  (at E=125/500/2000)
+spike a0=4.0                       curiosity     last-qtr D:0.000 N:0.000 TV:0.000 S:1.000 | succ 0.847 | not-in-S 0/16 | cum looks D+N 6/27/27  TV 362/672/675  (at E=125/500/2000)
+
+== 5. spike prior, forced dark start
+spike rho=0.5 forced               goal-greedy   last-qtr D:0.041 N:0.278 TV:0.003 S:0.678 | succ 0.728 | not-in-S 5/16 | cum looks D+N 204/1050/3001  TV 151/196/207  (at E=125/500/2000)
+spike rho=0.5 forced               goal-thompson last-qtr D:0.001 N:0.001 TV:0.002 S:0.996 | succ 0.844 | not-in-S 0/16 | cum looks D+N 51/61/74  TV 64/98/119  (at E=125/500/2000)

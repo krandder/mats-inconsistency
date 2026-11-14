@@ -1,0 +1,28 @@
+- 2026-09-29T12:57:32Z CREATE vm=trader-cat-p7-1 zone=us-central1-a epoch=1790686652 type=c2d-highcpu-32 spot max_run=6h rate_ceiling=1.20 spend_before=0
+- 2026-09-29T12:59:00Z READY vm=trader-cat-p7-1 ip=[ip-removed] cpus=32 torch=2.14.0+cpu 
+- 2026-09-29T13:01:46Z START vm=trader-cat-p7-1 queue=vm_queue.txt jobs=131 parallel=31
+- 2026-09-29T13:03:43Z SYNC vm=trader-cat-p7-1 verified_files=69 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P7/results
+- 2026-09-29T13:09:15Z SYNC vm=trader-cat-p7-1 verified_files=73 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P7/results
+- 2026-09-29T13:14:53Z SYNC-PARTIAL vm=trader-cat-p7-1 (files changing during tar skipped)
+- 2026-09-29T13:14:54Z SYNC vm=trader-cat-p7-1 verified_files=282 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P7/results
+- 2026-09-29T13:19:25Z SYNC vm=trader-cat-p7-1 verified_files=314 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P7/results
+- 2026-09-29T13:20:22Z SYNC vm=trader-cat-p7-1 verified_files=314 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P7/results
+- 2026-09-29T13:22:26Z START vm=trader-cat-p7-1 queue=vm_queue2.txt jobs=8 parallel=8
+- 2026-09-29T13:30:17Z SYNC vm=trader-cat-p7-1 verified_files=350 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P7/results
+- 2026-09-29T13:31:47Z DELETE vm=trader-cat-p7-1 epoch=1790688706 reason="grid done" leftover_disks="none" spend_now=0.68
+- 2026-09-29T13:33:58Z CREATE vm=trader-cat-p7-2 zone=us-central1-a epoch=1790688838 type=c2d-highcpu-16 spot max_run=6h rate_ceiling=1.20 spend_before=0.68
+- 2026-09-29T13:35:27Z READY vm=trader-cat-p7-2 ip=[ip-removed] cpus=16 torch=2.14.0+cpu 
+- 2026-09-29T13:36:45Z START vm=trader-cat-p7-2 queue=vm_queue3.txt jobs=15 parallel=15
+- 2026-09-29T13:39:41Z SYNC vm=trader-cat-p7-2 verified_files=32 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P7/results
+- 2026-09-29T13:45:03Z SYNC vm=trader-cat-p7-2 verified_files=35 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P7/results
+- 2026-09-29T14:02:58Z DELETE vm=trader-cat-p7-2 epoch=1790689822 reason="gone without delete: spot preempted at 2026-09-29T06:50:22.284-07:00" leftover_disks="none" spend_now=1.26
+- 2026-09-29T14:04:46Z CREATE vm=trader-cat-p7-3 zone=us-central1-b epoch=1790690686 type=c2d-highcpu-8 spot max_run=6h rate_ceiling=1.20 spend_before=1.01
+- 2026-09-29T14:06:25Z READY vm=trader-cat-p7-3 ip=[ip-removed] cpus=8 torch=2.14.0+cpu 
+- 2026-09-29T14:07:22Z START vm=trader-cat-p7-3 queue=vm_queue4.txt jobs=3 parallel=3
+- 2026-09-29T14:10:08Z SYNC vm=trader-cat-p7-3 verified_files=5 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P7/results
+- 2026-09-29T14:15:29Z SYNC vm=trader-cat-p7-3 verified_files=5 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P7/results
+- 2026-09-29T14:20:57Z SYNC vm=trader-cat-p7-3 verified_files=5 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P7/results
+- 2026-09-29T14:26:28Z SYNC vm=trader-cat-p7-3 verified_files=5 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P7/results
+- 2026-09-29T14:38:23Z SYNC vm=trader-cat-p7-3 verified_files=11 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P7/results
+- 2026-09-29T14:38:44Z SYNC vm=trader-cat-p7-3 verified_files=11 dest=/home/agent/workspaces/calibrated-ai/trader-economy/puzzles/P7/results
+- 2026-09-29T14:40:09Z DELETE vm=trader-cat-p7-3 epoch=1790692809 reason="Bl D4 rerun done" leftover_disks="none" spend_now=1.72

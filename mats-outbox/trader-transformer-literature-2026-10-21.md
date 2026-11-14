@@ -1,0 +1,60 @@
+# Trader-transformer: literature check for (A), (B), (C), 2026-10-21
+
+The design: one token per trader; a causal transformer over the traders; the prediction comes from the last trader's final layer.
+Every arXiv id below was checked on its export.arxiv.org abstract page today (title and date match). "Predicts" means what the result suggests for our setup; none of it was tested on traders.
+
+## (A) Do we need cross-trader attention at every layer?
+- **He et al. 2024, "What Matters in Transformers? Not All Attention is Needed", arXiv:2406.15786.** Finding: many attention layers, mostly the deep ones, are nearly redundant. Llama-2-70B loses 2.4% performance with half its attention layers removed.
+  Predicts: attention between traders in a few layers may do almost all the work, with per-trader MLP layers in between. Test: attention in every layer vs only the first k vs only the last k layers.
+- **Waleffe et al. 2024, "An Empirical Study of Mamba-based Language Models", arXiv:2406.07887.** Finding: at 8B, a hybrid with only 7% attention layers (the rest Mamba-2 and MLP) beats the plain transformer on all 12 standard tasks. Pure Mamba falls behind on copying and in-context tasks.
+  Predicts: a running consensus state passed from trader to trader (an SSM) is cheap, but it will fail when the readout needs one specific earlier trader's information. A few full attention layers fix that.
+- **Sun et al. 2024, YOCO, arXiv:2405.05254; Brandon et al. 2024, Cross-Layer Attention, arXiv:2405.12981.** Finding: the keys and values that later tokens read can be computed once (YOCO) or shared between adjacent layers (CLA) with little loss in accuracy.
+  Predicts: each trader can write a single message, and every layer of later traders reads that same message. This is the "one rich message per trader" version of the design, and it measures the message size directly.
+- **Ding et al. 2023, "CausalLM is not optimal for in-context learning", arXiv:2308.06912.** Finding: when the in-context examples can all attend to each other (prefix-LM), results beat causal masking on every task tested. In theory the causal model behaves like online gradient descent, which stays suboptimal.
+  Predicts: the causal trader model should score below the existing bidirectional `full_context_transformer` (aggbench). The size of that gap is the cost of the sequential protocol.
+- Open: no paper varies the number of cross-token attention layers in a set-aggregation or in-context task where the Bayes-optimal answer is known. Our simulators make that measurement possible.
+
+## (B) Can it train with loss only on the final trader?
+- **Müller et al. 2022, PFNs, arXiv:2112.10510 (also TabPFN, arXiv:2207.01848).** Finding: loss only on held-out query positions, given the set of the other points, gives near-exact posteriors (it matches Gaussian processes).
+  Predicts: final-only loss works, provided the model sees many sampled tasks. The simulators give those for free.
+- **Garg et al. 2022, "What Can Transformers Learn In-Context?", arXiv:2208.01066.** Setup: the loss is averaged over every prefix length; models match least squares and lasso. The paper does not compare this with final-only loss.
+  Predicts: per-trader loss (the prediction after k traders) is free in our setup, gives k times more training signal, and trains the "consensus so far" readout at the same time.
+- **Zhang, Frei & Bartlett 2023, arXiv:2306.09927.** Finding: a one-layer linear-attention model trained with loss only on the final query provably reaches a global optimum on linear regression.
+  Predicts: final-only loss is not inherently broken. The open questions are speed and depth.
+- Open: I found no controlled comparison of final-only loss against loss at every position at equal compute (Exa and arXiv searches, 2026-10-21). We could run it ourselves in a day: same model, both losses, plus a data-scaling curve.
+- Order: **Haviv et al. 2022, arXiv:2203.16634.** Finding: causal transformers without positional encodings still learn absolute position from the mask. So the trader model will be order-sensitive even without positions. Train it on random trader orders and report how much the answer varies across orders.
+
+## (C) A residual stream along the trader direction, not along depth
+In a standard transformer, layer l of trader t reads only layer l-1 of earlier traders. Each earlier trader's top-layer conclusion never reaches later traders, so the total depth is capped by the number of layers. These papers change that.
+- **Fan et al. 2020, Feedback Transformer, arXiv:2002.09402.** Every layer of trader t attends to one memory per earlier trader, made from all of that trader's layers (including the top). The lowest layer of the current token sees the highest layer of the past. Small, shallow models beat much larger transformers. Cost: training becomes sequential over tokens.
+  Predicts: this is the closest match to Kelvin's sequential "CEO passes the consensus on" protocol. With fewer than ~1000 traders, sequential training is affordable.
+- **Oncescu et al. 2026, "The Recurrent Transformer", arXiv:2604.21215.** Each layer attends to keys and values computed from its own outputs on earlier tokens, which gives one recurrent memory per layer. It beats a parameter-matched transformer on C4 with fewer layers, and an exact tiling algorithm keeps training efficient. Recent, few citations.
+- **Tang & Lu 2026, Turbo Connection, arXiv:2602.17993.** It adds residual connections from the higher layers of token t to the lower layers of token t+1. Dense connections matter: passing a single vector works worse. A fine-tuned Qwen-3-1.7B goes from 53.78% to 100% on Parity. Recent.
+- The far end of this line is RNNs, SSMs and linear attention. **Katharopoulos et al. 2020, arXiv:2006.16236**, shows linear attention is an RNN. Here the whole memory is one state passed along the tokens, which is cheap but loses the ability to look up a specific earlier trader (see Waleffe in (A)).
+- The other direction, for contrast: DenseFormer (arXiv:2402.02622), Hyper-connections (arXiv:2409.19606) and value residual (arXiv:2410.17897) strengthen the residual stream along depth within a token. They give small perplexity gains and are not what Kelvin describes.
+- Open: nobody has compared depth-wise and trader-wise residuals for aggregating private information. Comparison at equal parameters: standard causal transformer vs Feedback Transformer vs Recurrent Transformer vs a pure recurrent consensus state, measured as the gap to the Bayes-optimal posterior as the number of traders grows.
+
+## Already done: agents as tokens
+- **Wen et al. 2022, Multi-Agent Transformer, arXiv:2205.14953.** Agents form a sequence, and a causal decoder outputs each agent's action given the agents before it (reinforcement learning, not information aggregation).
+- **Huang et al. 2020, Anchor Attention, arXiv:2003.12447.** Attention over forecasters and questions to aggregate crowd forecasts; it beats prior aggregators on Good Judgment Project data. Its inputs are scalar forecasts, not private observations.
+
+## (D) The 3-D grid (depth, trader, rollout): information flows along every dimension
+Kelvin's question, after his correction ("not attention ... information can flow in any permutation"): cell (d, t, r) receives input from its predecessor along each dimension, (d-1,t,r), (d,t-1,r) and (d,t,r-1). Then every monotone path of unit steps is present, in any order: (0,0)->(0,1)->(1,1) and (0,0)->(1,0)->(1,1) both reach (1,1), and the cell adds up their contributions.
+- **Graves, Fernández & Schmidhuber 2007, Multi-Dimensional RNNs, arXiv:0705.2011.** Exactly this graph. Each cell of an n-D grid takes the hidden state of its predecessor along each of the n dimensions, so it sees everything in the box behind it through all lattice paths. It was used on 2-D images.
+- **Kalchbrenner, Danihelka & Graves 2015, Grid LSTM, arXiv:1507.01526.** The same graph, with depth as one of the grid dimensions. Each dimension has its own LSTM memory, so information is gated along depth as well as along time or space. A 2-D Grid LSTM (time x depth) is Kelvin's (depth, token) grid, and adding the rollout axis makes it 3-D.
+  Predicts: a 3-D Grid LSTM over (depth, trader, rollout) is the literal version of the idea. It is the first baseline to build and needs no new architecture.
+- **Compared with the standard transformer**, there are only two kinds of step: +1 depth for the same token (the residual) and +1 depth from any earlier token (attention). Layer l at token t does read layer l's KV cache from earlier tokens (Kelvin, 10-21: "the KV cache will pass the info along to the same layer, next-token"). But that cache is computed from the residual stream entering layer l. So what layer l itself computes at token t-1 reaches token t only from layer l+1 onward, and a chain that alternates "compute at t-1, pass to t, compute again" uses one layer per hop. That is about log k layers for k hops when attention doubles its reach (2402.09268).
+  **Merrill & Sabharwal 2022, arXiv:2207.00729:** fixed-depth transformers sit in constant-depth threshold circuits (TC0), so they cannot do some inherently sequential computations at any length.
+  **Sanford, Hsu & Telgarsky 2024, arXiv:2402.09268:** depth is the number of parallel communication rounds. Their paper body shows a k-hop pointer chain takes about log k layers, by doubling, not k layers.
+  **Merrill, Petty & Sabharwal 2024, arXiv:2404.08819:** linear SSMs such as Mamba have the same TC0 limit even though they pass a state along tokens.
+  Predicts: the grid's same-depth step along traders is what removes the layer cap on serial updates (as in the Feedback and Recurrent Transformers in (C)). The question is whether aggregating private signals needs serial depth at all.
+- **Cost: wavefront order.** A cell can run only once its predecessors are done. The cells with equal d+t+r form one wavefront and run in parallel, so a grid of size D x T x R takes D+T+R-2 sequential steps instead of D.
+  **van den Oord et al. 2016, PixelRNN, arXiv:1601.06759**, implements this as a skewed "diagonal" pass in 2-D.
+  General rule: along a dimension where information moves at the same depth, computation is sequential. A dimension that is read only from the previous layer (as tokens are in a standard transformer) stays parallel. You can pick per dimension. For example, run traders sequentially at the same depth and run rollouts in parallel by reading only from the previous layer.
+- Superposed paths: **Veit et al. 2016, arXiv:1605.06431** shows that a residual network acts like a sum over paths of different lengths. Elhage et al. 2021, "A Mathematical Framework for Transformer Circuits" (transformer-circuits.pub, not on arXiv), writes a transformer's output as a sum over paths through heads. Kelvin's grid is the same sum over paths, with more kinds of step.
+- Attention-based relatives (secondary). These attend along one axis at a time and read only the previous layer, so they stay parallel and have no same-depth flow.
+  MSA Transformer (Rao et al. 2021, bioRxiv 10.1101/2021.02.12.430858): alternating row and column attention over many aligned sequences, the closest analogue of traders x rollouts.
+  Axial attention (Ho et al. 2019, arXiv:1912.12180). TimeSformer (arXiv:2102.05095) and ViViT (arXiv:2103.15691): factorized space and time attention.
+  TabPFN v2 (Hollmann et al. 2025, Nature, doi:10.1038/s41586-024-08328-6): alternating attention across samples and across features.
+  The N-D SSM layers (S4ND, arXiv:2210.06583; 2-D SSM, arXiv:2306.06635) are linear relatives of the MD-RNN grid that can be computed in parallel (2-D SSM uses a true 2-D recurrence; S4ND combines 1-D SSMs, one per axis).
+- Open: I found nothing that runs an MD-RNN or Grid LSTM, or a same-depth-flow transformer, over agents x rollouts for aggregation. Comparison at equal parameters: 3-D Grid LSTM vs axial (row/column) transformer vs a Feedback-style transformer along traders, with accuracy plotted against wall-clock time, since the wavefront is slower.

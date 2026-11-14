@@ -1,0 +1,256 @@
+{
+ "stage0_both_models": {
+  "L4h": 0.67,
+  "usd_at_ceiling": 0.58,
+  "what": "Gate 0 on both model sizes: 100 boards x 16 chains x L in {64, 256}, R = 1, plus 5 timed GRPO steps each"
+ },
+ "rate_usd_h_ceiling": 0.87,
+ "harness_tokens": {
+  "belief": 92,
+  "proposal": 134,
+  "forecast": 138,
+  "commit": 167,
+  "no_grad_per_episode": 1888,
+  "grad_per_episode": 810
+ },
+ "chain_prompt_tokens_mean": 311,
+ "chain_prompt_tokens_max": 317,
+ "chain_prompt_example": "Battleship, 5 columns x 4 rows, cells named row by row: A B C D E / F G H I J / K L M N O / P Q R S T.\nShips: one of length 3 and one of length 2, each straight (horizontal or vertical), not overlapping. Every layout that follows these rules was equally likely.\nProbe reports (each is wrong with probability 0.15): S miss; C hit; G hit; J hit; B miss; E miss.\nShots fired (always correct): T miss; M miss; A miss; P miss.\nStatements:\nS1: cell L (row 2, column 1) is occupied by a ship\nS2: cell A (row 0, column 0) is occupied by a ship\nS3: the ship of length 2 lies horizontally in row 0\nS4: cell N (row 2, column 3) is occupied by a ship\nS5: cell G (row 1, column 1) is occupied by a ship\nS6: cell D (row 0, column 3) is occupied by a ship\nReason briefly, then end with one line per statement, exactly like\nS1: p=0.70 conf=0.8\nwhere p is your probability that the statement is true and conf (0 to 1) is how sure you are of p.",
+ "rates": {
+  "Qwen/Qwen3-0.6B": {
+   "t_rollout": 6.3,
+   "t_train": 6.5,
+   "episodes": 32,
+   "probe_run": "q06-P",
+   "r_fwd_tok_s": 9581.0,
+   "r_fwd": 9581.0,
+   "r_train_tok_s": 4006.5,
+   "r_train": 4006.5
+  },
+  "Qwen/Qwen3-1.7B": {
+   "t_rollout": 11.3,
+   "t_train": 10.1,
+   "episodes": 32,
+   "probe_run": "q17-P",
+   "r_fwd_tok_s": 5330.5,
+   "r_fwd": 5330.5,
+   "r_train_tok_s": 2575.2,
+   "r_train": 2575.2
+  }
+ },
+ "assumptions": {
+  "tau_s_per_decode_step": {
+   "Qwen/Qwen3-0.6B": 0.035,
+   "Qwen/Qwen3-1.7B": 0.045
+  },
+  "tau_long_factor": 1.5,
+  "setup_h_per_vm": 0.1
+ },
+ "plans": {
+  "0.6B, full plan": {
+   "model": "Qwen/Qwen3-0.6B",
+   "tau_s_per_decode_step": 0.035,
+   "grpo_step_s": 36.7,
+   "grpo_step_parts_s": {
+    "decode": 11.2,
+    "prefill": 4.2,
+    "policy_fwd_bwd": 15.0,
+    "reference_fwd": 6.3
+   },
+   "train_L4h_per_arm_seed": 1.59,
+   "eval_L4h_per_checkpoint": 0.62,
+   "long_chain_L4h_per_checkpoint": 0.2,
+   "roundrobin_ablation_L4h": 0.61,
+   "stage0_L4h": 0.29,
+   "settings": {
+    "eval_boards": 100,
+    "train_steps": 150,
+    "trained_arms": 3,
+    "seeds": 3,
+    "s0_evals": 3,
+    "long_chain_evals": 6,
+    "L_eval": [
+     64,
+     256
+    ],
+    "n_full_L64": [
+     1,
+     4,
+     16,
+     64
+    ],
+    "n_L256_rounds2_3": [
+     1,
+     4,
+     16
+    ]
+   },
+   "total_L4h": 24.9,
+   "total_usd_at_ceiling": 21.7
+  },
+  "0.6B, decoding 2x slower": {
+   "model": "Qwen/Qwen3-0.6B",
+   "tau_s_per_decode_step": 0.07,
+   "grpo_step_s": 47.9,
+   "grpo_step_parts_s": {
+    "decode": 22.4,
+    "prefill": 4.2,
+    "policy_fwd_bwd": 15.0,
+    "reference_fwd": 6.3
+   },
+   "train_L4h_per_arm_seed": 2.09,
+   "eval_L4h_per_checkpoint": 0.93,
+   "long_chain_L4h_per_checkpoint": 0.41,
+   "roundrobin_ablation_L4h": 0.96,
+   "stage0_L4h": 0.38,
+   "settings": {
+    "eval_boards": 100,
+    "train_steps": 150,
+    "trained_arms": 3,
+    "seeds": 3,
+    "s0_evals": 3,
+    "long_chain_evals": 6,
+    "L_eval": [
+     64,
+     256
+    ],
+    "n_full_L64": [
+     1,
+     4,
+     16,
+     64
+    ],
+    "n_L256_rounds2_3": [
+     1,
+     4,
+     16
+    ]
+   },
+   "total_L4h": 34.9,
+   "total_usd_at_ceiling": 30.4
+  },
+  "0.6B, decoding 2x slower, no S2, long chains for S1 only": {
+   "model": "Qwen/Qwen3-0.6B",
+   "tau_s_per_decode_step": 0.07,
+   "grpo_step_s": 47.9,
+   "grpo_step_parts_s": {
+    "decode": 22.4,
+    "prefill": 4.2,
+    "policy_fwd_bwd": 15.0,
+    "reference_fwd": 6.3
+   },
+   "train_L4h_per_arm_seed": 2.09,
+   "eval_L4h_per_checkpoint": 0.93,
+   "long_chain_L4h_per_checkpoint": 0.41,
+   "roundrobin_ablation_L4h": 0.96,
+   "stage0_L4h": 0.38,
+   "settings": {
+    "eval_boards": 100,
+    "train_steps": 150,
+    "trained_arms": 2,
+    "seeds": 3,
+    "s0_evals": 3,
+    "long_chain_evals": 3,
+    "L_eval": [
+     64,
+     256
+    ],
+    "n_full_L64": [
+     1,
+     4,
+     16,
+     64
+    ],
+    "n_L256_rounds2_3": [
+     1,
+     4,
+     16
+    ]
+   },
+   "total_L4h": 24.6,
+   "total_usd_at_ceiling": 21.4
+  },
+  "1.7B, no S2, long chains for S1 only": {
+   "model": "Qwen/Qwen3-1.7B",
+   "tau_s_per_decode_step": 0.045,
+   "grpo_step_s": 56.6,
+   "grpo_step_parts_s": {
+    "decode": 14.4,
+    "prefill": 7.5,
+    "policy_fwd_bwd": 23.4,
+    "reference_fwd": 11.3
+   },
+   "train_L4h_per_arm_seed": 2.45,
+   "eval_L4h_per_checkpoint": 0.95,
+   "long_chain_L4h_per_checkpoint": 0.26,
+   "roundrobin_ablation_L4h": 0.92,
+   "stage0_L4h": 0.38,
+   "settings": {
+    "eval_boards": 100,
+    "train_steps": 150,
+    "trained_arms": 2,
+    "seeds": 3,
+    "s0_evals": 3,
+    "long_chain_evals": 3,
+    "L_eval": [
+     64,
+     256
+    ],
+    "n_full_L64": [
+     1,
+     4,
+     16,
+     64
+    ],
+    "n_L256_rounds2_3": [
+     1,
+     4,
+     16
+    ]
+   },
+   "total_L4h": 26.2,
+   "total_usd_at_ceiling": 22.8
+  },
+  "1.7B, decoding 2x slower, no S2, long chains for S1 only, 80 boards": {
+   "model": "Qwen/Qwen3-1.7B",
+   "tau_s_per_decode_step": 0.09,
+   "grpo_step_s": 71.0,
+   "grpo_step_parts_s": {
+    "decode": 28.8,
+    "prefill": 7.5,
+    "policy_fwd_bwd": 23.4,
+    "reference_fwd": 11.3
+   },
+   "train_L4h_per_arm_seed": 3.09,
+   "eval_L4h_per_checkpoint": 1.08,
+   "long_chain_L4h_per_checkpoint": 0.42,
+   "roundrobin_ablation_L4h": 1.09,
+   "stage0_L4h": 0.5,
+   "settings": {
+    "eval_boards": 80,
+    "train_steps": 150,
+    "trained_arms": 2,
+    "seeds": 3,
+    "s0_evals": 3,
+    "long_chain_evals": 3,
+    "L_eval": [
+     64,
+     256
+    ],
+    "n_full_L64": [
+     1,
+     4,
+     16,
+     64
+    ],
+    "n_L256_rounds2_3": [
+     1,
+     4,
+     16
+    ]
+   },
+   "total_L4h": 32.1,
+   "total_usd_at_ceiling": 27.9
+  }
+ }
+}

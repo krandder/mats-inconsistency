@@ -1,0 +1,543 @@
+{
+  "schema": "aggbench.compression-e2-e3-z8-e4/v1",
+  "harness": {
+    "version": "0.1.0",
+    "git_commit": "633de12cfd8e0b81e9429db43862d54284579d46",
+    "git_dirty": false,
+    "sha256": "8aa9c72c20d1cca7b137e11ff53e2dae0f23e856e0a7a0d5ab5362cb20b3e864",
+    "git_source": "env, clean iff sha256 == AGGBENCH_EXPECT_SHA256"
+  },
+  "track": "EXPLORATORY",
+  "regime": "fresh",
+  "visibility": "none",
+  "alignment": "unaligned",
+  "bits": [
+    2
+  ],
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "arms": [
+    "plain_fsq",
+    "masked_pretrain_fsq",
+    "queried_fsq",
+    "queried_masked_pretrain_fsq"
+  ],
+  "steps": 8000,
+  "batch_size": 512,
+  "device": "cuda",
+  "envs": {
+    "E3-sybil": {
+      "n_agents": 8,
+      "steps": 8000,
+      "n_val": 1000,
+      "n_dev": 2000,
+      "anchors": {
+        "prior_kl": 0.41841416622901556,
+        "anchor_per_piece_fct_fresh": null,
+        "anchor_slot_enc_tr_fresh": null,
+        "control_untrained_slot_enc": null,
+        "extremized_q": {
+          "2": 0.09871962067571216
+        },
+        "llr_quantizer_oracle": {
+          "2": 0.03336575303336378
+        },
+        "queried_llr_qinf_oracle": {
+          "2": 0.03336575303336378
+        }
+      },
+      "aggregated": {
+        "2": {
+          "plain_fsq": {
+            "n_seeds": 3,
+            "regret_mean": 0.06508860504388927,
+            "regret_sd": 0.001169925006881075,
+            "gap_to_per_piece_fct_mean": 0.06508860504388927,
+            "gap_to_slot_enc_tr_mean": 0.06508860504388927,
+            "mean_ci_low": 0.05991900057911761,
+            "mean_ci_high": 0.07054646883072326,
+            "per_seed_regret": [
+              0.0646,
+              0.0667,
+              0.064
+            ],
+            "per_seed_best_step": [
+              8000,
+              7000,
+              8000
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              200,
+              200,
+              200
+            ],
+            "mean_agent_entropy_bits": 1.9181300932355778,
+            "mean_agent_entropy_sd": 0.020997891763251116,
+            "pooled_entropy_bits_mean": 1.918742529211567,
+            "per_seed_distinct_symbols": [
+              4,
+              4,
+              4
+            ],
+            "locality_verified_all": true
+          },
+          "masked_pretrain_fsq": {
+            "n_seeds": 3,
+            "regret_mean": 0.06231818525540894,
+            "regret_sd": 0.0023594204913720647,
+            "gap_to_per_piece_fct_mean": 0.06231818525540894,
+            "gap_to_slot_enc_tr_mean": 0.06231818525540894,
+            "mean_ci_low": 0.057647975913706635,
+            "mean_ci_high": 0.06732888722409293,
+            "per_seed_regret": [
+              0.0627,
+              0.0593,
+              0.065
+            ],
+            "per_seed_best_step": [
+              8000,
+              8000,
+              8000
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              2200,
+              2200,
+              2200
+            ],
+            "mean_agent_entropy_bits": 1.9294409548689069,
+            "mean_agent_entropy_sd": 0.05036944914216316,
+            "pooled_entropy_bits_mean": 1.930116001480591,
+            "per_seed_distinct_symbols": [
+              4,
+              4,
+              4
+            ],
+            "locality_verified_all": true
+          },
+          "queried_fsq": {
+            "n_seeds": 3,
+            "regret_mean": 0.06632598974650884,
+            "regret_sd": 0.005168568256453668,
+            "gap_to_per_piece_fct_mean": 0.06632598974650884,
+            "gap_to_slot_enc_tr_mean": 0.06632598974650884,
+            "mean_ci_low": 0.0611801272708952,
+            "mean_ci_high": 0.07157670389575023,
+            "per_seed_regret": [
+              0.0593,
+              0.0717,
+              0.068
+            ],
+            "per_seed_best_step": [
+              8000,
+              8000,
+              8000
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              200,
+              200,
+              200
+            ],
+            "mean_agent_entropy_bits": 1.9243177142469934,
+            "mean_agent_entropy_sd": 0.015711389916876872,
+            "pooled_entropy_bits_mean": 1.956956662090695,
+            "per_seed_distinct_symbols": [
+              4,
+              4,
+              4
+            ],
+            "locality_verified_all": true
+          },
+          "queried_masked_pretrain_fsq": {
+            "n_seeds": 3,
+            "regret_mean": 0.06764382015826763,
+            "regret_sd": 0.003751004672932793,
+            "gap_to_per_piece_fct_mean": 0.06764382015826763,
+            "gap_to_slot_enc_tr_mean": 0.06764382015826763,
+            "mean_ci_low": 0.06248966815639229,
+            "mean_ci_high": 0.07299512953709582,
+            "per_seed_regret": [
+              0.0669,
+              0.0635,
+              0.0726
+            ],
+            "per_seed_best_step": [
+              5000,
+              7600,
+              8000
+            ],
+            "n_escaped": 3,
+            "per_seed_escape": [
+              2200,
+              2200,
+              2200
+            ],
+            "mean_agent_entropy_bits": 1.9197997630409853,
+            "mean_agent_entropy_sd": 0.021694294174828765,
+            "pooled_entropy_bits_mean": 1.954558426032541,
+            "per_seed_distinct_symbols": [
+              4,
+              4,
+              4
+            ],
+            "locality_verified_all": true
+          }
+        }
+      },
+      "per_seed": {
+        "2": {
+          "plain_fsq": [
+            {
+              "env": "E3-sybil",
+              "arm": "plain_fsq",
+              "b": 2,
+              "seed": 0,
+              "queried": false,
+              "masked_pretrain": false,
+              "locality_verified": true,
+              "regret_quant": {
+                "mean": 0.06459478847795205,
+                "ci_low": 0.059620328364707674,
+                "ci_high": 0.07004503484156584,
+                "n": 2000
+              },
+              "gap_to_per_piece_fct": 0.06459478847795205,
+              "gap_to_slot_enc_tr": 0.06459478847795205,
+              "best_val_kl": 0.05880538592444459,
+              "best_step": 8000,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.9481156495257625,
+                "mean_agent_entropy_bits": 1.947435554986846
+              }
+            },
+            {
+              "env": "E3-sybil",
+              "arm": "plain_fsq",
+              "b": 2,
+              "seed": 1,
+              "queried": false,
+              "masked_pretrain": false,
+              "locality_verified": true,
+              "regret_quant": {
+                "mean": 0.06670306430652666,
+                "ci_low": 0.06099403091853496,
+                "ci_high": 0.07263045189998542,
+                "n": 2000
+              },
+              "gap_to_per_piece_fct": 0.06670306430652666,
+              "gap_to_slot_enc_tr": 0.06670306430652666,
+              "best_val_kl": 0.06356652202706693,
+              "best_step": 7000,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.9080858732823578,
+                "mean_agent_entropy_bits": 1.907631832411649
+              }
+            },
+            {
+              "env": "E3-sybil",
+              "arm": "plain_fsq",
+              "b": 2,
+              "seed": 2,
+              "queried": false,
+              "masked_pretrain": false,
+              "locality_verified": true,
+              "regret_quant": {
+                "mean": 0.06396796234718913,
+                "ci_low": 0.059142642454110175,
+                "ci_high": 0.06896391975061851,
+                "n": 2000
+              },
+              "gap_to_per_piece_fct": 0.06396796234718913,
+              "gap_to_slot_enc_tr": 0.06396796234718913,
+              "best_val_kl": 0.06003985729419597,
+              "best_step": 8000,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.9000260648265805,
+                "mean_agent_entropy_bits": 1.8993228923082377
+              }
+            }
+          ],
+          "masked_pretrain_fsq": [
+            {
+              "env": "E3-sybil",
+              "arm": "masked_pretrain_fsq",
+              "b": 2,
+              "seed": 0,
+              "queried": false,
+              "masked_pretrain": true,
+              "locality_verified": true,
+              "regret_quant": {
+                "mean": 0.06268417017352478,
+                "ci_low": 0.05821804764385366,
+                "ci_high": 0.0673860591161307,
+                "n": 2000
+              },
+              "gap_to_per_piece_fct": 0.06268417017352478,
+              "gap_to_slot_enc_tr": 0.06268417017352478,
+              "best_val_kl": 0.06757031139446545,
+              "best_step": 8000,
+              "escape_step": 2200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.975222425687292,
+                "mean_agent_entropy_bits": 1.9746214511575664
+              }
+            },
+            {
+              "env": "E3-sybil",
+              "arm": "masked_pretrain_fsq",
+              "b": 2,
+              "seed": 1,
+              "queried": false,
+              "masked_pretrain": true,
+              "locality_verified": true,
+              "regret_quant": {
+                "mean": 0.05926293952366712,
+                "ci_low": 0.054842208210316254,
+                "ci_high": 0.06414928649157368,
+                "n": 2000
+              },
+              "gap_to_per_piece_fct": 0.05926293952366712,
+              "gap_to_slot_enc_tr": 0.05926293952366712,
+              "best_val_kl": 0.06046750120287522,
+              "best_step": 8000,
+              "escape_step": 2200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.8598691165439076,
+                "mean_agent_entropy_bits": 1.859157267168803
+              }
+            },
+            {
+              "env": "E3-sybil",
+              "arm": "masked_pretrain_fsq",
+              "b": 2,
+              "seed": 2,
+              "queried": false,
+              "masked_pretrain": true,
+              "locality_verified": true,
+              "regret_quant": {
+                "mean": 0.06500744606903493,
+                "ci_low": 0.05988367188694999,
+                "ci_high": 0.0704513160645744,
+                "n": 2000
+              },
+              "gap_to_per_piece_fct": 0.06500744606903493,
+              "gap_to_slot_enc_tr": 0.06500744606903493,
+              "best_val_kl": 0.057576389611456114,
+              "best_step": 8000,
+              "escape_step": 2200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.9552564622105737,
+                "mean_agent_entropy_bits": 1.9545441462803506
+              }
+            }
+          ],
+          "queried_fsq": [
+            {
+              "env": "E3-sybil",
+              "arm": "queried_fsq",
+              "b": 2,
+              "seed": 0,
+              "queried": true,
+              "masked_pretrain": false,
+              "locality_verified": true,
+              "regret_quant": {
+                "mean": 0.05934031176965595,
+                "ci_low": 0.05477061357016944,
+                "ci_high": 0.06402084460972639,
+                "n": 2000
+              },
+              "gap_to_per_piece_fct": 0.05934031176965595,
+              "gap_to_slot_enc_tr": 0.05934031176965595,
+              "best_val_kl": 0.05428690335063041,
+              "best_step": 8000,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.9289553148168148,
+                "mean_agent_entropy_bits": 1.9233636733618225
+              }
+            },
+            {
+              "env": "E3-sybil",
+              "arm": "queried_fsq",
+              "b": 2,
+              "seed": 1,
+              "queried": true,
+              "masked_pretrain": false,
+              "locality_verified": true,
+              "regret_quant": {
+                "mean": 0.0716819911366639,
+                "ci_low": 0.0659524285562436,
+                "ci_high": 0.07772195720849776,
+                "n": 2000
+              },
+              "gap_to_per_piece_fct": 0.0716819911366639,
+              "gap_to_slot_enc_tr": 0.0716819911366639,
+              "best_val_kl": 0.06614323086879235,
+              "best_step": 8000,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.97599824829991,
+                "mean_agent_entropy_bits": 1.9440194327150946
+              }
+            },
+            {
+              "env": "E3-sybil",
+              "arm": "queried_fsq",
+              "b": 2,
+              "seed": 2,
+              "queried": true,
+              "masked_pretrain": false,
+              "locality_verified": true,
+              "regret_quant": {
+                "mean": 0.06795566633320667,
+                "ci_low": 0.06281733968627257,
+                "ci_high": 0.07298730986902659,
+                "n": 2000
+              },
+              "gap_to_per_piece_fct": 0.06795566633320667,
+              "gap_to_slot_enc_tr": 0.06795566633320667,
+              "best_val_kl": 0.06430994733251046,
+              "best_step": 8000,
+              "escape_step": 200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.965916423155361,
+                "mean_agent_entropy_bits": 1.9055700366640627
+              }
+            }
+          ],
+          "queried_masked_pretrain_fsq": [
+            {
+              "env": "E3-sybil",
+              "arm": "queried_masked_pretrain_fsq",
+              "b": 2,
+              "seed": 0,
+              "queried": true,
+              "masked_pretrain": true,
+              "locality_verified": true,
+              "regret_quant": {
+                "mean": 0.06691686920594359,
+                "ci_low": 0.0616130779027683,
+                "ci_high": 0.07246575862326443,
+                "n": 2000
+              },
+              "gap_to_per_piece_fct": 0.06691686920594359,
+              "gap_to_slot_enc_tr": 0.06691686920594359,
+              "best_val_kl": 0.05769689835131537,
+              "best_step": 5000,
+              "escape_step": 2200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.933238262374108,
+                "mean_agent_entropy_bits": 1.9271024184596386
+              }
+            },
+            {
+              "env": "E3-sybil",
+              "arm": "queried_masked_pretrain_fsq",
+              "b": 2,
+              "seed": 1,
+              "queried": true,
+              "masked_pretrain": true,
+              "locality_verified": true,
+              "regret_quant": {
+                "mean": 0.06345661317800272,
+                "ci_low": 0.05847541498205086,
+                "ci_high": 0.0685038744609548,
+                "n": 2000
+              },
+              "gap_to_per_piece_fct": 0.06345661317800272,
+              "gap_to_slot_enc_tr": 0.06345661317800272,
+              "best_val_kl": 0.06437809914660297,
+              "best_step": 7600,
+              "escape_step": 2200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.9600615573980054,
+                "mean_agent_entropy_bits": 1.9419547721017878
+              }
+            },
+            {
+              "env": "E3-sybil",
+              "arm": "queried_masked_pretrain_fsq",
+              "b": 2,
+              "seed": 2,
+              "queried": true,
+              "masked_pretrain": true,
+              "locality_verified": true,
+              "regret_quant": {
+                "mean": 0.07255797809085658,
+                "ci_low": 0.06738051158435773,
+                "ci_high": 0.07801575552706824,
+                "n": 2000
+              },
+              "gap_to_per_piece_fct": 0.07255797809085658,
+              "gap_to_slot_enc_tr": 0.07255797809085658,
+              "best_val_kl": 0.06868769264428803,
+              "best_step": 8000,
+              "escape_step": 2200,
+              "escaped": true,
+              "symbol_metrics": {
+                "distinct_symbols_total": 4,
+                "distinct_symbols_max_agent": 4,
+                "distinct_symbols_min_agent": 4,
+                "pooled_entropy_bits": 1.9703754583255098,
+                "mean_agent_entropy_bits": 1.8903420985615293
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "elapsed_sec": 3199.36
+}

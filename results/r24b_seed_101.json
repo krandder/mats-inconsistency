@@ -1,0 +1,1592 @@
+{
+  "seed": 101,
+  "wall_clock_s": 67.71,
+  "d0_audit": {
+    "seed": 101,
+    "static_ast_pass": true,
+    "static_ast_violations": 0,
+    "canaries_caught": 7,
+    "poison_traps_fired": 3,
+    "clrs_poison_max_diff": 0.0,
+    "search_poison_max_diff": 0.0,
+    "max_infoset_policy_drift": 0.0,
+    "clrs_node_feats_dim": 6,
+    "clrs_edge_feats_dim": 4,
+    "matched_openspiel_param_counts": {
+      "PPO_GAE": 181250,
+      "GRPO": 181250,
+      "AlphaZero_PUCT": 181250,
+      "Gumbel_MuZero": 181250,
+      "R_NaD": 181250,
+      "Deep_CFR": 181250,
+      "GLC_AOM_v2": 181250,
+      "GLC_AOM_v2_Generalist": 181250,
+      "GLC_AOM_v3": 181250,
+      "GLC_AOM_v3_Generalist": 181250
+    },
+    "verdict": "PASS"
+  },
+  "e1_clrs": {
+    "seed": 101,
+    "per_task": {
+      "BFS": {
+        "DeepSets": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.917969,
+            "mask_f1": 0.817552,
+            "micro_f1": 0.871958
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.816406,
+            "mask_f1": 0.799531,
+            "micro_f1": 0.808737
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.749023,
+            "mask_f1": 0.718398,
+            "micro_f1": 0.735601
+          },
+          "ood_4x_retention_ratio": 0.84362,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 0.0,
+            "head_gammas": [
+              0.0
+            ],
+            "head_probs": [
+              1.0
+            ],
+            "semiring_ptr_blend": 0.0
+          }
+        },
+        "MPNN_Max": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.96875,
+            "mask_f1": 0.95935,
+            "micro_f1": 0.964813
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.949219,
+            "mask_f1": 0.97568,
+            "micro_f1": 0.959954
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.9375,
+            "mask_f1": 0.967144,
+            "micro_f1": 0.948377
+          },
+          "ood_4x_retention_ratio": 0.982965,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 0.0,
+            "head_gammas": [
+              0.0
+            ],
+            "head_probs": [
+              1.0
+            ],
+            "semiring_ptr_blend": 0.0
+          }
+        },
+        "RelTransformer": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.929688,
+            "mask_f1": 0.817552,
+            "micro_f1": 0.878307
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.822266,
+            "mask_f1": 0.799531,
+            "micro_f1": 0.811934
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.773438,
+            "mask_f1": 0.718398,
+            "micro_f1": 0.749314
+          },
+          "ood_4x_retention_ratio": 0.853134,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 0.0,
+            "head_gammas": [
+              0.0
+            ],
+            "head_probs": [
+              1.0
+            ],
+            "semiring_ptr_blend": 0.0
+          }
+        },
+        "Triplet_GMPNN": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.972656,
+            "mask_f1": 0.964912,
+            "micro_f1": 0.969555
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.943359,
+            "mask_f1": 0.976048,
+            "micro_f1": 0.956265
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.939453,
+            "mask_f1": 0.969805,
+            "micro_f1": 0.950221
+          },
+          "ood_4x_retention_ratio": 0.980059,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 0.0,
+            "head_gammas": [
+              0.0
+            ],
+            "head_probs": [
+              1.0
+            ],
+            "semiring_ptr_blend": 0.0
+          }
+        },
+        "GLC_AOM_v2": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.933594,
+            "mask_f1": 0.817552,
+            "micro_f1": 0.880423
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.875,
+            "mask_f1": 0.799531,
+            "micro_f1": 0.840703
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.868164,
+            "mask_f1": 0.718398,
+            "micro_f1": 0.802523
+          },
+          "ood_4x_retention_ratio": 0.91152,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 1.0,
+            "head_gammas": [
+              1.0
+            ],
+            "head_probs": [
+              1.0
+            ],
+            "semiring_ptr_blend": 1.0
+          }
+        },
+        "GLC_Graph_v3": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.976562,
+            "mask_f1": 0.971429,
+            "micro_f1": 0.974478
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.941406,
+            "mask_f1": 0.958824,
+            "micro_f1": 0.948357
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.908203,
+            "mask_f1": 0.917155,
+            "micro_f1": 0.911502
+          },
+          "ood_4x_retention_ratio": 0.935375,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 0.972107,
+            "head_gammas": [
+              0.041951,
+              0.329106,
+              0.847864,
+              0.984571
+            ],
+            "head_probs": [
+              0.001273,
+              0.001283,
+              0.076239,
+              0.921205
+            ],
+            "semiring_ptr_blend": 0.105945
+          }
+        }
+      },
+      "DFS": {
+        "DeepSets": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.746094,
+            "mask_f1": 0.990654,
+            "micro_f1": 0.857447
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.648438,
+            "mask_f1": 0.991908,
+            "micro_f1": 0.805717
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.567383,
+            "mask_f1": 0.991568,
+            "micro_f1": 0.764568
+          },
+          "ood_4x_retention_ratio": 0.89168,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 0.0,
+            "head_gammas": [
+              0.0
+            ],
+            "head_probs": [
+              1.0
+            ],
+            "semiring_ptr_blend": 0.0
+          }
+        },
+        "MPNN_Max": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.753906,
+            "mask_f1": 1.0,
+            "micro_f1": 0.865672
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.693359,
+            "mask_f1": 0.998849,
+            "micro_f1": 0.833597
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.624023,
+            "mask_f1": 0.99944,
+            "micro_f1": 0.798957
+          },
+          "ood_4x_retention_ratio": 0.922933,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 0.0,
+            "head_gammas": [
+              0.0
+            ],
+            "head_probs": [
+              1.0
+            ],
+            "semiring_ptr_blend": 0.0
+          }
+        },
+        "RelTransformer": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.730469,
+            "mask_f1": 1.0,
+            "micro_f1": 0.852878
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.685547,
+            "mask_f1": 1.0,
+            "micro_f1": 0.82981
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.657227,
+            "mask_f1": 1.0,
+            "micro_f1": 0.816901
+          },
+          "ood_4x_retention_ratio": 0.957817,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 0.0,
+            "head_gammas": [
+              0.0
+            ],
+            "head_probs": [
+              1.0
+            ],
+            "semiring_ptr_blend": 0.0
+          }
+        },
+        "Triplet_GMPNN": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.753906,
+            "mask_f1": 1.0,
+            "micro_f1": 0.865672
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.675781,
+            "mask_f1": 1.0,
+            "micro_f1": 0.824524
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.630859,
+            "mask_f1": 1.0,
+            "micro_f1": 0.802817
+          },
+          "ood_4x_retention_ratio": 0.927392,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 0.0,
+            "head_gammas": [
+              0.0
+            ],
+            "head_probs": [
+              1.0
+            ],
+            "semiring_ptr_blend": 0.0
+          }
+        },
+        "GLC_AOM_v2": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.738281,
+            "mask_f1": 0.974828,
+            "micro_f1": 0.847208
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.605469,
+            "mask_f1": 0.990847,
+            "micro_f1": 0.782929
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.554688,
+            "mask_f1": 0.991071,
+            "micro_f1": 0.758333
+          },
+          "ood_4x_retention_ratio": 0.895097,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 1.0,
+            "head_gammas": [
+              1.0
+            ],
+            "head_probs": [
+              1.0
+            ],
+            "semiring_ptr_blend": 1.0
+          }
+        },
+        "GLC_Graph_v3": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.757812,
+            "mask_f1": 1.0,
+            "micro_f1": 0.867804
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.677734,
+            "mask_f1": 1.0,
+            "micro_f1": 0.825581
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.633789,
+            "mask_f1": 1.0,
+            "micro_f1": 0.804382
+          },
+          "ood_4x_retention_ratio": 0.926917,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 0.082761,
+            "head_gammas": [
+              0.015193,
+              0.142139,
+              0.663272,
+              0.961075
+            ],
+            "head_probs": [
+              0.479693,
+              0.518064,
+              0.001072,
+              0.001171
+            ],
+            "semiring_ptr_blend": 0.116641
+          }
+        }
+      },
+      "Dijkstra": {
+        "DeepSets": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.785156,
+            "mask_f1": 0.831933,
+            "micro_f1": 0.8
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.763672,
+            "mask_f1": 0.8,
+            "micro_f1": 0.774933
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.71875,
+            "mask_f1": 0.710671,
+            "micro_f1": 0.716266
+          },
+          "ood_4x_retention_ratio": 0.895332,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 0.0,
+            "head_gammas": [
+              0.0
+            ],
+            "head_probs": [
+              1.0
+            ],
+            "semiring_ptr_blend": 0.0
+          }
+        },
+        "MPNN_Max": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.871094,
+            "mask_f1": 0.836066,
+            "micro_f1": 0.859788
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.837891,
+            "mask_f1": 0.8061,
+            "micro_f1": 0.828051
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.823242,
+            "mask_f1": 0.733333,
+            "micro_f1": 0.796436
+          },
+          "ood_4x_retention_ratio": 0.926317,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 0.0,
+            "head_gammas": [
+              0.0
+            ],
+            "head_probs": [
+              1.0
+            ],
+            "semiring_ptr_blend": 0.0
+          }
+        },
+        "RelTransformer": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.902344,
+            "mask_f1": 0.820513,
+            "micro_f1": 0.876676
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.814453,
+            "mask_f1": 0.794643,
+            "micro_f1": 0.808424
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.770508,
+            "mask_f1": 0.696759,
+            "micro_f1": 0.748626
+          },
+          "ood_4x_retention_ratio": 0.853937,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 0.0,
+            "head_gammas": [
+              0.0
+            ],
+            "head_probs": [
+              1.0
+            ],
+            "semiring_ptr_blend": 0.0
+          }
+        },
+        "Triplet_GMPNN": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.898438,
+            "mask_f1": 0.864865,
+            "micro_f1": 0.88716
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.855469,
+            "mask_f1": 0.86166,
+            "micro_f1": 0.857516
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.828125,
+            "mask_f1": 0.778252,
+            "micro_f1": 0.812458
+          },
+          "ood_4x_retention_ratio": 0.915796,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 0.0,
+            "head_gammas": [
+              0.0
+            ],
+            "head_probs": [
+              1.0
+            ],
+            "semiring_ptr_blend": 0.0
+          }
+        },
+        "GLC_AOM_v2": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.933594,
+            "mask_f1": 0.87747,
+            "micro_f1": 0.915033
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.90625,
+            "mask_f1": 0.860041,
+            "micro_f1": 0.891233
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.880859,
+            "mask_f1": 0.772004,
+            "micro_f1": 0.84654
+          },
+          "ood_4x_retention_ratio": 0.925147,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 1.0,
+            "head_gammas": [
+              1.0
+            ],
+            "head_probs": [
+              1.0
+            ],
+            "semiring_ptr_blend": 1.0
+          }
+        },
+        "GLC_Graph_v3": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.949219,
+            "mask_f1": 0.842553,
+            "micro_f1": 0.915663
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.927734,
+            "mask_f1": 0.798226,
+            "micro_f1": 0.888136
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.915039,
+            "mask_f1": 0.712617,
+            "micro_f1": 0.855372
+          },
+          "ood_4x_retention_ratio": 0.934156,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 0.705865,
+            "head_gammas": [
+              0.025604,
+              0.247248,
+              0.70621,
+              0.969657
+            ],
+            "head_probs": [
+              0.002549,
+              0.003786,
+              0.981793,
+              0.011872
+            ],
+            "semiring_ptr_blend": 0.852222
+          }
+        }
+      },
+      "Bellman_Ford": {
+        "DeepSets": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.78125,
+            "mask_f1": 0.815126,
+            "micro_f1": 0.792
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.816406,
+            "mask_f1": 0.765591,
+            "micro_f1": 0.800537
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.740234,
+            "mask_f1": 0.709607,
+            "micro_f1": 0.730769
+          },
+          "ood_4x_retention_ratio": 0.922688,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 0.0,
+            "head_gammas": [
+              0.0
+            ],
+            "head_probs": [
+              1.0
+            ],
+            "semiring_ptr_blend": 0.0
+          }
+        },
+        "MPNN_Max": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.867188,
+            "mask_f1": 0.838951,
+            "micro_f1": 0.85751
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.849609,
+            "mask_f1": 0.810277,
+            "micro_f1": 0.836601
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.782227,
+            "mask_f1": 0.776329,
+            "micro_f1": 0.780296
+          },
+          "ood_4x_retention_ratio": 0.909956,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 0.0,
+            "head_gammas": [
+              0.0
+            ],
+            "head_probs": [
+              1.0
+            ],
+            "semiring_ptr_blend": 0.0
+          }
+        },
+        "RelTransformer": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.832031,
+            "mask_f1": 0.823045,
+            "micro_f1": 0.829139
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.845703,
+            "mask_f1": 0.771552,
+            "micro_f1": 0.822581
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.75,
+            "mask_f1": 0.719472,
+            "micro_f1": 0.740615
+          },
+          "ood_4x_retention_ratio": 0.893234,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 0.0,
+            "head_gammas": [
+              0.0
+            ],
+            "head_probs": [
+              1.0
+            ],
+            "semiring_ptr_blend": 0.0
+          }
+        },
+        "Triplet_GMPNN": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.875,
+            "mask_f1": 0.846473,
+            "micro_f1": 0.86587
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.851562,
+            "mask_f1": 0.780911,
+            "micro_f1": 0.82963
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.791016,
+            "mask_f1": 0.737542,
+            "micro_f1": 0.774653
+          },
+          "ood_4x_retention_ratio": 0.894653,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 0.0,
+            "head_gammas": [
+              0.0
+            ],
+            "head_probs": [
+              1.0
+            ],
+            "semiring_ptr_blend": 0.0
+          }
+        },
+        "GLC_AOM_v2": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.894531,
+            "mask_f1": 0.814229,
+            "micro_f1": 0.867974
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.888672,
+            "mask_f1": 0.807947,
+            "micro_f1": 0.863913
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.874023,
+            "mask_f1": 0.749712,
+            "micro_f1": 0.83705
+          },
+          "ood_4x_retention_ratio": 0.964372,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 1.0,
+            "head_gammas": [
+              1.0
+            ],
+            "head_probs": [
+              1.0
+            ],
+            "semiring_ptr_blend": 1.0
+          }
+        },
+        "GLC_Graph_v3": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.9375,
+            "mask_f1": 0.845528,
+            "micro_f1": 0.907652
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.916016,
+            "mask_f1": 0.779167,
+            "micro_f1": 0.87234
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.886719,
+            "mask_f1": 0.744856,
+            "micro_f1": 0.84106
+          },
+          "ood_4x_retention_ratio": 0.926633,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 0.723408,
+            "head_gammas": [
+              0.030164,
+              0.277157,
+              0.722015,
+              0.969964
+            ],
+            "head_probs": [
+              0.002396,
+              0.003235,
+              0.976259,
+              0.01811
+            ],
+            "semiring_ptr_blend": 0.866531
+          }
+        }
+      },
+      "MST_Prim": {
+        "DeepSets": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.957031,
+            "mask_f1": 0.762542,
+            "micro_f1": 0.885327
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.890625,
+            "mask_f1": 0.758755,
+            "micro_f1": 0.846554
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.830078,
+            "mask_f1": 0.66736,
+            "micro_f1": 0.778073
+          },
+          "ood_4x_retention_ratio": 0.878854,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 0.0,
+            "head_gammas": [
+              0.0
+            ],
+            "head_probs": [
+              1.0
+            ],
+            "semiring_ptr_blend": 0.0
+          }
+        },
+        "MPNN_Max": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.957031,
+            "mask_f1": 0.776978,
+            "micro_f1": 0.893671
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.916016,
+            "mask_f1": 0.738523,
+            "micro_f1": 0.857705
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.885742,
+            "mask_f1": 0.701719,
+            "micro_f1": 0.825815
+          },
+          "ood_4x_retention_ratio": 0.92407,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 0.0,
+            "head_gammas": [
+              0.0
+            ],
+            "head_probs": [
+              1.0
+            ],
+            "semiring_ptr_blend": 0.0
+          }
+        },
+        "RelTransformer": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.976562,
+            "mask_f1": 0.722222,
+            "micro_f1": 0.885
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.931641,
+            "mask_f1": 0.677966,
+            "micro_f1": 0.851604
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.911133,
+            "mask_f1": 0.511685,
+            "micro_f1": 0.797623
+          },
+          "ood_4x_retention_ratio": 0.901269,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 0.0,
+            "head_gammas": [
+              0.0
+            ],
+            "head_probs": [
+              1.0
+            ],
+            "semiring_ptr_blend": 0.0
+          }
+        },
+        "Triplet_GMPNN": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.980469,
+            "mask_f1": 0.720848,
+            "micro_f1": 0.88805
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.949219,
+            "mask_f1": 0.763441,
+            "micro_f1": 0.883692
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.9375,
+            "mask_f1": 0.72937,
+            "micro_f1": 0.863622
+          },
+          "ood_4x_retention_ratio": 0.972493,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 0.0,
+            "head_gammas": [
+              0.0
+            ],
+            "head_probs": [
+              1.0
+            ],
+            "semiring_ptr_blend": 0.0
+          }
+        },
+        "GLC_AOM_v2": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.816406,
+            "mask_f1": 0.730627,
+            "micro_f1": 0.786718
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.716797,
+            "mask_f1": 0.665208,
+            "micro_f1": 0.700878
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.654297,
+            "mask_f1": 0.53,
+            "micro_f1": 0.619382
+          },
+          "ood_4x_retention_ratio": 0.787299,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 1.0,
+            "head_gammas": [
+              1.0
+            ],
+            "head_probs": [
+              1.0
+            ],
+            "semiring_ptr_blend": 1.0
+          }
+        },
+        "GLC_Graph_v3": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.980469,
+            "mask_f1": 0.57971,
+            "micro_f1": 0.86509
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.964844,
+            "mask_f1": 0.665158,
+            "micro_f1": 0.874488
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.964844,
+            "mask_f1": 0.64745,
+            "micro_f1": 0.867797
+          },
+          "ood_4x_retention_ratio": 1.003129,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 0.110872,
+            "head_gammas": [
+              0.017914,
+              0.164195,
+              0.66173,
+              0.96355
+            ],
+            "head_probs": [
+              0.380559,
+              0.615629,
+              0.002326,
+              0.001486
+            ],
+            "semiring_ptr_blend": 0.177816
+          }
+        }
+      },
+      "Articulation_Points": {
+        "DeepSets": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.535156,
+            "mask_f1": 0.0,
+            "micro_f1": 0.532039
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.441406,
+            "mask_f1": 0.0,
+            "micro_f1": 0.439261
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.398438,
+            "mask_f1": 0.0,
+            "micro_f1": 0.398049
+          },
+          "ood_4x_retention_ratio": 0.748158,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 0.0,
+            "head_gammas": [
+              0.0
+            ],
+            "head_probs": [
+              1.0
+            ],
+            "semiring_ptr_blend": 0.0
+          }
+        },
+        "MPNN_Max": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.566406,
+            "mask_f1": 0.0,
+            "micro_f1": 0.563107
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.472656,
+            "mask_f1": 0.0,
+            "micro_f1": 0.47036
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.428711,
+            "mask_f1": 0.0,
+            "micro_f1": 0.428293
+          },
+          "ood_4x_retention_ratio": 0.760589,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 0.0,
+            "head_gammas": [
+              0.0
+            ],
+            "head_probs": [
+              1.0
+            ],
+            "semiring_ptr_blend": 0.0
+          }
+        },
+        "RelTransformer": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.558594,
+            "mask_f1": 0.0,
+            "micro_f1": 0.55534
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.460938,
+            "mask_f1": 0.0,
+            "micro_f1": 0.458698
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.442383,
+            "mask_f1": 0.0,
+            "micro_f1": 0.441951
+          },
+          "ood_4x_retention_ratio": 0.795821,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 0.0,
+            "head_gammas": [
+              0.0
+            ],
+            "head_probs": [
+              1.0
+            ],
+            "semiring_ptr_blend": 0.0
+          }
+        },
+        "Triplet_GMPNN": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.546875,
+            "mask_f1": 0.0,
+            "micro_f1": 0.543689
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.460938,
+            "mask_f1": 0.0,
+            "micro_f1": 0.458698
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.429688,
+            "mask_f1": 0.0,
+            "micro_f1": 0.429268
+          },
+          "ood_4x_retention_ratio": 0.789547,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 0.0,
+            "head_gammas": [
+              0.0
+            ],
+            "head_probs": [
+              1.0
+            ],
+            "semiring_ptr_blend": 0.0
+          }
+        },
+        "GLC_AOM_v2": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.492188,
+            "mask_f1": 0.0,
+            "micro_f1": 0.48932
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.400391,
+            "mask_f1": 0.0,
+            "micro_f1": 0.398445
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.387695,
+            "mask_f1": 0.0,
+            "micro_f1": 0.387317
+          },
+          "ood_4x_retention_ratio": 0.791541,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 1.0,
+            "head_gammas": [
+              1.0
+            ],
+            "head_probs": [
+              1.0
+            ],
+            "semiring_ptr_blend": 1.0
+          }
+        },
+        "GLC_Graph_v3": {
+          "in_dist_n16": {
+            "node_pointer_acc": 0.550781,
+            "mask_f1": 0.0,
+            "micro_f1": 0.547573
+          },
+          "ood_2x_n32": {
+            "node_pointer_acc": 0.453125,
+            "mask_f1": 0.0,
+            "micro_f1": 0.450923
+          },
+          "ood_4x_n64": {
+            "node_pointer_acc": 0.436523,
+            "mask_f1": 0.0,
+            "micro_f1": 0.436098
+          },
+          "ood_4x_retention_ratio": 0.79642,
+          "semiring_gate_summary": {
+            "effective_gamma_mean": 0.065651,
+            "head_gammas": [
+              0.014642,
+              0.141616,
+              0.655529,
+              0.960541
+            ],
+            "head_probs": [
+              0.607066,
+              0.391274,
+              0.000796,
+              0.000863
+            ],
+            "semiring_ptr_blend": 0.130783
+          }
+        }
+      }
+    },
+    "macro_by_arch": {
+      "DeepSets": {
+        "in_dist_n16_pointer_acc": 0.787109,
+        "in_dist_n16_micro_f1": 0.789795,
+        "ood_2x_n32_pointer_acc": 0.729492,
+        "ood_2x_n32_micro_f1": 0.745957,
+        "ood_4x_n64_pointer_acc": 0.667318,
+        "ood_4x_n64_micro_f1": 0.687221,
+        "ood_4x_retention_ratio": 0.870126
+      },
+      "MPNN_Max": {
+        "in_dist_n16_pointer_acc": 0.830729,
+        "in_dist_n16_micro_f1": 0.834094,
+        "ood_2x_n32_pointer_acc": 0.786458,
+        "ood_2x_n32_micro_f1": 0.797711,
+        "ood_4x_n64_pointer_acc": 0.746907,
+        "ood_4x_n64_micro_f1": 0.763029,
+        "ood_4x_retention_ratio": 0.9148
+      },
+      "RelTransformer": {
+        "in_dist_n16_pointer_acc": 0.821615,
+        "in_dist_n16_micro_f1": 0.81289,
+        "ood_2x_n32_pointer_acc": 0.760091,
+        "ood_2x_n32_micro_f1": 0.763842,
+        "ood_4x_n64_pointer_acc": 0.717448,
+        "ood_4x_n64_micro_f1": 0.715838,
+        "ood_4x_retention_ratio": 0.880609
+      },
+      "Triplet_GMPNN": {
+        "in_dist_n16_pointer_acc": 0.837891,
+        "in_dist_n16_micro_f1": 0.836666,
+        "ood_2x_n32_pointer_acc": 0.789388,
+        "ood_2x_n32_micro_f1": 0.801721,
+        "ood_4x_n64_pointer_acc": 0.75944,
+        "ood_4x_n64_micro_f1": 0.772173,
+        "ood_4x_retention_ratio": 0.922917
+      },
+      "GLC_AOM_v2": {
+        "in_dist_n16_pointer_acc": 0.801432,
+        "in_dist_n16_micro_f1": 0.797779,
+        "ood_2x_n32_pointer_acc": 0.732097,
+        "ood_2x_n32_micro_f1": 0.74635,
+        "ood_4x_n64_pointer_acc": 0.703288,
+        "ood_4x_n64_micro_f1": 0.708524,
+        "ood_4x_retention_ratio": 0.88812
+      },
+      "GLC_Graph_v3": {
+        "in_dist_n16_pointer_acc": 0.858724,
+        "in_dist_n16_micro_f1": 0.846377,
+        "ood_2x_n32_pointer_acc": 0.813477,
+        "ood_2x_n32_micro_f1": 0.809971,
+        "ood_4x_n64_pointer_acc": 0.790853,
+        "ood_4x_n64_micro_f1": 0.786035,
+        "ood_4x_retention_ratio": 0.928706
+      }
+    },
+    "semiring_gate_probe_v3": {
+      "BFS": {
+        "effective_gamma_mean": 0.972107,
+        "head_gammas": [
+          0.041951,
+          0.329106,
+          0.847864,
+          0.984571
+        ],
+        "head_probs": [
+          0.001273,
+          0.001283,
+          0.076239,
+          0.921205
+        ],
+        "semiring_ptr_blend": 0.105945
+      },
+      "DFS": {
+        "effective_gamma_mean": 0.082761,
+        "head_gammas": [
+          0.015193,
+          0.142139,
+          0.663272,
+          0.961075
+        ],
+        "head_probs": [
+          0.479693,
+          0.518064,
+          0.001072,
+          0.001171
+        ],
+        "semiring_ptr_blend": 0.116641
+      },
+      "Dijkstra": {
+        "effective_gamma_mean": 0.705865,
+        "head_gammas": [
+          0.025604,
+          0.247248,
+          0.70621,
+          0.969657
+        ],
+        "head_probs": [
+          0.002549,
+          0.003786,
+          0.981793,
+          0.011872
+        ],
+        "semiring_ptr_blend": 0.852222
+      },
+      "Bellman_Ford": {
+        "effective_gamma_mean": 0.723408,
+        "head_gammas": [
+          0.030164,
+          0.277157,
+          0.722015,
+          0.969964
+        ],
+        "head_probs": [
+          0.002396,
+          0.003235,
+          0.976259,
+          0.01811
+        ],
+        "semiring_ptr_blend": 0.866531
+      },
+      "MST_Prim": {
+        "effective_gamma_mean": 0.110872,
+        "head_gammas": [
+          0.017914,
+          0.164195,
+          0.66173,
+          0.96355
+        ],
+        "head_probs": [
+          0.380559,
+          0.615629,
+          0.002326,
+          0.001486
+        ],
+        "semiring_ptr_blend": 0.177816
+      },
+      "Articulation_Points": {
+        "effective_gamma_mean": 0.065651,
+        "head_gammas": [
+          0.014642,
+          0.141616,
+          0.655529,
+          0.960541
+        ],
+        "head_probs": [
+          0.607066,
+          0.391274,
+          0.000796,
+          0.000863
+        ],
+        "semiring_ptr_blend": 0.130783
+      }
+    },
+    "clrs_param_shift_l2": 174.530746
+  },
+  "e2_openspiel": {
+    "seed": 101,
+    "infosets_evaluated_on_gpu_by_game": {
+      "kuhn_poker": 12,
+      "leduc_poker": 936,
+      "phantom_ttt(obstype=reveal-nothing)": 104,
+      "dark_hex(board_size=2)": 134
+    },
+    "by_game_budget": {
+      "kuhn_poker": {
+        "1": {
+          "PPO_GAE": 0.666836,
+          "GRPO": 0.661914,
+          "AlphaZero_PUCT": 0.583225,
+          "Gumbel_MuZero": 0.542924,
+          "R_NaD": 0.504978,
+          "Deep_CFR": 0.694934,
+          "GLC_AOM_v2": 0.833153,
+          "GLC_AOM_v2_Generalist": 0.479683,
+          "GLC_AOM_v3": 0.823732,
+          "GLC_AOM_v3_Generalist": 0.828505
+        },
+        "4": {
+          "PPO_GAE": 0.66662,
+          "GRPO": 0.659383,
+          "AlphaZero_PUCT": 0.416667,
+          "Gumbel_MuZero": 0.482314,
+          "R_NaD": 0.412099,
+          "Deep_CFR": 0.435535,
+          "GLC_AOM_v2": 0.604266,
+          "GLC_AOM_v2_Generalist": 0.450428,
+          "GLC_AOM_v3": 0.590357,
+          "GLC_AOM_v3_Generalist": 0.46746
+        },
+        "16": {
+          "PPO_GAE": 0.666622,
+          "GRPO": 0.658053,
+          "AlphaZero_PUCT": 0.309896,
+          "Gumbel_MuZero": 0.39906,
+          "R_NaD": 0.340467,
+          "Deep_CFR": 0.34404,
+          "GLC_AOM_v2": 0.482462,
+          "GLC_AOM_v2_Generalist": 0.450937,
+          "GLC_AOM_v3": 0.57543,
+          "GLC_AOM_v3_Generalist": 0.457633
+        },
+        "64": {
+          "PPO_GAE": 0.666622,
+          "GRPO": 0.658053,
+          "AlphaZero_PUCT": 0.327107,
+          "Gumbel_MuZero": 0.426756,
+          "R_NaD": 0.29557,
+          "Deep_CFR": 0.344965,
+          "GLC_AOM_v2": 0.492282,
+          "GLC_AOM_v2_Generalist": 0.45315,
+          "GLC_AOM_v3": 0.564064,
+          "GLC_AOM_v3_Generalist": 0.460547
+        }
+      },
+      "leduc_poker": {
+        "1": {
+          "PPO_GAE": 6.867271,
+          "GRPO": 8.122077,
+          "AlphaZero_PUCT": 4.135745,
+          "Gumbel_MuZero": 4.356732,
+          "R_NaD": 5.106238,
+          "Deep_CFR": 3.534236,
+          "GLC_AOM_v2": 5.316633,
+          "GLC_AOM_v2_Generalist": 5.213647,
+          "GLC_AOM_v3": 3.756936,
+          "GLC_AOM_v3_Generalist": 4.945059
+        },
+        "4": {
+          "PPO_GAE": 6.880137,
+          "GRPO": 6.616206,
+          "AlphaZero_PUCT": 5.144523,
+          "Gumbel_MuZero": 5.263504,
+          "R_NaD": 5.357819,
+          "Deep_CFR": 4.622908,
+          "GLC_AOM_v2": 6.187027,
+          "GLC_AOM_v2_Generalist": 5.947617,
+          "GLC_AOM_v3": 4.748859,
+          "GLC_AOM_v3_Generalist": 5.27381
+        },
+        "16": {
+          "PPO_GAE": 6.872147,
+          "GRPO": 6.624238,
+          "AlphaZero_PUCT": 5.847962,
+          "Gumbel_MuZero": 6.227476,
+          "R_NaD": 5.586195,
+          "Deep_CFR": 4.839857,
+          "GLC_AOM_v2": 6.153323,
+          "GLC_AOM_v2_Generalist": 6.237635,
+          "GLC_AOM_v3": 4.878184,
+          "GLC_AOM_v3_Generalist": 5.258842
+        },
+        "64": {
+          "PPO_GAE": 6.878571,
+          "GRPO": 6.6297,
+          "AlphaZero_PUCT": 6.005172,
+          "Gumbel_MuZero": 6.465838,
+          "R_NaD": 5.977906,
+          "Deep_CFR": 4.956453,
+          "GLC_AOM_v2": 6.447362,
+          "GLC_AOM_v2_Generalist": 6.243785,
+          "GLC_AOM_v3": 4.922879,
+          "GLC_AOM_v3_Generalist": 5.242778
+        }
+      },
+      "phantom_ttt(obstype=reveal-nothing)": {
+        "1": {
+          "PPO_GAE": 0.640854,
+          "GRPO": 0.644062,
+          "AlphaZero_PUCT": 0.85209,
+          "Gumbel_MuZero": 0.749683,
+          "R_NaD": 0.694008,
+          "Deep_CFR": 0.82572,
+          "GLC_AOM_v2": 0.673182,
+          "GLC_AOM_v2_Generalist": 0.48021,
+          "GLC_AOM_v3": 0.796332,
+          "GLC_AOM_v3_Generalist": 0.74874
+        },
+        "4": {
+          "PPO_GAE": 0.624191,
+          "GRPO": 0.622833,
+          "AlphaZero_PUCT": 0.156375,
+          "Gumbel_MuZero": 0.757136,
+          "R_NaD": 0.481217,
+          "Deep_CFR": 0.466423,
+          "GLC_AOM_v2": 0.18897,
+          "GLC_AOM_v2_Generalist": 0.3822,
+          "GLC_AOM_v3": 0.540138,
+          "GLC_AOM_v3_Generalist": 0.473825
+        },
+        "16": {
+          "PPO_GAE": 0.622988,
+          "GRPO": 0.624864,
+          "AlphaZero_PUCT": 0.643603,
+          "Gumbel_MuZero": 0.669248,
+          "R_NaD": 0.555046,
+          "Deep_CFR": 0.4845,
+          "GLC_AOM_v2": 0.278288,
+          "GLC_AOM_v2_Generalist": 0.286374,
+          "GLC_AOM_v3": 0.508745,
+          "GLC_AOM_v3_Generalist": 0.435145
+        },
+        "64": {
+          "PPO_GAE": 0.622799,
+          "GRPO": 0.625105,
+          "AlphaZero_PUCT": 0.594166,
+          "Gumbel_MuZero": 0.634305,
+          "R_NaD": 0.51425,
+          "Deep_CFR": 0.473714,
+          "GLC_AOM_v2": 0.232524,
+          "GLC_AOM_v2_Generalist": 0.279565,
+          "GLC_AOM_v3": 0.493891,
+          "GLC_AOM_v3_Generalist": 0.419593
+        }
+      },
+      "dark_hex(board_size=2)": {
+        "1": {
+          "PPO_GAE": 0.462861,
+          "GRPO": 1.368912,
+          "AlphaZero_PUCT": 0.905995,
+          "Gumbel_MuZero": 0.73744,
+          "R_NaD": 0.412296,
+          "Deep_CFR": 0.885777,
+          "GLC_AOM_v2": 1.198304,
+          "GLC_AOM_v2_Generalist": 1.173922,
+          "GLC_AOM_v3": 1.075435,
+          "GLC_AOM_v3_Generalist": 1.420507
+        },
+        "4": {
+          "PPO_GAE": 0.277971,
+          "GRPO": 1.077466,
+          "AlphaZero_PUCT": 5e-06,
+          "Gumbel_MuZero": 0.080774,
+          "R_NaD": 0.212217,
+          "Deep_CFR": 0.393117,
+          "GLC_AOM_v2": 0.515614,
+          "GLC_AOM_v2_Generalist": 0.138039,
+          "GLC_AOM_v3": 0.668088,
+          "GLC_AOM_v3_Generalist": 0.904537
+        },
+        "16": {
+          "PPO_GAE": 0.2792,
+          "GRPO": 1.09986,
+          "AlphaZero_PUCT": 0.269534,
+          "Gumbel_MuZero": 0.077146,
+          "R_NaD": 0.140004,
+          "Deep_CFR": 0.377562,
+          "GLC_AOM_v2": 0.499045,
+          "GLC_AOM_v2_Generalist": 0.125722,
+          "GLC_AOM_v3": 0.618651,
+          "GLC_AOM_v3_Generalist": 0.82254
+        },
+        "64": {
+          "PPO_GAE": 0.2792,
+          "GRPO": 1.099614,
+          "AlphaZero_PUCT": 0.33619,
+          "Gumbel_MuZero": 0.070397,
+          "R_NaD": 0.110912,
+          "Deep_CFR": 0.37585,
+          "GLC_AOM_v2": 0.491335,
+          "GLC_AOM_v2_Generalist": 0.116464,
+          "GLC_AOM_v3": 0.603197,
+          "GLC_AOM_v3_Generalist": 0.791509
+        }
+      }
+    },
+    "mean_4game_by_budget": {
+      "PPO_GAE": {
+        "1": 2.159455,
+        "4": 2.11223,
+        "16": 2.110239,
+        "64": 2.111798
+      },
+      "GRPO": {
+        "1": 2.699241,
+        "4": 2.243972,
+        "16": 2.251754,
+        "64": 2.253118
+      },
+      "AlphaZero_PUCT": {
+        "1": 1.619264,
+        "4": 1.429393,
+        "16": 1.767749,
+        "64": 1.815659
+      },
+      "Gumbel_MuZero": {
+        "1": 1.596695,
+        "4": 1.645932,
+        "16": 1.843233,
+        "64": 1.899324
+      },
+      "R_NaD": {
+        "1": 1.67938,
+        "4": 1.615838,
+        "16": 1.655428,
+        "64": 1.724659
+      },
+      "Deep_CFR": {
+        "1": 1.485167,
+        "4": 1.479496,
+        "16": 1.51149,
+        "64": 1.537745
+      },
+      "GLC_AOM_v2": {
+        "1": 2.005318,
+        "4": 1.873969,
+        "16": 1.853279,
+        "64": 1.915876
+      },
+      "GLC_AOM_v2_Generalist": {
+        "1": 1.836865,
+        "4": 1.729571,
+        "16": 1.775167,
+        "64": 1.773241
+      },
+      "GLC_AOM_v3": {
+        "1": 1.613109,
+        "4": 1.636861,
+        "16": 1.645253,
+        "64": 1.646008
+      },
+      "GLC_AOM_v3_Generalist": {
+        "1": 1.985703,
+        "4": 1.779908,
+        "16": 1.74354,
+        "64": 1.728607
+      }
+    },
+    "training_curves": {
+      "PPO_GAE": {
+        "25%": 7.8424,
+        "50%": 6.7206,
+        "75%": 7.3904,
+        "100%": 7.3982
+      },
+      "GRPO": {
+        "25%": 260848.0156,
+        "50%": 62738.6641,
+        "75%": -327343.3125,
+        "100%": -260839.5781
+      },
+      "AlphaZero_PUCT": {
+        "25%": 9.9456,
+        "50%": 10.4632,
+        "75%": 9.5839,
+        "100%": 10.6814
+      },
+      "Gumbel_MuZero": {
+        "25%": 14.5685,
+        "50%": 10.2494,
+        "75%": 10.7187,
+        "100%": 11.6316
+      },
+      "R_NaD": {
+        "25%": 5.9727,
+        "50%": 5.8106,
+        "75%": 5.9797,
+        "100%": 5.8257
+      },
+      "Deep_CFR": {
+        "25%": 7.99,
+        "50%": 6.9834,
+        "75%": 6.6159,
+        "100%": 6.4905
+      },
+      "GLC_AOM_v2": {
+        "25%": 10.5625,
+        "50%": 9.9403,
+        "75%": 9.8347,
+        "100%": 9.1203
+      },
+      "GLC_AOM_v2_Generalist": {
+        "25%": 10.2128,
+        "50%": 9.3985,
+        "75%": 8.9209,
+        "100%": 8.4253
+      },
+      "GLC_AOM_v3": {
+        "25%": 9.9065,
+        "50%": 8.8066,
+        "75%": 8.546,
+        "100%": 8.354
+      },
+      "GLC_AOM_v3_Generalist": {
+        "25%": 9.5989,
+        "50%": 9.2345,
+        "75%": 8.3565,
+        "100%": 8.0183
+      }
+    },
+    "checkpoint_nash_conv_b64": {
+      "PPO_GAE": {},
+      "GRPO": {},
+      "AlphaZero_PUCT": {},
+      "Gumbel_MuZero": {},
+      "R_NaD": {},
+      "Deep_CFR": {},
+      "GLC_AOM_v2": {},
+      "GLC_AOM_v2_Generalist": {},
+      "GLC_AOM_v3": {},
+      "GLC_AOM_v3_Generalist": {}
+    }
+  }
+}

@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/root/runs/fa-bind-1028d/diag_fa.py", line 123, in <module>
+    run(ap.parse_args())
+  File "/root/runs/fa-bind-1028d/diag_fa.py", line 76, in run
+    model, world, meta = H.load_run(a.run, a.ckpt)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/runs/fa-bind-1028d/harness.py", line 209, in load_run
+    meta = json.load(open(os.path.join(run, 'meta.json')))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/root/runs/fa-bind-1028d/runs/dense_s0/meta.json'

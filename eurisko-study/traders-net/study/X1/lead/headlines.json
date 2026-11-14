@@ -1,0 +1,168 @@
+{
+ "S0": {
+  "headline": "Substrate: pi ~ ln 2 under prequential (P4 0.6933, P16 0.6957); net beats logistic; delay 64 best (0.327 vs 0.377 at 0 and 0.442 at 512)",
+  "rows": [
+   "S0-1a",
+   "S0-1b",
+   "S0-X-pi",
+   "S0-3a",
+   "S0-3b",
+   "S0-3c"
+  ],
+  "verdict": "PARTLY. Seed 5 has no close pi offsets and gives pi P4 0.6942 / P16 0.6948 (near ln 2), so the pi claim holds only for seeds without a pi-offset pair within W=32 (62.9% of seeds 1-2000 have one; seed 4 gives 0.521). The delay ordering does not reproduce: on both fresh seeds (3 and 5) delay 0 is best (0.365/0.361) and delay 64 is worse than delay 0 (0.384/0.393), so 'delay 64 is best' is refuted.",
+  "evidence": "X1/w1/results/compare_S0_s4.json; X1/w1/results/pi_offsets.json"
+ },
+ "L1": {
+  "headline": "Novelty review: 45 sources verified, 15 claim rows, flags F1-F23 drop no arm",
+  "rows": [
+   "L1-1",
+   "L1-2",
+   "L1-3",
+   "L1-q-eom-label"
+  ],
+  "verdict": "YES. All quoted numbers are in the cited PDFs; one label is wrong (EoM numbers are in the introduction, not the abstract).",
+  "evidence": "X1/w1/results/L1_check.json"
+ },
+ "T1": {
+  "headline": "Theory: Euler identity, exact = tangent + KL, telescoping all exact to 1e-13; books do not track true income (R2 0.32 SGD / 0.14 Adam)",
+  "rows": [
+   "T1-L1.1",
+   "T1-L1.2b",
+   "T1-L2.1",
+   "T1-L4.1",
+   "T1-L4.3b",
+   "T1-L4.5a",
+   "T1-L5.4f"
+  ],
+  "verdict": "YES for the identities (deterministic reruns). Three small numeric claims are refuted on two fresh seeds (hindsight gap 0.046 -> 0.044/0.042; self-resolved income 0.056 -> 0.054/0.055: sd understated, direction holds); the periodic plateau ratio 0.29 swings 0.003-0.80 across seeds.",
+  "evidence": "X1/w1/results/compare_T1_s4.json; X1/w1/CLAIMS.md"
+ },
+ "M1": {
+  "headline": "Gradient credit carries no usefulness signal; LOO settlement does; CURRENCY.lock = committed-trader settlement only",
+  "rows": [
+   "M1-a1",
+   "M1-a-noise",
+   "M1-b-books",
+   "M1-b-settle",
+   "M1-lock-why-b",
+   "M1-c"
+  ],
+  "verdict": "YES for the toy and the census (0.256 +- 0.059 vs 0.026 +- 0.022). The lock's why(b) wording is refuted (top neurons are negative less often than the base rate under most books); the decision stands.",
+  "evidence": "M1/CURRENCY.lock; M1/lead/results/sign_census_summary.csv; X1/w2/results/claims_check.json"
+ },
+ "M2": {
+  "headline": "Gate B coalition win: NO (books tie |Taylor| and movement on random coalitions)",
+  "rows": [
+   "M2-gateB",
+   "M2-verdict-neuron",
+   "M2-coal-book",
+   "M2-neuron-book"
+  ],
+  "verdict": "YES for the NO. On a fresh held-out segment the tie holds (book-Taylor -0.11/+0.06/+0.01); the absolute coalition Spearman drops (0.818 -> 0.74 +- 0.14) and the single-neuron 'win' becomes a tie.",
+  "evidence": "M2/lead/gate_b.json; X1/w2/results/R2_gateb_fresh.json; X1/w2/results/R2_fresh/stoprule.json"
+ },
+ "M3": {
+  "headline": "Stop rule fires: no book currency beats gradient norm; fixed share 1e-3 beats Kelly on lock-in",
+  "rows": [
+   "M3-A-stop",
+   "M3-A-settle",
+   "M3-B-decision"
+  ],
+  "verdict": "YES as scoped to book currencies (fresh segment). Read literally, exact LOO settlement beats gradnorm by 0.245 +- 0.097 (3/3), so the plan's wording 'nothing beats |a.g|' is false; fixed share reproduces (gain 0.70/0.73/0.75).",
+  "evidence": "M3/results/stop_rule.json; X1/w2/results/R2_rederive_fresh.json; X1/w2/results/R3_lockin_fresh/decision.json"
+ },
+ "M5": {
+  "headline": "The prequential net is exploitable: probe L phi 0.092 (P4) / 0.118 (P16) nats per q-step; price-only probe ~2% of that",
+  "rows": [
+   "M5-1",
+   "M5-4",
+   "M5-2",
+   "M5-3"
+  ],
+  "verdict": "PARTLY. The net is exploitable on every fresh seed (probe L phi P4 0.071/0.034, P16 0.092/0.122 at seeds 4/5; price-only probe P4 0.0022/0.0019, P16 0.0024/0.0017), so the qualitative claim holds. The magnitudes do not: P16 phi 0.118 +- 0.0007 lands at z -38 (seed 4, pi leak) and z +6.4 (seed 5, no leak); 5-seed P16 phi 0.114 +- 0.012 (sd 18x the quoted one).",
+  "evidence": "X1/lead/results/tiebreak.json; X1/lead/results/repro_s5_w3.json; X1/w3/results/repro.json"
+ },
+ "M6": {
+  "headline": "Gate B base_arms_survive = true (10 survive, 5 dropped); cg/cq/fb01 pools trade ~0.001 nats of noise protection",
+  "rows": [
+   "M6-1",
+   "M6-4",
+   "M6-3",
+   "M6-2",
+   "M6-9",
+   "M6-7"
+  ],
+  "verdict": "YES for the gate (verdict files re-read; stress pass later drops cg and fb01). Fresh seeds 4/5: the cg noise level reproduces (0.0020/0.0021 vs 0.0022 +- 0.0002) and cg < BOOST holds on both; (a)'s noise excess 0.0108 +- 0.0006 is refuted as quoted (0.0121/0.0122), ES's edge over (a) shrinks to -0.0008 at seed 5 (sign holds); the 2-pass fixed point 'not kept' stays unverified (mixed).",
+  "evidence": "M6/lead/M6-verdict.json; M6/lead/M6-stress-verdict.json; X1/lead/results/tiebreak.json"
+ },
+ "M7": {
+  "headline": "dsfw beats DeepSeek on bce_all (E8 -1.30%, E64 -1.87%) but pays post-shift; wealth_beats_deepseek = false",
+  "rows": [
+   "M7-2",
+   "M7-4",
+   "M7-11",
+   "M7-5"
+  ],
+  "verdict": "YES. Seed 4 (CPU) reproduces the edge (E8 -1.38%, E64 -3.70%) and the post-shift cost (+0.056/+0.077); the false flag is a judgement (best of 3 variants, family labels, post-shift cost), not a failed replication.",
+  "evidence": "X1/w3/results/repro.json; X1/w3/results/skeptic.json"
+ },
+ "M8": {
+  "headline": "Income gating hurts vs no gate; |a.g| gate + rebirth does not beat random reinit 3/3 -> stop",
+  "rows": [
+   "M8-none-better",
+   "M8-stop",
+   "M8-wholerun",
+   "M8-spearman",
+   "M8-onefamily"
+  ],
+  "verdict": "PARTLY. The stop decision stands on seed 5 (absag - random post-shift +0.0010, absag not better), but seed 4 gives absag -0.083 because it learnt LFSR16; the whole-run ungated BCE lands on opposite sides (0.340/0.372 vs 0.355 +- 0.007). |a.g| > income Spearman holds on both fresh seeds (0.166 > 0.032, 0.129 > 0.083).",
+  "evidence": "X1/lead/results/tiebreak.json; X1/w4/repro.csv"
+ },
+ "M9": {
+  "headline": "Soup = lottery (Brier 0.25 - D(1-(1-pi)^{K/Q}), R2 0.79-0.94); K/Q shows no trend in the net",
+  "rows": [
+   "M9a-lottery",
+   "M9c-notrend",
+   "M9c-thin",
+   "M9b-flops"
+  ],
+  "verdict": "PARTLY. The lottery fit and the no-trend claim reproduce (byte-identical reruns; seed 4 inside the band). The very-thin-trader cost is refuted as quoted (+0.0068 +- 0.0002 vs fresh +0.0081/+0.0076) but its sign (K=64 worse) holds on 5/5 seeds.",
+  "evidence": "M9/w1/lottery_fit.csv; X1/w4/repro.csv; X1/lead/results/tiebreak.json"
+ },
+ "K1": {
+  "headline": "Niches keep the economy alive; money conserved (4.1e-12); after a shift births recover in 833 steps (newborns 0.98)",
+  "rows": [
+   "K1-niches-on",
+   "K1-conservation",
+   "K1-stop",
+   "K1-shift"
+  ],
+  "verdict": "PARTLY. Conservation and the no-monoculture stop rule hold. The shift numbers are refuted as quoted: newborn share 0.87/0.88 on seeds 4/5 vs 0.979 +- 0.004, recovery 1700/500 steps vs 833 +- 58 (5-seed 940 +- 451). Births still dominate after the shift.",
+  "evidence": "K1/check/check_k1.json; X1/w4/check_w4.json; X1/lead/results/tiebreak.json"
+ },
+ "V1": {
+  "headline": "Grafana view of wealth-net; step-23300 table (head -1241 +- 69, comp 4147 +- 267)",
+  "rows": [
+   "V1.1",
+   "V1.3",
+   "V1.6a",
+   "V1.6b",
+   "V1.6c",
+   "V1.7"
+  ],
+  "verdict": "PARTLY. The dashboard and the summary JSON check out; 10 of 14 quantities reproduce on 2 fresh GPU seeds; head wealth sd is understated 5.6x (pooled -1039 +- 388) and comp 3.2x; the 23300 table is a mid-run cut (runs now at step ~31.1k).",
+  "evidence": "X1/w5/v1/fresh_seed_z.json; X1/w5/v1/recompute_summary.json"
+ },
+ "G1": {
+  "headline": "GPU queue: ledger = GCE receipts x $0.87/h, total $6.07, <= 2 VMs, zero VMs left",
+  "rows": [
+   "G1.2",
+   "G1.3",
+   "G1.6",
+   "G1.11",
+   "G1.7"
+  ],
+  "verdict": "YES for the money (23/23 VMs, diff $0.000000; total $6.0673). The cron runner jams while any job runs (job-run.sh inherits flock fd 7), so 'dispatches every 2 min' is refuted.",
+  "evidence": "X1/w5/g1/ledger_check.json; X1/w5/g1/runner_jam.json"
+ }
+}

@@ -1,0 +1,23 @@
+[17:16:57] start p_w311_s0_smoke4 cfg={"R": 2, "n_train": 32, "B_train": 256, "rho": 0.5, "eps": 0.02, "S": 48, "steps": 200, "bs": 256, "lr": 0.002, "order": "greedy1", "n_test": 6, "marks": [16, 64, 256, 1024], "kmarks": [1, 16, 64], "n_draw": 4096, "d": 32, "T": 3, "tag": "_smoke4", "stage": "all", "hand": "greedy1", "n_tsamp": 8}
+[17:17:04]     trained 200 steps on 1536 states: running loss 0.4410
+[17:17:04] round 0: books at the training budget: unfound upper bound 0.8276, audit width 0.2416, closed states 0.6; buffer 1536 states; 7s
+[17:17:11]     trained 200 steps on 3072 states: running loss 0.3653
+[17:17:11] round 1: books at the training budget: unfound upper bound 0.8048, audit width 0.2396, closed states 0.9; buffer 3072 states; 7s
+[17:17:21]     trained 400 steps on 3072 states: running loss 0.3426
+[17:17:21] one-shot control trained on 3072 states; 10s
+[17:17:31] scored round0             rho=0.50 eps=0.02 | width cert/audit @256: 0.837/0.234 @1024: 0.178/0.010 | err audit-pt @256 0.0073 | IS err @64 0.3647 | violations cert 0, Z 0, audit misses 0 | 2s
+[17:17:33] scored round1             rho=0.50 eps=0.02 | width cert/audit @256: 0.838/0.243 @1024: 0.192/0.011 | err audit-pt @256 0.0120 | IS err @64 0.0411 | violations cert 0, Z 0, audit misses 0 | 2s
+[17:17:35] scored round2             rho=0.50 eps=0.02 | width cert/audit @256: 0.801/0.255 @1024: 0.187/0.009 | err audit-pt @256 0.0095 | IS err @64 0.0627 | violations cert 0, Z 0, audit misses 0 | 2s
+[17:17:37] scored oneshot            rho=0.50 eps=0.02 | width cert/audit @256: 0.837/0.259 @1024: 0.193/0.010 | err audit-pt @256 0.0152 | IS err @64 0.0239 | violations cert 0, Z 0, audit misses 0 | 2s
+[17:17:38] scored hand_spec          rho=1.00 eps=0.02 | width cert/audit @256: 0.688/0.210 @1024: 0.118/0.006 | err audit-pt @256 0.0040 | IS err @64 0.0000 | violations cert 0, Z 0, audit misses 0 | 1s
+[17:17:40] scored hand_rho           rho=0.50 eps=0.02 | width cert/audit @256: 0.838/0.250 @1024: 0.213/0.013 | err audit-pt @256 0.0186 | IS err @64 0.0604 | violations cert 0, Z 0, audit misses 0 | 2s
+[17:17:40] scored bad_random         rho=0.50 eps=0.02 | width cert/audit @256: 1.000/0.921 @1024: 0.836/0.518 | err audit-pt @256 0.0826 | IS err @64 0.4590 | violations cert 0, Z 0, audit misses 0 | 0s
+[17:17:42] scored bad_flip           rho=0.50 eps=0.02 | width cert/audit @256: 0.841/0.297 @1024: 0.269/0.020 | err audit-pt @256 0.0082 | IS err @64 0.3915 | violations cert 0, Z 0, audit misses 0 | 2s
+[17:17:43] scored bad_avoid_noguard  rho=0.00 eps=0.00 | width cert/audit @256: 1.000/1.000 @1024: 1.000/0.999 | err audit-pt @256 0.0892 | IS err @64 0.5318 | violations cert 0, Z 0, audit misses 0 | 2s
+[17:17:45] scored bad_avoid_floor    rho=0.00 eps=0.02 | width cert/audit @256: 1.000/1.000 @1024: 1.000/0.955 | err audit-pt @256 0.0278 | IS err @64 0.4595 | violations cert 0, Z 0, audit misses 0 | 2s
+[17:17:47] scored bad_avoid_share    rho=0.50 eps=0.00 | width cert/audit @256: 0.850/0.296 @1024: 0.250/0.016 | err audit-pt @256 0.0063 | IS err @64 0.0000 | violations cert 0, Z 0, audit misses 0 | 2s
+[17:17:49] scored final_rho0         rho=0.00 eps=0.02 | width cert/audit @256: 0.963/0.573 @1024: 0.690/0.192 | err audit-pt @256 0.0516 | IS err @64 0.0000 | violations cert 0, Z 0, audit misses 0 | 2s
+[17:17:50] scored final_rho1         rho=1.00 eps=0.02 | width cert/audit @256: 0.688/0.210 @1024: 0.118/0.006 | err audit-pt @256 0.0040 | IS err @64 0.0000 | violations cert 0, Z 0, audit misses 0 | 2s
+[17:17:52] scored final_eps0         rho=0.50 eps=0.00 | width cert/audit @256: 0.801/0.276 @1024: 0.190/0.010 | err audit-pt @256 0.0063 | IS err @64 0.0185 | violations cert 0, Z 0, audit misses 0 | 2s
+[17:17:53] scored final_conforder    rho=0.50 eps=0.02 | width cert/audit @256: 0.985/0.680 @1024: 0.691/0.263 | err audit-pt @256 0.0944 | IS err @64 0.0992 | violations cert 0, Z 0, audit misses 0 | 1s
+[17:17:53] done

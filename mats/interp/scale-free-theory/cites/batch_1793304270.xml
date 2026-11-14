@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/2o92FX1mlp+dAtUPKQv77sYNpCo</id>
+  <title>arXiv Query: search_query=&amp;id_list=2306.04637,2212.07677,2306.00297,2306.00802,2312.03002&amp;start=0&amp;max_results=50</title>
+  <updated>2026-10-29T20:04:30Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=&amp;start=0&amp;max_results=50&amp;id_list=2306.04637,2212.07677,2306.00297,2306.00802,2312.03002" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>50</opensearch:itemsPerPage>
+  <opensearch:totalResults>5</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2212.07677v2</id>
+    <title>Transformers learn in-context by gradient descent</title>
+    <updated>2023-05-31T08:59:47Z</updated>
+    <link href="https://arxiv.org/abs/2212.07677v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2212.07677v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>At present, the mechanisms of in-context learning in Transformers are not well understood and remain mostly an intuition. In this paper, we suggest that training Transformers on auto-regressive objectives is closely related to gradient-based meta-learning formulations. We start by providing a simple weight construction that shows the equivalence of data transformations induced by 1) a single linear self-attention layer and by 2) gradient-descent (GD) on a regression loss. Motivated by that construction, we show empirically that when training self-attention-only Transformers on simple regression tasks either the models learned by GD and Transformers show great similarity or, remarkably, the weights found by optimization match the construction. Thus we show how trained Transformers become mesa-optimizers i.e. learn models by gradient descent in their forward pass. This allows us, at least in the domain of regression problems, to mechanistically understand the inner workings of in-context learning in optimized Transformers. Building on this insight, we furthermore identify how Transformers surpass the performance of plain gradient descent by learning an iterative curvature correction and learn linear models on deep data representations to solve non-linear regression tasks. Finally, we discuss intriguing parallels to a mechanism identified to be crucial for in-context learning termed induction-head (Olsson et al., 2022) and show how it could be understood as a specific case of in-context learning by gradient descent learning within Transformers. Code to reproduce the experiments can be found at https://github.com/google-research/self-organising-systems/tree/master/transformers_learn_icl_by_gd .</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-12-15T09:21:21Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Johannes von Oswald</name>
+    </author>
+    <author>
+      <name>Eyvind Niklasson</name>
+    </author>
+    <author>
+      <name>Ettore Randazzo</name>
+    </author>
+    <author>
+      <name>João Sacramento</name>
+    </author>
+    <author>
+      <name>Alexander Mordvintsev</name>
+    </author>
+    <author>
+      <name>Andrey Zhmoginov</name>
+    </author>
+    <author>
+      <name>Max Vladymyrov</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2306.04637v2</id>
+    <title>Transformers as Statisticians: Provable In-Context Learning with In-Context Algorithm Selection</title>
+    <updated>2023-07-06T16:55:36Z</updated>
+    <link href="https://arxiv.org/abs/2306.04637v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2306.04637v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Neural sequence models based on the transformer architecture have demonstrated remarkable \emph{in-context learning} (ICL) abilities, where they can perform new tasks when prompted with training and test examples, without any parameter update to the model. This work first provides a comprehensive statistical theory for transformers to perform ICL. Concretely, we show that transformers can implement a broad class of standard machine learning algorithms in context, such as least squares, ridge regression, Lasso, learning generalized linear models, and gradient descent on two-layer neural networks, with near-optimal predictive power on various in-context data distributions. Using an efficient implementation of in-context gradient descent as the underlying mechanism, our transformer constructions admit mild size bounds, and can be learned with polynomially many pretraining sequences.
+  Building on these ``base'' ICL algorithms, intriguingly, we show that transformers can implement more complex ICL procedures involving \emph{in-context algorithm selection}, akin to what a statistician can do in real life -- A \emph{single} transformer can adaptively select different base ICL algorithms -- or even perform qualitatively different tasks -- on different input sequences, without any explicit prompting of the right algorithm or task. We both establish this in theory by explicit constructions, and also observe this phenomenon experimentally. In theory, we construct two general mechanisms for algorithm selection with concrete examples: pre-ICL testing, and post-ICL validation. As an example, we use the post-ICL validation mechanism to construct a transformer that can perform nearly Bayes-optimal ICL on a challenging task -- noisy linear models with mixed noise levels. Experimentally, we demonstrate the strong in-context algorithm selection capabilities of standard transformer architectures.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.ST" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-06-07T17:59:31Z</published>
+    <arxiv:comment>V2 releases code</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Yu Bai</name>
+    </author>
+    <author>
+      <name>Fan Chen</name>
+    </author>
+    <author>
+      <name>Huan Wang</name>
+    </author>
+    <author>
+      <name>Caiming Xiong</name>
+    </author>
+    <author>
+      <name>Song Mei</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2306.00297v2</id>
+    <title>Transformers learn to implement preconditioned gradient descent for in-context learning</title>
+    <updated>2023-11-09T21:46:18Z</updated>
+    <link href="https://arxiv.org/abs/2306.00297v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2306.00297v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Several recent works demonstrate that transformers can implement algorithms like gradient descent. By a careful construction of weights, these works show that multiple layers of transformers are expressive enough to simulate iterations of gradient descent. Going beyond the question of expressivity, we ask: Can transformers learn to implement such algorithms by training over random problem instances? To our knowledge, we make the first theoretical progress on this question via an analysis of the loss landscape for linear transformers trained over random instances of linear regression. For a single attention layer, we prove the global minimum of the training objective implements a single iteration of preconditioned gradient descent. Notably, the preconditioning matrix not only adapts to the input distribution but also to the variance induced by data inadequacy. For a transformer with $L$ attention layers, we prove certain critical points of the training objective implement $L$ iterations of preconditioned gradient descent. Our results call for future theoretical studies on learning algorithms by training transformers.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-06-01T02:35:57Z</published>
+    <arxiv:comment>Improved presentation and added new results for the nonlinear activation case; 37th Conference on Neural Information Processing Systems (NeurIPS 2023)</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <arxiv:journal_ref>37th Conference on Neural Information Processing Systems (NeurIPS 2023)</arxiv:journal_ref>
+    <author>
+      <name>Kwangjun Ahn</name>
+    </author>
+    <author>
+      <name>Xiang Cheng</name>
+    </author>
+    <author>
+      <name>Hadi Daneshmand</name>
+    </author>
+    <author>
+      <name>Suvrit Sra</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2306.00802v2</id>
+    <title>Birth of a Transformer: A Memory Viewpoint</title>
+    <updated>2023-11-06T22:51:51Z</updated>
+    <link href="https://arxiv.org/abs/2306.00802v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2306.00802v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models based on transformers have achieved great empirical successes. However, as they are deployed more widely, there is a growing need to better understand their internal mechanisms in order to make them more reliable. These models appear to store vast amounts of knowledge from their training data, and to adapt quickly to new information provided in their context or prompt. We study how transformers balance these two types of knowledge by considering a synthetic setup where tokens are generated from either global or context-specific bigram distributions. By a careful empirical analysis of the training process on a simplified two-layer transformer, we illustrate the fast learning of global bigrams and the slower development of an "induction head" mechanism for the in-context bigrams. We highlight the role of weight matrices as associative memories, provide theoretical insights on how gradients enable their learning during training, and study the role of data-distributional properties.</summary>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-06-01T15:30:33Z</published>
+    <arxiv:comment>NeurIPS 2023</arxiv:comment>
+    <arxiv:primary_category term="stat.ML"/>
+    <author>
+      <name>Alberto Bietti</name>
+    </author>
+    <author>
+      <name>Vivien Cabannes</name>
+    </author>
+    <author>
+      <name>Diane Bouchacourt</name>
+    </author>
+    <author>
+      <name>Herve Jegou</name>
+    </author>
+    <author>
+      <name>Leon Bottou</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2312.03002v1</id>
+    <title>The mechanistic basis of data dependence and abrupt learning in an in-context classification task</title>
+    <updated>2023-12-03T20:53:41Z</updated>
+    <link href="https://arxiv.org/abs/2312.03002v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2312.03002v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Transformer models exhibit in-context learning: the ability to accurately predict the response to a novel query based on illustrative examples in the input sequence. In-context learning contrasts with traditional in-weights learning of query-output relationships. What aspects of the training data distribution and architecture favor in-context vs in-weights learning? Recent work has shown that specific distributional properties inherent in language, such as burstiness, large dictionaries and skewed rank-frequency distributions, control the trade-off or simultaneous appearance of these two forms of learning. We first show that these results are recapitulated in a minimal attention-only network trained on a simplified dataset. In-context learning (ICL) is driven by the abrupt emergence of an induction head, which subsequently competes with in-weights learning. By identifying progress measures that precede in-context learning and targeted experiments, we construct a two-parameter model of an induction head which emulates the full data distributional dependencies displayed by the attention-based network. A phenomenological model of induction head formation traces its abrupt emergence to the sequential learning of three nested logits enabled by an intrinsic curriculum. We propose that the sharp transitions in attention-based networks arise due to a specific chain of multi-layer operations necessary to achieve ICL, which is implemented by nested nonlinearities sequentially learned during training.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-12-03T20:53:41Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Gautam Reddy</name>
+    </author>
+  </entry>
+</feed>

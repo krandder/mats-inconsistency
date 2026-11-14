@@ -1,0 +1,62 @@
+{
+  "reviewed_commit": "35e8532563674d2b41ba9aef6d652a09fe71df7d",
+  "findings": [],
+  "static_review": {
+    "cdf_half_open_endpoints_and_zero_masses": "pass",
+    "full_vocabulary_and_fp64_cdf_accumulation": "pass",
+    "qwen_fp32_normalization_and_generic_fp64_preservation": "pass",
+    "generation_and_causal_loss_precision_match": "pass",
+    "sampler_algorithm_and_source_bound_in_execution_and_policy": "pass",
+    "collector_source_map_includes_helper": "pass",
+    "old_campaign_source_and_execution_rejection": "statically verified; actual rejection separately tested by root",
+    "existing_test_assertions_and_tolerances": "unchanged",
+    "admission_retry_coverage_export_gates": "unchanged; sampler identity requirements added"
+  },
+  "validation": {
+    "initial_full_suite": {
+      "discovered": 274,
+      "passed": 268,
+      "skipped": 6,
+      "failed": 0,
+      "internal_wall_seconds": 45.097,
+      "external_wall_seconds": 50.810503758024424,
+      "skip_reason": "Tokenizer artifact directory default absent in this isolated worktree."
+    },
+    "targeted_tokenizer_followup": {
+      "tests": 6,
+      "passed": 6,
+      "skipped": 0,
+      "failed": 0,
+      "internal_wall_seconds": 11.059,
+      "external_wall_seconds": 11.80800345679745,
+      "resolution": "Supplied existing pinned QWEN_TOKENIZER_ARTIFACTS path; reran only the skipped module."
+    },
+    "unique_tests_successfully_executed_across_both_commands": 274,
+    "unresolved_skips": 0
+  },
+  "artifacts": {
+    "full-suite.log": {
+      "bytes": 50126,
+      "sha256": "80eb45f82fd36046f4655251320353ec9e7cfccabe1b497c0c248bd83e5580ec"
+    },
+    "full-suite-result.json": {
+      "bytes": 768,
+      "sha256": "7af69944417eaada6c9765e4f3c369c162e8b8178b995e8c31d1d21efdf3645b"
+    },
+    "tokenizer-suite.log": {
+      "bytes": 1051,
+      "sha256": "6082255631da47c6e53fe6e06d38ff74326650157da461922b60a365e85e4cf8"
+    },
+    "tokenizer-suite-result.json": {
+      "bytes": 910,
+      "sha256": "e96a74a2c680afd19fd812409521957b7263dc00004b9453c148dfdb808814cf"
+    }
+  },
+  "source_hashes": {
+    "training/categorical.py": "24d0e0132a5aa219f74c3146ad5516bbad6d81e0c6ecfe7bf37d7424c68475ba",
+    "test_training_torch.py": "3f3fc06df99532dafb5eacd211f95c40d57d22bcca5d1ac30a9e4e16fbd551c8"
+  },
+  "worktree_clean_after": true,
+  "head_unchanged_after": true,
+  "scope_limit": "Software/reduced-model tests only. No full candidate inference, corrected campaign, anchor completion or scientific training was performed or established by this review."
+}

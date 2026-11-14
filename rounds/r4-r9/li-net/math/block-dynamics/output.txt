@@ -1,0 +1,175 @@
+{
+ "info": {
+  "Q": 24,
+  "n_worlds_admissible": 48,
+  "n_free": 22,
+  "n_relation_candidates": 55,
+  "n_eq_relations": 0,
+  "n_relations": 30
+ },
+ "results": {
+  "(a) projected grad on Inc, worlds": {
+   "target": "Pi_KL_C",
+   "it_err": 2183,
+   "it_incgap": 714,
+   "eta": 0.00046462406160573415,
+   "linear_rate_per_iter": 0.9985007342220481
+  },
+  "(b) EG eta=1/L (theory)": {
+   "target": "Pi_KL_C",
+   "it_err": 260,
+   "it_incgap": 178,
+   "linear_rate_per_iter": 0.9825047987086423
+  },
+  "(b) EG eta=4/L": {
+   "target": "Pi_KL_C",
+   "it_err": 64,
+   "it_incgap": 44,
+   "linear_rate_per_iter": 0.9316840396864221
+  },
+  "(c) Hildreth cyclic, Euclidean (sweeps)": {
+   "target": "Pi_E_L",
+   "it_err": 7,
+   "it_viol": 7,
+   "linear_rate_per_iter": 0.4368090541292486
+  },
+  "(c) Bregman row-action cyclic, KL (sweeps)": {
+   "target": "Pi_KL_L",
+   "it_err": 9,
+   "it_viol": 9,
+   "linear_rate_per_iter": 0.9880983652046036
+  },
+  "(c) parallel Hildreth = 1 ReLU layer/iter": {
+   "target": "Pi_E_L",
+   "it_err": 66,
+   "it_viol": 64,
+   "linear_rate_per_iter": 0.9367880961150542
+  },
+  "(c) parallel KL row-action (averaged)": {
+   "target": "Pi_KL_L",
+   "it_err": 100,
+   "it_viol": 94,
+   "linear_rate_per_iter": 0.9974487545519053
+  }
+ },
+ "vi_kl_C": -7.105427357601002e-15,
+ "vi_euc_C": -5.773159728050814e-15,
+ "gap_L_vs_C": {
+  "euc": 0.2405727253439936,
+  "euc_all_candidates": 0.21360780467649143,
+  "kl": 0.26477513170261024,
+  "dist_q0_C_euc": 0.5482242057069766,
+  "viol_C_proj_in_L": 1.1102230246251565e-16,
+  "max_C_violation_of_p_kl_L": 0.2852939238527229
+ },
+ "pocs_vs_proj": {
+  "pocs_viol": 0.0,
+  "pocs_err_to_Pi_E_L": 0.055502747264661645
+ },
+ "eg_bound_holds": true,
+ "eg_ipf_identity_err": 2.42861286636753e-17,
+ "eg_implicit_bias": {
+  "maxent_moment_err": 1.6506436217866849e-09,
+  "max_abs_mu_gap_to_maxent": 1.3028551015814571e-09,
+  "H_maxent_vs_H_EG": [
+   1.755514160674291,
+   1.7555141602738782
+  ]
+ },
+ "self_ref": {
+  "mirror_flow_proj_drift_max": 6.106226635438361e-16,
+  "primal_flow_endpoint_vs_Pi_q0": 0.03656957402593963,
+  "primal_flow_q_dist_to_C": 1.1552315326568419e-08
+ },
+ "extrapolation": {
+  "learned_step_toy": {
+   "rows_tau_ge_2": [
+    [
+     2.0,
+     0,
+     0.06438347891039864,
+     0.006267643660083533,
+     9.421386204522264e-08
+    ],
+    [
+     2.0,
+     0.8,
+     0.00486495874297499,
+     3.448640123471236e-07,
+     3.3306690738754696e-16
+    ],
+    [
+     2.2,
+     0,
+     0.059626026694567125,
+     0.00472377345502295,
+     2.2992748371919447e-08
+    ],
+    [
+     2.2,
+     0.8,
+     0.006089000324928429,
+     2.335930189278912e-07,
+     3.3306690738754696e-16
+    ],
+    [
+     2.6,
+     0,
+     0.05162433074531614,
+     0.0026763094439916646,
+     1.3527390319012511e-09
+    ],
+    [
+     2.6,
+     0.8,
+     1528.6637936894986,
+     5.972184823204898e+31,
+     2.0452300735109973e+176
+    ],
+    [
+     3.0,
+     0,
+     0.04511592701099737,
+     0.001510190233321107,
+     7.824718650795148e-11
+    ],
+    [
+     3.0,
+     0.8,
+     2498275.6151408167,
+     2.440886638628486e+40,
+     2.827418409730746e+211
+    ]
+   ],
+   "best_at_20": [
+    2.0,
+    0.8,
+    0.00486495874297499,
+    3.448640123471236e-07,
+    3.3306690738754696e-16
+   ],
+   "best_at_500": [
+    2.0,
+    0.9,
+    0.013133610236509663,
+    1.486181875165471e-05,
+    2.220446049250313e-16
+   ],
+   "note": "(tau multiple of 1/||M||^2, momentum, maxerr@20, @100, @500)"
+  },
+  "linear": {
+   "norm20": 0.0019713005707504496,
+   "norm500": 6.573591721971032e-78
+  },
+  "clock_err_at": {
+   "t20": 0.0,
+   "t100": 0.8635251093763342,
+   "t500": 0.8635251093763342
+  }
+ },
+ "inc_values": {
+  "inc_q0_proj": 3.9250487595832615,
+  "inc_at_kl_L": 2.0801807288130316
+ }
+}
+plot saved

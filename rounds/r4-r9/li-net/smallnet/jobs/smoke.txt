@@ -1,0 +1,23 @@
+# smoke: timing (600 steps, N=1000) for every arm, then full early-stopped runs for convergence calibration
+--arm k0cell --n 1000 --seed 0 --tag time-k0cell --set max_steps=600 eval_every=200 --out /root/runs/smallnet/smoke/time-k0cell-n1000-s0.json
+--arm k2 --n 1000 --seed 0 --tag time-k2 --set max_steps=600 eval_every=200 --out /root/runs/smallnet/smoke/time-k2-n1000-s0.json
+--arm k2fixed --n 1000 --seed 0 --tag time-k2fixed --set max_steps=600 eval_every=200 --out /root/runs/smallnet/smoke/time-k2fixed-n1000-s0.json
+--arm k2marg --n 1000 --seed 0 --tag time-k2marg --set max_steps=600 eval_every=200 --out /root/runs/smallnet/smoke/time-k2marg-n1000-s0.json
+--arm k1 --n 1000 --seed 0 --tag time-k1 --set max_steps=600 eval_every=200 --out /root/runs/smallnet/smoke/time-k1-n1000-s0.json
+--arm rbtd --n 1000 --seed 0 --tag time-rbtd --set max_steps=600 eval_every=200 --out /root/runs/smallnet/smoke/time-rbtd-n1000-s0.json
+--arm masked --n 1000 --seed 0 --tag time-masked --set max_steps=600 eval_every=200 --out /root/runs/smallnet/smoke/time-masked-n1000-s0.json
+--arm chain --n 1000 --seed 0 --tag time-chain --set max_steps=600 eval_every=200 --out /root/runs/smallnet/smoke/time-chain-n1000-s0.json
+--arm allprefix --n 1000 --seed 0 --tag time-allprefix --set max_steps=600 eval_every=200 --out /root/runs/smallnet/smoke/time-allprefix-n1000-s0.json
+--arm perm --n 1000 --seed 0 --tag time-perm --set max_steps=600 eval_every=200 --out /root/runs/smallnet/smoke/time-perm-n1000-s0.json
+--arm td --n 1000 --seed 0 --tag time-td --set max_steps=600 eval_every=200 --out /root/runs/smallnet/smoke/time-td-n1000-s0.json
+--arm mart --n 1000 --seed 0 --tag time-mart --set max_steps=600 eval_every=200 --out /root/runs/smallnet/smoke/time-mart-n1000-s0.json
+--arm refpost --n 1000 --seed 0 --tag time-refpost --set max_steps=600 eval_every=200 --out /root/runs/smallnet/smoke/time-refpost-n1000-s0.json
+--arm k0 --n 1000 --seed 0 --tag time-k0 --set max_steps=600 eval_every=200 --out /root/runs/smallnet/smoke/time-k0-n1000-s0.json
+--arm k0 --n 10000 --seed 0 --tag conv-k0 --out /root/runs/smallnet/smoke/conv-k0-n10000-s0.json
+--arm k0 --n 1000 --seed 0 --tag conv-k0 --out /root/runs/smallnet/smoke/conv-k0-n1000-s0.json
+--arm k0 --n 100 --seed 0 --tag conv-k0 --out /root/runs/smallnet/smoke/conv-k0-n100-s0.json
+--arm masked --n 1000 --seed 0 --tag conv-masked --out /root/runs/smallnet/smoke/conv-masked-n1000-s0.json
+--arm rbtd --n 1000 --seed 0 --tag conv-rbtd --out /root/runs/smallnet/smoke/conv-rbtd-n1000-s0.json
+--arm k2 --n 1000 --seed 0 --tag conv-k2 --out /root/runs/smallnet/smoke/conv-k2-n1000-s0.json
+--arm k0 --n 300 --seed 0 --tag conv-k0 --out /root/runs/smallnet/smoke/conv-k0-n300-s0.json
+--arm k0 --n 3000 --seed 0 --tag conv-k0 --out /root/runs/smallnet/smoke/conv-k0-n3000-s0.json

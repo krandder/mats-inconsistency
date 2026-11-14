@@ -1,0 +1,1767 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-13T14:44:46.990251+00:00",
+  "status": "cdf-v3-tranches-02-05-complete-partial-full-plan-collection",
+  "scope": "One aggregate continuation snapshot of terminal tranches 02\u201305. Cumulative v3 counts include the first two observations by immutable reference; no v1/v2 observations or tranche 06\u201313 preparation/results included.",
+  "collection_id": "qwen-own-base-20260913-v3",
+  "source_commit": "0af9ec3b6fe41b9b76996d318087a52e172f8035",
+  "snapshot_finished_at": "2026-09-13T14:41:46.536310+00:00",
+  "target_episodes": 1619,
+  "target_propositions": 2926,
+  "coverage": {
+    "target_propositions": 2926,
+    "attempted": 34,
+    "valid_probabilities": 34,
+    "unattempted": 2892,
+    "complete_valid_coverage": false
+  },
+  "terminal_state_counts": {
+    "probability": 34,
+    "unattempted": 2892
+  },
+  "candidate_readouts": 34,
+  "parse_valid_readouts": 34,
+  "invalid_or_incomplete_attempts": 0,
+  "retained_attempt_failures": [],
+  "complete_own_base_anchor": false,
+  "anchor_snapshot_created": false,
+  "scientific_model_selected": false,
+  "training_performed": false,
+  "optimizer_updates": 0,
+  "candidate_backward_performed": false,
+  "candidate_weights_loaded": true,
+  "inference_performed": true,
+  "v1_v2_observations_imported": 0,
+  "collection_plan_sha256": "a0d07bda3b81d880199e62b310caa43e8051f50b5e5da30f912d457f3439a5ce",
+  "collection_spec_sha256": "5afa578df2f430d5add27f7e00c823b1bab722cdb1ef12086b7cabc5bf16491c",
+  "training_identity": {
+    "chat_template_sha256": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+    "model_id": "Qwen/Qwen3.5-9B",
+    "model_revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+    "protocol_sha256": "58fb0353101e150faa3e34d0d84de8e16e99e7999cafa6edab8eca54a46a68c4",
+    "reasoning": "none",
+    "tokenizer_files_sha256": "805d890c36262cf4513923d729d55b1ebba053df9fb5edd6d73835f5d1a21cde",
+    "tokenizer_id": "Qwen/Qwen3.5-9B",
+    "tokenizer_revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+    "weights_manifest_sha256": "a1ac86e2eb559dadd5214b7ba9b0328d64595a6987da9c7d0fc87c4df0f3b1e0"
+  },
+  "training_identity_sha256": "50b74934a46d2e8640f3f69a3bc3709fdf5bfd11230558adab5275ee90086967",
+  "initial_base_sha256": "7db7d44ea0a415443c7e2153348f743406bf5395b5a659e4aae175433991447d",
+  "initial_adapter_manifest_sha256": "00b11c2e2f92a56414e9d47612945170b524626d79894693272b146673299be0",
+  "execution_sha256": "0d2a9d55452046a8d0f71ae3495cc4ac2845c353f200781ed36b6bad71244d71",
+  "initial_policy_sha256": "ffd73988534e4871d94a92ae6f170d0f80d50cb12d5a4d6dadfecc8051e0fe10",
+  "categorical_sampler": {
+    "algorithm": "softmax-at-least-fp32-fp64-cdf-uniform-right-v1",
+    "source_sha256": "24d0e0132a5aa219f74c3146ad5516bbad6d81e0c6ecfe7bf37d7424c68475ba"
+  },
+  "sampling_distribution": {
+    "dropout_enabled": false,
+    "logits_processors": [],
+    "logits_warpers": [],
+    "model_mode": "eval",
+    "sampler": "categorical",
+    "schema_version": 1,
+    "temperature": 1.0,
+    "top_k": 0,
+    "top_p": 1.0
+  },
+  "master_seed": 2026091310,
+  "lora_seed": 2026091304,
+  "eos_token_id": 248046,
+  "identity_comparison_with_v2": {
+    "unchanged_training_identity_and_initial_tensor_manifests": true,
+    "v2_execution_sha256": "587e09573b1ab7fcd568131ae860a141392137596eec5e90910fe81a3b73e476",
+    "v3_execution_sha256": "0d2a9d55452046a8d0f71ae3495cc4ac2845c353f200781ed36b6bad71244d71",
+    "v2_initial_policy_sha256": "3a3d21b39d0576306d3f8c8c80de5f05f49bff6665e071880f3915b3c222e681",
+    "v3_initial_policy_sha256": "ffd73988534e4871d94a92ae6f170d0f80d50cb12d5a4d6dadfecc8051e0fe10",
+    "changed_execution_fields": [
+      "categorical_sampler",
+      "runtime_source_sha256"
+    ],
+    "changed_source_files": {
+      "training/categorical.py": {
+        "v2_sha256": null,
+        "v3_sha256": "24d0e0132a5aa219f74c3146ad5516bbad6d81e0c6ecfe7bf37d7424c68475ba"
+      },
+      "training/qwen_base_collection.py": {
+        "v2_sha256": "2b490ab2649c3fcd108e00cb1f796bbbc5336cb4164e0b89c6fa24cd61b742b1",
+        "v3_sha256": "826a800818ada1bbdc460a32a455881260080157a8e43e0676def1095f368116"
+      },
+      "training/qwen_lora_runtime.py": {
+        "v2_sha256": "db1dd2cbff17bab6b659895804d53223b784d74df41c4516f37b190d7287f801",
+        "v3_sha256": "5e2b7a54024af661dc3d89279a2d52a718c5e38609121de12cdb7cb5df24103b"
+      },
+      "training/torch_loop.py": {
+        "v2_sha256": "fa6fc19200eef2d7646f10ca7dd21cd4f90ccaac830e0dfc021802d167525412",
+        "v3_sha256": "575320079d6c8e6fba798a48a2c710ea1e7b55a68177bf9b7293bef32c80fd94"
+      }
+    },
+    "catalog_content_and_order_unchanged_except_seed_fields": true,
+    "all_2926_seed_derivations_verified": true,
+    "all_per_proposition_seeds_differ_from_v2": true
+  },
+  "reference_identity_note": "The byte-identical historical initial-runtime input binds unchanged base/adapter tensors. The explicit v3 spec replaces its runtime-source binding and adds the corrected sampler identity; the new invocation records and verifies that actual execution separately.",
+  "cumulative_v3": {
+    "invocations": 5,
+    "candidate_readouts": 34,
+    "parse_valid_readouts": 34,
+    "invalid_or_incomplete_attempts": 0,
+    "generated_tokens": 156,
+    "resources": {
+      "internal_wall_seconds": 3990.6282701743767,
+      "internal_cpu_seconds": 6608.474132,
+      "internal_peak_rss_bytes": 20979437568,
+      "supervisor_wall_seconds": 3999.203529505059,
+      "external_user_cpu_seconds": 6233.32,
+      "external_system_cpu_seconds": 381.55,
+      "external_peak_rss_bytes": 20979437568,
+      "external_swaps": 0
+    }
+  },
+  "quota_and_cost": {
+    "provider_inference_requests": 0,
+    "provider_subscription_inference_quota_used": 0,
+    "new_paid_resources_allocated": false,
+    "agent_development_subscription_usage_measured": false,
+    "agent_development_subscription_usage": null,
+    "scope": "All five local CPU v3 candidate invocations through the terminal tranche-05 cutoff; zero provider inference requests and quota. Agent development/review subscription consumption remains unmeasured."
+  },
+  "software_validation": {
+    "reference_file": "data/research/qwen-cdf-validation-20260913.json",
+    "unique_tests_passed": 274,
+    "unresolved_skips": 0,
+    "initial_full_suite_passed": 268,
+    "initial_full_suite_skipped": 6,
+    "targeted_tokenizer_followup_passed": 6,
+    "new_tests_run_for_this_publication": false,
+    "software_validation_is_not_full_anchor_or_population_sampling_proof": true
+  },
+  "bound_input_references": {
+    "initial-weights-manifest.json": {
+      "reference_file": "data/research/qwen-own-base-collection-20260913/v2/collection/initial-weights-manifest.json",
+      "bytes": 150654,
+      "sha256": "a0cfc439ec30edc7c464e77cad38651cfbee27962bf7d09b41f5bdd01b871ece"
+    },
+    "inputs/checkpoint_manifest.json": {
+      "reference_file": "data/research/qwen-own-base-collection-20260913/v2/collection/inputs/checkpoint_manifest.json",
+      "bytes": 2350,
+      "sha256": "c4bfae6b8be4d893e7395bbaaaa6874b2583e818a56db100488795856af2bbf3"
+    },
+    "inputs/heldout.jsonl": {
+      "reference_file": "data/research/qwen-own-base-collection-20260913/v2/collection/inputs/heldout.jsonl",
+      "bytes": 2667046,
+      "sha256": "d5b9b660f9fb8c39f7313892897644350247b4c0173bb22871912cdc9fc0674e"
+    },
+    "inputs/initial_runtime_identity.json": {
+      "reference_file": "data/research/qwen-own-base-collection-20260913/v2/collection/inputs/initial_runtime_identity.json",
+      "bytes": 165826,
+      "sha256": "32c0a090c50f23eff12517ef9d390a6b06c333702ce47cb8a67952f8bb1ab6cc"
+    },
+    "inputs/tokenizer_manifest.json": {
+      "reference_file": "data/research/qwen-own-base-collection-20260913/v2/collection/inputs/tokenizer_manifest.json",
+      "bytes": 1282,
+      "sha256": "a8ae42266e839691e203711bfcf5280b3b28eba120c4f1a19bfc88e836564ef8"
+    },
+    "inputs/train.jsonl": {
+      "reference_file": "data/research/qwen-own-base-collection-20260913/v2/collection/inputs/train.jsonl",
+      "bytes": 3164918,
+      "sha256": "71ccc77578c201dc7f51bf06cb9f48f1fecfc1850e3f0472aa349a777924fd2e"
+    },
+    "inputs/valid.jsonl": {
+      "reference_file": "data/research/qwen-own-base-collection-20260913/v2/collection/inputs/valid.jsonl",
+      "bytes": 352437,
+      "sha256": "d45342c7d00ceb4fd9642e97647a695c3760d7a958ceb5461173008bd5bc4150"
+    }
+  },
+  "flag_timing_note": "Preparation no-inference flags describe creation before candidate execution. Read-only status commands retain the label preflight-verified-no-inference because those commands generate no new observations: the first-v3 status recorded two completed outputs, while status-after-tranche-05.json records 34 attempted and 34 valid. The continuation envelope prepared-pending-first-tranche-and-root-review status is its immutable preparation-time state; later prelaunch gates and terminal audits establish execution.",
+  "coverage_note": "The full denominator remains 2,926 propositions from 1,619 training episodes. All retained receipt categories enter total readouts; parse-valid counts are separate. Partial coverage does not establish a complete anchor, ranking, scientific model selection, training result or population sampling proof.",
+  "terminal_audit_recorded_at": "2026-09-13T14:42:07.409754+00:00",
+  "sequence_terminal_audit_file": "data/research/qwen-cdf-collection-progress-20260913/tranches-02-05-terminal-audit.json",
+  "sequence_terminal_audit_recorded_at": "2026-09-13T14:42:08.509544+00:00",
+  "terminal_status_file": "data/research/qwen-cdf-collection-progress-20260913/status-after-tranche-05.json",
+  "invocations": [
+    {
+      "tranche": "tranche-01",
+      "invocation_id": "d4e87097-92d5-4663-b1c0-22401ff214c3",
+      "status": "bounded-invocation-complete",
+      "supervisor_exit_code": 0,
+      "started_at": "2026-09-13T13:25:32.423904+00:00",
+      "finished_at": "2026-09-13T13:31:06.009048+00:00",
+      "candidate_readouts": 2,
+      "parse_valid_readouts": 2,
+      "invalid_or_incomplete_attempts": 0,
+      "generated_tokens": 9,
+      "remaining_token_budget": 55,
+      "base_and_adapters_unchanged": true,
+      "resampled": false,
+      "limits": {
+        "address_space_bytes": 38654705664,
+        "cpu_hard_seconds": 3410,
+        "cpu_soft_seconds": 3400,
+        "max_attempts": 2,
+        "token_budget": 64,
+        "wall_seconds": 1500
+      },
+      "fixed_per_proposition_cap": 32,
+      "external_wall_limit_seconds": 1800,
+      "external_kill_after_seconds": 10,
+      "resources": {
+        "internal_wall_seconds": 331.9358899318613,
+        "internal_cpu_seconds": 510.483392,
+        "internal_peak_rss_bytes": 20777639936,
+        "supervisor_wall_seconds": 333.5851698620245,
+        "external_user_cpu_seconds": 476.22,
+        "external_system_cpu_seconds": 35.48,
+        "external_peak_rss_bytes": 20777639936,
+        "external_elapsed_time_display": "5:33.58",
+        "external_swaps": 0
+      },
+      "internal_report_file": "data/research/qwen-cdf-collection-20260913/collection/invocations/d4e87097-92d5-4663-b1c0-22401ff214c3/report.json",
+      "supervisor_report_file": "data/research/qwen-cdf-collection-20260913/tranche-01/result.json",
+      "terminal_status_file": "data/research/qwen-cdf-collection-20260913/status-after-tranche-01.json"
+    },
+    {
+      "tranche": "tranche-02",
+      "invocation_id": "35fddf66-9d43-4257-805b-076659d32f6e",
+      "status": "bounded-invocation-complete",
+      "supervisor_exit_code": 0,
+      "started_at": "2026-09-13T13:38:42.359586+00:00",
+      "finished_at": "2026-09-13T13:55:31.400904+00:00",
+      "candidate_readouts": 8,
+      "parse_valid_readouts": 8,
+      "invalid_or_incomplete_attempts": 0,
+      "generated_tokens": 38,
+      "remaining_token_budget": 218,
+      "base_and_adapters_unchanged": true,
+      "resampled": false,
+      "limits": {
+        "address_space_bytes": 38654705664,
+        "cpu_hard_seconds": 3410,
+        "cpu_soft_seconds": 3400,
+        "max_attempts": 8,
+        "token_budget": 256,
+        "wall_seconds": 1500
+      },
+      "fixed_per_proposition_cap": 32,
+      "external_wall_limit_seconds": 1800,
+      "external_kill_after_seconds": 10,
+      "resources": {
+        "internal_wall_seconds": 1007.349839813076,
+        "internal_cpu_seconds": 1651.161735,
+        "internal_peak_rss_bytes": 20901392384,
+        "supervisor_wall_seconds": 1009.041350078769,
+        "external_user_cpu_seconds": 1550.74,
+        "external_system_cpu_seconds": 101.69,
+        "external_peak_rss_bytes": 20901392384,
+        "external_elapsed_time_display": "16:49.03",
+        "external_swaps": 0
+      },
+      "internal_report_file": "data/research/qwen-cdf-collection-progress-20260913/collection/invocations/35fddf66-9d43-4257-805b-076659d32f6e/report.json",
+      "supervisor_report_file": "data/research/qwen-cdf-collection-progress-20260913/tranche-02/result.json",
+      "prelaunch_gates_file": "data/research/qwen-cdf-collection-progress-20260913/tranche-02-prelaunch-gates.json",
+      "terminal_audit_file": "data/research/qwen-cdf-collection-progress-20260913/tranche-02-terminal-audit.json"
+    },
+    {
+      "tranche": "tranche-03",
+      "invocation_id": "b670730a-b60e-4248-83df-e4f435840f1d",
+      "status": "bounded-invocation-complete",
+      "supervisor_exit_code": 0,
+      "started_at": "2026-09-13T13:56:09.843965+00:00",
+      "finished_at": "2026-09-13T14:11:56.413061+00:00",
+      "candidate_readouts": 8,
+      "parse_valid_readouts": 8,
+      "invalid_or_incomplete_attempts": 0,
+      "generated_tokens": 38,
+      "remaining_token_budget": 218,
+      "base_and_adapters_unchanged": true,
+      "resampled": false,
+      "limits": {
+        "address_space_bytes": 38654705664,
+        "cpu_hard_seconds": 3410,
+        "cpu_soft_seconds": 3400,
+        "max_attempts": 8,
+        "token_budget": 256,
+        "wall_seconds": 1500
+      },
+      "fixed_per_proposition_cap": 32,
+      "external_wall_limit_seconds": 1800,
+      "external_kill_after_seconds": 10,
+      "resources": {
+        "internal_wall_seconds": 944.7840443560854,
+        "internal_cpu_seconds": 1581.492262,
+        "internal_peak_rss_bytes": 20907663360,
+        "supervisor_wall_seconds": 946.5691201239824,
+        "external_user_cpu_seconds": 1496.69,
+        "external_system_cpu_seconds": 86.12,
+        "external_peak_rss_bytes": 20907663360,
+        "external_elapsed_time_display": "15:46.56",
+        "external_swaps": 0
+      },
+      "internal_report_file": "data/research/qwen-cdf-collection-progress-20260913/collection/invocations/b670730a-b60e-4248-83df-e4f435840f1d/report.json",
+      "supervisor_report_file": "data/research/qwen-cdf-collection-progress-20260913/tranche-03/result.json",
+      "prelaunch_gates_file": "data/research/qwen-cdf-collection-progress-20260913/tranche-03-prelaunch-gates.json",
+      "terminal_audit_file": "data/research/qwen-cdf-collection-progress-20260913/tranche-03-terminal-audit.json"
+    },
+    {
+      "tranche": "tranche-04",
+      "invocation_id": "cddf9448-bb1f-4adf-a10b-baa113669e17",
+      "status": "bounded-invocation-complete",
+      "supervisor_exit_code": 0,
+      "started_at": "2026-09-13T14:12:32.185103+00:00",
+      "finished_at": "2026-09-13T14:26:17.722366+00:00",
+      "candidate_readouts": 8,
+      "parse_valid_readouts": 8,
+      "invalid_or_incomplete_attempts": 0,
+      "generated_tokens": 36,
+      "remaining_token_budget": 220,
+      "base_and_adapters_unchanged": true,
+      "resampled": false,
+      "limits": {
+        "address_space_bytes": 38654705664,
+        "cpu_hard_seconds": 3410,
+        "cpu_soft_seconds": 3400,
+        "max_attempts": 8,
+        "token_budget": 256,
+        "wall_seconds": 1500
+      },
+      "fixed_per_proposition_cap": 32,
+      "external_wall_limit_seconds": 1800,
+      "external_kill_after_seconds": 10,
+      "resources": {
+        "internal_wall_seconds": 823.7884737057611,
+        "internal_cpu_seconds": 1405.158439,
+        "internal_peak_rss_bytes": 20979437568,
+        "supervisor_wall_seconds": 825.5372957712971,
+        "external_user_cpu_seconds": 1329.6,
+        "external_system_cpu_seconds": 76.88,
+        "external_peak_rss_bytes": 20979437568,
+        "external_elapsed_time_display": "13:45.53",
+        "external_swaps": 0
+      },
+      "internal_report_file": "data/research/qwen-cdf-collection-progress-20260913/collection/invocations/cddf9448-bb1f-4adf-a10b-baa113669e17/report.json",
+      "supervisor_report_file": "data/research/qwen-cdf-collection-progress-20260913/tranche-04/result.json",
+      "prelaunch_gates_file": "data/research/qwen-cdf-collection-progress-20260913/tranche-04-prelaunch-gates.json",
+      "terminal_audit_file": "data/research/qwen-cdf-collection-progress-20260913/tranche-04-terminal-audit.json"
+    },
+    {
+      "tranche": "tranche-05",
+      "invocation_id": "b8ce2862-68c0-4e05-bab6-f9e9b0f86b17",
+      "status": "bounded-invocation-complete",
+      "supervisor_exit_code": 0,
+      "started_at": "2026-09-13T14:27:02.065750+00:00",
+      "finished_at": "2026-09-13T14:41:46.536310+00:00",
+      "candidate_readouts": 8,
+      "parse_valid_readouts": 8,
+      "invalid_or_incomplete_attempts": 0,
+      "generated_tokens": 35,
+      "remaining_token_budget": 221,
+      "base_and_adapters_unchanged": true,
+      "resampled": false,
+      "limits": {
+        "address_space_bytes": 38654705664,
+        "cpu_hard_seconds": 3410,
+        "cpu_soft_seconds": 3400,
+        "max_attempts": 8,
+        "token_budget": 256,
+        "wall_seconds": 1500
+      },
+      "fixed_per_proposition_cap": 32,
+      "external_wall_limit_seconds": 1800,
+      "external_kill_after_seconds": 10,
+      "resources": {
+        "internal_wall_seconds": 882.7700223675929,
+        "internal_cpu_seconds": 1460.178304,
+        "internal_peak_rss_bytes": 20917878784,
+        "supervisor_wall_seconds": 884.4705936689861,
+        "external_user_cpu_seconds": 1380.07,
+        "external_system_cpu_seconds": 81.38,
+        "external_peak_rss_bytes": 20917878784,
+        "external_elapsed_time_display": "14:44.46",
+        "external_swaps": 0
+      },
+      "internal_report_file": "data/research/qwen-cdf-collection-progress-20260913/collection/invocations/b8ce2862-68c0-4e05-bab6-f9e9b0f86b17/report.json",
+      "supervisor_report_file": "data/research/qwen-cdf-collection-progress-20260913/tranche-05/result.json",
+      "prelaunch_gates_file": "data/research/qwen-cdf-collection-progress-20260913/tranche-05-prelaunch-gates.json",
+      "terminal_audit_file": "data/research/qwen-cdf-collection-progress-20260913/tranche-05-terminal-audit.json"
+    }
+  ],
+  "attempts": [
+    {
+      "catalog_index": 0,
+      "proposition_id": "00378ee8bd196abc8a83ad6fd27d65a27f76ae40af5b10b1b957128f5e51c292",
+      "seed": 6678723356247500948,
+      "prompt_tokens": 277,
+      "completion_tokens": 5,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 117.44234109530225,
+      "attempt_file": "data/research/qwen-cdf-collection-20260913/collection/attempts/00378ee8bd196abc8a83ad6fd27d65a27f76ae40af5b10b1b957128f5e51c292/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-20260913/collection/attempts/00378ee8bd196abc8a83ad6fd27d65a27f76ae40af5b10b1b957128f5e51c292/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-20260913/collection/attempts/00378ee8bd196abc8a83ad6fd27d65a27f76ae40af5b10b1b957128f5e51c292/tokens.jsonl"
+    },
+    {
+      "catalog_index": 1,
+      "proposition_id": "0041c4392b30880f8e9b9804eab765b363d2d856d760a5b1f05e91c0ea805828",
+      "seed": 7057277058622107250,
+      "prompt_tokens": 261,
+      "completion_tokens": 4,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 95.97660518670455,
+      "attempt_file": "data/research/qwen-cdf-collection-20260913/collection/attempts/0041c4392b30880f8e9b9804eab765b363d2d856d760a5b1f05e91c0ea805828/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-20260913/collection/attempts/0041c4392b30880f8e9b9804eab765b363d2d856d760a5b1f05e91c0ea805828/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-20260913/collection/attempts/0041c4392b30880f8e9b9804eab765b363d2d856d760a5b1f05e91c0ea805828/tokens.jsonl"
+    },
+    {
+      "catalog_index": 2,
+      "proposition_id": "004ad1f323c8a5f50d2faa8d5e6d645427163827116dd6268c7312707a7f19d7",
+      "seed": 16338427408747832856,
+      "invocation_id": "35fddf66-9d43-4257-805b-076659d32f6e",
+      "prompt_tokens": 271,
+      "completion_tokens": 5,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 120.19451368786395,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/004ad1f323c8a5f50d2faa8d5e6d645427163827116dd6268c7312707a7f19d7/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/004ad1f323c8a5f50d2faa8d5e6d645427163827116dd6268c7312707a7f19d7/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/004ad1f323c8a5f50d2faa8d5e6d645427163827116dd6268c7312707a7f19d7/tokens.jsonl"
+    },
+    {
+      "catalog_index": 3,
+      "proposition_id": "0073f111bbd0fdaa5aa6c73104e385f881528f51aae01df39336611e75bd9e8e",
+      "seed": 2554828484222619619,
+      "invocation_id": "35fddf66-9d43-4257-805b-076659d32f6e",
+      "prompt_tokens": 190,
+      "completion_tokens": 5,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 88.79132658615708,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0073f111bbd0fdaa5aa6c73104e385f881528f51aae01df39336611e75bd9e8e/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0073f111bbd0fdaa5aa6c73104e385f881528f51aae01df39336611e75bd9e8e/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0073f111bbd0fdaa5aa6c73104e385f881528f51aae01df39336611e75bd9e8e/tokens.jsonl"
+    },
+    {
+      "catalog_index": 4,
+      "proposition_id": "0077d26746b6914f74339338b22a6a1d66b1aab967916b7dd696e44d60f97bd7",
+      "seed": 5760133503312900059,
+      "invocation_id": "35fddf66-9d43-4257-805b-076659d32f6e",
+      "prompt_tokens": 265,
+      "completion_tokens": 5,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 117.30421500187367,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0077d26746b6914f74339338b22a6a1d66b1aab967916b7dd696e44d60f97bd7/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0077d26746b6914f74339338b22a6a1d66b1aab967916b7dd696e44d60f97bd7/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0077d26746b6914f74339338b22a6a1d66b1aab967916b7dd696e44d60f97bd7/tokens.jsonl"
+    },
+    {
+      "catalog_index": 5,
+      "proposition_id": "00c2e5f8456393d266e1828ecc34a7cd079732711efb9376e6ede10e5ac0d3d4",
+      "seed": 14817629032893379078,
+      "invocation_id": "35fddf66-9d43-4257-805b-076659d32f6e",
+      "prompt_tokens": 266,
+      "completion_tokens": 5,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 118.01186356693506,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/00c2e5f8456393d266e1828ecc34a7cd079732711efb9376e6ede10e5ac0d3d4/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/00c2e5f8456393d266e1828ecc34a7cd079732711efb9376e6ede10e5ac0d3d4/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/00c2e5f8456393d266e1828ecc34a7cd079732711efb9376e6ede10e5ac0d3d4/tokens.jsonl"
+    },
+    {
+      "catalog_index": 6,
+      "proposition_id": "00e3d234fa10328adeac37084e7f2622ac187e8c13625f2e82bac960bd83c744",
+      "seed": 8621797841318016432,
+      "invocation_id": "35fddf66-9d43-4257-805b-076659d32f6e",
+      "prompt_tokens": 268,
+      "completion_tokens": 5,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 118.542066141963,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/00e3d234fa10328adeac37084e7f2622ac187e8c13625f2e82bac960bd83c744/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/00e3d234fa10328adeac37084e7f2622ac187e8c13625f2e82bac960bd83c744/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/00e3d234fa10328adeac37084e7f2622ac187e8c13625f2e82bac960bd83c744/tokens.jsonl"
+    },
+    {
+      "catalog_index": 7,
+      "proposition_id": "010a08725b061bf503857e9890d6658e580fb6daf53f996e03cc0cd12563ef8c",
+      "seed": 9651072470218642482,
+      "invocation_id": "35fddf66-9d43-4257-805b-076659d32f6e",
+      "prompt_tokens": 305,
+      "completion_tokens": 5,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 120.22296851081774,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/010a08725b061bf503857e9890d6658e580fb6daf53f996e03cc0cd12563ef8c/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/010a08725b061bf503857e9890d6658e580fb6daf53f996e03cc0cd12563ef8c/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/010a08725b061bf503857e9890d6658e580fb6daf53f996e03cc0cd12563ef8c/tokens.jsonl"
+    },
+    {
+      "catalog_index": 8,
+      "proposition_id": "011faeb917dea27df3b315194ebe006d963178e58b5345273a4ed8413eb847d0",
+      "seed": 11560558147370843313,
+      "invocation_id": "35fddf66-9d43-4257-805b-076659d32f6e",
+      "prompt_tokens": 279,
+      "completion_tokens": 4,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 97.32327908510342,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/011faeb917dea27df3b315194ebe006d963178e58b5345273a4ed8413eb847d0/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/011faeb917dea27df3b315194ebe006d963178e58b5345273a4ed8413eb847d0/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/011faeb917dea27df3b315194ebe006d963178e58b5345273a4ed8413eb847d0/tokens.jsonl"
+    },
+    {
+      "catalog_index": 9,
+      "proposition_id": "012e0b198a99e660d4efb8ec2638e225f2b3a3ff3f2ac6ef84f3b50bd4073541",
+      "seed": 7244955977783435421,
+      "invocation_id": "35fddf66-9d43-4257-805b-076659d32f6e",
+      "prompt_tokens": 279,
+      "completion_tokens": 4,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 97.19921132316813,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/012e0b198a99e660d4efb8ec2638e225f2b3a3ff3f2ac6ef84f3b50bd4073541/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/012e0b198a99e660d4efb8ec2638e225f2b3a3ff3f2ac6ef84f3b50bd4073541/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/012e0b198a99e660d4efb8ec2638e225f2b3a3ff3f2ac6ef84f3b50bd4073541/tokens.jsonl"
+    },
+    {
+      "catalog_index": 10,
+      "proposition_id": "0136e72569a48ccd5a6dd71faacc9d6d9e923ab239fb843f797e0600e82b7221",
+      "seed": 3443392906770101221,
+      "invocation_id": "b670730a-b60e-4248-83df-e4f435840f1d",
+      "prompt_tokens": 278,
+      "completion_tokens": 4,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 96.80997499916703,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0136e72569a48ccd5a6dd71faacc9d6d9e923ab239fb843f797e0600e82b7221/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0136e72569a48ccd5a6dd71faacc9d6d9e923ab239fb843f797e0600e82b7221/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0136e72569a48ccd5a6dd71faacc9d6d9e923ab239fb843f797e0600e82b7221/tokens.jsonl"
+    },
+    {
+      "catalog_index": 11,
+      "proposition_id": "01546cb04ee78862e8f362e8a522718912fb82f721be2674b81b0278c57ef057",
+      "seed": 10779716575264361361,
+      "invocation_id": "b670730a-b60e-4248-83df-e4f435840f1d",
+      "prompt_tokens": 281,
+      "completion_tokens": 5,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 118.12683944078162,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01546cb04ee78862e8f362e8a522718912fb82f721be2674b81b0278c57ef057/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01546cb04ee78862e8f362e8a522718912fb82f721be2674b81b0278c57ef057/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01546cb04ee78862e8f362e8a522718912fb82f721be2674b81b0278c57ef057/tokens.jsonl"
+    },
+    {
+      "catalog_index": 12,
+      "proposition_id": "016e558e2e4dae2d3095adfd23ee4c89a4b107040eeec51e5be7470d27326724",
+      "seed": 9187623940906487763,
+      "invocation_id": "b670730a-b60e-4248-83df-e4f435840f1d",
+      "prompt_tokens": 340,
+      "completion_tokens": 5,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 123.5782256652601,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/016e558e2e4dae2d3095adfd23ee4c89a4b107040eeec51e5be7470d27326724/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/016e558e2e4dae2d3095adfd23ee4c89a4b107040eeec51e5be7470d27326724/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/016e558e2e4dae2d3095adfd23ee4c89a4b107040eeec51e5be7470d27326724/tokens.jsonl"
+    },
+    {
+      "catalog_index": 13,
+      "proposition_id": "018f1fd678d2d882b5a70627a9450460592f2886eee78029808cc71e77d69f1d",
+      "seed": 1076517426924830555,
+      "invocation_id": "b670730a-b60e-4248-83df-e4f435840f1d",
+      "prompt_tokens": 188,
+      "completion_tokens": 5,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 88.62255385657772,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/018f1fd678d2d882b5a70627a9450460592f2886eee78029808cc71e77d69f1d/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/018f1fd678d2d882b5a70627a9450460592f2886eee78029808cc71e77d69f1d/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/018f1fd678d2d882b5a70627a9450460592f2886eee78029808cc71e77d69f1d/tokens.jsonl"
+    },
+    {
+      "catalog_index": 14,
+      "proposition_id": "01a95b230a84eee2418761363996aef1d7908fef3acee5a5bd4f15c56bdf0f1a",
+      "seed": 14957413554031128405,
+      "invocation_id": "b670730a-b60e-4248-83df-e4f435840f1d",
+      "prompt_tokens": 190,
+      "completion_tokens": 5,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 89.60040647909045,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01a95b230a84eee2418761363996aef1d7908fef3acee5a5bd4f15c56bdf0f1a/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01a95b230a84eee2418761363996aef1d7908fef3acee5a5bd4f15c56bdf0f1a/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01a95b230a84eee2418761363996aef1d7908fef3acee5a5bd4f15c56bdf0f1a/tokens.jsonl"
+    },
+    {
+      "catalog_index": 15,
+      "proposition_id": "01b7a955c4840d5c4f30e6ced76d0535c5eb2a0ba8658cb748660b9a5a6dfcc0",
+      "seed": 2892416165927974017,
+      "invocation_id": "b670730a-b60e-4248-83df-e4f435840f1d",
+      "prompt_tokens": 283,
+      "completion_tokens": 5,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 116.59150822507218,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01b7a955c4840d5c4f30e6ced76d0535c5eb2a0ba8658cb748660b9a5a6dfcc0/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01b7a955c4840d5c4f30e6ced76d0535c5eb2a0ba8658cb748660b9a5a6dfcc0/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01b7a955c4840d5c4f30e6ced76d0535c5eb2a0ba8658cb748660b9a5a6dfcc0/tokens.jsonl"
+    },
+    {
+      "catalog_index": 16,
+      "proposition_id": "01c88abadef586e414abda9062907031ace70085628a84689507d04c772ad346",
+      "seed": 6979422077869170398,
+      "invocation_id": "b670730a-b60e-4248-83df-e4f435840f1d",
+      "prompt_tokens": 193,
+      "completion_tokens": 5,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 89.84806565055624,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01c88abadef586e414abda9062907031ace70085628a84689507d04c772ad346/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01c88abadef586e414abda9062907031ace70085628a84689507d04c772ad346/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01c88abadef586e414abda9062907031ace70085628a84689507d04c772ad346/tokens.jsonl"
+    },
+    {
+      "catalog_index": 17,
+      "proposition_id": "01ccffe39d41183e710044e73f03911676be6e5d3f8bd63f4224af613d86af89",
+      "seed": 5983472441203402702,
+      "invocation_id": "b670730a-b60e-4248-83df-e4f435840f1d",
+      "prompt_tokens": 300,
+      "completion_tokens": 4,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 98.86160416901112,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01ccffe39d41183e710044e73f03911676be6e5d3f8bd63f4224af613d86af89/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01ccffe39d41183e710044e73f03911676be6e5d3f8bd63f4224af613d86af89/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01ccffe39d41183e710044e73f03911676be6e5d3f8bd63f4224af613d86af89/tokens.jsonl"
+    },
+    {
+      "catalog_index": 18,
+      "proposition_id": "01d7a30553d5db146476639f1330b00960a874a89167dc2276273aafecf16e2c",
+      "seed": 15234471068987244621,
+      "invocation_id": "cddf9448-bb1f-4adf-a10b-baa113669e17",
+      "prompt_tokens": 251,
+      "completion_tokens": 5,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 97.72850405797362,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01d7a30553d5db146476639f1330b00960a874a89167dc2276273aafecf16e2c/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01d7a30553d5db146476639f1330b00960a874a89167dc2276273aafecf16e2c/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01d7a30553d5db146476639f1330b00960a874a89167dc2276273aafecf16e2c/tokens.jsonl"
+    },
+    {
+      "catalog_index": 19,
+      "proposition_id": "01db5e2353af9204dd6be0f54ed97fb425fcfe8ee71ae157839bec5834747135",
+      "seed": 16271571962515798394,
+      "invocation_id": "cddf9448-bb1f-4adf-a10b-baa113669e17",
+      "prompt_tokens": 225,
+      "completion_tokens": 5,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 92.88120968779549,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01db5e2353af9204dd6be0f54ed97fb425fcfe8ee71ae157839bec5834747135/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01db5e2353af9204dd6be0f54ed97fb425fcfe8ee71ae157839bec5834747135/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01db5e2353af9204dd6be0f54ed97fb425fcfe8ee71ae157839bec5834747135/tokens.jsonl"
+    },
+    {
+      "catalog_index": 20,
+      "proposition_id": "01e7900e4ff2f5f8f9acd25ea816f192f56258497646500da6fe2cdca8e13b4c",
+      "seed": 4596610016806844955,
+      "invocation_id": "cddf9448-bb1f-4adf-a10b-baa113669e17",
+      "prompt_tokens": 199,
+      "completion_tokens": 4,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 76.00412797182798,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01e7900e4ff2f5f8f9acd25ea816f192f56258497646500da6fe2cdca8e13b4c/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01e7900e4ff2f5f8f9acd25ea816f192f56258497646500da6fe2cdca8e13b4c/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01e7900e4ff2f5f8f9acd25ea816f192f56258497646500da6fe2cdca8e13b4c/tokens.jsonl"
+    },
+    {
+      "catalog_index": 21,
+      "proposition_id": "01ec9b8f4506e62f731a77ea40967c1ca5c2d467412d75bc72d8d016a70296c7",
+      "seed": 10875404535277115299,
+      "invocation_id": "cddf9448-bb1f-4adf-a10b-baa113669e17",
+      "prompt_tokens": 207,
+      "completion_tokens": 5,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 90.45944796130061,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01ec9b8f4506e62f731a77ea40967c1ca5c2d467412d75bc72d8d016a70296c7/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01ec9b8f4506e62f731a77ea40967c1ca5c2d467412d75bc72d8d016a70296c7/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01ec9b8f4506e62f731a77ea40967c1ca5c2d467412d75bc72d8d016a70296c7/tokens.jsonl"
+    },
+    {
+      "catalog_index": 22,
+      "proposition_id": "0201bd62ab31f11f9759dea5c71362189d11f582e5eb0fa2d841cd07f7859811",
+      "seed": 5449647253394262183,
+      "invocation_id": "cddf9448-bb1f-4adf-a10b-baa113669e17",
+      "prompt_tokens": 196,
+      "completion_tokens": 4,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 75.2734139659442,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0201bd62ab31f11f9759dea5c71362189d11f582e5eb0fa2d841cd07f7859811/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0201bd62ab31f11f9759dea5c71362189d11f582e5eb0fa2d841cd07f7859811/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0201bd62ab31f11f9759dea5c71362189d11f582e5eb0fa2d841cd07f7859811/tokens.jsonl"
+    },
+    {
+      "catalog_index": 23,
+      "proposition_id": "020a91fe59e323e7fed41175ba74dc3ea1dafa7c24867985e93113f37172f29c",
+      "seed": 1769995031194620548,
+      "invocation_id": "cddf9448-bb1f-4adf-a10b-baa113669e17",
+      "prompt_tokens": 228,
+      "completion_tokens": 5,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 93.99997358163819,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/020a91fe59e323e7fed41175ba74dc3ea1dafa7c24867985e93113f37172f29c/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/020a91fe59e323e7fed41175ba74dc3ea1dafa7c24867985e93113f37172f29c/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/020a91fe59e323e7fed41175ba74dc3ea1dafa7c24867985e93113f37172f29c/tokens.jsonl"
+    },
+    {
+      "catalog_index": 24,
+      "proposition_id": "020abdaf9001e9adb1d9aab0ba00e9194dde6440622abef7eece2a05c9d24c86",
+      "seed": 9078733988399878730,
+      "invocation_id": "cddf9448-bb1f-4adf-a10b-baa113669e17",
+      "prompt_tokens": 348,
+      "completion_tokens": 4,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 102.55182683235034,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/020abdaf9001e9adb1d9aab0ba00e9194dde6440622abef7eece2a05c9d24c86/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/020abdaf9001e9adb1d9aab0ba00e9194dde6440622abef7eece2a05c9d24c86/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/020abdaf9001e9adb1d9aab0ba00e9194dde6440622abef7eece2a05c9d24c86/tokens.jsonl"
+    },
+    {
+      "catalog_index": 25,
+      "proposition_id": "0231eabbb2022570ecfc15033c181f779c961a2ea838fb459d69488c347a73b9",
+      "seed": 3958335529198474027,
+      "invocation_id": "cddf9448-bb1f-4adf-a10b-baa113669e17",
+      "prompt_tokens": 171,
+      "completion_tokens": 4,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 72.62443044409156,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0231eabbb2022570ecfc15033c181f779c961a2ea838fb459d69488c347a73b9/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0231eabbb2022570ecfc15033c181f779c961a2ea838fb459d69488c347a73b9/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0231eabbb2022570ecfc15033c181f779c961a2ea838fb459d69488c347a73b9/tokens.jsonl"
+    },
+    {
+      "catalog_index": 26,
+      "proposition_id": "0235b3f9d779015c2bd7e1e473390f0df904e9dd4abe7bc7faaee45b46144a99",
+      "seed": 10730226071144396188,
+      "invocation_id": "b8ce2862-68c0-4e05-bab6-f9e9b0f86b17",
+      "prompt_tokens": 275,
+      "completion_tokens": 5,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 114.82156396703795,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0235b3f9d779015c2bd7e1e473390f0df904e9dd4abe7bc7faaee45b46144a99/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0235b3f9d779015c2bd7e1e473390f0df904e9dd4abe7bc7faaee45b46144a99/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0235b3f9d779015c2bd7e1e473390f0df904e9dd4abe7bc7faaee45b46144a99/tokens.jsonl"
+    },
+    {
+      "catalog_index": 27,
+      "proposition_id": "024e1767e54eedb083dd2f31a8778a28debdaafe3c3a293fc46a1548af7c2433",
+      "seed": 97455037613691641,
+      "invocation_id": "b8ce2862-68c0-4e05-bab6-f9e9b0f86b17",
+      "prompt_tokens": 276,
+      "completion_tokens": 4,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 95.67333718482405,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/024e1767e54eedb083dd2f31a8778a28debdaafe3c3a293fc46a1548af7c2433/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/024e1767e54eedb083dd2f31a8778a28debdaafe3c3a293fc46a1548af7c2433/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/024e1767e54eedb083dd2f31a8778a28debdaafe3c3a293fc46a1548af7c2433/tokens.jsonl"
+    },
+    {
+      "catalog_index": 28,
+      "proposition_id": "02740d0979654681068fa21fb3bd6b5df1f056966b1f6867eef2ffafed2fa098",
+      "seed": 4286240988704269401,
+      "invocation_id": "b8ce2862-68c0-4e05-bab6-f9e9b0f86b17",
+      "prompt_tokens": 310,
+      "completion_tokens": 4,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 97.70436114119366,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/02740d0979654681068fa21fb3bd6b5df1f056966b1f6867eef2ffafed2fa098/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/02740d0979654681068fa21fb3bd6b5df1f056966b1f6867eef2ffafed2fa098/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/02740d0979654681068fa21fb3bd6b5df1f056966b1f6867eef2ffafed2fa098/tokens.jsonl"
+    },
+    {
+      "catalog_index": 29,
+      "proposition_id": "0283b557d89c540c5da339f1d9fc9075f6162ce832f55c139bb5dfe0f118964c",
+      "seed": 17332090255745650985,
+      "invocation_id": "b8ce2862-68c0-4e05-bab6-f9e9b0f86b17",
+      "prompt_tokens": 190,
+      "completion_tokens": 5,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 89.64481094898656,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0283b557d89c540c5da339f1d9fc9075f6162ce832f55c139bb5dfe0f118964c/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0283b557d89c540c5da339f1d9fc9075f6162ce832f55c139bb5dfe0f118964c/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0283b557d89c540c5da339f1d9fc9075f6162ce832f55c139bb5dfe0f118964c/tokens.jsonl"
+    },
+    {
+      "catalog_index": 30,
+      "proposition_id": "02a52693fd4c9f89dccfae4492e019c6a98c1dfe0c98e5a137dd71f180a40802",
+      "seed": 16201277964908248495,
+      "invocation_id": "b8ce2862-68c0-4e05-bab6-f9e9b0f86b17",
+      "prompt_tokens": 176,
+      "completion_tokens": 4,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 72.64855321776122,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/02a52693fd4c9f89dccfae4492e019c6a98c1dfe0c98e5a137dd71f180a40802/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/02a52693fd4c9f89dccfae4492e019c6a98c1dfe0c98e5a137dd71f180a40802/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/02a52693fd4c9f89dccfae4492e019c6a98c1dfe0c98e5a137dd71f180a40802/tokens.jsonl"
+    },
+    {
+      "catalog_index": 31,
+      "proposition_id": "02c0f49319dc400c4d27c2b6d0996191ddf0b943c591ad3a4e856947c24aecb9",
+      "seed": 8861086027917325362,
+      "invocation_id": "b8ce2862-68c0-4e05-bab6-f9e9b0f86b17",
+      "prompt_tokens": 283,
+      "completion_tokens": 5,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 117.32321846392006,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/02c0f49319dc400c4d27c2b6d0996191ddf0b943c591ad3a4e856947c24aecb9/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/02c0f49319dc400c4d27c2b6d0996191ddf0b943c591ad3a4e856947c24aecb9/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/02c0f49319dc400c4d27c2b6d0996191ddf0b943c591ad3a4e856947c24aecb9/tokens.jsonl"
+    },
+    {
+      "catalog_index": 32,
+      "proposition_id": "02c5793f879c4bb9c16068f9ae840098aeab94fa43a56b076c65727c0151b557",
+      "seed": 14143884591434786541,
+      "invocation_id": "b8ce2862-68c0-4e05-bab6-f9e9b0f86b17",
+      "prompt_tokens": 257,
+      "completion_tokens": 4,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 95.75167450215667,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/02c5793f879c4bb9c16068f9ae840098aeab94fa43a56b076c65727c0151b557/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/02c5793f879c4bb9c16068f9ae840098aeab94fa43a56b076c65727c0151b557/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/02c5793f879c4bb9c16068f9ae840098aeab94fa43a56b076c65727c0151b557/tokens.jsonl"
+    },
+    {
+      "catalog_index": 33,
+      "proposition_id": "02d1dda40919af3e4f418555ef1caee25f2e45d9df8026c4ca5327865635dc2e",
+      "seed": 3743606518108260748,
+      "invocation_id": "b8ce2862-68c0-4e05-bab6-f9e9b0f86b17",
+      "prompt_tokens": 220,
+      "completion_tokens": 4,
+      "readout_status": "probability",
+      "terminal_ledger_state": "probability",
+      "finish_reason": "eos",
+      "runtime_integrity_verified": true,
+      "receipt_wall_seconds": 76.58993289386854,
+      "attempt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/02d1dda40919af3e4f418555ef1caee25f2e45d9df8026c4ca5327865635dc2e/attempt.json",
+      "receipt_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/02d1dda40919af3e4f418555ef1caee25f2e45d9df8026c4ca5327865635dc2e/receipt.json",
+      "token_events_file": "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/02d1dda40919af3e4f418555ef1caee25f2e45d9df8026c4ca5327865635dc2e/tokens.jsonl"
+    }
+  ],
+  "continuation_02_05": {
+    "invocations": 4,
+    "candidate_readouts": 32,
+    "parse_valid_readouts": 32,
+    "invalid_or_incomplete_attempts": 0,
+    "generated_tokens": 147,
+    "resources": {
+      "internal_wall_seconds": 3658.6923802425154,
+      "internal_cpu_seconds": 6097.99074,
+      "internal_peak_rss_bytes": 20979437568,
+      "supervisor_wall_seconds": 3665.6183596430346,
+      "external_user_cpu_seconds": 5757.1,
+      "external_system_cpu_seconds": 346.07,
+      "external_peak_rss_bytes": 20979437568,
+      "external_swaps": 0
+    }
+  },
+  "continuation_envelope_file": "data/research/qwen-cdf-collection-progress-20260913/tranches-02-05-plan.json",
+  "continuation_envelope_sha256": "ab4fa8611d3b9200ea9125fc65d2e1c3ff3b583e241755f5325b85278674bf59",
+  "first_v3_manifest_reference": {
+    "file": "data/research/qwen-cdf-collection-20260913.json",
+    "bytes": 21635,
+    "sha256": "b4b045ab007e9e44e2d266b0d13268814ee32833b4511c80b1fe55800abcd0a5"
+  },
+  "raw_artifact_count": 155,
+  "raw_artifact_bytes": 3454169,
+  "artifacts": {
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/004ad1f323c8a5f50d2faa8d5e6d645427163827116dd6268c7312707a7f19d7/attempt.json": {
+      "bytes": 3392,
+      "sha256": "d8eedf3709a957c84d1df0705c6caa1493a3c64822076cc956890ba08a52ef7c"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/004ad1f323c8a5f50d2faa8d5e6d645427163827116dd6268c7312707a7f19d7/receipt.json": {
+      "bytes": 2891,
+      "sha256": "dc0a1ff2551909a610684d405cc777ed1f2ad89adf9c936aca537f163884ff2d"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/004ad1f323c8a5f50d2faa8d5e6d645427163827116dd6268c7312707a7f19d7/tokens.jsonl": {
+      "bytes": 2147,
+      "sha256": "50dc00e997f0bb1891e557e037e2727f652c8698757158baca7f589701b4b312"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0073f111bbd0fdaa5aa6c73104e385f881528f51aae01df39336611e75bd9e8e/attempt.json": {
+      "bytes": 2757,
+      "sha256": "07ef02d0a0aa7d0206b015402c9b31ff4f00da73583c9fe7e3cb70170efd999a"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0073f111bbd0fdaa5aa6c73104e385f881528f51aae01df39336611e75bd9e8e/receipt.json": {
+      "bytes": 2549,
+      "sha256": "db594fbf56c998fede3ef09fba02765777438d0724215d2277407c2aae4b8d3b"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0073f111bbd0fdaa5aa6c73104e385f881528f51aae01df39336611e75bd9e8e/tokens.jsonl": {
+      "bytes": 2152,
+      "sha256": "1c46dc809a9f8e066a82e1c580046b05fcf2b12643e85a2b43deec15f246ce1e"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0077d26746b6914f74339338b22a6a1d66b1aab967916b7dd696e44d60f97bd7/attempt.json": {
+      "bytes": 3374,
+      "sha256": "f80cc2f983377d9bc085822c11bba6389e1c3d9479aba2ec0db49ca433314343"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0077d26746b6914f74339338b22a6a1d66b1aab967916b7dd696e44d60f97bd7/receipt.json": {
+      "bytes": 2880,
+      "sha256": "613c2ea80b544345bfaefb1ccdf6ded068702708490e3bf3fcdb0689d5f2b1de"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0077d26746b6914f74339338b22a6a1d66b1aab967916b7dd696e44d60f97bd7/tokens.jsonl": {
+      "bytes": 2152,
+      "sha256": "4ec7a6b2a51540c0f6c4fcb81d9bad1d18578c76ded744c962461afd24bbd97c"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/00c2e5f8456393d266e1828ecc34a7cd079732711efb9376e6ede10e5ac0d3d4/attempt.json": {
+      "bytes": 3465,
+      "sha256": "83b52f40fde2054ab6ec80e851d5e6d9d8cad283ebfcfd85433cedd15c3803ca"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/00c2e5f8456393d266e1828ecc34a7cd079732711efb9376e6ede10e5ac0d3d4/receipt.json": {
+      "bytes": 2901,
+      "sha256": "687c4e48222bc31a0cff21bce4b1befc2eb3894293fa24f6e201a90d22cf67e7"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/00c2e5f8456393d266e1828ecc34a7cd079732711efb9376e6ede10e5ac0d3d4/tokens.jsonl": {
+      "bytes": 2151,
+      "sha256": "5128bd9e333f0770811e26a25237c25f5a92a439326e58694fc0140988f1f664"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/00e3d234fa10328adeac37084e7f2622ac187e8c13625f2e82bac960bd83c744/attempt.json": {
+      "bytes": 3468,
+      "sha256": "957e260a65872299f01f59cf9f67fa43f77f7c9fbd27d98f80771aa293c27c2a"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/00e3d234fa10328adeac37084e7f2622ac187e8c13625f2e82bac960bd83c744/receipt.json": {
+      "bytes": 2895,
+      "sha256": "d1f69bca0fe02ae613bee00d93efc291641dd57fbd957bbd64bb6d0e62d3a505"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/00e3d234fa10328adeac37084e7f2622ac187e8c13625f2e82bac960bd83c744/tokens.jsonl": {
+      "bytes": 2151,
+      "sha256": "eb1fb62c83b313136d49eff4cccba15b181721cafceb81a4f633ea565648cbc5"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/010a08725b061bf503857e9890d6658e580fb6daf53f996e03cc0cd12563ef8c/attempt.json": {
+      "bytes": 3685,
+      "sha256": "afc9ffefbca15557a704832abe8063ef468fe2963ed5646199b6a680f48ec40b"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/010a08725b061bf503857e9890d6658e580fb6daf53f996e03cc0cd12563ef8c/receipt.json": {
+      "bytes": 3023,
+      "sha256": "5cbca6030f8a70778710049105891c8d3b2b29eb5cbc567b06fa5d296de912d6"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/010a08725b061bf503857e9890d6658e580fb6daf53f996e03cc0cd12563ef8c/tokens.jsonl": {
+      "bytes": 2156,
+      "sha256": "dcf06b0054a2ff8c9c75031d5b4dc676eb52b79d30e9c883c436162defc96721"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/011faeb917dea27df3b315194ebe006d963178e58b5345273a4ed8413eb847d0/attempt.json": {
+      "bytes": 3512,
+      "sha256": "53dd8b9d13825898611aff91da925e20f7c4a1824d2e6c0f6a57cbd11f0eb86c"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/011faeb917dea27df3b315194ebe006d963178e58b5345273a4ed8413eb847d0/receipt.json": {
+      "bytes": 2897,
+      "sha256": "08c4b1d93b7c787bd3826e3d2cd657d9e05f195e1968999f264bd82fa85e2fb3"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/011faeb917dea27df3b315194ebe006d963178e58b5345273a4ed8413eb847d0/tokens.jsonl": {
+      "bytes": 1716,
+      "sha256": "479c1d007419ae46a5be973e60705a2f9cd5158f47b511486e07e520f0f0016e"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/012e0b198a99e660d4efb8ec2638e225f2b3a3ff3f2ac6ef84f3b50bd4073541/attempt.json": {
+      "bytes": 3526,
+      "sha256": "7c42cb86754832bcd44a5a7ffc2a2124ade598693a0f41e7a266e0cb9997878a"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/012e0b198a99e660d4efb8ec2638e225f2b3a3ff3f2ac6ef84f3b50bd4073541/receipt.json": {
+      "bytes": 2896,
+      "sha256": "7519d4c88e5317cd6df791c52428b8c96998a43af4fb3a0f9510740465b526f2"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/012e0b198a99e660d4efb8ec2638e225f2b3a3ff3f2ac6ef84f3b50bd4073541/tokens.jsonl": {
+      "bytes": 1720,
+      "sha256": "10f8149109439332351c5b06d8d44affd9e4b53fbe909a5f0538f56595db9441"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0136e72569a48ccd5a6dd71faacc9d6d9e923ab239fb843f797e0600e82b7221/attempt.json": {
+      "bytes": 3442,
+      "sha256": "46b7aa6c7943e9638fc5f009e5c05e9c02c57f34947349ed3f5534a8b69c9a04"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0136e72569a48ccd5a6dd71faacc9d6d9e923ab239fb843f797e0600e82b7221/receipt.json": {
+      "bytes": 2878,
+      "sha256": "22a1e25eb4afada7f2ea95c47c3d0a7cc74781ad0b6f92e11ac2b13a87eb8c18"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0136e72569a48ccd5a6dd71faacc9d6d9e923ab239fb843f797e0600e82b7221/tokens.jsonl": {
+      "bytes": 1722,
+      "sha256": "6645f010a50c3cc59c9806d6ae30ca7d247e2654ffc45dccfd4a2e9eca1fdb84"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01546cb04ee78862e8f362e8a522718912fb82f721be2674b81b0278c57ef057/attempt.json": {
+      "bytes": 3371,
+      "sha256": "81a652487cb7e3db40932440a72ae16cdb14a4ca39fc061bf975311ae7732cf0"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01546cb04ee78862e8f362e8a522718912fb82f721be2674b81b0278c57ef057/receipt.json": {
+      "bytes": 2898,
+      "sha256": "4a1495bbd2e5e74ee03d47e382e829229cb1c8e879bf73998aeeb5b80210b32d"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01546cb04ee78862e8f362e8a522718912fb82f721be2674b81b0278c57ef057/tokens.jsonl": {
+      "bytes": 2149,
+      "sha256": "e4aa1217101b13355ece1b290a5fff1a0e28beefc154ef2a41d3bc266819e005"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/016e558e2e4dae2d3095adfd23ee4c89a4b107040eeec51e5be7470d27326724/attempt.json": {
+      "bytes": 3730,
+      "sha256": "06488c062728036bacf1dd36cb543a15ec40e16e4ddff4bd89434565f8369e19"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/016e558e2e4dae2d3095adfd23ee4c89a4b107040eeec51e5be7470d27326724/receipt.json": {
+      "bytes": 3126,
+      "sha256": "8b0a21a828d941807fb3f8397085d23ad619dcb131e94af0829afce577a7cbac"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/016e558e2e4dae2d3095adfd23ee4c89a4b107040eeec51e5be7470d27326724/tokens.jsonl": {
+      "bytes": 2148,
+      "sha256": "ebc0f984e048d937a560d60e8ba3e38faf4448ca9f1be57a81e03a0564fe44b2"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/018f1fd678d2d882b5a70627a9450460592f2886eee78029808cc71e77d69f1d/attempt.json": {
+      "bytes": 2722,
+      "sha256": "10acc8c84e305981a3cf267450fb1197fe0b5ed621227c50ba9400ece8ad80d6"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/018f1fd678d2d882b5a70627a9450460592f2886eee78029808cc71e77d69f1d/receipt.json": {
+      "bytes": 2539,
+      "sha256": "1404a484d5c4af404f49eb99dad1f570466098d4b0e8432860592eed01f6a6c1"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/018f1fd678d2d882b5a70627a9450460592f2886eee78029808cc71e77d69f1d/tokens.jsonl": {
+      "bytes": 2151,
+      "sha256": "14025cea7f322ad1b385274c61927c26ad642c3ac381a7c8cf04d015d3b40c91"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01a95b230a84eee2418761363996aef1d7908fef3acee5a5bd4f15c56bdf0f1a/attempt.json": {
+      "bytes": 2739,
+      "sha256": "38de85f73e8b666b85c0fc52f4474ddaf3c3bda5dde621dceedcc6fca268b401"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01a95b230a84eee2418761363996aef1d7908fef3acee5a5bd4f15c56bdf0f1a/receipt.json": {
+      "bytes": 2546,
+      "sha256": "81382c74e3c81f63ebb248361d9b0c0e5753beaf48fefe31cb2a48823c9160ef"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01a95b230a84eee2418761363996aef1d7908fef3acee5a5bd4f15c56bdf0f1a/tokens.jsonl": {
+      "bytes": 2150,
+      "sha256": "8043fb4cbc2e68d6fea747308f1183e191f92caf06697f5bf4b25b3cb38c552e"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01b7a955c4840d5c4f30e6ced76d0535c5eb2a0ba8658cb748660b9a5a6dfcc0/attempt.json": {
+      "bytes": 3515,
+      "sha256": "702b770e38ea21c171dbd6f4e9489a53eb4b16d7c9d575e50a921e3dca4a7c69"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01b7a955c4840d5c4f30e6ced76d0535c5eb2a0ba8658cb748660b9a5a6dfcc0/receipt.json": {
+      "bytes": 2943,
+      "sha256": "31b537e894bf609b798049d7ab315abb088f9b75e2b4eff5331d412566b05eb4"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01b7a955c4840d5c4f30e6ced76d0535c5eb2a0ba8658cb748660b9a5a6dfcc0/tokens.jsonl": {
+      "bytes": 2152,
+      "sha256": "4a19f4701a67da0960c3d36bda453cd7b20c0cd47dbd6b3589869af43ff2f05d"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01c88abadef586e414abda9062907031ace70085628a84689507d04c772ad346/attempt.json": {
+      "bytes": 2832,
+      "sha256": "4b160e5020e5f597c944ddd62370200add4b4617ad98cde32ae4d3b336d28e81"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01c88abadef586e414abda9062907031ace70085628a84689507d04c772ad346/receipt.json": {
+      "bytes": 2576,
+      "sha256": "3b4340b9bb0610eeaa04f76e4423351e1d00d71fc76f33557972e13f51c5788b"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01c88abadef586e414abda9062907031ace70085628a84689507d04c772ad346/tokens.jsonl": {
+      "bytes": 2149,
+      "sha256": "911dcf430ea6e6992fc1f98362e36cc1dfe4e692324dfdf2b12647b6954e1aa7"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01ccffe39d41183e710044e73f03911676be6e5d3f8bd63f4224af613d86af89/attempt.json": {
+      "bytes": 3611,
+      "sha256": "4962e7cd805af67382337e1bb7e83a41ae81b458301418a59cdf11112d1e2cc4"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01ccffe39d41183e710044e73f03911676be6e5d3f8bd63f4224af613d86af89/receipt.json": {
+      "bytes": 2972,
+      "sha256": "20b6f7f267a4e690bc2f454dcb14a0db5ceb812754348061af9ee6f1890499c0"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01ccffe39d41183e710044e73f03911676be6e5d3f8bd63f4224af613d86af89/tokens.jsonl": {
+      "bytes": 1718,
+      "sha256": "d3ca0b14686e02061c171cd37a6ca629c5dfc5296d196dbceeca63b6617c7178"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01d7a30553d5db146476639f1330b00960a874a89167dc2276273aafecf16e2c/attempt.json": {
+      "bytes": 3256,
+      "sha256": "2112cae41479e8373cbb75e1a0b4075f59126faab1cc74bb2e7f7fee37dcc87b"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01d7a30553d5db146476639f1330b00960a874a89167dc2276273aafecf16e2c/receipt.json": {
+      "bytes": 2815,
+      "sha256": "3de2af8284cbe521a53cf18c4fab11f6b0b41e9673df26f55c0620588605e757"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01d7a30553d5db146476639f1330b00960a874a89167dc2276273aafecf16e2c/tokens.jsonl": {
+      "bytes": 2155,
+      "sha256": "a54f5d60f6a10309038a2bd1efd84f8b11fe27dd20676cde4e3f6ceab53c2eeb"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01db5e2353af9204dd6be0f54ed97fb425fcfe8ee71ae157839bec5834747135/attempt.json": {
+      "bytes": 3141,
+      "sha256": "181a75ff79859d8d933ef4a1e08002a0bc4b0c644c2717238bf51332cd575767"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01db5e2353af9204dd6be0f54ed97fb425fcfe8ee71ae157839bec5834747135/receipt.json": {
+      "bytes": 2707,
+      "sha256": "8cb26a89e6bacc8b0519040684987a61fd35beed9027089bc9fc8ce3831d9423"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01db5e2353af9204dd6be0f54ed97fb425fcfe8ee71ae157839bec5834747135/tokens.jsonl": {
+      "bytes": 2153,
+      "sha256": "b9eba6a62d4d880d76000e38ee2535faffda3e53ed61c7dbedf0726454733043"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01e7900e4ff2f5f8f9acd25ea816f192f56258497646500da6fe2cdca8e13b4c/attempt.json": {
+      "bytes": 2841,
+      "sha256": "4fea68a30123b129ffc8d5196be9e01b05d46d387d3006abe2d1fb7b47788f1a"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01e7900e4ff2f5f8f9acd25ea816f192f56258497646500da6fe2cdca8e13b4c/receipt.json": {
+      "bytes": 2575,
+      "sha256": "fa79931c515a4d5116938d134701d7dbf52e7b80245f6d70c959e83dec384c2a"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01e7900e4ff2f5f8f9acd25ea816f192f56258497646500da6fe2cdca8e13b4c/tokens.jsonl": {
+      "bytes": 1718,
+      "sha256": "1d14bbb0c1dfe845f93229d4abc8deecf3f4538ba21578e6639fff54187874b6"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01ec9b8f4506e62f731a77ea40967c1ca5c2d467412d75bc72d8d016a70296c7/attempt.json": {
+      "bytes": 2954,
+      "sha256": "92dba151a1b39078b68e2017b38fbe83638b91758b7ce54280f79eeecc3a4a57"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01ec9b8f4506e62f731a77ea40967c1ca5c2d467412d75bc72d8d016a70296c7/receipt.json": {
+      "bytes": 2635,
+      "sha256": "186643b27ba0c6be30f368f707bddda29c887f07e62054b3909f20ee5fd0aaa2"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/01ec9b8f4506e62f731a77ea40967c1ca5c2d467412d75bc72d8d016a70296c7/tokens.jsonl": {
+      "bytes": 2157,
+      "sha256": "411774a1eba2b7c220465b5d81226d5b193346e69af1e42f828123e98d98c954"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0201bd62ab31f11f9759dea5c71362189d11f582e5eb0fa2d841cd07f7859811/attempt.json": {
+      "bytes": 2699,
+      "sha256": "4d24ef06cfd6d5c85e49cf7e919b378386b300dcafc8681c2813633b0b1c931f"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0201bd62ab31f11f9759dea5c71362189d11f582e5eb0fa2d841cd07f7859811/receipt.json": {
+      "bytes": 2531,
+      "sha256": "8b61991e0bcd6d7dafb1da578fc8f4b6b19eb5df6ba6aa34668e753905c6e61d"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0201bd62ab31f11f9759dea5c71362189d11f582e5eb0fa2d841cd07f7859811/tokens.jsonl": {
+      "bytes": 1722,
+      "sha256": "c81764031b7b0d8b2021d824d02b2f9ef1f2c7d31398380fde4006c192f15ed4"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/020a91fe59e323e7fed41175ba74dc3ea1dafa7c24867985e93113f37172f29c/attempt.json": {
+      "bytes": 3099,
+      "sha256": "b95606edcb5d405834a1496364be37572c879e656a6b0293397beb3f0253f4a4"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/020a91fe59e323e7fed41175ba74dc3ea1dafa7c24867985e93113f37172f29c/receipt.json": {
+      "bytes": 2713,
+      "sha256": "4f1e54d40b2e408c676f4b5295eabb9b7e4dc97705a273643a86a18d75b3e814"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/020a91fe59e323e7fed41175ba74dc3ea1dafa7c24867985e93113f37172f29c/tokens.jsonl": {
+      "bytes": 2157,
+      "sha256": "f491e30a56ad311a7f91bffc9a2c4b797fd2191f8cd8fd41d15b2a7997e61751"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/020abdaf9001e9adb1d9aab0ba00e9194dde6440622abef7eece2a05c9d24c86/attempt.json": {
+      "bytes": 3964,
+      "sha256": "aceb92cd71666fe894f5be9c18a2917d4593618c33a862eb8ff7b8ec66ebf4b2"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/020abdaf9001e9adb1d9aab0ba00e9194dde6440622abef7eece2a05c9d24c86/receipt.json": {
+      "bytes": 3166,
+      "sha256": "f4273dad60ca63203b2029fcfb355bded1ffd157e116c2d5a703e298c49a9888"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/020abdaf9001e9adb1d9aab0ba00e9194dde6440622abef7eece2a05c9d24c86/tokens.jsonl": {
+      "bytes": 1718,
+      "sha256": "f1b17ed0d59c29541325f42d7a26dd9e1c55199c5e42de1ce2438bbf04ec60c4"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0231eabbb2022570ecfc15033c181f779c961a2ea838fb459d69488c347a73b9/attempt.json": {
+      "bytes": 2536,
+      "sha256": "7c2a697c0e1347e7eca478b4e864bc5259a7a1a239f7c70798fe37a4758ca7e8"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0231eabbb2022570ecfc15033c181f779c961a2ea838fb459d69488c347a73b9/receipt.json": {
+      "bytes": 2438,
+      "sha256": "1ca0146bff6c0c73280719944e792b16d95a35f733579e5473ada6f309c33c87"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0231eabbb2022570ecfc15033c181f779c961a2ea838fb459d69488c347a73b9/tokens.jsonl": {
+      "bytes": 1728,
+      "sha256": "d831ecc6830f81c8e63e90f99596f5c45636177776b22ad4267130a09805185c"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0235b3f9d779015c2bd7e1e473390f0df904e9dd4abe7bc7faaee45b46144a99/attempt.json": {
+      "bytes": 3380,
+      "sha256": "c7cd774731925cf5191ce0e3dee18551b38e15499f0c5041cd8be09d5f13d255"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0235b3f9d779015c2bd7e1e473390f0df904e9dd4abe7bc7faaee45b46144a99/receipt.json": {
+      "bytes": 2892,
+      "sha256": "f36562da8290004d631637c0b76adb0884f93585957fdd9bec91ffd65556ecfc"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0235b3f9d779015c2bd7e1e473390f0df904e9dd4abe7bc7faaee45b46144a99/tokens.jsonl": {
+      "bytes": 2149,
+      "sha256": "4aa8f7a471dd85e17597de2bf43b872f4be5e4864a0e2ff037204aab2060d59b"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/024e1767e54eedb083dd2f31a8778a28debdaafe3c3a293fc46a1548af7c2433/attempt.json": {
+      "bytes": 3457,
+      "sha256": "955d9989058fbd903992cd94ddaebd4670414c50e2e69eaa281d3101fe06a308"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/024e1767e54eedb083dd2f31a8778a28debdaafe3c3a293fc46a1548af7c2433/receipt.json": {
+      "bytes": 2901,
+      "sha256": "415325e47659062dfc38447bd60f7ec3d91e278c0aff1e6418d4db69296a54cf"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/024e1767e54eedb083dd2f31a8778a28debdaafe3c3a293fc46a1548af7c2433/tokens.jsonl": {
+      "bytes": 1722,
+      "sha256": "6055223b9b7ed54a33f622c8d983dec3a7187ee0e78ffddfd094a1eea44f7bcd"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/02740d0979654681068fa21fb3bd6b5df1f056966b1f6867eef2ffafed2fa098/attempt.json": {
+      "bytes": 3714,
+      "sha256": "0cbbd830de3192406f319b7cd43f90033b5bb75e22aa7dcc984a986b3c19de51"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/02740d0979654681068fa21fb3bd6b5df1f056966b1f6867eef2ffafed2fa098/receipt.json": {
+      "bytes": 3029,
+      "sha256": "73ea305f41408819f62fef66278af2220d56311dcbc58bacdc18df0a5bbca2b1"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/02740d0979654681068fa21fb3bd6b5df1f056966b1f6867eef2ffafed2fa098/tokens.jsonl": {
+      "bytes": 1722,
+      "sha256": "bf1f76bbdf722d78b3dabbaa3c1d28677462685296c49dc0ea741ce05452e933"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0283b557d89c540c5da339f1d9fc9075f6162ce832f55c139bb5dfe0f118964c/attempt.json": {
+      "bytes": 2710,
+      "sha256": "c6d982f22e69b13c4a3ddf697c9ed586a3100210f6f3bcfcd69487b74c2c2c59"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0283b557d89c540c5da339f1d9fc9075f6162ce832f55c139bb5dfe0f118964c/receipt.json": {
+      "bytes": 2547,
+      "sha256": "4c69f92fa715b57db57a0ba833d06ccd84b279d1e7c43a6708eefbaecb7b1c1c"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/0283b557d89c540c5da339f1d9fc9075f6162ce832f55c139bb5dfe0f118964c/tokens.jsonl": {
+      "bytes": 2151,
+      "sha256": "3609fda66762643ead5ac6e046dd3ae6642a417b3d80f10abf166f31e0f959f4"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/02a52693fd4c9f89dccfae4492e019c6a98c1dfe0c98e5a137dd71f180a40802/attempt.json": {
+      "bytes": 2586,
+      "sha256": "114084636563c2f8cde134d7cb476bce53da53ea4d4f48926d30bd659c4c64a4"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/02a52693fd4c9f89dccfae4492e019c6a98c1dfe0c98e5a137dd71f180a40802/receipt.json": {
+      "bytes": 2449,
+      "sha256": "9a098aa4f0a4a2a4ac8486aad375f3fa489cf94235cfb9d9c8da3fcd88c55569"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/02a52693fd4c9f89dccfae4492e019c6a98c1dfe0c98e5a137dd71f180a40802/tokens.jsonl": {
+      "bytes": 1721,
+      "sha256": "556179a80a5afeaf334421faf8731439c3736885e97918d036ec34cde7db521f"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/02c0f49319dc400c4d27c2b6d0996191ddf0b943c591ad3a4e856947c24aecb9/attempt.json": {
+      "bytes": 3459,
+      "sha256": "21809b65e1221f2bb93660be0a0cc29fd2c81fb7bbfd11deab4c6c10e53493f5"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/02c0f49319dc400c4d27c2b6d0996191ddf0b943c591ad3a4e856947c24aecb9/receipt.json": {
+      "bytes": 2933,
+      "sha256": "f5af503a6723529b4b1590bbf490cd9b64c353bb82bf8d97d78e7c4faa9e57c0"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/02c0f49319dc400c4d27c2b6d0996191ddf0b943c591ad3a4e856947c24aecb9/tokens.jsonl": {
+      "bytes": 2154,
+      "sha256": "22f5e7e5122588cf08ab543b1ee318d5aea18225894cf7b42626b8fcc5d3d496"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/02c5793f879c4bb9c16068f9ae840098aeab94fa43a56b076c65727c0151b557/attempt.json": {
+      "bytes": 3349,
+      "sha256": "3d7ef8606f67d8ffacbbe737efae0554a2291d5ebf550fb227c9428ca9d1f45c"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/02c5793f879c4bb9c16068f9ae840098aeab94fa43a56b076c65727c0151b557/receipt.json": {
+      "bytes": 2820,
+      "sha256": "7a6765494e767e6660e8ec7e8865ac992f2969eb24d71c4b5df86c625c39edb1"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/02c5793f879c4bb9c16068f9ae840098aeab94fa43a56b076c65727c0151b557/tokens.jsonl": {
+      "bytes": 1719,
+      "sha256": "b5ec90d3e1e5c34d4cdea594b6c9910ab3b15ca36628e6607a53a8b65fbb59a2"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/02d1dda40919af3e4f418555ef1caee25f2e45d9df8026c4ca5327865635dc2e/attempt.json": {
+      "bytes": 3065,
+      "sha256": "e5cbad035a050be99eb5ac8e1d5a989db6850c8fa293996fbba3e91063ac6639"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/02d1dda40919af3e4f418555ef1caee25f2e45d9df8026c4ca5327865635dc2e/receipt.json": {
+      "bytes": 2661,
+      "sha256": "1005a293bd0ee185d8024e38f7f4bd66d56ff343d6ad7ee41dc8b61d5bd3cc8f"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/attempts/02d1dda40919af3e4f418555ef1caee25f2e45d9df8026c4ca5327865635dc2e/tokens.jsonl": {
+      "bytes": 1722,
+      "sha256": "24269f52fb0aa296327acc76bea9814fccbf55b2e6dfcb361b45d6ce49d4e163"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/invocations/35fddf66-9d43-4257-805b-076659d32f6e/initial-runtime-identity.json": {
+      "bytes": 165995,
+      "sha256": "fc7fcc02394b63dc867238e2c2393dd9b7534eeb26de296eee7ccbe32c76908e"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/invocations/35fddf66-9d43-4257-805b-076659d32f6e/loaded-checkpoint.json": {
+      "bytes": 145978,
+      "sha256": "90a62fd0a81ef33eb3e792192013552bf6f5e4e9e9b69ed0e8f04336a6754d4d"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/invocations/35fddf66-9d43-4257-805b-076659d32f6e/phases.jsonl": {
+      "bytes": 5635,
+      "sha256": "30e20ac7830ba7b85cd1a8dc2ff0cf059af5a00be4805f191608e3b5855b397a"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/invocations/35fddf66-9d43-4257-805b-076659d32f6e/plan.json": {
+      "bytes": 196410,
+      "sha256": "828907e86cb8e9bfbd8cf0b23eab7481c8b11023b944025dcc9683fa66943e60"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/invocations/35fddf66-9d43-4257-805b-076659d32f6e/report.json": {
+      "bytes": 237554,
+      "sha256": "8eaf982978569c4cc55ebd6f158287b15af05d00bedb9cf1344b703b56d716d2"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/invocations/35fddf66-9d43-4257-805b-076659d32f6e/tokenizer-identity.json": {
+      "bytes": 563,
+      "sha256": "1e88d34f9c06fda252b3d7637a65ee02f92d20cd2be6a2504d3cb07645f0a014"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/invocations/b670730a-b60e-4248-83df-e4f435840f1d/initial-runtime-identity.json": {
+      "bytes": 165995,
+      "sha256": "fc7fcc02394b63dc867238e2c2393dd9b7534eeb26de296eee7ccbe32c76908e"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/invocations/b670730a-b60e-4248-83df-e4f435840f1d/loaded-checkpoint.json": {
+      "bytes": 145978,
+      "sha256": "90a62fd0a81ef33eb3e792192013552bf6f5e4e9e9b69ed0e8f04336a6754d4d"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/invocations/b670730a-b60e-4248-83df-e4f435840f1d/phases.jsonl": {
+      "bytes": 5630,
+      "sha256": "c3ac61b0105a47dade72174ae6f42f661cc20e7c500eadf416c925005ad1b107"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/invocations/b670730a-b60e-4248-83df-e4f435840f1d/plan.json": {
+      "bytes": 195874,
+      "sha256": "56233ec618e3d77ae445fb1cd7788597f6b68dbbd8e4953cc8361e1241c8ee74"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/invocations/b670730a-b60e-4248-83df-e4f435840f1d/report.json": {
+      "bytes": 237554,
+      "sha256": "c8d778fd27a093735c66a9149ed98fc9b2761e7471cc780f7da493c14895f7a8"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/invocations/b670730a-b60e-4248-83df-e4f435840f1d/tokenizer-identity.json": {
+      "bytes": 563,
+      "sha256": "1e88d34f9c06fda252b3d7637a65ee02f92d20cd2be6a2504d3cb07645f0a014"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/invocations/b8ce2862-68c0-4e05-bab6-f9e9b0f86b17/initial-runtime-identity.json": {
+      "bytes": 165995,
+      "sha256": "fc7fcc02394b63dc867238e2c2393dd9b7534eeb26de296eee7ccbe32c76908e"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/invocations/b8ce2862-68c0-4e05-bab6-f9e9b0f86b17/loaded-checkpoint.json": {
+      "bytes": 145978,
+      "sha256": "90a62fd0a81ef33eb3e792192013552bf6f5e4e9e9b69ed0e8f04336a6754d4d"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/invocations/b8ce2862-68c0-4e05-bab6-f9e9b0f86b17/phases.jsonl": {
+      "bytes": 5635,
+      "sha256": "cbc7fb783adeb42bfaf123dd54f00c02ea1b156a849caf5417d0221b377ed8a8"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/invocations/b8ce2862-68c0-4e05-bab6-f9e9b0f86b17/plan.json": {
+      "bytes": 194802,
+      "sha256": "7d2b25f1f353f846fd734b1ed6efba2911f3512f247b61f06df4ac676c73cf67"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/invocations/b8ce2862-68c0-4e05-bab6-f9e9b0f86b17/report.json": {
+      "bytes": 237554,
+      "sha256": "3cf9c37315928e70c6993d935db216dbd7fb6ef4f396031568c13e9ad9fec2ce"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/invocations/b8ce2862-68c0-4e05-bab6-f9e9b0f86b17/tokenizer-identity.json": {
+      "bytes": 563,
+      "sha256": "1e88d34f9c06fda252b3d7637a65ee02f92d20cd2be6a2504d3cb07645f0a014"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/invocations/cddf9448-bb1f-4adf-a10b-baa113669e17/initial-runtime-identity.json": {
+      "bytes": 165995,
+      "sha256": "fc7fcc02394b63dc867238e2c2393dd9b7534eeb26de296eee7ccbe32c76908e"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/invocations/cddf9448-bb1f-4adf-a10b-baa113669e17/loaded-checkpoint.json": {
+      "bytes": 145978,
+      "sha256": "90a62fd0a81ef33eb3e792192013552bf6f5e4e9e9b69ed0e8f04336a6754d4d"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/invocations/cddf9448-bb1f-4adf-a10b-baa113669e17/phases.jsonl": {
+      "bytes": 5627,
+      "sha256": "a8ad3ae924fad8e628a443424f1cbb38dd4e8e585a7e1155c1472abe46325d47"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/invocations/cddf9448-bb1f-4adf-a10b-baa113669e17/plan.json": {
+      "bytes": 195338,
+      "sha256": "882ed300cf908e74561efd4be8b1f315708d74e28ee0b695b903d910e8f4b6bc"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/invocations/cddf9448-bb1f-4adf-a10b-baa113669e17/report.json": {
+      "bytes": 237554,
+      "sha256": "4d75b8fd6cf96cb501ff0d1e2deaca6a391c87362166a9a88cc97d4ba7ea2113"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/collection/invocations/cddf9448-bb1f-4adf-a10b-baa113669e17/tokenizer-identity.json": {
+      "bytes": 563,
+      "sha256": "1e88d34f9c06fda252b3d7637a65ee02f92d20cd2be6a2504d3cb07645f0a014"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/status-after-tranche-05.json": {
+      "bytes": 378,
+      "sha256": "6e81d05fbcfb94fc3f719c2e7dbe13dd9dd814d1b2832a73b12406174ab4722c"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-02-config.json": {
+      "bytes": 1466,
+      "sha256": "478de796a951dde8ec5e35b1e4f04f5c69a6d48853404b4d5a039a57833a6ff6"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-02-prelaunch-gates.json": {
+      "bytes": 2538,
+      "sha256": "42398c3be377dd6fd4b0274be5919906fa859e093c26749068ce0d8eab929421"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-02-terminal-audit.json": {
+      "bytes": 12872,
+      "sha256": "aff460800a1941c26506891a88260157a636ac8f926a1bd1bf69c374eae3a96b"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-02/result.json": {
+      "bytes": 557,
+      "sha256": "b8cfeb4c6470bcdedc9dc6d2433bd47bfeab37fc154e0b15080c2c038fffcf9e"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-02/start.json": {
+      "bytes": 1742,
+      "sha256": "068fa0dbcea3c7ebbdca85f9cc8326033647f2870cc05020b82e456655ed0574"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-02/stderr.log": {
+      "bytes": 454,
+      "sha256": "d33471b4ea7e91befc39eaafc3d7cebfc69cb883b096a6eedb34321a7f38cf8e"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-02/stdout.log": {
+      "bytes": 6502,
+      "sha256": "856b5424f46fee8d860a45b08a6865867f65cd7de9455c6d6e02e936787b0c05"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-02/time.txt": {
+      "bytes": 1464,
+      "sha256": "70509bd50839b242f1c8cbb68178002c278cae528de0964221621957a95e23e2"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-03-config.json": {
+      "bytes": 1466,
+      "sha256": "dc28d7c180aca734228c2b8b8e21c1f0ec6be36c8200a411184cd2779c991b2d"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-03-prelaunch-gates.json": {
+      "bytes": 2853,
+      "sha256": "479de736a8dbf37d2574526c26cf41f61bc2049c6fc2340345041343a96b1f8d"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-03-terminal-audit.json": {
+      "bytes": 17953,
+      "sha256": "cd84623e2561baf501af473a35145494ff362037249157bfe8d26fd3c511cc77"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-03/result.json": {
+      "bytes": 557,
+      "sha256": "562f4605a2920e570b8ad4b29c3345e9bcb3b128747f0a226ea9e8a88b837a30"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-03/start.json": {
+      "bytes": 1742,
+      "sha256": "adc80376ce5377963b61ee093e678432d719fef48f09676a2e1cbbd8ee9a5eb3"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-03/stderr.log": {
+      "bytes": 454,
+      "sha256": "d33471b4ea7e91befc39eaafc3d7cebfc69cb883b096a6eedb34321a7f38cf8e"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-03/stdout.log": {
+      "bytes": 6497,
+      "sha256": "d9644e2b780fce6566ee725e2a775c6bacdd3f97d4d6a4c2b104b8a6aeda69a1"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-03/time.txt": {
+      "bytes": 1456,
+      "sha256": "10a58980635b2a7aa5c81d9c4980fc7a6616ac3ac3de18e4848106f81135c15a"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-04-config.json": {
+      "bytes": 1466,
+      "sha256": "f334360a88b188e418ab1ace42eb45fd37bc4c2d1eccf7aadcd78d48edade3ea"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-04-prelaunch-gates.json": {
+      "bytes": 3158,
+      "sha256": "42cd12a125aee6ecd6776e7605aee6fab2870534bb05b72b4522ddcb41257238"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-04-terminal-audit.json": {
+      "bytes": 23024,
+      "sha256": "8ba35e7d1caf6c3ec08d9d748ae92f8ab3b355d9a3e05c2a54ab5d56803707e3"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-04/result.json": {
+      "bytes": 557,
+      "sha256": "5a6da7748a386700e2c82bb86a32d7a400ad1e03f73fba678b61572b14b1cbb7"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-04/start.json": {
+      "bytes": 1742,
+      "sha256": "63f972b25e4883bcdd6c2d1e1283aa2e07325a00a2cf80d7ddeeebe56d8d7127"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-04/stderr.log": {
+      "bytes": 454,
+      "sha256": "d33471b4ea7e91befc39eaafc3d7cebfc69cb883b096a6eedb34321a7f38cf8e"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-04/stdout.log": {
+      "bytes": 6494,
+      "sha256": "612f6c1c1565b3b7d90676d0400a1d4145d3d59af508f2b1b02295d33d3f276a"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-04/time.txt": {
+      "bytes": 1455,
+      "sha256": "f791078d4f0f8e529eb1575c5af8a711936300b8a1bc4f3dd2fa0f82d9e368e9"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-05-config.json": {
+      "bytes": 1466,
+      "sha256": "1760c0fb2d505c23a6c2b07f506a97f165ad71dbf98c87556d6151021d683f85"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-05-prelaunch-gates.json": {
+      "bytes": 3463,
+      "sha256": "234f24df5ed0e3532b119d2c131c9d17c5ac969647376054fd2feb1b3420772c"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-05-terminal-audit.json": {
+      "bytes": 28095,
+      "sha256": "ac38165e9d9128b4bcc93c04c6b537e4db2218a192234658e30d76ad8a4d3442"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-05/result.json": {
+      "bytes": 557,
+      "sha256": "784a124504aacec8aabb6e827052206ede0cb8797092faf50a52263cfc6d16af"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-05/start.json": {
+      "bytes": 1742,
+      "sha256": "ef319cde2c9ad560de2c4313bca493ba56e7da25c684e3d1d6325092d8847459"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-05/stderr.log": {
+      "bytes": 454,
+      "sha256": "d33471b4ea7e91befc39eaafc3d7cebfc69cb883b096a6eedb34321a7f38cf8e"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-05/stdout.log": {
+      "bytes": 6502,
+      "sha256": "35d159b36d039ec79d86db4ca969a63c4d4ff912c0e80d892c2bf3ccc69757df"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranche-05/time.txt": {
+      "bytes": 1455,
+      "sha256": "397eec7b36605cd4a45a1ba1f6bafc0d8cdc705d7e87e22623bf74b942a3fb03"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranches-02-05-plan.json": {
+      "bytes": 7653,
+      "sha256": "ab4fa8611d3b9200ea9125fc65d2e1c3ff3b583e241755f5325b85278674bf59"
+    },
+    "data/research/qwen-cdf-collection-progress-20260913/tranches-02-05-terminal-audit.json": {
+      "bytes": 42345,
+      "sha256": "9db1e2b1b20aa5b89c6cb573de7061da630b1bcc6155a8b101a4413ba7877425"
+    }
+  },
+  "referenced_artifacts": {
+    "data/research/qwen-cdf-collection-20260913.json": {
+      "bytes": 21635,
+      "sha256": "b4b045ab007e9e44e2d266b0d13268814ee32833b4511c80b1fe55800abcd0a5"
+    },
+    "data/research/qwen-cdf-collection-20260913/collection/attempts/00378ee8bd196abc8a83ad6fd27d65a27f76ae40af5b10b1b957128f5e51c292/attempt.json": {
+      "bytes": 3438,
+      "sha256": "ab685906400f74a735055d3cff129753e482447d9c4f7ad115be04ec0d41760f"
+    },
+    "data/research/qwen-cdf-collection-20260913/collection/attempts/00378ee8bd196abc8a83ad6fd27d65a27f76ae40af5b10b1b957128f5e51c292/receipt.json": {
+      "bytes": 2907,
+      "sha256": "70d9719883aa96c309b3153098f3fd4202f0fd47b7b5d2b93efff4ace823559a"
+    },
+    "data/research/qwen-cdf-collection-20260913/collection/attempts/00378ee8bd196abc8a83ad6fd27d65a27f76ae40af5b10b1b957128f5e51c292/tokens.jsonl": {
+      "bytes": 2151,
+      "sha256": "9c02ba72b1ef00c258ea531b3ea1b567538f57146d7efd39b9842b49c58ecad4"
+    },
+    "data/research/qwen-cdf-collection-20260913/collection/attempts/0041c4392b30880f8e9b9804eab765b363d2d856d760a5b1f05e91c0ea805828/attempt.json": {
+      "bytes": 3359,
+      "sha256": "0fc2b5556801040ec737f5844b08e2d74b0d59491c4ddcfcc34f6f6ec5090090"
+    },
+    "data/research/qwen-cdf-collection-20260913/collection/attempts/0041c4392b30880f8e9b9804eab765b363d2d856d760a5b1f05e91c0ea805828/receipt.json": {
+      "bytes": 2817,
+      "sha256": "6f5951c6e8c87c8dd9d13f098fd65878631783e574c5c07f9ab9af746ef7fd7e"
+    },
+    "data/research/qwen-cdf-collection-20260913/collection/attempts/0041c4392b30880f8e9b9804eab765b363d2d856d760a5b1f05e91c0ea805828/tokens.jsonl": {
+      "bytes": 1710,
+      "sha256": "23c1ee680e26357fb0ddd765ba4588afd38c5241959d5540b76a02e12b264bb5"
+    },
+    "data/research/qwen-cdf-collection-20260913/collection/catalog.jsonl": {
+      "bytes": 6060450,
+      "sha256": "ef52053cd35037b1e4fb1f733ad5e69ad25e5c3aadf8e8626a430c569819fc58"
+    },
+    "data/research/qwen-cdf-collection-20260913/collection/invocations/d4e87097-92d5-4663-b1c0-22401ff214c3/initial-runtime-identity.json": {
+      "bytes": 165995,
+      "sha256": "fc7fcc02394b63dc867238e2c2393dd9b7534eeb26de296eee7ccbe32c76908e"
+    },
+    "data/research/qwen-cdf-collection-20260913/collection/invocations/d4e87097-92d5-4663-b1c0-22401ff214c3/loaded-checkpoint.json": {
+      "bytes": 145978,
+      "sha256": "90a62fd0a81ef33eb3e792192013552bf6f5e4e9e9b69ed0e8f04336a6754d4d"
+    },
+    "data/research/qwen-cdf-collection-20260913/collection/invocations/d4e87097-92d5-4663-b1c0-22401ff214c3/phases.jsonl": {
+      "bytes": 2006,
+      "sha256": "adc6ade9f446da7c35ed636eb514dcf1a0453c1dcb201ac9b6fa1c73d4d9c3e4"
+    },
+    "data/research/qwen-cdf-collection-20260913/collection/invocations/d4e87097-92d5-4663-b1c0-22401ff214c3/plan.json": {
+      "bytes": 196542,
+      "sha256": "2da04906fbbeee9c84ce3031d8948f6523896ae248c9221da5cb3efaaed79508"
+    },
+    "data/research/qwen-cdf-collection-20260913/collection/invocations/d4e87097-92d5-4663-b1c0-22401ff214c3/report.json": {
+      "bytes": 237549,
+      "sha256": "8982d58ba367f56ba8b972050d381fa8919be8f2a162ffe5bb8c29c635cd5bfa"
+    },
+    "data/research/qwen-cdf-collection-20260913/collection/invocations/d4e87097-92d5-4663-b1c0-22401ff214c3/tokenizer-identity.json": {
+      "bytes": 563,
+      "sha256": "1e88d34f9c06fda252b3d7637a65ee02f92d20cd2be6a2504d3cb07645f0a014"
+    },
+    "data/research/qwen-cdf-collection-20260913/collection/plan.json": {
+      "bytes": 2808,
+      "sha256": "a0d07bda3b81d880199e62b310caa43e8051f50b5e5da30f912d457f3439a5ce"
+    },
+    "data/research/qwen-cdf-collection-20260913/collection/spec.json": {
+      "bytes": 18335,
+      "sha256": "5afa578df2f430d5add27f7e00c823b1bab722cdb1ef12086b7cabc5bf16491c"
+    },
+    "data/research/qwen-cdf-collection-20260913/plan-result.json": {
+      "bytes": 172,
+      "sha256": "2df1d43acee835ce9c62be406c9349e9ac2e0cce4b09cefbc2f97cc70b0ed18f"
+    },
+    "data/research/qwen-cdf-collection-20260913/plan.sha256": {
+      "bytes": 65,
+      "sha256": "4ec6deb6649a3fe634838f215a534bcb3f90a7e4b07c53b4a22f1e1b586d1ea3"
+    },
+    "data/research/qwen-cdf-collection-20260913/preflight-result.json": {
+      "bytes": 376,
+      "sha256": "60b486520b6716244524dbfda8b7ee7b0e8e936d8b56c7d22da9a3206e6f804b"
+    },
+    "data/research/qwen-cdf-collection-20260913/preparation-pins.json": {
+      "bytes": 6801,
+      "sha256": "ced9ed5577fcac1bf961578535b69c2bc2d427b3102d25977f223f770b8cdb3a"
+    },
+    "data/research/qwen-cdf-collection-20260913/spec.sha256": {
+      "bytes": 65,
+      "sha256": "2934ee41676db91c95717f288f2ecd8f1830ffca79d95ff3eb0cd7425835397f"
+    },
+    "data/research/qwen-cdf-collection-20260913/status-after-tranche-01.json": {
+      "bytes": 376,
+      "sha256": "c6669288daa1e109810f6787bdc9c390a7fc1392771d4d7c98077b3f99d0580f"
+    },
+    "data/research/qwen-cdf-collection-20260913/supervise.py": {
+      "bytes": 1912,
+      "sha256": "d3c90127008d3448cc48e9e0eb13942bed18a16b285a01dcb4a0a10f8c48204f"
+    },
+    "data/research/qwen-cdf-collection-20260913/supervisor.sha256": {
+      "bytes": 65,
+      "sha256": "ed71007319d8db9ff2c69faf3d0490317f2cad3443d218462adcf4de473fd9be"
+    },
+    "data/research/qwen-cdf-collection-20260913/tranche-01/result.json": {
+      "bytes": 557,
+      "sha256": "2a81b20b04bcdce2521f6f0c64ede68b9e6db6b19ec71001f5ee6f337b1a38e0"
+    },
+    "data/research/qwen-cdf-collection-20260913/tranche-01/start.json": {
+      "bytes": 1732,
+      "sha256": "3a32de1a766ba60296657a288121b1ad4ac52577457c0b975d98e5e4e2c77761"
+    },
+    "data/research/qwen-cdf-collection-20260913/tranche-01/stderr.log": {
+      "bytes": 454,
+      "sha256": "d33471b4ea7e91befc39eaafc3d7cebfc69cb883b096a6eedb34321a7f38cf8e"
+    },
+    "data/research/qwen-cdf-collection-20260913/tranche-01/stdout.log": {
+      "bytes": 2676,
+      "sha256": "55a3abd42f9dc5d83d3041703da20141918e3a4f75076019f3239fbd57673a1c"
+    },
+    "data/research/qwen-cdf-collection-20260913/tranche-01/time.txt": {
+      "bytes": 1457,
+      "sha256": "c75fa0eb607e493b95abc5a9d487036bc7dad45d294dc7d11e04ba5f7187a094"
+    },
+    "data/research/qwen-cdf-collection-20260913/tranche-01-config.json": {
+      "bytes": 1456,
+      "sha256": "14e77a4381f557c9ade5fe46501e40c1e61d03a4aeef7fe38dae18805119455c"
+    },
+    "data/research/qwen-cdf-collection-20260913/tranche-01-config.sha256": {
+      "bytes": 65,
+      "sha256": "b5c1cf5412643f62a8c09c6fb8e3c17ac0843a6deb0c30021db8234d55d090b4"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/collection/initial-weights-manifest.json": {
+      "bytes": 150654,
+      "sha256": "a0cfc439ec30edc7c464e77cad38651cfbee27962bf7d09b41f5bdd01b871ece"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/collection/inputs/checkpoint_manifest.json": {
+      "bytes": 2350,
+      "sha256": "c4bfae6b8be4d893e7395bbaaaa6874b2583e818a56db100488795856af2bbf3"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/collection/inputs/heldout.jsonl": {
+      "bytes": 2667046,
+      "sha256": "d5b9b660f9fb8c39f7313892897644350247b4c0173bb22871912cdc9fc0674e"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/collection/inputs/initial_runtime_identity.json": {
+      "bytes": 165826,
+      "sha256": "32c0a090c50f23eff12517ef9d390a6b06c333702ce47cb8a67952f8bb1ab6cc"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/collection/inputs/tokenizer_manifest.json": {
+      "bytes": 1282,
+      "sha256": "a8ae42266e839691e203711bfcf5280b3b28eba120c4f1a19bfc88e836564ef8"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/collection/inputs/train.jsonl": {
+      "bytes": 3164918,
+      "sha256": "71ccc77578c201dc7f51bf06cb9f48f1fecfc1850e3f0472aa349a777924fd2e"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/collection/inputs/valid.jsonl": {
+      "bytes": 352437,
+      "sha256": "d45342c7d00ceb4fd9642e97647a695c3760d7a958ceb5461173008bd5bc4150"
+    },
+    "data/research/qwen-cdf-validation-20260913.json": {
+      "bytes": 2131,
+      "sha256": "6fb49eb762e4a4a56262eeaf7c8e7fb51c1d8b0a91884adc413429dc2f821fba"
+    }
+  },
+  "referenced_artifact_count": 39,
+  "source_path_reference_aliases": {
+    "spec.json": "data/research/qwen-cdf-collection-20260913/collection/spec.json"
+  },
+  "publication_validation": {
+    "source_hashes_verified_at_sealed_commit": 14,
+    "plan_bound_file_count": 9,
+    "byte_identical_historical_input_references": 7,
+    "all_2926_catalog_rows_and_seed_derivations_verified": true,
+    "attempt_receipt_token_catalog_bindings_checked": 34,
+    "new_continuation_receipt_bindings_checked": 32,
+    "terminal_audit_file_pin_checks": 408,
+    "unarchived_runtime_lock_empty_sha256_pins": 5,
+    "sequence_terminal_audit_archived_file_pin_checks": 181,
+    "prelaunch_predecessor_config_envelope_source_and_order_pins_checked": true,
+    "terminal_states_reconstructed_with_AttemptLedger_inspect": true,
+    "terminal_states_match_each_internal_report_and_terminal_audit": true,
+    "runtime_identity_matches_spec_plan_and_first_v3_invocation": true,
+    "terminal_base_and_adapter_integrity_verified": true,
+    "new_source_changes_or_extra_model_executions": false,
+    "torch_imported": false
+  },
+  "omitted_artifacts": [
+    "Immutable first-v3 files and seven historical bound inputs are retained by byte-counted SHA-256 references without duplication.",
+    "Checkpoint tensors and runtime owner.lock.",
+    "All v1/v2 response artifacts.",
+    "All later tranche 06\u201313 configs, tranches-06-13-plan.json, and future results."
+  ],
+  "input_reconstruction_note": "Overlay collection/ files from the referenced first-v3 raw archive and this continuation archive. For each bound_input_references entry, copy reference_file to collection/<entry key>. Verify every listed bytes/SHA, then load the pinned v3 plan and inspect the reconstructed ledger. Checkpoint tensors remain separate."
+}

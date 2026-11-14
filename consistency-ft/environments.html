@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Belief Gym</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap">
+<style>
+  :root {
+    --paper:#fafbf9; --card:#ffffff; --ink:#151a20; --ink-2:#565d66; --ink-3:#8a9097;
+    --line:#e2e5e1; --accent:#2563c7; --accent-soft:#e8effb;
+    --ours:#0e8a6c; --ours-soft:#e4f3ee; --gate:#b07207; --gate-soft:#f8efdd;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:#14171c; --card:#1b1f26; --ink:#eef1f4; --ink-2:#aab2bb; --ink-3:#7d848d;
+      --line:#2c313a; --accent:#6b9fe8; --accent-soft:#1d2c45;
+      --ours:#3db392; --ours-soft:#17322b; --gate:#d99a33; --gate-soft:#35290f;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:#14171c; --card:#1b1f26; --ink:#eef1f4; --ink-2:#aab2bb; --ink-3:#7d848d;
+    --line:#2c313a; --accent:#6b9fe8; --accent-soft:#1d2c45;
+    --ours:#3db392; --ours-soft:#17322b; --gate:#d99a33; --gate-soft:#35290f;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink);
+         font:400 16px/1.65 "IBM Plex Sans", system-ui, sans-serif; }
+  .wrap { max-width:980px; margin:0 auto; padding:48px 24px 90px; }
+  .eyebrow { font:500 12px/1 "IBM Plex Mono", monospace; letter-spacing:.14em;
+             text-transform:uppercase; color:var(--accent); margin:0 0 14px; }
+  h1 { font:700 clamp(30px,5vw,42px)/1.12 "Source Serif 4", Georgia, serif; margin:0 0 10px; text-wrap:balance; }
+  .standfirst { font-size:18px; color:var(--ink-2); max-width:730px; margin:0 0 30px; }
+  h2 { font:600 23px/1.25 "Source Serif 4", Georgia, serif; margin:48px 0 12px; }
+  p { margin:0 0 14px; max-width:730px; }
+  a { color:var(--accent); }
+  .finding { border-left:3px solid var(--accent); background:var(--accent-soft);
+             padding:16px 20px; border-radius:0 8px 8px 0; max-width:760px; margin:22px 0; }
+  .tablewrap { overflow-x:auto; margin:18px 0; border-radius:10px; }
+  table { border-collapse:collapse; width:100%; font-size:14px; background:var(--card);
+          border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+  th { text-align:left; font:500 11.5px/1.3 "IBM Plex Mono", monospace; letter-spacing:.08em;
+       text-transform:uppercase; color:var(--ink-3); padding:10px 12px; border-bottom:1px solid var(--line); }
+  td { padding:11px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  .chip { display:inline-block; font:500 11.5px/1 "IBM Plex Mono", monospace;
+          padding:4px 8px; border-radius:999px; white-space:nowrap; }
+  .chip.now  { background:var(--ours-soft); color:var(--ours); }
+  .chip.adapt{ background:var(--accent-soft); color:var(--accent); }
+  .chip.watch{ background:var(--gate-soft); color:var(--gate); }
+  .chip.warn { background:transparent; color:var(--gate); border:1px solid var(--gate); }
+  figure { margin:26px 0; }
+  .figframe { background:var(--card); border:1px solid var(--line); border-radius:10px;
+              padding:18px; overflow-x:auto; }
+  figure svg { max-width:100%; height:auto; display:block; margin:0 auto; min-width:840px; }
+  figcaption { font-size:13.5px; color:var(--ink-2); margin-top:10px; max-width:730px; }
+  ul.plain { padding-left:20px; margin:0 0 14px; max-width:730px; }
+  ul.plain li { margin-bottom:8px; }
+  .foot { margin-top:56px; padding-top:16px; border-top:1px solid var(--line);
+          font-size:13px; color:var(--ink-3); max-width:760px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">consistency-ft · environment research</p>
+  <h1>The Belief Gym</h1>
+  <p class="standfirst">Where can an LLM's beliefs be measured — and trained — under uncertainty, on a small budget? A 14-agent research sweep over benchmarks, hidden-information games, and RL stacks: 70 candidates, 16 deep-verified. The answer turned out to be a gap.</p>
+
+  <div class="finding">
+    <strong>The meta-finding: the thing we want does not exist.</strong> Every verified candidate lands in exactly one of three buckets — <em>(a)</em> explicit probabilities scored by proper rules but static and single-turn (Paleka tuples, BLInD, ForecastBench); <em>(b)</em> multi-turn hidden-state games with verifiable rewards but beliefs only implicit in actions (TextArena, Battleship, poker); <em>(c)</em> RL training infrastructure with no belief content at all (verifiers, Environments Hub). Nobody has combined them. The recipe that falls out: use (c) as the vehicle, inject (a)'s elicitation and scoring into (b)'s environments — and prefer environments where the harness already <em>knows the true posterior</em>, so "being Bayesian" earns a dense, per-turn, verifiable reward.
+  </div>
+
+  <h2>Tier 1 — build on these now</h2>
+  <div class="tablewrap"><table>
+    <tr><th>Verdict</th><th>What</th><th>Why it matters here</th><th>Fireworks / 1-GPU</th></tr>
+    <tr><td><span class="chip now">USE-NOW</span></td>
+        <td><a href="https://github.com/PrimeIntellect-ai/verifiers">verifiers</a> (MIT, 4.5k★, pushed daily)</td>
+        <td>The vehicle. Rewards are arbitrary async Python — a Brier/log-score rubric is ~10 lines; also the gateway to the 100+-env <a href="https://app.primeintellect.ai/dashboard/environments">Environments Hub</a>. Build on the v1 API (v0 tutorials are stale).</td>
+        <td>eval plugs in via base_url today; GRPO trainer if we self-host</td></tr>
+    <tr><td><span class="chip adapt">ADAPT ★</span></td>
+        <td><a href="https://github.com/gabegrand/battleship">Collaborative Battleship</a> (MIT, ICLR'26)</td>
+        <td>Sequential evidence + <em>active</em> information gathering; the harness computes a near-exact Monte-Carlo posterior over hidden boards. Our addition: elicit the model's stated P(hit)/P(ship at X) and score it against the harness posterior, plus expected-information-gain rewards for question choice.</td>
+        <td>OpenAI-SDK client — 2-line switch · yes</td></tr>
+    <tr><td><span class="chip adapt">ADAPT</span></td>
+        <td><a href="https://github.com/Ankur-Samanta/BayesBench">BayesBench</a> (MIT code, arXiv:2606.30850)</td>
+        <td>Bookbag-and-poker-chips for LLMs: multi-turn evidence with closed-form true posteriors (Beta-Bernoulli coins; MovieLens mixture). Per-turn distance-to-posterior is exactly the "within-market updating" skill the <a href="/bridge.html">futarchy experiments</a> showed missing. Reuse envs + metrics; swap logprob probes for verbalized probabilities.</td>
+        <td>reimplement elicitation (ships vLLM-only) · yes</td></tr>
+    <tr><td><span class="chip adapt">ADAPT</span> <span class="chip warn">no license</span></td>
+        <td><a href="https://github.com/HLR/BLInD">BLInD</a> (AAAI'25)</td>
+        <td>Verbalized Bayes nets with pgmpy-exact ground-truth posteriors and a seedable generator — infinite, perfectly verifiable conditional-probability rewards. Single-turn: curriculum stage 1, not the destination. Ask authors for a license grant.</td>
+        <td>yes · yes</td></tr>
+  </table></div>
+
+  <h2>Tier 2 — the forecasting lane (overlaps our Paleka harness)</h2>
+  <div class="tablewrap"><table>
+    <tr><th>What</th><th>Note</th></tr>
+    <tr><td><a href="https://github.com/OpenForecaster/scaling-forecasting-training">OpenForesight / OpenForecaster</a> (MIT)</td>
+        <td><strong>Strategic flag:</strong> accuracy-RL on their 52.7k synthesized questions already cut Paleka arbitrage violations <strong>43.5%</strong>. Our positioning: they need resolved outcomes; our KL-anchor lane is label-free and trains on unresolved questions. Reuse their dataset, offline-news retrieval, and reward shapes; skip their multi-GPU VeRL trainer.</td></tr>
+    <tr><td><a href="https://github.com/forecastingresearch/forecastbench">ForecastBench</a> (MIT / CC BY-SA)</td>
+        <td>Canonical contamination-free leaderboard; resolved-pairs repo = offline reward data; submit our tuned model bi-weekly as the public out-of-distribution eval.</td></tr>
+    <tr><td><a href="https://github.com/Metaculus/forecasting-tools">Metaculus AIB + forecasting-tools</a> (MIT)</td>
+        <td>Five minutes to a live tournament bot (litellm → Fireworks works); proper peer scores; weeks-long resolution makes it a deployment eval, not an RL loop.</td></tr>
+    <tr><td><a href="https://docs.manifold.markets/api">Manifold Markets API</a></td>
+        <td>Bots and academic model-training explicitly permitted; replay historical dumps for training; pair P&amp;L with Brier — play-money prices are noisy.</td></tr>
+    <tr><td>Skipped after verification</td>
+        <td>TruthTensor (no code, crypto framing) · Prophet Arena (platform closed; scoring lib unlicensed) · PolyBench (unlicensed, dormant since March).</td></tr>
+  </table></div>
+
+  <h2>Tier 3 — implicit-belief games (thesis evidence, weaker training fit)</h2>
+  <ul class="plain">
+    <li><a href="https://github.com/spiral-rl/spiral">SPIRAL</a> (MIT) — self-play RL on Kuhn poker transfers to math reasoning: the strongest published evidence that game-RL trains belief machinery. But no probability elicitation, full-parameter training on ~8×H100, cannot take an API-served policy. <span class="chip watch">WATCH</span> — cite, don't build on.</li>
+    <li><a href="https://github.com/TextArena/TextArena">TextArena</a> (MIT, very active) — 100+ text games including belief-games; a Fireworks agent is literally <code>OpenAIAgent(base_url=…)</code>. Terminal win/loss only — needs our elicitation layer on top.</li>
+    <li><a href="https://github.com/LeonGuertler/UnstableBaselines">UnstableBaselines</a> (MIT) — LoRA-first self-play trainer for TextArena; only relevant if training on local weights (e.g. a borrowed DGX), since the policy must be locally vLLM-served.</li>
+    <li>Not deep-verified but noted: AvalonBench / Werewolf-Plus / MindGames (social deduction, heavier), Hanabi (cooperative beliefs, non-LLM tooling), PokerBench (solver-labeled SFT), reasoning-gym (procedural probability tasks, GRPO-ready), <a href="https://arxiv.org/abs/2503.02623">Rewarding Doubt</a> (PPO on a log-score betting game — the closest published "wager your credence" recipe), ConfTuner (differentiable tokenized-Brier loss), KellyBench (bankroll sizing), ABIDES / TwinMarket / AucArena / Concordia (econ sims — beliefs load-bearing but tangled with strategy).</li>
+  </ul>
+
+  <h2>The curriculum this implies</h2>
+  <figure>
+    <div class="figframe">
+    <svg viewBox="0 0 1040 210" role="img" aria-label="Five-stage belief-gym curriculum: BLInD, BayesBench, Battleship, futarchy simulations, live forecasting — one shared elicitation format and proper-scoring rubric across all stages." font-family="IBM Plex Sans, system-ui, sans-serif">
+      <defs>
+        <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
+        </marker>
+      </defs>
+      <g fill="none" stroke="var(--line)" stroke-width="1.4">
+        <rect x="14"  y="40" width="180" height="92" rx="9" fill="var(--card)"/>
+        <rect x="222" y="40" width="180" height="92" rx="9" fill="var(--card)"/>
+        <rect x="430" y="40" width="180" height="92" rx="9" fill="var(--card)"/>
+        <rect x="638" y="40" width="180" height="92" rx="9" fill="var(--card)"/>
+        <rect x="846" y="40" width="180" height="92" rx="9" fill="var(--card)"/>
+      </g>
+      <g stroke="var(--ink-2)" stroke-width="1.4" color="var(--ink-2)" marker-end="url(#a)" fill="none">
+        <line x1="194" y1="86" x2="218" y2="86"/>
+        <line x1="402" y1="86" x2="426" y2="86"/>
+        <line x1="610" y1="86" x2="634" y2="86"/>
+        <line x1="818" y1="86" x2="842" y2="86"/>
+      </g>
+      <g fill="var(--ink)" font-size="13" font-weight="600">
+        <text x="104" y="66" text-anchor="middle">1 · BLInD</text>
+        <text x="312" y="66" text-anchor="middle">2 · BayesBench</text>
+        <text x="520" y="66" text-anchor="middle">3 · Battleship</text>
+        <text x="728" y="66" text-anchor="middle">4 · futarchy sims</text>
+        <text x="936" y="66" text-anchor="middle">5 · live forecasting</text>
+      </g>
+      <g fill="var(--ink-2)" font-size="11.5">
+        <text x="104" y="88" text-anchor="middle">exact posteriors,</text>
+        <text x="104" y="104" text-anchor="middle">single turn</text>
+        <text x="104" y="122" text-anchor="middle" font-style="italic">can it compute?</text>
+        <text x="312" y="88" text-anchor="middle">sequential evidence,</text>
+        <text x="312" y="104" text-anchor="middle">closed-form truth</text>
+        <text x="312" y="122" text-anchor="middle" font-style="italic">does it update?</text>
+        <text x="520" y="88" text-anchor="middle">hidden state, active</text>
+        <text x="520" y="104" text-anchor="middle">evidence-gathering</text>
+        <text x="520" y="122" text-anchor="middle" font-style="italic">does it seek evidence?</text>
+        <text x="728" y="88" text-anchor="middle">multi-agent, strategic</text>
+        <text x="728" y="104" text-anchor="middle">(proposal-poker venue)</text>
+        <text x="728" y="122" text-anchor="middle" font-style="italic">does it read others?</text>
+        <text x="936" y="88" text-anchor="middle">ForecastBench ·</text>
+        <text x="936" y="104" text-anchor="middle">Metaculus · Manifold</text>
+        <text x="936" y="122" text-anchor="middle" font-style="italic">does it generalize?</text>
+      </g>
+      <text x="520" y="176" text-anchor="middle" font-size="12" fill="var(--ink-3)" font-family="IBM Plex Mono, monospace">one elicitation format · one proper-scoring rubric · implemented once as verifiers tasks · same GRPO plumbing as the RLEF pilot</text>
+    </svg>
+    </div>
+    <figcaption>Each stage adds one difficulty axis while the reward stays a proper scoring rule against a known or eventual truth. Stage 4 is our own futarchy-fi/simulations venue — the bridge in both directions.</figcaption>
+  </figure>
+
+  <p class="foot">Full text with verdict details: <a href="https://github.com/futarchy-fi/consistency-ft/blob/main/ENVIRONMENTS.md">ENVIRONMENTS.md</a> · <a href="/">model dashboard</a> · <a href="/proposal.html">RLEF × Forecasting proposal</a> · <a href="/bridge.html">futarchy bridge</a>. Method: 6-angle workflow sweep (forecasting arenas, hidden-info games, Bayes benchmarks, RL stacks, wagering games, econ sims) → dedup → per-candidate repo verification, 2026-08-19.</p>
+</div>
+</body>
+</html>

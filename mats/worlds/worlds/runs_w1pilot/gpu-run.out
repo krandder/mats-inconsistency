@@ -1,0 +1,169 @@
+creating soup-gpu-w1junta-1028a-1028020002-31594 (g2-standard-8 + nvidia-l4, STANDARD) in us-central1-a ...
+WARNING: Some requests generated warnings:
+ - Disk size: '100 GB' is larger than image size: '50 GB'. You might need to resize the root repartition manually if the operating system does not support automatic resizing. See https://cloud.google.com/compute/docs/disks/add-persistent-disk#resize_pd for details.
+
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-8 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-central1-a zone. Alternatively, you can try your request
+      again with a different VM hardware configuration or at a later time. For more
+      information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-8
+      zone: us-central1-a
+      zonesAvailable: ''
+    reason: resource_availability
+message: The zone 'projects/GCP_PROJECT/zones/us-central1-a' does not have enough
+  resources available to fulfill the request.  'NULL:0/NULL:0/NULL:0 (state:STOCKOUT,
+  sub-state:STOCKOUT, resource type:compute)'.
+
+creating soup-gpu-w1junta-1028a-1028020002-31594 (g2-standard-8 + nvidia-l4, STANDARD) in us-central1-b ...
+WARNING: Some requests generated warnings:
+ - Disk size: '100 GB' is larger than image size: '50 GB'. You might need to resize the root repartition manually if the operating system does not support automatic resizing. See https://cloud.google.com/compute/docs/disks/add-persistent-disk#resize_pd for details.
+
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+---
+code: ZONE_RESOURCE_POOL_EXHAUSTED_WITH_DETAILS
+errorDetails:
+- help:
+    links:
+    - description: Troubleshooting documentation
+      url: https://cloud.google.com/compute/docs/resource-error
+- localizedMessage:
+    locale: en-US
+    message: A g2-standard-8 VM instance with 1 nvidia-l4 accelerator(s) is currently
+      unavailable in the us-central1-b zone. Alternatively, you can try your request
+      again with a different VM hardware configuration or at a later time. For more
+      information, see the troubleshooting documentation.
+- errorInfo:
+    domain: compute.googleapis.com
+    metadatas:
+      attachment: nvidia-l4:1
+      vmType: g2-standard-8
+      zone: us-central1-b
+      zonesAvailable: ''
+    reason: resource_availability
+message: The zone 'projects/GCP_PROJECT/zones/us-central1-b' does not have enough
+  resources available to fulfill the request.  'NULL:0/NULL:0/NULL:0 (state:STOCKOUT,
+  sub-state:STOCKOUT, resource type:compute)'.
+
+creating soup-gpu-w1junta-1028a-1028020002-31594 (g2-standard-8 + nvidia-l4, STANDARD) in us-central1-c ...
+NAME                                     ZONE           MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP      STATUS
+soup-gpu-w1junta-1028a-1028020002-31594  us-central1-c  g2-standard-8               [ip-removed]  [ip-removed]  RUNNING
+waiting for soup-gpu-w1junta-1028a-1028020002-31594 ([ip-removed]) startup script (up to 25 min) ...
+gpu=NVIDIA L4, 580.178.04
+nvcc=Build cuda_12.9.r12.9/compiler.35813241_0
+clang=Ubuntu clang version 18.1.3 (1ubuntu1)
+bun=1.3.14
+bend=v2.0.29@c8691aa
+READY: soup-gpu-w1junta-1028a-1028020002-31594 us-central1-c [ip-removed]
+rsync /tmp/l4runs/w1junta-1028a -> soup-gpu-w1junta-1028a-1028020002-31594:/root/soup
+W: http://packages.cloud.google.com/apt/dists/apt-transport-artifact-registry-stable/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
+W: https://us-apt.pkg.dev/projects/gce-ai-infra/dists/gpudirect-gib-apt/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
+
+Running kernel seems to be up-to-date.
+
+Restarting services...
+ systemctl restart packagekit.service polkit.service rsyslog.service ssh.service
+
+Service restarts being deferred:
+ systemctl restart networkd-dispatcher.service
+ systemctl restart unattended-upgrades.service
+
+No containers need to be restarted.
+
+User sessions running outdated binaries:
+ soup @ session #10: sshd[3340]
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+GPU 0: NVIDIA L4 (UUID: GPU-ab19011e-a15a-98dc-f190-3ee003cff62f)
+.......................                                                  [100%]
+23 passed in 34.13s
+[t0.25_L2_k1_s1] step 40000 train 0.9069 val 0.9548 gap 0.1074 best 0.9543@38000 (2553s; data 33.5ms comp 30.2ms per step)
+[t0_L2_k1_s0] step 40000 train 0.6263 val 0.5945 gap 0.4127 best 0.5936@36000 (2554s; data 33.7ms comp 30.1ms per step)
+[t0.25_L2_k0_s0] step 40000 train 0.9674 val 0.9626 gap 0.1151 best 0.9626@40000 (2555s; data 33.9ms comp 29.9ms per step)
+[t0.25_L2_k1_s0] step 40000 train 1.0245 val 0.9608 gap 0.1133 best 0.9608@40000 (2554s; data 33.5ms comp 30.3ms per step)
+[t0_L2_k0_s1] step 40000 train 0.5432 val 0.5944 gap 0.4127 best 0.5944@40000 (2555s; data 33.5ms comp 30.3ms per step)
+[t0_L2_k1_s1] step 40000 train 0.7230 val 0.5861 gap 0.4044 best 0.5861@40000 (2555s; data 33.5ms comp 30.3ms per step)
+[t0.25_L2_k0_s1] step 40000 train 1.0064 val 0.9667 gap 0.1192 best 0.9653@38000 (2556s; data 33.7ms comp 30.1ms per step)
+[t0_L2_k0_s0] step 40000 train 0.5933 val 0.6002 gap 0.4185 best 0.5987@38000 (2556s; data 33.4ms comp 30.4ms per step)
+[t0.25_L4_k0_s0] step 40000 train 0.9435 val 0.9380 gap 0.0905 best 0.9360@36000 (4925s; data 36.3ms comp 86.6ms per step)
+[t0_L4_k0_s0] step 40000 train 0.4944 val 0.5036 gap 0.3219 best 0.5036@40000 (4927s; data 36.5ms comp 86.5ms per step)
+[t0.25_L4_k0_s1] step 40000 train 0.9845 val 0.9407 gap 0.0932 best 0.9407@40000 (4928s; data 36.5ms comp 86.5ms per step)
+[t0_L4_k0_s1] step 40000 train 0.6541 val 0.5093 gap 0.3276 best 0.5093@40000 (4929s; data 36.9ms comp 86.2ms per step)
+[t0_L4_k1_s0] step 40000 train 0.6702 val 0.5126 gap 0.3309 best 0.5091@36000 (4932s; data 36.5ms comp 86.6ms per step)
+[t0.25_L4_k1_s0] step 40000 train 0.9359 val 0.9401 gap 0.0926 best 0.9391@38000 (4937s; data 37.2ms comp 86.1ms per step)
+[t0_L4_k1_s1] step 40000 train 0.5194 val 0.5042 gap 0.3225 best 0.5005@38000 (4935s; data 35.8ms comp 87.5ms per step)
+[t0.25_L4_k1_s1] step 40000 train 0.9513 val 0.9354 gap 0.0879 best 0.9341@38000 (4949s; data 36.1ms comp 87.5ms per step)
+[t0.25_L1_k0_s0] step 40000 train 1.0247 val 0.9996 gap 0.1521 best 0.9984@28000 (1407s; data 24.0ms comp 11.2ms per step)
+[t0.25_L1_k0_s1] step 40000 train 0.9926 val 0.9983 gap 0.1508 best 0.9983@40000 (1406s; data 23.5ms comp 11.6ms per step)
+[t0_L1_k0_s0] step 40000 train 0.7177 val 0.7323 gap 0.5506 best 0.7323@40000 (1406s; data 23.8ms comp 11.3ms per step)
+[t0_L1_k0_s1] step 40000 train 0.7654 val 0.7535 gap 0.5718 best 0.7485@36000 (1405s; data 24.0ms comp 11.1ms per step)
+[t0.25_L1_k1_s0] step 40000 train 0.9208 val 0.9963 gap 0.1488 best 0.9953@38000 (1404s; data 23.6ms comp 11.5ms per step)
+[t0.25_L1_k1_s1] step 40000 train 0.9346 val 0.9989 gap 0.1514 best 0.9979@38000 (1402s; data 23.4ms comp 11.6ms per step)
+[t0_L1_k1_s0] step 40000 train 0.7510 val 0.7137 gap 0.5320 best 0.7110@38000 (1402s; data 23.6ms comp 11.4ms per step)
+[t0_L1_k1_s1] step 40000 train 0.6486 val 0.7203 gap 0.5385 best 0.7158@38000 (1397s; data 23.7ms comp 11.2ms per step)
+tail: option used in invalid context -- 3
+DONE /root/runs/w1junta-1028a/runs/t0_L2_k1_s1
+{"per_M": [{"M": 16, "control_kl": 0.9565049253323223, "fresh_kl": 1.0029468596505706, "excess": 0.04644193431824828, "control_ok": false}, {"M": 64, "control_kl": 1.108998365114427, "fresh_kl": 1.1774765087209405, "excess": 0.06847814360651339, "control_ok": false}, {"M": 512, "control_kl": 2.00128
+DONE /root/runs/w1junta-1028a/runs/t0_L2_k0_s1
+{"per_M": [{"M": 16, "control_kl": 1.0788084052160019, "fresh_kl": 1.118672210014587, "excess": 0.03986380479858509, "control_ok": false}, {"M": 64, "control_kl": 1.1972478011306027, "fresh_kl": 1.3009924193228284, "excess": 0.10374461819222569, "control_ok": false}, {"M": 512, "control_kl": 2.09029
+DONE /root/runs/w1junta-1028a/runs/t0.25_L2_k0_s0
+{"per_M": [{"M": 16, "control_kl": 0.3818656727318059, "fresh_kl": 0.3761198904712822, "excess": -0.005745782260523691, "control_ok": false}, {"M": 64, "control_kl": 0.32181111314812283, "fresh_kl": 0.38773353229643603, "excess": 0.0659224191483132, "control_ok": false}, {"M": 512, "control_kl": 0.2
+DONE /root/runs/w1junta-1028a/runs/t0.25_L2_k1_s1
+{"per_M": [{"M": 16, "control_kl": 0.36806066441410457, "fresh_kl": 0.3550817249087701, "excess": -0.012978939505334464, "control_ok": false}, {"M": 64, "control_kl": 0.3310661334293251, "fresh_kl": 0.3771543671396389, "excess": 0.046088233710313786, "control_ok": false}, {"M": 512, "control_kl": 0.
+DONE /root/runs/w1junta-1028a/runs/t0.25_L2_k0_s1
+{"per_M": [{"M": 16, "control_kl": 0.3894896867974469, "fresh_kl": 0.3643735820031242, "excess": -0.02511610479432269, "control_ok": false}, {"M": 64, "control_kl": 0.33481919169587043, "fresh_kl": 0.37191645137157037, "excess": 0.037097259675699934, "control_ok": false}, {"M": 512, "control_kl": 0.
+DONE /root/runs/w1junta-1028a/runs/t0.25_L2_k1_s0
+{"per_M": [{"M": 16, "control_kl": 0.3829997015882432, "fresh_kl": 0.3657595655164417, "excess": -0.017240136071801526, "control_ok": false}, {"M": 64, "control_kl": 0.35425393147175377, "fresh_kl": 0.3984047478991559, "excess": 0.04415081642740215, "control_ok": false}, {"M": 512, "control_kl": 0.3
+DONE /root/runs/w1junta-1028a/runs/t0_L2_k1_s0
+{"per_M": [{"M": 16, "control_kl": 0.9582791820761656, "fresh_kl": 0.9979825898921787, "excess": 0.039703407816013114, "control_ok": false}, {"M": 64, "control_kl": 1.0708391885673507, "fresh_kl": 1.1584369644614942, "excess": 0.08759777589414353, "control_ok": false}, {"M": 512, "control_kl": 1.890
+DONE /root/runs/w1junta-1028a/runs/t0_L2_k0_s0
+{"per_M": [{"M": 16, "control_kl": 1.0336059031148301, "fresh_kl": 1.0070710536421512, "excess": -0.026534849472678923, "control_ok": false}, {"M": 64, "control_kl": 1.1686300390504105, "fresh_kl": 1.161598051871986, "excess": -0.00703198717842457, "control_ok": false}, {"M": 512, "control_kl": 1.79
+DONE /root/runs/w1junta-1028a/runs/t0.25_L4_k0_s1
+{"per_M": [{"M": 16, "control_kl": 0.32781709380412577, "fresh_kl": 0.35761432228604384, "excess": 0.02979722848191807, "control_ok": false}, {"M": 64, "control_kl": 0.2852053954216436, "fresh_kl": 0.3724328726487282, "excess": 0.08722747722708463, "control_ok": false}, {"M": 512, "control_kl": 0.25
+DONE /root/runs/w1junta-1028a/runs/t0.25_L4_k0_s0
+{"per_M": [{"M": 16, "control_kl": 0.29656218627377384, "fresh_kl": 0.35500036663115936, "excess": 0.058438180357385516, "control_ok": false}, {"M": 64, "control_kl": 0.24933883472099466, "fresh_kl": 0.3775506844629929, "excess": 0.12821184974199823, "control_ok": false}, {"M": 512, "control_kl": 0.
+DONE /root/runs/w1junta-1028a/runs/t0.25_L4_k1_s1
+{"per_M": [{"M": 16, "control_kl": 0.28856313898137886, "fresh_kl": 0.3417749085189376, "excess": 0.05321176953755874, "control_ok": false}, {"M": 64, "control_kl": 0.2511083668199872, "fresh_kl": 0.38815842708327936, "excess": 0.13705006026329214, "control_ok": false}, {"M": 512, "control_kl": 0.25
+DONE /root/runs/w1junta-1028a/runs/t0.25_L4_k1_s0
+{"per_M": [{"M": 16, "control_kl": 0.3397042326813211, "fresh_kl": 0.36724171064882155, "excess": 0.027537477967500446, "control_ok": false}, {"M": 64, "control_kl": 0.2912267991215127, "fresh_kl": 0.39009503230274656, "excess": 0.09886823318123383, "control_ok": false}, {"M": 512, "control_kl": 0.2
+DONE /root/runs/w1junta-1028a/runs/t0_L4_k0_s0
+{"per_M": [{"M": 16, "control_kl": 0.5545023413245731, "fresh_kl": 0.7316395840791798, "excess": 0.17713724275460674, "control_ok": false}, {"M": 64, "control_kl": 0.5719408189323327, "fresh_kl": 0.9279335094522649, "excess": 0.3559926905199322, "control_ok": false}, {"M": 512, "control_kl": 1.19498
+DONE /root/runs/w1junta-1028a/runs/t0_L4_k1_s0
+{"per_M": [{"M": 16, "control_kl": 0.6282062266005703, "fresh_kl": 0.7542994675679802, "excess": 0.12609324096740981, "control_ok": false}, {"M": 64, "control_kl": 0.6110634770937066, "fresh_kl": 0.8879590059724153, "excess": 0.2768955288787087, "control_ok": false}, {"M": 512, "control_kl": 1.36391
+DONE /root/runs/w1junta-1028a/runs/t0_L4_k0_s1
+{"per_M": [{"M": 16, "control_kl": 0.6221435290030009, "fresh_kl": 0.7083491681146619, "excess": 0.08620563911166101, "control_ok": false}, {"M": 64, "control_kl": 0.6219882169581752, "fresh_kl": 0.932683666603259, "excess": 0.3106954496450838, "control_ok": false}, {"M": 512, "control_kl": 1.369919
+DONE /root/runs/w1junta-1028a/runs/t0_L4_k1_s1
+{"per_M": [{"M": 16, "control_kl": 0.5773217203831931, "fresh_kl": 0.7176714817738337, "excess": 0.1403497613906406, "control_ok": false}, {"M": 64, "control_kl": 0.5659716350663483, "fresh_kl": 0.9642756264045741, "excess": 0.3983039913382258, "control_ok": false}, {"M": 512, "control_kl": 1.138924
+DONE /root/runs/w1junta-1028a/runs/t0.25_L1_k0_s0
+{"per_M": [{"M": 16, "control_kl": 0.4342620108266364, "fresh_kl": 0.4618913196900904, "excess": 0.027629308863453994, "control_ok": false}, {"M": 64, "control_kl": 0.442011520907193, "fresh_kl": 0.5183723921964927, "excess": 0.07636087128929969, "control_ok": false}, {"M": 512, "control_kl": 0.3844
+DONE /root/runs/w1junta-1028a/runs/t0.25_L1_k0_s1
+{"per_M": [{"M": 16, "control_kl": 0.45529942841489984, "fresh_kl": 0.47777352526902617, "excess": 0.022474096854126324, "control_ok": false}, {"M": 64, "control_kl": 0.45003750825750233, "fresh_kl": 0.5335421495375516, "excess": 0.08350464128004931, "control_ok": false}, {"M": 512, "control_kl": 0.
+DONE /root/runs/w1junta-1028a/runs/t0_L1_k0_s0
+{"per_M": [{"M": 16, "control_kl": 1.337199394236419, "fresh_kl": 1.396946308401871, "excess": 0.05974691416545186, "control_ok": false}, {"M": 64, "control_kl": 1.5473593293909438, "fresh_kl": 1.5906095809150744, "excess": 0.043250251524130645, "control_ok": false}, {"M": 512, "control_kl": 2.25788
+DONE /root/runs/w1junta-1028a/runs/t0_L1_k1_s0
+{"per_M": [{"M": 16, "control_kl": 1.2899541809881223, "fresh_kl": 1.3423123117738576, "excess": 0.05235813078573526, "control_ok": false}, {"M": 64, "control_kl": 1.536030619637748, "fresh_kl": 1.6966508975480517, "excess": 0.16062027791030364, "control_ok": false}, {"M": 512, "control_kl": 2.59399
+DONE /root/runs/w1junta-1028a/runs/t0.25_L1_k1_s0
+{"per_M": [{"M": 16, "control_kl": 0.45678777275079535, "fresh_kl": 0.4933716888322334, "excess": 0.03658391608143807, "control_ok": false}, {"M": 64, "control_kl": 0.4293833652501239, "fresh_kl": 0.5704445065547344, "excess": 0.14106114130461056, "control_ok": false}, {"M": 512, "control_kl": 0.358
+DONE /root/runs/w1junta-1028a/runs/t0_L1_k0_s1
+{"per_M": [{"M": 16, "control_kl": 1.384783921027553, "fresh_kl": 1.4126294121999203, "excess": 0.027845491172367343, "control_ok": false}, {"M": 64, "control_kl": 1.613696286861596, "fresh_kl": 1.612495516363879, "excess": -0.001200770497717052, "control_ok": false}, {"M": 512, "control_kl": 2.3575
+DONE /root/runs/w1junta-1028a/runs/t0_L1_k1_s1
+{"per_M": [{"M": 16, "control_kl": 1.3198747159460424, "fresh_kl": 1.3923403560918812, "excess": 0.07246564014583878, "control_ok": false}, {"M": 64, "control_kl": 1.5282339688425643, "fresh_kl": 1.6771959296081949, "excess": 0.1489619607656305, "control_ok": false}, {"M": 512, "control_kl": 2.55804
+DONE /root/runs/w1junta-1028a/runs/t0.25_L1_k1_s1
+{"per_M": [{"M": 16, "control_kl": 0.44096660392996556, "fresh_kl": 0.4694884237398702, "excess": 0.028521819809904647, "control_ok": false}, {"M": 64, "control_kl": 0.4389990279141992, "fresh_kl": 0.5291898022694622, "excess": 0.09019077435526301, "control_ok": false}, {"M": 512, "control_kl": 0.35
+ALL-DONE
+rsync soup-gpu-w1junta-1028a-1028020002-31594:/root/runs -> /tmp/l4runs/w1junta-1028a/runs
+Deleted [https://www.googleapis.com/compute/v1/projects/GCP_PROJECT/zones/us-central1-c/instances/soup-gpu-w1junta-1028a-1028020002-31594].
+GPU-RUN EXIT 0

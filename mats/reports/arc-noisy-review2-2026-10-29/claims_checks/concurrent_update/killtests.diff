@@ -1,0 +1,33 @@
+--- claims_snapshot/killtests.py	2026-10-29 09:27:22.377350382 +0000
++++ claims_checks/concurrent_update/killtests.py	2026-10-29 09:49:13.597110674 +0000
+@@ -75,13 +75,15 @@
+         if not os.path.exists(f):
+             continue
+         mo = json.load(open(f)); T = TR[s][L]; cm = c_move(L)
+-        setup = mo['M0'] * c_path(L)
++        setup = mo['M0'] * c_path(L) + 2 * mo['M0'] * 256 * 256 + 10 * 256 ** 3      # pilot paths, Gram matrix, eigendecomposition
+         runs = {}
+         for name in ('up', 'down'):
+             ru = mo['runs'][name]
+             K = len(ru['levels'])
+-            per_run = run_evals(2000, K + 1) * cm + (K + 1) * 2000 * (256 * (2 * 256 - 1) + 256 * 5)   # moves + readout of all outputs
++            per_run = (run_evals(2000, K + 1) * cm + (K + 1) * 2000 * ((L - 1) * (256 * (2 * 256 - 1) + 3 * 256))
++                       + (K + 1) * 2000 * (256 * (2 * 256 - 1) + 256 * 5))   # moves + readout (recomputes h, as implemented) + all outputs
+             runs[name] = (np.array(ru['est']), per_run, ru['pilot_n_eval'] * cm)
++        both = sum(r[1] for r in runs.values())                   # both directions are run (same cost model as analyze_tails)
+         tot_fixed = setup + sum(r[2] for r in runs.values())
+         for b in range(8):
+             name = 'up' if mo['c'][b] > 0 else 'down'
+@@ -90,9 +92,9 @@
+                 p = math.exp(T['lp'][b, k])
+                 rmse = float(np.mean((E[:, b, k] / p - 1) ** 2))           # normalised residuals: all-zero gives exactly 1
+                 rm[k].append(rmse)
+-                b50_am = (tot_fixed + 2 * per_run * rmse / 0.25) / (5 * 256) if rmse <= 1 else np.inf
+-                b50_strict = (tot_fixed + 2 * per_run * rmse / 0.25) / (5 * 256) if rmse < 1 else np.inf
+-                b50_m = (tot_fixed + 2 * per_run * rmse / 0.25) / (5 * 256) if rmse <= 0.81 else np.inf
++                b50_am = (tot_fixed + both * rmse / 0.25) / (5 * 256) if rmse <= 1 else np.inf
++                b50_strict = (tot_fixed + both * rmse / 0.25) / (5 * 256) if rmse < 1 else np.inf
++                b50_m = (tot_fixed + both * rmse / 0.25) / (5 * 256) if rmse <= 0.81 else np.inf
+                 wins_m[k].append(b50_m < gs_b50(L, T["nlev"][b, k], T["rv1"][b, k]))
+                 wins_s[k].append(b50_strict < gs_b50(L, T["nlev"][b, k], T["rv1"][b, k]))
+                 b50_gs = gs_b50(L, T['nlev'][b, k], T['rv1'][b, k])

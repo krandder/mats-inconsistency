@@ -1,0 +1,31 @@
+2026-10-29T16:35:27Z PREREG.md a1b06947b80434a56805dc97a877a5e37d0150fcccfe829d21561a72148c8dc0 (initial, before any main run)
+2026-10-29T16:35:27Z gpu/run_main.py 419232d1a31b35ee2b7f1a33c8f6783a0d547c443324553767cd752f9e9c1a15
+2026-10-29T16:35:27Z lib/sae.py 4757b5d1c1dfe99bd474b153bf0f112af2cdcf18ac785efe00cc9ad23122579f
+2026-10-29T16:35:33Z PREREG.md a1da9f1a97b11979fb1c952f37f9779ea279f3ae3e5442866682906a6154f1ca (header time corrected from 17:10Z to 16:35Z; supersedes the first line; still before any main run)
+2026-10-29T16:41:56Z PREREG.md 01585e02b8624d36da880f0c934fe9885a719b463b4bd65e8eff05e101600ae0 (amendment 1: E4 input-law generalisation test)
+2026-10-29T16:41:56Z gpu/run_e4.py 2604291de52c1f159a28c84d8c68c121662a7fa283032b282cf30fb892db962a
+2026-10-29T16:42:01Z PREREG.md eeb5dbad3a6c16dde64cd310e202b4dfc3e2036b3db2e771ed5dbf8e7cfbe474 (amendment 1 header time corrected 16:50Z->16:42Z; supersedes previous line)
+2026-10-29T16:42:27Z gpu/run_e4.py 62c67aa8dd1571784ff413d15e8d789aa7b337c887381382496fce440214bc6b (saves per-law truths; no logic change)
+2026-10-29T16:51:12Z PREREG.md 3ec8cf0dc6128be2ea4a78dd1cc535b06b42360e56a34dec1bdcc4ec1de3bd20 (amendment 2: after GPT-6 critique)
+2026-10-29T16:51:12Z gpu/run_main2.py 4b3ce729cf96e2a6799794c7d7e0daba00226fe87d1fcb6d8d4188a9033310ec
+2026-10-29T16:51:12Z lib/sae.py f4e7daad3b23d25386ff67303d0662ccf18d9fc5378dcb31006229c84a2e5eff
+2026-10-29T16:51:12Z lib/nets.py 2faaba9573d24852b50647ba43f8d408f7b2fc6acb74ada376cc9ff90020bc1b
+2026-10-29T16:51:20Z PREREG.md 8129dea5155f86713972c81e2ae3f40a51c57524fdf24b40d7f9ee9c34a4865f (amendment 2 times corrected; supersedes previous PREREG line)
+2026-10-29T16:51:27Z PREREG.md e58a264f9b5e02ac98c0646375f260827f688f75e8c53b2efe5a2c580dddac62 (amendment 2 disclosure of v1 lines seen; supersedes previous PREREG line)
+2026-10-29T16:56:17Z gpu/run_e4.py a6fa8ab9845d30c878a9b925681b86e1168245db2dbd82970a6f3cd2c9497a3b (closure overflow fix: t clamped to +-38; chains saved; k = n/2 added)
+2026-10-29T16:56:27Z PREREG.md 404e7acfaf9611d1832295f2eea2f25698c31b19ea51c8dd7beb5026babc18f1 (amendment 3: E4 rerun)
+2026-10-29T16:56:34Z PREREG.md 24440abd6b27353594bbf3aa994db46d64565df9696ac5fad50661b911c7e93b (amendment 3 time corrected 17:04Z->16:56Z; supersedes previous line)
+2026-10-29T17:04:59Z PREREG.md 4f172275bb4d9bfe1bec56b945ce2944e48adc0e9afa98584e52faeb01d75723 (amendment 4: E5 copula test)
+2026-10-29T17:04:59Z gpu/run_e5.py df30deae388b63c0755a250ec6fddce8cfc7d9e9490ecef14319560befa5ee75
+2026-10-29T17:18:26Z gpu/run_e5.py 31741d80615f22dd1297d7b7bc6d0f253e86455e451e5324b634485ecaae348e (memory: empty_cache after model build, 64-feature blocks; no logic change)
+2026-10-29T17:18:31Z PREREG.md e367676d985c34d28374061d56ef05914fa457880458afe159a556dc123229fb (amendment 4 addendum: E5 own VM, n=256 nfit 2^16)
+2026-10-29T17:40:22Z gpu/run_e5.py 482308e4f45beb5ed43ccabe953e3190d2d01c10d7281fd7e764fe9d92db6821 (memory: FIT default 2^16, per-k codes, 64-feature quantile blocks; no logic change)
+2026-10-29T17:40:22Z PREREG.md 7a439e21dc6dc87bfbef4e714b4e4393b733197b31c964fe270200cbff6062dd (amendment 4 addendum 2: E5 FIT 2^16)
+2026-10-29T18:03:12Z gpu/run_main2.py ea3a2443064888ccaf2a44c0a50de99018caaabfb046eea564085ba739bb5b88 (bug fix: DENSE/DENSEQ closures bound mu late, so E3 used layer 31's mean at every cut; E1/E2 unaffected)
+2026-10-29T18:04:03Z gpu/run_e3dense.py fd0b03c458af7c7d6d5c4169a79f04404cd585174c9a942ac096c773871695a6 (E3 dense-latent rerun after the late-binding fix)
+2026-10-29T18:05:51Z gpu/run_e5.py d14f3101db49139246d615970abcd65249317dcaf9c2b3978e4b28529a3e105e (memory: float32 copula sampling, chunked one-step generation, E3 chunks 2^15; no logic change)
+2026-10-29T18:06:25Z PREREG.md ce3dfd074c2b137e2f264bfc36995d9243b73155559c30264395eec8799e1381 (amendment 5: E3 dense late-binding bug; rerun)
+2026-10-29T18:19:15Z gpu/run_e3dense.py 602eebf9052508e42ec9035c93d397cae3102e2f88f51329ec972e96946a0989 (memory: free temporaries; no logic change)
+2026-10-29T18:31:21Z PREREG.md 7ab5474561a239e590bfd17e3a6e46d5c332e53e93cf025bc396a15f51c180db (amendment 6: scope trims)
+2026-10-29T18:45:22Z PREREG.md 82dd2ea129e603b2db9fc049e40a30c0888150b33247f07b18142a69cdb8ec11 (amendment 6 addendum)
+2026-10-29T18:54:53Z PREREG.md b02c21b6a36546caf1f23693ad4d7e9fbaf116e69ee9ffc3ab4b7c3c9cb1aa8e (amendment 6 addendum 2)

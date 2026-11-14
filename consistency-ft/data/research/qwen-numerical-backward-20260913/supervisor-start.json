@@ -1,0 +1,31 @@
+{
+  "command": [
+    "/usr/bin/time",
+    "-v",
+    "-o",
+    "runs/qwen-candidate-load-20260913/backward-attempt/time.txt",
+    "timeout",
+    "--kill-after=10s",
+    "900s",
+    "/home/agent/workspaces/consistency-ft-synthetic-cpu-20260913/runs/cpu-dev-venv/bin/python",
+    "scripts/probe_qwen_backward.py",
+    "--checkpoint",
+    "runs/qwen-candidate-load-20260913/checkpoint",
+    "--manifest",
+    "data/research/qwen-checkpoint-artifacts-20260913.json",
+    "--tokenizer-artifacts",
+    "/home/agent/workspaces/consistency-ft-qwen-tokenizer-20260913/runs/qwen-tokenizer-artifacts",
+    "--base-probe",
+    "runs/qwen-candidate-load-20260913/real-probe",
+    "--input-digests",
+    "runs/qwen-candidate-load-20260913/base-probe-input-digests.json",
+    "--input-digests-sha256",
+    "e727456e9387ce4deb1ac269f5a28b80efa61a246c42d7090bb867856c76a66f",
+    "--runtime-source-sha256",
+    "c357b98e5fd9be1e0e3817270f6c9d50da45c978ee8b91dc32663ab72aa11022",
+    "--output",
+    "runs/qwen-candidate-load-20260913/backward-attempt/result"
+  ],
+  "started_at": "2026-09-13T10:54:22.864397+00:00",
+  "single_attempt": true
+}

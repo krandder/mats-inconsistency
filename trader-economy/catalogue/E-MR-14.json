@@ -1,0 +1,21 @@
+{
+ "id": "E-MR-14",
+ "question": "What carries the trader economy's 100x extrapolation on prefix sums: the market, random training order, the detached per-step loss, the VOC targets or the per-trader optimizers?",
+ "status": "Informative",
+ "setup": "Phase 3 (after the 2026-09-29 audit). Gradient identity first: each trader's market-pay gradient equals BPTT truncated to 1 step with a loss at every step plus covariance and VOC targets, in random order (cosine 1.0000000, eqv4.py). Ablation arms (econ2.py): the economy in random and round-robin order, without VOC markets, online (voc = 0); full BPTT (bptt_cov_dscov) in round-robin and random order, with and without v on the VOC targets; BPTT truncated to 1 step in both orders, with and without VOC targets, and with per-trader Adam and gradient clipping (tb1_voc_rep_rand, the economy's exact twin). Exact-string accuracy (every output bit right) at L320 with 320 steps (10x) and L3200 with 3200 steps (100x), 3 seeds, t-intervals, on the phase-2 sets (40 strings per seed at L3200); 'fresh' = 200 new strings per seed at L3200 (seed 777 + L), k/n pooled with a 95% Wilson interval. Every arm: 3000 iterations, batch 64, D = 24, lengths 8 to 32. Audit decision rule: if truncated BPTT in random order reaches the economy's fresh accuracy, retire the economics attribution; else name and test the remaining difference.",
+ "result": "Random training order is the main ingredient; the market adds nothing measurable. At 100x: economy 0.93 +- 0.14 (557/600 [0.90, 0.95] fresh); same economy in round-robin order 0.40 +- 0.27 (235/600 [0.35, 0.43] fresh); full BPTT round-robin 0.12 +- 0.35 (56/600 [0.07, 0.12] fresh), random order 0.79 +- 0.47 (449/600 [0.71, 0.78] fresh); truncated BPTT(1) round-robin 0.07 +- 0.32 (71/600 [0.09, 0.15] fresh), random order 0.80 +- 0.11 (482/600 [0.77, 0.83] fresh), with VOC targets 0.79 +- 0.53 (497/600 [0.80, 0.86] fresh); the exact twin with per-trader Adam and clipping 0.89 +- 0.04 (529/600 [0.85, 0.91] fresh), overlapping the economy (per seed 0.87, 0.87, 0.91 against 0.99, 0.92, 0.88). Economy without VOC markets 0.87 +- 0.19 (506/600 [0.81, 0.87] fresh); online economy (the 4.2 GB configuration, first trained here) 0.88 +- 0.20 (502/600 [0.80, 0.86] fresh). Decision: truncated BPTT in random order falls short on the pooled fresh strings; the named difference (per-trader optimizers and clipping) closes it to overlapping intervals, and since the twin's gradients equal the economy's, what is left is run-to-run variation. The economics attribution is retired: detached per-step training in random order extrapolates; per-trader optimizers add a little.",
+ "files": [
+  "market-resnet/RESULTS.md",
+  "market-resnet/eqv4.py",
+  "market-resnet/results/eqv4.txt",
+  "market-resnet/econ2.py",
+  "market-resnet/reeval.py",
+  "market-resnet/mkjobs3.sh",
+  "market-resnet/mkjobs4.sh",
+  "market-resnet/run_p3.sh",
+  "market-resnet/analyze_p3.py",
+  "market-resnet/results/p3_summary.json",
+  "market-resnet/charts/p3_depth_L3200_ablation.json",
+  "market-resnet-AUDIT.md"
+ ]
+}

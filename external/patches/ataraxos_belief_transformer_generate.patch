@@ -1,0 +1,24 @@
+# PARKED 2026-10-19 (Kelvin): not frozen, not run
+diff --git a/pyengine/networks/belief_transformer.py b/pyengine/networks/belief_transformer.py
+index eab97c1..79fad9e 100644
+--- a/pyengine/networks/belief_transformer.py
++++ b/pyengine/networks/belief_transformer.py
+@@ -130,14 +130,16 @@ class BeliefTransformer(nn.Module):
+         infostate_tensor: torch.Tensor,
+         piece_ids: torch.Tensor,
+     ) -> torch.Tensor:
+-        expect_type(n_sample, "n_sample", int)
++        expect_type(n_sample, int, name="n_sample")
+         check_sampling_args(
+             unknown_piece_position_onehot, unknown_piece_has_moved, unknown_piece_counts
+         )
+         expect_shape(infostate_tensor, ndim=3, dims={1: BOARD_LEN, 2: BOARD_LEN})
+         expect_shape(piece_ids, ndim=2, dims={0: BOARD_LEN, 1: BOARD_LEN})
+         mem = self.encoder_forward(
+-            infostate_tensor.unsqueeze(0), unknown_piece_position_onehot.unsqueeze(0)
++            infostate_tensor.unsqueeze(0),
++            piece_ids.unsqueeze(0),
++            unknown_piece_position_onehot.unsqueeze(0),
+         ).expand(n_sample, -1, -1)
+ 
+         def partial(samples: torch.Tensor) -> torch.Tensor:

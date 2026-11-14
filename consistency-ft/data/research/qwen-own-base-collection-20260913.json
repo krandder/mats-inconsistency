@@ -1,0 +1,473 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-13T11:56:00.759280+00:00",
+  "status": "first-corrected-tranche-complete-partial-full-plan-collection",
+  "scope": "One failed zero-attempt startup and the first two observations under a new complete original-split plan.",
+  "current_collection_id": "qwen-own-base-20260913-v2",
+  "snapshot_finished_at": "2026-09-13T11:51:34.246250+00:00",
+  "target_episodes": 1619,
+  "target_propositions": 2926,
+  "observed_valid_probabilities": 2,
+  "unattempted_propositions": 2924,
+  "complete_own_base_anchor": false,
+  "anchor_snapshot_created": false,
+  "scientific_model_selected": false,
+  "training_performed": false,
+  "optimizer_updates": 0,
+  "candidate_backward_performed": false,
+  "new_candidate_readouts": 2,
+  "candidate_weights_loaded_in_both_invocations": true,
+  "master_seed": 2026091310,
+  "lora_seed": 2026091304,
+  "sampling_distribution": {
+    "dropout_enabled": false,
+    "logits_processors": [],
+    "logits_warpers": [],
+    "model_mode": "eval",
+    "sampler": "categorical",
+    "schema_version": 1,
+    "temperature": 1.0,
+    "top_k": 0,
+    "top_p": 1.0
+  },
+  "eos_token_id": 248046,
+  "initial_identity": {
+    "training_identity": {
+      "chat_template_sha256": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+      "model_id": "Qwen/Qwen3.5-9B",
+      "model_revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+      "protocol_sha256": "58fb0353101e150faa3e34d0d84de8e16e99e7999cafa6edab8eca54a46a68c4",
+      "reasoning": "none",
+      "tokenizer_files_sha256": "805d890c36262cf4513923d729d55b1ebba053df9fb5edd6d73835f5d1a21cde",
+      "tokenizer_id": "Qwen/Qwen3.5-9B",
+      "tokenizer_revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+      "weights_manifest_sha256": "a1ac86e2eb559dadd5214b7ba9b0328d64595a6987da9c7d0fc87c4df0f3b1e0"
+    },
+    "training_identity_sha256": "50b74934a46d2e8640f3f69a3bc3709fdf5bfd11230558adab5275ee90086967",
+    "initial_base_sha256": "7db7d44ea0a415443c7e2153348f743406bf5395b5a659e4aae175433991447d",
+    "initial_adapter_manifest_sha256": "00b11c2e2f92a56414e9d47612945170b524626d79894693272b146673299be0",
+    "execution_sha256": "587e09573b1ab7fcd568131ae860a141392137596eec5e90910fe81a3b73e476",
+    "initial_policy_sha256": "3a3d21b39d0576306d3f8c8c80de5f05f49bff6665e071880f3915b3c222e681"
+  },
+  "initial_identity_and_policy_unchanged_between_v1_and_v2": true,
+  "per_proposition_seeds_changed_with_explicit_new_spec": true,
+  "v1_failure_diagnosis": {
+    "cause": "Live Transformers model_config.id2label uses integer keys; JSON spec keys are strings. Direct Python dict equality rejected canonically identical execution content.",
+    "reproduction": "Qwen3_5TextConfig-only roundtrip, without constructing a model or loading weights.",
+    "correction": "Compare canonical execution JSON bytes and preserve exact execution SHA plus every prior identity guard; report failed guard names.",
+    "fixed_source_commit": "cb519181b92fb717399d4cda0ce92f979aacefb6",
+    "v1_attempts_reserved": 0,
+    "v1_sampled_tokens": 0,
+    "old_evidence_preserved": true
+  },
+  "quota_and_cost": {
+    "provider_inference_requests": 0,
+    "provider_subscription_inference_quota_used": 0,
+    "new_paid_resources_allocated": false,
+    "agent_development_subscription_usage_measured": false,
+    "agent_development_subscription_usage": null,
+    "scope": "Local CPU candidate invocations only. Agent development/review subscription consumption was not measured."
+  },
+  "invocations": [
+    {
+      "version": "v1",
+      "collection_id": "qwen-own-base-20260913",
+      "source_commit": "6fad54bb9a780f5d0726c0b2d95d545b23639802",
+      "invocation_id": "c4dcb4be-f356-4370-872f-25c58d65a1b4",
+      "status": "failed",
+      "supervisor_exit_code": 1,
+      "started_at": "2026-09-13T11:34:03.782834+00:00",
+      "finished_at": "2026-09-13T11:37:15.845759+00:00",
+      "collection_plan_sha256": "658a4789ed71b53cc812836fb2b9bb7a90d47dd7fa4d12d8e549cf0a5369f7dd",
+      "collection_spec_sha256": "aefc6fdab262be98d189ea5ff445f5076070345876b51e5de9d7c53972c4cba6",
+      "target_episodes": 1619,
+      "coverage": {
+        "attempted": 0,
+        "complete_valid_coverage": false,
+        "target_propositions": 2926,
+        "unattempted": 2926,
+        "valid_probabilities": 0
+      },
+      "generated_tokens": 0,
+      "internal_wall_seconds": 190.91714987391606,
+      "internal_cpu_seconds": 152.32837999999998,
+      "internal_peak_rss_bytes": 18597564416,
+      "supervisor_wall_seconds": 192.06297906907275,
+      "supervisor_peak_rss_bytes": 18597564416,
+      "provider_inference_requests": 0,
+      "base_and_adapters_unchanged_at_successful_completion": null,
+      "error_type": "ValueError",
+      "error": "loaded initial base/zero-update adapters/execution differ from externally bound identity",
+      "attempts": [],
+      "limits": {
+        "address_space_bytes": 38654705664,
+        "cpu_hard_seconds": 3410,
+        "cpu_soft_seconds": 3400,
+        "max_attempts": 2,
+        "token_budget": 64,
+        "wall_seconds": 1500
+      },
+      "external_wall_seconds": 1800,
+      "external_kill_after_seconds": 10,
+      "integrated_validation": {
+        "tests": 262,
+        "wall_seconds": 52.765,
+        "skips": 0,
+        "log_sha256": "1efe78345856505216fc67ab9d03ff0c3929808d984348b0741ff9c62dead815"
+      },
+      "internal_report_file": "data/research/qwen-own-base-collection-20260913/collection/invocations/c4dcb4be-f356-4370-872f-25c58d65a1b4/report.json",
+      "supervisor_report_file": "data/research/qwen-own-base-collection-20260913/tranche-01/result.json"
+    },
+    {
+      "version": "v2",
+      "collection_id": "qwen-own-base-20260913-v2",
+      "source_commit": "cb519181b92fb717399d4cda0ce92f979aacefb6",
+      "invocation_id": "71e30d44-5da6-4e2f-b470-ef2dc554fc43",
+      "status": "bounded-invocation-complete",
+      "supervisor_exit_code": 0,
+      "started_at": "2026-09-13T11:45:02.954106+00:00",
+      "finished_at": "2026-09-13T11:51:34.246250+00:00",
+      "collection_plan_sha256": "4bdec0c2c108a108f72974c0cbdc610038d16f22b44918cd3dcbde7439cec736",
+      "collection_spec_sha256": "e55f163b9d9001489b7400476ee45b24c7702eb05d206e9c6367697462ec71c3",
+      "target_episodes": 1619,
+      "coverage": {
+        "attempted": 2,
+        "complete_valid_coverage": false,
+        "target_propositions": 2926,
+        "unattempted": 2924,
+        "valid_probabilities": 2
+      },
+      "generated_tokens": 8,
+      "internal_wall_seconds": 389.59011216601357,
+      "internal_cpu_seconds": 491.442424,
+      "internal_peak_rss_bytes": 20787425280,
+      "supervisor_wall_seconds": 391.29218524927273,
+      "supervisor_peak_rss_bytes": 20787425280,
+      "provider_inference_requests": 0,
+      "base_and_adapters_unchanged_at_successful_completion": true,
+      "error_type": null,
+      "error": null,
+      "attempts": [
+        {
+          "catalog_index": 0,
+          "proposition_id": "00378ee8bd196abc8a83ad6fd27d65a27f76ae40af5b10b1b957128f5e51c292",
+          "seed": 567226646459662830,
+          "prompt_tokens": 277,
+          "completion_tokens": 4,
+          "completion_token_ids": [
+            15,
+            13,
+            19,
+            248046
+          ],
+          "token_logprobs": [
+            -0.002395500196143985,
+            -0.0007226239540614188,
+            -2.700593948364258,
+            -1.0166351795196533
+          ],
+          "response": "0.4",
+          "probability": 0.4,
+          "readout_status": "probability",
+          "finish_reason": "eos",
+          "runtime_integrity_verified": true,
+          "receipt_wall_seconds": 97.39237394090742,
+          "receipt_file": "data/research/qwen-own-base-collection-20260913/v2/collection/attempts/00378ee8bd196abc8a83ad6fd27d65a27f76ae40af5b10b1b957128f5e51c292/receipt.json",
+          "token_events_file": "data/research/qwen-own-base-collection-20260913/v2/collection/attempts/00378ee8bd196abc8a83ad6fd27d65a27f76ae40af5b10b1b957128f5e51c292/tokens.jsonl"
+        },
+        {
+          "catalog_index": 1,
+          "proposition_id": "0041c4392b30880f8e9b9804eab765b363d2d856d760a5b1f05e91c0ea805828",
+          "seed": 16483053471083561756,
+          "prompt_tokens": 261,
+          "completion_tokens": 4,
+          "completion_token_ids": [
+            15,
+            13,
+            24,
+            248046
+          ],
+          "token_logprobs": [
+            -0.0032320187892764807,
+            -0.00056429672986269,
+            -1.317627191543579,
+            -1.1794847249984741
+          ],
+          "response": "0.9",
+          "probability": 0.9,
+          "readout_status": "probability",
+          "finish_reason": "eos",
+          "runtime_integrity_verified": true,
+          "receipt_wall_seconds": 97.20235134800896,
+          "receipt_file": "data/research/qwen-own-base-collection-20260913/v2/collection/attempts/0041c4392b30880f8e9b9804eab765b363d2d856d760a5b1f05e91c0ea805828/receipt.json",
+          "token_events_file": "data/research/qwen-own-base-collection-20260913/v2/collection/attempts/0041c4392b30880f8e9b9804eab765b363d2d856d760a5b1f05e91c0ea805828/tokens.jsonl"
+        }
+      ],
+      "limits": {
+        "address_space_bytes": 38654705664,
+        "cpu_hard_seconds": 3410,
+        "cpu_soft_seconds": 3400,
+        "max_attempts": 2,
+        "token_budget": 64,
+        "wall_seconds": 1500
+      },
+      "external_wall_seconds": 1800,
+      "external_kill_after_seconds": 10,
+      "integrated_validation": {
+        "tests": 263,
+        "wall_seconds": 56.231,
+        "skips": 0,
+        "log_sha256": "d79d7c58c5233453616a4ba4d811f1a96844a1defebe17cf1abfd62e4222a04d"
+      },
+      "internal_report_file": "data/research/qwen-own-base-collection-20260913/v2/collection/invocations/71e30d44-5da6-4e2f-b470-ef2dc554fc43/report.json",
+      "supervisor_report_file": "data/research/qwen-own-base-collection-20260913/v2/tranche-01/result.json"
+    }
+  ],
+  "raw_artifact_count": 59,
+  "raw_artifact_bytes": 26818115,
+  "artifacts": {
+    "data/research/qwen-own-base-collection-20260913/collection/catalog.jsonl": {
+      "bytes": 6060375,
+      "sha256": "f363861a161c3d9a6116c55d1c164dbe517961eaad02749a0a1ab8360b411ee5"
+    },
+    "data/research/qwen-own-base-collection-20260913/collection/initial-weights-manifest.json": {
+      "bytes": 150654,
+      "sha256": "a0cfc439ec30edc7c464e77cad38651cfbee27962bf7d09b41f5bdd01b871ece"
+    },
+    "data/research/qwen-own-base-collection-20260913/collection/inputs/checkpoint_manifest.json": {
+      "bytes": 2350,
+      "sha256": "c4bfae6b8be4d893e7395bbaaaa6874b2583e818a56db100488795856af2bbf3"
+    },
+    "data/research/qwen-own-base-collection-20260913/collection/inputs/heldout.jsonl": {
+      "bytes": 2667046,
+      "sha256": "d5b9b660f9fb8c39f7313892897644350247b4c0173bb22871912cdc9fc0674e"
+    },
+    "data/research/qwen-own-base-collection-20260913/collection/inputs/initial_runtime_identity.json": {
+      "bytes": 165826,
+      "sha256": "32c0a090c50f23eff12517ef9d390a6b06c333702ce47cb8a67952f8bb1ab6cc"
+    },
+    "data/research/qwen-own-base-collection-20260913/collection/inputs/tokenizer_manifest.json": {
+      "bytes": 1282,
+      "sha256": "a8ae42266e839691e203711bfcf5280b3b28eba120c4f1a19bfc88e836564ef8"
+    },
+    "data/research/qwen-own-base-collection-20260913/collection/inputs/train.jsonl": {
+      "bytes": 3164918,
+      "sha256": "71ccc77578c201dc7f51bf06cb9f48f1fecfc1850e3f0472aa349a777924fd2e"
+    },
+    "data/research/qwen-own-base-collection-20260913/collection/inputs/valid.jsonl": {
+      "bytes": 352437,
+      "sha256": "d45342c7d00ceb4fd9642e97647a695c3760d7a958ceb5461173008bd5bc4150"
+    },
+    "data/research/qwen-own-base-collection-20260913/collection/invocations/c4dcb4be-f356-4370-872f-25c58d65a1b4/initial-runtime-identity.json": {
+      "bytes": 165826,
+      "sha256": "35a82ba03a44feebf2493528b217f8a1c5962129006a753605022d0382c250e8"
+    },
+    "data/research/qwen-own-base-collection-20260913/collection/invocations/c4dcb4be-f356-4370-872f-25c58d65a1b4/loaded-checkpoint.json": {
+      "bytes": 145978,
+      "sha256": "90a62fd0a81ef33eb3e792192013552bf6f5e4e9e9b69ed0e8f04336a6754d4d"
+    },
+    "data/research/qwen-own-base-collection-20260913/collection/invocations/c4dcb4be-f356-4370-872f-25c58d65a1b4/phases.jsonl": {
+      "bytes": 352,
+      "sha256": "6f9a9874296f10f59c9a5b3a34fe09ca007a156d3c8697e9450e417888372851"
+    },
+    "data/research/qwen-own-base-collection-20260913/collection/invocations/c4dcb4be-f356-4370-872f-25c58d65a1b4/plan.json": {
+      "bytes": 196542,
+      "sha256": "0a11fb7f8ec111ac65269519741f49abffebcd9cee9c4a603de0b111780d5bd7"
+    },
+    "data/research/qwen-own-base-collection-20260913/collection/invocations/c4dcb4be-f356-4370-872f-25c58d65a1b4/report.json": {
+      "bytes": 238232,
+      "sha256": "74ac816410fca862bacb90a31d10777d088d90d695f1483e1c727ae3224e0da8"
+    },
+    "data/research/qwen-own-base-collection-20260913/collection/invocations/c4dcb4be-f356-4370-872f-25c58d65a1b4/tokenizer-identity.json": {
+      "bytes": 563,
+      "sha256": "1e88d34f9c06fda252b3d7637a65ee02f92d20cd2be6a2504d3cb07645f0a014"
+    },
+    "data/research/qwen-own-base-collection-20260913/collection/plan.json": {
+      "bytes": 2805,
+      "sha256": "658a4789ed71b53cc812836fb2b9bb7a90d47dd7fa4d12d8e549cf0a5369f7dd"
+    },
+    "data/research/qwen-own-base-collection-20260913/collection/spec.json": {
+      "bytes": 27576,
+      "sha256": "aefc6fdab262be98d189ea5ff445f5076070345876b51e5de9d7c53972c4cba6"
+    },
+    "data/research/qwen-own-base-collection-20260913/integrated-suite.log": {
+      "bytes": 47804,
+      "sha256": "1efe78345856505216fc67ab9d03ff0c3929808d984348b0741ff9c62dead815"
+    },
+    "data/research/qwen-own-base-collection-20260913/plan.sha256": {
+      "bytes": 65,
+      "sha256": "aa285b16963846910b8f720f51d36d4ddc45de8f7b49d04268b58dc350d16c49"
+    },
+    "data/research/qwen-own-base-collection-20260913/spec.sha256": {
+      "bytes": 65,
+      "sha256": "9ad2f93824e0fb7ff78371018636ed0160a75ca74ec093535123d2f37874d3c0"
+    },
+    "data/research/qwen-own-base-collection-20260913/supervise.py": {
+      "bytes": 1912,
+      "sha256": "d3c90127008d3448cc48e9e0eb13942bed18a16b285a01dcb4a0a10f8c48204f"
+    },
+    "data/research/qwen-own-base-collection-20260913/tranche-01/result.json": {
+      "bytes": 558,
+      "sha256": "7b04a8ef05e4d799b10af891f6011b5b91f46e8956445ed60ac9c91aff285c13"
+    },
+    "data/research/qwen-own-base-collection-20260913/tranche-01/start.json": {
+      "bytes": 1714,
+      "sha256": "f85d3278a8e1473c224da5aaa3898527dad9c741fa09ed4f65f21f5fcf609ec9"
+    },
+    "data/research/qwen-own-base-collection-20260913/tranche-01/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "data/research/qwen-own-base-collection-20260913/tranche-01/stdout.log": {
+      "bytes": 1617,
+      "sha256": "4bdad92c133fba36b9a92b2d09a5c0aafcd156858f1729d5676ffbd94877f89d"
+    },
+    "data/research/qwen-own-base-collection-20260913/tranche-01/time.txt": {
+      "bytes": 1496,
+      "sha256": "98dbc352cc5f60509337fe3fb4e466f8ed71774acabb925b926a25363e1750c9"
+    },
+    "data/research/qwen-own-base-collection-20260913/tranche-01-config.json": {
+      "bytes": 1438,
+      "sha256": "b1fea3ed1990b398beb811ce2bacfedbbda72240f2fd14006674646336e24f98"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/collection/attempts/00378ee8bd196abc8a83ad6fd27d65a27f76ae40af5b10b1b957128f5e51c292/attempt.json": {
+      "bytes": 3438,
+      "sha256": "ec654df1e831facd6deb11796a48f6e5a010dcc80111ffd00c1f7be80bb80f93"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/collection/attempts/00378ee8bd196abc8a83ad6fd27d65a27f76ae40af5b10b1b957128f5e51c292/receipt.json": {
+      "bytes": 2877,
+      "sha256": "58e6867287d7b2af21ce65753e2da790223f234e5dad4af2385c8993ff5c4cfa"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/collection/attempts/00378ee8bd196abc8a83ad6fd27d65a27f76ae40af5b10b1b957128f5e51c292/tokens.jsonl": {
+      "bytes": 1719,
+      "sha256": "61e56909b7020ad433996b7cc4c15cc67f1aead505d82a3a3910345fc015533c"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/collection/attempts/0041c4392b30880f8e9b9804eab765b363d2d856d760a5b1f05e91c0ea805828/attempt.json": {
+      "bytes": 3360,
+      "sha256": "511382e1a445a237bef1c690e882cd9315f398049fa6e7b73024d2eef4b5d859"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/collection/attempts/0041c4392b30880f8e9b9804eab765b363d2d856d760a5b1f05e91c0ea805828/receipt.json": {
+      "bytes": 2820,
+      "sha256": "bbb788d9ef13de39ef1ed0e469b06ec987288b59e0acedd9c9db02346bee9af1"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/collection/attempts/0041c4392b30880f8e9b9804eab765b363d2d856d760a5b1f05e91c0ea805828/tokens.jsonl": {
+      "bytes": 1718,
+      "sha256": "abddc3cbb10213c28278242e7ab9867e3e7104abeabdccf25c885b2ba512a499"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/collection/catalog.jsonl": {
+      "bytes": 6060406,
+      "sha256": "65a0e536bf768dde6d9493c3b69033d0a116a04081320d9406f1695fd52e3853"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/collection/initial-weights-manifest.json": {
+      "bytes": 150654,
+      "sha256": "a0cfc439ec30edc7c464e77cad38651cfbee27962bf7d09b41f5bdd01b871ece"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/collection/inputs/checkpoint_manifest.json": {
+      "bytes": 2350,
+      "sha256": "c4bfae6b8be4d893e7395bbaaaa6874b2583e818a56db100488795856af2bbf3"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/collection/inputs/heldout.jsonl": {
+      "bytes": 2667046,
+      "sha256": "d5b9b660f9fb8c39f7313892897644350247b4c0173bb22871912cdc9fc0674e"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/collection/inputs/initial_runtime_identity.json": {
+      "bytes": 165826,
+      "sha256": "32c0a090c50f23eff12517ef9d390a6b06c333702ce47cb8a67952f8bb1ab6cc"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/collection/inputs/tokenizer_manifest.json": {
+      "bytes": 1282,
+      "sha256": "a8ae42266e839691e203711bfcf5280b3b28eba120c4f1a19bfc88e836564ef8"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/collection/inputs/train.jsonl": {
+      "bytes": 3164918,
+      "sha256": "71ccc77578c201dc7f51bf06cb9f48f1fecfc1850e3f0472aa349a777924fd2e"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/collection/inputs/valid.jsonl": {
+      "bytes": 352437,
+      "sha256": "d45342c7d00ceb4fd9642e97647a695c3760d7a958ceb5461173008bd5bc4150"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/collection/invocations/71e30d44-5da6-4e2f-b470-ef2dc554fc43/initial-runtime-identity.json": {
+      "bytes": 165826,
+      "sha256": "35a82ba03a44feebf2493528b217f8a1c5962129006a753605022d0382c250e8"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/collection/invocations/71e30d44-5da6-4e2f-b470-ef2dc554fc43/loaded-checkpoint.json": {
+      "bytes": 145978,
+      "sha256": "90a62fd0a81ef33eb3e792192013552bf6f5e4e9e9b69ed0e8f04336a6754d4d"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/collection/invocations/71e30d44-5da6-4e2f-b470-ef2dc554fc43/phases.jsonl": {
+      "bytes": 2010,
+      "sha256": "51e588b42f88636213492b996b52b4882083944561bc55107617db8eebc8be6f"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/collection/invocations/71e30d44-5da6-4e2f-b470-ef2dc554fc43/plan.json": {
+      "bytes": 196542,
+      "sha256": "9294eb80d1934f8dff18d31470f724cccf910e5898a1c10f23b286fb6b5b91fe"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/collection/invocations/71e30d44-5da6-4e2f-b470-ef2dc554fc43/report.json": {
+      "bytes": 237550,
+      "sha256": "faf9d91b9ed93cb79d85d0cbec33adb72ecfb1fd459681e8c3fe4e93aa9a0cc7"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/collection/invocations/71e30d44-5da6-4e2f-b470-ef2dc554fc43/tokenizer-identity.json": {
+      "bytes": 563,
+      "sha256": "1e88d34f9c06fda252b3d7637a65ee02f92d20cd2be6a2504d3cb07645f0a014"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/collection/plan.json": {
+      "bytes": 2808,
+      "sha256": "4bdec0c2c108a108f72974c0cbdc610038d16f22b44918cd3dcbde7439cec736"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/collection/spec.json": {
+      "bytes": 27597,
+      "sha256": "e55f163b9d9001489b7400476ee45b24c7702eb05d206e9c6367697462ec71c3"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/integrated-suite.log": {
+      "bytes": 47976,
+      "sha256": "d79d7c58c5233453616a4ba4d811f1a96844a1defebe17cf1abfd62e4222a04d"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/plan.sha256": {
+      "bytes": 65,
+      "sha256": "03c13456e95e0f4f262edede88c646dbe9f259e5b3ca73a49d7abc97db671c62"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/previous-invocation.json": {
+      "bytes": 596,
+      "sha256": "31455dafc4af9631020b418e874d2fa109b192dcdfdcda3ebe2c35bfae214398"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/spec.sha256": {
+      "bytes": 65,
+      "sha256": "1f24eab8391fbc4b2be72d35653fc8147e1ec8e0de059862b70329cfa3fa2f17"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/supervise.py": {
+      "bytes": 1912,
+      "sha256": "d3c90127008d3448cc48e9e0eb13942bed18a16b285a01dcb4a0a10f8c48204f"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/tranche-01/result.json": {
+      "bytes": 558,
+      "sha256": "03b0d4b4603c41d4f7cc4cd109bc9d67c23e382710b9f7a6b94777626075e585"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/tranche-01/start.json": {
+      "bytes": 1732,
+      "sha256": "e879ac1c6cb45eaa28897c53581452eec2e0b4aa787451bca419737e5ffa927c"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/tranche-01/stderr.log": {
+      "bytes": 454,
+      "sha256": "d33471b4ea7e91befc39eaafc3d7cebfc69cb883b096a6eedb34321a7f38cf8e"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/tranche-01/stdout.log": {
+      "bytes": 2681,
+      "sha256": "1cde8e70629635c4c73af1a27f5d9e933d5d3927d8b9a3c099f6b4e2b0fd0a31"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/tranche-01/time.txt": {
+      "bytes": 1464,
+      "sha256": "0bd5a10d3ab79b76e4ac4860b8bf7c64bf429eaa4a3eede6096e281e752404b8"
+    },
+    "data/research/qwen-own-base-collection-20260913/v2/tranche-01-config.json": {
+      "bytes": 1456,
+      "sha256": "a1d85fa331455e3a8c0a9f2f924af14fe1b483374cf060d6cfdc21d2757f9dd8"
+    }
+  },
+  "omitted_artifacts": [
+    "19GB checkpoint tensor files",
+    "empty runtime owner.lock",
+    "unrelated Beads snapshots"
+  ],
+  "plan_flags_note": "Plan candidate_weights_loaded/inference_performed=false record pre-inference plan creation; later invocation receipts record actual execution.",
+  "coverage_note": "This immutable report ends at the first v2 tranche. It does not aggregate later invocations or earlier separate engineering readouts."
+}

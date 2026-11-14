@@ -1,0 +1,147 @@
+creating soup-gpu-lyapdim1-1029202536-5286 (g2-standard-8 + nvidia-l4, STANDARD) in us-central1-a ...
+NAME                               ZONE           MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP    EXTERNAL_IP     STATUS
+soup-gpu-lyapdim1-1029202536-5286  us-central1-a  g2-standard-8               [ip-removed]  [ip-removed]  RUNNING
+waiting for soup-gpu-lyapdim1-1029202536-5286 ([ip-removed]) startup script (up to 25 min) ...
+gpu=NVIDIA L4, 580.178.04
+nvcc=Build cuda_12.9.r12.9/compiler.35813241_0
+clang=Ubuntu clang version 18.1.3 (1ubuntu1)
+bun=1.3.14
+bend=v2.0.29@c8691aa
+READY: soup-gpu-lyapdim1-1029202536-5286 us-central1-a [ip-removed]
+rsync /tmp/l4runs/lyapdim1 -> soup-gpu-lyapdim1-1029202536-5286:/root/soup
+W: http://packages.cloud.google.com/apt/dists/apt-transport-artifact-registry-stable/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
+W: https://us-apt.pkg.dev/projects/gce-ai-infra/dists/gpudirect-gib-apt/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
+
+Running kernel seems to be up-to-date.
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
++ nvidia-smi -L
+GPU 0: NVIDIA L4 (UUID: GPU-818c8155-ece8-b7d0-b364-535f08a1c062)
++ /root/venv/bin/python -c 'import torch; print(torch.__version__, torch.cuda.is_available())'
+2.15.0+cu132 True
++ sha256sum lib/anet.py lib/bf.py lib/ng.py lib/ng2.py lib/ng3.py scratch/run3.py scratch/gpu_job_pbo.sh lib/rtable_ng.json PREREG-PBO.md
+f84b1701fa0f0f2489bb7ccf1e7db39c653da7b9910b6981f47fa39063b298f0  lib/anet.py
+dbec1ef30737f79255e3458985e27fd321f98c4d57d010b2a4ad4b9b37669b55  lib/bf.py
+76db7e70b8620adff378cafe046d4fd55c0a90c48d21d4941eff449cb6d847ed  lib/ng.py
+e14393723b9b13f1ba9140adfb6ae8ec005611cfffff75be5cfa16ce6a162143  lib/ng2.py
+bd257d44010f5d09434e49330a5961f63cc0f8b397e2bdb21e00f60033d488db  lib/ng3.py
+9bcf62cb5d8ed6ada5b8d7531d79fed320b6cdbc6bde08defcf830e891dfb314  scratch/run3.py
+f721fdc5e5848022895d298acef920d2b7a7a6712460218047610092fec79bfc  scratch/gpu_job_pbo.sh
+949a65b3f4a72b356b8052aa0d0d70343f2bdaa3387db210db484d189448b613  lib/rtable_ng.json
+98614c691527c4aa2eada970de5a5468c7d364fe13461be9eb388572507c7b19  PREREG-PBO.md
++ date -u
+Thu Oct 29 20:42:21 UTC 2026
++ /root/venv/bin/python scratch/run3.py e1 --n 256 --L 64 --nets 113,114,115,116 --nt 24 --truthdir truth --out /root/runs/lyapdim1/ra --cuts 32,48 --fams EMP,PB16,PB32,PB48,PB64,PBW16,PBW32,PBO8,PBO16,PBO24,PBO32,PBO48 --reps 1 --nfit 20 --nr 21 --nsm 14
+e1 device cuda n 256 L 64 nets [113, 114, 115, 116]
+net 113 rep 0 cut 32 EMP   L32:1.16e-06 L33:1.23e-06 L34:1.25e-06 L36:7.27e-07 L40:5.48e-07 L48:3.67e-07 L64:2.87e-07  6.4s
+net 113 rep 0 cut 32 PB16  L32:6.68e-06 L33:1.02e-05 L34:1.78e-05 L36:2.32e-05 L40:2.99e-05 L48:3.89e-05 L64:4.94e-05  7.5s
+net 113 rep 0 cut 32 PB32  L32:2.06e-06 L33:3.09e-06 L34:5.79e-06 L36:7.17e-06 L40:5.56e-06 L48:1.12e-05 L64:2.07e-05  7.4s
+net 113 rep 0 cut 32 PB48  L32:8.53e-07 L33:1.49e-06 L34:2.71e-06 L36:3.13e-06 L40:2.62e-06 L48:4.28e-06 L64:1.39e-05  7.4s
+net 113 rep 0 cut 32 PB64  L32:1.07e-06 L33:1.59e-06 L34:1.59e-06 L36:1.96e-06 L40:2.28e-06 L48:2.13e-06 L64:3.61e-06  7.4s
+net 113 rep 0 cut 32 PBW16 L32:8.16e-06 L33:1.28e-05 L34:2.39e-05 L36:2.42e-05 L40:3.31e-05 L48:3.75e-05 L64:4.65e-05  8.0s
+net 113 rep 0 cut 32 PBW32 L32:2.33e-06 L33:4.04e-06 L34:5.91e-06 L36:7.30e-06 L40:6.24e-06 L48:9.76e-06 L64:1.21e-05  8.0s
+net 113 rep 0 cut 32 PBO8  L32:1.49e-05 L33:3.18e-05 L34:5.76e-05 L36:6.40e-05 L40:6.42e-05 L48:5.85e-05 L64:7.95e-05  8.0s
+net 113 rep 0 cut 32 PBO16 L32:1.00e-05 L33:1.62e-05 L34:2.63e-05 L36:2.83e-05 L40:2.65e-05 L48:2.65e-05 L64:3.43e-05  8.0s
+net 113 rep 0 cut 32 PBO24 L32:5.48e-06 L33:8.28e-06 L34:1.46e-05 L36:1.44e-05 L40:1.10e-05 L48:8.56e-06 L64:9.78e-06  8.0s
+net 113 rep 0 cut 32 PBO32 L32:2.80e-06 L33:4.59e-06 L34:6.51e-06 L36:7.15e-06 L40:4.56e-06 L48:5.26e-06 L64:3.60e-06  8.0s
+net 113 rep 0 cut 32 PBO48 L32:1.60e-06 L33:1.90e-06 L34:3.01e-06 L36:2.70e-06 L40:2.44e-06 L48:1.28e-06 L64:1.66e-06  8.0s
+net 113 rep 0 cut 48 EMP   L48:1.40e-07 L49:2.62e-07 L50:1.84e-07 L52:1.00e-07 L56:9.29e-08 L64:7.52e-08  3.6s
+net 113 rep 0 cut 48 PB16  L48:6.41e-07 L49:2.10e-06 L50:3.25e-06 L52:6.08e-06 L56:8.70e-06 L64:2.53e-05  4.3s
+net 113 rep 0 cut 48 PB32  L48:-1.13e-07 L49:3.47e-07 L50:8.05e-07 L52:1.61e-06 L56:2.97e-06 L64:7.53e-06  4.3s
+net 113 rep 0 cut 48 PB48  L48:-9.91e-08 L49:1.14e-07 L50:2.50e-07 L52:3.69e-07 L56:6.64e-07 L64:2.54e-06  4.3s
+net 113 rep 0 cut 48 PB64  L48:-1.96e-07 L49:-7.01e-08 L50:7.03e-08 L52:2.46e-07 L56:2.80e-07 L64:1.34e-06  4.3s
+net 113 rep 0 cut 48 PBW16 L48:8.81e-07 L49:2.16e-06 L50:3.65e-06 L52:6.73e-06 L56:9.32e-06 L64:2.05e-05  4.9s
+net 113 rep 0 cut 48 PBW32 L48:1.27e-06 L49:1.66e-06 L50:1.93e-06 L52:2.21e-06 L56:2.84e-06 L64:4.90e-06  4.9s
+net 113 rep 0 cut 48 PBO8  L48:4.00e-06 L49:8.05e-06 L50:1.25e-05 L52:1.74e-05 L56:2.04e-05 L64:3.85e-05  4.9s
+net 113 rep 0 cut 48 PBO16 L48:1.68e-06 L49:4.33e-06 L50:5.13e-06 L52:6.10e-06 L56:8.52e-06 L64:1.08e-05  4.9s
+net 113 rep 0 cut 48 PBO24 L48:3.80e-07 L49:1.65e-06 L50:1.95e-06 L52:3.13e-06 L56:2.65e-06 L64:3.29e-06  4.9s
+net 113 rep 0 cut 48 PBO32 L48:8.53e-07 L49:1.33e-06 L50:1.50e-06 L52:1.77e-06 L56:2.68e-06 L64:2.80e-06  4.9s
+net 113 rep 0 cut 48 PBO48 L48:2.28e-07 L49:3.33e-07 L50:2.90e-07 L52:4.43e-07 L56:9.59e-08 L64:7.50e-07  4.9s
+net 113 e1 done 150s
+net 114 rep 0 cut 32 EMP   L32:-1.45e-07 L33:-1.18e-07 L34:-2.41e-08 L36:-3.56e-08 L40:-5.20e-08 L48:-2.17e-07 L64:-9.55e-08  6.5s
+net 114 rep 0 cut 32 PB16  L32:3.72e-06 L33:6.45e-06 L34:8.73e-06 L36:1.05e-05 L40:2.60e-05 L48:2.46e-05 L64:7.24e-05  7.5s
+net 114 rep 0 cut 32 PB32  L32:1.11e-06 L33:2.74e-06 L34:3.85e-06 L36:4.36e-06 L40:7.59e-06 L48:9.81e-06 L64:1.69e-05  7.4s
+net 114 rep 0 cut 32 PB48  L32:2.67e-07 L33:8.86e-07 L34:1.15e-06 L36:1.54e-06 L40:2.84e-06 L48:1.33e-06 L64:1.80e-06  7.4s
+net 114 rep 0 cut 32 PB64  L32:7.26e-07 L33:8.18e-07 L34:1.06e-06 L36:1.26e-06 L40:1.83e-06 L48:2.25e-06 L64:4.78e-07  7.4s
+net 114 rep 0 cut 32 PBW16 L32:4.87e-06 L33:8.44e-06 L34:1.04e-05 L36:1.07e-05 L40:2.43e-05 L48:2.22e-05 L64:7.24e-05  8.0s
+net 114 rep 0 cut 32 PBW32 L32:9.24e-07 L33:2.12e-06 L34:3.04e-06 L36:3.89e-06 L40:6.41e-06 L48:4.42e-06 L64:9.64e-06  8.0s
+net 114 rep 0 cut 32 PBO8  L32:6.67e-06 L33:1.65e-05 L34:2.22e-05 L36:2.87e-05 L40:4.17e-05 L48:4.17e-05 L64:7.39e-05  8.0s
+net 114 rep 0 cut 32 PBO16 L32:4.85e-06 L33:1.10e-05 L34:1.38e-05 L36:1.38e-05 L40:2.16e-05 L48:1.02e-05 L64:1.30e-05  8.0s
+net 114 rep 0 cut 32 PBO24 L32:3.05e-06 L33:5.69e-06 L34:8.10e-06 L36:6.94e-06 L40:9.87e-06 L48:5.49e-06 L64:4.10e-06  8.0s
+net 114 rep 0 cut 32 PBO32 L32:1.84e-06 L33:3.48e-06 L34:3.89e-06 L36:3.59e-06 L40:5.14e-06 L48:2.88e-06 L64:1.34e-06  8.0s
+net 114 rep 0 cut 32 PBO48 L32:6.97e-07 L33:1.24e-06 L34:1.12e-06 L36:1.23e-06 L40:1.98e-06 L48:1.36e-06 L64:4.85e-07  8.0s
+net 114 rep 0 cut 48 EMP   L48:-1.31e-07 L49:-8.08e-08 L50:-1.19e-07 L52:-1.64e-07 L56:-1.18e-08 L64:2.92e-07  3.6s
+net 114 rep 0 cut 48 PB16  L48:2.34e-06 L49:4.04e-06 L50:3.80e-06 L52:5.92e-06 L56:8.34e-06 L64:4.53e-05  4.3s
+net 114 rep 0 cut 48 PB32  L48:6.42e-07 L49:8.75e-07 L50:9.26e-07 L52:1.13e-06 L56:1.50e-06 L64:8.43e-06  4.3s
+net 114 rep 0 cut 48 PB48  L48:4.06e-07 L49:4.63e-07 L50:4.56e-07 L52:6.34e-07 L56:1.04e-06 L64:2.83e-06  4.3s
+net 114 rep 0 cut 48 PB64  L48:4.57e-07 L49:3.87e-07 L50:4.10e-07 L52:3.33e-07 L56:3.45e-07 L64:5.34e-07  4.3s
+net 114 rep 0 cut 48 PBW16 L48:3.29e-06 L49:4.89e-06 L50:5.06e-06 L52:6.56e-06 L56:8.26e-06 L64:2.67e-05  4.9s
+net 114 rep 0 cut 48 PBW32 L48:1.22e-06 L49:1.61e-06 L50:1.81e-06 L52:2.46e-06 L56:2.75e-06 L64:5.74e-06  4.9s
+net 114 rep 0 cut 48 PBO8  L48:9.56e-06 L49:1.46e-05 L50:1.54e-05 L52:1.77e-05 L56:2.05e-05 L64:6.52e-05  4.9s
+net 114 rep 0 cut 48 PBO16 L48:4.02e-06 L49:5.55e-06 L50:6.66e-06 L52:6.38e-06 L56:6.83e-06 L64:1.35e-05  4.9s
+net 114 rep 0 cut 48 PBO24 L48:1.80e-06 L49:2.64e-06 L50:3.15e-06 L52:3.06e-06 L56:3.05e-06 L64:7.60e-06  4.9s
+net 114 rep 0 cut 48 PBO32 L48:7.42e-07 L49:1.09e-06 L50:1.10e-06 L52:1.55e-06 L56:1.87e-06 L64:2.17e-06  4.9s
+net 114 rep 0 cut 48 PBO48 L48:7.36e-07 L49:8.67e-07 L50:9.95e-07 L52:1.19e-06 L56:1.87e-06 L64:3.42e-06  4.9s
+net 114 e1 done 150s
+net 115 rep 0 cut 32 EMP   L32:3.98e-07 L33:3.42e-07 L34:2.87e-07 L36:3.80e-07 L40:1.27e-07 L48:2.73e-07 L64:1.56e-07  6.5s
+net 115 rep 0 cut 32 PB16  L32:2.16e-06 L33:3.24e-06 L34:5.03e-06 L36:5.95e-06 L40:1.45e-05 L48:1.85e-05 L64:3.22e-05  7.5s
+net 115 rep 0 cut 32 PB32  L32:5.33e-07 L33:9.45e-07 L34:1.45e-06 L36:2.53e-06 L40:3.77e-06 L48:4.50e-06 L64:5.67e-06  7.4s
+net 115 rep 0 cut 32 PB48  L32:-5.26e-08 L33:2.31e-07 L34:4.47e-07 L36:1.16e-06 L40:2.23e-06 L48:1.92e-06 L64:1.42e-06  7.4s
+net 115 rep 0 cut 32 PB64  L32:2.28e-07 L33:3.45e-07 L34:4.19e-07 L36:5.59e-07 L40:7.30e-07 L48:9.65e-07 L64:1.04e-06  7.4s
+net 115 rep 0 cut 32 PBW16 L32:2.34e-06 L33:3.18e-06 L34:4.55e-06 L36:6.36e-06 L40:8.86e-06 L48:1.42e-05 L64:2.17e-05  8.0s
+net 115 rep 0 cut 32 PBW32 L32:1.07e-06 L33:1.42e-06 L34:1.62e-06 L36:2.55e-06 L40:3.36e-06 L48:5.45e-06 L64:8.41e-06  8.0s
+net 115 rep 0 cut 32 PBO8  L32:2.95e-06 L33:6.91e-06 L34:1.17e-05 L36:1.87e-05 L40:2.41e-05 L48:2.39e-05 L64:2.46e-05  8.0s
+net 115 rep 0 cut 32 PBO16 L32:1.82e-06 L33:2.92e-06 L34:5.22e-06 L36:5.89e-06 L40:9.79e-06 L48:1.08e-05 L64:6.87e-06  8.0s
+net 115 rep 0 cut 32 PBO24 L32:1.94e-06 L33:2.64e-06 L34:3.26e-06 L36:3.49e-06 L40:4.70e-06 L48:6.32e-06 L64:2.73e-06  8.0s
+net 115 rep 0 cut 32 PBO32 L32:1.81e-06 L33:2.00e-06 L34:2.45e-06 L36:3.37e-06 L40:2.38e-06 L48:2.87e-06 L64:2.57e-06  8.0s
+net 115 rep 0 cut 32 PBO48 L32:3.03e-07 L33:4.36e-07 L34:5.53e-07 L36:1.23e-06 L40:1.95e-06 L48:1.41e-06 L64:-1.62e-08  8.0s
+net 115 rep 0 cut 48 EMP   L48:5.10e-07 L49:4.90e-07 L50:5.40e-07 L52:4.36e-07 L56:3.53e-07 L64:5.12e-07  3.6s
+net 115 rep 0 cut 48 PB16  L48:1.74e-06 L49:3.17e-06 L50:3.72e-06 L52:4.74e-06 L56:7.40e-06 L64:1.03e-05  4.3s
+net 115 rep 0 cut 48 PB32  L48:5.47e-07 L49:7.11e-07 L50:6.73e-07 L52:4.50e-07 L56:6.35e-07 L64:1.97e-06  4.3s
+net 115 rep 0 cut 48 PB48  L48:-1.66e-07 L49:-1.37e-07 L50:-7.43e-08 L52:-6.51e-09 L56:1.38e-07 L64:7.49e-07  4.3s
+net 115 rep 0 cut 48 PB64  L48:-1.79e-07 L49:-1.34e-07 L50:-1.32e-07 L52:-1.57e-07 L56:-1.25e-07 L64:2.84e-07  4.3s
+net 115 rep 0 cut 48 PBW16 L48:1.91e-06 L49:2.74e-06 L50:2.18e-06 L52:3.07e-06 L56:4.85e-06 L64:8.93e-06  4.9s
+net 115 rep 0 cut 48 PBW32 L48:1.78e-06 L49:1.98e-06 L50:1.87e-06 L52:1.52e-06 L56:1.58e-06 L64:2.67e-06  4.9s
+net 115 rep 0 cut 48 PBO8  L48:7.60e-06 L49:8.52e-06 L50:9.37e-06 L52:1.70e-05 L56:2.69e-05 L64:4.13e-05  4.9s
+net 115 rep 0 cut 48 PBO16 L48:1.84e-06 L49:2.98e-06 L50:2.71e-06 L52:4.42e-06 L56:5.20e-06 L64:8.91e-06  4.9s
+net 115 rep 0 cut 48 PBO24 L48:1.04e-06 L49:1.78e-06 L50:1.51e-06 L52:2.24e-06 L56:1.04e-06 L64:8.18e-07  4.9s
+net 115 rep 0 cut 48 PBO32 L48:-1.31e-07 L49:1.69e-07 L50:5.06e-08 L52:3.93e-08 L56:-5.84e-08 L64:7.98e-07  4.9s
+net 115 rep 0 cut 48 PBO48 L48:4.45e-07 L49:5.46e-07 L50:4.04e-07 L52:3.12e-07 L56:2.41e-07 L64:3.07e-07  4.9s
+net 115 e1 done 150s
+net 116 rep 0 cut 32 EMP   L32:3.95e-07 L33:3.42e-07 L34:2.97e-07 L36:3.25e-07 L40:1.79e-07 L48:-1.11e-07 L64:-2.11e-07  6.5s
+net 116 rep 0 cut 32 PB16  L32:2.27e-06 L33:4.07e-06 L34:5.61e-06 L36:1.07e-05 L40:1.48e-05 L48:3.65e-05 L64:2.63e-05  7.5s
+net 116 rep 0 cut 32 PB32  L32:3.43e-06 L33:3.51e-06 L34:3.67e-06 L36:5.03e-06 L40:1.20e-05 L48:2.28e-05 L64:1.90e-05  7.4s
+net 116 rep 0 cut 32 PB48  L32:3.35e-08 L33:1.17e-07 L34:2.51e-07 L36:6.64e-07 L40:1.68e-06 L48:2.77e-06 L64:1.58e-06  7.4s
+net 116 rep 0 cut 32 PB64  L32:3.62e-07 L33:3.73e-07 L34:3.99e-07 L36:5.96e-07 L40:1.18e-06 L48:7.70e-07 L64:2.76e-07  7.4s
+net 116 rep 0 cut 32 PBW16 L32:3.04e-06 L33:4.39e-06 L34:4.86e-06 L36:8.89e-06 L40:1.35e-05 L48:2.51e-05 L64:2.50e-05  8.0s
+net 116 rep 0 cut 32 PBW32 L32:1.84e-06 L33:2.40e-06 L34:3.01e-06 L36:3.88e-06 L40:5.18e-06 L48:5.68e-06 L64:4.24e-06  8.0s
+net 116 rep 0 cut 32 PBO8  L32:5.26e-06 L33:1.28e-05 L34:1.60e-05 L36:2.22e-05 L40:3.95e-05 L48:4.02e-05 L64:2.71e-05  8.0s
+net 116 rep 0 cut 32 PBO16 L32:3.92e-06 L33:5.71e-06 L34:6.29e-06 L36:9.35e-06 L40:9.88e-06 L48:1.30e-05 L64:1.05e-05  8.0s
+net 116 rep 0 cut 32 PBO24 L32:2.44e-06 L33:3.20e-06 L34:3.74e-06 L36:5.34e-06 L40:4.84e-06 L48:4.57e-06 L64:6.56e-06  8.0s
+net 116 rep 0 cut 32 PBO32 L32:5.39e-07 L33:8.30e-07 L34:9.87e-07 L36:1.57e-06 L40:2.95e-06 L48:3.81e-06 L64:5.21e-06  8.0s
+net 116 rep 0 cut 32 PBO48 L32:1.35e-06 L33:1.62e-06 L34:1.72e-06 L36:2.14e-06 L40:2.25e-06 L48:1.78e-06 L64:2.51e-06  8.0s
+net 116 rep 0 cut 48 EMP   L48:2.44e-07 L49:1.22e-07 L50:2.24e-07 L52:-8.88e-08 L56:-1.61e-07 L64:-9.03e-08  3.6s
+net 116 rep 0 cut 48 PB16  L48:6.52e-07 L49:9.39e-07 L50:1.80e-06 L52:2.26e-06 L56:3.79e-06 L64:8.14e-06  4.3s
+net 116 rep 0 cut 48 PB32  L48:2.02e-06 L49:2.01e-06 L50:2.18e-06 L52:2.05e-06 L56:2.89e-06 L64:6.18e-06  4.3s
+net 116 rep 0 cut 48 PB48  L48:2.10e-06 L49:2.23e-06 L50:2.38e-06 L52:2.28e-06 L56:2.14e-06 L64:3.78e-06  4.3s
+net 116 rep 0 cut 48 PB64  L48:2.52e-07 L49:2.02e-07 L50:3.98e-07 L52:2.05e-07 L56:2.19e-07 L64:8.58e-07  4.3s
+net 116 rep 0 cut 48 PBW16 L48:1.52e-06 L49:1.46e-06 L50:2.31e-06 L52:2.98e-06 L56:5.65e-06 L64:1.19e-05  4.9s
+net 116 rep 0 cut 48 PBW32 L48:5.25e-07 L49:5.03e-07 L50:7.14e-07 L52:6.49e-07 L56:1.27e-06 L64:2.50e-06  4.9s
+net 116 rep 0 cut 48 PBO8  L48:2.25e-06 L49:3.03e-06 L50:4.16e-06 L52:6.36e-06 L56:1.12e-05 L64:1.70e-05  4.9s
+net 116 rep 0 cut 48 PBO16 L48:1.89e-06 L49:1.61e-06 L50:1.77e-06 L52:2.35e-06 L56:3.99e-06 L64:5.41e-06  4.9s
+net 116 rep 0 cut 48 PBO24 L48:1.89e-06 L49:1.96e-06 L50:2.72e-06 L52:2.35e-06 L56:3.38e-06 L64:5.58e-06  4.9s
+net 116 rep 0 cut 48 PBO32 L48:8.09e-07 L49:7.77e-07 L50:1.01e-06 L52:8.97e-07 L56:1.91e-06 L64:2.23e-06  4.9s
+net 116 rep 0 cut 48 PBO48 L48:-2.53e-07 L49:-2.42e-07 L50:-2.44e-07 L52:-2.59e-07 L56:-2.59e-07 L64:-2.98e-07  4.9s
+net 116 e1 done 150s
++ date -u
+Thu Oct 29 20:52:25 UTC 2026
++ /root/venv/bin/python scratch/run3.py e2 --n 256 --L 64 --nets 113,114 --nt 24 --truthdir truth --out /root/runs/lyapdim1/rb --c0 32 --cfams MC,EMP,PB32,PBO32,PB64,PBO64 --tfams '' --ncs 20,21
+e2 device cuda n 256 L 64 nets [113, 114]
+net 113 e2 NC 2^20 every MC    L33:-1.74e-07 L34:-2.69e-07 L36:-3.86e-07 L40:-3.18e-07 L48:-4.10e-07 L64:-6.68e-07  5.2s
+net 113 e2 NC 2^20 every EMP   L33:4.07e-06 L34:8.08e-06 L36:7.38e-06 L40:6.15e-06 L48:5.21e-06 L64:8.52e-05  5.1s

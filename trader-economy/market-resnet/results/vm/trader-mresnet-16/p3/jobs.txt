@@ -1,0 +1,9 @@
+bptt_cov_dscov_tb1_voc_rep_rand_s0 econ2 --mode bptt --stream cov --ds 1 --covsup 1 --vocsup 1 --tbptt 1 --train_pick random --ptopt 1 --bidsup 1 --iters 3000 --bs 64 --D 24 --evalL 32,320,3200 --seed 0
+bptt_cov_dscov_tb1_voc_rand_s0 econ2 --mode bptt --stream cov --ds 1 --covsup 1 --vocsup 1 --tbptt 1 --train_pick random --iters 3000 --bs 64 --D 24 --evalL 32,320,3200 --seed 0
+bptt_cov_dscov_voc_rand_s0 econ2 --mode bptt --stream cov --ds 1 --covsup 1 --vocsup 1 --train_pick random --iters 3000 --bs 64 --D 24 --evalL 32,320,3200 --seed 0
+bptt_cov_progcov_a05_s0 econ2 --mode bptt --stream cov --prog 1 --alpha 0.5 --covsup 1 --iters 3000 --bs 64 --D 24 --evalL 32,320,3200 --seed 0
+bptt_cov_progcov_a0_s0 econ2 --mode bptt --stream cov --prog 1 --alpha 0 --covsup 1 --iters 3000 --bs 64 --D 24 --evalL 32,320,3200 --seed 0
+econ_cov_online_s0 econ2 --mode econ --stream cov --online 1 --auctionL none --iters 3000 --bs 64 --D 24 --evalL 32,320,3200 --seed 0
+bptt_cov_dscov_tb1_voc_bcap_rand_s0 econ2 --mode bptt --stream cov --ds 1 --covsup 1 --vocsup 1 --tbptt 1 --train_pick random --bcap 10 --iters 3000 --bs 64 --D 24 --evalL 32,320,3200 --seed 0
+bptt_cov_dscov_bcap_s0 econ2 --mode bptt --stream cov --ds 1 --covsup 1 --bcap 10 --iters 3000 --bs 64 --D 24 --evalL 32,320,3200 --seed 0
+halt64_s0 py halt64.py --ckpt old/econ_cov_voc_s0.pt --out p3/halt64_s0.json

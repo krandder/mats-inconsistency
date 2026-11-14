@@ -1,0 +1,38 @@
+S_N_asig_s0 --arm asig --variant S --toy N --reps 10 --seed 0
+S_N_asig_s1 --arm asig --variant S --toy N --reps 10 --seed 1
+B_N_asig_s0 --arm asig --variant B --toy N --reps 10 --seed 0
+B_M_asig_s0 --arm asig --variant B --toy M --reps 10 --seed 0
+diag_x05_S_N_asig_s0 --arm asig --variant S --toy N --reps 10 --seed 0 --explore 0.05
+diag_x05_S_N_asig_s1 --arm asig --variant S --toy N --reps 10 --seed 1 --explore 0.05
+S_N_shap_s0 --arm shap --variant S --toy N --reps 10 --seed 0
+S_N_banz_s0 --arm banz --variant S --toy N --reps 10 --seed 0
+S_N_shap_s1 --arm shap --variant S --toy N --reps 10 --seed 1
+S_N_banz_s1 --arm banz --variant S --toy N --reps 10 --seed 1
+B_N_shap_s0 --arm shap --variant B --toy N --reps 10 --seed 0
+B_M_shap_s0 --arm shap --variant B --toy M --reps 10 --seed 0
+diag_x05_S_N_shap_s0 --arm shap --variant S --toy N --reps 10 --seed 0 --explore 0.05
+diag_x05_S_N_banz_s0 --arm banz --variant S --toy N --reps 10 --seed 0 --explore 0.05
+diag_x05_S_N_shap_s1 --arm shap --variant S --toy N --reps 10 --seed 1 --explore 0.05
+diag_x05_S_N_banz_s1 --arm banz --variant S --toy N --reps 10 --seed 1 --explore 0.05
+S_N_asigj_s0 --arm asigj --variant S --toy N --reps 10 --seed 0
+S_N_asigj_s1 --arm asigj --variant S --toy N --reps 10 --seed 1
+S_N_loo_s0 --arm loo --variant S --toy N --reps 10 --seed 0
+S_N_loo_s1 --arm loo --variant S --toy N --reps 10 --seed 1
+B_N_loo_s0 --arm loo --variant B --toy N --reps 10 --seed 0
+B_M_loo_s0 --arm loo --variant B --toy M --reps 10 --seed 0
+diag_x05_S_N_loo_s0 --arm loo --variant S --toy N --reps 10 --seed 0 --explore 0.05
+diag_x05_S_N_loo_s1 --arm loo --variant S --toy N --reps 10 --seed 1 --explore 0.05
+ctl_shuffle_asig --arm asig --variant S --toy N --reps 3 --seed 7 --shuffle
+ctl_decoy_asig --arm asig --variant S --toy N --reps 3 --seed 8 --decoy
+ctl_decoyreal_asig --arm asig --variant S --toy N --reps 3 --seed 9 --decoy --decoy_real
+S_N_add_s0 --arm add --variant S --toy N --reps 10 --seed 0
+S_N_mob1e-3_s0 --arm mob --variant S --toy N --reps 10 --seed 0 --lam 1e-3
+S_N_mob1e-2_s0 --arm mob --variant S --toy N --reps 10 --seed 0 --lam 1e-2
+S_N_add_s1 --arm add --variant S --toy N --reps 10 --seed 1
+S_N_mob1e-3_s1 --arm mob --variant S --toy N --reps 10 --seed 1 --lam 1e-3
+S_N_mob1e-2_s1 --arm mob --variant S --toy N --reps 10 --seed 1 --lam 1e-2
+B_N_add_s0 --arm add --variant B --toy N --reps 10 --seed 0
+B_M_add_s0 --arm add --variant B --toy M --reps 10 --seed 0
+san_mhard_K4 --arm mhard --variant S --toy N --reps 1 --seed 0 --n 1 --K 4
+san_msoft_K4 --arm msoft --variant S --toy N --reps 1 --seed 0 --n 1 --K 4
+san_vqsup_K4 --arm vqsup --variant S --toy N --reps 1 --seed 0 --n 1 --K 4

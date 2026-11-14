@@ -1,0 +1,15 @@
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 4309.72it/s]
+arithL prompt tokens [316, 316, 314, 314, 314, 314, 314, 314]
+sample P=4 K=16: 3.10s  21 rollouts/s  919 tokens/s
+sample P=4 K=64: 2.14s  120 rollouts/s  5321 tokens/s
+sample P=8 K=64: 2.43s  210 rollouts/s  9315 tokens/s
+sample P=2 K=256: 2.86s  179 rollouts/s  7714 tokens/s
+abs(logq - score): mean 0.0119 max 0.4224 n 499 ; valid 0.926 correct-of-valid 0.973
+example: ' 567-565=2; 2+903=905; 905-342=563; answer: 563' | true: ' 567-565=2; 2+903=905; 905-342=563; answer 563\n'
+vars prompt tokens [308, 309, 309, 310, 308, 310, 309, 308]
+sample P=4 K=16: 1.10s  58 rollouts/s  1519 tokens/s
+sample P=4 K=64: 1.85s  138 rollouts/s  3634 tokens/s
+sample P=8 K=64: 1.98s  258 rollouts/s  6888 tokens/s
+sample P=2 K=256: 1.77s  290 rollouts/s  7744 tokens/s
+abs(logq - score): mean 0.2004 max 1.7971 n 510 ; valid 0.838 correct-of-valid 0.142
+example: ' a=6; a=4; b=18; c=22; a=30; answer 30' | true: ' a=6; b=2; b=12; c=18; a=24; answer 24\n'

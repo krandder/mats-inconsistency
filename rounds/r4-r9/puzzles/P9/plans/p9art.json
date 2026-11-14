@@ -1,0 +1,26 @@
+[
+ {
+  "name": "p9art_X2_rtA",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9a.py --arm X2 --seed 0 --steps 6000 --dev_every 1500 --tag _rtA --lr 1e-3 --clip 1 --out {OUT}/pilot --scratch {OUT}/partial --cache /root/cache",
+  "done": "{OUT}/pilot/p9a/X2_s0_rtA.json"
+ },
+ {
+  "name": "p9art_X2_rtB",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9a.py --arm X2 --seed 0 --steps 6000 --dev_every 1500 --tag _rtB --lr 5e-4 --clip 1 --out {OUT}/pilot --scratch {OUT}/partial --cache /root/cache",
+  "done": "{OUT}/pilot/p9a/X2_s0_rtB.json"
+ },
+ {
+  "name": "p9art_X3_rtA",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9a.py --arm X3 --seed 0 --steps 6000 --dev_every 1500 --tag _rtA --lr 1e-3 --clip 1 --out {OUT}/pilot --scratch {OUT}/partial --cache /root/cache",
+  "done": "{OUT}/pilot/p9a/X3_s0_rtA.json"
+ },
+ {
+  "name": "p9art_X3_rtB",
+  "deps": [],
+  "cmd": "{PY} {CODE}/p9a.py --arm X3 --seed 0 --steps 6000 --dev_every 1500 --tag _rtB --lr 5e-4 --clip 1 --out {OUT}/pilot --scratch {OUT}/partial --cache /root/cache",
+  "done": "{OUT}/pilot/p9a/X3_s0_rtB.json"
+ }
+]

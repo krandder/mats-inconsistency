@@ -1,0 +1,13 @@
+{
+ "id": "P0-6",
+ "question": "How much room do these puzzles leave for smarter halting (value-of-computation markets)?",
+ "setup": "Stably-correct oracle vs fixed T, KL between successive predictions, max confidence, a logistic stop probe and a size-aware T, on M-ref 33x33 (and the 100 hardest) and P1 fL512 (8 seeds). Room = accuracy gap at matched mean iterations and iterations needed to come within 1 pp.",
+ "result": "Almost none. The best rule is 7.8 pp (maze) and 45 pp (prefix median) behind at exactly matched iterations, but that is a cliff: within 1 pp at 1.013x (maze) and 1.011x (prefix). One fixed KL threshold (3e-4) reaches within 1 pp at 1.013-1.018x on all 10 subjects. Spec falsifier 4 fires: about 1-2% compute headroom.",
+ "status": "Informative",
+ "files": [
+  "puzzles/P0/analyze.py",
+  "puzzles/P0/RESULTS.md",
+  "puzzles/P0/results/p0_results.json",
+  "puzzles/P0/results/chart_p0.json"
+ ]
+}

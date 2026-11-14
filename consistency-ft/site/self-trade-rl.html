@@ -1,0 +1,385 @@
+<title>Self-Trade Run</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#f6f7f9; --paper:#ffffff; --grid:#e3e7ec; --line:#cfd6de; --soft:#eceff3;
+  --ink:#161b22; --ink2:#4d5866; --ink3:#7d8794;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#4a3aa7; --s5:#b06d00;
+  --shadow:0 1px 2px rgba(20,27,34,.06),0 6px 20px rgba(20,27,34,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#12161c; --paper:#1a2029; --grid:#242c37; --line:#334051; --soft:#232b36;
+    --ink:#eef1f5; --ink2:#b7c0cc; --ink3:#7f8a98;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#9085e9; --s5:#c98500;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#12161c; --paper:#1a2029; --grid:#242c37; --line:#334051; --soft:#232b36;
+  --ink:#eef1f5; --ink2:#b7c0cc; --ink3:#7f8a98;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#9085e9; --s5:#c98500;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Source Serif 4",Georgia,"Times New Roman",serif;font-size:17px;line-height:1.55;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:32px 32px}
+.wrap{max-width:1040px;margin:0 auto;padding-block:32px 80px;padding-inline:20px}
+h1,h2,h3{font-family:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;text-wrap:balance;line-height:1.08;margin:0}
+h1{font-size:clamp(40px,7vw,68px);font-weight:700;letter-spacing:-.02em}
+h2{font-size:clamp(26px,4vw,38px);font-weight:700;letter-spacing:-.015em}
+h3{font-size:18px;font-weight:700}
+p{max-width:66ch;margin:0}
+a{color:var(--ink)}
+.eyebrow{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
+.lede{font-size:21px;color:var(--ink2);max-width:60ch}
+.m{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace;font-size:.92em}
+.formula{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace;font-size:15px;line-height:1.8;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:14px 18px;overflow-x:auto;white-space:nowrap}
+.formula b{font-weight:600}
+.S1{color:var(--s1)} .S2{color:var(--s2)} .S3{color:var(--s3)} .S4{color:var(--s4)} .S5{color:var(--s5)}
+.topnav{display:flex;gap:18px;flex-wrap:wrap;font-family:"Bricolage Grotesque",sans-serif;font-size:13px;font-weight:700;letter-spacing:.02em;margin-bottom:28px}
+.topnav a{color:var(--ink2);text-decoration:none;border-bottom:2px solid transparent;padding-bottom:2px}
+.topnav a[aria-current]{color:var(--ink);border-color:var(--ink)} .topnav a:hover{color:var(--ink)}
+header{display:grid;gap:22px;margin-bottom:56px}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);padding:20px}
+section{display:grid;gap:22px;margin-bottom:56px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:760px){.two{grid-template-columns:1fr}}
+.controls{display:grid;gap:12px}
+.ctl{display:grid;grid-template-columns:170px 1fr 64px;gap:12px;align-items:center;font-family:"JetBrains Mono",monospace;font-size:13px}
+@media(max-width:520px){.ctl{grid-template-columns:1fr;gap:4px}}
+.ctl label{font-weight:600}
+.ctl output{text-align:right;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--ink);height:24px}
+input[type=range]:focus-visible{outline:2px solid var(--ink3);outline-offset:2px;border-radius:4px}
+.score{display:flex;gap:22px;flex-wrap:wrap;align-items:baseline;margin-top:12px}
+.stat{display:grid;gap:2px}
+.stat .k{font-size:11px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;font-family:"JetBrains Mono",monospace}
+.stat .v{font-family:"JetBrains Mono",monospace;font-size:24px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1}
+.pill{display:inline-flex;align-items:center;gap:6px;font-family:"JetBrains Mono",monospace;font-size:12px;padding:3px 9px;border-radius:999px;border:1px solid var(--line)}
+.pill.warn{border-color:var(--ink);background:var(--soft)}
+svg{display:block;max-width:100%;height:auto}
+.axis{stroke:var(--line);stroke-width:1} .gridl{stroke:var(--grid);stroke-width:1}
+.lbl{font-family:"JetBrains Mono",monospace;font-size:11px;fill:var(--ink3)}
+.lbl2{font-family:"JetBrains Mono",monospace;font-size:12px;fill:var(--ink2)}
+.lbl3{font-family:"Bricolage Grotesque",sans-serif;font-size:13px;font-weight:700;fill:var(--ink)}
+.box{fill:var(--paper);stroke:var(--line)} .boxink{fill:var(--soft);stroke:var(--ink)}
+.arrow{stroke:var(--ink2);stroke-width:1.6;fill:none;marker-end:url(#ah)}
+.cap{font-size:14px;color:var(--ink2);margin-top:10px;max-width:none}
+.tablewrap{overflow-x:auto}
+table.cmp{border-collapse:collapse;width:100%;font-size:15px}
+table.cmp th{font-family:"Bricolage Grotesque",sans-serif;text-align:left;padding:10px 12px;border-bottom:2px solid var(--ink);font-size:13.5px}
+table.cmp td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+table.cmp td.num,table.cmp th.num{text-align:right;font-variant-numeric:tabular-nums}
+.note{border-left:3px solid var(--ink);padding:8px 16px;background:var(--soft);border-radius:0 6px 6px 0;font-size:15.5px;max-width:none}
+.note p{max-width:none}
+.steps{counter-reset:s;display:grid;gap:12px;margin:0;padding:0;list-style:none}
+.steps li{display:grid;grid-template-columns:34px 1fr;gap:12px;font-size:15.5px;color:var(--ink2)}
+.steps li::before{counter-increment:s;content:counter(s);font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:14px;color:var(--paper);background:var(--ink);border-radius:50%;width:26px;height:26px;display:grid;place-items:center;margin-top:2px}
+.steps b{color:var(--ink)}
+.claims{display:grid;gap:10px;margin:0;padding:0;list-style:none;counter-reset:c}
+.claims li{display:grid;grid-template-columns:34px 1fr auto;gap:12px;align-items:start;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--paper);font-size:15.5px}
+.claims li::before{counter-increment:c;content:counter(c);font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:14px;color:var(--paper);background:var(--ink);border-radius:50%;width:26px;height:26px;display:grid;place-items:center;margin-top:2px}
+.claims .ctrl{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--ink3);white-space:nowrap;padding-top:6px}
+@media(max-width:600px){.claims li{grid-template-columns:34px 1fr}.claims .ctrl{grid-column:2}}
+.jt{display:grid;grid-template-columns:1fr 1fr;gap:12px;font-family:"JetBrains Mono",monospace;font-size:13px}
+.jt table{border-collapse:collapse;width:100%}
+.jt td,.jt th{border:1px solid var(--line);padding:5px 8px;text-align:right;font-variant-numeric:tabular-nums}
+.jt th{text-align:left;font-weight:600;background:var(--soft)}
+footer{margin-top:60px;font-size:14px;color:var(--ink3)}
+</style>
+
+<div class="wrap">
+<nav class="topnav" aria-label="Site"><a href="/">Benchmark</a><a href="/open-agency.html">Open Agency</a><a href="/compiled-rewards.html">Compiled rewards</a><a href="/belief-training.html">Explicit beliefs</a><a href="/wave1-results.html">Wave one</a><a href="/self-trade-rl.html" aria-current="page">Self-trade</a><a href="https://github.com/futarchy-fi/consistency-ft">Repository ↗</a></nav>
+
+<header>
+  <div class="eyebrow">Proposal · 21 September 2026 · Kelvin and Jessica · draft, unfunded</div>
+  <h1>Self-Trade Run</h1>
+  <p class="lede">Train a forecaster by letting it trade against a combinatorial market it built itself, week by week, with outcome-based RL in the style of Turtel et al. and Mantic. The market maker enforces coherence; settlements and dated evidence supply the information; the model's one-shot beliefs are distilled from the market it produced.</p>
+  <div class="note"><p><b>The one sentence to hold onto.</b> Self-trade is a coherence-and-aggregation engine, not a knowledge engine. AlphaZero's self-play manufactures unlimited new experience; this game manufactures unlimited new consistency, while every bit of information still arrives through the evidence an agent reads at time T and through settlements. That decides most of the design below.</p></div>
+</header>
+
+<section>
+  <h2>Five claims, each with a control</h2>
+  <ol class="claims">
+    <li><div><b>Search improves beliefs.</b> The market after K trades, W<sub>K</sub>, scores better on settlement log loss than the policy's one-shot output on the same evidence.</div><span class="ctrl">frozen model, no RL</span></li>
+    <li><div><b>Amortization works.</b> Distilling W<sub>K</sub> into the one-shot output improves next round's one-shot. With claim 1 this is the policy-improvement operator that makes the loop AlphaZero-like rather than an ensemble.</div><span class="ctrl">arm 3 vs arm 4</span></li>
+    <li><div><b>Coherence transfers.</b> One-shot outputs become more coherent on formula queries never trained on, without a penalty term, because the maker enforced coherence during search.</div><span class="ctrl">Paleka checks, overlap loss</span></li>
+    <li><div><b>Beats plain outcome RL at equal compute.</b> On Turtel's released test set, against a single-question GRPO arm with the same model, data, tokens and reward.</div><span class="ctrl">arm 1</span></li>
+    <li><div><b>No memorization.</b> Accuracy on retired questions with no evidence does not exceed fresh held-out accuracy by more than the base-rate gap.</div><span class="ctrl">recall vs forecast probe</span></li>
+  </ol>
+</section>
+
+<section>
+  <h2>A round</h2>
+  <p>Strict chronological weeks, one pass, no replay. Agents trade on evidence dated at or before T. Settlements arriving in week T+1 condition the joint, pay out every position that references them, and retire the question for good.</p>
+  <div class="panel">
+    <svg viewBox="0 0 960 300" role="img" aria-label="Round loop from week T to week T+1">
+      <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--ink2)"/></marker></defs>
+      <text class="lbl3" x="60" y="26">week T</text>
+      <rect class="box" x="30" y="40" width="200" height="60" rx="8"/><text class="lbl3" x="130" y="64" text-anchor="middle">evidence dated ≤ T</text><text class="lbl2" x="130" y="84" text-anchor="middle">archive · dated search</text>
+      <rect class="boxink" x="30" y="130" width="200" height="60" rx="8"/><text class="lbl3" x="130" y="154" text-anchor="middle">K turns on W</text><text class="lbl2" x="130" y="174" text-anchor="middle">LMSR trades, KL budget ε</text>
+      <path class="arrow" d="M130,100 L130,128"/>
+      <rect class="box" x="30" y="220" width="200" height="60" rx="8"/><text class="lbl3" x="130" y="244" text-anchor="middle">snapshot W<tspan baseline-shift="sub" font-size="9">T</tspan></text><text class="lbl2" x="130" y="264" text-anchor="middle">distillation target</text>
+      <path class="arrow" d="M130,190 L130,218"/>
+      <text class="lbl3" x="420" y="26">week T+1</text>
+      <rect class="box" x="380" y="40" width="200" height="60" rx="8"/><text class="lbl3" x="480" y="64" text-anchor="middle">settlements</text><text class="lbl2" x="480" y="84" text-anchor="middle">condition joint, pay, retire</text>
+      <rect class="boxink" x="380" y="130" width="200" height="60" rx="8"/><text class="lbl3" x="480" y="154" text-anchor="middle">K turns on W</text><text class="lbl2" x="480" y="174" text-anchor="middle">evidence dated ≤ T+1</text>
+      <path class="arrow" d="M480,100 L480,128"/>
+      <rect class="box" x="380" y="220" width="200" height="60" rx="8"/><text class="lbl3" x="480" y="244" text-anchor="middle">snapshot W<tspan baseline-shift="sub" font-size="9">T+1</tspan></text><text class="lbl2" x="480" y="264" text-anchor="middle">reference for T's marks</text>
+      <path class="arrow" d="M480,190 L480,218"/>
+      <path class="arrow" d="M230,250 C300,250 300,70 378,70"/>
+      <text class="lbl2" x="300" y="150" text-anchor="middle">carry W</text>
+      <rect class="box" x="730" y="40" width="200" height="60" rx="8"/><text class="lbl3" x="830" y="64" text-anchor="middle">reward for T's turns</text><text class="lbl2" x="830" y="84" text-anchor="middle">settled: log-score payoff</text>
+      <rect class="box" x="730" y="130" width="200" height="60" rx="8"/><text class="lbl3" x="830" y="154" text-anchor="middle">else: mark vs W<tspan baseline-shift="sub" font-size="9">T+1</tspan></text><text class="lbl2" x="830" y="174" text-anchor="middle">live, or frozen league</text>
+      <rect class="boxink" x="730" y="220" width="200" height="60" rx="8"/><text class="lbl3" x="830" y="244" text-anchor="middle">policy update</text><text class="lbl2" x="830" y="264" text-anchor="middle">GRPO w/o σ · KL anchor β</text>
+      <path class="arrow" d="M580,70 L728,70"/><path class="arrow" d="M580,250 L728,160"/>
+      <path class="arrow" d="M830,100 L830,128"/><path class="arrow" d="M830,190 L830,218"/>
+      <path class="arrow" d="M230,160 C330,160 380,150 728,250" stroke-dasharray="5 4"/>
+      <text class="lbl" x="560" y="215" text-anchor="middle">distill W into one-shot head, every round</text>
+    </svg>
+    <p class="cap">Solid arrows are the data flow inside one week and into the next. The dashed arrow is the amortization step: the end-of-round market becomes the supervised target for the model's one-shot belief head, which is what gives an explicit belief structure at inference time without running the market.</p>
+  </div>
+</section>
+
+<section>
+  <h2>One trade, scored three ways</h2>
+  <p>The LMSR makes every reward exact. A trade that moves the market from p to q pays b·(log q(ω) − log p(ω)) at outcome ω, a log-score difference against the pre-trade market. Marked against a later reference r instead of settlement, it pays b·[KL(r‖p) − KL(r‖q)], the "score the earlier belief against the later one" rule from the explicit-beliefs page. And the KL moved, KL(q‖p), is charged against the turn's budget ε.</p>
+  <div class="two">
+    <div class="panel">
+      <div class="controls">
+        <div class="ctl"><label for="t-p">market before, p</label><input type="range" id="t-p" min="0.02" max="0.98" step="0.01" value="0.50"><output id="t-p-o">0.50</output></div>
+        <div class="ctl"><label for="t-q">after your trade, q</label><input type="range" id="t-q" min="0.02" max="0.98" step="0.01" value="0.70"><output id="t-q-o">0.70</output></div>
+        <div class="ctl"><label for="t-r">reference at T+1, r</label><input type="range" id="t-r" min="0.02" max="0.98" step="0.01" value="0.60"><output id="t-r-o">0.60</output></div>
+        <div class="ctl"><label for="t-e">KL budget ε (nats)</label><input type="range" id="t-e" min="0.01" max="0.30" step="0.01" value="0.05"><output id="t-e-o">0.05</output></div>
+      </div>
+      <div class="score">
+        <div class="stat"><span class="k">if YES</span><span class="v S3" id="t-yes"></span></div>
+        <div class="stat"><span class="k">if NO</span><span class="v S2" id="t-no"></span></div>
+        <div class="stat"><span class="k">marked vs r</span><span class="v" id="t-mark"></span></div>
+        <div class="stat"><span class="k">KL moved</span><span class="v" id="t-kl"></span></div>
+      </div>
+      <p class="cap" id="t-budget"></p>
+    </div>
+    <div class="panel">
+      <div id="t-chart"></div>
+      <p class="cap">Expected payoff of your trade as a function of the later reference r, with b = 100. It is linear in r and crosses zero at r*: the trade pays if the market later believes more than r*. The dot is the r you chose; the dashed vertical lines are p and q.</p>
+    </div>
+  </div>
+  <div class="note"><p><b>TD bootstrap.</b> If the question settles by evaluation time the reward is the realized payoff; otherwise it is the mark against r. Under a calibrated market the mark is the r-expectation of the settlement payoff, so mixing the two is the same trade-off as TD(λ): early and noisy against late and exact. The reference r is where the two arms differ: the live market W<sub>T+1</sub> made by the current policy's own clones, or a frozen market made at T+1 by the previous checkpoint. Live is cheap and rewards herding, since clones score against clones. Frozen removes that channel at the cost of staleness. Settlement dominates in both arms because it is the only profit that is not zero-sum among clones.</p></div>
+</section>
+
+<section>
+  <h2>A structure trade</h2>
+  <p>The world model is the bayes-market factored LMSR: a junction tree, minimum-KL reweighting on every trade, treewidth cap 8, resolutions condition the joint. A link exists exactly when a conditional differs from its marginal, so adding a dependency is a conditional trade and removing one is trading it back. The rest of the joint adjusts by the I-projection, and the trader pays for it.</p>
+  <div class="two">
+    <div class="panel">
+      <div class="controls">
+        <div class="ctl"><label for="s-u">P(u = yes)</label><input type="range" id="s-u" min="0.05" max="0.95" step="0.01" value="0.50"><output id="s-u-o">0.50</output></div>
+        <div class="ctl"><label for="s-v">P(v = yes), independent</label><input type="range" id="s-v" min="0.05" max="0.95" step="0.01" value="0.50"><output id="s-v-o">0.50</output></div>
+        <div class="ctl"><label for="s-q">trade P(v | u=yes) to q</label><input type="range" id="s-q" min="0.05" max="0.95" step="0.01" value="0.80"><output id="s-q-o">0.80</output></div>
+      </div>
+      <div class="jt" style="margin-top:14px">
+        <div><table><tr><th colspan="3">before</th></tr><tr><th></th><th>v=yes</th><th>v=no</th></tr><tr><th>u=yes</th><td id="b11"></td><td id="b10"></td></tr><tr><th>u=no</th><td id="b01"></td><td id="b00"></td></tr></table></div>
+        <div><table><tr><th colspan="3">after</th></tr><tr><th></th><th>v=yes</th><th>v=no</th></tr><tr><th>u=yes</th><td id="a11"></td><td id="a10"></td></tr><tr><th>u=no</th><td id="a01"></td><td id="a00"></td></tr></table></div>
+      </div>
+      <div class="score">
+        <div class="stat"><span class="k">P(v) after</span><span class="v" id="s-pv"></span></div>
+        <div class="stat"><span class="k">if u=yes, v=yes</span><span class="v S3" id="s-pay1"></span></div>
+        <div class="stat"><span class="k">if u=yes, v=no</span><span class="v S2" id="s-pay0"></span></div>
+        <div class="stat"><span class="k">if u=no</span><span class="v" id="s-called">0, called off</span></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div id="s-graph"></div>
+      <p class="cap" id="s-cap"></p>
+    </div>
+  </div>
+  <div class="note"><p><b>Complexity is a resource, not a price.</b> The treewidth cap means the model cannot represent arbitrary structure; over-budget trades are rejected with the state untouched. So the agent plays a real structure-learning game: which dependencies deserve width. Two rules follow. Rejections are returned as feedback and masked, never scored as losses. And the move set collapses to two actions, trade-to-probability with an optional context, and a share trade on a formula.</p></div>
+</section>
+
+<section>
+  <h2>A turn, and the learning loop</h2>
+  <div class="two">
+    <div class="panel">
+      <h3>What one turn is</h3>
+      <ol class="steps" style="margin-top:12px">
+        <li><div><b>State.</b> A scope: variable v, its marginal, the conditionals and neighbours in its Markov blanket, candidate neighbours from the same family and BGE nearest neighbours, dated evidence, the week, the KL budget ε, remaining width.</div></li>
+        <li><div><b>Action.</b> Up to 1,500 tokens of reasoning, then a block of at most m trades. The engine executes them in order; a rejection comes back as feedback and the agent may retry once.</div></li>
+        <li><div><b>Trust region.</b> Total KL moved per turn ≤ ε. This is PPO's constraint applied to beliefs. It also caps extremization, Turtel's main failure mode, and it is the leakage budget.</div></li>
+        <li><div><b>Coverage.</b> K turns per round so every active variable is visited at least twice, scopes sampled by evidence volume and time to close.</div></li>
+      </ol>
+    </div>
+    <div class="panel">
+      <h3>Group rollouts on forked markets</h3>
+      <svg viewBox="0 0 460 250" role="img" aria-label="G rollouts from one state on forked market copies, one committed" style="margin-top:12px">
+        <rect class="boxink" x="20" y="100" width="110" height="50" rx="8"/><text class="lbl3" x="75" y="122" text-anchor="middle">turn state</text><text class="lbl2" x="75" y="140" text-anchor="middle">scope + evidence</text>
+        <g id="forks"></g>
+        <rect class="box" x="330" y="100" width="110" height="50" rx="8"/><text class="lbl3" x="385" y="122" text-anchor="middle">live market</text><text class="lbl2" x="385" y="140" text-anchor="middle">one committed</text>
+      </svg>
+      <p class="cap">G rollouts of the same state run on snapshot copies of the market, each scored against the reference or settlement, giving the group-relative advantage without division by σ (Turtel's modified GRPO, Mantic's choice). One rollout is committed: random in v1, on-policy; chosen by a value head in v2, which is where best-of-G search starts improving the market beyond the policy.</p>
+    </div>
+  </div>
+  <div class="formula">
+    <b>reward</b>(turn) = Σ<sub>trades</sub> { settled: b·(log q(ω) − log p(ω)) | else: b·[KL(r‖p) − KL(r‖q)] } on the slice, called off if a context variable is unresolved<br>
+    <b>update</b>: modified GRPO, no σ; KL anchor β to previous checkpoint; league of past checkpoints plays a fraction of turns and supplies the frozen r<br>
+    <b>distill</b>: one-shot head ← KL(W<sub>T</sub> slice ‖ output); movement head ← E[KL(W<sub>T+1</sub> ‖ W<sub>T</sub>)] scored against realized<br>
+    <b>no coherence penalty</b>: the maker prices every formula by inference; there is no internal Dutch book to exploit
+  </div>
+</section>
+
+<section>
+  <h2>Leakage and memorization</h2>
+  <ol class="steps">
+    <li><div><b>Retire on settle, single pass.</b> A settlement is used once, as the scalar reward of past turns, and the question leaves the trading set. Turtel found multi-epoch training "learns the future"; here there is nothing to learn it from.</div></li>
+    <li><div><b>Labels never enter as tokens.</b> They shape the policy only through a KL-bounded update, so the information a settlement can write into the weights is bounded in nats per update by β and ε. That number can be reported.</div></li>
+    <li><div><b>Most reward is the martingale term</b>, market movement between rounds, which is not a label. Resolved questions are a small fraction of the active set each week.</div></li>
+    <li><div><b>Hold out time, not questions.</b> Train on weeks 1..N, freeze, evaluate on later weeks. Families are one scope, so a by-date resolution fixing its siblings is inference the model is supposed to do, not leakage.</div></li>
+    <li><div><b>Measure it.</b> Query retired questions with no evidence; report recall accuracy and fresh held-out accuracy as two numbers.</div></li>
+    <li><div><b>Evidence</b> is the remaining channel: the Manifold archive of comments, bets and edits is dated by construction; Exa needs the leak judge and its residual is reported, as Turtel does.</div></li>
+  </ol>
+</section>
+
+<section>
+  <h2>Two domains, four arms</h2>
+  <div class="tablewrap panel"><table class="cmp">
+    <thead><tr><th>Domain</th><th>Data</th><th>Base model</th><th>Purpose</th></tr></thead><tbody>
+    <tr><td><b>A · Polymarket</b></td><td>Turtel's released test set (1,265 questions, frozen Exa prompts, price at prediction) as held-out for every arm; a rebuilt 10k training set from the Gamma and CLOB APIs, resolved before February 2025, with dated Exa and a leak judge. Multi-outcome events give partitions, date series give monotone chains.</td><td>DeepSeek-R1-Distill-Qwen-14B (faithful) or gpt-oss-120b. Qwen3 postdates the test window and is excluded.</td><td>Comparability: ReMax 0.190, o1 0.202, market 0.151; 10k-only target 0.199</td></tr>
+    <tr><td><b>B · Manifold</b></td><td>The local archive, explicit multiple-choice structure, 14k labeled propositions, comments and bets as dated evidence; families as scopes.</td><td>Qwen3-8B, questions from May 2025</td><td>The stage-0 gate and the coherence claims, where derived Boolean forms are far richer</td></tr>
+  </tbody></table></div>
+  <div class="tablewrap panel"><table class="cmp">
+    <thead><tr><th>Arm</th><th>Reward reference</th><th>Market</th><th>Distillation</th><th>Tests</th></tr></thead><tbody>
+    <tr><td>1 · Turtel control</td><td>Brier on settlement</td><td>none, single question</td><td>none</td><td>claim 4 baseline</td></tr>
+    <tr><td>2 · market, live</td><td>settlement, else live W<sub>T+1</sub></td><td>yes</td><td>none</td><td>herding hazard measured</td></tr>
+    <tr><td>3 · market, frozen</td><td>settlement, else league W<sub>T+1</sub></td><td>yes</td><td>none</td><td>claims 1, 4, 5</td></tr>
+    <tr><td>4 · market, frozen, distilled</td><td>as arm 3</td><td>yes</td><td>one-shot and movement heads</td><td>claims 2, 3</td></tr>
+  </tbody></table></div>
+  <p class="cap">All arms share model, data and token budget. Baselines on every split: constant 50%, the per-form base-rate table that no supervised arm cleared on 20 September, market price at T as the ceiling, and the supervised A3 arm.</p>
+</section>
+
+<section>
+  <h2>Stages and cost</h2>
+  <div class="tablewrap panel"><table class="cmp">
+    <thead><tr><th>Stage</th><th>Domain</th><th>What it settles</th><th>Compute</th><th class="num">Cost</th><th class="num">Weeks</th></tr></thead><tbody>
+    <tr><td><b>0 · gate</b></td><td>Manifold</td><td>Claim 1 with a frozen 8B as trader on 4 weeks of data, no RL. If W<sub>K</sub> does not beat one-shot, the market is not a policy-improvement operator and stages 2 and 3 do not run.</td><td>1×H100, ~8 h</td><td class="num">~$50</td><td class="num">1</td></tr>
+    <tr><td><b>D · data</b></td><td>Polymarket</td><td>Rebuild the 10k training set with Exa and judge; verify test-set scoring against Table 1.</td><td>API only</td><td class="num">$500–800</td><td class="num">1–2</td></tr>
+    <tr><td><b>1 · replication</b></td><td>Polymarket</td><td>ReMax and modified GRPO at 14B on the 10k set, scored on his test set. The control arm, and a result on its own.</td><td>4×H100, ~40 h</td><td class="num">$400–600</td><td class="num">2</td></tr>
+    <tr><td><b>2 · market arms</b></td><td>Polymarket</td><td>Arms 2 to 4 at 14B, same data and test set; claims 2, 4, 5.</td><td>4×H100, ~60 h</td><td class="num">$700–1k</td><td class="num">1–2</td></tr>
+    <tr><td><b>3 · depth</b></td><td>Manifold</td><td>Claims 3 and 5 at depth: full 70-week pass at 8B on the winning arm.</td><td>4×H100, ~5 days</td><td class="num">$1.5–2.5k</td><td class="num">1</td></tr>
+  </tbody></table></div>
+  <p class="cap">H100 at $2.25 to $3.49 per GPU-hour, September 2026; rollouts dominate. About $2k and five to six weeks of engineering through stage 2, most of it the RL loop and the retrieval pipeline any outcome-RL work needs. Synthetic data comes in this order: derived Boolean forms (exact, free), the market's own end-of-round targets (manufactured each round), and only later generated questions from dated news at roughly $0.05 to $0.20 each.</p>
+</section>
+
+<section>
+  <h2>Decisions before the run</h2>
+  <p>Ordered by how much they change the work. Each carries a recommendation. Status as of 22 September: five decided, three open pending discussion with Jessica.</p>
+  <style>
+  .dec{display:grid;gap:12px;margin:0;padding:0;list-style:none;counter-reset:d}
+  .dec li{display:grid;grid-template-columns:34px 1fr;gap:14px;padding:14px 16px;border:1px solid var(--line);border-radius:8px;background:var(--paper);font-size:15.5px}
+  .dec li::before{counter-increment:d;content:counter(d);font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:14px;color:var(--paper);background:var(--ink);border-radius:50%;width:26px;height:26px;display:grid;place-items:center;margin-top:2px}
+  .dec .q{color:var(--ink);display:block;margin-bottom:6px}
+  .dec .why{color:var(--ink2);display:block}
+  .dec .rec{display:inline-flex;gap:8px;align-items:baseline;margin-top:8px;font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--ink)}
+  .dec .rec i{font-style:normal;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)}
+  .dec .cost{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--ink3);margin-left:10px}
+  .dec .st{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:999px;border:1px solid var(--line);margin-left:8px;vertical-align:2px}
+  .dec .st.yes{border-color:var(--ink);background:var(--soft)}
+  </style>
+  <ol class="dec">
+    <li><div><b class="q">Go or no-go on a phased budget, and who owns each piece.<span class="st yes">decided</span></b><span class="why">About $2k through stage 2 with a hard stop per stage. Three pieces need an owner: the RL loop, the fork and snapshot API in bayes-market, and the dated retrieval pipeline. The Mac Studio plan gave Jessica the RL and exploitability work, so this needs her agreement.</span><span class="rec"><i>recommend</i> fund stage 0 and stage D now, decide stages 1 and 2 on their results<span class="cost">≈ $600 now</span></span></div></li>
+    <li><div><b class="q">Base model for the Polymarket domain.<span class="st yes">decided</span></b><span class="why">DeepSeek-R1-Distill-Qwen-14B is faithful to Turtel, dense and well-trodden for GRPO. gpt-oss-120b gives a longer clean window and Mantic's recipe, but needs MoE LoRA engineering and has no verified cutoff. Qwen3 is excluded by the test window.</span><span class="rec"><i>recommend</i> the 14B for stages 1 and 2</span></div></li>
+    <li><div><b class="q">Fund the training-set rebuild.<span class="st yes">decided</span></b><span class="why">The questions are mostly on disk already: Halawi's raw dump holds 14,246 Polymarket questions from 2020 to mid-2024 with resolutions, background, criteria and dates, and the free Gamma API fills the gap to January 2025. What still has to be bought is the dated evidence per training question; Turtel used Exa, and GDELT (free, titles and URLs only), Common Crawl News (free, heavy) or Perplexity's search API are the alternatives. Summaries and the leak judge cost about $300 whichever search is used. Turtel's test set ships with its Exa prompts frozen, so evaluation evidence is fixed regardless.</span><span class="rec"><i>recommend</i> yes<span class="cost">$500 to $800 in API spend</span></span></div></li>
+    <li><div><b class="q">Accept the gate rule now.<span class="st ">open</span></b><span class="why">Stage 0 asks the cheapest version of the core question: if a frozen model trades K times on the market, are the resulting beliefs better than asking it once? If not, the market cannot be the "search" that gets distilled into the policy, and the RL stages would train toward a target no better than the model's own guess. Agreeing the rule in advance means a weak result stops the later $1.5k rather than being explained away. Stage 0 also builds the engine integration every later stage needs.</span><span class="rec"><i>recommend</i> yes<span class="cost">≈ $50, one week</span></span></div></li>
+    <li><div><b class="q">Pre-register the evaluation.<span class="st ">open</span></b><span class="why">Writing down before training which test set, which arms, which baselines, and how the reported checkpoint is chosen. The 20 September run is the example: validation picked epoch 2 and test preferred epoch 3; reporting epoch 3 would let the test set choose the number. Fixing "select by validation, score test once" beforehand removes that, and likewise stops picking the best of four arms after seeing them. It costs a paragraph.</span><span class="rec"><i>recommend</i> yes, written into the doc before any RL spend</span></div></li>
+    <li><div><b class="q">Keep both reward references, or drop the live arm.<span class="st ">open</span></b><span class="why">A trade made in week T is scored by where the market stands at T+1. In the live arm that market was moved by the same model's own clones, so the model can be rewarded for predicting its clones rather than the world. The frozen arm scores against a market made by last week's checkpoint, which closes the loophole but is a week stale. Running only the frozen arm never shows whether the simpler live design would have worked, or how large the clone-herding effect is. That is the $250.</span><span class="rec"><i>recommend</i> keep both</span></div></li>
+    <li><div><b class="q">Commit rule and starting constants.<span class="st yes">decided</span></b><span class="why">Random on-policy commit in v1, value-guided best-of-G later. Liquidity b at about ten times one week's settlement payout, ε = 0.05 nats per turn, two visits per active variable per round. None of these are load-bearing at pilot scale.</span><span class="rec"><i>recommend</i> take the defaults, tune in stage 0</span></div></li>
+    <li><div><b class="q">Publication of this page.<span class="st yes">decided</span></b><span class="why">Published 22 September at the request of Kelvin; the proposal doc is on the plan branch.</span></div></li>
+  </ol>
+</section>
+
+<section>
+  <h2>Known risks</h2>
+  <ol class="steps">
+    <li><div><b>Bootstrapping on the policy's own market</b> is the deadly-triad setting. The frozen reference and the KL anchor are the stabilizers; arm 2 exists to measure how bad the live version is.</div></li>
+    <li><div><b>State-dependent actions.</b> Treewidth rejections must reach the policy as feedback, never as losses.</div></li>
+    <li><div><b>Engine latency</b> at 14k variables is unmeasured; the module claims milliseconds per trade at width 8.</div></li>
+    <li><div><b>A small pilot model</b> may not read evidence well enough to show claim 1; the 0.6B run learned only base rates. If stage 0 fails at 4B, repeat once at 8B before concluding.</div></li>
+  </ol>
+</section>
+
+<footer>Full text: <a href="https://github.com/futarchy-fi/consistency-ft/blob/plan/next-run-20260919/docs/self-trade-rl-proposal-20260921.md">docs/self-trade-rl-proposal-20260921.md</a>. Related: <a href="/belief-training.html">explicit beliefs</a>, <a href="/wave1-results.html">wave one results</a>, <a href="https://arxiv.org/abs/2505.17989">Turtel et al. 2025</a>, <a href="https://thinkingmachines.ai/news/training-llms-to-predict-world-events/">Mantic on Thinking Machines</a>.</footer>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const B=100;
+const kl=(a,b)=>a*Math.log(a/b)+(1-a)*Math.log((1-a)/(1-b));
+const f2=x=>(x>=0?'+':'')+x.toFixed(1), f3=x=>x.toFixed(3);
+
+// one trade, three ways
+function trade(){
+ const p=+$('t-p').value,q=+$('t-q').value,r=+$('t-r').value,e=+$('t-e').value;
+ $('t-p-o').value=p.toFixed(2);$('t-q-o').value=q.toFixed(2);$('t-r-o').value=r.toFixed(2);$('t-e-o').value=e.toFixed(2);
+ const yes=B*Math.log(q/p), no=B*Math.log((1-q)/(1-p)), mark=r*yes+(1-r)*no, moved=kl(q,p);
+ $('t-yes').textContent=f2(yes);$('t-no').textContent=f2(no);$('t-mark').textContent=f2(mark);$('t-kl').textContent=f3(moved);
+ const ok=moved<=e+1e-12;
+ $('t-budget').innerHTML=ok?`<span class="pill">within budget</span> KL moved ${f3(moved)} ≤ ε ${e.toFixed(2)}. The mark equals the r-expectation of the two settlement payoffs, ${r.toFixed(2)}·(${f2(yes)}) + ${(1-r).toFixed(2)}·(${f2(no)}).`
+  :`<span class="pill warn">rejected</span> KL moved ${f3(moved)} exceeds ε ${e.toFixed(2)}: the engine returns the trade untouched and the agent may retry with a smaller move. With p = ${p.toFixed(2)} this budget allows q up to about ${maxq(p,e).toFixed(2)}.`;
+ // chart
+ const W=470,H=250,L=48,R=16,T=14,Bt=36;
+ const ys=[-B*Math.log(1/Math.min(p,q,1-p,1-q))*0.6,0]; // dynamic range
+ const lo=Math.min(no,yes,-10)*1.1, hi=Math.max(no,yes,10)*1.1;
+ const x=v=>L+v*(W-L-R), y=v=>T+(hi-v)/(hi-lo)*(H-T-Bt);
+ let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Expected payoff versus reference">`;
+ for(let v=0;v<=1.001;v+=0.25)s+=`<line class="gridl" x1="${x(v)}" x2="${x(v)}" y1="${T}" y2="${H-Bt}"/><text class="lbl" x="${x(v)}" y="${H-Bt+16}" text-anchor="middle">${v.toFixed(2)}</text>`;
+ const step=Math.pow(10,Math.floor(Math.log10(hi-lo)))/2;
+ for(let v=Math.ceil(lo/step)*step;v<=hi;v+=step)s+=`<line class="gridl" x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}"/><text class="lbl" x="${L-6}" y="${y(v)+4}" text-anchor="end">${v.toFixed(0)}</text>`;
+ s+=`<line class="axis" x1="${L}" x2="${W-R}" y1="${y(0)}" y2="${y(0)}"/><text class="lbl" x="${(L+W-R)/2}" y="${H-4}" text-anchor="middle">reference r</text>`;
+ s+=`<line x1="${x(p)}" x2="${x(p)}" y1="${T}" y2="${H-Bt}" stroke="${css('--ink3')}" stroke-dasharray="4 3"/><text class="lbl2" x="${x(p)}" y="${T+10}" text-anchor="middle">p</text>`;
+ s+=`<line x1="${x(q)}" x2="${x(q)}" y1="${T}" y2="${H-Bt}" stroke="${css('--ink3')}" stroke-dasharray="4 3"/><text class="lbl2" x="${x(q)}" y="${T+10}" text-anchor="middle">q</text>`;
+ s+=`<line x1="${x(0)}" y1="${y(no)}" x2="${x(1)}" y2="${y(yes)}" stroke="${css('--ink')}" stroke-width="2.5"/>`;
+ const rs=-no/(yes-no);
+ if(rs>0&&rs<1)s+=`<circle cx="${x(rs)}" cy="${y(0)}" r="4" fill="${css('--paper')}" stroke="${css('--ink')}" stroke-width="2"/><text class="lbl2" x="${x(rs)}" y="${y(0)-8}" text-anchor="middle">r* = ${rs.toFixed(2)}</text>`;
+ s+=`<circle cx="${x(r)}" cy="${y(mark)}" r="6" fill="${css(mark>=0?'--s3':'--s2')}" stroke="${css('--paper')}" stroke-width="2"/>`;
+ s+='</svg>'; $('t-chart').innerHTML=s;
+}
+function maxq(p,e){let lo=p,hi=0.999;for(let i=0;i<40;i++){const m=(lo+hi)/2; if(kl(m,p)<=e)lo=m; else hi=m;} return lo;}
+['t-p','t-q','t-r','t-e'].forEach(id=>$(id).addEventListener('input',trade)); trade();
+
+// structure trade
+function struct(){
+ const pu=+$('s-u').value,pv=+$('s-v').value,q=+$('s-q').value;
+ $('s-u-o').value=pu.toFixed(2);$('s-v-o').value=pv.toFixed(2);$('s-q-o').value=q.toFixed(2);
+ const b=[[pu*pv,pu*(1-pv)],[(1-pu)*pv,(1-pu)*(1-pv)]];
+ const a=[[pu*q,pu*(1-q)],[(1-pu)*pv,(1-pu)*(1-pv)]];   // I-projection: only the u=yes slice changes
+ [['b11',b[0][0]],['b10',b[0][1]],['b01',b[1][0]],['b00',b[1][1]],['a11',a[0][0]],['a10',a[0][1]],['a01',a[1][0]],['a00',a[1][1]]].forEach(([id,v])=>$(id).textContent=v.toFixed(3));
+ const pvAfter=pu*q+(1-pu)*pv;
+ $('s-pv').textContent=pvAfter.toFixed(3);
+ $('s-pay1').textContent=f2(B*Math.log(q/pv)); $('s-pay0').textContent=f2(B*Math.log((1-q)/(1-pv)));
+ const linked=Math.abs(q-pv)>0.005;
+ // graph
+ const W=470,H=220; let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Three variables; a conditional trade adds a link">`;
+ const nodes={u:[110,110],v:[300,110],w:[420,60]};
+ if(linked)s+=`<line x1="${nodes.u[0]}" y1="${nodes.u[1]}" x2="${nodes.v[0]}" y2="${nodes.v[1]}" stroke="${css('--ink')}" stroke-width="2.5"/><text class="lbl2" x="205" y="98" text-anchor="middle">P(v | u)</text>`;
+ else s+=`<line x1="${nodes.u[0]}" y1="${nodes.u[1]}" x2="${nodes.v[0]}" y2="${nodes.v[1]}" stroke="${css('--line')}" stroke-width="1.5" stroke-dasharray="3 5"/><text class="lbl" x="205" y="98" text-anchor="middle">independent</text>`;
+ for(const [k,[cx,cy]] of Object.entries(nodes)){const val=k==='u'?pu:k==='v'?pvAfter:0.5; s+=`<circle cx="${cx}" cy="${cy}" r="30" fill="${css('--paper')}" stroke="${css(k==='w'?'--line':'--ink')}" stroke-width="${k==='w'?1.5:2.5}"/><text class="lbl3" x="${cx}" y="${cy-4}" text-anchor="middle">${k}</text><text class="lbl2" x="${cx}" y="${cy+13}" text-anchor="middle">${val.toFixed(2)}</text>`}
+ s+=`<text class="lbl" x="420" y="115" text-anchor="middle">unlinked, untouched</text>`;
+ s+=`<text class="lbl2" x="20" y="200">scope {u, v}: width ${linked?1:0} of 8 · cost of the slice trade b·ln((1−p)/(1−q)) = ${f2(B*Math.log((1-pv)/(1-q)))}</text>`;
+ s+='</svg>'; $('s-graph').innerHTML=s;
+ $('s-cap').textContent=linked?`The conditional trade changes only the u = yes slice; P(v | u = no) stays at ${pv.toFixed(2)} and P(u) is untouched, which is the minimum-KL reweighting. P(v) reprices to ${pvAfter.toFixed(3)}. The bet is called off if u resolves no. Trade q back to ${pv.toFixed(2)} and the link disappears.`
+  :`With q equal to the marginal there is no dependency to price: the slice trade is empty and no link exists. Move q away from ${pv.toFixed(2)} to create one.`;
+}
+['s-u','s-v','s-q'].forEach(id=>$(id).addEventListener('input',struct)); struct();
+
+// forks diagram
+(function(){const g=$('forks'); let s=''; const ys=[30,80,130,180]; ys.forEach((y,i)=>{const committed=i===1;
+ s+=`<path d="M130,125 C180,125 180,${y+15} 200,${y+15}" fill="none" stroke="${css('--ink2')}" stroke-width="1.4"/>`;
+ s+=`<rect x="200" y="${y}" width="90" height="34" rx="7" fill="${css(committed?'--soft':'--paper')}" stroke="${css(committed?'--ink':'--line')}" stroke-width="${committed?2:1.2}"/><text class="lbl2" x="245" y="${y+21}" text-anchor="middle">fork ${i+1}${committed?' ✓':''}</text>`;
+ if(committed)s+=`<path d="M290,${y+17} L328,125" fill="none" stroke="${css('--ink')}" stroke-width="2" marker-end="url(#ah)"/>`;
+ else s+=`<text class="lbl" x="300" y="${y+21}">scored, discarded</text>`;
+ }); g.innerHTML=s;})();
+</script>

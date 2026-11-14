@@ -1,0 +1,44 @@
+(a) W1 point estimate vs volume. tau=0.30 sigma=0.30; items N,P,M1,M2,Q0,Q1 observed y=[-1.2  1.2  1.2  1.2  0.5  0.5]; query x_q=0^16
+    argmin_R E_marg(R) = (0, 1) ; argmin E_joint(R,g,v) = (0, 1) ; E_marg gap to 2nd best = 1.173 nats
+    119 other hypotheses predict y_q>0 (P>0.5); their E_marg - E_marg(R1): min 1.173, median 1.490, 77 within 2 nats
+    0 hypotheses have an empty query cell (P=0.5), posterior mass 0.0000
+    posterior P(R1|D) = 0.0482 ; P(opposite group|D) = 0.9518 ; mass ratio opposite/R1 = 19.8
+    P(y_q>0): energy-min R1 (exact within R1) = 0.0389 ; joint-MAP plug-in = 0.0083 ; Bayes = 0.8158 ; Bayes - energy-min = +0.7769
+    E[y_q]: R1 = -1.017 ; Bayes = 0.498
+    KL(Bayes predictive || energy-min predictive) on y_q = 3.504 nats
+    check: min_w [E_w E_marg - H(w)] = 7.881728 = -log p(D) = 7.881728
+    temperature T=0.25 (w ~ exp(-E_marg/T)): P(R1) = 0.723, P(y_q>0) = 0.255
+    temperature T=0.50 (w ~ exp(-E_marg/T)): P(R1) = 0.162, P(y_q>0) = 0.712
+    temperature T=1.00 (w ~ exp(-E_marg/T)): P(R1) = 0.048, P(y_q>0) = 0.816
+    temperature T=2.00 (w ~ exp(-E_marg/T)): P(R1) = 0.024, P(y_q>0) = 0.844
+
+(b) W2 nullspace. K=3 items, S=2 biased sources, all 6 SPOT quotes = 1.0, tau_b=0.25, sigma=0.30
+    rank(A) = 4 of 5 unknowns -> nullity 1; null vector (v1,v2,v3,b1,b2) = [ 1.  1.  1. -1. -1.]
+    residual at min-norm -3*null: 2.2e-30 (v_1 = -2.600, v_1-v_2 = +0.000, b = [3.6 3.6])
+    residual at min-norm +0*null: 3.0e-31 (v_1 = +0.400, v_1-v_2 = -0.000, b = [0.6 0.6])
+    residual at min-norm +3*null: 3.0e-30 (v_1 = +3.400, v_1-v_2 = -0.000, b = [-2.4 -2.4])
+    two residual optima: min-norm v_1 = 0.400, prior-chosen v_1 = 0.914; prior log density ratio = 4.63 nats
+    m=   1 quotes/pair: Bayes v_1 = 0.878 +- 0.263, P(v_1>0.5) = 0.925 | + m anchor quotes: 0.931 +- 0.198
+    m=  10 quotes/pair: Bayes v_1 = 0.911 +- 0.181, P(v_1>0.5) = 0.988 | + m anchor quotes: 0.981 +- 0.084
+    m=1000 quotes/pair: Bayes v_1 = 0.914 +- 0.169, P(v_1>0.5) = 0.993 | + m anchor quotes: 1.000 +- 0.009
+    prior tau_b = 0.25, m=1000: Bayes v_1 = 0.914 +- 0.169 (residual optimum set identical)
+    prior tau_b = 1.00, m=1000: Bayes v_1 = 0.400 +- 0.447 (residual optimum set identical)
+    prior tau_b = 4.00, m=1000: Bayes v_1 = 0.040 +- 0.566 (residual optimum set identical)
+
+(c1) W3-discrete. k=4 leaves, unary error 0.20, relation error 0.25, root report LR = 81 (error 0.01220)
+     unweighted violation count: min 1, 1 minimisers, query z takes values [0]
+     weighted-energy global minimisers (z, c1..c4): [(0, 0, 0, 0, 0), (1, 0, 0, 0, 0)]
+     Bayes P(z=1|D) = 0.8719 (unique); minimisers give z in [0, 1]; P(z=1) of minimiser set uniform = 0.500
+     root LR lowered 5% to 76.95:
+     weighted-energy global minimisers (z, c1..c4): [(0, 0, 0, 0, 0)]
+     Bayes P(z=1|D) = 0.8661 (unique); minimisers give z in [0]; P(z=1) of minimiser set uniform = 0.000
+
+(c2, revised) atom energy on 2 bits; world z1~Bern(0.8), z2 = z1 xor Bern(0.001); truth P(z1=1)=0.8
+     true full conditionals only                          gamma=0: P(z1=1) = 0.8000, F = 7.42e-15, KL(p||mu) = 2.2e-13
+     true full conditionals only                          gamma=0.0001: P(z1=1) = 0.7929, F = -5.13e-05, KL(p||mu) = 1.5e-04
+     true conditionals + true marginals (real atom set)   gamma=0: P(z1=1) = 0.8000, F = 1.78e-14, KL(p||mu) = 9.4e-15
+     true conditionals + true marginals (real atom set)   gamma=0.0001: P(z1=1) = 0.8000, F = -5.08e-05, KL(p||mu) = 4.5e-10
+     symmetric copy conditionals only (old c2 input)      gamma=0: P(z1=1) = 0.5000, F = 4.77e-15, KL(p||mu) = 1.9e-01
+     symmetric copy conditionals only (old c2 input)      gamma=0.0001: P(z1=1) = 0.5000, F = -7.01e-05, KL(p||mu) = 1.9e-01
+     symmetric copy conditionals + true marginals         gamma=0: P(z1=1) = 0.7995, F = 4.00e-04, KL(p||mu) = 2.2e-04
+     symmetric copy conditionals + true marginals         gamma=0.0001: P(z1=1) = 0.7994, F = 3.49e-04, KL(p||mu) = 2.2e-04

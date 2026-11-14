@@ -1,0 +1,83 @@
+{
+ "note": "seconds per training step on one L4 shared by 7 jobs (wm2 smoke rental 2026-10-11, /tmp/wm2/runs/S and VM job logs; WM eval cost included; dream arms after bf16 sampling + reuse 4), steps per N = expected early-stopping length (round-1 F runs for k0/rbtd8; smoke + round-1 chain for the WM; guesses for dream arms); 14:50Z: split WMs (board net ~0.05 s/step + evidence net) step counts from wave-1 WMs at N<=1000",
+ "par": 7,
+ "sec_per_step": {
+  "sn:k0": 0.045,
+  "sn:rbtd": 0.25,
+  "wm": 0.17,
+  "fc": 0.07,
+  "fc:D-rbtd8": 0.28,
+  "fc:D-rbtd8-only": 0.28,
+  "fc:S-only": 0.2,
+  "fc:S-mix50": 0.2,
+  "fc:D-mix50": 0.06,
+  "fc:D-post": 0.05,
+  "wm:WMs": 0.09,
+  "wm:WMr": 0.14,
+  "wm:WMe": 0.09
+ },
+ "steps": {
+  "sn:k0": {
+   "100": 400,
+   "300": 950,
+   "1000": 2500,
+   "3000": 7600,
+   "10000": 19000
+  },
+  "sn:rbtd": {
+   "100": 1100,
+   "300": 1750,
+   "1000": 4850,
+   "3000": 11500,
+   "10000": 27600
+  },
+  "wm": {
+   "100": 1000,
+   "300": 1600,
+   "1000": 7000,
+   "3000": 15000,
+   "10000": 25000
+  },
+  "fc": {
+   "100": 2000,
+   "300": 2500,
+   "1000": 5000,
+   "3000": 12000,
+   "10000": 25000
+  },
+  "fc:D-rbtd8": {
+   "100": 1500,
+   "300": 2300,
+   "1000": 6000,
+   "3000": 14000,
+   "10000": 32000
+  },
+  "wm:WMs": {
+   "100": 3000,
+   "300": 7000,
+   "1000": 18000,
+   "3000": 30000,
+   "10000": 45000
+  },
+  "wm:WMr": {
+   "100": 3000,
+   "300": 7000,
+   "1000": 18000,
+   "3000": 30000,
+   "10000": 45000
+  },
+  "wm:WMe": {
+   "100": 3000,
+   "300": 7000,
+   "1000": 18000,
+   "3000": 30000,
+   "10000": 45000
+  }
+ },
+ "overhead_sec": {
+  "wm": 120,
+  "fc": 60,
+  "fc:D-post": 400,
+  "sn": 40
+ }
+}

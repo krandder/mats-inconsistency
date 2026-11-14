@@ -1,0 +1,4 @@
+pn_relu train/sort_act.py relu none 16 0,1,2 16384 runs/sort/pn_relu_L16 pn
+pn_swiglu train/sort_act.py swiglu none 16 0,1,2 16384 runs/sort/pn_swiglu_L16 pn
+pn_bilinear train/sort_act.py bilinear none 16 0,1,2 16384 runs/sort/pn_bilinear_L16 pn
+R_pn scratch/k2_trained.py pn relu swiglu bilinear

@@ -1,0 +1,2039 @@
+{
+  "forecast_meta": {
+    "commit_env": "963f1078f3c9a461a4be15f1a9bde22848cc4534",
+    "commit_git": "",
+    "harness_sha256": "e50881934b0fe8f82e9343535cce37057fd977b558f02c26c90e4e542fdbbade",
+    "conditions": {
+      "exact__N1": {
+        "gen_s": 16.001546621322632,
+        "total_s": 34.15188407897949,
+        "device": "cuda",
+        "extremize_alpha": {
+          "full": 0.9878693003956244
+        },
+        "n_train": 50000,
+        "n_dev": 5000
+      },
+      "imperfect__N1": {
+        "gen_s": 16.278717279434204,
+        "total_s": 34.65695881843567,
+        "device": "cuda",
+        "extremize_alpha": {
+          "full": 0.6426983276869451
+        },
+        "n_train": 50000,
+        "n_dev": 5000
+      },
+      "exact__N2": {
+        "gen_s": 20.081557512283325,
+        "total_s": 42.902605295181274,
+        "device": "cuda",
+        "extremize_alpha": {
+          "full": 1.3782886724335477
+        },
+        "n_train": 50000,
+        "n_dev": 5000
+      },
+      "imperfect__N2": {
+        "gen_s": 21.336357593536377,
+        "total_s": 44.71688914299011,
+        "device": "cuda",
+        "extremize_alpha": {
+          "full": 0.9766132735029441
+        },
+        "n_train": 50000,
+        "n_dev": 5000
+      },
+      "imperfect__N4": {
+        "gen_s": 26.990041494369507,
+        "total_s": 53.12004208564758,
+        "device": "cuda",
+        "extremize_alpha": {
+          "full": 1.2385640809140774
+        },
+        "n_train": 50000,
+        "n_dev": 5000
+      },
+      "exact__N4": {
+        "gen_s": 30.47500514984131,
+        "total_s": 55.936687707901,
+        "device": "cuda",
+        "extremize_alpha": {
+          "full": 1.6472495454785956
+        },
+        "n_train": 50000,
+        "n_dev": 5000
+      },
+      "exact__N6": {
+        "gen_s": 33.81331157684326,
+        "total_s": 145.11342072486877,
+        "device": "cuda",
+        "extremize_alpha": {
+          "none": 1.7283449260609132,
+          "full": 1.7283449260609132
+        },
+        "n_train": 50000,
+        "n_dev": 5000
+      },
+      "imperfect__N6": {
+        "gen_s": 34.80024743080139,
+        "total_s": 181.85951495170593,
+        "device": "cuda",
+        "extremize_alpha": {
+          "none": 1.3642655915795987,
+          "noisy": 1.3642655915795987,
+          "full": 1.3642655915795987
+        },
+        "n_train": 50000,
+        "n_dev": 5000
+      },
+      "imperfect__N12": {
+        "gen_s": 54.981884241104126,
+        "total_s": 81.17513847351074,
+        "device": "cuda",
+        "extremize_alpha": {
+          "full": 1.5372404314801433
+        },
+        "n_train": 50000,
+        "n_dev": 5000
+      },
+      "exact__N12": {
+        "gen_s": 52.82011532783508,
+        "total_s": 77.43199253082275,
+        "device": "cuda",
+        "extremize_alpha": {
+          "full": 1.8622151552834523
+        },
+        "n_train": 50000,
+        "n_dev": 5000
+      },
+      "imperfect__N24": {
+        "gen_s": 88.8503201007843,
+        "total_s": 116.08212876319885,
+        "device": "cuda",
+        "extremize_alpha": {
+          "full": 1.6146677562843246
+        },
+        "n_train": 50000,
+        "n_dev": 5000
+      },
+      "exact__N24": {
+        "gen_s": 90.21355128288269,
+        "total_s": 117.73575401306152,
+        "device": "cuda",
+        "extremize_alpha": {
+          "full": 1.8997517697173252
+        },
+        "n_train": 50000,
+        "n_dev": 5000
+      }
+    }
+  },
+  "rows": [
+    {
+      "tag": "imperfect__N6",
+      "model": "imperfect",
+      "n_rollouts": 6,
+      "visibility": "none",
+      "regret": {
+        "bayes": {
+          "mean": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0,
+          "n": 5000
+        },
+        "ceiling:infinite_rollouts": {
+          "mean": 0.029448353143782458,
+          "ci_low": 0.022624001976095695,
+          "ci_high": 0.036173349949646307,
+          "n": 5000
+        },
+        "oracle_clearing": {
+          "mean": 0.08271186734725128,
+          "ci_low": 0.07233502458689087,
+          "ci_high": 0.09294350489969237,
+          "n": 5000
+        },
+        "ceiling:trace": {
+          "mean": 0.04443143756379937,
+          "ci_low": 0.03646311957916439,
+          "ci_high": 0.052982267122686166,
+          "n": 5000
+        },
+        "linear_pool": {
+          "mean": 0.1365267175149388,
+          "ci_low": 0.12568192763319072,
+          "ci_high": 0.1475276675076231,
+          "n": 5000
+        },
+        "log_pool": {
+          "mean": 0.11066140734663149,
+          "ci_low": 0.09959671779931112,
+          "ci_high": 0.12138905666654447,
+          "n": 5000
+        },
+        "sum_logodds": {
+          "mean": 0.553409125705189,
+          "ci_low": 0.5007029752716495,
+          "ci_high": 0.6075306055368558,
+          "n": 5000
+        },
+        "extremized_log_pool": {
+          "mean": 0.10061864652556485,
+          "ci_low": 0.08928084988346294,
+          "ci_high": 0.11245196071330033,
+          "n": 5000
+        },
+        "attn:none:s0:trained": {
+          "mean": 0.09911223513694056,
+          "ci_low": 0.08805109536012853,
+          "ci_high": 0.11054858975615635,
+          "n": 5000
+        },
+        "attn:none:s0:control:untrained_init": {
+          "mean": 0.31881447015322595,
+          "ci_low": 0.30084418101695265,
+          "ci_high": 0.3363034307109718,
+          "n": 5000
+        },
+        "attn:none:s0:control:random_network": {
+          "mean": 0.6613868770750223,
+          "ci_low": 0.630652903225876,
+          "ci_high": 0.6911548586186799,
+          "n": 5000
+        },
+        "attn:none:s1:trained": {
+          "mean": 0.09897912300758703,
+          "ci_low": 0.0878612489218658,
+          "ci_high": 0.11046610602185311,
+          "n": 5000
+        },
+        "attn:none:s1:control:untrained_init": {
+          "mean": 1.0339352011482683,
+          "ci_low": 0.9927379616713434,
+          "ci_high": 1.0768989052320839,
+          "n": 5000
+        },
+        "attn:none:s1:control:random_network": {
+          "mean": 0.14782732446003496,
+          "ci_low": 0.1346170420318694,
+          "ci_high": 0.16162711227497084,
+          "n": 5000
+        },
+        "attn:none:s2:trained": {
+          "mean": 0.09918500900699498,
+          "ci_low": 0.08808065054595525,
+          "ci_high": 0.11062697348346673,
+          "n": 5000
+        },
+        "attn:none:s2:control:untrained_init": {
+          "mean": 0.41484355747047974,
+          "ci_low": 0.38204096310320196,
+          "ci_high": 0.4467217305587245,
+          "n": 5000
+        },
+        "attn:none:s2:control:random_network": {
+          "mean": 1.4259404072851645,
+          "ci_low": 1.3723932953364173,
+          "ci_high": 1.4775865994654311,
+          "n": 5000
+        },
+        "attn:none:seed_mean": {
+          "mean": 0.09909212238384087,
+          "ci_low": 0.08803557609692045,
+          "ci_high": 0.11056000718217218,
+          "n": 5000
+        }
+      },
+      "paired": {
+        "attn:none:s0:trained - extremized_log_pool": {
+          "mean": -0.0015064113886242762,
+          "ci_low": -0.003453499498734559,
+          "ci_high": 0.00033285353766926586,
+          "n": 5000
+        },
+        "attn:none:s0:trained - oracle_clearing": {
+          "mean": 0.016400367789689285,
+          "ci_low": 0.010580639959367989,
+          "ci_high": 0.022118877109791893,
+          "n": 5000
+        },
+        "attn:none:s1:trained - extremized_log_pool": {
+          "mean": -0.0016395235179778127,
+          "ci_low": -0.0036474321559893347,
+          "ci_high": 0.00031065312185165,
+          "n": 5000
+        },
+        "attn:none:s1:trained - oracle_clearing": {
+          "mean": 0.01626725566033575,
+          "ci_low": 0.010421264107736106,
+          "ci_high": 0.02197847926848986,
+          "n": 5000
+        },
+        "attn:none:s2:trained - extremized_log_pool": {
+          "mean": -0.0014336375185698626,
+          "ci_low": -0.003431555013298844,
+          "ci_high": 0.0004765780202106153,
+          "n": 5000
+        },
+        "attn:none:s2:trained - oracle_clearing": {
+          "mean": 0.016473141659743697,
+          "ci_low": 0.010578359861650373,
+          "ci_high": 0.022098683966354567,
+          "n": 5000
+        },
+        "oracle_clearing - extremized_log_pool": {
+          "mean": -0.017906779178313563,
+          "ci_low": -0.02403715681304629,
+          "ci_high": -0.01175008021786963,
+          "n": 5000
+        },
+        "ceiling:trace - oracle_clearing": {
+          "mean": -0.03828042978345191,
+          "ci_low": -0.04465873512238758,
+          "ci_high": -0.03159193901444777,
+          "n": 5000
+        }
+      },
+      "covered": 0.881
+    },
+    {
+      "tag": "imperfect__N6",
+      "model": "imperfect",
+      "n_rollouts": 6,
+      "visibility": "noisy",
+      "regret": {
+        "bayes": {
+          "mean": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0,
+          "n": 5000
+        },
+        "ceiling:infinite_rollouts": {
+          "mean": 0.029448353143782458,
+          "ci_low": 0.022624001976095695,
+          "ci_high": 0.036173349949646307,
+          "n": 5000
+        },
+        "oracle_clearing": {
+          "mean": 0.08271186734725128,
+          "ci_low": 0.07233502458689087,
+          "ci_high": 0.09294350489969237,
+          "n": 5000
+        },
+        "ceiling:trace": {
+          "mean": 0.04443143756379937,
+          "ci_low": 0.03646311957916439,
+          "ci_high": 0.052982267122686166,
+          "n": 5000
+        },
+        "linear_pool": {
+          "mean": 0.1365267175149388,
+          "ci_low": 0.12568192763319072,
+          "ci_high": 0.1475276675076231,
+          "n": 5000
+        },
+        "log_pool": {
+          "mean": 0.11066140734663149,
+          "ci_low": 0.09959671779931112,
+          "ci_high": 0.12138905666654447,
+          "n": 5000
+        },
+        "sum_logodds": {
+          "mean": 0.553409125705189,
+          "ci_low": 0.5007029752716495,
+          "ci_high": 0.6075306055368558,
+          "n": 5000
+        },
+        "extremized_log_pool": {
+          "mean": 0.10061864652556485,
+          "ci_low": 0.08928084988346294,
+          "ci_high": 0.11245196071330033,
+          "n": 5000
+        },
+        "attn:noisy:s0:trained": {
+          "mean": 0.20706268104963424,
+          "ci_low": 0.1864368238997935,
+          "ci_high": 0.2296157449051971,
+          "n": 5000
+        },
+        "attn:noisy:s0:control:untrained_init": {
+          "mean": 0.22062525919141343,
+          "ci_low": 0.20458771020388658,
+          "ci_high": 0.23772899607098988,
+          "n": 5000
+        },
+        "attn:noisy:s0:control:random_network": {
+          "mean": 0.5509326561479891,
+          "ci_low": 0.5206926810764718,
+          "ci_high": 0.5796500345751983,
+          "n": 5000
+        },
+        "attn:noisy:s1:trained": {
+          "mean": 0.176380318573955,
+          "ci_low": 0.15813429475320898,
+          "ci_high": 0.19588461132602236,
+          "n": 5000
+        },
+        "attn:noisy:s1:control:untrained_init": {
+          "mean": 2.4490354820631612,
+          "ci_low": 2.3516906335333108,
+          "ci_high": 2.5415676512431795,
+          "n": 5000
+        },
+        "attn:noisy:s1:control:random_network": {
+          "mean": 1.1890822405126973,
+          "ci_low": 1.1452869269170416,
+          "ci_high": 1.2372682187584694,
+          "n": 5000
+        },
+        "attn:noisy:s2:trained": {
+          "mean": 0.17676704701479823,
+          "ci_low": 0.15850320596474482,
+          "ci_high": 0.19483801402217213,
+          "n": 5000
+        },
+        "attn:noisy:s2:control:untrained_init": {
+          "mean": 2.65391522423598,
+          "ci_low": 2.574409378694757,
+          "ci_high": 2.736619350131475,
+          "n": 5000
+        },
+        "attn:noisy:s2:control:random_network": {
+          "mean": 0.3072248681793245,
+          "ci_low": 0.289023503338846,
+          "ci_high": 0.32564000216357053,
+          "n": 5000
+        },
+        "attn:noisy:seed_mean": {
+          "mean": 0.18673668221279582,
+          "ci_low": 0.17122128208738197,
+          "ci_high": 0.20286603036808398,
+          "n": 5000
+        }
+      },
+      "paired": {
+        "attn:noisy:s0:trained - extremized_log_pool": {
+          "mean": 0.10644403452406939,
+          "ci_low": 0.08950524460710552,
+          "ci_high": 0.12370969444521043,
+          "n": 5000
+        },
+        "attn:noisy:s0:trained - oracle_clearing": {
+          "mean": 0.12435081370238295,
+          "ci_low": 0.10724955475389476,
+          "ci_high": 0.14218286783963652,
+          "n": 5000
+        },
+        "attn:noisy:s1:trained - extremized_log_pool": {
+          "mean": 0.07576167204839011,
+          "ci_low": 0.06216455740927088,
+          "ci_high": 0.08958932149132186,
+          "n": 5000
+        },
+        "attn:noisy:s1:trained - oracle_clearing": {
+          "mean": 0.09366845122670368,
+          "ci_low": 0.07918999116903218,
+          "ci_high": 0.10869493094345921,
+          "n": 5000
+        },
+        "attn:noisy:s2:trained - extremized_log_pool": {
+          "mean": 0.07614840048923341,
+          "ci_low": 0.0632418188277316,
+          "ci_high": 0.08944633282770152,
+          "n": 5000
+        },
+        "attn:noisy:s2:trained - oracle_clearing": {
+          "mean": 0.09405517966754696,
+          "ci_low": 0.08005619722296645,
+          "ci_high": 0.10788140581564179,
+          "n": 5000
+        },
+        "oracle_clearing - extremized_log_pool": {
+          "mean": -0.017906779178313563,
+          "ci_low": -0.02403715681304629,
+          "ci_high": -0.01175008021786963,
+          "n": 5000
+        },
+        "ceiling:trace - oracle_clearing": {
+          "mean": -0.03828042978345191,
+          "ci_low": -0.04465873512238758,
+          "ci_high": -0.03159193901444777,
+          "n": 5000
+        }
+      },
+      "covered": 0.881
+    },
+    {
+      "tag": "imperfect__N6",
+      "model": "imperfect",
+      "n_rollouts": 6,
+      "visibility": "full",
+      "regret": {
+        "bayes": {
+          "mean": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0,
+          "n": 5000
+        },
+        "ceiling:infinite_rollouts": {
+          "mean": 0.029448353143782458,
+          "ci_low": 0.022624001976095695,
+          "ci_high": 0.036173349949646307,
+          "n": 5000
+        },
+        "oracle_clearing": {
+          "mean": 0.08271186734725128,
+          "ci_low": 0.07233502458689087,
+          "ci_high": 0.09294350489969237,
+          "n": 5000
+        },
+        "ceiling:trace": {
+          "mean": 0.04443143756379937,
+          "ci_low": 0.03646311957916439,
+          "ci_high": 0.052982267122686166,
+          "n": 5000
+        },
+        "linear_pool": {
+          "mean": 0.1365267175149388,
+          "ci_low": 0.12568192763319072,
+          "ci_high": 0.1475276675076231,
+          "n": 5000
+        },
+        "log_pool": {
+          "mean": 0.11066140734663149,
+          "ci_low": 0.09959671779931112,
+          "ci_high": 0.12138905666654447,
+          "n": 5000
+        },
+        "sum_logodds": {
+          "mean": 0.553409125705189,
+          "ci_low": 0.5007029752716495,
+          "ci_high": 0.6075306055368558,
+          "n": 5000
+        },
+        "extremized_log_pool": {
+          "mean": 0.10061864652556485,
+          "ci_low": 0.08928084988346294,
+          "ci_high": 0.11245196071330033,
+          "n": 5000
+        },
+        "attn:full:s0:trained": {
+          "mean": 0.20207914503930652,
+          "ci_low": 0.18252229892744765,
+          "ci_high": 0.22181144294018013,
+          "n": 5000
+        },
+        "attn:full:s0:control:untrained_init": {
+          "mean": 0.2240810895439549,
+          "ci_low": 0.20729638666064748,
+          "ci_high": 0.24111203647548934,
+          "n": 5000
+        },
+        "attn:full:s0:control:random_network": {
+          "mean": 0.5213235742432615,
+          "ci_low": 0.4926782967000337,
+          "ci_high": 0.5506429509647564,
+          "n": 5000
+        },
+        "attn:full:s1:trained": {
+          "mean": 0.17496714146835485,
+          "ci_low": 0.15556638933157585,
+          "ci_high": 0.1940806536709641,
+          "n": 5000
+        },
+        "attn:full:s1:control:untrained_init": {
+          "mean": 2.452354727848513,
+          "ci_low": 2.3536331254672778,
+          "ci_high": 2.544594002711032,
+          "n": 5000
+        },
+        "attn:full:s1:control:random_network": {
+          "mean": 1.215181401510446,
+          "ci_low": 1.1716707888471394,
+          "ci_high": 1.261306243594575,
+          "n": 5000
+        },
+        "attn:full:s2:trained": {
+          "mean": 0.1562571286090871,
+          "ci_low": 0.13964198326574032,
+          "ci_high": 0.17451851847424363,
+          "n": 5000
+        },
+        "attn:full:s2:control:untrained_init": {
+          "mean": 2.657971434344353,
+          "ci_low": 2.5785399971615512,
+          "ci_high": 2.7414269216193703,
+          "n": 5000
+        },
+        "attn:full:s2:control:random_network": {
+          "mean": 0.32066439899947863,
+          "ci_low": 0.3009551751244237,
+          "ci_high": 0.3407914202787023,
+          "n": 5000
+        },
+        "attn:full:seed_mean": {
+          "mean": 0.17776780503891618,
+          "ci_low": 0.16197149774282385,
+          "ci_high": 0.19416833053203106,
+          "n": 5000
+        }
+      },
+      "paired": {
+        "attn:full:s0:trained - extremized_log_pool": {
+          "mean": 0.10146049851374168,
+          "ci_low": 0.08513506495181057,
+          "ci_high": 0.11789086736267042,
+          "n": 5000
+        },
+        "attn:full:s0:trained - oracle_clearing": {
+          "mean": 0.11936727769205524,
+          "ci_low": 0.10258856325218184,
+          "ci_high": 0.13556986084465603,
+          "n": 5000
+        },
+        "attn:full:s1:trained - extremized_log_pool": {
+          "mean": 0.07434849494279001,
+          "ci_low": 0.06007231999488992,
+          "ci_high": 0.08860813776857678,
+          "n": 5000
+        },
+        "attn:full:s1:trained - oracle_clearing": {
+          "mean": 0.09225527412110357,
+          "ci_low": 0.0780757279800478,
+          "ci_high": 0.10693246976968372,
+          "n": 5000
+        },
+        "attn:full:s2:trained - extremized_log_pool": {
+          "mean": 0.055638482083522275,
+          "ci_low": 0.041990019632298814,
+          "ci_high": 0.06953140166261619,
+          "n": 5000
+        },
+        "attn:full:s2:trained - oracle_clearing": {
+          "mean": 0.07354526126183583,
+          "ci_low": 0.06075506705509711,
+          "ci_high": 0.08703211987477187,
+          "n": 5000
+        },
+        "oracle_clearing - extremized_log_pool": {
+          "mean": -0.017906779178313563,
+          "ci_low": -0.02403715681304629,
+          "ci_high": -0.01175008021786963,
+          "n": 5000
+        },
+        "ceiling:trace - oracle_clearing": {
+          "mean": -0.03828042978345191,
+          "ci_low": -0.04465873512238758,
+          "ci_high": -0.03159193901444777,
+          "n": 5000
+        }
+      },
+      "covered": 0.881
+    },
+    {
+      "tag": "exact__N6",
+      "model": "exact",
+      "n_rollouts": 6,
+      "visibility": "none",
+      "regret": {
+        "bayes": {
+          "mean": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0,
+          "n": 5000
+        },
+        "ceiling:infinite_rollouts": {
+          "mean": 3.489884162904966e-19,
+          "ci_low": -8.141902950453684e-19,
+          "ci_high": 1.6123181349053658e-18,
+          "n": 5000
+        },
+        "oracle_clearing": {
+          "mean": 0.010663913976956802,
+          "ci_low": 0.006830514666419491,
+          "ci_high": 0.014427865155704935,
+          "n": 5000
+        },
+        "ceiling:trace": {
+          "mean": 0.0038720769511139297,
+          "ci_low": 0.0013648707914236133,
+          "ci_high": 0.006388914049398814,
+          "n": 5000
+        },
+        "linear_pool": {
+          "mean": 0.0918192028641303,
+          "ci_low": 0.0824104892488284,
+          "ci_high": 0.1006573433273514,
+          "n": 5000
+        },
+        "log_pool": {
+          "mean": 0.06531354709510567,
+          "ci_low": 0.05679235263727696,
+          "ci_high": 0.0732742817157878,
+          "n": 5000
+        },
+        "sum_logodds": {
+          "mean": 0.31667365889151317,
+          "ci_low": 0.28041570459764115,
+          "ci_high": 0.354367025789603,
+          "n": 5000
+        },
+        "extremized_log_pool": {
+          "mean": 0.034385923949267136,
+          "ci_low": 0.027459959294535246,
+          "ci_high": 0.04126033570343235,
+          "n": 5000
+        },
+        "attn:none:s0:trained": {
+          "mean": 0.03112244505606866,
+          "ci_low": 0.024506871853725704,
+          "ci_high": 0.03781330899349615,
+          "n": 5000
+        },
+        "attn:none:s0:control:untrained_init": {
+          "mean": 0.3166848655854151,
+          "ci_low": 0.29874299709182167,
+          "ci_high": 0.33397673428885666,
+          "n": 5000
+        },
+        "attn:none:s0:control:random_network": {
+          "mean": 0.6282338561429042,
+          "ci_low": 0.5987517671115149,
+          "ci_high": 0.6573645724283126,
+          "n": 5000
+        },
+        "attn:none:s1:trained": {
+          "mean": 0.031139200908385033,
+          "ci_low": 0.024529969576226267,
+          "ci_high": 0.037790760203470594,
+          "n": 5000
+        },
+        "attn:none:s1:control:untrained_init": {
+          "mean": 1.0818135878501665,
+          "ci_low": 1.0412890940753494,
+          "ci_high": 1.1261186178413423,
+          "n": 5000
+        },
+        "attn:none:s1:control:random_network": {
+          "mean": 0.10691767024114128,
+          "ci_low": 0.09564582800300613,
+          "ci_high": 0.1181903025783416,
+          "n": 5000
+        },
+        "attn:none:s2:trained": {
+          "mean": 0.03136460207791582,
+          "ci_low": 0.024731439544126446,
+          "ci_high": 0.03798552853652884,
+          "n": 5000
+        },
+        "attn:none:s2:control:untrained_init": {
+          "mean": 0.26424295001985754,
+          "ci_low": 0.2397129143670085,
+          "ci_high": 0.28787897730042733,
+          "n": 5000
+        },
+        "attn:none:s2:control:random_network": {
+          "mean": 1.5025250493901712,
+          "ci_low": 1.4493365193357937,
+          "ci_high": 1.5552596705651638,
+          "n": 5000
+        },
+        "attn:none:seed_mean": {
+          "mean": 0.031208749347456502,
+          "ci_low": 0.02462401599255226,
+          "ci_high": 0.037846349494281825,
+          "n": 5000
+        }
+      },
+      "paired": {
+        "attn:none:s0:trained - extremized_log_pool": {
+          "mean": -0.0032634788931984824,
+          "ci_low": -0.005992936469665218,
+          "ci_high": -0.0005558968762233984,
+          "n": 5000
+        },
+        "attn:none:s0:trained - oracle_clearing": {
+          "mean": 0.02045853107911185,
+          "ci_low": 0.014527637773553346,
+          "ci_high": 0.025869166185273858,
+          "n": 5000
+        },
+        "attn:none:s1:trained - extremized_log_pool": {
+          "mean": -0.0032467230408821037,
+          "ci_low": -0.005883840958004648,
+          "ci_high": -0.0006154358263797998,
+          "n": 5000
+        },
+        "attn:none:s1:trained - oracle_clearing": {
+          "mean": 0.02047528693142823,
+          "ci_low": 0.014526354608550882,
+          "ci_high": 0.02587576967036543,
+          "n": 5000
+        },
+        "attn:none:s2:trained - extremized_log_pool": {
+          "mean": -0.003021321871351319,
+          "ci_low": -0.005729264845327639,
+          "ci_high": -0.00031776584714078045,
+          "n": 5000
+        },
+        "attn:none:s2:trained - oracle_clearing": {
+          "mean": 0.02070068810095901,
+          "ci_low": 0.014751212612861577,
+          "ci_high": 0.026052079113408427,
+          "n": 5000
+        },
+        "oracle_clearing - extremized_log_pool": {
+          "mean": -0.02372200997231033,
+          "ci_low": -0.029376049034594797,
+          "ci_high": -0.017633690683945824,
+          "n": 5000
+        },
+        "ceiling:trace - oracle_clearing": {
+          "mean": -0.006791837025842875,
+          "ci_low": -0.009394621668824496,
+          "ci_high": -0.004060516598517564,
+          "n": 5000
+        }
+      },
+      "covered": 0.881
+    },
+    {
+      "tag": "exact__N6",
+      "model": "exact",
+      "n_rollouts": 6,
+      "visibility": "full",
+      "regret": {
+        "bayes": {
+          "mean": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0,
+          "n": 5000
+        },
+        "ceiling:infinite_rollouts": {
+          "mean": 3.489884162904966e-19,
+          "ci_low": -8.141902950453684e-19,
+          "ci_high": 1.6123181349053658e-18,
+          "n": 5000
+        },
+        "oracle_clearing": {
+          "mean": 0.010663913976956802,
+          "ci_low": 0.006830514666419491,
+          "ci_high": 0.014427865155704935,
+          "n": 5000
+        },
+        "ceiling:trace": {
+          "mean": 0.0038720769511139297,
+          "ci_low": 0.0013648707914236133,
+          "ci_high": 0.006388914049398814,
+          "n": 5000
+        },
+        "linear_pool": {
+          "mean": 0.0918192028641303,
+          "ci_low": 0.0824104892488284,
+          "ci_high": 0.1006573433273514,
+          "n": 5000
+        },
+        "log_pool": {
+          "mean": 0.06531354709510567,
+          "ci_low": 0.05679235263727696,
+          "ci_high": 0.0732742817157878,
+          "n": 5000
+        },
+        "sum_logodds": {
+          "mean": 0.31667365889151317,
+          "ci_low": 0.28041570459764115,
+          "ci_high": 0.354367025789603,
+          "n": 5000
+        },
+        "extremized_log_pool": {
+          "mean": 0.034385923949267136,
+          "ci_low": 0.027459959294535246,
+          "ci_high": 0.04126033570343235,
+          "n": 5000
+        },
+        "attn:full:s0:trained": {
+          "mean": 0.13644374592791045,
+          "ci_low": 0.11874462130592824,
+          "ci_high": 0.1543491081502868,
+          "n": 5000
+        },
+        "attn:full:s0:control:untrained_init": {
+          "mean": 0.1800844286704745,
+          "ci_low": 0.16570325493322688,
+          "ci_high": 0.1954967644157286,
+          "n": 5000
+        },
+        "attn:full:s0:control:random_network": {
+          "mean": 0.4972486807987236,
+          "ci_low": 0.46884639803298356,
+          "ci_high": 0.5250673502731313,
+          "n": 5000
+        },
+        "attn:full:s1:trained": {
+          "mean": 0.08243802760159992,
+          "ci_low": 0.06979299382531219,
+          "ci_high": 0.09526969416759107,
+          "n": 5000
+        },
+        "attn:full:s1:control:untrained_init": {
+          "mean": 2.5546341355040383,
+          "ci_low": 2.4563454220414846,
+          "ci_high": 2.650865497244703,
+          "n": 5000
+        },
+        "attn:full:s1:control:random_network": {
+          "mean": 1.3634262799502317,
+          "ci_low": 1.3163733632925145,
+          "ci_high": 1.4132486785482217,
+          "n": 5000
+        },
+        "attn:full:s2:trained": {
+          "mean": 0.09315940398483935,
+          "ci_low": 0.08002149670909266,
+          "ci_high": 0.10629436714273721,
+          "n": 5000
+        },
+        "attn:full:s2:control:untrained_init": {
+          "mean": 2.803500013080533,
+          "ci_low": 2.7267601163072217,
+          "ci_high": 2.886975071098723,
+          "n": 5000
+        },
+        "attn:full:s2:control:random_network": {
+          "mean": 0.3827069713098075,
+          "ci_low": 0.3602590662895756,
+          "ci_high": 0.4044701231333095,
+          "n": 5000
+        },
+        "attn:full:seed_mean": {
+          "mean": 0.10401372583811658,
+          "ci_low": 0.0930228252091515,
+          "ci_high": 0.11564348457892412,
+          "n": 5000
+        }
+      },
+      "paired": {
+        "attn:full:s0:trained - extremized_log_pool": {
+          "mean": 0.10205782197864334,
+          "ci_low": 0.08511549278119433,
+          "ci_high": 0.11974834477737599,
+          "n": 5000
+        },
+        "attn:full:s0:trained - oracle_clearing": {
+          "mean": 0.12577983195095366,
+          "ci_low": 0.10827094657348221,
+          "ci_high": 0.14363127118000132,
+          "n": 5000
+        },
+        "attn:full:s1:trained - extremized_log_pool": {
+          "mean": 0.04805210365233279,
+          "ci_low": 0.03561302635615003,
+          "ci_high": 0.060798936131820365,
+          "n": 5000
+        },
+        "attn:full:s1:trained - oracle_clearing": {
+          "mean": 0.07177411362464312,
+          "ci_low": 0.05955649864113231,
+          "ci_high": 0.08373666007380734,
+          "n": 5000
+        },
+        "attn:full:s2:trained - extremized_log_pool": {
+          "mean": 0.05877348003557222,
+          "ci_low": 0.04577253598445488,
+          "ci_high": 0.07240888414033973,
+          "n": 5000
+        },
+        "attn:full:s2:trained - oracle_clearing": {
+          "mean": 0.08249549000788255,
+          "ci_low": 0.06976324720093287,
+          "ci_high": 0.09502864916047825,
+          "n": 5000
+        },
+        "oracle_clearing - extremized_log_pool": {
+          "mean": -0.02372200997231033,
+          "ci_low": -0.029376049034594797,
+          "ci_high": -0.017633690683945824,
+          "n": 5000
+        },
+        "ceiling:trace - oracle_clearing": {
+          "mean": -0.006791837025842875,
+          "ci_low": -0.009394621668824496,
+          "ci_high": -0.004060516598517564,
+          "n": 5000
+        }
+      },
+      "covered": 0.881
+    },
+    {
+      "tag": "imperfect__N1",
+      "model": "imperfect",
+      "n_rollouts": 1,
+      "visibility": "full",
+      "regret": {
+        "bayes": {
+          "mean": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0,
+          "n": 5000
+        },
+        "ceiling:infinite_rollouts": {
+          "mean": 0.0294247289859159,
+          "ci_low": 0.023307314278640464,
+          "ci_high": 0.03570388506798141,
+          "n": 5000
+        },
+        "oracle_clearing": {
+          "mean": 0.22410286134775584,
+          "ci_low": 0.20985668336159602,
+          "ci_high": 0.23800408183997415,
+          "n": 5000
+        },
+        "ceiling:trace": {
+          "mean": 0.2042200129396233,
+          "ci_low": 0.19060927804535602,
+          "ci_high": 0.21800031254704652,
+          "n": 5000
+        },
+        "linear_pool": {
+          "mean": 0.2504685841036925,
+          "ci_low": 0.23350513568470424,
+          "ci_high": 0.2674708503293482,
+          "n": 5000
+        },
+        "log_pool": {
+          "mean": 0.2504685841036925,
+          "ci_low": 0.23350513568470424,
+          "ci_high": 0.2674708503293482,
+          "n": 5000
+        },
+        "sum_logodds": {
+          "mean": 0.2504685841036925,
+          "ci_low": 0.23350513568470424,
+          "ci_high": 0.2674708503293482,
+          "n": 5000
+        },
+        "extremized_log_pool": {
+          "mean": 0.22675245703890606,
+          "ci_low": 0.21246158437026721,
+          "ci_high": 0.24036692371009521,
+          "n": 5000
+        },
+        "attn:full:s0:trained": {
+          "mean": 0.234556995436954,
+          "ci_low": 0.2201445671756712,
+          "ci_high": 0.249018356778732,
+          "n": 5000
+        },
+        "attn:full:s0:control:untrained_init": {
+          "mean": 0.31984089618641465,
+          "ci_low": 0.3043818605103184,
+          "ci_high": 0.33467361587720906,
+          "n": 5000
+        },
+        "attn:full:s0:control:random_network": {
+          "mean": 0.3502587624246351,
+          "ci_low": 0.33467708016691117,
+          "ci_high": 0.3652461251660879,
+          "n": 5000
+        },
+        "attn:full:seed_mean": {
+          "mean": 0.234556995436954,
+          "ci_low": 0.2201445671756712,
+          "ci_high": 0.249018356778732,
+          "n": 5000
+        }
+      },
+      "paired": {
+        "attn:full:s0:trained - extremized_log_pool": {
+          "mean": 0.007804538398047998,
+          "ci_low": 0.004098487106228782,
+          "ci_high": 0.011647149616966213,
+          "n": 5000
+        },
+        "attn:full:s0:trained - oracle_clearing": {
+          "mean": 0.010454134089198193,
+          "ci_low": 0.006888019757904977,
+          "ci_high": 0.013992704002198618,
+          "n": 5000
+        },
+        "oracle_clearing - extremized_log_pool": {
+          "mean": -0.0026495956911501946,
+          "ci_low": -0.004411501560776285,
+          "ci_high": -0.0010181212503297817,
+          "n": 5000
+        },
+        "ceiling:trace - oracle_clearing": {
+          "mean": -0.019882848408132533,
+          "ci_low": -0.024934125393266234,
+          "ci_high": -0.014651834669529544,
+          "n": 5000
+        }
+      },
+      "covered": 0.0
+    },
+    {
+      "tag": "exact__N1",
+      "model": "exact",
+      "n_rollouts": 1,
+      "visibility": "full",
+      "regret": {
+        "bayes": {
+          "mean": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0,
+          "n": 5000
+        },
+        "ceiling:infinite_rollouts": {
+          "mean": 9.054416287915256e-19,
+          "ci_low": -3.6748727704535136e-19,
+          "ci_high": 2.241322565369428e-18,
+          "n": 5000
+        },
+        "oracle_clearing": {
+          "mean": 0.15717143052344063,
+          "ci_low": 0.14503048195100884,
+          "ci_high": 0.16991293986162143,
+          "n": 5000
+        },
+        "ceiling:trace": {
+          "mean": 0.15717143052344063,
+          "ci_low": 0.14503048195100884,
+          "ci_high": 0.16991293986162145,
+          "n": 5000
+        },
+        "linear_pool": {
+          "mean": 0.15717143052344063,
+          "ci_low": 0.14503048195100884,
+          "ci_high": 0.16991293986162143,
+          "n": 5000
+        },
+        "log_pool": {
+          "mean": 0.15717143052344063,
+          "ci_low": 0.14503048195100884,
+          "ci_high": 0.16991293986162143,
+          "n": 5000
+        },
+        "sum_logodds": {
+          "mean": 0.15717143052344063,
+          "ci_low": 0.14503048195100884,
+          "ci_high": 0.16991293986162143,
+          "n": 5000
+        },
+        "extremized_log_pool": {
+          "mean": 0.15711092194517015,
+          "ci_low": 0.14501669613227527,
+          "ci_high": 0.16975553580280997,
+          "n": 5000
+        },
+        "attn:full:s0:trained": {
+          "mean": 0.16496646724069822,
+          "ci_low": 0.15267999468978993,
+          "ci_high": 0.17849810014581644,
+          "n": 5000
+        },
+        "attn:full:s0:control:untrained_init": {
+          "mean": 0.302232778124406,
+          "ci_low": 0.28727137453229923,
+          "ci_high": 0.3165970415361097,
+          "n": 5000
+        },
+        "attn:full:s0:control:random_network": {
+          "mean": 0.36259636078481255,
+          "ci_low": 0.34639795903953613,
+          "ci_high": 0.37776677703661427,
+          "n": 5000
+        },
+        "attn:full:seed_mean": {
+          "mean": 0.16496646724069822,
+          "ci_low": 0.15267999468978993,
+          "ci_high": 0.17849810014581644,
+          "n": 5000
+        }
+      },
+      "paired": {
+        "attn:full:s0:trained - extremized_log_pool": {
+          "mean": 0.00785554529552808,
+          "ci_low": 0.004596746084685424,
+          "ci_high": 0.010929236221395423,
+          "n": 5000
+        },
+        "attn:full:s0:trained - oracle_clearing": {
+          "mean": 0.007795036717257575,
+          "ci_low": 0.004592998709912949,
+          "ci_high": 0.010851569856919738,
+          "n": 5000
+        },
+        "oracle_clearing - extremized_log_pool": {
+          "mean": 6.0508578270503867e-05,
+          "ci_low": -9.88673164280573e-05,
+          "ci_high": 0.00023429826874002364,
+          "n": 5000
+        },
+        "ceiling:trace - oracle_clearing": {
+          "mean": -5.308904357792521e-19,
+          "ci_low": -1.9375847497629655e-18,
+          "ci_high": 9.739567008795742e-19,
+          "n": 5000
+        }
+      },
+      "covered": 0.0
+    },
+    {
+      "tag": "imperfect__N2",
+      "model": "imperfect",
+      "n_rollouts": 2,
+      "visibility": "full",
+      "regret": {
+        "bayes": {
+          "mean": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0,
+          "n": 5000
+        },
+        "ceiling:infinite_rollouts": {
+          "mean": 0.034708861324852354,
+          "ci_low": 0.028104771817794336,
+          "ci_high": 0.041074462321984535,
+          "n": 5000
+        },
+        "oracle_clearing": {
+          "mean": 0.16326027993633133,
+          "ci_low": 0.14886452546585655,
+          "ci_high": 0.17704470878126688,
+          "n": 5000
+        },
+        "ceiling:trace": {
+          "mean": 0.1341136362718133,
+          "ci_low": 0.12139309439063865,
+          "ci_high": 0.1460865337488314,
+          "n": 5000
+        },
+        "linear_pool": {
+          "mean": 0.1795922305412113,
+          "ci_low": 0.16508093530130882,
+          "ci_high": 0.19233665235583,
+          "n": 5000
+        },
+        "log_pool": {
+          "mean": 0.1722790683818374,
+          "ci_low": 0.15757646837953607,
+          "ci_high": 0.18599816633086017,
+          "n": 5000
+        },
+        "sum_logodds": {
+          "mean": 0.2574004464430795,
+          "ci_low": 0.23397579879222072,
+          "ci_high": 0.28060344169572043,
+          "n": 5000
+        },
+        "extremized_log_pool": {
+          "mean": 0.17207716552266827,
+          "ci_low": 0.15748659907093435,
+          "ci_high": 0.18564261076776814,
+          "n": 5000
+        },
+        "attn:full:s0:trained": {
+          "mean": 0.2880323614690711,
+          "ci_low": 0.2645552498092121,
+          "ci_high": 0.31144771835958635,
+          "n": 5000
+        },
+        "attn:full:s0:control:untrained_init": {
+          "mean": 0.28757957908971976,
+          "ci_low": 0.2724474423232056,
+          "ci_high": 0.30201741746761496,
+          "n": 5000
+        },
+        "attn:full:s0:control:random_network": {
+          "mean": 0.3938619514259077,
+          "ci_low": 0.370605344626854,
+          "ci_high": 0.4149543525720233,
+          "n": 5000
+        },
+        "attn:full:seed_mean": {
+          "mean": 0.2880323614690711,
+          "ci_low": 0.2645552498092121,
+          "ci_high": 0.31144771835958635,
+          "n": 5000
+        }
+      },
+      "paired": {
+        "attn:full:s0:trained - extremized_log_pool": {
+          "mean": 0.1159551959464028,
+          "ci_low": 0.09855110333313973,
+          "ci_high": 0.13391860454620447,
+          "n": 5000
+        },
+        "attn:full:s0:trained - oracle_clearing": {
+          "mean": 0.12477208153273975,
+          "ci_low": 0.10712355349387201,
+          "ci_high": 0.14168496553557358,
+          "n": 5000
+        },
+        "oracle_clearing - extremized_log_pool": {
+          "mean": -0.008816885586336946,
+          "ci_low": -0.012318617354137813,
+          "ci_high": -0.005336206849432504,
+          "n": 5000
+        },
+        "ceiling:trace - oracle_clearing": {
+          "mean": -0.029146643664518013,
+          "ci_low": -0.03601920910237051,
+          "ci_high": -0.02239813438454137,
+          "n": 5000
+        }
+      },
+      "covered": 0.0838
+    },
+    {
+      "tag": "exact__N2",
+      "model": "exact",
+      "n_rollouts": 2,
+      "visibility": "full",
+      "regret": {
+        "bayes": {
+          "mean": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0,
+          "n": 5000
+        },
+        "ceiling:infinite_rollouts": {
+          "mean": 5.42681134405032e-19,
+          "ci_low": -7.698920982072282e-19,
+          "ci_high": 1.805977378277826e-18,
+          "n": 5000
+        },
+        "oracle_clearing": {
+          "mean": 0.0821338794706617,
+          "ci_low": 0.07166626764749298,
+          "ci_high": 0.09125732456792014,
+          "n": 5000
+        },
+        "ceiling:trace": {
+          "mean": 0.07186630083096474,
+          "ci_low": 0.06225381507244814,
+          "ci_high": 0.08090844354603433,
+          "n": 5000
+        },
+        "linear_pool": {
+          "mean": 0.11614231351818403,
+          "ci_low": 0.10543319190873933,
+          "ci_high": 0.12564317211048365,
+          "n": 5000
+        },
+        "log_pool": {
+          "mean": 0.1019934648032385,
+          "ci_low": 0.09169850314450181,
+          "ci_high": 0.1114562924558497,
+          "n": 5000
+        },
+        "sum_logodds": {
+          "mean": 0.10818398769953742,
+          "ci_low": 0.09452562541377249,
+          "ci_high": 0.12157200547440856,
+          "n": 5000
+        },
+        "extremized_log_pool": {
+          "mean": 0.09020654757068386,
+          "ci_low": 0.07942946101256834,
+          "ci_high": 0.09989694827274763,
+          "n": 5000
+        },
+        "attn:full:s0:trained": {
+          "mean": 0.18508058007565087,
+          "ci_low": 0.16463767216333025,
+          "ci_high": 0.204782017044873,
+          "n": 5000
+        },
+        "attn:full:s0:control:untrained_init": {
+          "mean": 0.2617978116034408,
+          "ci_low": 0.2479446077191979,
+          "ci_high": 0.2749912977336078,
+          "n": 5000
+        },
+        "attn:full:s0:control:random_network": {
+          "mean": 0.38203121517245653,
+          "ci_low": 0.35924743677861815,
+          "ci_high": 0.40383157753964116,
+          "n": 5000
+        },
+        "attn:full:seed_mean": {
+          "mean": 0.18508058007565087,
+          "ci_low": 0.16463767216333025,
+          "ci_high": 0.204782017044873,
+          "n": 5000
+        }
+      },
+      "paired": {
+        "attn:full:s0:trained - extremized_log_pool": {
+          "mean": 0.094874032504967,
+          "ci_low": 0.07864985011326009,
+          "ci_high": 0.11195499514155387,
+          "n": 5000
+        },
+        "attn:full:s0:trained - oracle_clearing": {
+          "mean": 0.10294670060498917,
+          "ci_low": 0.08685363557367176,
+          "ci_high": 0.11922199497319952,
+          "n": 5000
+        },
+        "oracle_clearing - extremized_log_pool": {
+          "mean": -0.008072668100022171,
+          "ci_low": -0.012055965960160491,
+          "ci_high": -0.004222387168361607,
+          "n": 5000
+        },
+        "ceiling:trace - oracle_clearing": {
+          "mean": -0.010267578639696961,
+          "ci_low": -0.014432138279675318,
+          "ci_high": -0.00604743141528837,
+          "n": 5000
+        }
+      },
+      "covered": 0.0838
+    },
+    {
+      "tag": "imperfect__N4",
+      "model": "imperfect",
+      "n_rollouts": 4,
+      "visibility": "full",
+      "regret": {
+        "bayes": {
+          "mean": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0,
+          "n": 5000
+        },
+        "ceiling:infinite_rollouts": {
+          "mean": 0.02986713179990159,
+          "ci_low": 0.022824355065984975,
+          "ci_high": 0.0368220893806925,
+          "n": 5000
+        },
+        "oracle_clearing": {
+          "mean": 0.09206821475205515,
+          "ci_low": 0.08048758368494667,
+          "ci_high": 0.10334605122128065,
+          "n": 5000
+        },
+        "ceiling:trace": {
+          "mean": 0.06544843652029496,
+          "ci_low": 0.05599973080719417,
+          "ci_high": 0.07495725553688315,
+          "n": 5000
+        },
+        "linear_pool": {
+          "mean": 0.13633585517920566,
+          "ci_low": 0.12423513310326914,
+          "ci_high": 0.1476325724409019,
+          "n": 5000
+        },
+        "log_pool": {
+          "mean": 0.1163897260027849,
+          "ci_low": 0.10429616641894286,
+          "ci_high": 0.12741122027326063,
+          "n": 5000
+        },
+        "sum_logodds": {
+          "mean": 0.38713306113172086,
+          "ci_low": 0.3486150870882106,
+          "ci_high": 0.42631564598010374,
+          "n": 5000
+        },
+        "extremized_log_pool": {
+          "mean": 0.112237618774355,
+          "ci_low": 0.09947385916650422,
+          "ci_high": 0.12450105841568686,
+          "n": 5000
+        },
+        "attn:full:s0:trained": {
+          "mean": 0.2430250432180965,
+          "ci_low": 0.21867363502604859,
+          "ci_high": 0.267035481623662,
+          "n": 5000
+        },
+        "attn:full:s0:control:untrained_init": {
+          "mean": 0.22719947088091685,
+          "ci_low": 0.21195383461086453,
+          "ci_high": 0.24239155704065893,
+          "n": 5000
+        },
+        "attn:full:s0:control:random_network": {
+          "mean": 0.4590847752921236,
+          "ci_low": 0.4315815426952327,
+          "ci_high": 0.48590738673304723,
+          "n": 5000
+        },
+        "attn:full:seed_mean": {
+          "mean": 0.2430250432180965,
+          "ci_low": 0.21867363502604859,
+          "ci_high": 0.267035481623662,
+          "n": 5000
+        }
+      },
+      "paired": {
+        "attn:full:s0:trained - extremized_log_pool": {
+          "mean": 0.13078742444374153,
+          "ci_low": 0.1114734225414576,
+          "ci_high": 0.1515178218488743,
+          "n": 5000
+        },
+        "attn:full:s0:trained - oracle_clearing": {
+          "mean": 0.1509568284660414,
+          "ci_low": 0.13139901376429208,
+          "ci_high": 0.17187446597240702,
+          "n": 5000
+        },
+        "oracle_clearing - extremized_log_pool": {
+          "mean": -0.020169404022299844,
+          "ci_low": -0.02517356758354492,
+          "ci_high": -0.014966109988653309,
+          "n": 5000
+        },
+        "ceiling:trace - oracle_clearing": {
+          "mean": -0.026619778231760188,
+          "ci_low": -0.03404548051948954,
+          "ci_high": -0.019375754880471382,
+          "n": 5000
+        }
+      },
+      "covered": 0.5886
+    },
+    {
+      "tag": "exact__N4",
+      "model": "exact",
+      "n_rollouts": 4,
+      "visibility": "full",
+      "regret": {
+        "bayes": {
+          "mean": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0,
+          "n": 5000
+        },
+        "ceiling:infinite_rollouts": {
+          "mean": -1.38369608197568e-19,
+          "ci_low": -1.4512859823270902e-18,
+          "ci_high": 1.2426156549447073e-18,
+          "n": 5000
+        },
+        "oracle_clearing": {
+          "mean": 0.029009382867531543,
+          "ci_low": 0.022927499122346186,
+          "ci_high": 0.03503490122957723,
+          "n": 5000
+        },
+        "ceiling:trace": {
+          "mean": 0.015555871813392767,
+          "ci_low": 0.01079946436557506,
+          "ci_high": 0.020130894135025165,
+          "n": 5000
+        },
+        "linear_pool": {
+          "mean": 0.09408813322883944,
+          "ci_low": 0.08493144553169273,
+          "ci_high": 0.10303575894385052,
+          "n": 5000
+        },
+        "log_pool": {
+          "mean": 0.07143504691536898,
+          "ci_low": 0.06285300019431452,
+          "ci_high": 0.07976095789002118,
+          "n": 5000
+        },
+        "sum_logodds": {
+          "mean": 0.19704767805518478,
+          "ci_low": 0.17353354190157752,
+          "ci_high": 0.22217285625076613,
+          "n": 5000
+        },
+        "extremized_log_pool": {
+          "mean": 0.04983755360108703,
+          "ci_low": 0.04188862879268582,
+          "ci_high": 0.0579473657679399,
+          "n": 5000
+        },
+        "attn:full:s0:trained": {
+          "mean": 0.18689194332297263,
+          "ci_low": 0.16468928181357856,
+          "ci_high": 0.2105141698468205,
+          "n": 5000
+        },
+        "attn:full:s0:control:untrained_init": {
+          "mean": 0.19465690735081406,
+          "ci_low": 0.18086812919388232,
+          "ci_high": 0.20829762443003888,
+          "n": 5000
+        },
+        "attn:full:s0:control:random_network": {
+          "mean": 0.43454566976892856,
+          "ci_low": 0.40673556661004223,
+          "ci_high": 0.46045931639837584,
+          "n": 5000
+        },
+        "attn:full:seed_mean": {
+          "mean": 0.18689194332297263,
+          "ci_low": 0.16468928181357856,
+          "ci_high": 0.2105141698468205,
+          "n": 5000
+        }
+      },
+      "paired": {
+        "attn:full:s0:trained - extremized_log_pool": {
+          "mean": 0.1370543897218856,
+          "ci_low": 0.11588832016753227,
+          "ci_high": 0.15947276429950832,
+          "n": 5000
+        },
+        "attn:full:s0:trained - oracle_clearing": {
+          "mean": 0.15788256045544108,
+          "ci_low": 0.13679521159285765,
+          "ci_high": 0.18019744722193312,
+          "n": 5000
+        },
+        "oracle_clearing - extremized_log_pool": {
+          "mean": -0.020828170733555484,
+          "ci_low": -0.02622754852968197,
+          "ci_high": -0.015208352567314155,
+          "n": 5000
+        },
+        "ceiling:trace - oracle_clearing": {
+          "mean": -0.013453511054138773,
+          "ci_low": -0.018020530541639067,
+          "ci_high": -0.009260318798821596,
+          "n": 5000
+        }
+      },
+      "covered": 0.5886
+    },
+    {
+      "tag": "imperfect__N12",
+      "model": "imperfect",
+      "n_rollouts": 12,
+      "visibility": "full",
+      "regret": {
+        "bayes": {
+          "mean": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0,
+          "n": 5000
+        },
+        "ceiling:infinite_rollouts": {
+          "mean": 0.028404172169852318,
+          "ci_low": 0.021604728544224995,
+          "ci_high": 0.035078945380887044,
+          "n": 5000
+        },
+        "oracle_clearing": {
+          "mean": 0.04988276465030523,
+          "ci_low": 0.041109365648076,
+          "ci_high": 0.058460749008992056,
+          "n": 5000
+        },
+        "ceiling:trace": {
+          "mean": 0.03294168520559886,
+          "ci_low": 0.025663661390542544,
+          "ci_high": 0.039913679215889286,
+          "n": 5000
+        },
+        "linear_pool": {
+          "mean": 0.12858145005597127,
+          "ci_low": 0.11748974965525666,
+          "ci_high": 0.13897182443807438,
+          "n": 5000
+        },
+        "log_pool": {
+          "mean": 0.09478379057482102,
+          "ci_low": 0.08439551545573645,
+          "ci_high": 0.10446158567432082,
+          "n": 5000
+        },
+        "sum_logodds": {
+          "mean": 1.12984754217935,
+          "ci_low": 1.0342428341265382,
+          "ci_high": 1.2327097609863145,
+          "n": 5000
+        },
+        "extremized_log_pool": {
+          "mean": 0.0758113539286565,
+          "ci_low": 0.06574315446539956,
+          "ci_high": 0.08595564393999928,
+          "n": 5000
+        },
+        "attn:full:s0:trained": {
+          "mean": 0.11051369459938641,
+          "ci_low": 0.0966078670693625,
+          "ci_high": 0.12413488879910406,
+          "n": 5000
+        },
+        "attn:full:s0:control:untrained_init": {
+          "mean": 0.2980488399652004,
+          "ci_low": 0.2743337239639594,
+          "ci_high": 0.3210201546097622,
+          "n": 5000
+        },
+        "attn:full:s0:control:random_network": {
+          "mean": 0.7783267732355542,
+          "ci_low": 0.7423950343424431,
+          "ci_high": 0.8158314979717545,
+          "n": 5000
+        },
+        "attn:full:seed_mean": {
+          "mean": 0.11051369459938641,
+          "ci_low": 0.0966078670693625,
+          "ci_high": 0.12413488879910406,
+          "n": 5000
+        }
+      },
+      "paired": {
+        "attn:full:s0:trained - extremized_log_pool": {
+          "mean": 0.03470234067072994,
+          "ci_low": 0.024455099224947704,
+          "ci_high": 0.04527489819368161,
+          "n": 5000
+        },
+        "attn:full:s0:trained - oracle_clearing": {
+          "mean": 0.0606309299490812,
+          "ci_low": 0.05013637657434983,
+          "ci_high": 0.07116979377470513,
+          "n": 5000
+        },
+        "oracle_clearing - extremized_log_pool": {
+          "mean": -0.025928589278351257,
+          "ci_low": -0.03158845842405271,
+          "ci_high": -0.02014692004262205,
+          "n": 5000
+        },
+        "ceiling:trace - oracle_clearing": {
+          "mean": -0.016941079444706374,
+          "ci_low": -0.022170683466002077,
+          "ci_high": -0.011759361069628724,
+          "n": 5000
+        }
+      },
+      "covered": 0.9978
+    },
+    {
+      "tag": "exact__N12",
+      "model": "exact",
+      "n_rollouts": 12,
+      "visibility": "full",
+      "regret": {
+        "bayes": {
+          "mean": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0,
+          "n": 5000
+        },
+        "ceiling:infinite_rollouts": {
+          "mean": -4.740104793052313e-19,
+          "ci_low": -1.9082443416217067e-18,
+          "ci_high": 9.776093779986783e-19,
+          "n": 5000
+        },
+        "oracle_clearing": {
+          "mean": 7.62446437163565e-05,
+          "ci_low": -3.980931715010454e-05,
+          "ci_high": 0.00022665517732936815,
+          "n": 5000
+        },
+        "ceiling:trace": {
+          "mean": 3.8734732345681675e-05,
+          "ci_low": -2.6659441139512828e-05,
+          "ci_high": 0.00012082650930516924,
+          "n": 5000
+        },
+        "linear_pool": {
+          "mean": 0.08574014088606811,
+          "ci_low": 0.07669512974960822,
+          "ci_high": 0.09446017466944379,
+          "n": 5000
+        },
+        "log_pool": {
+          "mean": 0.05485044599252111,
+          "ci_low": 0.04700055612222503,
+          "ci_high": 0.06251198671773571,
+          "n": 5000
+        },
+        "sum_logodds": {
+          "mean": 0.7521171778518937,
+          "ci_low": 0.6761388759648598,
+          "ci_high": 0.8336957221514549,
+          "n": 5000
+        },
+        "extremized_log_pool": {
+          "mean": 0.014971087791232853,
+          "ci_low": 0.00972619912297206,
+          "ci_high": 0.01989321155112412,
+          "n": 5000
+        },
+        "attn:full:s0:trained": {
+          "mean": 0.055302002971720166,
+          "ci_low": 0.04551022151309175,
+          "ci_high": 0.06559801016280765,
+          "n": 5000
+        },
+        "attn:full:s0:control:untrained_init": {
+          "mean": 0.21989307271819888,
+          "ci_low": 0.2000852106423976,
+          "ci_high": 0.23856233566753174,
+          "n": 5000
+        },
+        "attn:full:s0:control:random_network": {
+          "mean": 0.7854396169043817,
+          "ci_low": 0.7520365080951578,
+          "ci_high": 0.8210158024470815,
+          "n": 5000
+        },
+        "attn:full:seed_mean": {
+          "mean": 0.055302002971720166,
+          "ci_low": 0.04551022151309175,
+          "ci_high": 0.06559801016280765,
+          "n": 5000
+        }
+      },
+      "paired": {
+        "attn:full:s0:trained - extremized_log_pool": {
+          "mean": 0.04033091518048731,
+          "ci_low": 0.030932080368905792,
+          "ci_high": 0.0503486154547457,
+          "n": 5000
+        },
+        "attn:full:s0:trained - oracle_clearing": {
+          "mean": 0.055225758328003804,
+          "ci_low": 0.04541459944063763,
+          "ci_high": 0.06552998015764676,
+          "n": 5000
+        },
+        "oracle_clearing - extremized_log_pool": {
+          "mean": -0.014894843147516497,
+          "ci_low": -0.019850854988518983,
+          "ci_high": -0.00959356463784717,
+          "n": 5000
+        },
+        "ceiling:trace - oracle_clearing": {
+          "mean": -3.750991137067481e-05,
+          "ci_low": -0.00016111315385461901,
+          "ci_high": 4.730574860898065e-05,
+          "n": 5000
+        }
+      },
+      "covered": 0.9978
+    },
+    {
+      "tag": "imperfect__N24",
+      "model": "imperfect",
+      "n_rollouts": 24,
+      "visibility": "full",
+      "regret": {
+        "bayes": {
+          "mean": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0,
+          "n": 5000
+        },
+        "ceiling:infinite_rollouts": {
+          "mean": 0.02824980472204552,
+          "ci_low": 0.02181609055658872,
+          "ci_high": 0.03508050887014868,
+          "n": 5000
+        },
+        "oracle_clearing": {
+          "mean": 0.04245383607610724,
+          "ci_low": 0.033991148632388946,
+          "ci_high": 0.05058753610792862,
+          "n": 5000
+        },
+        "ceiling:trace": {
+          "mean": 0.029181224238381702,
+          "ci_low": 0.022491751951520585,
+          "ci_high": 0.035811391096049874,
+          "n": 5000
+        },
+        "linear_pool": {
+          "mean": 0.12752104711312637,
+          "ci_low": 0.1174131301546365,
+          "ci_high": 0.13747005791234032,
+          "n": 5000
+        },
+        "log_pool": {
+          "mean": 0.090406554517929,
+          "ci_low": 0.08099934245416818,
+          "ci_high": 0.09911814246256599,
+          "n": 5000
+        },
+        "sum_logodds": {
+          "mean": 2.252958105886654,
+          "ci_low": 2.059107513616592,
+          "ci_high": 2.4483813469585627,
+          "n": 5000
+        },
+        "extremized_log_pool": {
+          "mean": 0.06389431198684678,
+          "ci_low": 0.054427465316386196,
+          "ci_high": 0.07281962481459643,
+          "n": 5000
+        },
+        "attn:full:s0:trained": {
+          "mean": 0.07279204255614159,
+          "ci_low": 0.061589355753508844,
+          "ci_high": 0.08385104566782049,
+          "n": 5000
+        },
+        "attn:full:s0:control:untrained_init": {
+          "mean": 0.5717084958448637,
+          "ci_low": 0.5283148658341967,
+          "ci_high": 0.6172055337938553,
+          "n": 5000
+        },
+        "attn:full:s0:control:random_network": {
+          "mean": 1.5768859534929138,
+          "ci_low": 1.5129799470738534,
+          "ci_high": 1.640474854818431,
+          "n": 5000
+        },
+        "attn:full:seed_mean": {
+          "mean": 0.07279204255614159,
+          "ci_low": 0.061589355753508844,
+          "ci_high": 0.08385104566782049,
+          "n": 5000
+        }
+      },
+      "paired": {
+        "attn:full:s0:trained - extremized_log_pool": {
+          "mean": 0.008897730569294807,
+          "ci_low": 0.0017726148601390549,
+          "ci_high": 0.016358293164486344,
+          "n": 5000
+        },
+        "attn:full:s0:trained - oracle_clearing": {
+          "mean": 0.03033820648003434,
+          "ci_low": 0.023400295001915185,
+          "ci_high": 0.03734867395086721,
+          "n": 5000
+        },
+        "oracle_clearing - extremized_log_pool": {
+          "mean": -0.02144047591073953,
+          "ci_low": -0.026597859158560656,
+          "ci_high": -0.016333955993951897,
+          "n": 5000
+        },
+        "ceiling:trace - oracle_clearing": {
+          "mean": -0.013272611837725537,
+          "ci_low": -0.017672848018036914,
+          "ci_high": -0.008691943701674242,
+          "n": 5000
+        }
+      },
+      "covered": 1.0
+    },
+    {
+      "tag": "exact__N24",
+      "model": "exact",
+      "n_rollouts": 24,
+      "visibility": "full",
+      "regret": {
+        "bayes": {
+          "mean": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0,
+          "n": 5000
+        },
+        "ceiling:infinite_rollouts": {
+          "mean": -4.135906027380454e-19,
+          "ci_low": -1.574587086151241e-18,
+          "ci_high": 7.448897184833543e-19,
+          "n": 5000
+        },
+        "oracle_clearing": {
+          "mean": 2.139183063543451e-18,
+          "ci_low": -1.890042123663441e-17,
+          "ci_high": 2.2232903638643363e-17,
+          "n": 5000
+        },
+        "ceiling:trace": {
+          "mean": 5.100841895134406e-18,
+          "ci_low": -1.2453894862531236e-17,
+          "ci_high": 2.3451578034388867e-17,
+          "n": 5000
+        },
+        "linear_pool": {
+          "mean": 0.0876138870471986,
+          "ci_low": 0.0790159459225073,
+          "ci_high": 0.0958776297670843,
+          "n": 5000
+        },
+        "log_pool": {
+          "mean": 0.05439583087061378,
+          "ci_low": 0.04705231399636502,
+          "ci_high": 0.06123187724384325,
+          "n": 5000
+        },
+        "sum_logodds": {
+          "mean": 1.6019090190477896,
+          "ci_low": 1.4459154937136582,
+          "ci_high": 1.7577268034849762,
+          "n": 5000
+        },
+        "extremized_log_pool": {
+          "mean": 0.007585416206695433,
+          "ci_low": 0.004158536512971428,
+          "ci_high": 0.01100012622220707,
+          "n": 5000
+        },
+        "attn:full:s0:trained": {
+          "mean": 0.022201452250505866,
+          "ci_low": 0.0159821156205018,
+          "ci_high": 0.028477705561971642,
+          "n": 5000
+        },
+        "attn:full:s0:control:untrained_init": {
+          "mean": 0.44245164888505534,
+          "ci_low": 0.4070359251144794,
+          "ci_high": 0.4816945139909824,
+          "n": 5000
+        },
+        "attn:full:s0:control:random_network": {
+          "mean": 1.5358764504402356,
+          "ci_low": 1.473527299344612,
+          "ci_high": 1.5954048005151924,
+          "n": 5000
+        },
+        "attn:full:seed_mean": {
+          "mean": 0.022201452250505866,
+          "ci_low": 0.0159821156205018,
+          "ci_high": 0.028477705561971642,
+          "n": 5000
+        }
+      },
+      "paired": {
+        "attn:full:s0:trained - extremized_log_pool": {
+          "mean": 0.01461603604381043,
+          "ci_low": 0.008134999365355586,
+          "ci_high": 0.021116075695724854,
+          "n": 5000
+        },
+        "attn:full:s0:trained - oracle_clearing": {
+          "mean": 0.022201452250505866,
+          "ci_low": 0.0159821156205018,
+          "ci_high": 0.028477705561971642,
+          "n": 5000
+        },
+        "oracle_clearing - extremized_log_pool": {
+          "mean": -0.007585416206695432,
+          "ci_low": -0.011000126222207056,
+          "ci_high": -0.004158536512971445,
+          "n": 5000
+        },
+        "ceiling:trace - oracle_clearing": {
+          "mean": 2.9616588315909547e-18,
+          "ci_low": -2.5391717740452606e-17,
+          "ci_high": 3.12629076238671e-17,
+          "n": 5000
+        }
+      },
+      "covered": 1.0
+    }
+  ]
+}

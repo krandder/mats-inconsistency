@@ -1,0 +1,16 @@
+{
+ "id": "E-MR-16",
+ "question": "Which regularizer stops the belief-logit runaway past the training length and keeps the 100x accuracy: an epsilon floor, an L2 fee on the belief logits, a logit cap (bounded liquidity) or a trade-size cap?",
+ "status": "Informative",
+ "setup": "The economy (econ_cov_voc) retrained with: an epsilon floor 0.01 on the forecast (fixed share, p' = 0.99 p + 0.005; floor), an L2 fee 1e-3 on belief logits (l2b), belief logits capped at +-10 (bcap), trades squashed by tanh (dbcap); the same cap +-10 without a market on the economy's BPTT(1) twin (tb1_voc_bcap_rand) and on full BPTT in round-robin order (bptt_cov_dscov_bcap). Log loss = mean over bits of the model's own forecast, nats per bit. Exact-string accuracy (every output bit right) at L320 with 320 steps (10x) and L3200 with 3200 steps (100x), 3 seeds, t-intervals, on the phase-2 sets (40 strings per seed at L3200); 'fresh' = 200 new strings per seed at L3200 (seed 777 + L), k/n pooled with a 95% Wilson interval. Every arm: 3000 iterations, batch 64, D = 24, lengths 8 to 32. Extreme depths: L32 to 24,000 steps, L320 to 32,000 steps.",
+ "result": "10x / 100x accuracy and log loss: unregularized 1.00 / 0.93 +- 0.14, log loss 0.000 / 501 nats per bit; fresh 557/600 [0.90, 0.95], log loss 341. Cap +-10: 1.00 / 1.00, log loss 0.000 / 0.000 nats per bit; fresh 600/600 [0.99, 1.00], log loss 0.000: keeps the accuracy and makes log loss sane. It is not economic: the same cap on the no-market twin gives 1.00 / 0.99 +- 0.04, log loss 0.000 / 0.000 nats per bit; fresh 598/600 [0.99, 1.00], log loss 0.000; on full BPTT in round-robin order it gives only 0.30 +- 1.29 at 100x (152/600 [0.22, 0.29] fresh), so it does not replace random order. Floor: 1.00 +- 0.01 / 0.64 +- 0.29, log loss 0.007 / 0.707 nats per bit; fresh 347/600 [0.54, 0.62], log loss 0.849 (raw logits still run away, raw log loss 4,825). L2 fee: 1.00 +- 0.01 / 0.56 +- 1.15, log loss 0.019 / 0.104 nats per bit; fresh 328/600 [0.51, 0.59], log loss 0.100. Trade-size cap: 0.97 +- 0.08 / 0.42 +- 0.90, log loss 0.162 / 221 nats per bit; fresh 277/600 [0.42, 0.50], log loss 166. The floor, the L2 fee and the cap hold 1.00 at extreme depths (L32 to 24,000 steps, L320 to 32,000 steps); the trade-size cap degrades there (one seed of three falls to 0.00 from 2,400 steps at L32 and from 3,200 at L320; mean 0.67).",
+ "files": [
+  "market-resnet/RESULTS.md",
+  "market-resnet/econ2.py",
+  "market-resnet/mkregjobs3.sh",
+  "market-resnet/reeval.py",
+  "market-resnet/results/p3_summary.json",
+  "market-resnet/charts/p3_depth_L3200_reg.json",
+  "market-resnet/charts/p3_depth_L32_reg.json"
+ ]
+}

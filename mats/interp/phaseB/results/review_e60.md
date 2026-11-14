@@ -1,0 +1,13 @@
+Model: GPT-6 (Codex)
+
+Read-only review, checked 2026-10-31; no Python or model execution. Code hashes match Amendment 68. Static inspection supports the masks/softmax (`pfn_own.py:30-38`, `pfn_uni.py:39-44`), unchanged initialization/episode streams (`train_sw.py:54,97,129`), and evaluator dispatch (`e60_eval.py:13`, `e30_eval.py:31`). Metadata records the registered 12/8/4 seeds and 90,000 CPU steps. Acquisition, paired bootstrap multiplicities and prediction thresholds match registration (`e60_summ.py:39-76`); generated tables agree with JSON. Checkpoint equality was not independently executed.
+
+1. **High: mechanism claimed beyond the intervention.** Draft `update71_draft.md:5,8,52-54` asserts larger-error upweighting corrects LayerNorm's cap and routing interference causes most standard-net cost. The mask hard-codes membership and excludes competing tokens (`pfn_own.py:34-35`); retraining can change values, cap geometry and readout. E20's toy probes/intervention were not repeated for own. **Fix:** say restricted learned pooling preserves low KL and reduces departure; label error-upweighting and “one attention, two jobs” as hypotheses throughout, including plain words.
+
+2. **High: unsupported transfer of E59 findings.** Draft `:21,51,53` assigns code dependence and ensemble variation to membership. `results/e60.json:arms` contains neither SID-family costs nor E59 ensemble measures; KL standard deviation is different. **Fix:** restrict conclusions to measured KL, rom and sign share; explicitly leave own's code/ensemble behavior untested.
+
+3. **Medium: device check overgeneralized.** Draft `:7,19` says “same nets” and validates E53–E59 wholesale. Four seeds satisfy the registered practical device tolerances, not equivalence of networks or unmeasured diagnostics. Seed 0 KL is 0.005532 CPU versus 0.005681 GPU, exceeding 1% individually (`results/e60/e60_ctrlcpu_s0.npz:gap`, `results/e37/e37_ctrl_s0.npz:gap`). **Fix:** specify aggregate agreement on four seeds and measured endpoints.
+
+4. **Low: numerical/metric wording.** Draft `:16,18` CI endpoints should be 0.99, 0.22, −0.149 (`results/e60.json:ratios,rom`). Device rom CI crosses zero. Plain `:6`'s percentages measure geometric-averaging KL reductions, not reaction magnitude. **Fix:** copy JSON rounding and define the share.
+
+Survive: P229/P230 fail, P231 holds; restricted learned pooling achieves comparable KL and smaller departure. Reword: membership advantage and device reassurance. Fail as established claims: identified routing interference, larger-error compensation mechanism, and transferred E59 conclusions.

@@ -1,0 +1,37 @@
+-|r1_layers.py --n 32 --seed 400 --L 32|logs/A_n32_s400_L32.log
+-|r1_layers.py --n 32 --seed 401 --L 32|logs/A_n32_s401_L32.log
+-|r1_layers.py --n 32 --seed 402 --L 32|logs/A_n32_s402_L32.log
+-|r1_layers.py --n 32 --seed 400 --L 16|logs/A_n32_s400_L16.log
+-|r1_layers.py --n 32 --seed 401 --L 16|logs/A_n32_s401_L16.log
+-|r1_layers.py --n 32 --seed 402 --L 16|logs/A_n32_s402_L16.log
+runs/A_n32_s400_L32.json|r2_big.py --n 32 --seed 400 --L 32|logs/B_n32_s400_L32.log
+runs/A_n32_s400_L32.json|r3_pairs.py --n 32 --seed 400 --L 32|logs/C_n32_s400_L32.log
+runs/B_n32_s400_L32_c24.npz|r2b_analyze.py --n 32 --seed 400 --L 32|logs/Ban_n32_s400_L32.log
+runs/A_n32_s401_L32.json|r2_big.py --n 32 --seed 401 --L 32|logs/B_n32_s401_L32.log
+runs/A_n32_s401_L32.json|r3_pairs.py --n 32 --seed 401 --L 32|logs/C_n32_s401_L32.log
+runs/B_n32_s401_L32_c24.npz|r2b_analyze.py --n 32 --seed 401 --L 32|logs/Ban_n32_s401_L32.log
+runs/A_n32_s402_L32.json|r2_big.py --n 32 --seed 402 --L 32|logs/B_n32_s402_L32.log
+runs/A_n32_s402_L32.json|r3_pairs.py --n 32 --seed 402 --L 32|logs/C_n32_s402_L32.log
+runs/B_n32_s402_L32_c24.npz|r2b_analyze.py --n 32 --seed 402 --L 32|logs/Ban_n32_s402_L32.log
+runs/A_n32_s400_L16.json|r2_big.py --n 32 --seed 400 --L 16|logs/B_n32_s400_L16.log
+runs/A_n32_s400_L16.json|r3_pairs.py --n 32 --seed 400 --L 16|logs/C_n32_s400_L16.log
+runs/B_n32_s400_L16_c12.npz|r2b_analyze.py --n 32 --seed 400 --L 16|logs/Ban_n32_s400_L16.log
+runs/A_n32_s401_L16.json|r2_big.py --n 32 --seed 401 --L 16|logs/B_n32_s401_L16.log
+runs/A_n32_s401_L16.json|r3_pairs.py --n 32 --seed 401 --L 16|logs/C_n32_s401_L16.log
+runs/B_n32_s401_L16_c12.npz|r2b_analyze.py --n 32 --seed 401 --L 16|logs/Ban_n32_s401_L16.log
+runs/A_n32_s402_L16.json|r2_big.py --n 32 --seed 402 --L 16|logs/B_n32_s402_L16.log
+runs/A_n32_s402_L16.json|r3_pairs.py --n 32 --seed 402 --L 16|logs/C_n32_s402_L16.log
+runs/B_n32_s402_L16_c12.npz|r2b_analyze.py --n 32 --seed 402 --L 16|logs/Ban_n32_s402_L16.log
+runs/B_n32_s400_L32_c24.npz|r4_mlp.py --n 32 --seed 400 --L 32 --c 16 --ntrain 16384|logs/D_n32_s400_L32_c16_N16384.log
+runs/B_n32_s401_L32_c24.npz|r4_mlp.py --n 32 --seed 401 --L 32 --c 16 --ntrain 16384|logs/D_n32_s401_L32_c16_N16384.log
+runs/B_n32_s400_L16_c12.npz|r4_mlp.py --n 32 --seed 400 --L 16 --c 8 --ntrain 16384|logs/D_n32_s400_L16_c8_N16384.log
+runs/B_n32_s401_L16_c12.npz|r4_mlp.py --n 32 --seed 401 --L 16 --c 8 --ntrain 16384|logs/D_n32_s401_L16_c8_N16384.log
+runs/B_n32_s400_L32_c24.npz|r4_mlp.py --n 32 --seed 400 --L 32 --c 16 --ntrain 1024|logs/D_n32_s400_L32_c16_N1024.log
+runs/B_n32_s400_L32_c24.npz|r4_mlp.py --n 32 --seed 400 --L 32 --c 16 --ntrain 4096|logs/D_n32_s400_L32_c16_N4096.log
+runs/B_n32_s400_L16_c12.npz|r4_mlp.py --n 32 --seed 400 --L 16 --c 8 --ntrain 1024|logs/D_n32_s400_L16_c8_N1024.log
+runs/B_n32_s400_L16_c12.npz|r4_mlp.py --n 32 --seed 400 --L 16 --c 8 --ntrain 4096|logs/D_n32_s400_L16_c8_N4096.log
+runs/B_n32_s400_L32_c24.npz|r4_mlp.py --n 32 --seed 400 --L 32 --c 8 --ntrain 16384|logs/D_n32_s400_L32_c8_N16384.log
+runs/B_n32_s400_L32_c24.npz|r4_mlp.py --n 32 --seed 400 --L 32 --c 24 --ntrain 16384|logs/D_n32_s400_L32_c24_N16384.log
+-|r5_states.py --n 32 --seed 400 --layers 4,8,12,16,24|logs/E_n32_s400.log
+-|r5_states.py --n 32 --seed 401 --layers 4,8,12,16,24|logs/E_n32_s401.log
+-|r5_states.py --n 32 --seed 402 --layers 4,8,12,16,24|logs/E_n32_s402.log

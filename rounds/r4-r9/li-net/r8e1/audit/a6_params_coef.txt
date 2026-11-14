@@ -1,0 +1,93 @@
+/home/agent/workspaces/fable-strategy/scratch/r8e1-audit/audit/a6_params_coef.py:94: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  worst["coef_vs_forward"] = max(worst["coef_vs_forward"], float((out - l0 - (w * dl).sum(1)).abs().max()))
+{
+ "params_closed_form": {
+  "looped_attn_T3+K3": 39428,
+  "attn_L3-K3+K3": 106180,
+  "attn_L3-K1+K1": 107652,
+  "looped_lin_T4+K4": 2789,
+  "jacobi_lin_T4+K3": 812,
+  "jacobi_lin_T4_prec+K3": 814
+ },
+ "params_code": {
+  "looped_attn_T3+K3": 39428,
+  "attn_L3-K3+K3": 106180,
+  "attn_L3-K1+K1": 107652,
+  "looped_lin_T4+K4": 2789,
+  "jacobi_lin_T4+K3": 812,
+  "jacobi_lin_T4_prec+K3": 814
+ },
+ "params_claimed_PREREG": {
+  "looped_attn_T3+K3": 39428,
+  "attn_L3-K3+K3": 106180,
+  "jacobi_lin_T4_prec+K3": 814,
+  "jacobi_lin_T4+K3": 812
+ },
+ "params_logged_in_run": {
+  "looped_attn": 39428,
+  "attn_K3": 106180,
+  "attn_K1": 107652,
+  "looped_lin": 2789,
+  "jacobi": 812,
+  "jacobi_prec": 814
+ },
+ "jacobi_prec_W_exactness_max_abs_err_float32_code_vs_float64_own": {
+  "coef_vs_forward": 5.7220458984375e-06,
+  "coef_vs_autograd": 4.76837158203125e-07,
+  "offdiag_jacobian": 0.0,
+  "code_vs_own_formula": 4.390626422434707e-06,
+  "lam_rc_vs_formula": 4.76837158203125e-07
+ },
+ "jacobi_prec_identical_reads_closed_form_max_abs_err": 2.980232238769531e-07,
+ "jacobi_prec_init_lambda_for_beta_0.5_2_4": [
+  [
+   1.0,
+   1.0,
+   1.0
+  ]
+ ],
+ "anchor_token": {
+  "looped_attn_T3P_M2_K0_bitwise_equal": true,
+  "looped_attn_T3P_M2_anchor_dl_zero": true,
+  "looped_attn_T3P_M2_anchor_beta_over_beta_clean": 0.3333333134651184,
+  "looped_attn_T3P_M2_out_minus_l0_minus_sum_reads_max": 3.814697265625e-06,
+  "looped_attn_T3P_M2_k0_equals_normalize_W_s0": 0.0,
+  "looped_attn_T3P_M6_K0_bitwise_equal": true,
+  "looped_attn_T3P_M6_anchor_dl_zero": true,
+  "looped_attn_T3P_M6_anchor_beta_over_beta_clean": 1.0,
+  "looped_attn_T3P_M6_out_minus_l0_minus_sum_reads_max": 7.62939453125e-06,
+  "looped_attn_T3P_M6_k0_equals_normalize_W_s0": 0.0,
+  "looped_attn_T3P_M12_K0_bitwise_equal": true,
+  "looped_attn_T3P_M12_anchor_dl_zero": true,
+  "looped_attn_T3P_M12_anchor_beta_over_beta_clean": 2.0,
+  "looped_attn_T3P_M12_out_minus_l0_minus_sum_reads_max": 1.9073486328125e-06,
+  "looped_attn_T3P_M12_k0_equals_normalize_W_s0": 0.0,
+  "looped_attn_T3P_M18_K0_bitwise_equal": true,
+  "looped_attn_T3P_M18_anchor_dl_zero": true,
+  "looped_attn_T3P_M18_anchor_beta_over_beta_clean": 2.999999761581421,
+  "looped_attn_T3P_M18_out_minus_l0_minus_sum_reads_max": 3.814697265625e-06,
+  "looped_attn_T3P_M18_k0_equals_normalize_W_s0": 0.0,
+  "attn_L3P_M2_K0_bitwise_equal": true,
+  "attn_L3P_M2_anchor_dl_zero": true,
+  "attn_L3P_M2_anchor_beta_over_beta_clean": 0.3333333134651184,
+  "attn_L3P_M2_out_minus_l0_minus_sum_reads_max": 1.9073486328125e-06,
+  "attn_L3P_M2_k0_equals_normalize_W_s0": 0.0,
+  "attn_L3P_M6_K0_bitwise_equal": true,
+  "attn_L3P_M6_anchor_dl_zero": true,
+  "attn_L3P_M6_anchor_beta_over_beta_clean": 1.0,
+  "attn_L3P_M6_out_minus_l0_minus_sum_reads_max": 1.9073486328125e-06,
+  "attn_L3P_M6_k0_equals_normalize_W_s0": 0.0,
+  "attn_L3P_M12_K0_bitwise_equal": true,
+  "attn_L3P_M12_anchor_dl_zero": true,
+  "attn_L3P_M12_anchor_beta_over_beta_clean": 2.0,
+  "attn_L3P_M12_out_minus_l0_minus_sum_reads_max": 1.9073486328125e-06,
+  "attn_L3P_M12_k0_equals_normalize_W_s0": 0.0,
+  "attn_L3P_M18_K0_bitwise_equal": true,
+  "attn_L3P_M18_anchor_dl_zero": true,
+  "attn_L3P_M18_anchor_beta_over_beta_clean": 2.999999761581421,
+  "attn_L3P_M18_out_minus_l0_minus_sum_reads_max": 9.5367431640625e-07,
+  "attn_L3P_M18_k0_equals_normalize_W_s0": 0.0
+ },
+ "crowding_prec_vs_formula_max_abs_err": 1.1920928955078125e-07
+}

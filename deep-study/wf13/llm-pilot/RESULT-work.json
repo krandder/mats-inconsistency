@@ -1,0 +1,66 @@
+{
+ "model": "Claude Fable 5.2 (claude-fable-5-2[1m])",
+ "plain_words": "Context: you said the rollout policy may be anything, because the simple world model scores only the finished demonstration and the search aims in proportion to that score. I tested the smallest version on a real language model: frozen Qwen3-1.7B as the simple world model, a demonstration = one line of worked steps ending in an answer, score = the model's own probability of that line. Arithmetic and variable tracking, 150 held-out problems each.\n1. Thinking helps: direct answer right 10% / 24%; vote over 64 of its own rollouts 99% / 92%.\n2. A biased writer (same model, tuned two minutes to make one mistake half the time) captures a plain vote: 57% / 35%, and more rollouts do not help.\n3. Counting each distinct demonstration once, weighted by the score, gives 99% / 93% from the same rollouts, and the answer distribution returns to within 0.03 of the model's own. Same for two other biased writers. Those three did not move the answer.\n4. The textbook correction (score over the writer's own probability) also works but is noisier and stalls for one writer. I had registered that the simpler one would do worse; it did better.\n5. The limit: a helpful writer that only writes the right demonstration makes the amplified distribution say 99% where the target says 87%, still at 256 rollouts. A finite search returns the score over what the writer chose to show. A writer hiding the best demonstration would exploit that; I did not build one.\n6. From the score alone, the share of score found gives an interval valid for any writer (proved; its table is post hoc).\n7. A trust head on top of the vote breaks when the writer changes; on top of the score-weighted answer it carries over. It improved nothing here.\n8. Not shown: truth. The target is the model's belief; it is wrong on 8% of variable problems. By my registered bins the result is MINOR, not MAJOR, and three of my registered expectations failed. I don't know if this survives long free-form demonstrations.",
+ "note_path": "/home/agent/workspaces/mats/work/deep-study/wf13/llm-pilot/NOTE.md",
+ "claims": [
+  {
+   "claim": "Registered bin is MINOR, not MAJOR: H1, H2, H3 (major), H5 (major) hold in both families; H4 (importance-weighted returns to target at <=4x rollouts) is major in arithmetic and missed in variables for W3 by 0.008 (0.085 vs bar 0.077, intervals overlap).",
+   "status": "CHECKED",
+   "evidence": "code/verdict.py applied to out/main/RESULT-work.json -> out/main/verdict.txt, VERDICT.json; PREREG.md hashed 16:59:07Z before any test/calibration run (PREREG.sha256). FRAME: Q3(a)."
+  },
+  {
+   "claim": "Plain vote follows the biased writer W3: accuracy 0.567 / 0.353 at K=64 against 0.987 / 0.920 for M's own rollouts; its distance to the target stays 0.43-0.54 up to K=256.",
+   "status": "CHECKED",
+   "evidence": "out/main/verdict.txt, ext_table.txt; 150 problems per family, one tuning run, one seed. Independent recomputation: code/selfcheck.py, 0 of 24 mismatches."
+  },
+  {
+   "claim": "For the three biased writers built (W3, W3s, W3p), score-based aggregations keep accuracy within 0.03 of M's own vote (0.913-0.993) and excess movement <= 0.024 at K=64.",
+   "status": "CHECKED",
+   "evidence": "out/main/verdict.txt (H3, H5). Finding on three writers only; not a claim about any writer. FRAME: Q3(a); under Q3(b) only the accuracy rows apply."
+  },
+  {
+   "claim": "The helpful writer W4 moves every aggregation's answer distribution 0.13-0.15 from the target on variables at every K up to 256; it never writes M's own mistakes (found score 0.69 vs 0.86).",
+   "status": "CHECKED",
+   "evidence": "out/main/verdict.txt, ext_table.txt (extension registered in PREREG-ADDENDUM.md before results were read; 32 problems per family). FRAME: Q6(b), writer-independence of amplified predictions fails here at the compute tried."
+  },
+  {
+   "claim": "Three of my registered expectations were wrong: dedup-score would not return to the target (it was closest); the trust head would improve W1's Brier (0.036 -> 0.037); importance weighting from W3 would reach M's K=16 level by K=256 on variables (0.077 vs 0.074).",
+   "status": "REFUTED",
+   "evidence": "NOTE.md sections 2, 5, 6; out/main/verdict.txt, RESULT-trust.json, ext_table.txt."
+  },
+  {
+   "claim": "Interval from the score alone, valid for any writer: R_F(a) <= T(a) <= 1 - (m_F - R_F(a)); an answer with found score > 1/2 is the target's majority answer.",
+   "status": "PROVEN",
+   "evidence": "Three-line proof in NOTE.md section 5. The coverage table (48 cells, certified answer = reference top in all) is post hoc: added after seeing W4, threshold/K/tolerance set after the data. out/main/RESULT-posthoc.json."
+  },
+  {
+   "claim": "A trust head fitted on real answers with M's own rollouts breaks on the vote when the writer is swapped (Brier 0.037 -> 0.345) and carries over on score-based aggregations for the three biased writers (within 0.01).",
+   "status": "CHECKED",
+   "evidence": "code/trust.py, out/main/RESULT-trust.json; exploratory (H7), 300 calibration and 300 test problems. FRAME: Q1 (trust trained on reality only)."
+  },
+  {
+   "claim": "The target is M's belief after thinking, not truth: its top answer is wrong on 8% of variable problems and score-based aggregation reproduces that (0.91-0.93).",
+   "status": "CHECKED",
+   "evidence": "out/main/RESULT-work.json: ref; verdict.txt."
+  },
+  {
+   "claim": "A writer that hides M's best demonstration and shows a plausible second-best would move both score-based aggregations.",
+   "status": "CONJECTURE",
+   "evidence": "Follows from the mechanism seen with W4; not built, not run."
+  },
+  {
+   "claim": "The result survives long free-form demonstrations.",
+   "status": "UNKNOWN",
+   "evidence": "Here demonstrations are 45-49 tokens and 4-6 distinct lines carry 0.86 of the score; nothing longer was tested."
+  }
+ ],
+ "open_questions": [
+  "Does any of this survive free-form demonstrations of hundreds of tokens, where no single text carries measurable score and the found share is near zero?",
+  "What does a writer do that hides M's best demonstration, or one that searches for wrong demonstrations M scores highly (an attack on the score rather than the vote)? Neither was built.",
+  "Should the amplified prediction match the target (M's belief) or be right? The helpful writer is better than the target and therefore different from it; the design has to choose.",
+  "Does distilling the score-weighted answer back into the rollout policy keep or remove the helpful writer's blind spot? Distillation was not run.",
+  "Kelvin's query-order consistency (amplified P(X) then P(Y|X) against P(Y) then P(X|Y)) was not tested; only agreement across rollout policies was.",
+  "The results rest on one model, one tuning run per writer and one sampling seed; a second agent has not re-run them."
+ ],
+ "compute_used": "One Slurm job, id 57877, one L40 on the MATS cluster, 16:35:43Z-19:01:27Z (2 h 26 min), no queue wait: sizing pilots, three LoRA tunings (135/104/68 s), test run 54 min (230,400 rollouts), calibration 18 min (76,800), Qwen3-4B direct answers 30 s, K-extension 32 min (147,456). CPU analysis at nice 19. No paid API, no gated model, no other GPU."
+}
